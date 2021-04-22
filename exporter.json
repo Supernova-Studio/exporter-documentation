@@ -1,0 +1,22 @@
+{
+    "id": "io.supernova.documentation-main",
+    "name": "Documentation",
+    "description": "Default Supernova documentation exporter",
+    "author": "Jiri Trecak",
+    "organization": "Supernova",
+    "source_dir": "src",
+    "assets_dir": "assets",
+    "version": "1.0.0",
+    "config": {
+        "sources": "sources.json",
+        "output": "output.json",
+        "js": "src/js/compiled.js"
+    },
+    "engines": {
+        "pulsar": "1.0.0",
+        "supernova": "1.0.0"
+    },
+    "tags": [
+        "Documentation"
+    ]
+}
