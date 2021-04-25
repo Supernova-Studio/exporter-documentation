@@ -1,3 +1,14 @@
 {
-    "blueprints": []
+    "blueprints": [
+        {
+            "invoke": "index_temp.pr",
+            "write_to": "index.html"
+        }
+    ],
+    "assets": [
+        {
+            "asset": "*",
+            "write_to": "assets"
+        }
+    ]
 }
