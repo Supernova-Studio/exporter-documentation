@@ -1,7 +1,5 @@
 /*
 ================================================================
-* Template:  	 iDocs - One Page Documentation HTML Template
-* Written by: 	 Harnish Design - (http://www.harnishdesign.net)
 * Description:   Main Custom Script File
 ================================================================
 */
