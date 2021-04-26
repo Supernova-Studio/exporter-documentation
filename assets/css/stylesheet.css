@@ -666,10 +666,9 @@ hr {
   font-weight: 600;
 }
 .idocs-navigation .nav .nav-item:hover > .nav-link, .idocs-navigation .nav .nav-item .nav-link.active {
-  font-weight: 700;
+  font-weight: 600;
 }
 .idocs-navigation .nav .nav {
-  display: none;
   border-left: 1px solid regba(0, 0, 0, 0.3);
 }
 .idocs-navigation .nav .nav .nav-item .nav-link:after {
