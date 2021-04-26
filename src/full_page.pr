@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{[ inject "page_head" context self /]}
+
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+{[ inject "page_body_preloader" context self /]}
+
+<!-- Document Wrapper -->
+<div id="main-wrapper"> 
+  
+  <!-- Header -->
+  {[ inject "page_body_structure_header" context self /]}
+  <!-- Header End --> 
+  
+  <!-- Content -->
+  <div id="content" role="main">
+    
+    <!-- Sidebar Navigation -->
+    <div class="idocs-navigation bg-light">
+      {[ inject "page_body_structure_sidebar" context self /]}
+    </div>
+    
+    <!-- Docs Content -->
+    <div class="idocs-content">
+      {[ inject "page_body_structure_content" context self /]}
+    </div>
+  </div>
+  <!-- Content end --> 
+  
+</div>
+<!-- Document Wrapper end --> 
+
+<!-- JavaScript -->
+{[ inject "page_body_scripts" context self /]}
+
+</body>
+</html>
