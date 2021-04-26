@@ -1,1 +1,2 @@
-{{ pageId }}.html
+{[ const page = @ds.docs.pageById(pageId) /]}
+{{ page.slug }}.html
