@@ -12,7 +12,7 @@
     {[ for item in rootGroup.children ]}
         {[ let itemId = item.id /]}
         {[ if item.type.equals("Page") ]}
-            <li class="nav-item"><a class="nav-link" href="{{ @js.pageUrl(item) }}"> {{ item.title }}</a><li>
+            <li class="nav-item"><a class="nav-link" href="{{ @js.relativePageUrl(item, true) }}"> {{ item.title }}</a><li>
         {[ else ]}
             <li class="nav-item"><a class="nav-link"> {{ item.title }}</a>
             {[ inject "page_body_structure_sidebar" context itemId /]}

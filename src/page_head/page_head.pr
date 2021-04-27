@@ -1,12 +1,14 @@
+{* Retrieve page object from context *}
+{[ let page = context /]}
 <head>
     <!-- Meta information -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-    <link href="assets/images/favicon.png" rel="icon" />
-    <title>Supernova Docs</title>
+    <link href="{{ @js.relativeAssetUrl("assets/images/favicon.png", page) }}" rel="icon" />
+    <title>Supernova Docs | {{ page.title }}</title>
     <meta name="description" content="">
 
     <!-- Documentation Styling –->
-    {[ inject "page_head_styles" context self /]}
+    {[ inject "page_head_styles" context page /]}
 </head>
