@@ -259,6 +259,11 @@ declare global {
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
   }
+
+  type DocumentationConfiguration = {
+    domain: string
+  }
+
   //
   // Data Types
   // Subcategory: Documentation Text

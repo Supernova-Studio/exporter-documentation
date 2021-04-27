@@ -1,2 +1,2 @@
 {[ const page = @ds.docs.pageById(pageId) /]}
-{{ @js.relativePageUrl(page, false) }}
+{{ @js.pageUrl(page, @init.null()) }}

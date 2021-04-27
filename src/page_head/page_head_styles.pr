@@ -1,18 +1,19 @@
 {* Retrieve page object from context *}
-{[ let page = context /]}
+{[ const page = context /]}
+{[ const domain = @ds.docs.configuration().domain /]}
 {* Generate header styles *}
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="{{ @js.relativeAssetUrl("assets/vendor/bootstrap/css/bootstrap.min.css", page) }}" />
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/bootstrap/css/bootstrap.min.css", domain) }}" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" type="text/css" href="{{ @js.relativeAssetUrl("assets/vendor/font-awesome/css/all.min.css", page) }}" />
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/font-awesome/css/all.min.css", domain) }}" />
 
 <!-- Magnific Popup -->
-<link rel="stylesheet" type="text/css" href="{{ @js.relativeAssetUrl("assets/vendor/magnific-popup/magnific-popup.min.css", page) }}" />
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/magnific-popup/magnific-popup.min.css", domain) }}" />
 
 <!-- Highlight Syntax -->
-<link rel="stylesheet" type="text/css" href="{{ @js.relativeAssetUrl("assets/vendor/highlight.js/styles/github.css", page) }}" />
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/highlight.js/styles/github.css", domain) }}" />
 
 <!-- Custom Stylesheet -->
-<link rel="stylesheet" type="text/css" href="{{ @js.relativeAssetUrl("assets/css/stylesheet.css", page) }}" />
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
 

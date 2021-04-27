@@ -1,10 +1,15 @@
+{* Fetch page detail using pageId invocation context property *}
 {[ const page = @ds.docs.pageById(pageId) /]}
+
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
 
 <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
-{[ inject "page_body_preloader" context page /]}
+{* Add preloader when user requests it *}
+{[ if @configuration().showPreloader ]}
+  {[ inject "page_body_preloader" context page /]}
+{[/]}
 
 <!-- Document Wrapper -->
 <div id="main-wrapper"> 
