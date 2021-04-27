@@ -40,6 +40,16 @@ declare global {
 
   type GradientType = 'Linear' | 'Radial' | 'Angular'
 
+  type DocumentationItemType = 'Page' | 'Group'
+
+  type DocumentationPageBlockType = 'Text' | 'Heading' | 'Code' | 'UnorderedList' | 'OrderedList' | 'Quote' | 'Callout' | 'Divider' | 'Image' | 'Link' | 'Token' | 'TokenList' | 'TokenGroup'
+
+  type RichTextSpanAttributeType = 'Bold' | 'Italic' | 'Link' | 'Strikethrough' | 'Code'
+
+  type CalloutType = 'Info' | 'Success' | 'Warning' | 'Error'
+
+  type HeadingType = '1' | '2' | '3'
+
   //
   // Data Types
   // Subcategory: Design Token Shells
@@ -225,6 +235,112 @@ declare global {
     isReadOnly: boolean
   }
 
+  //
+  // Data Types
+  // Subcategory: Documentation Base
+
+  type DocumentationItem = {
+    id: string
+    persistentId: string
+    title: string
+    type: DocumentationItemType
+  }
+
+  type DocumentationGroup = DocumentationItem & {
+    isRoot: boolean
+    childrenIds: Array<string>
+    children: Array<DocumentationItem>
+    parent: DocumentationGroup | null
+  }
+
+  type DocumentationPage = DocumentationItem & {
+    slug: string
+    userSlug: string | null
+    blocks: Array<DocumentationPageBlock>
+    parent: DocumentationGroup
+  }
+  //
+  // Data Types
+  // Subcategory: Documentation Text
+
+  type DocumentationRichText = {
+    spans: Array<DocumentationRichTextSpan>
+  }
+
+  type DocumentationRichTextSpan = {
+    text: string
+    attributes: Array<DocumentationRichTextSpanAttribute>
+  }
+
+  type DocumentationRichTextSpanAttribute = {
+    type: RichTextSpanAttributeType
+    link: string | null
+  }
+
+  //
+  // Data Types
+  // Subcategory: Documentation Blocks
+
+  type DocumentationPageBlock = {
+    id: string
+    children: Array<DocumentationPageBlock>
+    type: DocumentationPageBlockType
+  }
+
+  type DocumentationPageBlockCallout = DocumentationPageBlockText & {
+    calloutType: CalloutType
+  }
+
+  type DocumentationPageBlockCode = DocumentationPageBlockText & {
+    codeLanguage: string | null
+  }
+
+  type DocumentationPageBlockDivider = DocumentationPageBlock & {
+    // No extra attributes
+  }
+
+  type DocumentationPageBlockHeading = DocumentationPageBlock & {
+    headingType: HeadingType
+  }
+
+  type DocumentationPageBlockImage = DocumentationPageBlock & {
+    url: string | null
+  }
+
+  type DocumentationPageBlockLink = DocumentationPageBlock & {
+    url: string | null
+  }
+
+  type DocumentationPageBlockOrderedList = DocumentationPageBlockText & {
+    // No extra attributes
+  }
+
+  type DocumentationPageBlockQuote = DocumentationPageBlockText & {
+    // No extra attributes
+  }
+
+  type DocumentationPageBlockText = DocumentationPageBlock & {
+    text: DocumentationRichText
+  }
+
+  type DocumentationPageBlockToken = DocumentationPageBlock & {
+    tokenId: string
+  }
+
+  type DocumentationPageBlockTokenGroup = DocumentationPageBlock & {
+    groupId: string
+  }
+
+  type DocumentationPageBlockTokenList = DocumentationPageBlock & {
+    tokenIds: string
+  }
+
+  type DocumentationPageBlockUnorderedList = DocumentationPageBlockText & {
+    // No extra attributes
+  }
+
+
+  
   //
   // Data Types
   // Subcategory: Support

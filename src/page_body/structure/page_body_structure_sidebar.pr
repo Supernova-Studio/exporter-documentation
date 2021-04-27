@@ -1,14 +1,22 @@
+
+{* Fetch the page structure *}
+{[ let rootGroup = [] /]}
+
+{[ if context.isString() ]}
+    {[ rootGroup = @ds.docs.groupById(context) /]}
+{[ else ]}
+    {[ rootGroup = @ds.docs.rootGroup() /]}
+{[/]}
+
 <ul class="nav flex-column ">
-    <li class="nav-item active"><a class="nav-link active" href="#l1">Menu Item Level 1</a>
-        <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active" href="#l2">Menu Item Level 2</a>
-            <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="#l3">Menu Item Level 3</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#l3">Menu Item Level 3</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#l3">Menu Item Level 3</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#l3">Menu Item Level 3</a></li>
-                </ul>
-            </li>    
-        </ul>
-    </li>
+    {[ for item in rootGroup.children ]}
+        {[ let itemId = item.id /]}
+        {[ if item.type.equals("Page") ]}
+            <li class="nav-item"><a class="nav-link" href="{{ @js.pageUrl(item) }}"> {{ item.title }}</a><li>
+        {[ else ]}
+            <li class="nav-item"><a class="nav-link"> {{ item.title }}</a>
+            {[ inject "page_body_structure_sidebar" context itemId /]}
+            </li>
+        {[/]}
+    {[/]}
 </ul>
