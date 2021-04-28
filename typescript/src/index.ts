@@ -4,6 +4,8 @@
 Pulsar.registerFunction("pageUrl", pageUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
+Pulsar.registerFunction("isExperimentalBlock", isExperimentalBlock)
+Pulsar.registerFunction("parseExperimentalBlock", parseExperimentalBlock)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -42,6 +44,29 @@ function assetUrl(asset: string, prefix: string | undefined) {
 function slugName(name: string) {
   return name.replace(/\W+/g, "-").toLowerCase()
 }
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Experimental features
+
+/**  */
+function isExperimentalBlock(block: DocumentationPageBlockText): boolean {
+  return block.text.spans.length === 1 && block.text.spans[0].text.startsWith("[block:")
+}
+
+/** Parse experimental information from the text block, so we can convert it to experimental block  */
+function parseExperimentalBlock(block: DocumentationPageBlockText): { blockType: string, payload: string } {
+
+  // This is stupid dumb parsing, but it really is just for that one usecase and will be removed :)
+  let text = block.text.spans[0].text
+  text = text.substr(1) // Remove first [
+  let blocks = text.split("]") // Split by ] so we get block:X  and   payload (maybe URL)
+  let blockType = blocks[0].split(".")
+  return {
+    blockType: blockType[0].split(":")[1],
+    payload: blocks[1]
+  }
+}
+
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - String manipulation
