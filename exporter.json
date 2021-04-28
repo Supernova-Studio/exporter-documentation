@@ -52,9 +52,15 @@
                 "type": "string"
             },
             {
-                "key": "footer_show",
+                "key": "show_footer",
                 "default": true,
-                "label": "Should footer be shown?",
+                "label": "Show footer",
+                "type": "boolean"
+            },
+            {
+                "key": "show_header",
+                "default": true,
+                "label": "Show header",
                 "type": "boolean"
             },
             {
@@ -64,9 +70,15 @@
                 "type": "string"
             },
             {
-                "key": "light_mode",
+                "key": "dark_mode",
                 "default": false,
-                "label": "Use light mode for header and footer?",
+                "label": "Use dark mode",
+                "type": "boolean"
+            },
+            {
+                "key": "fullscreen_mode",
+                "default": false,
+                "label": "When used, documentation will expand to full width of the page. Otherwise, it will be constrained to 1200px box",
                 "type": "boolean"
             }
         ]

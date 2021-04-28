@@ -18,7 +18,7 @@
 {[ inject "page_body_structure_header" context page /]}
   
   <!-- Content -->
-  <div id="content" role="main">
+  <div id="content" role="main" class="">
     
     <!-- Sidebar Navigation -->
     <div class="docs-navigation bg-sidebar">
@@ -41,7 +41,7 @@
     </div>
 
     {* Add content footer, if enabled *}
-    {[ if @configuration().footer_show ]}
+    {[ if @configuration().show_footer ]}
       {[ inject "page_body_structure_footer" context page /]}
     {[/]}
   </div>

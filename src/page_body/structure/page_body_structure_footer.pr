@@ -1,5 +1,5 @@
   <!-- Footer -->
-  <footer id="footer" class="section bg-dark footer-text-light">
+  <footer id="footer" class="section {{ @boolean.ternaryValue(@configuration().dark_mode, "bg-dark navbar-text-light", "bg-light navbar-text-dark") }}">
     <div class="container">
       <ul class="social-icons social-icons-lg social-icons-muted justify-content-center mb-3">
       {[ if @configuration().social_twitter ]}

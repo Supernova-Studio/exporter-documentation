@@ -2,23 +2,24 @@
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
     <!-- Navbar -->
-    <nav class="primary-menu navbar navbar-expand-lg bg-dark navbar-text-light">
+    <nav class="primary-menu navbar navbar-expand-lg {{ @boolean.ternaryValue(@configuration().dark_mode, "bg-dark navbar-text-light", "bg-light navbar-text-dark") }}">
         <div class="container-fluid">
+
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
         
         <!-- Logo --> 
-        <!--<a class="logo ml-md-3" href="index.html" title="Supernova">Supernova</a>-->
+        <a class="logo ml-md-3" href="{{ @ds.docs.configuration().logoHref }}" title="{{ @ds.docs.configuration().title }}">
+        <img src="{{ @ds.docs.configuration().logoUrl }}" alt="{{ @ds.docs.configuration().title }}">
+        </a>
         
-        <span class="text-2 ml-2">Supernova Documentation v1.0</span> 
-        <!-- Logo End -->
+        <!-- Title -->
+        <span class="text-4 font-width-700 ml-3">{{ @ds.docs.configuration().title }}</span> 
+
+        <!-- Potential Left Link Here -->
+        <div id="header-nav" class="collapse navbar-collapse justify-content-end"></div>
         
-        <!-- Navbar Toggler -->
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav"><span></span><span></span><span></span></button>
-        
-        <div id="header-nav" class="collapse navbar-collapse justify-content-end">
-            
-        </div>
+        <!-- Social -->
         <ul class="social-icons social-icons-sm ml-lg-2 mr-2">
             {[ if @configuration().social_twitter ]}
                 <li><a data-toggle="tooltip" href="{{ @configuration().social_twitter }}" target="_blank" title="Twitter" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
@@ -39,6 +40,5 @@
         </ul>
         </div>
     </nav>
-    <!-- Navbar End --> 
 </header>
 <!-- Header End -->

@@ -34,7 +34,6 @@ body, html {
 }
 
 body {
-  background: #dddddd;
   color: #4c4d4d;
 }
 
@@ -616,14 +615,9 @@ hr {
   background: #fff;
 }
 
-.box #main-wrapper {
+.box {
   max-width: 1200px;
   margin: 0 auto;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-.box .docs-navigation {
-  left: auto;
 }
 
 @media (min-width: 1200px) {
@@ -2973,4 +2967,9 @@ code {
 
 .bg-sidebar {
   background-color: #fff;
+}
+
+.logo img {
+  max-width: 120px;
+  max-height: 30px;
 }
