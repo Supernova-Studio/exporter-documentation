@@ -2961,3 +2961,12 @@ input:-internal-autofill-selected {
   padding: 10px 0px 10px 10px;
   border-left: 2px solid #007bff;
 }
+
+code {
+  padding: 0;
+  margin-left: -450px;
+}
+
+.hljs {
+  padding: 0
+}
