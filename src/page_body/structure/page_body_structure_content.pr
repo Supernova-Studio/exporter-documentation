@@ -1,5 +1,33 @@
 {[ const page = context /]}
-<section id="idocs_start">
-<h1>{{ page.title }}</h1>
-<p class="lead">Index file of documentation, generated with copied asset directory.</p>
-<hr>
+
+{* Generate each block depending on its type *}
+{[ for block in page.blocks ]}
+{[ switch block.type ]}
+    {[ case "Text" ]}
+        {[ inject "page_block_text" context block /]}
+    {[ case "Heading" ]}
+        {[ inject "page_block_heading" context block /]}
+    {[ case "Code" ]}
+        {[ inject "page_block_code" context block /]}
+    {[ case "UnorderedList" ]}
+        {[ inject "page_block_unordered_list" context block /]}
+    {[ case "OrderedList" ]}
+        {[ inject "page_block_ordered_list" context block /]}
+    {[ case "Quote" ]}
+        {[ inject "page_block_quote" context block /]}
+    {[ case "Callout" ]}
+        {[ inject "page_block_callout" context block /]}
+    {[ case "Divider" ]}
+        {[ inject "page_block_divider" context block /]}
+    {[ case "Image" ]}
+        {[ inject "page_block_image" context block /]}
+    {[ case "Link" ]}
+        {[ inject "page_block_link" context block /]}
+    {[ case "Token" ]}
+        {[ inject "page_block_token" context block /]}
+    {[ case "TokenList" ]}
+        {[ inject "page_block_token_list" context block /]}
+    {[ case "TokenGroup" ]}
+        {[ inject "page_block_token_group" context block /]}
+{[/]}
+{[/]}
