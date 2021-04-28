@@ -22,7 +22,8 @@
 	6 Footer
 		6.1 Social Icons
 		6.2 Back to Top
-	7 Extra
+  7 Blocks
+	8 Extra
 
 =======================================================*/
 /* =================================== */
@@ -2946,4 +2947,12 @@ input:-internal-autofill-selected {
   right: auto;
   left: -40px;
   border-radius: 4px 0px 0px 4px;
+}
+
+/* =================================== */
+/*  8. Blocks
+/* =================================== */
+
+.block-children {
+  margin-left: 16px;
 }

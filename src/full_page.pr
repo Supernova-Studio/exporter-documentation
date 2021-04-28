@@ -28,7 +28,17 @@
     
     <!-- Docs Content -->
     <div class="idocs-content">
-      {[ inject "page_body_structure_content" context page /]}
+      <div class="container">
+        <section id="section-content-page">
+        {* Generate page header that is present on each page *}
+        <h1>{{ page.title }}</h1>
+
+        {* Generate page blocks which are the content *}
+        {[ for block in page.blocks ]}
+            {[ inject "page_body_structure_block" context block /]}
+        {[/]}
+        </section>
+      </div>
     </div>
   </div>
   <!-- Content end --> 

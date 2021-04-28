@@ -1,7 +1,6 @@
-{[ const page = context /]}
+{[ const block = context /]}
 
-{* Generate each block depending on its type *}
-{[ for block in page.blocks ]}
+{* Generate each block depending on this block's type *}
 {[ switch block.type ]}
     {[ case "Text" ]}
         {[ inject "page_block_text" context block /]}
@@ -29,5 +28,14 @@
         {[ inject "page_block_token_list" context block /]}
     {[ case "TokenGroup" ]}
         {[ inject "page_block_token_group" context block /]}
+{[/]}
+
+{* Generate child blocks, if any *}
+{[ if @compare.greaterThan(block.children.count(), 0) ]}
+    <div class="block-children">
+    {[ for child in block.children ]}
+        {[ inject "page_body_structure_block" context child /]}
+    {[/]}
+    </div>
 {[/]}
 {[/]}

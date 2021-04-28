@@ -1,0 +1,27 @@
+{* Fetch rich from injection context, expected type 'DocumentationRichText' *}
+{[ const richText = context /]}
+
+{* Take all the spans, and create formatted string out of them *}
+{[ let finalString = "" /]}
+{[ for span in richText.spans ]}
+    {* Each span represents one part of the text with unique attributes *}
+    {[ let text = span.text /]}
+    {* Apply attributes to this block. There can be multiple attributes, so we contain the text *}
+    {[ for attribute in span.attributes ]}
+        {[ switch attribute.type ]}
+            {[ case "Bold" ]}
+                {[ text = text.extended("<strong>", "</strong>") /]}
+            {[ case "Italic" ]}
+                {[ text = text.extended("<i>", "</i>") /]}
+            {[ case "Link" ]}
+                {[ text = text.extended("<a href=\"\" target=\"_blank\">", "</a>") /]}
+            {[ case "Strikethrough" ]}
+                {[ text = text.extended("<s>", "</s>") /]}
+            {[ case "Code" ]}
+                {[ text = text.extended("<mark>", "</mark>") /]}
+        {[/]}
+    {[/]}
+    {[ finalString = finalString.suffixed(text) /]}
+{[/]}
+{* Render final text string *}
+{{ finalString }}
