@@ -1743,8 +1743,7 @@ hr {
 /*=== 5.3 Accordion & Toggle ===*/
 .accordion .card {
   border: none;
-  margin-bottom: 16px;
-  margin-bottom: 1rem;
+  margin-bottom: 8px;
   background-color: transparent;
 }
 .accordion .card-header {
@@ -1759,6 +1758,10 @@ hr {
   display: block;
   border-radius: 4px;
   position: relative;
+}
+.accordion .card-header p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .accordion .card-header a:hover {
   text-decoration: none;

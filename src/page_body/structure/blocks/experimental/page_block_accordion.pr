@@ -1,1 +1,17 @@
-[ACCORDION BLOCK]
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Create accordion *}
+
+<div class="accordion" id="accordionDefault">
+{[ for content in block.payload.split("|") ]}
+  <div class="card">
+    <div class="card-header" id="accordion-{{ #index }}">
+      <p><a href="#" data-toggle="collapse" data-target="#accordion-collapse{{ #index }}" aria-expanded="false" aria-controls="accordion-collapse{{ #index }}" class="collapsed">Header of {{ content }}</a></p>
+    </div>
+    <div id="accordion-collapse{{ #index }}" class="collapse" aria-labelledby="accordion-{{ #index }}" data-parent="#accordionDefault">
+      <div class="card-body">{{ content }}</div>
+    </div>
+  </div>
+{[/]}
+</div>

@@ -62,8 +62,8 @@ function parseExperimentalBlock(block: DocumentationPageBlockText): { blockType:
   let blocks = text.split("]") // Split by ] so we get block:X  and   payload (maybe URL)
   let blockType = blocks[0].split(".")
   return {
-    blockType: blockType[0].split(":")[1],
-    payload: blocks[1]
+    blockType: blockType[0].split(":")[1].trim(),
+    payload: blocks[1].trim()
   }
 }
 

@@ -1,1 +1,7 @@
-[VIDEO BLOCK]
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Create video embed block *}
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="{{ block.payload }}" allowfullscreen></iframe>
+</div>
