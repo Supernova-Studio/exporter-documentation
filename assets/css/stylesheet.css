@@ -622,7 +622,7 @@ hr {
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-.box .idocs-navigation {
+.box .docs-navigation {
   left: auto;
 }
 
@@ -632,7 +632,7 @@ hr {
   }
 }
 /*=== 3.1 Side Navigation ===*/
-.idocs-navigation {
+.docs-navigation {
   position: fixed;
   top: 70px;
   left: 0;
@@ -644,28 +644,28 @@ hr {
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
 }
-.idocs-navigation > .nav {
+.docs-navigation > .nav {
   padding: 30px 0;
 }
-.idocs-navigation .nav .nav-item {
+.docs-navigation .nav .nav-item {
   position: relative;
 }
-.idocs-navigation .nav .nav {
+.docs-navigation .nav .nav {
   margin: 0 0 5px;
 }
-.idocs-navigation .nav .nav-link {
+.docs-navigation .nav .nav-link {
   position: relative;
   padding: 6px 30px;
   line-height: 25px;
   font-weight: 600;
 }
-.idocs-navigation .nav .nav-item:hover > .nav-link, .idocs-navigation .nav .nav-item .nav-link.active {
+.docs-navigation .nav .nav-item:hover > .nav-link, .docs-navigation .nav .nav-item .nav-link.active {
   font-weight: 600;
 }
-.idocs-navigation .nav .nav {
+.docs-navigation .nav .nav {
   border-left: 1px solid regba(0, 0, 0, 0.3);
 }
-.idocs-navigation .nav .nav .nav-item .nav-link:after {
+.docs-navigation .nav .nav .nav-item .nav-link:after {
   content: "";
   position: absolute;
   left: 30px;
@@ -674,27 +674,27 @@ hr {
   width: 1px;
   top: 0;
 }
-.idocs-navigation .nav .nav .nav-item .nav-link.active:after {
+.docs-navigation .nav .nav .nav-item .nav-link.active:after {
   border-color: #0366d6;
   border-width: 2px;
 }
-.idocs-navigation .nav .nav-item .nav-link.active + .nav {
+.docs-navigation .nav .nav-item .nav-link.active + .nav {
   display: block;
 }
-.idocs-navigation .nav .nav .nav-link {
+.docs-navigation .nav .nav .nav-link {
   color: #6a6a6a;
   padding: 4px 30px 4px 45px;
   font-size: 15px;
   text-transform: none;
 }
-.idocs-navigation .nav .nav .nav .nav-link {
+.docs-navigation .nav .nav .nav .nav-link {
   padding: 4px 30px 4px 60px;
   font-size: 15px;
 }
-.idocs-navigation .nav .nav .nav .nav-item .nav-link:after {
+.docs-navigation .nav .nav .nav .nav-item .nav-link:after {
   left: 45px;
 }
-.idocs-navigation > .nav > .nav-item > .nav-link.active:after {
+.docs-navigation > .nav > .nav-item > .nav-link.active:after {
   position: absolute;
   content: " ";
   top: 50%;
@@ -709,43 +709,43 @@ hr {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-.idocs-navigation.docs-navigation-dark .nav .nav-link {
+.docs-navigation.docs-navigation-dark .nav .nav-link {
   color: rgba(250, 250, 250, 0.85);
 }
-.idocs-navigation.docs-navigation-dark .nav .nav .nav-link {
+.docs-navigation.docs-navigation-dark .nav .nav .nav-link {
   color: rgba(250, 250, 250, 0.7);
 }
-.idocs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link:after {
+.docs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link:after {
   border-color: rgba(250, 250, 250, 0.2);
 }
-.idocs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link.active:after {
+.docs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link.active:after {
   border-color: #0366d6;
 }
 
 /*=== 3.2 Docs Content ===*/
-.idocs-content {
+.docs-content {
   position: relative;
   margin-left: 260px;
   padding: 0px 50px 50px;
   min-height: 750px;
   transition: all 0.3s;
 }
-.idocs-content section:first-child {
+.docs-content section:first-child {
   padding-top: 3rem;
 }
-.idocs-content ol li, .idocs-content ul li {
+.docs-content ol li, .docs-content ul li {
   margin-top: 10px;
 }
 
 @media (max-width: 767.98px) {
-  .idocs-navigation {
+  .docs-navigation {
     margin-left: -260px;
   }
-  .idocs-navigation.active {
+  .docs-navigation.active {
     margin-left: 0;
   }
 
-  .idocs-content {
+  .docs-content {
     margin-left: 0px;
     padding: 0px;
   }
@@ -2300,8 +2300,8 @@ hr {
   background: #fff;
   color: #252b33;
   margin-left: 260px;
-  padding: 66px 0px;
-  padding: 4.125rem 0;
+  padding: 2rem 0;
+  margin: 48px 0 0 260px;
 }
 #footer .nav .nav-item {
   display: inline-block;
@@ -2953,6 +2953,11 @@ input:-internal-autofill-selected {
 /*  8. Blocks
 /* =================================== */
 
+code {
+  padding: 0;
+  margin-left: -450px;
+}
+
 .block-children {
   margin-left: 16px;
 }
@@ -2962,11 +2967,10 @@ input:-internal-autofill-selected {
   border-left: 2px solid #007bff;
 }
 
-code {
+.hljs {
   padding: 0;
-  margin-left: -450px;
 }
 
-.hljs {
-  padding: 0
+.bg-sidebar {
+  background-color: #fff;
 }

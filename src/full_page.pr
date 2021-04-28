@@ -5,7 +5,7 @@
 <html lang="en">
 {[ inject "page_head" context page /]}
 
-<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+<body>
 {* Add preloader when user requests it *}
 {[ if @configuration().showPreloader ]}
   {[ inject "page_body_preloader" context page /]}
@@ -14,20 +14,19 @@
 <!-- Document Wrapper -->
 <div id="main-wrapper"> 
   
-  <!-- Header -->
-  {[ inject "page_body_structure_header" context page /]}
-  <!-- Header End --> 
+  {* Add content header - always enabled *}
+{[ inject "page_body_structure_header" context page /]}
   
   <!-- Content -->
   <div id="content" role="main">
     
     <!-- Sidebar Navigation -->
-    <div class="idocs-navigation bg-light">
+    <div class="docs-navigation bg-sidebar">
       {[ inject "page_body_structure_sidebar" context page /]}
     </div>
     
     <!-- Docs Content -->
-    <div class="idocs-content">
+    <div class="docs-content">
       <div class="container">
         <section id="section-content-page">
         {* Generate page header that is present on each page *}
@@ -40,6 +39,11 @@
         </section>
       </div>
     </div>
+
+    {* Add content footer, if enabled *}
+    {[ if @configuration().footer_show ]}
+      {[ inject "page_body_structure_footer" context page /]}
+    {[/]}
   </div>
   <!-- Content end --> 
   

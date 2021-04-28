@@ -24,7 +24,7 @@ a:hover, a:active {
 }
 
 /*=== Side Navigation ===*/
-.idocs-navigation .nav .nav .nav-item .nav-link.active:after, .idocs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link.active:after {
+.docs-navigation .nav .nav .nav-item .nav-link.active:after, .docs-navigation.docs-navigation-dark .nav .nav .nav-item .nav-link.active:after {
   border-color: #007bff;
 }
 
