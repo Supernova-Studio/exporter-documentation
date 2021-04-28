@@ -2956,3 +2956,8 @@ input:-internal-autofill-selected {
 .block-children {
   margin-left: 16px;
 }
+
+.lead {
+  padding: 10px 0px 10px 10px;
+  border-left: 2px solid #007bff;
+}

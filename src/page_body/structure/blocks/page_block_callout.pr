@@ -1,1 +1,14 @@
-<p>Callout Block WIP</p>
+{* Fetch block from injection context, expected type 'Callout' *}
+{[ const block = context /]}
+
+{* Generate different types of heading. Note that even headings can have formatting, so we are using rich text formatter *}
+{[ switch block.calloutType ]}
+    {[ case "Info" ]}
+    <div class="alert alert-info">{[ inject "page_block_rich_text" context block.text /]}</div>
+    {[ case "Success" ]}
+    <div class="alert alert-success">{[ inject "page_block_rich_text" context block.text /]}</div>
+    {[ case "Warning" ]}
+    <div class="alert alert-warning">{[ inject "page_block_rich_text" context block.text /]}</div>
+    {[ case "Error" ]}
+    <div class="alert alert-danger">{[ inject "page_block_rich_text" context block.text /]}</div>
+{[/]}

@@ -1,1 +1,5 @@
-<p>Quote Block WIP</p>
+{* Fetch block from injection context, expected type 'Quote' *}
+{[ const block = context /]}
+
+{* Generate rich text with quoted context *}
+<p class="lead">{[ inject "page_block_rich_text" context block.text /]}</p>
