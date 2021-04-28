@@ -6,6 +6,7 @@
 {[ inject "page_head" context page /]}
 
 <body>
+
 {* Add preloader when user requests it *}
 {[ if @configuration().showPreloader ]}
   {[ inject "page_body_preloader" context page /]}
@@ -44,6 +45,8 @@
     {[ if @configuration().show_footer ]}
       {[ inject "page_body_structure_footer" context page /]}
     {[/]}
+
+    
   </div>
   <!-- Content end --> 
   

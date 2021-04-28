@@ -179,16 +179,23 @@ iframe {
 h1, h2, h3, h4, h5, h6 {
   color: #252b33;
   line-height: 1.5;
-  margin: 0 0 1.5rem 0;
-  font-family: Roboto, sans-serif;
+  margin: 1.5rem 0 0.5rem 0;
+  font-family: Lato, sans-serif;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.4rem;
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 dl, ol, ul, pre, blockquote, .table {
@@ -721,11 +728,11 @@ hr {
   position: relative;
   margin-left: 260px;
   padding: 0px 50px 50px;
-  min-height: 750px;
+  min-height: calc(100vh - 242px);
   transition: all 0.3s;
 }
 .docs-content section:first-child {
-  padding-top: 3rem;
+  padding-top: 1rem;
 }
 .docs-content ol li, .docs-content ul li {
   margin-top: 10px;
