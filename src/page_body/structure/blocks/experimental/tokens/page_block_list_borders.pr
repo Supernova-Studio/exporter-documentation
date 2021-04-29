@@ -1,1 +1,35 @@
-[BORDER LIST BLOCK]
+{* Get experimental block payload *}
+{[ const block = context /]}
+{[ const possibleBlockName = block.payload /]}
+
+{* Fetch all tokens of this specific group *}
+{[ let groups = @ds.tokenGroupsOfType("Border") /]}
+
+{* Iterate all groups *}
+{[ for group in groups ]}
+    {* Fetch all tokens of this specific group *}
+    {[ let tokens = @ds.tokensByGroupId(group.id) /]}
+    {* If empty, ignore group *}
+    {[ log @js.fullTokenGroupName(group) /]}
+    {[ if @boolean.and(@boolean.not(@compare.empty(tokens)), @compare.equals(possibleBlockName, @js.fullTokenGroupName(group))) ]}
+    <div class="token-container">
+        {* Show group header consisting of group segments and current group name *}
+        <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
+        <table class="token-wrapper">
+        {* Render all tokens *}
+        {[ for token in @ds.tokensByGroupId(group.id) ]}
+            <tr>
+              <td>
+                <div class="token-preview-container">
+                  <div class="token-preview-container-border" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+                </div>
+              </td>
+              <td>{{ token.name }}</td>
+              <td>#{{ token.value.color.hex.uppercased() }}, {{ token.value.position.lowercased() }}, {{ token.value.width.measure }}px</td>
+              <td>{{ token.description }}</td>
+            </tr>
+        {[/]}
+        </table>
+    </div>
+    {[/]}
+{[/]}

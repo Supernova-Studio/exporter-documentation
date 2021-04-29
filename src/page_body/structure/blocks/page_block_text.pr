@@ -13,7 +13,7 @@
         {[ case "token_font_list" ]}
             {[ inject "page_block_list_fonts" context experimentalBlock /]}
         {[ case "token_border_list" ]}
-            {[ inject "page_block_list_typography" context experimentalBlock /]}
+            {[ inject "page_block_list_borders" context experimentalBlock /]}
         {[ case "token_gradient_list" ]}
             {[ inject "page_block_list_gradients" context experimentalBlock /]}
         {[ case "token_measure_list" ]}

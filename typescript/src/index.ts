@@ -6,6 +6,10 @@ Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
 Pulsar.registerFunction("isExperimentalBlock", isExperimentalBlock)
 Pulsar.registerFunction("parseExperimentalBlock", parseExperimentalBlock)
+Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)
+Pulsar.registerFunction("fullTokenGroupName", fullTokenGroupName)
+Pulsar.registerFunction("gradientDescription", gradientDescription)
+Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -153,4 +157,59 @@ function escapeHtml(string) {
   }
 
   return lastIndex !== index ? html + str.substring(lastIndex, index) : html
+}
+
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Tokens
+
+/**  Convert group into properly formatted header */
+function fullTokenGroupName(tokenGroup: TokenGroup) {
+  // Retrieve token group path
+  return [...tokenGroup.path, tokenGroup.name].join("/")
+}
+
+/**  Convert group into properly formatted header */
+function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: boolean) {
+
+  // Retrieve token group either including or not including the path to the group
+  if (tokenGroup.path.length > 0 && showSubpath) {
+      let light = tokenGroup.path.join(" / ")
+      let dark = tokenGroup.name
+      return `<span class="light">${light} / </span>${dark}`
+  } else {
+      return tokenGroup.name
+  }
+}
+
+/** Describe complex gradient token */
+function gradientDescription(gradientToken: GradientToken) {
+
+ // Describe gradient as (type) (stop1, stop2 ...)
+ let type = `${gradientToken.value.type} Gradient`
+ let stops = gradientToken.value.stops.map(stop => {
+      return `#${stop.color.hex.toUpperCase()}, ${stop.position * 100}%`
+ }).join(", ")
+
+ return `${type}, ${stops}`
+}
+
+
+/** Describe complex gradient value as token */
+function gradientTokenValue(gradientToken) {
+
+  let gradientType = ""
+  switch (gradientToken.value.type) {
+      case "Linear": gradientType = "linear-gradient(0deg, "; break;
+      case "Radial": gradientType = "radial-gradient(circle, "; break;
+      case "Angular": gradientType = "conic-gradient("; break; 
+  } 
+  
+ // Describe gradient as (type) (stop1, stop2 ...)
+ // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+ let stops = gradientToken.value.stops.map(stop => {
+      return `#${stop.color.hex.toUpperCase()} ${stop.position * 100}%`
+ }).join(", ")
+
+ return `${gradientType}${stops})`
 }
