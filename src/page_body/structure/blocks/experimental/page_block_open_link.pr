@@ -2,6 +2,6 @@
 {[ const block = context /]}
 
 {* Create open link button *}
-<a class="btn btn-primary" target="_blank" href="{{ block.tabs.header.first() }}">
-  <i class="fas fa-external-link-alt mr-1"></i> {{ block.tabs.content.last() }}
+<a class="btn btn-primary" target="_blank" href="{{ block.tabs.content.first() }}">
+  <i class="fas fa-external-link-alt mr-1"></i> {{ block.tabs.headers.last() }}
 </a>
