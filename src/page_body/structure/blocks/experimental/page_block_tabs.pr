@@ -1,1 +1,16 @@
-[TABS BLOCK]
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Create tabbed navigation *}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+{[ for header in block.tabs.headers ]}
+  <li class="nav-item" role="presentation">
+    <a class="nav-link {{ @boolean.ternaryValue(#index.equals(0), "active", "")}}" id="tab{{ #index }}-tab" data-toggle="tab" href="#tab{{ #index }}" role="tab" aria-controls="tab{{ #index }}" aria-selected="{{ @boolean.ternaryValue(#index.equals(0), "true", "false")}}">{{ header }}</a>
+  </li>
+{[/]}
+</ul>
+<div class="tab-content my-3" id="myTabContent">
+{[ for content in block.tabs.content ]}
+  <div class="tab-pane fade {{ @boolean.ternaryValue(#index.equals(0), "show active", "")}}" id="tab{{ #index }}" role="tabpanel" aria-labelledby="tab{{ #index }}-tab">{{ content }}</div>
+{[/]}
+</div>

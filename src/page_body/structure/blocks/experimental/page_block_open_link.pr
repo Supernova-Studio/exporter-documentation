@@ -1,0 +1,7 @@
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Create open link button *}
+<a class="btn btn-primary" target="_blank" href="{{ block.tabs.header.first() }}">
+  <i class="fas fa-external-link-alt mr-1"></i> {{ block.tabs.content.last() }}
+</a>

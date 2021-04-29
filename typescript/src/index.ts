@@ -48,22 +48,51 @@ function slugName(name: string) {
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Experimental features
 
-/**  */
+/** Parse out experimental block, if exists */
 function isExperimentalBlock(block: DocumentationPageBlockText): boolean {
   return block.text.spans.length === 1 && block.text.spans[0].text.startsWith("[block:")
 }
 
 /** Parse experimental information from the text block, so we can convert it to experimental block  */
-function parseExperimentalBlock(block: DocumentationPageBlockText): { blockType: string, payload: string } {
+function parseExperimentalBlock(block: DocumentationPageBlockText): { blockType: string, payload: string, tabs: { headers: Array<string>, content: Array<string> } } {
 
   // This is stupid dumb parsing, but it really is just for that one usecase and will be removed :)
   let text = block.text.spans[0].text
   text = text.substr(1) // Remove first [
   let blocks = text.split("]") // Split by ] so we get block:X  and   payload (maybe URL)
-  let blockType = blocks[0].split(".")
+
+  // Parse output
+  let payload = blocks[1].trim()
+  let blockType = blocks[0].split(":")[1]
+
+  // Extra for tabs, if detected
+  let tabs = payload.split("|").map(p => p.trim())
+  let headers = new Array<string>()
+  let content = new Array<string>()
+  tabs.forEach((value, index) => {
+    if (index % 2 === 0) {
+      headers.push(value)
+    } else {
+      content.push(value)
+    }
+  })
+  
+  // Fallback to some sensible information if user didn't format it too much, or the block is not tab
+  // and normalize
+  headers = headers.length > 0 ? headers : ["Header"]
+  content = content.length > 0 ? content : [payload]
+  if (headers.length !== content.length) {
+    headers = ["Incorrect tab structure"]
+    content = ["Imbalanced number of tab structures, must be pairs of header / content"]
+  }
+
   return {
-    blockType: blockType[0].split(":")[1].trim(),
-    payload: blocks[1].trim()
+    blockType: blockType,
+    payload: payload,
+    tabs: {
+      headers: headers,
+      content: content
+    }
   }
 }
 

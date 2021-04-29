@@ -45,8 +45,10 @@
             {[ inject "page_block_accordion" context experimentalBlock /]}
         {[ case "doublecolumn" ]}
             {[ inject "page_block_double_column" context experimentalBlock /]}
-        {[ case "triplecolumn" ]}
-            {[ inject "page_block_triple_column" context experimentalBlock /]}
+        {[ case "link" ]}
+            {[ inject "page_block_open_link" context experimentalBlock /]}
+        {[ case "divider" ]}
+            {[ inject "page_block_temporary_divider" context experimentalBlock /]}
         {[ default ]}
         <p>Experimental block {{ experimentalBlock.blockType }} not supported
     {[/]}
