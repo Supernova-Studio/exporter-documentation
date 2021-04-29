@@ -1,1 +1,5 @@
-<p>Image Block WIP</p>
+{* Fetch block from injection context, expected type 'Heading' *}
+{[ const block = context /]}
+
+{* Create image that can't be interacted with *}
+<img src="{{ block.url }}" class="img-fluid" alt="Responsive image">

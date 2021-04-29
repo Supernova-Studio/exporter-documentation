@@ -43,8 +43,6 @@
             {[ inject "page_block_video" context experimentalBlock /]}
         {[ case "accordion" ]}
             {[ inject "page_block_accordion" context experimentalBlock /]}
-        {[ case "doublecolumn" ]}
-            {[ inject "page_block_double_column" context experimentalBlock /]}
         {[ case "link" ]}
             {[ inject "page_block_open_link" context experimentalBlock /]}
         {[ case "divider" ]}
