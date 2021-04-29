@@ -9,9 +9,9 @@
 {[ for group in groups ]}
     {* Fetch all tokens of this specific group *}
     {[ let tokens = @ds.tokensByGroupId(group.id) /]}
-    {* If empty, ignore group *}
-    {[ log @js.fullTokenGroupName(group) /]}
-    {[ if @boolean.and(@boolean.not(@compare.empty(tokens)), @compare.equals(possibleBlockName, @js.fullTokenGroupName(group))) ]}
+    {* If empty filter, show group (shows all), if not, show only group with full name *}
+    {[ let isSearched = @boolean.or(@compare.equals(possibleBlockName, ""), @compare.equals(possibleBlockName, @js.fullTokenGroupName(group))) /]}
+    {[ if @boolean.and(@boolean.not(@compare.empty(tokens)), isSearched) ]}
     <div class="token-container">
         {* Show group header consisting of group segments and current group name *}
         <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
@@ -24,10 +24,11 @@
             </td>
             <td>{{ token.name }}</td>
             <td>{{ @js.gradientDescription(token) }}</td>
-            <td>{{ token.description }}</td>
+            <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
             </tr>
         {[/]}
         </table>
     </div>
     {[/]}
 {[/]}
+

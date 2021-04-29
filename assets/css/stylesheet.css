@@ -3095,7 +3095,7 @@ code {
   border: 1px solid #eaeaea;
   display: flex;
   align-items: center;
-  align-content: center;
+  justify-content: center;
 }
 .token-preview-container-border {
   width: 20px;

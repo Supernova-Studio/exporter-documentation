@@ -10,6 +10,7 @@ Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)
 Pulsar.registerFunction("fullTokenGroupName", fullTokenGroupName)
 Pulsar.registerFunction("gradientDescription", gradientDescription)
 Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
+Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -212,4 +213,16 @@ function gradientTokenValue(gradientToken) {
  }).join(", ")
 
  return `${gradientType}${stops})`
+}
+
+
+/** Describe complex gradient value as token */
+function measureTypeIntoReadableUnit(type: Unit): string {
+
+  switch (type) {
+    case 'Points': return 'pt'
+    case 'Pixels': return 'px'
+    case 'Percent': return '%'
+    case 'Ems': return 'em'
+  }
 }
