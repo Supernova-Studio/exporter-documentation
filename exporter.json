@@ -65,7 +65,7 @@
             },
             {
                 "key": "footer_copyright",
-                "default": "Copyright © Not-Kiwi 2021",
+                "default": "Copyright © Supernova.io 2021<br/>This is some amazing documentation. Go to <a href=\"https://supernova.io\" target=\"_blank\">Supernova</a> to check more",
                 "label": "Footer Copyright Label",
                 "type": "string"
             },

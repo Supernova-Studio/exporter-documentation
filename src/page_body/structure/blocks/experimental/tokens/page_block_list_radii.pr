@@ -1,1 +1,34 @@
-[RADII LIST BLOCK]
+{* Get experimental block payload *}
+{[ const block = context /]}
+{[ const possibleBlockName = block.payload /]}
+
+{* Fetch all tokens of this specific group *}
+{[ let groups = @ds.tokenGroupsOfType("Radius") /]}
+
+{* Iterate all groups *}
+{[ for group in groups ]}
+    {* Fetch all tokens of this specific group *}
+    {[ let tokens = @ds.tokensByGroupId(group.id) /]}
+    {* If empty filter, show group (shows all), if not, show only group with full name *}
+    {[ let isSearched = @boolean.or(@compare.equals(possibleBlockName, ""), @compare.equals(possibleBlockName, @js.fullTokenGroupName(group))) /]}
+    {[ if @boolean.and(@boolean.not(@compare.empty(tokens)), isSearched) ]}
+    <div class="token-container">
+        {* Show group header consisting of group segments and current group name *}
+        <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
+        <table class="token-wrapper">
+        {* Render all tokens *}
+        {[ for token in @ds.tokensByGroupId(group.id) ]}
+            <tr>
+              <td>
+                <div class="token-preview-container" style="border-radius: {{ token.value.radius.measure}}px">
+                </div>
+              </td>
+              <td>{{ token.name }} </td>
+              <td>{{ token.value.radius.measure }}{{ @js.measureTypeIntoReadableUnit(token.value.radius.unit) }}</td>
+            <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
+            </tr>
+        {[/]}
+        </table>
+    </div>
+    {[/]}
+{[/]}

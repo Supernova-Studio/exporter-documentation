@@ -10,7 +10,10 @@ Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)
 Pulsar.registerFunction("fullTokenGroupName", fullTokenGroupName)
 Pulsar.registerFunction("gradientDescription", gradientDescription)
 Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
+Pulsar.registerFunction("shadowDescription", shadowDescription)
+Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
+Pulsar.registerFunction("typographyDescription", typographyDescription)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -213,6 +216,33 @@ function gradientTokenValue(gradientToken) {
  }).join(", ")
 
  return `${gradientType}${stops})`
+}
+
+/** Describe complex shadow token */
+function shadowDescription(shadowToken: ShadowToken) {
+ return shadowTokenValue(shadowToken)
+}
+
+/** Describe complex shadow token */
+function typographyDescription(typographyToken: TypographyToken) {
+  let value = typographyToken.value
+  let fontName = `${value.font.family} ${value.font.subfamily}`
+  let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}` 
+  let textDecoration: string = ""
+  let textCase: string = ""
+  if (value.textDecoration !== 'None') {
+    textDecoration = `, ${value.textDecoration.toLowerCase()}`
+  }
+  if (value.textCase !== 'Original') {
+    textCase = `, ${value.textCase.toLowerCase()}`
+  }
+ return `${fontName} ${fontValue}${textDecoration}${textCase}`
+}
+
+
+/** Describe complex shadow value as token */
+function shadowTokenValue(shadowToken: ShadowToken) {
+  return `${shadowToken.value.x.measure}px ${shadowToken.value.y.measure}px ${shadowToken.value.radius.measure}px ${shadowToken.value.spread.measure}px #${shadowToken.value.color.hex}`
 }
 
 
