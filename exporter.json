@@ -53,14 +53,8 @@
             },
             {
                 "key": "show_footer",
-                "default": true,
+                "default": false,
                 "label": "Show footer",
-                "type": "boolean"
-            },
-            {
-                "key": "show_header",
-                "default": true,
-                "label": "Show header",
                 "type": "boolean"
             },
             {
@@ -73,12 +67,6 @@
                 "key": "dark_mode",
                 "default": false,
                 "label": "Use dark mode",
-                "type": "boolean"
-            },
-            {
-                "key": "show_comments",
-                "default": false,
-                "label": "Show comment box on each page",
                 "type": "boolean"
             }
         ]

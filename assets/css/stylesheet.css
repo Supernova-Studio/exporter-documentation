@@ -188,7 +188,7 @@ h5,
 h6 {
   color: #252b33;
   line-height: 1.5;
-  margin: 1.5rem 0 0.5rem 0;
+  margin: 3rem 0 0.5rem 0;
   font-family: Lato, sans-serif;
 }
 
@@ -214,6 +214,10 @@ pre,
 blockquote,
 .table {
   margin-bottom: 1.8rem;
+}
+
+pre {
+  margin-top: 1.8rem;
 }
 
 /*=== Highlight Js ===*/
