@@ -23,7 +23,7 @@
         "configuration": [
             {
                 "key": "social_twitter",
-                "default": "",
+                "default": "twitter.com",
                 "label": "Social Links - Twitter",
                 "type": "string"
             },
@@ -53,7 +53,7 @@
             },
             {
                 "key": "show_footer",
-                "default": false,
+                "default": true,
                 "label": "Show footer",
                 "type": "boolean"
             },
