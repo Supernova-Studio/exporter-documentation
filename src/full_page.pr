@@ -15,19 +15,27 @@
 <!-- Document Wrapper -->
 <div id="main-wrapper"> 
   
-  {* Add content header - always enabled *}
-{[ inject "page_body_structure_header" context page /]}
-  
   <!-- Content -->
   <div id="content" role="main" class="">
     
     <!-- Sidebar Navigation -->
     <div class="docs-navigation bg-sidebar">
+
+      <div class="logo-wrapper">
+          <div class="logo-inner">
+              <img src="assets/logos/logo-main.png" title="Stark Industries" alt="Stark Industries" />
+          </div>
+      </div>
+
       {[ inject "page_body_structure_sidebar" context page /]}
     </div>
     
     <!-- Docs Content -->
     <div class="docs-content">
+  
+    {* Add content header - always enabled *}
+    {[ inject "page_body_structure_header" context page /]}
+
       <div class="container">
         <section id="section-content-page">
         {* Generate page header that is present on each page *}

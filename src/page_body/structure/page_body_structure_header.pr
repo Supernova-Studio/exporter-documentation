@@ -2,42 +2,25 @@
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
     <!-- Navbar -->
-    <nav class="primary-menu navbar navbar-expand-lg {{ @boolean.ternaryValue(@configuration().dark_mode, "bg-dark navbar-text-light", "bg-light navbar-text-dark") }}">
+    <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
         <div class="container-fluid">
 
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
         
-        <!-- Logo --> 
-        <a class="logo ml-md-3" href="{{ @ds.docs.configuration().logoHref }}" title="{{ @ds.docs.configuration().title }}">
-        <img src="{{ @ds.docs.configuration().logoUrl }}" alt="{{ @ds.docs.configuration().title }}">
-        </a>
-        
         <!-- Title -->
         <span class="text-4 font-width-700 ml-3">{{ @ds.docs.configuration().title }}</span> 
 
         <!-- Potential Left Link Here -->
-        <div id="header-nav" class="collapse navbar-collapse justify-content-end"></div>
-        
-        <!-- Social -->
-        <ul class="social-icons social-icons-sm ml-lg-2 mr-2">
-            {[ if @configuration().social_twitter ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_twitter }}" target="_blank" title="Twitter" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_facebook ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_facebook }}" target="_blank" title="Facebook" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_github ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_github }}" target="_blank" title="GitHub" data-original-title="GitHub"><i class="fab fa-github"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_dribbble ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_dribbble }}" target="_blank" title="dribbble" data-original-title="dribbble"><i class="fab fa-dribbble"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_instagram ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_instagram }}" target="_blank" title="Instagram" data-original-title="Instagram"><i class="fab fa-instagram"></i></a></li>
-            {[/]}
-            
-        </ul>
+        <div id="header-nav" class="collapse navbar-collapse justify-content-start">
+            <ul class="navbar-nav">
+                {[ let rootGroup = @ds.docs.rootGroup() /]}
+                {[ for item in rootGroup.children ]}
+                    {[ if item.type.equals("Group") ]}
+                        <li><a target="_blank" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
+                    {[/]}
+                {[/]}
+            </ul>
         </div>
     </nav>
 </header>

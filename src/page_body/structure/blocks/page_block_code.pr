@@ -4,4 +4,4 @@
 {* Generate code which will be automatically highlighted *}
 <pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("lang-"), "")}}">
 {{ @js.highlightSafeString(block) }}
-</pre></code>
+</code></pre>

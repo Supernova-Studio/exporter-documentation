@@ -1,4 +1,3 @@
-
 {* Fetch the page structure *}
 {[ let rootGroup = [] /]}
 

@@ -32,6 +32,7 @@
 body,
 html {
   height: 100%;
+  font-family: Inter, sans-serif;
 }
 
 body {
@@ -189,7 +190,6 @@ h6 {
   color: #252b33;
   line-height: 1.5;
   margin: 3rem 0 0.5rem 0;
-  font-family: Lato, sans-serif;
 }
 
 h1 {
@@ -667,11 +667,11 @@ hr {
 /*=== 3.1 Side Navigation ===*/
 .docs-navigation {
   position: fixed;
-  top: 70px;
+  top: 0;
   left: 0;
   overflow: hidden;
   overflow-y: auto;
-  width: 260px;
+  width: 300px;
   height: calc(100% - 70px);
   z-index: 1;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
@@ -759,10 +759,9 @@ hr {
 /*=== 3.2 Docs Content ===*/
 .docs-content {
   position: relative;
-  margin-left: 260px;
-  padding: 0px 50px 50px;
+  margin-left: 300px;
+  padding: 0px;
   min-height: calc(100vh - 242px);
-  transition: all 0.3s;
 }
 .docs-content section:first-child {
   padding-top: 1rem;
@@ -3166,4 +3165,61 @@ code {
 }
 .token-container table tr.gradient td:nth-child(4) {
   width: auto;
+}
+
+
+
+/* =================================== */
+/*  10. Changes to format the design
+/* =================================== */
+
+.logo-wrapper {
+  width: 300px;
+  height: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-inner {
+  max-width: 80%;
+  max-height: 80%;
+}
+.logo-inner img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.navbar-nav li {
+  height: 44px;
+}
+
+.navbar-nav li.active a {
+  background-color: rgba(15, 98, 254, 0.04);
+  color: #0F62FE !important;
+}
+
+.header-nav {
+  height: 76px;
+  padding: 16px;
+}
+.primary-menu ul.navbar-nav > li > a:not(.btn) { 
+  height: 44px;
+  margin: 0px 16px 0px 0px;
+  padding: 0px 12px;
+  border-radius: 4px;
+}
+.primary-menu .container-fluid {
+  margin: 0px;
+  padding: 0px;
+}
+.primary-menu ul.navbar-nav > li + li { 
+  margin-left: 0px;
+}
+.docs-content ol li, .docs-content ul li {
+  margin-top: 0px;
+}
+
+@media (min-width: 1200px) {
+  #section-content-page {
+    margin-left: 120px;
+  }
 }
