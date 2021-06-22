@@ -17,6 +17,9 @@
 <!-- Custom Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
 
+<!-- Search -->
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/search.css", domain) }}" />
+
 <!-- DS Autogen -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/ds/index.css", domain) }}" />
 

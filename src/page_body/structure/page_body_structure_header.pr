@@ -24,6 +24,7 @@
                     {* {[/]} *}
                 {[/]}
             </ul>
+            <a class="search">Search</a>
         </div>
     </nav>
 </header>

@@ -13,6 +13,9 @@
   {[ inject "page_body_preloader" context page /]}
 {[/]}
 
+{* Add search *}
+{[ inject "page_search" context page /]}
+
 <!-- Document Wrapper -->
 <div id="main-wrapper"> 
   

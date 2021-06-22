@@ -3194,6 +3194,7 @@ code {
   width: 100%;
   background-color: var(--colorDocsViewGreyGrey3);
   margin-bottom: 40px;
+  border-bottom: 1px solid var(--colorDocsViewGreyGrey2);
 }
 
 .container-title > .slider {

@@ -1,0 +1,12 @@
+<div class="SNSearch SNSearch-container">
+   <div class="SNSearch-box">
+      <header class="SNSearch-header">
+         <form action="" role="search" novalidate="" class="SNSearch-form">
+            <input class="SNSearch-Input" aria-autocomplete="list" aria-labelledby="SNSearch-label" id="SNSearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search docs" maxlength="64" type="search" enterkeyhint="go" value="test">
+         </form>
+      </header>
+      <div class="SNSearch-results">
+        Some results
+      </div>
+   </div>
+</div>
