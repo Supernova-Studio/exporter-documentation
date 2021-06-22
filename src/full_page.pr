@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
+{[ const domain = @ds.docs.configuration().domain /]}
 
 <body>
 
@@ -23,11 +24,11 @@
 
       <div class="logo-wrapper">
           <div class="logo-inner">
-              <img src="assets/logos/logo-main.png" title="Stark Industries" alt="Stark Industries" />
+              <img src="{{ @js.assetUrl("logos/logo-main.png", domain) }}" title="Stark Industries" alt="Stark Industries" />
           </div>
       </div>
-
-      {[ inject "page_body_structure_sidebar" context page /]}
+      {[ let data = @init.dictionary().add("page", page) /]}
+      {[ inject "page_body_structure_sidebar" context data /]}
     </div>
     
     <!-- Docs Content -->
@@ -36,25 +37,24 @@
     {* Add content header - always enabled *}
     {[ inject "page_body_structure_header" context page /]}
 
-      <div class="container">
-        <section id="section-content-page">
-        {* Generate page header that is present on each page *}
-        <h1>{{ page.title }}</h1>
+      {* Generate page header that is present on each page *}
+      <div class="container-title">
+        <div class="slider">
+          <h1>{{ page.title }}</h1>
+          <p class="subtitle">Our colors convey our brand personality and values but also help users navigate through the interface.</p>
+        </div>
+      </div>
 
+      <div class="container">
+    
         {* Generate page blocks which are the content *}
+        <section id="section-content-page">
         {[ for block in page.blocks ]}
             {[ inject "page_body_structure_block" context block /]}
         {[/]}
         </section>
       </div>
     </div>
-
-    {* Add content footer, if enabled *}
-    {[ if @configuration().show_footer ]}
-      {[ inject "page_body_structure_footer" context page /]}
-    {[/]}
-
-    
   </div>
   <!-- Content end --> 
   

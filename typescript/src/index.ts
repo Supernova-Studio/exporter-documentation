@@ -14,12 +14,27 @@ Pulsar.registerFunction("shadowDescription", shadowDescription)
 Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
+Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
+Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
 
 /** Generate page slug for the generated page */
-function pageUrl(page: DocumentationPage, prefix: string | undefined) {
+function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string | undefined) {
+
+  if (object.type === "Group") {
+    let group = object as DocumentationGroup
+    let pages = group.children.filter(c => c.type === "Page")
+    if (pages.length > 0) {
+      return pageUrl(pages[0] as DocumentationPage | DocumentationGroup, prefix)
+    } else {
+      // This is not handled, group must contain page otherwise it should be hidden from generation
+      return ""
+    }
+  }
+
+  let page = object as DocumentationPage
   let pageSlug = page.userSlug ?? page.slug
   let subpaths: Array<string> = []
 
@@ -254,5 +269,46 @@ function measureTypeIntoReadableUnit(type: Unit): string {
     case 'Pixels': return 'px'
     case 'Percent': return '%'
     case 'Ems': return 'em'
+  }
+}
+
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Support
+
+/** Retrieve first subgroup below root group */
+function firstSubgroupOfPage(page: DocumentationPage) {
+
+  let parent: DocumentationGroup | null = page.parent
+  while (true) {
+    if (!parent || parent.isRoot) {
+      return undefined
+    }
+
+    if (parent.parent && parent.parent.isRoot) {
+      return parent
+    }
+    parent = parent.parent
+  }
+}
+
+
+function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | DocumentationGroup, context: DocumentationPage | DocumentationGroup) {
+
+  if (context.type === "Page") {
+    // If we are checking against plain page, then we can only compare
+    let contextPage = context as DocumentationPage
+    return contextPage.id === pageOrGroup.id
+  } else {
+    // If we are checking against group, check everything upwards the tree. If group contains the page, return that information
+    let contextGroup = context as DocumentationGroup
+    if (!contextGroup.isRoot && contextGroup.childrenIds.indexOf(pageOrGroup.persistentId) !== -1) {
+      return true
+    } else if (contextGroup.parent) {
+      return pageOrGroupActiveInContext(pageOrGroup, contextGroup.parent as DocumentationGroup)
+    } else {
+      // Reached root and didn't find anything, abandon ship
+      return false
+    }
   }
 }
