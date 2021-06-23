@@ -9,6 +9,11 @@
             "invoke": "index_page.pr",
             "write_to": "index.html",
             "comment": "Create entrypoint for the documentation. Will immediately redirect to the first page of the docs"
+        },
+        {
+            "invoke": "search_index.pr",
+            "write_to": "search-index.json",
+            "comment": "Create index data for the entire documentation"
         }
     ],
     "assets": [

@@ -19,6 +19,7 @@ Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
 Pulsar.registerFunction("headingPlainText", headingPlainText)
 Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
+Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -361,3 +362,99 @@ function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationP
   }
   return null
 }
+
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Search index processing
+
+function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): string {
+
+  // Very naive search index implementation. The performance of this will be absolutely abysmal. This will get optimized when the core search works
+  let data: Array<{
+    name: string,
+    id: string,
+    readablePath: string,
+    url: string,
+    texts: Array<string>
+    headers: Array<string>
+  }> = []
+
+  // Process every page for data
+  for (let page of pages) {
+
+    // Basic information
+    let name = page.title
+    let id = page.persistentId
+
+    // Path and url creation
+    let subpaths: Array<string> = [name]
+    let parent: DocumentationGroup | null = page.parent
+    while (parent) {
+      if (parent?.isRoot) {
+        break
+      }
+      subpaths.splice(0, 0, parent.title)
+      parent = parent.parent
+    }
+    let path = subpaths.join(" / ")
+    let url = pageUrl(page, domain)
+
+    // Header and text parsing
+    let allBlocks = flattenedBlocksOfPage(page)
+    var texts: Array<string> = []
+    var headers: Array<string> = []
+
+    for (let block of allBlocks) {
+      if (block.type === "Text" || block.type === "Callout" || block.type === "OrderedList" || block.type === "UnorderedList" || block.type === "Quote") {
+        let text = textOfBlock(block as DocumentationPageBlockText)
+        if (text.length > 0) {
+          texts.push(text)
+        }
+      } else if (block.type === "Heading") {
+        let text = textOfBlock(block as DocumentationPageBlockText)
+        if (text.length > 0) {
+          headers.push(text)
+        }
+      }
+    }
+
+    // Construct piece
+    let piece = {
+      name: name,
+      id: id,
+      readablePath: path,
+      url: url,
+      texts: texts,
+      headers: headers
+    }
+    data.push(piece)
+  }
+
+  // Construct data and make index readable for easier debugging for now
+  return JSON.stringify(data, null, 2)
+}
+
+function flattenedBlocksOfPage(page: DocumentationPage): Array<DocumentationPageBlock> {
+
+  let blocks: Array<DocumentationPageBlock> = page.blocks
+  for (let block of page.blocks) {
+    blocks = blocks.concat(flattenedBlocksOfBlock(block))
+  }
+
+  return blocks
+}
+
+function flattenedBlocksOfBlock(block: DocumentationPageBlock): Array<DocumentationPageBlock> {
+
+  let subblocks: Array<DocumentationPageBlock> = block.children
+  for (let subblock of block.children) {
+    subblocks = subblocks.concat(flattenedBlocksOfBlock(subblock))
+  }
+  return subblocks
+}
+
+function textOfBlock(block: DocumentationPageBlockText): string {
+
+  return block.text.spans.map(s => s.text).join("")
+}
+
