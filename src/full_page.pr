@@ -41,12 +41,7 @@
     {[ inject "page_body_structure_header" context page /]}
 
       {* Generate page header that is present on each page *}
-      <div class="container-title">
-        <div class="slider">
-          <h1>{{ page.title }}</h1>
-          <p class="subtitle">Our colors convey our brand personality and values but also help users navigate through the interface.</p>
-        </div>
-      </div>
+      {[ inject "page_body_structure_title" context page /]}
 
       <div class="container">
     
