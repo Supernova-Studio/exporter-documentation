@@ -304,7 +304,7 @@ declare global {
     // No extra attributes
   }
 
-  type DocumentationPageBlockHeading = DocumentationPageBlock & {
+  type DocumentationPageBlockHeading = DocumentationPageBlockText & {
     headingType: HeadingType
   }
 

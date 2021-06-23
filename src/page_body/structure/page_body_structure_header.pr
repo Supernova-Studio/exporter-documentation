@@ -8,12 +8,9 @@
 
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
-        
-        <!-- Title -->
-        <span class="text-4 font-width-700 ml-3">{{ @ds.docs.configuration().title }}</span> 
 
         <!-- Potential Left Link Here -->
-        <div id="header-nav" class="collapse navbar-collapse justify-content-start">
+        <div id="header-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 {[ let rootGroup = @ds.docs.rootGroup() /]}
                 {[ for item in rootGroup.children ]}
@@ -24,7 +21,7 @@
                     {* {[/]} *}
                 {[/]}
             </ul>
-            <a class="search">Search</a>
+            <i class="fas fa-search search"></i>
         </div>
     </nav>
 </header>

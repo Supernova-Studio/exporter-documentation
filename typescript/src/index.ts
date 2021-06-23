@@ -16,6 +16,8 @@ Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUn
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
 Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
+Pulsar.registerFunction("slugifyHeading", slugifyHeading)
+Pulsar.registerFunction("headingPlainText", headingPlainText)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -41,7 +43,7 @@ function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string 
   // Construct group path segments
   let parent: DocumentationGroup | null = page.parent
   while (parent) {
-    subpaths.push(slugName(parent.title))
+    subpaths.push(slugify(parent.title))
     parent = parent.parent
   }
 
@@ -61,11 +63,6 @@ function assetUrl(asset: string, prefix: string | undefined) {
   // Retrieve url-safe path constructed as [host][asset-folder][asset-slug]
   let path = fragments.join("/")
   return path
-}
-
-/** Retrieve safe slag name made out of any string */
-function slugName(name: string) {
-  return name.replace(/\W+/g, "-").toLowerCase()
 }
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -311,4 +308,40 @@ function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Documentati
       return false
     }
   }
+}
+
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Headings
+
+function headingPlainText(header: DocumentationPageBlockHeading): string {
+
+  return header.text.spans.map(s => s.text).join("")
+}
+
+function slugifyHeading(header: DocumentationPageBlockHeading): string {
+
+  let fullText = headingPlainText(header)
+  return slugify(fullText)
+}
+
+
+function slugify(str: string): string {
+  // Thanks to https://gist.github.com/codeguy/6684588
+  str = str.replace(/^\s+|\s+$/g, ''); 
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = "àáãäâèéëêìíïîòóöôùúüûñç·/_,:;";
+  var to   = "aaaaaeeeeiiiioooouuuunc------";
+
+  for (var i=0, l=from.length ; i<l ; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+      .replace(/\s+/g, '-') // collapse whitespace and replace by -
+      .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
 }

@@ -136,3 +136,34 @@ $('#back-to-top').on("click", function() {
 
 
 })(jQuery)
+
+
+/*------------------------
+   Content menu tracking
+-------------------------- */
+
+// Preloader
+$(window).on('load', function () {
+	
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			const id = entry.target.getAttribute('id');
+			if (entry.intersectionRatio > 0) {
+			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+			} else {
+			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
+			}
+		});
+	});
+
+	// Track all headers that have an `id` applied
+	document.querySelectorAll('h1[id]').forEach((section) => {
+		observer.observe(section);
+	});
+	document.querySelectorAll('h2[id]').forEach((section) => {
+		observer.observe(section);
+	});
+	document.querySelectorAll('h3[id]').forEach((section) => {
+		observer.observe(section);
+	});
+});

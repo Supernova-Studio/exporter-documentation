@@ -56,6 +56,7 @@
             {[ inject "page_body_structure_block" context block /]}
         {[/]}
         </section>
+        {[ inject "page_body_structure_content" context page /]}
       </div>
     </div>
   </div>

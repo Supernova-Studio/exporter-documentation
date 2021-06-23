@@ -1,0 +1,13 @@
+{[ let page = context /]}
+<div id="content-nav-container">
+    <nav id="content-nav">
+        <span class="content-nav-header">CONTENTS</span>
+        <ul>
+            {[ for block in page.blocks ]}
+            {[ if block.type.equals("Heading") ]}
+            <li class="{{ @boolean.ternaryValue(block.headingType.equals(3), "sub", "") }}"><a href="#{{ @js.slugifyHeading(block) }}">{{ @js.headingPlainText(block) }}</a></li>
+            {[/]}
+            {[/]}
+        </ul>
+    </nav>
+</div>

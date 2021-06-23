@@ -7,6 +7,9 @@
 $('.search').on('click', function(e) {
     // Toggle the search view when clicking the search icon
     $('.SNSearch').toggleClass("active"); 
+    if ($('.SNSearch').is('.active')) {
+        $('.SNSearch-input').focus();
+    }
     e.preventDefault();
 });
 

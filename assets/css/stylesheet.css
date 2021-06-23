@@ -29,6 +29,11 @@
 /* =================================== */
 /*  1. Basic Style 
 /* =================================== */
+
+* {
+  scroll-behavior: smooth !important;
+}
+
 body,
 html {
   height: 100%;
@@ -660,7 +665,7 @@ hr {
 }
 @media (min-width: 1200px) {
   .container {
-    max-width: 750px !important;
+    max-width: 1000px !important;
   }
 }
 /*=== 3.1 Side Navigation ===*/
@@ -3201,6 +3206,8 @@ code {
   max-width: 750px;
   margin: 0px auto;
   padding: 60px 0px;
+  position: relative;
+  left: -60px;
 }
 
 .container-title > .slider h1 {
@@ -3217,4 +3224,109 @@ code {
   font-size: 20px;
   font-weight: normal;
   line-height: 28px;
+}
+#header-nav .search {
+  color: #000;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+#header-nav {
+  justify-content: space-between;
+}
+.primary-menu > .container-fluid {
+  padding: 0px 32px 0 16px;
+}
+.sticky-top {
+  z-index: 10;
+}
+
+
+@media (min-width: 1170px) {
+  .docs-content > .container {
+    position: relative;
+    left: -60px;
+  }
+}
+
+@media (max-width: 1169px) {
+  #content-nav {
+    display: none;
+  }
+}
+
+#section-content-page {
+  max-width: 750px;
+  margin-bottom: 100px;
+}
+
+/* 2. Make nav sticky */
+#content-nav {
+  position: sticky;
+  float: right;
+  top: 100px;
+  z-index: 10;
+  margin-left: 100px;
+  align-self: flex-start;
+}
+
+
+#content-nav-container {
+  margin-top: 16px;
+}
+
+
+#content-nav > ul > li.sub {
+  margin-left: 16px;
+}
+
+/* 3. ScrollSpy active styles (see JS tab for activation) */
+#content-nav li.active > a {
+  color: #333;
+  font-weight: 500;
+  scroll-behavior: smooth;    
+}
+
+#content-nav ul {
+  list-style-type: none;
+  margin: 0 0 0 16px;
+  padding: 0;
+}
+
+#content-nav > ul {
+  margin: 0;
+}
+
+.docs-content > .container {
+  display: flex;
+}
+
+/* Sidebar Navigation */
+#content-nav {
+  padding-left: 0;
+}
+
+
+#content-nav a {
+  text-decoration: none;
+  display: block;
+  padding: 0 0 12px 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  line-height: 16px;
+  transition: all 50ms ease-in-out; /* 💡 This small transition makes setting of the active state smooth */
+}
+
+#content-nav .content-nav-header {
+  color: rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 16px;
+  display: block;
+  padding-bottom: 16px;
+}
+
+#content-nav a:hover,
+#content-nav a:focus {
+  color: #666;
 }
