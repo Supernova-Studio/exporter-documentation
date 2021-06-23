@@ -678,7 +678,7 @@ hr {
   width: 300px;
   height: 100%;
   z-index: 1;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #DCE0E4;
 }
 .docs-navigation > .nav {
   padding: 8px;
@@ -807,7 +807,7 @@ hr {
   -ms-flex-item-align: stretch;
   align-self: stretch;
   background: #fff;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid #DCE0E4;
 }
 .primary-menu.bg-transparent {
   position: absolute;
@@ -3203,7 +3203,7 @@ code {
 }
 
 .container-title > .slider {
-  max-width: 750px;
+  max-width: 1000px;
   margin: 0px auto;
   padding: 60px 0px;
   position: relative;
@@ -3247,6 +3247,12 @@ code {
     position: relative;
     left: -60px;
   }
+  .container-title > .slider {
+    width: 1000px;
+  }
+  #section-content-page {
+    width: 750px;
+  }
 }
 
 @media (max-width: 1169px) {
@@ -3282,9 +3288,8 @@ code {
 
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 #content-nav li.active > a {
-  color: #333;
-  font-weight: 500;
-  scroll-behavior: smooth;    
+  color: #0F62FE;
+  font-weight: 500; 
 }
 
 #content-nav ul {

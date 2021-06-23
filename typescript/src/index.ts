@@ -18,6 +18,7 @@ Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
 Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
 Pulsar.registerFunction("headingPlainText", headingPlainText)
+Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
@@ -344,4 +345,19 @@ function slugify(str: string): string {
       .replace(/-+/g, '-'); // collapse dashes
 
   return str;
+}
+
+function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
+
+  for (let child of documentationRoot.children) {
+    if (child.type === "Page") {
+      return child as DocumentationPage
+    } else {
+      let possiblePage = firstPageFromTop(child as DocumentationGroup)
+      if (possiblePage) {
+        return possiblePage
+      }
+    }
+  }
+  return null
 }
