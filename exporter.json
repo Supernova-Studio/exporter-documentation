@@ -19,6 +19,7 @@
     "tags": [
         "Documentation"
     ],
+    "type": "documentation",
     "contributes": {
         "configuration": [
             {
