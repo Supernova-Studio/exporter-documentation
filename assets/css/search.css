@@ -96,6 +96,14 @@
     margin: 24px 0px 12px 0px;
 }
 
+.SNSearch-results p.section-title.empty {
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 32px 0px 16px 0px;
+}
+
 .SNSearch-results p.section-result-header {
     font-size: 16px;
     line-height: 20px;

@@ -442,13 +442,13 @@ function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): 
     }
 
     // Construct pieces from headers
-    for (let text of headers) {
+    for (let header of headers) {
       data.push({
         id: id++,
         name: name,
         path: path,
         url: url,
-        text: text,
+        text: header,
         type: "header"
       })
     }
@@ -460,6 +460,7 @@ function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): 
   // Experimental: Create index. WIP: Pregenerate loaded index
   let si = `
   const lunrData = ${JSON.stringify(data, null, 2)};
+  const lunrIndexedData = {}
   const lunrIndex = lunr(function () {
     this.field('text')
     this.ref('id')
@@ -468,6 +469,7 @@ function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): 
     // Note index has been loaded into the page with page request
     lunrData.forEach(function (doc) {
       this.add(doc)
+      lunrIndexedData[doc.id] = doc
     }, this)
   });
   `
