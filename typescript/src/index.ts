@@ -2,6 +2,7 @@
 // MARK: - Blueprint functions
 
 Pulsar.registerFunction("pageUrl", pageUrl)
+Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
 Pulsar.registerFunction("isExperimentalBlock", isExperimentalBlock)
@@ -54,6 +55,15 @@ function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string 
 
   // Retrieve url-safe path constructed as [host][group-slugs][path-slug][.html]
   let path = [prefix, ...subpaths.reverse(), pageSlug].join("/") + ".html"
+  return path
+}
+
+/** Create proper url that changes with the folder-depth of the documentation */
+function rootUrl(asset: string, prefix: string | undefined) {
+  let fragments = [prefix, asset]
+
+  // Retrieve url-safe path constructed as [host][asset-slug]
+  let path = fragments.join("/")
   return path
 }
 
@@ -369,14 +379,16 @@ function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationP
 
 function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): string {
 
-  // Very naive search index implementation. The performance of this will be absolutely abysmal. This will get optimized when the core search works
+  // Very naive search index implementation. The performance of this will be absolutely abysmal. 
+  // This will get optimized when the core search works over time. Probably moved to elastic search or something like that
+  let id = 0
   let data: Array<{
+    id: number,
     name: string,
-    id: string,
-    readablePath: string,
+    path: string,
     url: string,
-    texts: Array<string>
-    headers: Array<string>
+    text: string,
+    type: "header" | "body"
   }> = []
 
   // Process every page for data
@@ -384,7 +396,6 @@ function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): 
 
     // Basic information
     let name = page.title
-    let id = page.persistentId
 
     // Path and url creation
     let subpaths: Array<string> = [name]
@@ -418,20 +429,49 @@ function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): 
       }
     }
 
-    // Construct piece
-    let piece = {
-      name: name,
-      id: id,
-      readablePath: path,
-      url: url,
-      texts: texts,
-      headers: headers
+    // Construct pieces from text information
+    for (let text of texts) {
+      data.push({
+        id: id++,
+        name: name,
+        path: path,
+        url: url,
+        text: text,
+        type: "body"
+      })
     }
-    data.push(piece)
+
+    // Construct pieces from headers
+    for (let text of headers) {
+      data.push({
+        id: id++,
+        name: name,
+        path: path,
+        url: url,
+        text: text,
+        type: "header"
+      })
+    }
   }
 
   // Construct data and make index readable for easier debugging for now
-  return JSON.stringify(data, null, 2)
+  // return JSON.stringify(data, null, 2)
+
+  // Experimental: Create index. WIP: Pregenerate loaded index
+  let si = `
+  const lunrData = ${JSON.stringify(data, null, 2)};
+  const lunrIndex = lunr(function () {
+    this.field('text')
+    this.ref('id')
+    this.metadataWhitelist = ['position']
+  
+    // Note index has been loaded into the page with page request
+    lunrData.forEach(function (doc) {
+      this.add(doc)
+    }, this)
+  });
+  `
+  return si
 }
 
 function flattenedBlocksOfPage(page: DocumentationPage): Array<DocumentationPageBlock> {

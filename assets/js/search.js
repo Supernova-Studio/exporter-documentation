@@ -22,3 +22,12 @@ $(document).keyup(function(e) {
 /*-----------------------------
     Search - Engine
 ------------------------------- */
+
+  let result = lunrIndex.search("typography")
+  console.log(result)
+
+  let result2 = lunrIndex.search("Accessibility text")
+  console.log(result2)
+
+  let result3 = lunrIndex.search("perspiciatis unde omnis iste natus error ")
+  console.log(result3)

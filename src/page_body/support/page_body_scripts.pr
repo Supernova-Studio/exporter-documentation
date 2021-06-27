@@ -14,8 +14,10 @@
 <!-- Magnific Popup --> 
 <script src="{{ @js.assetUrl("vendor/magnific-popup/jquery.magnific-popup.min.js", domain)}}"></script> 
 
-<!-- Search -->
-<script src="{{ @js.assetUrl("js/search.js", domain)}}"></script>
-
 <!-- Custom Script -->
 <script src="{{ @js.assetUrl("js/theme.js", domain)}}"></script>
+
+<!-- Search Support-->
+<script src="https://unpkg.com/lunr/lunr.js"></script>  
+<script src="{{ @js.rootUrl("si.js", domain) }}"></script>  
+<script src="{{ @js.assetUrl("js/search.js", domain)}}"></script>

@@ -12,8 +12,8 @@
         },
         {
             "invoke": "search_index.pr",
-            "write_to": "search-index.json",
-            "comment": "Create index data for the entire documentation"
+            "write_to": "si.js",
+            "comment": "Create index data for the entire documentation to be used with lunr.js"
         }
     ],
     "assets": [
