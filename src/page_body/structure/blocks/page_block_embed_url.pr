@@ -1,0 +1,19 @@
+{* Get embed block payload *}
+{[ const block = context /]}
+
+{* Create youtube embed block *}
+<div class="embed-url">
+    <a href="{{ block.url }}" target="_blank">
+    <div class="content">
+        {[ if @compare.nonnull(block.title) ]}
+        <p class="title">{{ block.title }}</p>
+        {[/]}
+        {[ if @compare.nonnull(block.description) ]}
+        <p class="description">{{ block.description }}</p>
+        {[/]}
+    </div>
+    {[ if @compare.nonnull(block.thumbnailUrl) ]}
+    <div class="preview" style="background: url({{ block.thumbnailUrl }})"></div>
+    {[/]}
+    </a>
+</div>

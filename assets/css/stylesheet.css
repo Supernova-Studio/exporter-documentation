@@ -3380,3 +3380,40 @@ code {
 .nav-tabs {
   border-bottom: 0px;
 }
+
+
+.embed-url {
+  width: 100%;
+  border: 1px solid #DCE0E4;
+  border-radius: 4px;
+}
+
+.embed-url a {
+  text-decoration: none;
+}
+
+.embed-url div.preview {
+  width: 240px;
+  min-height: 112px;
+}
+
+
+.embed-url div.content {
+  margin: 16px;
+}
+
+.embed-url div.content p.title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+}
+
+.embed-url div.content p.description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color:rgba(0, 0, 0, 0.8);
+}

@@ -28,6 +28,12 @@
         {[ inject "page_block_token_list" context block /]}
     {[ case "TokenGroup" ]}
         {[ inject "page_block_token_group" context block /]}
+    {[ case "Embed" ]}
+        {[ inject "page_block_embed_url" context block /]}
+    {[ case "FigmaEmbed" ]}
+        {[ inject "page_block_embed_figma" context block /]}
+    {[ case "YoutubeEmbed" ]}
+        {[ inject "page_block_embed_youtube" context block /]}
 {[/]}
 
 {* Generate child blocks, if any *}
