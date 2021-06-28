@@ -7,6 +7,7 @@ $(".search").on("click", function (e) {
   $(".SNSearch").toggleClass("active")
   if ($(".SNSearch").is(".active")) {
     $(".SNSearch-input").focus()
+    $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
   }
   e.preventDefault()
 })
@@ -67,6 +68,7 @@ $(".SNSearch-input").on("input", function (e) {
   // Add results matching titles first, then text block results
   if (headingResults.length > 0) {
     resultObject.append(`<p class="section-title">Sections (${headingResults.length})</p>`)
+    let count = 0;
     for (let heading of headingResults) {
       resultObject.append(`
         <a href="${heading.url}">
@@ -75,12 +77,17 @@ $(".SNSearch-input").on("input", function (e) {
           <p class="section-result-text">On page ${heading.path}</p>
         </div>
         </a>`)
+        // Allow up to 5 results to be shown
+        if (++count > 5) {
+          break;
+        }
     }
   }
 
   // Add text block results
   if (textResults.length > 0) {
     resultObject.append(`<p class="section-title">Text (${textResults.length})</p>`)
+    let count = 0;
     for (let text of textResults) {
       resultObject.append(`
         <a href="${text.url}">
@@ -89,6 +96,10 @@ $(".SNSearch-input").on("input", function (e) {
           <p class="section-result-text">On page ${text.path}</p>
         </div>
         </a>`)
+      // Allow up to 5 results to be shown
+      if (++count > 5) {
+        break;
+      }
     }
   }
 })

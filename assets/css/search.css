@@ -99,9 +99,9 @@
 .SNSearch-results p.section-title.empty {
     font-size: 16px;
     line-height: 14px;
-    font-weight: 700;
+    font-weight: normal;
     color: rgba(0, 0, 0, 0.8);
-    margin: 32px 0px 16px 0px;
+    margin: 36px 0px 16px 0px;
 }
 
 .SNSearch-results p.section-result-header {

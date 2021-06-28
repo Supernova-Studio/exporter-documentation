@@ -337,7 +337,7 @@ declare global {
   }
 
   type DocumentationPageBlockTokenList = DocumentationPageBlock & {
-    tokenIds: string
+    tokenIds: Array<string>
   }
 
   type DocumentationPageBlockUnorderedList = DocumentationPageBlockText & {

@@ -46,19 +46,19 @@
       <div class="container">
     
         {* Generate page blocks which represent content *}
-        {* TODO: Generate tabs when appropriate, now just generate temporary tabs for all doc pages *}
+        {* TODO: Generate tabs when appropriate *}
         <section id="section-content-page">
         <div class="tab-content" id="page-tab-content">
+          {*
           <div class="tab-pane fade show active" id="content-tab-1" role="tabpanel" aria-labelledby="content-tab-1">
             {[ for block in page.blocks ]}
                 {[ inject "page_body_structure_block" context block /]}
             {[/]}
           </div>
-          <div class="tab-pane fade" id="content-tab-2" role="tabpanel" aria-labelledby="content-tab-2">
-            {[ for block in page.blocks ]}
-                {[ inject "page_body_structure_block" context block /]}
-            {[/]}
-          </div>
+          *}
+        {[ for block in page.blocks ]}
+            {[ inject "page_body_structure_block" context block /]}
+        {[/]}
         </div>
         </section>
         {[ inject "page_body_structure_content" context page /]}

@@ -1,1 +1,23 @@
-<p>Token Block WIP</p>
+{* Fetch block from injection context, expected type 'Token' *}
+{[ const block = context /]}
+{[ const token = @ds.tokenById(block.tokenId) /]}
+
+<div class="token-container">
+  <div class="grid">
+    <div>
+    {[ if token.tokenType.equals("Color") ]}
+      <div class="preview" style="background-color: #{{ token.value.hex }};">
+    {[ else ]}
+      <div class="preview">
+    {[/]}
+      </div>
+    {[ if token.tokenType.equals("Color") ]}
+      <p class="title">{{ token.name }}</p>
+      <p class="description">rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ token.value.a }})</p>
+    {[/]}
+    </div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  </div>
+</div>

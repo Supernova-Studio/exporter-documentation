@@ -1,1 +1,27 @@
-<p>Token Group Block WIP</p>
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Fetch all tokens of this specific group *}
+{[ const groupId = block.groupId /]}
+{[ let group = @ds.tokenGroupById(groupId) /]}
+
+{[ if group.tokenType.equals("Color") ]}
+
+{* If empty filter, show group (shows all), if not, show only group with full name *}
+<div class="token-container">
+    {* Show group header consisting of group segments and current group name *}
+    <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
+    <table class="token-wrapper">
+    {* Render all tokens *}
+    {[ for token in @ds.tokensByGroupId(group.id) ]}
+    <tr class="color">
+        <td><div class="token-preview-container" style="background-color: #{{ token.value.hex }};"></div></td>
+        <td>{{ token.name }}</td>
+        <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
+        <td>rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ token.value.a }})</td>
+    </tr>
+    {[/]}
+    </table>
+</div>
+
+{[/]}
