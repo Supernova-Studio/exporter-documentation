@@ -1,9 +1,19 @@
 {[ let page = context /]}
+{[ const domain = @ds.docs.configuration().domain /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
+    
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
+
+        <!-- Logo -->
+        <div class="logo-wrapper">
+            <div class="logo-inner">
+                <img src="{{ @js.assetUrl("logos/logo-main.png", domain) }}" title="Stark Industries" alt="Stark Industries" />
+            </div>
+        </div>
+
         <div class="container-fluid">
 
         <!-- Sidebar Toggler -->

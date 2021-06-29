@@ -671,9 +671,9 @@ hr {
 /*=== 3.1 Side Navigation ===*/
 .docs-navigation {
   position: fixed;
-  top: 0;
+  top: 70;
   left: 0;
-  overflow: hidden;
+  overflow: scroll;
   overflow-y: auto;
   width: 300px;
   height: 100%;
@@ -3135,6 +3135,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0px 28px;
 }
 .logo-inner {
   max-width: 80%;
@@ -3252,6 +3253,7 @@ code {
   color: var(--colorDocsViewBlackBlack1);
   font-size: 48px;
   font-weight: bold;
+  margin: 0 0 60px 0;
 }
 .container-title > .slider .subtitle {
   padding: 20px 0 0 0;
