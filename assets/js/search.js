@@ -2,7 +2,7 @@
     Search - Interface
 ------------------------------- */
 
-$(".search").on("click", function (e) {
+$("#search-bar").on("click", function (e) {
   // Toggle the search view when clicking the search icon
   $(".SNSearch").toggleClass("active")
   if ($(".SNSearch").is(".active")) {

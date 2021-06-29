@@ -10,29 +10,19 @@
         <!-- Logo -->
         <div class="logo-wrapper">
             <div class="logo-inner">
-                <img src="{{ @js.assetUrl("logos/logo-main.png", domain) }}" title="Stark Industries" alt="Stark Industries" />
+                <img src="{{ @js.assetUrl("logos/axios.svg", domain) }}" title="Brandwatch Axiom" alt="Brandwatch Axiom" />
+                <span>Axiom</span>
             </div>
         </div>
 
         <div class="container-fluid">
-
-        <!-- Sidebar Toggler -->
-        <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
-
-        <!-- Potential Left Link Here -->
-        <div id="header-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                {[ let rootGroup = @ds.docs.rootGroup() /]}
-                {[ for item in rootGroup.children ]}
-                    {* Re-enable if we only want to show groups *}
-                    {* {[ if item.type.equals("Group") ]} *}
-                        {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
-                        <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
-                    {* {[/]} *}
-                {[/]}
-            </ul>
+        <div id="search-bar">
             <i class="fas fa-search search"></i>
+            <span>Search</span>
         </div>
+        </div>
+
+        <div class="night-theme"><i class="fas fa-moon"></i> Night Theme</div>
     </nav>
 </header>
 <!-- Header End -->
