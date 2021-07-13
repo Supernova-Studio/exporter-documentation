@@ -1,6 +1,9 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const block = context /]}
 
+{* Ignore block if it is empty *}
+{[ if @compare.greaterThan(block.tokenIds.count(), 0) ]}
+
 <div class="token-container">
   <div class="grid">
     {[ for tokenId in block.tokenIds ]}
@@ -24,3 +27,4 @@
     <div class="spacer"></div>
   </div>
 </div>
+{[/]}

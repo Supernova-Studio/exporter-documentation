@@ -1,6 +1,9 @@
 {* Get experimental block payload *}
 {[ const block = context /]}
 
+{* Ignore block if it doesn't have group id set *}
+{[ if block.groupId.isString() ]}
+
 {* Fetch all tokens of this specific group *}
 {[ const groupId = block.groupId /]}
 {[ let group = @ds.tokenGroupById(groupId) /]}
@@ -24,4 +27,5 @@
     </table>
 </div>
 
+{[/]}
 {[/]}

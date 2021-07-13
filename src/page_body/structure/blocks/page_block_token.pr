@@ -1,5 +1,8 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const block = context /]}
+
+{* Ignore block if it doesn't have id set *}
+{[ if block.tokenId.isString() ]}
 {[ const token = @ds.tokenById(block.tokenId) /]}
 
 <div class="token-container">
@@ -21,3 +24,5 @@
     <div class="spacer"></div>
   </div>
 </div>
+
+{[/]}
