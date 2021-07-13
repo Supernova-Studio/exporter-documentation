@@ -25,6 +25,6 @@
 <!-- Versions -->
 <script>
 $(document).ready(function() {
-    loadVersions("https://ivan-workspace.dev.supernova-docs.io/auto-doc-08-jul/versions.json")
+    loadVersions("{{ domain }}/../versions.json")
 });
 </script>
