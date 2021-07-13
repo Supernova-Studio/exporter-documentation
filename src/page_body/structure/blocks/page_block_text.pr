@@ -1,56 +1,5 @@
 {* Fetch block from injection context, expected type 'Text' *}
 {[ const block = context /]}
 
-{* Temporary check if the experimental block is used instead of raw text. This will be removed, of course. *}
-
-{[ if @js.isExperimentalBlock(block) ]}
-    {[ const experimentalBlock = @js.parseExperimentalBlock(block) /]}
-    {[ switch experimentalBlock.blockType ]}
-        {[ case "token_typography_list" ]}
-            {[ inject "page_block_list_typography" context experimentalBlock /]}
-        {[ case "token_color_list" ]}
-            {[ inject "page_block_list_colors" context experimentalBlock /]}
-        {[ case "token_font_list" ]}
-            {[ inject "page_block_list_fonts" context experimentalBlock /]}
-        {[ case "token_border_list" ]}
-            {[ inject "page_block_list_borders" context experimentalBlock /]}
-        {[ case "token_gradient_list" ]}
-            {[ inject "page_block_list_gradients" context experimentalBlock /]}
-        {[ case "token_measure_list" ]}
-            {[ inject "page_block_list_measures" context experimentalBlock /]}
-        {[ case "token_radius_list" ]}
-            {[ inject "page_block_list_radii" context experimentalBlock /]}
-        {[ case "token_shadow_list" ]}
-            {[ inject "page_block_list_shadows" context experimentalBlock /]}
-        {[ case "token_text_list" ]}
-            {[ inject "page_block_list_text" context experimentalBlock /]}
-
-        {[ case "figma" ]}
-            {[ inject "page_block_figma" context experimentalBlock /]}
-        {[ case "storybook" ]}
-            {[ inject "page_block_storybook" context experimentalBlock /]}
-        {[ case "embed" ]}
-            {[ inject "page_block_embed" context experimentalBlock /]}
-        {[ case "tabs" ]}
-            {[ inject "page_block_tabs" context experimentalBlock /]}
-        {[ case "table" ]}
-            {[ inject "page_block_table" context experimentalBlock /]}
-        {[ case "image" ]}
-            {[ inject "page_block_temporary_image" context experimentalBlock /]}
-        {[ case "popupimage" ]}
-            {[ inject "page_block_popup_image" context experimentalBlock /]}
-        {[ case "video" ]}
-            {[ inject "page_block_video" context experimentalBlock /]}
-        {[ case "accordion" ]}
-            {[ inject "page_block_accordion" context experimentalBlock /]}
-        {[ case "link" ]}
-            {[ inject "page_block_open_link" context experimentalBlock /]}
-        {[ case "divider" ]}
-            {[ inject "page_block_temporary_divider" context experimentalBlock /]}
-        {[ default ]}
-        <p>Experimental block {{ experimentalBlock.blockType }} not supported
-    {[/]}
-{[ else ]}
-    {* Generate rich text *}
-    <p>{[ inject "page_block_rich_text" context block.text /]}</p>
-{[/]}
+{* Generate rich text *}
+<p>{[ inject "page_block_rich_text" context block.text /]}</p>
