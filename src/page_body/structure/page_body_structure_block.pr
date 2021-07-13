@@ -9,8 +9,14 @@
     {[ case "Code" ]}
         {[ inject "page_block_code" context block /]}
     {[ case "UnorderedList" ]}
+        {[ if block.beginsTypeChain ]}
+        <ul>
+        {[/]}
         {[ inject "page_block_unordered_list" context block /]}
     {[ case "OrderedList" ]}
+        {[ if block.beginsTypeChain ]}
+        <ol>
+        {[/]}
         {[ inject "page_block_ordered_list" context block /]}
     {[ case "Quote" ]}
         {[ inject "page_block_quote" context block /]}
@@ -43,5 +49,19 @@
         {[ inject "page_body_structure_block" context child /]}
     {[/]}
     </div>
+{[/]}
+{[/]}
+
+{* Close unordered list if needed *}
+{[ if block.type.equals("UnorderedList") ]}
+{[ if block.endsTypeChain ]}
+</ul>
+{[/]}
+{[/]}
+
+{* Close ordered list if needed *}
+{[ if block.type.equals("OrderedList") ]}
+{[ if block.endsTypeChain ]}
+</ol>
 {[/]}
 {[/]}
