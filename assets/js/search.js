@@ -117,3 +117,27 @@ function highlightRanges(s, sortedRanges) {
 function replaceRange(s, start, end, substitute) {
   return s.substring(0, start) + substitute + s.substring(end)
 }
+
+
+/*-----------------------------
+    Versions
+------------------------------- */
+
+function loadVersions(url) {
+  
+  $.getJSON(url, function(data) {
+    let versions = data.versions
+
+    // Load versions into the container and set active version
+    let menu = $("#version-container .dropdown-menu")
+    let button = $("#version-container button")
+  
+    menu.html("")
+    for (let v of versions) {
+      menu.append(`<a class="dropdown-item" href="https:${v.url}">${v.name}</a>`)
+    }
+    
+    button.html(`${versions[0].name}`)
+  });
+}
+

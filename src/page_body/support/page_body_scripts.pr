@@ -21,3 +21,10 @@
 <script src="https://unpkg.com/lunr/lunr.js"></script>  
 <script src="{{ @js.rootUrl("si.js", domain) }}"></script>  
 <script src="{{ @js.assetUrl("js/search.js", domain)}}"></script>
+
+<!-- Versions -->
+<script>
+$(document).ready(function() {
+    loadVersions("https://ivan-workspace.dev.supernova-docs.io/auto-doc-08-jul/versions.json")
+});
+</script>

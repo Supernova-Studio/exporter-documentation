@@ -40,6 +40,8 @@
         {[ inject "page_block_embed_figma" context block /]}
     {[ case "YoutubeEmbed" ]}
         {[ inject "page_block_embed_youtube" context block /]}
+    {[ case "Image" ]}
+        {[ inject "page_block_image" context block /]}
 {[/]}
 
 {* Generate child blocks, if any *}

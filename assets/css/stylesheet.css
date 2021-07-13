@@ -3419,3 +3419,37 @@ code {
   line-height: 16px;
   color:rgba(0, 0, 0, 0.8);
 }
+
+#version-container .dropdown-menu {
+  max-height: 233px;
+  width: 150px;
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+#version-container button {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 0px solid;
+}
+
+.utility-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#version-container button {
+  margin-right: 20px;
+}
+
+#version-container .dropdown-item {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #000;
+  padding: .25rem 1rem;
+}
