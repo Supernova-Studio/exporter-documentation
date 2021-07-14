@@ -125,19 +125,34 @@ function replaceRange(s, start, end, substitute) {
 
 function loadVersions(url) {
   
+  // Disable versions before they are loaded
+  let button = $("#version-container button")
+  button.css('pointer-events','none')
+  
+  // Download JSON with version definitions for this particular design system (there is always one version file per design system at domain/version.json)
   $.getJSON(url, function(data) {
+    // Get versions
     let versions = data.versions
 
     // Load versions into the container and set active version
     let menu = $("#version-container .dropdown-menu")
-    let button = $("#version-container button")
   
     menu.html("")
     for (let v of versions) {
-      menu.append(`<a class="dropdown-item" href="https:${v.url}">${v.name}</a>`)
+      // Make the version that fits the current deploy target URL to be the selected one
+      let currentVersion = window.location.href.indexOf(v.url) !== -1
+      menu.append(`<a class="dropdown-item ${currentVersion ? 'checked' : ''}" href="https:${v.url}">${v.name}</a>`)
+      if (currentVersion) {
+        button.html(`${v.name}`)
+      }
     }
     
-    button.html(`${versions[0].name}`)
+    // Enable interaction with the menu
+    button.css('pointer-events','')
+  })
+  .fail(function() {
+    // If we for some reason fail to download the versions or if the versions don't exist yet, just hide the button, so it doesn't confuse users
+    button.hidden = true;
   });
 }
 

@@ -3444,6 +3444,17 @@ code {
 
 #version-container button {
   margin-right: 20px;
+  padding-right: 30px;
+  text-transform: capitalize;
+}
+
+#version-container button::after {
+  position: absolute;
+  right: 30px;
+  top: 4px;
+  display: inline-block;
+  color: #000;
+  content: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.6499 0.650002L7.3499 1.35L3.9999 4.71L0.649902 1.35L1.3499 0.650002L3.9999 3.29L6.6499 0.650002Z' fill='black'/%3E%3C/svg%3E%0A");
 }
 
 #version-container .dropdown-item {
@@ -3452,4 +3463,23 @@ code {
   font-size: 14px;
   color: #000;
   padding: .25rem 1rem;
+  text-transform: capitalize;
+}
+
+#version-container .dropdown-item.checked {
+  background-color: rgba(15, 98, 254, 0.04);
+  color: #0F62FE;
+}
+
+#version-container .dropdown-item.checked::after {
+  position: absolute;
+  right: 12px;
+  display: inline-block;
+  content: url("data:image/svg+xml,%3Csvg width='11' height='8' viewBox='0 0 11 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.6499 0.649994L10.3499 1.34999L3.9999 7.70999L0.649902 4.34999L1.3499 3.64999L3.9999 6.28999L9.6499 0.649994Z' fill='%230F62FE'/%3E%3C/svg%3E%0A");
+  color: #0F62FE;
+}
+
+#version-container .dropdown-menu {
+  right: 0;
+  left: auto;
 }
