@@ -63,7 +63,7 @@ $(window).on("load", function () {
 	if (sortedVisibleSections.length > 0) {
 		document.querySelector(`nav li a[href="#${sortedVisibleSections[0].getAttribute("id")}"]`).parentElement.classList.add("active")
 	}
-  }, observerSetting)
+  })
 
   // Track all headers that have an `id` applied
   document.querySelectorAll("h1[id]").forEach((section) => {

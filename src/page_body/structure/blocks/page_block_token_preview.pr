@@ -1,0 +1,6 @@
+
+{[ const token = context /]}
+{[ if token.tokenType.equals("Color") ]}
+    <div class="token-preview-container" style="background-color: #{{ token.value.hex }};"></div>
+{[/]}
+{* TODO: Rest of previews *}

@@ -3052,25 +3052,68 @@ code {
 /* Token tables - internal */
 .token-container table tr td:nth-child(1) {
   width: 40px;
+  vertical-align: top;
+  padding: 12px 0px;
 }
 .token-container table tr td:nth-child(2) {
-  width: 30%;
-  padding-left: 12px;
+  width: 220px;
+  padding: 20px 12px 12px 12px;
   font-weight: 500;
   font-size: 14px;
   color: #000;
+  vertical-align: top;
 }
 
 .token-container table tr td:nth-child(3) {
   width: auto;
   font-weight: normal;
   font-size: 12px;
+  padding: 20px 12px 12px 12px;
   color: rgba(0, 0, 0, 0.5);
+  line-height: 20px;
+  vertical-align: top;
 }
 .token-container table tr td:nth-child(4) {
-  width: 150px;
+  width: 250px;
   font-weight: normal;
   font-size: 12px;
+  padding: 20px 12px 12px 12px;
+  color: rgba(0, 0, 0, 0.5);
+  vertical-align: top;
+}
+
+.token-container table span.value {
+  font-style: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+}
+
+.token-container table span.value + br + span.label {
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.token-container table span.custom-value {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 2px;
+  padding: 0px 2px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+}
+
+.token-container table span.label {
+  font-style: normal;
+  font-size: 11px;
+  line-height: 16px;
+  font-style: italic;
   color: rgba(0, 0, 0, 0.5);
 }
 

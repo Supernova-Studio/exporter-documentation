@@ -1,0 +1,8 @@
+{[ let token = context /]}
+<span class="value">
+{[ if token.tokenType.equals("Color") ]}
+    #{{ token.value.hex.uppercased() }}<br />
+    RGBA({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ token.value.a }})
+{[/]}
+</span>
+{* TODO: Rest of values *}

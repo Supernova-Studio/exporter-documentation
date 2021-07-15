@@ -27,6 +27,8 @@ declare global {
   // Enums
   //
   type TokenType = 'Color' | 'Typography' | 'Radius' | 'Font' | 'Measure' | 'Shadow' | 'Border' | 'Gradient' | 'Text'
+
+  type TokenPropertyType = 'Number' | 'Boolean' | 'String' | 'Generic'
   
   type SourceType = 'Supernova' | 'Figma'
 
@@ -103,6 +105,14 @@ declare global {
     description: string
     tokenType: TokenType
     origin: SourceOrigin | null
+    properties: Array<TokenProperty>
+  }
+
+  type TokenProperty = {
+    name: string
+    codeName: string
+    type: TokenPropertyType
+    value: string | number | boolean
   }
 
   type ColorTokenValue = {
