@@ -11,16 +11,13 @@
 <!-- Magnific Popup -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/magnific-popup/magnific-popup.min.css", domain) }}" />
 
-<!-- Highlight Syntax -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/highlight.js/styles/github.css", domain) }}" />
-
-<!-- Custom Stylesheet -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
-
 <!-- Search -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/search.css", domain) }}" />
 
 <!-- DS Autogen -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/ds/index.css", domain) }}" />
+
+<!-- Custom Stylesheet -->
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
 
 

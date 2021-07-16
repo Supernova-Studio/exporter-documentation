@@ -310,6 +310,7 @@ declare global {
 
   type DocumentationPageBlockCode = DocumentationPageBlockText & {
     codeLanguage: string | null
+    caption: string | null
   }
 
   type DocumentationPageBlockDivider = DocumentationPageBlock & {

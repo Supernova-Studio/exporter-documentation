@@ -5,8 +5,10 @@
 <script src="{{ @js.assetUrl("vendor/jquery/jquery.min.js", domain)}}"></script> 
 <script src="{{ @js.assetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js", domain)}}"></script> 
 
-<!-- Highlight JS -->
-<script src="{{ @js.assetUrl("vendor/highlight.js/highlight.min.js", domain)}}"></script> 
+<!-- Prism -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
 
 <!-- Easing --> 
 <script src="{{ @js.assetUrl("vendor/jquery.easing/jquery.easing.min.js", domain)}}"></script> 

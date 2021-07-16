@@ -2,6 +2,11 @@
 {[ const block = context /]}
 
 {* Generate code which will be automatically highlighted *}
-<pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("lang-"), "")}}">
+<pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("language-"), "")}}">
+‏‏‎ ‎
 {{ @js.highlightSafeString(block) }}
+
 </code></pre>
+{[ if block.caption.isString() ]}
+    <p class="caption">{{ block.caption }}</p>
+{[/]}
