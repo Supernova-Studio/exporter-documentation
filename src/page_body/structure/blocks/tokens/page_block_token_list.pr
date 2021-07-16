@@ -9,15 +9,14 @@
     {[ for tokenId in block.tokenIds ]}
         {[ const token = @ds.tokenById(tokenId) /]}
         <div>
-        {[ if token.tokenType.equals("Color") ]}
-        <div class="preview" style="background-color: #{{ token.value.hex }};">
-        {[ else ]}
-        <div class="preview">
-        {[/]}
-        </div>
-        {[ if token.tokenType.equals("Color") ]}
+        {* Render large tile preview *}
+        {[ inject "page_block_token_preview_large" context token /]}
         <p class="title">{{ token.name }}</p>
-        <p class="description">rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ token.value.a }})</p>
+        {* Render description if this is not text and generic token, which are rendering values into the tile itself *}
+        {[ if @boolean.not(token.tokenType.equals("Text")) ]}
+        {[ if @boolean.not(token.tokenType.equals("GenericToken")) ]}
+        <p class="description">{[ inject "page_block_token_value" context token /]}</p>
+        {[/]}
         {[/]}
         </div>
     {[/]}

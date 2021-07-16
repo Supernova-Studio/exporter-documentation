@@ -1,0 +1,25 @@
+{[ const token = context /]}
+
+{[ if token.tokenType.equals("Color") ]}
+    <div class="preview" style="background-color: #{{ token.value.hex }};"></div>
+{[ elseif token.tokenType.equals("Border")]}
+    <div class="preview" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+{[ elseif token.tokenType.equals("Font")]}
+    <div class="preview">Ag</div>
+{[ elseif token.tokenType.equals("Gradient")]}
+    <div class="preview" style="background: {{ @js.gradientTokenValue(token) }}"></div>
+{[ elseif token.tokenType.equals("Measure")]}
+    <div class="preview">px</div>
+{[ elseif token.tokenType.equals("Radius")]}
+    <div class="preview" style="border-radius: {{ token.value.radius.measure}}px"></div>
+{[ elseif token.tokenType.equals("Shadow")]}
+    <div class="preview">
+        <div style="width: 20px; height: 20px; box-shadow: {{ @js.shadowTokenValue(token) }}"></div>
+    </div>
+{[ elseif token.tokenType.equals("Text")]}
+    <div class="preview small-text">{{ token.value.text }}</div>
+{[ elseif token.tokenType.equals("Typography")]}
+    <div class="preview">Ag</div>
+{[ elseif token.tokenType.equals("GenericToken")]}
+    <div class="preview small-text">{{ token.value.text }}</div>
+{[/]}

@@ -3143,6 +3143,14 @@ code {
   width: 180px;
   height: 120px;
   border-bottom: 1px solid #DCE0E4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.token-container .grid > div > div.preview.small-text {
+  font-size: 11px;
 }
 
 .token-container .grid > div > p.title {

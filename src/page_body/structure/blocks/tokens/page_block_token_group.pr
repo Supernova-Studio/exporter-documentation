@@ -16,7 +16,7 @@
     {* Render all tokens *}
     {[ for token in @ds.tokensByGroupId(group.id) ]}
     <tr class="color">
-        <td>{[ inject "page_block_token_preview" context token /]}</td>
+        <td>{[ inject "page_block_token_preview_small" context token /]}</td>
         <td>{{ token.name }}</td>
         <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
         <td>
