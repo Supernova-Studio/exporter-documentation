@@ -52,6 +52,8 @@ declare global {
 
   type HeadingType = '1' | '2' | '3'
 
+  type ImageAlignment = 'Left' | 'Center' | 'Stretch'
+
   //
   // Data Types
   // Subcategory: Design Token Shells
@@ -320,6 +322,8 @@ declare global {
 
   type DocumentationPageBlockImage = DocumentationPageBlock & {
     url: string | null
+    caption: string | null
+    alignment: ImageAlignment
   }
 
   type DocumentationPageBlockLink = DocumentationPageBlock & {

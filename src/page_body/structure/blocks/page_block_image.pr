@@ -1,7 +1,29 @@
 {* Fetch block from injection context, expected type 'Heading' *}
 {[ const block = context /]}
+{[ let imgClass = "" /]}
+{[ let captionClass = "" /]}
 
-{* Create image that can't be interacted with, or ignore it if url is not set *}
+{* Create image with lightbox interaction, or ignore it if url is not set *}
 {[ if block.url.isString() ]}
-<img src="{{ block.url }}" class="img-fluid" alt="Responsive image">
+{* Align image based on the configuration *}
+<div class="image-container">
+{[ switch block.alignment ]}
+    {[ case "Left" ]}
+        {[ imgClass = "" /]}
+        {[ captionClass = "text-left" /]}
+    {[ case "Center" ]}
+        {[ imgClass = "mx-auto d-block" /]}
+        {[ captionClass = "text-center" /]}
+    {[ case "Stretch" ]}
+        {[ imgClass = "img-fluid max" /]}
+        {[ captionClass = "text-center" /]}
+{[/]}
+<a class="popup-img" href="{{ block.url }}">
+    <img src="{{ block.url }}" class="{{ imgClass }}" alt="" />
+</a>
+{* Add caption if set *}
+{[ if block.caption.isString() ]}
+    <p class="{{ captionClass }}">{{ block.caption }}</p>
+{[/]}
+</div>
 {[/]}
