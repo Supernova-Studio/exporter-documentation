@@ -2,4 +2,9 @@
 {[ const block = context /]}
 
 {* Generate rich text *}
-<p>{[ inject "page_block_rich_text" context block.text /]}</p>
+{* TEMPORARY: When text equals "---", generate divider instead of rendering raw text *}
+{[ if @js.headingPlainText(block).equals("---") ]}
+    {[ inject "page_block_divider" context block /]}
+{[ else ]}
+    <p>{[ inject "page_block_rich_text" context block.text /]}</p>
+{[/]}
