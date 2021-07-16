@@ -3533,20 +3533,20 @@ code {
   width: 100%;
   border: 1px solid #DCE0E4;
   border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
-.embed-url a {
+.embed-url, .embed-url:hover {
   text-decoration: none;
 }
 
 .embed-url div.preview {
-  width: 240px;
   min-height: 112px;
+  background-size: cover;
 }
 
-
 .embed-url div.content {
-  margin: 16px;
+  padding: 16px;
 }
 
 .embed-url div.content p.title {
@@ -3563,6 +3563,13 @@ code {
   font-size: 12px;
   line-height: 16px;
   color:rgba(0, 0, 0, 0.8);
+}
+
+.embed-url div.content p.link {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: underline;
 }
 
 #version-container .dropdown-menu {

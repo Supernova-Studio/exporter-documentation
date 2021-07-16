@@ -1,19 +1,24 @@
 {* Get embed block payload *}
 {[ const block = context /]}
 
+{{ block.toString() }}
+
 {* Create youtube embed block *}
-<div class="embed-url">
-    <a href="{{ block.url }}" target="_blank">
-    <div class="content">
-        {[ if @compare.nonnull(block.title) ]}
+{[ if block.url.isString() ]}
+<a href="{{ block.url }}" target="_blank">
+<div class="embed-url row">
+    <div class="content col-8">
+        {[ if block.title.isString() ]}
         <p class="title">{{ block.title }}</p>
         {[/]}
-        {[ if @compare.nonnull(block.description) ]}
+        {[ if block.description.isString() ]}
         <p class="description">{{ block.description }}</p>
         {[/]}
+        <p class="link">{{ block.url }}</p>
     </div>
-    {[ if @compare.nonnull(block.thumbnailUrl) ]}
-    <div class="preview" style="background: url({{ block.thumbnailUrl }})"></div>
+    {[ if block.thumbnailUrl.isString() ]}
+    <div class="preview col-4" style="background: url({{ block.thumbnailUrl }});background-size: cover;"></div>
     {[/]}
-    </a>
 </div>
+</a>
+{[/]}
