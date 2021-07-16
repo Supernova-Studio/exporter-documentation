@@ -9,7 +9,7 @@
 <div class="image-container">
 {[ switch block.alignment ]}
     {[ case "Left" ]}
-        {[ imgClass = "" /]}
+        {[ imgClass = "img-fluid" /]}
         {[ captionClass = "text-left" /]}
     {[ case "Center" ]}
         {[ imgClass = "mx-auto d-block" /]}
