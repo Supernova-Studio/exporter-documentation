@@ -1,8 +1,6 @@
 {* Get embed block payload *}
 {[ const block = context /]}
 
-{{ block.toString() }}
-
 {* Create youtube embed block *}
 {[ if block.url.isString() ]}
 <a href="{{ block.url }}" target="_blank">
