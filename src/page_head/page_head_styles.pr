@@ -20,4 +20,7 @@
 <!-- Custom Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
 
+<!-- Code highlight -->
+<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/code-highlight.css", domain) }}" />
+
 

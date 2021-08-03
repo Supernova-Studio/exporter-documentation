@@ -26,11 +26,6 @@ $(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function () {
   })
 })
 
-/*------------------------
-   Code Highlight Code
--------------------------- */
-
-hljs.initHighlightingOnLoad()
 
 /*------------------------
    Content menu tracking
@@ -243,3 +238,50 @@ function loadVersions(url) {
     button.hidden = true
   })
 }
+
+
+/*-----------------------------
+    Live sandbox manipulation
+------------------------------- */
+
+// Convert to instance
+const SandboxRenderer = window.sandboxRenderer
+window.sandboxRenderer = new SandboxRenderer()
+window.sandboxRenderer.listener = function(message) { 
+    console.log(message)
+    // Remove sandbox loaders when loaded correctly
+    if (message.message?.type === "success") {
+      $(`.sandbox-loader-container[data-target="${message.sandboxId}"]`).remove();
+    }
+    // TODO: Handle incorrect parsing
+};
+
+$(document).ready(function() {
+    // Build all sandboxes
+    window.sandboxRenderer.buildSandboxesForTargetsWithIDStartingWith("sandbox")
+});
+
+
+/*-----------------------------
+    Tooltips
+------------------------------- */
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+
+/*-----------------------------
+    Copy code
+------------------------------- */
+
+$(function () {
+  $('[data-toggle="copy-from-sandbox"]').click(function(event) {
+    // Get code of the sandbox
+    event.preventDefault()
+    const sandboxId = $(this).attr('data-target');
+    const code = window.sandboxRenderer.getCodeForSandboxId(sandboxId)
+    const cb = navigator.clipboard;
+    cb.writeText(code)
+  });
+})

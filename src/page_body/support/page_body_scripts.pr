@@ -16,9 +16,14 @@
 <!-- Magnific Popup --> 
 <script src="{{ @js.assetUrl("vendor/magnific-popup/jquery.magnific-popup.min.js", domain)}}"></script> 
 
+<!-- Live sandbox -->
+<script src="{{ @js.assetUrl("experimental/rtcp-core.js", domain)}}"></script> 
+
 <!-- Search Support-->
 <script src="https://unpkg.com/lunr/lunr.js"></script>  
 <script src="{{ @js.rootUrl("si.js", domain) }}"></script>  
+
+<!-- General scripts -->
 <script src="{{ @js.assetUrl("js/functionality.js", domain)}}"></script>
 
 <!-- Versions -->
@@ -27,3 +32,5 @@ $(document).ready(function() {
     loadVersions("{{ domain }}/../versions.json")
 });
 </script>
+
+
