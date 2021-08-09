@@ -3499,7 +3499,7 @@ code {
 #content-nav a {
   text-decoration: none;
   display: block;
-  padding: 0 0 12px 0;
+  padding: 6px 0px;
   color: rgba(0, 0, 0, 0.5);
   font-size: 12px;
   line-height: 16px;
