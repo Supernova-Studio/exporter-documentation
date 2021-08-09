@@ -321,10 +321,10 @@ function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Documentati
   } else {
     // If we are checking against group, check everything upwards the tree. If group contains the page, return that information
     let contextGroup = context as DocumentationGroup
-    if (!contextGroup.isRoot && contextGroup.childrenIds.indexOf(pageOrGroup.persistentId) !== -1) {
+    if (contextGroup.childrenIds.indexOf(pageOrGroup.persistentId) !== -1) {
       return true
-    } else if (contextGroup.parent) {
-      return pageOrGroupActiveInContext(pageOrGroup, contextGroup.parent as DocumentationGroup)
+    } else if (pageOrGroup.parent) {
+      return pageOrGroupActiveInContext(pageOrGroup.parent, contextGroup)
     } else {
       // Reached root and didn't find anything, abandon ship
       return false
