@@ -30,9 +30,9 @@
                 {[ let firstDescendingPage = @js.firstPageFromTop(item) /]}
                 {* Group will either link to the first page, or be fully disabled *}
                 {[ if @compare.nonnull(firstDescendingPage) ]}
-                    <a class="nav-link typographyDocsViewNavigation group" href="{{ @js.pageUrl(firstDescendingPage, @ds.docs.configuration().domain) }}"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ @js.pageUrl(firstDescendingPage, @ds.docs.configuration().domain) }}"> {{ item.title }}</a>
                 {[ else ]}  
-                    <a class="nav-link typographyDocsViewNavigation group"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ item.title }}</a>
                 {[/]}
                 {[ if isActive ]}
                     {[ let data = @init.dictionary().add("page", page).add("groupId", itemId) /]}
