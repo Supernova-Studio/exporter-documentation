@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -21,55 +21,6 @@
         "Documentation"
     ],
     "contributes": {
-        "configuration": [
-            {
-                "key": "social_twitter",
-                "default": "twitter.com",
-                "label": "Social Links - Twitter",
-                "type": "string"
-            },
-            {
-                "key": "social_facebook",
-                "default": "",
-                "label": "Social Links - Facebook",
-                "type": "string"
-            },
-            {
-                "key": "social_instagram",
-                "default": "",
-                "label": "Social Links - Instagram",
-                "type": "string"
-            },
-            {
-                "key": "social_github",
-                "default": "",
-                "label": "Social Links - GitHub",
-                "type": "string"
-            },
-            {
-                "key": "social_dribbble",
-                "default": "",
-                "label": "Social Links - dribbble",
-                "type": "string"
-            },
-            {
-                "key": "show_footer",
-                "default": true,
-                "label": "Show footer",
-                "type": "boolean"
-            },
-            {
-                "key": "footer_copyright",
-                "default": "Copyright © Supernova.io 2021<br/>This is some amazing documentation. Go to <a href=\"https://supernova.io\" target=\"_blank\">Supernova</a> to check more",
-                "label": "Footer Copyright Label",
-                "type": "string"
-            },
-            {
-                "key": "dark_mode",
-                "default": false,
-                "label": "Use dark mode",
-                "type": "boolean"
-            }
-        ]
+        "configuration": []
     }
 }

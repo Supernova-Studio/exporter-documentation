@@ -9,9 +9,7 @@
 
         <!-- Logo -->
         <div class="logo-wrapper">
-            <div class="logo-inner">
-                <img src="{{ @js.assetUrl("logos/logo-main.png", domain) }}" title="Stark Industries" alt="Stark Industries" />
-            </div>
+            <img src="{{ @js.assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
         </div>
 
         <div class="container-fluid">
