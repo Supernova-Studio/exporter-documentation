@@ -18,7 +18,14 @@
             {[ if item.type.equals("Page") ]}
                 <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}"> {{ item.title }}</a><li>
             {[ else ]}
-                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation group"> {{ item.title }}</a>
+                <li class="nav-item">
+                {[ let firstDescendingPage = @js.firstPageFromTop(item) /]}
+                {* Group will either link to the first page, or be fully disabled *}
+                {[ if @compare.nonnull(firstDescendingPage) ]}
+                    <a class="nav-link typographyDocsViewNavigation group" href="{{ @js.pageUrl(firstDescendingPage, @ds.docs.configuration().domain) }}"> {{ item.title }}</a>
+                {[ else ]}  
+                    <a class="nav-link typographyDocsViewNavigation group"> {{ item.title }}</a>
+                {[/]}
                 {[ let data = @init.dictionary().add("page", page).add("groupId", itemId) /]}
                 {[ inject "page_body_structure_sidebar_full" context data /]}
                 </li>
