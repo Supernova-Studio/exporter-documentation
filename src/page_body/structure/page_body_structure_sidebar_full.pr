@@ -1,0 +1,39 @@
+{* Fetch the page structure *}
+{[ let rootGroup = [] /]}
+{[ let page = context.page /]}
+
+{[ if context.groupId.isString() ]}
+    {* If we pass id of a group, we can request it directly *}
+    {[ rootGroup = @ds.docs.groupById(context.groupId) /]}
+{[ else ]}
+    {* If we are not showing tabbar at the top, then we want to generate from true root, and show all categories *}
+    {[ rootGroup = @ds.docs.rootGroup() /]}
+{[/]}
+
+{[ if @compare.nonnull(rootGroup) ]}
+    <ul class="nav full flex-column ">
+        {[ for item in rootGroup.children ]}
+            {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
+            {[ let itemId = item.id /]}
+            {[ if item.type.equals("Page") ]}
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}"> {{ item.title }}</a><li>
+            {[ else ]}
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation group"> {{ item.title }}</a>
+                {[ let data = @init.dictionary().add("page", page).add("groupId", itemId) /]}
+                {[ inject "page_body_structure_sidebar_full" context data /]}
+                </li>
+            {[/]}
+        {[/]}
+    </ul>
+{[ else ]}
+    <div class="nav-name">
+        <span class="typographyDocsViewLabelCaps">{{ context.page.title.uppercased() }}</span>
+    </div>
+{[/]}
+
+<div class="nav-sn">
+    <a href="https://supernova.io" target="_blank">
+        {[ const domain = @ds.docs.configuration().domain /]}
+        <img src="{{ @js.assetUrl("logos/powered-by-supernova.png", domain) }}" title="Supernova, the most advanced design system platform" alt="Supernova, the most advanced design system platform" />
+    </a>
+</div>

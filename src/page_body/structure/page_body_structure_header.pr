@@ -1,5 +1,6 @@
 {[ let page = context /]}
 {[ const domain = @ds.docs.configuration().domain /]}
+{[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
@@ -20,13 +21,15 @@
         <!-- Potential Left Link Here -->
         <div id="header-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav">
-                {[ let rootGroup = @ds.docs.rootGroup() /]}
-                {[ for item in rootGroup.children ]}
-                    {* Re-enable if we only want to show groups *}
-                    {* {[ if item.type.equals("Group") ]} *}
-                        {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
-                        <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
-                    {* {[/]} *}
+                {[ if shouldShowTabbar ]}
+                    {[ let rootGroup = @ds.docs.rootGroup() /]}
+                    {[ for item in rootGroup.children ]}
+                        {* Re-enable if we only want to show groups *}
+                        {* {[ if item.type.equals("Group") ]} *}
+                            {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
+                        {* {[/]} *}
+                    {[/]}
                 {[/]}
             </ul>
 

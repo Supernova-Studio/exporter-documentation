@@ -29,7 +29,12 @@
     <div class="docs-navigation bg-sidebar">
 
       {[ let data = @init.dictionary().add("page", page) /]}
-      {[ inject "page_body_structure_sidebar" context data /]}
+      {[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
+      {[ if @ds.docs.configuration().settings.tabbedNavigation ]} 
+        {[ inject "page_body_structure_sidebar_tabbed" context data /]}
+      {[ else ]}
+        {[ inject "page_body_structure_sidebar_full" context data /]}
+      {[/]}
     </div>
     
     <!-- Docs Content -->

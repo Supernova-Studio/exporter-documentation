@@ -1,6 +1,7 @@
 {* Fetch the page structure *}
 {[ let rootGroup = [] /]}
 {[ let page = context.page /]}
+{[ let isRootForTab = false /]}
 
 {[ if context.groupId.isString() ]}
     {* If we pass id of a group, we can request it directly *}
@@ -8,12 +9,15 @@
 {[ else ]}
     {* If we pass page object, it means we are generating from root. However, our root is actually not the main root, but rather one object below it - and we want to show its name as header of the category as well as all its children *}
     {[ rootGroup = @js.firstSubgroupOfPage(page) /]}
+    {[ isRootForTab = true /]}
 {[/]}
 
 {[ if @compare.nonnull(rootGroup) ]}
-    <div class="nav-name">
-        <span class="typographyDocsViewLabelCaps">{{ rootGroup.title.uppercased() }}</span>
-    </div>
+    {[ if isRootForTab ]}
+        <div class="nav-name">
+            <span class="typographyDocsViewLabelCaps">{{ rootGroup.title.uppercased() }}</span>
+        </div>
+    {[/]}
     <ul class="nav flex-column ">
         {[ for item in rootGroup.children ]}
             {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
@@ -21,9 +25,9 @@
             {[ if item.type.equals("Page") ]}
                 <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}"> {{ item.title }}</a><li>
             {[ else ]}
-                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}"> {{ item.title }}</a>
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation group"> {{ item.title }}</a>
                 {[ let data = @init.dictionary().add("page", page).add("groupId", itemId) /]}
-                {[ inject "page_body_structure_sidebar" context data /]}
+                {[ inject "page_body_structure_sidebar_tabbed" context data /]}
                 </li>
             {[/]}
         {[/]}
