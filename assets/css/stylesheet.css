@@ -236,6 +236,8 @@ blockquote,
 
 pre {
   margin-top: 1.8rem;
+  max-height: 600px;
+  overflow-y: scroll;
 }
 
 /*=== Highlight Js ===*/
