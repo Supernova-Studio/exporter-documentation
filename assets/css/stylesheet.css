@@ -3311,10 +3311,17 @@ code {
 }
 
 .docs-navigation > .nav.full > .nav-item > .nav-link.group {
+  /*
   color: rgba(0, 0, 0, 0.3);
   text-transform: uppercase;
   font-weight: bold;
   font-size: 12px;
+  */
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.active.group {
+  color: #222222;
+  background-color: transparent;
 }
 
 .docs-navigation .nav > .nav-item > .nav-link.group:after {
@@ -3327,6 +3334,14 @@ code {
   border-right: 1px solid;
   width: 5px;
   height: 5px;
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.group::after {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.group.active::after {
   -webkit-transform: rotate(135deg);
   transform: rotate(135deg);
 }
