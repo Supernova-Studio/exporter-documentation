@@ -168,7 +168,7 @@ button:active {
   outline: none;
 }
 
-p {
+p, section ul, section li {
   line-height: 1.8;
   margin-bottom: 0.5rem;
 }
@@ -216,22 +216,25 @@ h3 {
   padding-bottom: 0px;
 }
 
-section p, section blockquote, div.alert {
+section p, section blockquote, div.alert, ul, li {
   font-size: 14px;
 }
 
 p.lead {
   font-size: 16px;
   line-height: 24px;
+  margin-bottom: 1rem;
 }
 
-dl,
-ol,
-ul,
 pre,
 blockquote,
 .table {
   margin-bottom: 1.8rem;
+}
+
+dl, ol, ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 pre {
@@ -3174,6 +3177,11 @@ code {
 .alert {
  padding: 20px 20px 20px 52px;
  border: 0px;
+ margin-top: 20px;
+}
+
+.embed-responsive {
+  margin-top: 20px;
 }
 
 .alert.alert-info {
