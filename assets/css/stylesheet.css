@@ -2032,6 +2032,7 @@ hr {
   transition: all 0.2s ease-in-out;
 }
 
+
 .popup-img:hover img {
   opacity: 0.8;
   cursor: -webkit-zoom-in;
@@ -3652,7 +3653,7 @@ code {
 
 .image-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin: 30px 0px;
 }
 
 .image-container p {
