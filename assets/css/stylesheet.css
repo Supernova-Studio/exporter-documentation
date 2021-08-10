@@ -760,7 +760,7 @@ hr {
 /* =================================== */
 #header .navbar {
   padding: 0px;
-  min-height: 70px;
+  max-height: 70px;
 }
 #header .logo {
   -webkit-box-align: center;
@@ -774,6 +774,10 @@ hr {
 }
 
 /*=== 4.1 Main Navigation ===*/
+.navbar-nav {
+  margin: 0px;
+}
+
 .navbar-light .navbar-nav .active > .nav-link {
   color: #0c2f55;
 }
