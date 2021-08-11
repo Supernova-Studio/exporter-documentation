@@ -1,10 +1,26 @@
 
 
 {[ let page = context /]}
+{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
 
-<div class="container-title">
+{[ let invertedClass = @boolean.ternaryValue(pageStyle.invertHeader, "inverted", "") /]}
+{[ let centeredClass = @boolean.ternaryValue(pageStyle.textAlignment.equals("Center"), "centered", "") /]}
+{[ let flexedClass = @boolean.ternaryValue(@compare.nonnull(pageStyle.headerHeight), "flexed", "") /]}
+{[ let height = @boolean.ternaryValue(@compare.nonnull(pageStyle.headerHeight), pageStyle.headerHeight.toString().suffixed("px"), "auto") /]}
+
+
+{[ if @compare.nonnull(pageStyle.backgroundImage) ]}
+<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ pageStyle.backgroundImage }}) no-repeat center center; background-size: cover;">
+{[ elseif @compare.nonnull(pageStyle.backgroundColor) ]}
+<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ pageStyle.backgroundColor}};">
+{[ else ]}
+<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
+{[/]}
     <div class="slider">
         <h1>{{ page.title }}</h1>
+        {[ if @compare.nonnull(pageStyle.description) ]}
+            <p class="subtitle">{{ pageStyle.description }}</p>
+        {[/]}
         {*
         <p class="subtitle">Our colors convey our brand personality and values but also help users navigate through the interface.</p>
         *}

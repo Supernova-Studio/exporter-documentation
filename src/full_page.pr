@@ -1,5 +1,7 @@
 {* Fetch page detail using pageId invocation context property *}
 {[ const page = @ds.docs.pageById(pageId) /]}
+{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
+{[ let sizingClass = @boolean.ternaryValue(pageStyle.hideSidebar, "fullscreen", "") /]}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,20 +27,22 @@
     {* Add content header - always enabled *}
     {[ inject "page_body_structure_header" context page /]}
     
-    <!-- Sidebar Navigation -->
-    <div class="docs-navigation bg-sidebar">
+    {[ if @boolean.not(pageStyle.hideSidebar) ]}
+      <!-- Sidebar Navigation -->
+      <div class="docs-navigation bg-sidebar">
 
-      {[ let data = @init.dictionary().add("page", page) /]}
-      {[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
-      {[ if @ds.docs.configuration().settings.tabbedNavigation ]} 
-        {[ inject "page_body_structure_sidebar_tabbed" context data /]}
-      {[ else ]}
-        {[ inject "page_body_structure_sidebar_full" context data /]}
-      {[/]}
-    </div>
+        {[ let data = @init.dictionary().add("page", page) /]}
+        {[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
+        {[ if @ds.docs.configuration().settings.tabbedNavigation ]} 
+          {[ inject "page_body_structure_sidebar_tabbed" context data /]}
+        {[ else ]}
+          {[ inject "page_body_structure_sidebar_full" context data /]}
+        {[/]}
+      </div>
+    {[/]}
     
     <!-- Docs Content -->
-    <div class="docs-content">
+    <div class="docs-content {{ sizingClass }}">
 
       {* Generate page header that is present on each page *}
       {[ inject "page_body_structure_title" context page /]}

@@ -729,6 +729,9 @@ hr {
   padding: 0px;
   min-height: calc(100vh - 242px);
 }
+.docs-content.fullscreen {
+  margin-left: 0px;
+}
 .docs-content section:first-child {
   padding-top: 1rem;
 }
@@ -3390,7 +3393,7 @@ code {
 .container-title > .slider {
   max-width: 1000px;
   margin: 0px auto;
-  padding: 60px 0px 0px 0px;
+  padding: 60px 0px 20px 0px;
   position: relative;
   left: -40px;
 }
@@ -3401,17 +3404,38 @@ code {
   color: var(--colorDocsViewBlackBlack1);
   font-size: 48px;
   font-weight: bold;
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
+  max-width: 750px;
 }
 .container-title > .slider .subtitle {
-  padding: 20px 0 0 0;
+  padding: 0px 0 28px 0;
   margin: 0;
   color: var(--colorDocsViewBlackBlack1);
   font-size: 20px;
   font-weight: normal;
   line-height: 28px;
-  padding-bottom: 60px;
+  max-width: 750px;
 }
+.container-title.inverted > .slider h1, .container-title.inverted > .slider .subtitle {
+  color: white;
+}
+.container-title.centered {
+  text-align: center;
+}
+.container-title.flexed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container-title.centered > .slider {
+  left: initial;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  align-items: center;
+  justify-content: center;
+}
+
 #header-nav .search {
   color: #000;
   width: 12px;

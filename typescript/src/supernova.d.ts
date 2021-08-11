@@ -282,6 +282,7 @@ declare global {
     backgroundImage: string | null
     headerHeight: number | null
     hideSidebar: boolean
+    invertHeader: boolean
   }
 
   type DocumentationConfiguration = {
