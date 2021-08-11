@@ -54,6 +54,8 @@ declare global {
 
   type ImageAlignment = 'Left' | 'Center' | 'Stretch'
 
+  type HeaderAlignment = 'Default' | 'Center'
+
   //
   // Data Types
   // Subcategory: Design Token Shells
@@ -270,6 +272,16 @@ declare global {
     userSlug: string | null
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
+  }
+
+  type DocumentationPageStyle = {
+    title: string
+    textAlignment: HeaderAlignment
+    description: string | null
+    backgroundColor: string | null
+    backgroundImage: string | null
+    headerHeight: number | null
+    hideSidebar: boolean
   }
 
   type DocumentationConfiguration = {
