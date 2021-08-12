@@ -4,7 +4,7 @@
     {[ backgroundColor = frame.backgroundColor /]}
 {[/]}
 <div>      
-    <div class="preview" style="background-color: {{ backgroundColor }};">
+    <div class="preview" style="background-color: #{{ backgroundColor }};">
     {[ if @compare.nonnull(frame.previewUrl) ]}
         <img src="{{ frame.previewUrl }}" />
     {[/]}

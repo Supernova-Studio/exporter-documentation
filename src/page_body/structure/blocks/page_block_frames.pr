@@ -15,3 +15,37 @@
     <div class="spacer"></div>
   </div>
 </div>
+
+{[ let block2 = @js.experimentalFigmaFrameBlock("C3") /]}
+
+<div class="tile-container">
+  <div class="grid {{ block2.frameProperties.layout.lowercased() }}">
+  {[ for frame in block2.frames ]}
+  {[ inject "page_block_frame" context frame /]}
+  {[/]}
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  </div>
+</div>
+
+{[ let block3 = @js.experimentalFigmaFrameBlock("C1_75") /]}
+
+<div class="tile-container">
+  <div class="grid {{ block3.frameProperties.layout.lowercased() }}">
+  {[ for frame in block3.frames ]}
+  {[ inject "page_block_frame" context frame /]}
+  {[/]}
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  </div>
+</div>
