@@ -58,12 +58,12 @@ export function assetUrl(asset: string, prefix: string | undefined) {
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Headings
 
-export function headingPlainText(header: DocumentationPageBlockHeading): string {
+export function textBlockPlainText(header: DocumentationPageBlockHeading): string {
   return header.text.spans.map((s) => s.text).join("")
 }
 
 export function slugifyHeading(header: DocumentationPageBlockHeading): string {
-  let fullText = headingPlainText(header)
+  let fullText = textBlockPlainText(header)
   return slugify(fullText)
 }
 

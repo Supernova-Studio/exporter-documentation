@@ -3,13 +3,13 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { experimental_defaultPageStyle, experimental_forcedPageStyle } from "./doc_functionality/experimental"
+import { experimentalFigmaFrameBlock, experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
 import { encodeSandboxData, getFrontendSandboxData, isSandboxDefinition } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString } from "./doc_functionality/string_utils"
 import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
-import { assetUrl, headingPlainText, pageUrl, rootUrl, slugifyHeading } from "./doc_functionality/urls"
+import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "./doc_functionality/urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -30,7 +30,7 @@ Pulsar.registerFunction("pageUrl", pageUrl)
 Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
-Pulsar.registerFunction("headingPlainText", headingPlainText)
+Pulsar.registerFunction("textBlockPlainText", textBlockPlainText)
 
 /* Sandbox features */
 Pulsar.registerFunction("isSandboxDefinition", isSandboxDefinition);
@@ -48,5 +48,6 @@ Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUn
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 
 /* Experimental area for upcoming editor features */
-Pulsar.registerFunction("experimentalDefaultPageStyle", experimental_defaultPageStyle);
-Pulsar.registerFunction("experimentalForcedPageStyle", experimental_forcedPageStyle);
+Pulsar.registerFunction("experimentalDefaultPageStyle", experimentalDefaultPageStyle);
+Pulsar.registerFunction("experimentalForcedPageStyle", experimentalForcedPageStyle);
+Pulsar.registerFunction("experimentalFigmaFrameBlock", experimentalFigmaFrameBlock);

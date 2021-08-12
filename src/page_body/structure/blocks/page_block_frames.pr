@@ -1,0 +1,17 @@
+{* TODO - Bind to real block when ready, for now, use temporary function to construct one *}
+{[ let block = @js.experimentalFigmaFrameBlock("C5") /]}
+
+<div class="tile-container">
+  <div class="grid {{ block.frameProperties.layout.lowercased() }}">
+  {[ for frame in block.frames ]}
+  {[ inject "page_block_frame" context frame /]}
+  {[/]}
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  </div>
+</div>

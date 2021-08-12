@@ -4,7 +4,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Experimental functions - page styling
 
-export function experimental_forcedPageStyle(page: DocumentationPage): DocumentationPageStyle {
+export function experimentalForcedPageStyle(page: DocumentationPage): DocumentationPageStyle {
   // Note: This is only temporary code that will be removed when the model is finalized and available to everyone. This just forces formatting for specific page in specific workspace
   // Nothing to see here! <3 
   if (page.id === "55587") {
@@ -32,10 +32,10 @@ export function experimental_forcedPageStyle(page: DocumentationPage): Documenta
     }
   }
 
-  return experimental_defaultPageStyle(page)
+  return experimentalDefaultPageStyle(page)
 }
 
-export function experimental_defaultPageStyle(page: DocumentationPage): DocumentationPageStyle {
+export function experimentalDefaultPageStyle(page: DocumentationPage): DocumentationPageStyle {
   return {
     title: page.title,
     textAlignment: "Default",
@@ -45,5 +45,47 @@ export function experimental_defaultPageStyle(page: DocumentationPage): Document
     headerHeight: null,
     hideSidebar: false,
     invertHeader: false,
+  }
+}
+
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Experimental functions - Figma frames
+
+export function experimentalFigmaFrameBlock(layout: FrameLayout): DocumentationPageBlockFrames {
+ 
+  return {
+    children: [],
+    frameProperties: {
+      alignment: "Center",
+      backgroundColor: null,
+      layout: layout
+    },
+    id: "non-existing-id",
+    frames: [
+      figmaFrame("Menu", "Standard hamburger", "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-1024.png", null),
+      figmaFrame("Shop", null, "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-store-512.png", null),
+      figmaFrame("Larger Menu", "Very non-standard hamburger", "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-1024.png", null),
+      figmaFrame("Ikea", "Hamburgers for everyone", "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-store-512.png", "ca4450"),
+      figmaFrame("Typography", "Standard hamburger", "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-1024.png", null),
+      figmaFrame("Large title", null, "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-store-512.png", null),
+      figmaFrame("Smol title", "This will extend this line so much. Never do that.", "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-store-512.png", "ca4450"),
+      figmaFrame("Colors", null, "https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-store-512.png", "cfdeff"),
+    ],
+    type: "FigmaFrames"
+  }
+}
+
+function figmaFrame(name: string, description: string | null, previewUrl: string | null, backgroundColor: string | null): DocumentationPageBlockFrame {
+
+  return {
+    sourceFileId: "x",
+    sourceFrameId: "y",
+    sourceFileName: "z",
+
+    title: name,
+    description: description,
+    previewUrl: previewUrl,
+    backgroundColor: backgroundColor
   }
 }

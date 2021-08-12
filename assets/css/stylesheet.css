@@ -3788,3 +3788,172 @@ iframe {
    66%  {inset:-10px; transform: rotate(90deg)}
    100% {inset:0    ; transform: rotate(90deg)}
 }
+
+
+/* Tile grids */
+.tile-container {
+  margin: 30px 0px;
+}
+
+.tile-container .grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+
+.tile-container .grid > div {
+  flex: 0 1 180px;
+  margin: 0 6px 12px 0;
+  position: relative;
+}
+
+.tile-container .grid > div.spacer {
+  height: 0;
+  flex: 0 1 180px;
+  margin: 0 6px 12px 0;
+  border: 0px;
+}
+
+.tile-container .grid > div > div.preview {
+  border-bottom: 1px solid #DCE0E4;
+  background-color: #F2F4F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.tile-container .grid > div > div.preview.small-text {
+  font-size: 11px;
+}
+
+.tile-container .grid > div > p.title {
+  margin: 8px 12px 4px 8px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #000;
+}
+
+.tile-container .grid > div > p.description {
+  margin: 0px 12px 12px 8px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.tile-container .grid > div {
+  border: 1px solid #DCE0E4;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Tile grid configurations */
+.tile-container img {
+  max-width: 75%;
+  max-height: 75%;
+}
+
+.tile-container .grid.c8 > div {
+  flex: 0 1 90px;
+  margin: 0 2px 5px 0;
+}
+
+.tile-container .grid.c8 > div > div.preview {
+  width: 90px;
+  height: 90px;
+}
+
+.tile-container .grid.c7 > div {
+  flex: 0 1 105px;
+  margin: 0 2px 5px 0;
+}
+
+.tile-container .grid.c7 > div > div.preview {
+  width: 105px;
+  height: 105px;
+}
+
+.tile-container .grid.c6 > div {
+  flex: 0 1 120px;
+  margin: 0 5px 5px 0;
+}
+
+.tile-container .grid.c6 > div > div.preview {
+  width: 120px;
+  height: 120px;
+}
+
+.tile-container .grid.c5 > div {
+  flex: 0 1 140px;
+  margin: 0 5px 5px 0;
+}
+
+.tile-container .grid.c5 > div > div.preview {
+  width: 140px;
+  height: 140px;
+}
+
+.tile-container .grid.c4 > div {
+  flex: 0 1 170px;
+  margin: 0 8px 8px 0;
+}
+
+.tile-container .grid.c4 > div > div.preview {
+  width: 170px;
+  height: 170px;
+}
+
+.tile-container .grid.c3 > div {
+  flex: 0 1 240px;
+  margin: 0 10px 10px 0;
+}
+
+.tile-container .grid.c3 > div > div.preview {
+  width: 240px;
+  height: 240px;
+}
+
+.tile-container .grid.c2 > div {
+  flex: 0 1 350px;
+  margin: 0 25px 25px 0;
+}
+
+.tile-container .grid.c2 > div > div.preview {
+  width: 350px;
+  height: 350px;
+}
+
+.tile-container .grid.c1 > div {
+  flex: 0 1 750px;
+  margin: 0 0 25px 0;
+}
+
+.tile-container .grid.c1 > div > div.preview {
+  width: 750px;
+  height: 750px;
+}
+
+.tile-container .grid.c1_75 > div {
+  flex: 0 1 560px;
+  margin: 0 190px 25px 0;
+}
+
+.tile-container .grid.c1_75 > div > div.preview {
+  width: 560px;
+  height: 560px;
+}
+
+div.spacer {
+  height: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
