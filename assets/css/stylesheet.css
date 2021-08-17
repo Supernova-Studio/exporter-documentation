@@ -3901,13 +3901,13 @@ iframe {
 }
 
 .tile-container .grid.c4 > div {
-  flex: 0 1 170px;
+  flex: 0 1 178px;
   margin: 0 8px 8px 0;
 }
 
 .tile-container .grid.c4 div.preview {
-  width: 170px;
-  height: 170px;
+  width: 178px;
+  height: 178px;
 }
 
 .tile-container .grid.c4.shortcuts div.preview {
@@ -3952,6 +3952,12 @@ iframe {
 .tile-container .grid.c1_75 div.preview {
   width: 560px;
   height: 560px;
+}
+
+.tile-container div.preview.empty {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4 4H8V5H5V16H16V13H17V17H4V4ZM15.2929 5H11V4H17V10H16V5.70709L8.85353 12.8536L8.14642 12.1465L15.2929 5Z' fill='black' fill-opacity='0.3'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 div.spacer {
