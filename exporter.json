@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.3.6",
+    "version": "1.3.7",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -21,6 +21,24 @@
         "Documentation"
     ],
     "contributes": {
-        "configuration": []
+        "configuration": [],
+        "blocks": [
+            {
+                "key": "com.supernova.block.embed-storybook",
+                "title": "Embed Storybook",
+                "category": "Media Blocks",
+                "description": "Embed Storybook content",
+                "icon": "icons/blocks/storybook.png",
+                "mode": "block",
+                "properties": [
+                    {
+                        "key": "url",
+                        "default": "",
+                        "label": "Storybook URL",
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
     }
 }
