@@ -21,7 +21,24 @@
         "Documentation"
     ],
     "contributes": {
-        "configuration": [],
+        "configuration": [{
+            "key": "visual_mode",
+            "default": "dark",
+            "type": "enum",
+            "values": ["light", "dark"],
+            "label": "Default design theme",
+            "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values.",
+            "category": "Design"
+        },
+        {
+            "key": "show_visual_mode_switch",
+            "default": true,
+            "type": "boolean",
+            "label": "Dark/Light mode switch",
+            "description": "Allow users to switch from light to dark documentation using menu item",
+            "category": "Design"
+        }
+    ],
         "blocks": [
             {
                 "key": "com.supernova.block.embed-storybook",
