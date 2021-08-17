@@ -3816,7 +3816,7 @@ iframe {
   border: 0px;
 }
 
-.tile-container .grid > div > div.preview {
+.tile-container .grid > div div.preview {
   border-bottom: 1px solid #DCE0E4;
   background-color: #F2F4F5;
   display: flex;
@@ -3825,11 +3825,11 @@ iframe {
   font-size: 60px;
 }
 
-.tile-container .grid > div > div.preview.small-text {
+.tile-container .grid > div div.preview.small-text {
   font-size: 11px;
 }
 
-.tile-container .grid > div > p.title {
+.tile-container .grid > div p.title {
   margin: 8px 12px 4px 8px;
   padding: 0;
   font-size: 14px;
@@ -3838,7 +3838,7 @@ iframe {
   color: #000;
 }
 
-.tile-container .grid > div > p.description {
+.tile-container .grid > div p.description {
   margin: 0px 12px 12px 8px;
   padding: 0;
   font-size: 12px;
@@ -3865,7 +3865,7 @@ iframe {
   margin: 0 2px 5px 0;
 }
 
-.tile-container .grid.c8 > div > div.preview {
+.tile-container .grid.c8 div.preview {
   width: 90px;
   height: 90px;
 }
@@ -3875,7 +3875,7 @@ iframe {
   margin: 0 2px 5px 0;
 }
 
-.tile-container .grid.c7 > div > div.preview {
+.tile-container .grid.c7 div.preview {
   width: 105px;
   height: 105px;
 }
@@ -3885,7 +3885,7 @@ iframe {
   margin: 0 5px 5px 0;
 }
 
-.tile-container .grid.c6 > div > div.preview {
+.tile-container .grid.c6 div.preview {
   width: 120px;
   height: 120px;
 }
@@ -3895,7 +3895,7 @@ iframe {
   margin: 0 5px 5px 0;
 }
 
-.tile-container .grid.c5 > div > div.preview {
+.tile-container .grid.c5 div.preview {
   width: 140px;
   height: 140px;
 }
@@ -3905,9 +3905,13 @@ iframe {
   margin: 0 8px 8px 0;
 }
 
-.tile-container .grid.c4 > div > div.preview {
+.tile-container .grid.c4 div.preview {
   width: 170px;
   height: 170px;
+}
+
+.tile-container .grid.c4.shortcuts div.preview {
+  height: 100px;
 }
 
 .tile-container .grid.c3 > div {
@@ -3915,7 +3919,7 @@ iframe {
   margin: 0 10px 10px 0;
 }
 
-.tile-container .grid.c3 > div > div.preview {
+.tile-container .grid.c3 div.preview {
   width: 240px;
   height: 240px;
 }
@@ -3925,7 +3929,7 @@ iframe {
   margin: 0 25px 25px 0;
 }
 
-.tile-container .grid.c2 > div > div.preview {
+.tile-container .grid.c2 div.preview {
   width: 350px;
   height: 350px;
 }
@@ -3935,7 +3939,7 @@ iframe {
   margin: 0 0 25px 0;
 }
 
-.tile-container .grid.c1 > div > div.preview {
+.tile-container .grid.c1 div.preview {
   width: 750px;
   height: 750px;
 }
@@ -3945,7 +3949,7 @@ iframe {
   margin: 0 190px 25px 0;
 }
 
-.tile-container .grid.c1_75 > div > div.preview {
+.tile-container .grid.c1_75 div.preview {
   width: 560px;
   height: 560px;
 }

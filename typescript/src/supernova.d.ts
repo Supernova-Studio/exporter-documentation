@@ -72,6 +72,8 @@ declare global {
 
   type FrameLayout = "C8" | "C7" | "C5" | "C4" | "C3" | "C2" | "C1" | "C1_75"
 
+  type ShortcutType = "Internal" | "External"
+
   //
   // Data Types
   // Subcategory: Design Token Shells
@@ -433,17 +435,18 @@ declare global {
   }
 
   type DocumentationPageBlockShortcut = {
+    
+    // Visual data
     title: string | null
     description: string | null
-    assetId: string | null
-    assetUrl: string | null
-    documentationItemId: string | null
-    url: string | null
-    urlPreview: string | null
-    documentationItemPreview: {
-      title: string | null
-      valid: boolean
-    } | null
+    previewUrl: string | null
+
+    // Linking data
+    externalUrl: string | null
+    internalId: string | null
+
+    // Block type
+    type: ShortcutType
   }
 
   //

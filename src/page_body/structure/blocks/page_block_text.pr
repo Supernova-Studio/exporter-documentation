@@ -2,11 +2,5 @@
 {[ const block = context /]}
 
 {* Generate rich text *}
-{[ if @js.textBlockPlainText(block).equals("[shortcuts]") ]}
-    {[ inject "page_block_shortcuts" context block /]}
-{[ elseif @js.textBlockPlainText(block).equals("[frames]") ]}
-    {[ inject "page_block_frames" context block /]}
-{[ else ]}
 <p>{[ inject "page_block_rich_text" context block.text /]}</p>
-{[/]}
 

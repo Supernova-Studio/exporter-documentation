@@ -1,0 +1,24 @@
+{[ const shortcut = context /]}
+
+<div>     
+    {[ if @compare.nonnull(shortcut.externalUrl) ]}
+    <a href="{{ shortcut.externalUrl }}">
+    {[ elseif @compare.nonnull(shortcut.internalId) ]}
+    <a href="TODO">
+    {[ else ]}
+    <a> 
+    {[/]}
+
+    {[ if @compare.nonnull(shortcut.previewUrl) ]}
+    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+    {[ else ]}
+    <div class="preview"></div>
+    {[/]}
+    
+    <p class="title">{{ shortcut.title }}</p>
+    {[ if @compare.nonnull(shortcut.description) ]}
+        <p class="description">{{ shortcut.description }}</p>    
+    {[/]}
+
+    </a>
+</div>

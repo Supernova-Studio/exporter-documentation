@@ -1,5 +1,4 @@
-{* TODO - Bind to real block when ready, for now, use temporary function to construct one *}
-{[ let block = @js.experimentalFigmaFrameBlock("C5") /]}
+{[ let block = context /]}
 
 <div class="tile-container">
   <div class="grid {{ block.frameProperties.layout.lowercased() }}">
