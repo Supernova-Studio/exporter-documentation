@@ -3967,3 +3967,74 @@ div.spacer {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
+
+/* Dark mode */
+body.dark h1, body.dark h2, body.dark h3 {
+  color: #fff;
+}
+
+body.dark p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark .primary-menu {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #3F3F3F;
+}
+
+body.dark .primary-menu ul.navbar-nav > li > a:not(.btn) {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark .bg-sidebar {
+  background-color: #1e1e1e;
+}
+
+body.dark #main-wrapper {
+  background-color: #1e1e1e;
+}
+
+body.dark .docs-navigation {
+  border-right: 1px solid #3F3F3F;
+}
+
+body.dark .container-title {
+  background-color: #222222;
+  border-bottom: 1px solid #3F3F3F;
+}
+
+body.dark .nav-sn {
+  border-top: 1px solid #3F3F3F;
+}
+
+body.dark .container-title > .slider h1 {
+  color: #fff;
+}
+
+body.dark .nav-name span {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark .nav .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark .docs-navigation .nav > .nav-item > .nav-link.active.group {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark #content-nav .content-nav-header {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark #content-nav a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark #content-nav {
+  border-left: 1px solid #3F3F3F;
+}
+
+body.dark #content-nav li.active > a {
+  color: #4589FF;
+}

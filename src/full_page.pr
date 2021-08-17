@@ -8,6 +8,7 @@
 {[ inject "page_head" context page /]}
 {[ const domain = @ds.docs.configuration().domain /]}
 
+{* Experimental WIP: <body class="dark"> *}
 <body>
 
 {* Add preloader when user requests it *}
