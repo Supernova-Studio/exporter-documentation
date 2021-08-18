@@ -298,10 +298,8 @@ $(".switch-theme").on("click", function (e) {
 
   // Store selection
   if ($("body").is(".dark")) {
-    console.log("setting dark theme")
     localStorage.setItem('sn.default.theme', 'dark');
   } else {
-    console.log("setting light theme")
     localStorage.setItem('sn.default.theme', 'light');
   }
 })

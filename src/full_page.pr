@@ -8,13 +8,15 @@
 {[ inject "page_head" context page /]}
 {[ const domain = @ds.docs.configuration().domain /]}
 
-{* Experimental WIP: <body class="dark"> *}
-<body>
+<body class="{{ @configuration().defaultVisualMode }}">
+{[ if @configuration().showVisualModeSwitch ]}
+{* Change theme to whatever was configured only if the configuration allows changing of themes in the first place *}
 <script>
     <!-- This is critical to avoid flickering when switching theme, don't move down -->
     const theme = localStorage.getItem('sn.default.theme') || 'light';
     document.body.className = theme;
 </script>
+{[/]}
 
 {* Add preloader when user requests it *}
 {[ if @configuration().showPreloader ]}

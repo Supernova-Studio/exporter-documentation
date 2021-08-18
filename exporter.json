@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.3.10",
+    "version": "1.4.0",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -23,7 +23,7 @@
     "contributes": {
         "configuration": [
             {
-                "key": "visual_mode",
+                "key": "defaultVisualMode",
                 "default": "dark",
                 "type": "enum",
                 "values": [
@@ -35,7 +35,7 @@
                 "category": "Design"
             },
             {
-                "key": "show_visual_mode_switch",
+                "key": "showVisualModeSwitch",
                 "default": true,
                 "type": "boolean",
                 "label": "Dark/Light mode switch",
