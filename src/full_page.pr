@@ -10,6 +10,11 @@
 
 {* Experimental WIP: <body class="dark"> *}
 <body>
+<script>
+    <!-- This is critical to avoid flickering when switching theme, don't move down -->
+    const theme = localStorage.getItem('sn.default.theme') || 'light';
+    document.body.className = theme;
+</script>
 
 {* Add preloader when user requests it *}
 {[ if @configuration().showPreloader ]}

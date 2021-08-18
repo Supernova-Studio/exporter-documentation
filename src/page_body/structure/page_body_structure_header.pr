@@ -10,7 +10,7 @@
 
         <!-- Logo -->
         <div class="logo-wrapper">
-            <img src="{{ @js.assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
+            <img class="default" src="{{ @js.assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
         </div>
 
         <div class="container-fluid">
@@ -35,13 +35,14 @@
 
             <div class="utility-nav">            
             <div id="version-container" class="dropdown">
-                <button class="btn btn-secondary" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Loading
                 </button>
                 <div class="dropdown-menu pull-right" aria-labelledby="version-selector">
                 </div>
             </div>
             <i class="fas fa-search search"></i>
+            <i class="far fa-moon switch-theme"></i>
             </div>
             
         </div>

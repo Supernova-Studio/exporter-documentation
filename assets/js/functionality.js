@@ -285,3 +285,23 @@ $(function () {
     cb.writeText(code)
   });
 })
+
+
+/*-----------------------------
+    Theme switching & mode preservation
+------------------------------- */
+
+$(".switch-theme").on("click", function (e) {
+  // Toggle the dark / light mode when clicking the mode selector
+  $("body").toggleClass("dark")
+  e.preventDefault()
+
+  // Store selection
+  if ($("body").is(".dark")) {
+    console.log("setting dark theme")
+    localStorage.setItem('sn.default.theme', 'dark');
+  } else {
+    console.log("setting light theme")
+    localStorage.setItem('sn.default.theme', 'light');
+  }
+})
