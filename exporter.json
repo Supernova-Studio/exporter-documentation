@@ -35,6 +35,19 @@
                 "category": "Design"
             },
             {
+                "key": "oneMoreEnum",
+                "default": "dark",
+                "type": "enum",
+                "values": [
+                    "light",
+                    "dark",
+                    "medium"
+                ],
+                "label": "Sample enum",
+                "description": "----",
+                "category": "Design"
+            },
+            {
                 "key": "showVisualModeSwitch",
                 "default": true,
                 "type": "boolean",
