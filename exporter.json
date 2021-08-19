@@ -33,7 +33,7 @@
                 "label": "Default design theme",
                 "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values.",
                 "category": "Design"
-            }
+            },
             {
                 "key": "showVisualModeSwitch",
                 "default": true,
