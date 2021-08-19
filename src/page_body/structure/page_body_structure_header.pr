@@ -42,9 +42,7 @@
                 </div>
             </div>
             <i class="fas fa-search search"></i>
-            {[ if @configuration().showVisualModeSwitch ]}
             <i class="far fa-moon switch-theme"></i>
-            {[/]}
             </div>
             
         </div>
