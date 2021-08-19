@@ -27,26 +27,13 @@
                 "default": "dark",
                 "type": "enum",
                 "values": [
-                    "light",
+                    "lighter",
                     "dark"
                 ],
                 "label": "Default design theme",
                 "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values.",
                 "category": "Design"
-            },
-            {
-                "key": "oneMoreEnum",
-                "default": "dark",
-                "type": "enum",
-                "values": [
-                    "light",
-                    "dark",
-                    "medium-2"
-                ],
-                "label": "Sample enum",
-                "description": "----",
-                "category": "Design"
-            },
+            }
             {
                 "key": "showVisualModeSwitch",
                 "default": true,
