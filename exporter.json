@@ -41,7 +41,7 @@
                 "values": [
                     "light",
                     "dark",
-                    "medium"
+                    "medium-2"
                 ],
                 "label": "Sample enum",
                 "description": "----",
