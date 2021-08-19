@@ -1,6 +1,6 @@
 {
     "id": "io.supernova.documentation-main",
-    "name": "Documentation",
+    "name": "Documentation (I)",
     "description": "Default Supernova documentation exporter",
     "author": "Jiri Trecak",
     "organization": "Supernova",
@@ -20,7 +20,6 @@
     "tags": [
         "Documentation"
     ],
-    "type": "documentationX",
     "contributes": {
         "configuration": [
             {
@@ -42,6 +41,13 @@
                 "label": "Dark/Light mode switch",
                 "description": "Allow users to switch from light to dark documentation using menu item",
                 "category": "Design"
+            },
+            {
+                "key": "logo",
+                "type": "image",
+                "label": "Image label",
+                "description": "Brand logo",
+                "category": "Design"
             }
         ],
         "blocks": [
@@ -58,6 +64,12 @@
                         "default": "",
                         "label": "Storybook URL",
                         "type": "string"
+                    },
+                    {
+
+                        "key": "logo1",
+                        "label": "Brand logo",
+                        "type": "image"
                     }
                 ]
             }
