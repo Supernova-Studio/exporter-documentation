@@ -1,52 +1,81 @@
 {* Fetch page detail using pageId invocation context property *}
 {[ const page = @ds.docs.pageById(pageId) /]}
+{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
+{[ let sizingClass = @boolean.ternaryValue(pageStyle.hideSidebar, "fullscreen", "") /]}
 
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
+{[ const domain = @ds.docs.configuration().domain /]}
 
-<body>
+<body class="{{ @configuration().defaultVisualMode }}">
+{[ if @configuration().showVisualModeSwitch ]}
+{* Change theme to whatever was configured only if the configuration allows changing of themes in the first place *}
+<script>
+    <!-- This is critical to avoid flickering when switching theme, don't move down -->
+    const theme = localStorage.getItem('sn.default.theme') || 'light';
+    document.body.className = theme;
+</script>
+{[/]}
 
 {* Add preloader when user requests it *}
 {[ if @configuration().showPreloader ]}
   {[ inject "page_body_preloader" context page /]}
 {[/]}
 
+{* Add search *}
+{[ inject "page_search" context page /]}
+
 <!-- Document Wrapper -->
 <div id="main-wrapper"> 
   
-  {* Add content header - always enabled *}
-{[ inject "page_body_structure_header" context page /]}
-  
   <!-- Content -->
   <div id="content" role="main" class="">
+  
+    {* Add content header - always enabled *}
+    {[ inject "page_body_structure_header" context page /]}
     
-    <!-- Sidebar Navigation -->
-    <div class="docs-navigation bg-sidebar">
-      {[ inject "page_body_structure_sidebar" context page /]}
-    </div>
+    {[ if @boolean.not(pageStyle.hideSidebar) ]}
+      <!-- Sidebar Navigation -->
+      <div class="docs-navigation bg-sidebar">
+
+        {[ let data = @init.dictionary().add("page", page) /]}
+        {[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
+        {[ if @ds.docs.configuration().settings.tabbedNavigation ]} 
+          {[ inject "page_body_structure_sidebar_tabbed" context data /]}
+        {[ else ]}
+          {[ inject "page_body_structure_sidebar_full" context data /]}
+        {[/]}
+      </div>
+    {[/]}
     
     <!-- Docs Content -->
-    <div class="docs-content">
-      <div class="container">
-        <section id="section-content-page">
-        {* Generate page header that is present on each page *}
-        <h1>{{ page.title }}</h1>
+    <div class="docs-content {{ sizingClass }}">
 
-        {* Generate page blocks which are the content *}
+      {* Generate page header that is present on each page *}
+      {[ inject "page_body_structure_title" context page /]}
+
+      <div class="container">
+    
+        {* Generate page blocks which represent content *}
+        {* TODO: Generate tabs when appropriate *}
+        <section id="section-content-page">
+        <div class="tab-content" id="page-tab-content">
+          {*
+          <div class="tab-pane fade show active" id="content-tab-1" role="tabpanel" aria-labelledby="content-tab-1">
+            {[ for block in page.blocks ]}
+                {[ inject "page_body_structure_block" context block /]}
+            {[/]}
+          </div>
+          *}
         {[ for block in page.blocks ]}
             {[ inject "page_body_structure_block" context block /]}
         {[/]}
+        </div>
         </section>
+        {[ inject "page_body_structure_content" context page /]}
       </div>
     </div>
-
-    {* Add content footer, if enabled *}
-    {[ if @configuration().show_footer ]}
-      {[ inject "page_body_structure_footer" context page /]}
-    {[/]}
-
-    
   </div>
   <!-- Content end --> 
   

@@ -1,0 +1,9 @@
+{* Get figma block payload *}
+{[ const block = context /]}
+
+{* Create figma embed block *}
+{[ if block.url.isString() ]}
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen></iframe>
+</div>
+{[/]}

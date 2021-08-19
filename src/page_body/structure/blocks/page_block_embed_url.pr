@@ -1,0 +1,22 @@
+{* Get embed block payload *}
+{[ const block = context /]}
+
+{* Create youtube embed block *}
+{[ if block.url.isString() ]}
+<a href="{{ block.url }}" target="_blank">
+<div class="embed-url row">
+    <div class="content col-8">
+        {[ if block.title.isString() ]}
+        <p class="title">{{ block.title }}</p>
+        {[/]}
+        {[ if block.description.isString() ]}
+        <p class="description">{{ block.description }}</p>
+        {[/]}
+        <p class="link">{{ block.url }}</p>
+    </div>
+    {[ if block.thumbnailUrl.isString() ]}
+    <div class="preview col-4" style="background: url({{ block.thumbnailUrl }});background-size: cover;background-position: center;"></div>
+    {[/]}
+</div>
+</a>
+{[/]}

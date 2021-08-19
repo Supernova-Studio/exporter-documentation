@@ -1,0 +1,137 @@
+
+.SNSearch {
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0,0,0,.25);
+    padding: 1rem;
+}
+
+.SNSearch.SNSearch-container {
+    padding: 12vh;
+}
+
+.SNSearch-box {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 2px;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+    background: #fff;
+}
+
+.SNSearch-header {
+    height: 52px;
+    width: 100%;
+    padding: 12px;
+    border-bottom: 1px solid #f2f4f5;
+}
+
+.SNSearch {
+    display: none;
+}
+.SNSearch.SNSearch-container.active {
+    display: block;
+}
+
+.SNSearch-input {
+    border: 0px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    width: calc(100% - 48px);
+}
+
+.SNSearch-input:focus {
+    border: 0px;
+    outline: none;
+}
+
+.SNSearch-input-label {
+    flex: none;
+    width: 13px;
+    height: 13px;
+    background-size: 100%;
+}
+
+.SNSearch-results {
+    padding: 0px 20px 20px 20px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+.SNSearch-footer {
+    height: 52px;
+    width: 100%;
+    padding: 12px;
+    border-top: 1px solid #f2f4f5;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.SNSearch-footer span {
+    padding: 4px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    color: #000;
+}
+
+.SNSearch-results p.section-title {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.3);
+    margin: 24px 0px 12px 0px;
+}
+
+.SNSearch-results p.section-title.empty {
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 36px 0px 16px 0px;
+}
+
+.SNSearch-results p.section-result-header {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    padding-top: 12px;
+    padding-bottom: 4px;
+    margin: 0px;
+}
+
+.SNSearch-results p.section-result-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.5);
+    padding-top: 0px;
+    padding-bottom: 12px;
+    margin: 0px;
+}
+
+.SNSearch-results p {
+    padding: 0px 12px;
+}
+
+.SNSearch-results p span {
+    color: #0F62FE;
+}
+
+.SNSearch-results .result:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}

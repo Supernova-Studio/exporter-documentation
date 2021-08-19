@@ -1,0 +1,44 @@
+{[ const shortcut = context /]}
+
+<div>     
+    {[ if @compare.nonnull(shortcut.externalUrl) ]}
+    <a href="{{ shortcut.externalUrl }}" target="_blank">
+    {[ elseif @compare.nonnull(shortcut.internalId) ]}
+        {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
+        {[ let page = @ds.docs.pageById(shortcut.internalId) /]}
+        {[ if @compare.nonnull(page) ]}
+            {[ let url = @js.pageUrl(page, @ds.docs.configuration().domain) /]}
+            <a href="{{ url }}">
+        {[ else ]}
+        {* Links to group instead, find that and if exists, link to the first page in that group *}
+            {[ let group = @ds.docs.groupById(shortcut.internalId) /]}
+            {[ if @compare.nonnull(group) ]}
+                {[ page = @js.firstPageFromTop(group) /]}
+                {[ if @compare.nonnull(page) ]}
+                    {[ let url = @js.pageUrl(page, @ds.docs.configuration().domain) /]}
+                    <a href="{{ url }}">
+                {[ else ]}
+                {* Doesn't link to anything *}
+                    <a>
+                {[/]}
+            {[ else ]}
+            {* Doesn't link to anything *}
+            <a>
+            {[/]}
+        {[/]}
+    {[ else ]}
+    <a> 
+    {[/]}
+
+    {[ if @compare.nonnull(shortcut.previewUrl) ]}
+    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+    {[ else ]}
+    <div class="preview empty"></div>
+    {[/]}
+    
+    <p class="title">{{ shortcut.title }}</p>
+    {[ if @compare.nonnull(shortcut.description) ]}
+        <p class="description">{{ shortcut.description }}</p>    
+    {[/]}
+    </a>
+</div>

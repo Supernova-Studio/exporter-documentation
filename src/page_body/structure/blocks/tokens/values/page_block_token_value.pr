@@ -1,0 +1,25 @@
+{[ let token = context /]}
+<span class="value">
+{[ if token.tokenType.equals("Color") ]}
+    #{{ token.value.hex.uppercased() }}<br />
+    RGBA({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ token.value.a }})
+{[ elseif token.tokenType.equals("Border") ]}
+    {{ token.value.width.measure }}px solid #{{ token.value.color.hex.uppercased() }}, {{ token.value.position.lowercased() }}
+{[ elseif token.tokenType.equals("Font") ]}
+    {{ token.value.family }} {{ token.value.subfamily }}
+{[ elseif token.tokenType.equals("Gradient") ]}
+    {{ @js.gradientDescription(token) }}
+{[ elseif token.tokenType.equals("Measure")]}
+    {{ token.value.measure }}{{ @js.measureTypeIntoReadableUnit(token.value.unit) }}
+{[ elseif token.tokenType.equals("Radius")]}
+    {{ token.value.radius.measure }}{{ @js.measureTypeIntoReadableUnit(token.value.radius.unit) }}  
+{[ elseif token.tokenType.equals("Shadow")]}
+    {{ @js.shadowDescription(token) }}
+{[ elseif token.tokenType.equals("Text")]}
+    {{ token.value.text }}
+{[ elseif token.tokenType.equals("Typography") ]}
+    {{ @js.typographyDescription(token)}}
+{[ elseif token.tokenType.equals("GenericToken")]}
+    {{ token.value.text }}
+{[/]}
+</span>

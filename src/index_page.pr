@@ -1,0 +1,15 @@
+<!-- Redirect to the first real page -->
+{[ let rootGroup = @ds.docs.rootGroup() /]}
+{[ let page = @js.firstPageFromTop(rootGroup) /]}
+{[ let url = @js.pageUrl(page, @ds.docs.configuration().domain) /]}
+
+<!DOCTYPE HTML>
+ 
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="1; url={{ url }}">
+ 
+<script>
+  window.location.href = "{{ url }}"
+</script>
+ 
+<title>Redirection to documentation</title>

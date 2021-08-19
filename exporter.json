@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.0.0",
+    "version": "1.4.0",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -16,6 +16,7 @@
         "pulsar": "1.0.0",
         "supernova": "1.0.0"
     },
+    "type": "documentation",
     "tags": [
         "Documentation"
     ],
@@ -23,52 +24,42 @@
     "contributes": {
         "configuration": [
             {
-                "key": "social_twitter",
-                "default": "twitter.com",
-                "label": "Social Links - Twitter",
-                "type": "string"
+                "key": "defaultVisualMode",
+                "default": "dark",
+                "type": "enum",
+                "values": [
+                    "light",
+                    "dark"
+                ],
+                "label": "Default design theme",
+                "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values.",
+                "category": "Design"
             },
             {
-                "key": "social_facebook",
-                "default": "",
-                "label": "Social Links - Facebook",
-                "type": "string"
-            },
-            {
-                "key": "social_instagram",
-                "default": "",
-                "label": "Social Links - Instagram",
-                "type": "string"
-            },
-            {
-                "key": "social_github",
-                "default": "",
-                "label": "Social Links - GitHub",
-                "type": "string"
-            },
-            {
-                "key": "social_dribbble",
-                "default": "",
-                "label": "Social Links - dribbble",
-                "type": "string"
-            },
-            {
-                "key": "show_footer",
+                "key": "showVisualModeSwitch",
                 "default": true,
-                "label": "Show footer",
-                "type": "boolean"
-            },
+                "type": "boolean",
+                "label": "Dark/Light mode switch",
+                "description": "Allow users to switch from light to dark documentation using menu item",
+                "category": "Design"
+            }
+        ],
+        "blocks": [
             {
-                "key": "footer_copyright",
-                "default": "Copyright © Supernova.io 2021<br/>This is some amazing documentation. Go to <a href=\"https://supernova.io\" target=\"_blank\">Supernova</a> to check more",
-                "label": "Footer Copyright Label",
-                "type": "string"
-            },
-            {
-                "key": "dark_mode",
-                "default": false,
-                "label": "Use dark mode",
-                "type": "boolean"
+                "key": "com.supernova.block.embed-storybook",
+                "title": "Embed Storybook",
+                "category": "Media Blocks",
+                "description": "Embed Storybook content",
+                "icon": "icons/blocks/storybook.png",
+                "mode": "block",
+                "properties": [
+                    {
+                        "key": "url",
+                        "default": "",
+                        "label": "Storybook URL",
+                        "type": "string"
+                    }
+                ]
             }
         ]
     }

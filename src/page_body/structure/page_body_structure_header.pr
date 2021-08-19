@@ -1,43 +1,52 @@
+{[ let page = context /]}
+{[ const domain = @ds.docs.configuration().domain /]}
+{[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
+    
     <!-- Navbar -->
-    <nav class="primary-menu navbar navbar-expand-lg {{ @boolean.ternaryValue(@configuration().dark_mode, "bg-dark navbar-text-light", "bg-light navbar-text-dark") }}">
+    <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
+
+        <!-- Logo -->
+        <div class="logo-wrapper">
+            <img class="default" src="{{ @js.assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
+        </div>
+
         <div class="container-fluid">
 
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
-        
-        <!-- Logo --> 
-        <a class="logo ml-md-3" href="{{ @ds.docs.configuration().logoHref }}" title="{{ @ds.docs.configuration().title }}">
-        <img src="{{ @ds.docs.configuration().logoUrl }}" alt="{{ @ds.docs.configuration().title }}">
-        </a>
-        
-        <!-- Title -->
-        <span class="text-4 font-width-700 ml-3">{{ @ds.docs.configuration().title }}</span> 
 
         <!-- Potential Left Link Here -->
-        <div id="header-nav" class="collapse navbar-collapse justify-content-end"></div>
-        
-        <!-- Social -->
-        <ul class="social-icons social-icons-sm ml-lg-2 mr-2">
-            {[ if @configuration().social_twitter ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_twitter }}" target="_blank" title="Twitter" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+        <div id="header-nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                {[ if shouldShowTabbar ]}
+                    {[ let rootGroup = @ds.docs.rootGroup() /]}
+                    {[ for item in rootGroup.children ]}
+                        {* Re-enable if we only want to show groups *}
+                        {* {[ if item.type.equals("Group") ]} *}
+                            {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
+                        {* {[/]} *}
+                    {[/]}
+                {[/]}
+            </ul>
+
+            <div class="utility-nav">            
+            <div id="version-container" class="dropdown">
+                <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Loading
+                </button>
+                <div class="dropdown-menu pull-right" aria-labelledby="version-selector">
+                </div>
+            </div>
+            <i class="fas fa-search search"></i>
+            {[ if @configuration().showVisualModeSwitch ]}
+            <i class="far fa-moon switch-theme"></i>
             {[/]}
-            {[ if @configuration().social_facebook ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_facebook }}" target="_blank" title="Facebook" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_github ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_github }}" target="_blank" title="GitHub" data-original-title="GitHub"><i class="fab fa-github"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_dribbble ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_dribbble }}" target="_blank" title="dribbble" data-original-title="dribbble"><i class="fab fa-dribbble"></i></a></li>
-            {[/]}
-            {[ if @configuration().social_instagram ]}
-                <li><a data-toggle="tooltip" href="{{ @configuration().social_instagram }}" target="_blank" title="Instagram" data-original-title="Instagram"><i class="fab fa-instagram"></i></a></li>
-            {[/]}
+            </div>
             
-        </ul>
         </div>
     </nav>
 </header>

@@ -1,0 +1,39 @@
+{* Get experimental block payload *}
+{[ const block = context /]}
+
+{* Ignore block if it doesn't have group id set *}
+{[ if block.groupId.isString() ]}
+
+{* Fetch all tokens of this specific group *}
+{[ const groupId = block.groupId /]}
+{[ let group = @ds.tokenGroupById(groupId) /]}
+
+{* If empty filter, show group (shows all), if not, show only group with full name *}
+<div class="token-container">
+    {* Show group header consisting of group segments and current group name *}
+    <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
+    <table class="token-wrapper">
+    {* Render all tokens *}
+    {[ for token in @ds.tokensByGroupId(group.id) ]}
+    <tr class="color">
+        <td>{[ inject "page_block_token_preview_small" context token /]}</td>
+        <td>{{ token.name }}</td>
+        <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
+        <td>
+        {[ inject "page_block_token_value" context token /]}       
+        {[ for prop in token.properties ]}
+            {[ if prop.type.equals("String") ]}
+                {[ if @compare.greaterThan(prop.value.count(), 0) ]}
+                    <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
+                {[/]}
+            {[ else ]}
+                <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
+            {[/]}
+        {[/]}
+        </td>
+    </tr>
+    {[/]}
+    </table>
+</div>
+
+{[/]}

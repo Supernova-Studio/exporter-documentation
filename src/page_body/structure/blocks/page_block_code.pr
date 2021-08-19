@@ -1,7 +1,51 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-{* Generate code which will be automatically highlighted *}
-<pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("lang-"), "")}}">
-{{ @js.highlightSafeString(block) }}
-</pre></code>
+{[ if @js.isSandboxDefinition(block) ]}
+
+    {* Generate unique ID for the sandbox, and retrieve its configuration *}
+    {[ const sandboxId = @random.number(0, 99999999).toString().prefixed("sandbox-") /]}
+    {[ let sandboxConfiguration = @js.getFrontendSandboxData(block) /]}
+
+    {* Generate sandbox code which will be automatically converted to live sandbox *}
+    <div class="sandbox-state-wrapper">
+        <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
+            <div class="sandbox-loader"></div>
+            <span>Preparing live component</span>
+        </div>
+        <div class="sandbox-container" style="height: {{ sandboxConfiguration.height.toString() }}">
+            <div id="{{ sandboxId }}" sn-sandbox-data="{{ @js.encodeSandboxdata(block) }}"></div>
+        </div>
+    </div>
+    <div class="sandbox-container-meta">
+
+        <div class="sandbox-container-buttons">
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Toggle code" data-offset="5">
+                <i class="fas fa-code" data-toggle="collapse" data-target="#codepreview-{{ sandboxId }}"></i>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Copy code">
+                <i class="fas fa-copy" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></i>
+            </span>
+        </div>
+
+        {[ let shouldShow = "" /]}
+        {[ if sandboxConfiguration.showCodeByDefault ]}
+            {[ shouldShow = "show" /]}
+        {[/]}
+        <div class="sandbox-text collapse {{ shouldShow }}" id="codepreview-{{ sandboxId }}">
+            <pre><code class="language-javascript">
+    ‏‏‎ ‎       {{ sandboxConfiguration.code }}
+            </code></pre>
+        </div>
+    </div>
+{[ else ]}
+    {* Generate code which will be automatically highlighted *}
+    <pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("language-"), "")}}">
+    ‏‏‎ ‎
+    {{ @js.highlightSafeString(block) }}
+
+    </code></pre>
+    {[ if block.caption.isString() ]}
+        <p class="caption">{{ block.caption }}</p>
+    {[/]}
+{[/]}

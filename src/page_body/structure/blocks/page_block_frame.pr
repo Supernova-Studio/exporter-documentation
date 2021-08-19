@@ -1,0 +1,17 @@
+{[ const frame = context /]}
+{[ let backgroundColor = "f2f4f5" /]}
+{[ if @compare.nonnull(frame.backgroundColor) ]}
+    {[ backgroundColor = frame.backgroundColor /]}
+{[/]}
+<div>      
+    <div class="preview" style="background-color: #{{ backgroundColor }};">
+    {[ if @compare.nonnull(frame.previewUrl) ]}
+        <img src="{{ frame.previewUrl }}" />
+    {[/]}
+    
+    </div>
+    <p class="title">{{ frame.title }}</p>
+    {[ if @compare.nonnull(frame.description) ]}
+        <p class="description">{{ frame.description }}</p>    
+    {[/]}
+</div>

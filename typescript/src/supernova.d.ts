@@ -1,8 +1,8 @@
-// Type definitions for Supernova Pulsar  1.0
+// Type definitions for Supernova Pulsar 1.3.10
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 //
 // TypeScript Version: 4.2
-// Supernova Pulsar  Version: 1
+// Supernova Pulsar Version: 1.3.10
 // Note: Only temporary now, before we publish it on defotyped || private package
 
 declare global {
@@ -11,14 +11,8 @@ declare global {
   //
   interface PulsarInterface {
     registerFunction(name: string, fn: (...args) => any)
-    registerTransformer(
-      name: string,
-      fn: (transformedValue: any, ...args) => any
-    )
-    registerPayload(
-      name: string,
-      payload: string | number | object | Array<any> | Object
-    )
+    registerTransformer(name: string, fn: (transformedValue: any, ...args) => any)
+    registerPayload(name: string, payload: string | number | object | Array<any> | Object)
   }
 
   const Pulsar: PulsarInterface
@@ -26,29 +20,59 @@ declare global {
   //
   // Enums
   //
-  type TokenType = 'Color' | 'Typography' | 'Radius' | 'Font' | 'Measure' | 'Shadow' | 'Border' | 'Gradient' | 'Text'
-  
-  type SourceType = 'Supernova' | 'Figma'
+  type TokenType = "Color" | "Typography" | "Radius" | "Font" | "Measure" | "Shadow" | "Border" | "Gradient" | "Text"
 
-  type TextCase = 'Original' | 'Upper' | 'Lower' | 'Camel'
+  type TokenPropertyType = "Number" | "Boolean" | "String" | "Generic"
 
-  type TextDecoration = 'None' | 'Underline' | 'Strikethrough'
+  type SourceType = "Supernova" | "Figma"
 
-  type Unit = 'Pixels' | 'Points' | 'Percent' | 'Ems'
+  type TextCase = "Original" | "Upper" | "Lower" | "Camel"
 
-  type BorderPosition = 'Inside' | 'Center' | 'Outside'
+  type TextDecoration = "None" | "Underline" | "Strikethrough"
 
-  type GradientType = 'Linear' | 'Radial' | 'Angular'
+  type Unit = "Pixels" | "Points" | "Percent" | "Ems"
 
-  type DocumentationItemType = 'Page' | 'Group'
+  type BorderPosition = "Inside" | "Center" | "Outside"
 
-  type DocumentationPageBlockType = 'Text' | 'Heading' | 'Code' | 'UnorderedList' | 'OrderedList' | 'Quote' | 'Callout' | 'Divider' | 'Image' | 'Link' | 'Token' | 'TokenList' | 'TokenGroup'
+  type GradientType = "Linear" | "Radial" | "Angular"
 
-  type RichTextSpanAttributeType = 'Bold' | 'Italic' | 'Link' | 'Strikethrough' | 'Code'
+  type DocumentationItemType = "Page" | "Group"
 
-  type CalloutType = 'Info' | 'Success' | 'Warning' | 'Error'
+  type DocumentationPageBlockType =
+    | "Text"
+    | "Heading"
+    | "Code"
+    | "UnorderedList"
+    | "OrderedList"
+    | "Quote"
+    | "Callout"
+    | "Divider"
+    | "Image"
+    | "Link"
+    | "Token"
+    | "TokenList"
+    | "TokenGroup"
+    | "Shortcuts"
+    | "FigmaEmbed"
+    | "YoutubeEmbed"
+    | "Embed"
+    | "FigmaFrames"
 
-  type HeadingType = '1' | '2' | '3'
+  type RichTextSpanAttributeType = "Bold" | "Italic" | "Link" | "Strikethrough" | "Code"
+
+  type CalloutType = "Info" | "Success" | "Warning" | "Error"
+
+  type HeadingType = "1" | "2" | "3"
+
+  type ImageAlignment = "Left" | "Center" | "Stretch"
+
+  type HeaderAlignment = "Default" | "Center"
+
+  type FrameAlignment = "FrameHeight" | "Center"
+
+  type FrameLayout = "C8" | "C7" | "C5" | "C4" | "C3" | "C2" | "C1" | "C1_75"
+
+  type ShortcutType = "Internal" | "External"
 
   //
   // Data Types
@@ -103,6 +127,14 @@ declare global {
     description: string
     tokenType: TokenType
     origin: SourceOrigin | null
+    properties: Array<TokenProperty>
+  }
+
+  type TokenProperty = {
+    name: string
+    codeName: string
+    type: TokenPropertyType
+    value: string | number | boolean
   }
 
   type ColorTokenValue = {
@@ -260,8 +292,24 @@ declare global {
     parent: DocumentationGroup
   }
 
-  type DocumentationConfiguration = {
+  type DocumentationPageStyle = {
+    title: string
+    textAlignment: HeaderAlignment
+    description: string | null
+    backgroundColor: string | null
+    backgroundImage: string | null
+    headerHeight: number | null
+    hideSidebar: boolean
+    invertHeader: boolean
+  }
+
+  type Documentation = {
     domain: string
+    settings: DocumentationConfiguration
+  }
+
+  type DocumentationConfiguration = {
+    tabbedNavigation: boolean
   }
 
   //
@@ -298,18 +346,21 @@ declare global {
 
   type DocumentationPageBlockCode = DocumentationPageBlockText & {
     codeLanguage: string | null
+    caption: string | null
   }
 
   type DocumentationPageBlockDivider = DocumentationPageBlock & {
     // No extra attributes
   }
 
-  type DocumentationPageBlockHeading = DocumentationPageBlock & {
+  type DocumentationPageBlockHeading = DocumentationPageBlockText & {
     headingType: HeadingType
   }
 
   type DocumentationPageBlockImage = DocumentationPageBlock & {
     url: string | null
+    caption: string | null
+    alignment: ImageAlignment
   }
 
   type DocumentationPageBlockLink = DocumentationPageBlock & {
@@ -337,15 +388,67 @@ declare global {
   }
 
   type DocumentationPageBlockTokenList = DocumentationPageBlock & {
-    tokenIds: string
+    tokenIds: Array<string>
   }
 
   type DocumentationPageBlockUnorderedList = DocumentationPageBlockText & {
     // No extra attributes
   }
 
+  type DocumentationPageBlockEmbedFigma = DocumentationPageBlock & {
+    url: string | null
+  }
 
-  
+  type DocumentationPageBlockEmbedUrl = DocumentationPageBlock & {
+    url: string | null
+    title: string | null
+    description: string | null
+    thumbnailUrl: string | null
+  }
+
+  type DocumentationPageBlockEmbedYoutube = DocumentationPageBlock & {
+    url: string | null
+  }
+
+  type DocumentationPageBlockFrames = DocumentationPageBlock & {
+    frames: Array<DocumentationPageBlockFrame>
+    frameProperties: {
+      alignment: FrameAlignment,
+      layout: FrameLayout,
+      backgroundColor: string | null
+    }
+  }
+
+  type DocumentationPageBlockFrame = {
+    sourceFileId: string
+    sourceFrameId: string
+    sourceFileName: string
+
+    title: string
+    description: string | null
+    previewUrl: string | null
+    backgroundColor: string | null
+  }
+
+  type DocumentationPageBlockShortcuts = DocumentationPageBlock & {
+    shortcuts: Array<DocumentationPageBlockShortcut>
+  }
+
+  type DocumentationPageBlockShortcut = {
+    
+    // Visual data
+    title: string | null
+    description: string | null
+    previewUrl: string | null
+
+    // Linking data
+    externalUrl: string | null
+    internalId: string | null
+
+    // Block type
+    type: ShortcutType
+  }
+
   //
   // Data Types
   // Subcategory: Support
