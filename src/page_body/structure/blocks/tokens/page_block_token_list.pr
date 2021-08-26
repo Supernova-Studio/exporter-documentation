@@ -7,7 +7,7 @@
 <div class="token-container">
   <div class="grid">
     {[ for tokenId in block.tokenIds ]}
-        {[ const token = @ds.tokenById(tokenId) /]}
+        {[ const token = ds.tokenById(tokenId) /]}
         <div>
         {* Render large tile preview *}
         {[ inject "page_block_token_preview_large" context token /]}

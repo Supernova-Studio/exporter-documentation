@@ -1,6 +1,6 @@
 {[ let page = context /]}
-{[ const domain = @ds.docs.configuration().domain /]}
-{[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
+{[ const domain = ds.documentationConfiguration().domain /]}
+{[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
@@ -22,12 +22,12 @@
         <div id="header-nav" class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 {[ if shouldShowTabbar ]}
-                    {[ let rootGroup = @ds.docs.rootGroup() /]}
+                    {[ let rootGroup = ds.rootDocumentationGroup() /]}
                     {[ for item in rootGroup.children ]}
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
                             {[ let activeClass = @boolean.ternaryValue(@compare.equals(pageOrGroupActiveInContext(page, item), true), "active", "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}">{{ item.title }}</a></li>
                         {* {[/]} *}
                     {[/]}
                 {[/]}
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <i class="fas fa-search search"></i>
-            {[ if @configuration().showVisualModeSwitch ]}
+            {[ if exportConfiguration().showVisualModeSwitch ]}
             <i class="far fa-moon switch-theme"></i>
             {[/]}
             </div>

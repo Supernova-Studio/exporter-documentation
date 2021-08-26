@@ -1,6 +1,6 @@
 {* Retrieve page object from context *}
 {[ const page = context /]}
-{[ const domain = @ds.docs.configuration().domain /]}
+{[ const domain = ds.documentationConfiguration().domain /]}
 {* Generate header styles *}
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("vendor/bootstrap/css/bootstrap.min.css", domain) }}" />

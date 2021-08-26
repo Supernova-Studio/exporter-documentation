@@ -5,17 +5,17 @@
     <a href="{{ shortcut.externalUrl }}" target="_blank">
     {[ elseif @compare.nonnull(shortcut.internalId) ]}
         {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
-        {[ let page = @ds.docs.pageById(shortcut.internalId) /]}
+        {[ let page = ds.documentationPageById(shortcut.internalId) /]}
         {[ if @compare.nonnull(page) ]}
-            {[ let url = pageUrl(page, @ds.docs.configuration().domain) /]}
+            {[ let url = pageUrl(page, ds.documentationConfiguration().domain) /]}
             <a href="{{ url }}">
         {[ else ]}
         {* Links to group instead, find that and if exists, link to the first page in that group *}
-            {[ let group = @ds.docs.groupById(shortcut.internalId) /]}
+            {[ let group = ds.documentationGroupById(shortcut.internalId) /]}
             {[ if @compare.nonnull(group) ]}
                 {[ page = firstPageFromTop(group) /]}
                 {[ if @compare.nonnull(page) ]}
-                    {[ let url = pageUrl(page, @ds.docs.configuration().domain) /]}
+                    {[ let url = pageUrl(page, ds.documentationConfiguration().domain) /]}
                     <a href="{{ url }}">
                 {[ else ]}
                 {* Doesn't link to anything *}

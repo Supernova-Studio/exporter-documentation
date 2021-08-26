@@ -1,6 +1,6 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
-{[ const domain = @ds.docs.configuration().domain /]}
+{[ const domain = ds.documentationConfiguration().domain /]}
 <head>
     <!-- Meta information -->
     <meta charset="UTF-8" />

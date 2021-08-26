@@ -5,7 +5,7 @@
 
 {[ if context.groupId.isString() ]}
     {* If we pass id of a group, we can request it directly *}
-    {[ rootGroup = @ds.docs.groupById(context.groupId) /]}
+    {[ rootGroup = ds.documentationGroupById(context.groupId) /]}
 {[ else ]}
     {* If we pass page object, it means we are generating from root. However, our root is actually not the main root, but rather one object below it - and we want to show its name as header of the category as well as all its children *}
     {[ rootGroup = firstSubgroupOfPage(page) /]}
@@ -24,13 +24,13 @@
             {[ let activeClass = @boolean.ternaryValue(@compare.equals(isActive, true), "active", "") /]}
             {[ let itemId = item.id /]}
             {[ if item.type.equals("Page") ]}
-                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, @ds.docs.configuration().domain) }}"> {{ item.title }}</a><li>
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}"> {{ item.title }}</a><li>
             {[ else ]}
                 <li class="nav-item">
                 {[ let firstDescendingPage = firstPageFromTop(item) /]}
                 {* Group will either link to the first page, or be fully disabled *}
                 {[ if @compare.nonnull(firstDescendingPage) ]}
-                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, @ds.docs.configuration().domain) }}"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationConfiguration().domain) }}"> {{ item.title }}</a>
                 {[ else ]}  
                     <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ item.title }}</a>
                 {[/]}
@@ -50,7 +50,7 @@
 
 <div class="nav-sn">
     <a href="https://supernova.io" target="_blank">
-        {[ const domain = @ds.docs.configuration().domain /]}
+        {[ const domain = ds.documentationConfiguration().domain /]}
         <img src="{{ assetUrl("logos/powered-by-supernova.png", domain) }}" title="Supernova, the most advanced design system platform" alt="Supernova, the most advanced design system platform" />
     </a>
 </div>

@@ -1,6 +1,6 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
-{[ let domain = @ds.docs.configuration().domain /]}
+{[ let domain = ds.documentationConfiguration().domain /]}
 {* Generate page scripts *}
 <script src="{{ assetUrl("vendor/jquery/jquery.min.js", domain)}}"></script> 
 <script src="{{ assetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js", domain)}}"></script> 

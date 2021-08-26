@@ -3,7 +3,7 @@
 
 {* Ignore block if it doesn't have id set *}
 {[ if block.tokenId.isString() ]}
-{[ const token = @ds.tokenById(block.tokenId) /]}
+{[ const token = ds.tokenById(block.tokenId) /]}
 
 <div class="token-container">
   <div class="grid">
