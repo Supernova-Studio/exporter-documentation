@@ -5,7 +5,7 @@
         <ul>
             {[ for block in page.blocks ]}
             {[ if block.type.equals("Heading") ]}
-            <li class="{{ @boolean.ternaryValue(block.headingType.equals(3), "sub", "") }}"><a href="#{{ slugifyHeading(block) }}">{{ textBlockPlainText(block) }}</a></li>
+            <li class="{{ block.headingType.equals(3) ? "sub" : "" }}"><a href="#{{ slugifyHeading(block) }}">{{ textBlockPlainText(block) }}</a></li>
             {[/]}
             {[/]}
         </ul>

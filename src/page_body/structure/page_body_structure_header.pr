@@ -26,7 +26,7 @@
                     {[ for item in rootGroup.children ]}
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
-                            {[ let activeClass = @boolean.ternaryValue(@compare.equals(pageOrGroupActiveInContext(page, item), true), "active", "") /]}
+                            {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
                             <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}">{{ item.title }}</a></li>
                         {* {[/]} *}
                     {[/]}

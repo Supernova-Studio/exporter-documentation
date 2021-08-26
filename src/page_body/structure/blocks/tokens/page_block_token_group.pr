@@ -18,12 +18,12 @@
     <tr class="color">
         <td>{[ inject "page_block_token_preview_small" context token /]}</td>
         <td>{{ token.name }}</td>
-        <td>{{ @boolean.ternaryValue(@compare.greaterThan(token.description.count(), 0), token.description, "No description") }}</td>
+        <td>{{ token.description.count() > 0 ? token.description : "No description" }}</td>
         <td>
         {[ inject "page_block_token_value" context token /]}       
         {[ for prop in token.properties ]}
             {[ if prop.type.equals("String") ]}
-                {[ if @compare.greaterThan(prop.value.count(), 0) ]}
+                {[ if prop.value.count() > 0 ]}
                     <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
                 {[/]}
             {[ else ]}

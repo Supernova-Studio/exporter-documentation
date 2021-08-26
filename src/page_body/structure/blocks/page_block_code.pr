@@ -4,7 +4,7 @@
 {[ if isSandboxDefinition(block) ]}
 
     {* Generate unique ID for the sandbox, and retrieve its configuration *}
-    {[ const sandboxId = @random.number(0, 99999999).toString().prefixed("sandbox-") /]}
+    {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
     {[ let sandboxConfiguration = getFrontendSandboxData(block) /]}
 
     {* Generate sandbox code which will be automatically converted to live sandbox *}
@@ -40,7 +40,7 @@
     </div>
 {[ else ]}
     {* Generate code which will be automatically highlighted *}
-    <pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("language-"), "")}}">
+    <pre><code class="{{ block.codeLanguage.isString() ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
     ‏‏‎ ‎
     {{ highlightSafeString(block) }}
 

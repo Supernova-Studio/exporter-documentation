@@ -10,11 +10,11 @@
     {[ rootGroup = ds.rootDocumentationGroup() /]}
 {[/]}
 
-{[ if @compare.nonnull(rootGroup) ]}
+{[ if rootGroup ]}
     <ul class="nav full flex-column ">
         {[ for item in rootGroup.children ]}
             {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
-            {[ let activeClass = @boolean.ternaryValue(@compare.equals(isActive, true), "active", "") /]}
+            {[ let activeClass = (isActive === true ? "active" : "") /]}
             {[ let itemId = item.id /]}
             {[ if item.type.equals("Page") ]}
                 <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}"> {{ item.title }}</a><li>
