@@ -1,7 +1,7 @@
 
 
 {[ let page = context /]}
-{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
+{[ let pageStyle = experimentalForcedPageStyle(page) /]}
 
 {[ let invertedClass = @boolean.ternaryValue(pageStyle.invertHeader, "inverted", "") /]}
 {[ let centeredClass = @boolean.ternaryValue(pageStyle.textAlignment.equals("Center"), "centered", "") /]}

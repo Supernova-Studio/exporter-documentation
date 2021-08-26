@@ -2,8 +2,8 @@
 {[ let page = context /]}
 {[ let domain = @ds.docs.configuration().domain /]}
 {* Generate page scripts *}
-<script src="{{ @js.assetUrl("vendor/jquery/jquery.min.js", domain)}}"></script> 
-<script src="{{ @js.assetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js", domain)}}"></script> 
+<script src="{{ assetUrl("vendor/jquery/jquery.min.js", domain)}}"></script> 
+<script src="{{ assetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js", domain)}}"></script> 
 
 <!-- Prism -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
@@ -11,20 +11,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
 
 <!-- Easing --> 
-<script src="{{ @js.assetUrl("vendor/jquery.easing/jquery.easing.min.js", domain)}}"></script> 
+<script src="{{ assetUrl("vendor/jquery.easing/jquery.easing.min.js", domain)}}"></script> 
 
 <!-- Magnific Popup --> 
-<script src="{{ @js.assetUrl("vendor/magnific-popup/jquery.magnific-popup.min.js", domain)}}"></script> 
+<script src="{{ assetUrl("vendor/magnific-popup/jquery.magnific-popup.min.js", domain)}}"></script> 
 
 <!-- Live sandbox -->
-<script src="{{ @js.assetUrl("experimental/rtcp-core.js", domain)}}"></script> 
+<script src="{{ assetUrl("experimental/rtcp-core.js", domain)}}"></script> 
 
 <!-- Search Support-->
 <script src="https://unpkg.com/lunr/lunr.js"></script>  
-<script src="{{ @js.rootUrl("si.js", domain) }}"></script>  
+<script src="{{ rootUrl("si.js", domain) }}"></script>  
 
 <!-- General scripts -->
-<script src="{{ @js.assetUrl("js/functionality.js", domain)}}"></script>
+<script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
 
 <!-- Versions -->
 <script>

@@ -11,7 +11,7 @@
 {* If empty filter, show group (shows all), if not, show only group with full name *}
 <div class="token-container">
     {* Show group header consisting of group segments and current group name *}
-    <p class="token-group-header">{{ @js.formattedTokenGroupHeader(group, true) }}</p>
+    <p class="token-group-header">{{ formattedTokenGroupHeader(group, true) }}</p>
     <table class="token-wrapper">
     {* Render all tokens *}
     {[ for token in @ds.tokensByGroupId(group.id) ]}

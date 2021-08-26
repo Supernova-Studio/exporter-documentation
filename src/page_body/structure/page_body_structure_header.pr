@@ -10,7 +10,7 @@
 
         <!-- Logo -->
         <div class="logo-wrapper">
-            <img class="default" src="{{ @js.assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
+            <img class="default" src="{{ assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
         </div>
 
         <div class="container-fluid">
@@ -26,8 +26,8 @@
                     {[ for item in rootGroup.children ]}
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
-                            {[ let activeClass = @boolean.ternaryValue(@compare.equals(@js.pageOrGroupActiveInContext(page, item), true), "active", "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ @js.pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
+                            {[ let activeClass = @boolean.ternaryValue(@compare.equals(pageOrGroupActiveInContext(page, item), true), "active", "") /]}
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, @ds.docs.configuration().domain) }}">{{ item.title }}</a></li>
                         {* {[/]} *}
                     {[/]}
                 {[/]}

@@ -8,17 +8,17 @@
 {[ elseif token.tokenType.equals("Font") ]}
     {{ token.value.family }} {{ token.value.subfamily }}
 {[ elseif token.tokenType.equals("Gradient") ]}
-    {{ @js.gradientDescription(token) }}
+    {{ gradientDescription(token) }}
 {[ elseif token.tokenType.equals("Measure")]}
-    {{ token.value.measure }}{{ @js.measureTypeIntoReadableUnit(token.value.unit) }}
+    {{ token.value.measure }}{{ measureTypeIntoReadableUnit(token.value.unit) }}
 {[ elseif token.tokenType.equals("Radius")]}
-    {{ token.value.radius.measure }}{{ @js.measureTypeIntoReadableUnit(token.value.radius.unit) }}  
+    {{ token.value.radius.measure }}{{ measureTypeIntoReadableUnit(token.value.radius.unit) }}  
 {[ elseif token.tokenType.equals("Shadow")]}
-    {{ @js.shadowDescription(token) }}
+    {{ shadowDescription(token) }}
 {[ elseif token.tokenType.equals("Text")]}
     {{ token.value.text }}
 {[ elseif token.tokenType.equals("Typography") ]}
-    {{ @js.typographyDescription(token)}}
+    {{ typographyDescription(token)}}
 {[ elseif token.tokenType.equals("GenericToken")]}
     {{ token.value.text }}
 {[/]}

@@ -3,24 +3,24 @@
 {[ const domain = @ds.docs.configuration().domain /]}
 {* Generate header styles *}
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/bootstrap/css/bootstrap.min.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("vendor/bootstrap/css/bootstrap.min.css", domain) }}" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/font-awesome/css/all.min.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("vendor/font-awesome/css/all.min.css", domain) }}" />
 
 <!-- Magnific Popup -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("vendor/magnific-popup/magnific-popup.min.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("vendor/magnific-popup/magnific-popup.min.css", domain) }}" />
 
 <!-- Search -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/search.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("css/search.css", domain) }}" />
 
 <!-- DS Autogen -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/ds/index.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("css/ds/index.css", domain) }}" />
 
 <!-- Custom Stylesheet -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/stylesheet.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("css/stylesheet.css", domain) }}" />
 
 <!-- Code highlight -->
-<link rel="stylesheet" type="text/css" href="{{ @js.assetUrl("css/code-highlight.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("css/code-highlight.css", domain) }}" />
 
 

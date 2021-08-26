@@ -15,7 +15,7 @@
   </div>
 </div>
 
-{[ let block2 = @js.experimentalFigmaFrameBlock("C3") /]}
+{[ let block2 = experimentalFigmaFrameBlock("C3") /]}
 
 <div class="tile-container">
   <div class="grid {{ block2.frameProperties.layout.lowercased() }}">
@@ -32,7 +32,7 @@
   </div>
 </div>
 
-{[ let block3 = @js.experimentalFigmaFrameBlock("C1_75") /]}
+{[ let block3 = experimentalFigmaFrameBlock("C1_75") /]}
 
 <div class="tile-container">
   <div class="grid {{ block3.frameProperties.layout.lowercased() }}">

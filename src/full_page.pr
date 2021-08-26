@@ -1,6 +1,6 @@
 {* Fetch page detail using pageId invocation context property *}
 {[ const page = @ds.docs.pageById(pageId) /]}
-{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
+{[ let pageStyle = experimentalForcedPageStyle(page) /]}
 {[ let sizingClass = @boolean.ternaryValue(pageStyle.hideSidebar, "fullscreen", "") /]}
 
 <!DOCTYPE html>

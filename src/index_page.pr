@@ -1,7 +1,7 @@
 <!-- Redirect to the first real page -->
 {[ let rootGroup = @ds.docs.rootGroup() /]}
-{[ let page = @js.firstPageFromTop(rootGroup) /]}
-{[ let url = @js.pageUrl(page, @ds.docs.configuration().domain) /]}
+{[ let page = firstPageFromTop(rootGroup) /]}
+{[ let url = pageUrl(page, @ds.docs.configuration().domain) /]}
 
 <!DOCTYPE HTML>
  
