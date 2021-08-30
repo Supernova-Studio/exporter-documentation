@@ -3,7 +3,7 @@
 {[ let page = context.page /]}
 {[ let isRootForTab = false /]}
 
-{[ if context.groupId.isString() ]}
+{[ if context.groupId ]}
     {* If we pass id of a group, we can request it directly *}
     {[ rootGroup = ds.documentationGroupById(context.groupId) /]}
 {[ else ]}

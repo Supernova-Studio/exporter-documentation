@@ -40,12 +40,12 @@
     </div>
 {[ else ]}
     {* Generate code which will be automatically highlighted *}
-    <pre><code class="{{ block.codeLanguage.isString() ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
+    <pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
     ‏‏‎ ‎
     {{ highlightSafeString(block) }}
 
     </code></pre>
-    {[ if block.caption.isString() ]}
+    {[ if block.caption ]}
         <p class="caption">{{ block.caption }}</p>
     {[/]}
 {[/]}

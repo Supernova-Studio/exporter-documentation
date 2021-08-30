@@ -2,7 +2,7 @@
 {[ let rootGroup = [] /]}
 {[ let page = context.page /]}
 
-{[ if context.groupId.isString() ]}
+{[ if context.groupId ]}
     {* If we pass id of a group, we can request it directly *}
     {[ rootGroup = ds.documentationGroupById(context.groupId) /]}
 {[ else ]}

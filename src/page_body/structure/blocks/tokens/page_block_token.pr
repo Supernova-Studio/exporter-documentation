@@ -2,7 +2,7 @@
 {[ const block = context /]}
 
 {* Ignore block if it doesn't have id set *}
-{[ if block.tokenId.isString() ]}
+{[ if block.tokenId ]}
 {[ const token = ds.tokenById(block.tokenId) /]}
 
 <div class="token-container">

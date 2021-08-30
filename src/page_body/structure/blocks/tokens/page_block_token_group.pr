@@ -2,7 +2,7 @@
 {[ const block = context /]}
 
 {* Ignore block if it doesn't have group id set *}
-{[ if block.groupId.isString() ]}
+{[ if block.groupId ]}
 
 {* Fetch all tokens of this specific group *}
 {[ const groupId = block.groupId /]}
@@ -18,12 +18,12 @@
     <tr class="color">
         <td>{[ inject "page_block_token_preview_small" context token /]}</td>
         <td>{{ token.name }}</td>
-        <td>{{ token.description.count() > 0 ? token.description : "No description" }}</td>
+        {{ token.description ? token.description : "No description" }}
         <td>
         {[ inject "page_block_token_value" context token /]}       
         {[ for prop in token.properties ]}
             {[ if prop.type.equals("String") ]}
-                {[ if prop.value.count() > 0 ]}
+                {[ if prop.value ]}
                     <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
                 {[/]}
             {[ else ]}
