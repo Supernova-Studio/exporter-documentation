@@ -4,7 +4,7 @@
 {[ let captionClass = "" /]}
 
 {* Create image with lightbox interaction, or ignore it if url is not set *}
-{[ if block.url.isString() ]}
+{[ if block.url ]}
 {* Align image based on the configuration *}
 <div class="image-container">
 {[ switch block.alignment ]}
@@ -22,7 +22,7 @@
     <img src="{{ block.url }}" class="{{ imgClass }}" alt="" />
 </a>
 {* Add caption if set *}
-{[ if block.caption.isString() ]}
+{[ if block.caption ]}
     <p class="{{ captionClass }}">{{ block.caption }}</p>
 {[/]}
 </div>

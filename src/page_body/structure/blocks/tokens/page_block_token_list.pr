@@ -2,21 +2,19 @@
 {[ const block = context /]}
 
 {* Ignore block if it is empty *}
-{[ if @compare.greaterThan(block.tokenIds.count(), 0) ]}
+{[ if block.tokenIds.count() > 0) ]}
 
 <div class="token-container">
   <div class="grid">
     {[ for tokenId in block.tokenIds ]}
-        {[ const token = @ds.tokenById(tokenId) /]}
+        {[ const token = ds.tokenById(tokenId) /]}
         <div>
         {* Render large tile preview *}
         {[ inject "page_block_token_preview_large" context token /]}
         <p class="title">{{ token.name }}</p>
         {* Render description if this is not text and generic token, which are rendering values into the tile itself *}
-        {[ if @boolean.not(token.tokenType.equals("Text")) ]}
-        {[ if @boolean.not(token.tokenType.equals("GenericToken")) ]}
+        {[ if !token.tokenType.equals("Text") && !token.tokenType.equals("GenericToken") ]}
         <p class="description">{[ inject "page_block_token_value" context token /]}</p>
-        {[/]}
         {[/]}
         </div>
     {[/]}

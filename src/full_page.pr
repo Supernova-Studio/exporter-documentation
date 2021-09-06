@@ -1,15 +1,15 @@
 {* Fetch page detail using pageId invocation context property *}
-{[ const page = @ds.docs.pageById(pageId) /]}
-{[ let pageStyle = @js.experimentalForcedPageStyle(page) /]}
-{[ let sizingClass = @boolean.ternaryValue(pageStyle.hideSidebar, "fullscreen", "") /]}
+{[ const page = ds.documentationPageById(pageId) /]}
+{[ let pageStyle = experimentalForcedPageStyle(page) /]}
+{[ let sizingClass = (pageStyle.hideSidebar ? "fullscreen" : "") /]}
 
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
-{[ const domain = @ds.docs.configuration().domain /]}
+{[ const domain = ds.documentationConfiguration().domain /]}
 
-<body class="{{ @configuration().defaultVisualMode }}">
-{[ if @configuration().showVisualModeSwitch ]}
+<body class="{{ exportConfiguration().defaultVisualMode }}">
+{[ if exportConfiguration().showVisualModeSwitch ]}
 {* Change theme to whatever was configured only if the configuration allows changing of themes in the first place *}
 <script>
     <!-- This is critical to avoid flickering when switching theme, don't move down -->
@@ -19,7 +19,7 @@
 {[/]}
 
 {* Add preloader when user requests it *}
-{[ if @configuration().showPreloader ]}
+{[ if exportConfiguration().showPreloader ]}
   {[ inject "page_body_preloader" context page /]}
 {[/]}
 
@@ -35,13 +35,13 @@
     {* Add content header - always enabled *}
     {[ inject "page_body_structure_header" context page /]}
     
-    {[ if @boolean.not(pageStyle.hideSidebar) ]}
+    {[ if !pageStyle.hideSidebar ]}
       <!-- Sidebar Navigation -->
       <div class="docs-navigation bg-sidebar">
 
-        {[ let data = @init.dictionary().add("page", page) /]}
-        {[ const shouldShowTabbar = @ds.docs.configuration().settings.tabbedNavigation /]}
-        {[ if @ds.docs.configuration().settings.tabbedNavigation ]} 
+        {[ let data = { "page" : page } /]}
+        {[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
+        {[ if ds.documentationConfiguration().settings.tabbedNavigation ]} 
           {[ inject "page_body_structure_sidebar_tabbed" context data /]}
         {[ else ]}
           {[ inject "page_body_structure_sidebar_full" context data /]}

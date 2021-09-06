@@ -49,7 +49,7 @@
 {[/]}
 
 {* Generate child blocks, if any *}
-{[ if @compare.greaterThan(block.children.count(), 0) ]}
+{[ if block.children.count() > 0 ]}
     <div class="block-children">
     {[ for child in block.children ]}
         {[ inject "page_body_structure_block" context child /]}

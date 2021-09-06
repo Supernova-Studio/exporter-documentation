@@ -1,11 +1,11 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-{[ if @js.isSandboxDefinition(block) ]}
+{[ if isSandboxDefinition(block) ]}
 
     {* Generate unique ID for the sandbox, and retrieve its configuration *}
-    {[ const sandboxId = @random.number(0, 99999999).toString().prefixed("sandbox-") /]}
-    {[ let sandboxConfiguration = @js.getFrontendSandboxData(block) /]}
+    {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
+    {[ let sandboxConfiguration = getFrontendSandboxData(block) /]}
 
     {* Generate sandbox code which will be automatically converted to live sandbox *}
     <div class="sandbox-state-wrapper">
@@ -14,7 +14,7 @@
             <span>Preparing live component</span>
         </div>
         <div class="sandbox-container" style="height: {{ sandboxConfiguration.height.toString() }}">
-            <div id="{{ sandboxId }}" sn-sandbox-data="{{ @js.encodeSandboxdata(block) }}"></div>
+            <div id="{{ sandboxId }}" sn-sandbox-data="{{ encodeSandboxdata(block) }}"></div>
         </div>
     </div>
     <div class="sandbox-container-meta">
@@ -40,12 +40,12 @@
     </div>
 {[ else ]}
     {* Generate code which will be automatically highlighted *}
-    <pre><code class="{{ @boolean.ternaryValue(block.codeLanguage.isString(), block.codeLanguage.lowercased().prefixed("language-"), "")}}">
+    <pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
     ‏‏‎ ‎
-    {{ @js.highlightSafeString(block) }}
+    {{ highlightSafeString(block) }}
 
     </code></pre>
-    {[ if block.caption.isString() ]}
+    {[ if block.caption ]}
         <p class="caption">{{ block.caption }}</p>
     {[/]}
 {[/]}
