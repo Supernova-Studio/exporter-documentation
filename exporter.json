@@ -63,7 +63,7 @@
                 "default": "",
                 "type": "image",
                 "label": "Header Logo",
-                "description": "Company logo to be shown on all pages inside the documentation site",
+                "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
                 "category": "Design"
             },
             {
@@ -71,7 +71,7 @@
                 "default": "",
                 "type": "image",
                 "label": "Site Favicon",
-                "description": "Documentation site favicon. 32x32 px .png with transparency is recommended as this is currently supported by all major browsers. If no favicon is provided, site will not use any. Using .ico is supported but discouraged",
+                "description": "Documentation site favicon. 32x32px .png with transparency is recommended as this is currently supported by all major browsers. If no favicon is provided, site will not use any. Using .ico is supported but discouraged",
                 "category": "Design"
             }
         ],
