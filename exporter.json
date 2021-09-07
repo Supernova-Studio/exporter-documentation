@@ -48,6 +48,20 @@
                 "label": "Image label",
                 "description": "Brand logo",
                 "category": "Design"
+            },
+            {
+                "key": "primaryColor",
+                "type": "color",
+                "label": "Primary color",
+                "description": "Color",
+                "category": "Design"
+            },
+            {
+                "key": "head1",
+                "type": "typography",
+                "label": "Head 1",
+                "description": "Head1 desc",
+                "category": "Design"
             }
         ],
         "blocks": [
