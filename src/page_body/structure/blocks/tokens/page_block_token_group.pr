@@ -18,7 +18,7 @@
     <tr class="color">
         <td>{[ inject "page_block_token_preview_small" context token /]}</td>
         <td>{{ token.name }}</td>
-        {{ token.description ? token.description : "No description" }}
+        <td>{{ token.description ? token.description : "No description" }}</td>
         <td>
         {[ inject "page_block_token_value" context token /]}       
         {[ for prop in token.properties ]}
