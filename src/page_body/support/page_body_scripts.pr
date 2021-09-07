@@ -2,22 +2,21 @@
 {[ let page = context /]}
 {[ let domain = ds.documentationConfiguration().domain /]}
 {* Generate page scripts *}
-<script src="{{ assetUrl("vendor/jquery/jquery.min.js", domain)}}"></script> 
-<script src="{{ assetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js", domain)}}"></script> 
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 
 
 <!-- Prism -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
 
-<!-- Easing --> 
-<script src="{{ assetUrl("vendor/jquery.easing/jquery.easing.min.js", domain)}}"></script> 
-
 <!-- Magnific Popup --> 
-<script src="{{ assetUrl("vendor/magnific-popup/jquery.magnific-popup.min.js", domain)}}"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
 <!-- Live sandbox -->
-<script src="{{ assetUrl("experimental/rtcp-core.js", domain)}}"></script> 
+<script src="{{ assetUrl("js/live-sandbox.js", domain)}}"></script> 
 
 <!-- Search Support-->
 <script src="https://unpkg.com/lunr/lunr.js"></script>  
