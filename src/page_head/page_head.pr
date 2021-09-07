@@ -2,6 +2,18 @@
 {[ let page = context /]}
 {[ const domain = ds.documentationConfiguration().domain /]}
 <head>
+    {* Add google analytics if key was provided *}
+    {[ if (exportConfiguration().googleAnalyticsAPIKey && exportConfiguration().googleAnalyticsAPIKey.count() > 0) ]}
+    <!-- Google Analytics -->
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', '{{ exportConfiguration().googleAnalyticsAPIKey }}', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    {[/]}
+
     <!-- Meta information -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

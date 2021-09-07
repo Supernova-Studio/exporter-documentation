@@ -41,25 +41,24 @@
                 "label": "Dark/Light mode switch",
                 "description": "Allow users to switch from light to dark documentation using menu item",
                 "category": "Design"
+            },
+            {
+                "key": "googleAnalyticsAPIKey",
+                "default": "",
+                "type": "string",
+                "label": "Google Analytics API key",
+                "description": "Add Google Analytics tracking to your documentation site by providing an API key",
+                "category": "Analytics"
+            },
+            {
+                "key": "intercomAPIKey",
+                "default": "",
+                "type": "string",
+                "label": "Intercom API key",
+                "description": "Add Intercom to your documentation site by providing an API key",
+                "category": "Analytics"
             }
         ],
-        "blocks": [
-            {
-                "key": "com.supernova.block.embed-storybook",
-                "title": "Embed Storybook",
-                "category": "Media Blocks",
-                "description": "Embed Storybook content",
-                "icon": "icons/blocks/storybook.png",
-                "mode": "block",
-                "properties": [
-                    {
-                        "key": "url",
-                        "default": "",
-                        "label": "Storybook URL",
-                        "type": "string"
-                    }
-                ]
-            }
-        ]
+        "blocks": []
     }
 }
