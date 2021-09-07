@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.5.3",
+    "version": "1.5.4",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -57,6 +57,22 @@
                 "label": "Intercom API key",
                 "description": "Add Intercom to your documentation site by providing an API key",
                 "category": "Analytics"
+            },
+            {
+                "key": "headerLogo",
+                "default": "",
+                "type": "image",
+                "label": "Header Logo",
+                "description": "Company logo to be shown on all pages inside the documentation site",
+                "category": "Design"
+            },
+            {
+                "key": "favicon",
+                "default": "",
+                "type": "image",
+                "label": "Site Favicon",
+                "description": "Documentation site favicon. 32x32 px .png with transparency is recommended as this is currently supported by all major browsers. If no favicon is provided, site will not use any. Using .ico is supported but discouraged",
+                "category": "Design"
             }
         ],
         "blocks": []
