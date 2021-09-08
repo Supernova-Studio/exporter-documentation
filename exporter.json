@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.5.10",
+    "version": "1.5.11",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -22,18 +22,6 @@
     ],
     "contributes": {
         "configuration": [
-            {
-                "key": "defaultVisualMode",
-                "default": "light",
-                "type": "enum",
-                "values": [
-                    "light",
-                    "dark"
-                ],
-                "label": "Default design theme",
-                "description": "Base theme configuration for the entire design system documentation",
-                "category": "Design"
-            },
             {
                 "key": "googleAnalyticsAPIKey",
                 "default": "",
@@ -82,5 +70,29 @@
             }
         ],
         "blocks": []
+    },
+    "contributes_upcoming": {
+        "configuration": [
+            {
+                "key": "defaultVisualMode",
+                "default": "light",
+                "type": "enum",
+                "values": [
+                    "light",
+                    "dark"
+                ],
+                "label": "Default design theme",
+                "description": "Base theme configuration for the entire design system documentation",
+                "category": "Design"
+            },
+            {
+                "key": "showVisualModeSwitch",
+                "default": false,
+                "type": "boolean",
+                "label": "Dark/Light mode switch",
+                "description": "Allow users to switch from light to dark documentation using top menu item",
+                "category": "Design"
+            }
+        ]
     }
 }
