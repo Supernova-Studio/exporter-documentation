@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.5.7",
+    "version": "1.5.8",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -24,7 +24,7 @@
         "configuration": [
             {
                 "key": "defaultVisualMode",
-                "default": "dark",
+                "default": "light",
                 "type": "enum",
                 "values": [
                     "light",
@@ -36,7 +36,7 @@
             },
             {
                 "key": "showVisualModeSwitch",
-                "default": true,
+                "default": false,
                 "type": "boolean",
                 "label": "Dark/Light mode switch",
                 "description": "Allow users to switch from light to dark documentation using top menu item",
@@ -69,8 +69,24 @@
                 "key": "favicon",
                 "type": "image",
                 "label": "Site Favicon",
-                "description": "Documentation site favicon. 32x32px .png is recommended, using .icon is discouraged",
+                "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
                 "category": "Design"
+            },
+            {
+                "key": "metaTitlePrefix",
+                "type": "string",
+                "label": "Meta Title Prefix",
+                "description": "Meta title of the documentation page. Page title will also be added to the title",
+                "category": "SEO",
+                "default": "Documentation | "
+            },
+            {
+                "key": "metaDescription",
+                "type": "string",
+                "label": "Meta Description",
+                "description": "Meta description of the documentation site",
+                "category": "SEO",
+                "default": ""
             }
         ],
         "blocks": []

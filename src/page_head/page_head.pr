@@ -1,9 +1,10 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
 {[ const domain = ds.documentationConfiguration().domain /]}
+{[ const configuration = exportConfiguration() /]}
 <head>
     {* Add google analytics if key was provided *}
-    {[ if (exportConfiguration().googleAnalyticsAPIKey && exportConfiguration().googleAnalyticsAPIKey.count() > 0) ]}
+    {[ if (configuration.googleAnalyticsAPIKey && configuration.googleAnalyticsAPIKey.count() > 0) ]}
     <!-- Google Analytics -->
     <script>
     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -18,11 +19,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-    {[ if (exportConfiguration().favicon && exportConfiguration().favicon.assetUrl) ]}
-        <link href="{{ exportConfiguration().favicon.assetUrl }}" rel="icon" />
+    {[ if (configuration.favicon && configuration.favicon.assetUrl) ]}
+    <link href="{{ configuration.favicon.assetUrl }}" rel="icon" />
     {[/]}
-    <title>Supernova Docs | {{ page.title }}</title>
-    <meta name="description" content="">
+    <title>{{ configuration.metaTitlePrefix }} {{ page.title }}</title>
+    <meta name="description" content="{{ configuration.metaDescription }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
