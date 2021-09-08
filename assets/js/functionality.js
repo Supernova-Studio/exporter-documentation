@@ -303,3 +303,48 @@ $(".switch-theme").on("click", function (e) {
     localStorage.setItem('sn.default.theme', 'light');
   }
 })
+
+
+
+/*-----------------------------
+    Theme switching & mode preservation
+------------------------------- */
+
+$(".switch-theme").on("click", function (e) {
+  // Toggle the dark / light mode when clicking the mode selector
+  $("body").toggleClass("dark")
+  e.preventDefault()
+
+  // Store selection
+  if ($("body").is(".dark")) {
+    localStorage.setItem('sn.default.theme', 'dark');
+  } else {
+    localStorage.setItem('sn.default.theme', 'light');
+  }
+})
+
+
+/*-----------------------------
+    Storybook handling
+------------------------------- */
+
+$(document).ready(function() {
+
+  // Ping storybook for each frame embedding it and check if it is reachable, if so, show the content,
+  // otherwise show formatted error message
+  document.querySelectorAll("iframe.storybook").forEach((iframe) => {
+    let src = iframe.getAttribute("src")
+    console.log(src)
+    fetch(src, {
+      method: "GET",
+      cache: "no-cache",
+      mode: "cors"
+    })
+    .then(_ => {
+        console.log(`correct response, keeping the content of the window`)
+    })
+    .catch(_ => {
+      console.log(`error detected, unable to load - must show error`)
+    });
+  })
+});
