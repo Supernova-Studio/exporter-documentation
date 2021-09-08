@@ -9,7 +9,8 @@
 {[ const domain = ds.documentationConfiguration().domain /]}
 
 <body class="{{ exportConfiguration().defaultVisualMode }}">
-{[ if exportConfiguration().showVisualModeSwitch ]}
+{* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
+{[ if false ]}
 {* Change theme to whatever was configured only if the configuration allows changing of themes in the first place *}
 <script>
     <!-- This is critical to avoid flickering when switching theme, don't move down -->
