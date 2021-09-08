@@ -9,7 +9,7 @@
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
 
         <!-- Logo -->
-        <div class="logo-wrapper"
+        <div class="logo-wrapper">
         {* Use default Supernova logo OR custom uploaded one, if it was provided *}
             {[ if (exportConfiguration().headerLogo && exportConfiguration().headerLogo.assetUrl) ]}
                 <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" />
