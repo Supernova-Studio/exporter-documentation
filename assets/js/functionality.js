@@ -338,13 +338,17 @@ $(document).ready(function() {
     fetch(src, {
       method: "GET",
       cache: "no-cache",
-      mode: "cors"
+      mode: "no-cors"
     })
     .then(_ => {
-        console.log(`correct response, keeping the content of the window`)
+      // Do nothing for the correct response, as we can't detect whether 
+      // the page was truly reachable and contains storybook due to CORS protection
     })
     .catch(_ => {
-      console.log(`error detected, unable to load - must show error`)
+      // Show error for the specific frame
+      // [iframe] > storybook-container > storybook-state-wrapper > storybook-error.visible
+      iframe.parentElement.parentElement.lastElementChild.style.visibility = "visible";
+      iframe.parentElement.parentElement.firstElementChild.style.visibility = "hidden";
     });
   })
 });

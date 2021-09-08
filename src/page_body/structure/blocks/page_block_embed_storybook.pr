@@ -1,9 +1,17 @@
-{* Get figma block payload *}
+{* Get storybook block payload *}
 {[ const block = context /]}
+{[ const storybookError = ds.documentationConfiguration().settings.storybookError /]}
 
-{* Create figma embed block *}
+{* Create storybook embed block *}
 {[ if block.url ]}
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+
+<div class="storybook-state-wrapper">
+    <div class="storybook-container" style="height: 500px">
+        <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="storybook-error">
+        <span>{{ storybookError ? storybookError : "Storybook failed to load" }}</span>
+    </div>
 </div>
+
 {[/]}
