@@ -9,12 +9,12 @@
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
 
         <!-- Logo -->
-        <div class="logo-wrapper">
+        <div class="logo-wrapper"
         {* Use default Supernova logo OR custom uploaded one, if it was provided *}
             {[ if (exportConfiguration().headerLogo && exportConfiguration().headerLogo.assetUrl) ]}
-                <link href="{{ exportConfiguration().headerLogo.assetUrl }}" rel="icon" />
+                <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" />
             {[ else ]}
-                <img class="default" src="{{ assetUrl("logos/logo-main.svg", domain) }}" title="Supernova" alt="Supernova" />
+                <img class="default" src="{{ assetUrl("logos/logo-main.svg", domain) }}" alt="Our Documentation" />
             {[/]}
         </div>
 

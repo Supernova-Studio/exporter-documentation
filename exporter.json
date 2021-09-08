@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.5.6",
+    "version": "1.5.7",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -31,7 +31,7 @@
                     "dark"
                 ],
                 "label": "Default design theme",
-                "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values.",
+                "description": "Base theme configuration for the entire design system documentation",
                 "category": "Design"
             },
             {
@@ -39,7 +39,7 @@
                 "default": true,
                 "type": "boolean",
                 "label": "Dark/Light mode switch",
-                "description": "Allow users to switch from light to dark documentation using menu item",
+                "description": "Allow users to switch from light to dark documentation using top menu item",
                 "category": "Design"
             },
             {
@@ -60,7 +60,6 @@
             },
             {
                 "key": "headerLogo",
-                "default": "",
                 "type": "image",
                 "label": "Header Logo",
                 "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
@@ -68,10 +67,9 @@
             },
             {
                 "key": "favicon",
-                "default": "",
                 "type": "image",
                 "label": "Site Favicon",
-                "description": "Documentation site favicon. 32x32px .png with transparency is recommended as this is currently supported by all major browsers. If no favicon is provided, site will not use any. Using .ico is supported but discouraged",
+                "description": "Documentation site favicon. 32x32px .png is recommended, using .icon is discouraged",
                 "category": "Design"
             }
         ],
