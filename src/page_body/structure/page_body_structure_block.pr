@@ -49,7 +49,8 @@
     {[ case "Shortcuts" ]}
         {[ inject "page_block_shortcuts" context block /]}
     {[ case "Custom" ]}
-        {[ inject "page_block_custom" context block /]}
+        {* For custom blocks, use different *}
+        {[ inject "page_body_structure_block_custom" context block /]}
 {[/]}
 
 {* Generate child blocks, if any *}

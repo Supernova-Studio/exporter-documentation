@@ -1,7 +1,7 @@
 {[ const block = context /]}
 
-{[ log block /]}
 {* Generate each block depending on this custom block identifier *}
-{[ switch block.type ]}
-
+{[ switch block.key ]}
+{[ case "io.jiritrecak.block.giphy" ]}
+    {[ inject "page_block_giphy" context block /]}
 {[/]}
