@@ -1,12 +1,12 @@
 {
     "id": "io.jiritrecak.experimental-docs",
-    "name": "Documentation",
+    "name": "Jiri's Experimental Docs",
     "description": "Jiri's exporter experiments. Some fun blocks you will not find anywhere else",
     "author": "Jiri Trecak",
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
