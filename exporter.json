@@ -1,12 +1,12 @@
 {
-    "id": "io.supernova.documentation-main",
+    "id": "io.jiritrecak.experimental-docs",
     "name": "Documentation",
-    "description": "Default Supernova documentation exporter",
+    "description": "Jiri's exporter experiments. Some fun blocks you will not find anywhere else",
     "author": "Jiri Trecak",
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.5.13",
+    "version": "1.0.0",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -67,9 +67,50 @@
                 "description": "Meta description of the documentation site",
                 "category": "SEO",
                 "default": ""
+            },
+            {
+                "key": "giphyAPIKey",
+                "type": "string",
+                "label": "Giphy API Key",
+                "description": "API to use when requesting Giphy images",
+                "category": "Access Keys"
             }
         ],
-        "blocks": []
+        "blocks": [{
+            "key": "io.jiritrecak.block.giphy",
+            "category": "Jiri's Experiments",
+            "title": "Giphy",
+            "description": "Add Giphy block and pray that god of mischief smiles upon you today",
+            "icon": "icons/giphy.png",
+            "mode": "block",
+            "properties": [
+                {
+                    "key": "search",
+                    "default": "",
+                    "label": "Search Term",
+                    "type": "string"
+                },
+                {
+                    "key": "weirdness",
+                    "type": "enum",
+                    "default": "0",
+                    "label": "Weirdness Intensity",
+                    "values": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10"
+                    ]
+                }
+            ]
+        }]
     },
     "contributes_upcoming": {
         "configuration": [
