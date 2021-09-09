@@ -48,6 +48,8 @@
         {[ inject "page_block_frames" context block /]}
     {[ case "Shortcuts" ]}
         {[ inject "page_block_shortcuts" context block /]}
+    {[ case "Custom" ]}
+        {[ inject "page_block_custom" context block /]}
 {[/]}
 
 {* Generate child blocks, if any *}

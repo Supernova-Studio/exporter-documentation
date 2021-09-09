@@ -1,0 +1,7 @@
+{[ const block = context /]}
+
+{[ log block /]}
+{* Generate each block depending on this custom block identifier *}
+{[ switch block.type ]}
+
+{[/]}
