@@ -1,0 +1,7 @@
+{[ const block = context /]}
+
+{* Render soundcloud block from configuration *}
+{[ let url = block.properties.url /]}
+{[ if url ]}
+    <iframe width=“100%” height=“300" scrolling=“no” frameborder=“no” allow=“autoplay” src=“{{ url }}”></iframe>
+{[/]}

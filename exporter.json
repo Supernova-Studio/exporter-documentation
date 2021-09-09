@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -109,6 +109,21 @@
                         "9",
                         "10"
                     ]
+                }
+            ]
+        }, {
+            "key": "io.jiritrecak.block.soundcloud",
+            "category": "Jiri's Experiments",
+            "title": "SoundCloud",
+            "description": "Add SoundCloud player",
+            "icon": "icons/soundcloud.png",
+            "mode": "block",
+            "properties": [
+                {
+                    "key": "search",
+                    "default": "",
+                    "label": "Embed Track URL",
+                    "type": "string"
                 }
             ]
         }]

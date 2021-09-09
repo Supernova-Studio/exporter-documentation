@@ -4,4 +4,6 @@
 {[ switch block.key ]}
 {[ case "io.jiritrecak.block.giphy" ]}
     {[ inject "page_block_giphy" context block /]}
+{[ case "io.jiritrecak.block.soundcloud" ]}
+    {[ inject "page_block_soundcloud" context block /]}
 {[/]}
