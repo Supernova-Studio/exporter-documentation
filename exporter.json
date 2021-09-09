@@ -73,7 +73,8 @@
                 "type": "string",
                 "label": "Giphy API Key",
                 "description": "API to use when requesting Giphy images",
-                "category": "Access Keys"
+                "category": "Access Keys",
+                "default": ""
             }
         ],
         "blocks": [{
