@@ -3134,7 +3134,7 @@ ul > .block-children, ol > .block-children {
 
 .token-container .grid > div {
   flex: 0 1 180px;
-  margin: 0 6px 12px 0;
+  margin: 0 2px 12px 0px;
 }
 
 .token-container .grid > div.spacer {
@@ -3391,8 +3391,6 @@ ul > .block-children, ol > .block-children {
   max-width: 1000px;
   margin: 0px auto;
   padding: 60px 0px 20px 0px;
-  position: relative;
-  left: -40px;
 }
 
 .container-title > .slider h1 {
@@ -3402,7 +3400,6 @@ ul > .block-children, ol > .block-children {
   font-size: 48px;
   font-weight: bold;
   margin: 0 0 20px 0;
-  max-width: 750px;
 }
 .container-title > .slider .subtitle {
   padding: 0px 0 28px 0;
@@ -3411,7 +3408,7 @@ ul > .block-children, ol > .block-children {
   font-size: 20px;
   font-weight: normal;
   line-height: 28px;
-  max-width: 750px;
+  max-width: 768px;
 }
 .container-title.inverted > .slider h1, .container-title.inverted > .slider .subtitle {
   color: white;
@@ -3436,7 +3433,7 @@ ul > .block-children, ol > .block-children {
 #header-nav .search {
   color: #000;
   cursor: pointer;
-  padding: 8px;
+  padding: 14px 8px 8px 8px;
 }
 
 .fa-search:before {
@@ -3465,10 +3462,6 @@ ul > .block-children, ol > .block-children {
 
 
 @media (min-width: 1170px) {
-  .docs-content > .container {
-    position: relative;
-    left: -40px;
-  }
   .container-title > .slider {
     width: 1000px;
   }
@@ -3485,6 +3478,7 @@ ul > .block-children, ol > .block-children {
 
 #section-content-page {
   max-width: 750px;
+  width: 100%;
   margin-bottom: 100px;
 }
 
@@ -3535,12 +3529,14 @@ ul > .block-children, ol > .block-children {
 
 .docs-content > .container {
   display: flex;
+  justify-content: center;
 }
 
 /* Sidebar Navigation */
 #content-nav {
   padding-left: 16px;
   border-left: 1px solid #DCE0E4;
+  width: 160px;
 }
 
 

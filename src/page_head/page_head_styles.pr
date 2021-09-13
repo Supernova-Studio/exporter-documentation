@@ -16,6 +16,7 @@
 
 <!-- Custom Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("css/stylesheet.css", domain) }}" />
+<link rel="stylesheet" type="text/css" href="{{ assetUrl("css/responsive.css", domain) }}" />
 
 <!-- Code highlight -->
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("css/code-highlight.css", domain) }}" />
