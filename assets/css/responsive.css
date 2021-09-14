@@ -5,6 +5,10 @@
     .container-title>.slider {
         max-width: 540px;
     }
+    .token-container .grid>div {
+        flex: 0 1 49%;
+        margin: 0 0 8px 0;
+    }
 }
 
 @media (max-width: 768px) {
