@@ -1,0 +1,36 @@
+{[ const block = context /]}
+
+{* Render giphy block from configuration *}
+{[ let weirdness = block.properties.weirdness /]}
+{[ let search = block.properties.search /]}
+{[ let apiKey = exportConfiguration().giphyAPIKey /]}
+
+{* Only export the block if search and API key are properly provided *}
+{[ if (apiKey && search && search.count() > 0) ]}
+    {[ if !weirdness ]}
+        {[ weirdness = "0" /]}
+    {[/]}
+
+    {* Fetch the block data from the API *}
+    {[ let fetchUrl = ("https://api.giphy.com/v1/gifs/translate?api_key=" + apiKey + "&limit=25&rating=g&s=" + search) /]}
+    {[ let giphySearchData = getNetworkData(fetchUrl) /]}
+
+    {* When we have successfully retrieved something from the API, display it *}
+    {[ if (giphySearchData && giphySearchData.data)  ]}
+        {[ let giphyImage = giphySearchData.data.images.downsized /]}
+        {[ log giphyImage /]}
+        <div style="padding: 30px; background-color: #fafafa; margin: 30px 0px;">
+            <div class="row">
+                <div class="col-6">
+                <strong>Random giphy image block!</strong><br />
+                <p style="margin: 20px 0px; 100px 0px; font-size: 12px">You have gambled for <strong>{{ search }}</strong>!<br />Enjoy you reward, you deserve it.</p>
+            
+                </div>
+                <div class="col-6">
+                    <img src="{{ giphyImage.url }}" style="width: 100%; height: auto" />
+                </div>
+            </div>
+        </div>
+    {[/]}
+{[/]}
+
