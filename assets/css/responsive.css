@@ -21,6 +21,15 @@
     .container-title>.slider h1 {
         font-size: 32px;
     }
+    .tile-container .grid.c8>div,
+    .tile-container .grid.c7>div,
+    .tile-container .grid.c6>div,
+    .tile-container .grid.c5>div,
+    .tile-container .grid.c4>div,
+    .tile-container .grid.c3>div,
+    .tile-container .grid.c2>div {
+        flex: 0 1 49%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -98,6 +107,9 @@
     .logo-wrapper {
         margin: 10px 0px;
         display: none;
+    }
+    #header .navbar {
+        max-height: 60px;
     }
 }
 
