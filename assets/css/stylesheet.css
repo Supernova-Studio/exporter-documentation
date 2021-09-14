@@ -3791,7 +3791,7 @@ ol>.block-children {
     left: 0;
     overflow: hidden;
     overflow-y: hidden;
-    width: 300px;
+    width: 299px;
     height: 60px;
     z-index: 1;
     border-top: 1px solid var(--colorDocsViewGreyGrey2);
