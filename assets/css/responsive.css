@@ -1,67 +1,110 @@
 @media (max-width: 576px) {
-
     .container {
         width: 95%;
     }
-
-    .container-title > .slider {
+    .container-title>.slider {
         max-width: 540px;
     }
 }
 
 @media (max-width: 768px) {
-
     .container {
         width: 95%;
+    }
+    .container-title>.slider {
+        padding: 30px 0px 0 0px;
+    }
+    .container-title>.slider h1 {
+        font-size: 32px;
     }
 }
 
 @media (min-width: 576px) {
-
-    .container-title > .slider {
+    .container-title>.slider {
         /*max-width: 540px;*/
     }
-
-    .container, .container-sm {
+    .container,
+    .container-sm {
         max-width: 750px;
     }
 }
 
+
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-    
+
+@media (min-width: 768px) {}
+
+
+/* ! Large devices (desktops, 992px and up) */
+
+@media (max-width: 991.98px) {
+    .docs-navigation {
+        margin-left: 0;
+    }
+    .navbar-expand-lg .navbar-collapse {
+        position: relative;
+        top: inherit;
+        right: inherit;
+        left: inherit;
+        background: inherit;
+        margin-top: 0px;
+        z-index: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .navbar-nav {
+        display: none;
+    }
+    .utility-nav {
+        justify-content: right;
+    }
+    nav>.container-fluid {
+        width: 80%;
+    }
+    .primary-menu>.container-fluid {
+        padding: 0px 16px 0 16px;
+    }
 }
+
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
-    
+
+@media (min-width: 1119.98px) {
+    #sidebarCollapse {
+        display: none;
+    }
 }
+
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-    
-}
+
+@media (min-width: 1200px) {}
 
 @media (max-width: 1120px) {
-    
     .docs-navigation.bg-sidebar {
         display: none;
     }
-
     .docs-content {
         margin-left: inherit;
         min-height: inherit;
     }
+    #sidebarCollapse {
+        display: initial;
+    }
+    .logo-wrapper {
+        margin: 10px 0px;
+        display: none;
+    }
 }
 
+
 /* Default full content large devices (large desktops, 1200px and up) */
-@media (max-width: 1360px) { 
-    
+
+@media (max-width: 1360px) {
     #content-nav-container {
         display: none;
     }
-    
-    .container-title > .slider {
+    .container-title>.slider {
         max-width: 750px;
         width: 95%;
     }
