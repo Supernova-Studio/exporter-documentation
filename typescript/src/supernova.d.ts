@@ -412,7 +412,7 @@ declare global {
 
   type DocumentationPageBlockFrames = DocumentationPageBlock & {
     frames: Array<DocumentationPageBlockFrame>
-    frameProperties: {
+    properties: {
       alignment: FrameAlignment,
       layout: FrameLayout,
       backgroundColor: string | null
