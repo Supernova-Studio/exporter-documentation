@@ -4064,14 +4064,17 @@ ol>.block-children {
     text-decoration: underline;
 }
 
-#version-container .dropdown-menu {
-    max-height: 233px;
-    width: 150px;
+#version-container .dropdown-menu,
+#mobile-menu-container .dropdown-menu {
+    max-height: 300px;
+    min-width: 180px;
+    max-width: 280px;
     overflow-y: scroll;
     margin-top: 10px;
 }
 
-#version-container button {
+#version-container button,
+#mobile-menu-container button {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -4080,7 +4083,8 @@ ol>.block-children {
     background-color: transparent;
 }
 
-#version-container button:hover {
+#version-container button:hover,
+#mobile-menu-container button:hover {
     background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -4090,13 +4094,15 @@ ol>.block-children {
     align-items: center;
 }
 
-#version-container button {
+#version-container button,
+#mobile-menu-container button {
     margin-right: 8px;
     padding-right: 16px;
     text-transform: capitalize;
 }
 
-#version-container button::after {
+#version-container button::after,
+#mobile-menu-container button::after {
     position: absolute;
     right: 8px;
     top: 4px;
@@ -4105,7 +4111,8 @@ ol>.block-children {
     content: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.6499 0.650002L7.3499 1.35L3.9999 4.71L0.649902 1.35L1.3499 0.650002L3.9999 3.29L6.6499 0.650002Z' fill='black'/%3E%3C/svg%3E%0A");
 }
 
-#version-container .dropdown-item {
+#version-container .dropdown-item,
+#mobile-menu-container .dropdown-item {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -4114,12 +4121,14 @@ ol>.block-children {
     text-transform: capitalize;
 }
 
-#version-container .dropdown-item.checked {
+#version-container .dropdown-item.checked,
+#mobile-menu-container .dropdown-item.checked {
     background-color: rgba(15, 98, 254, 0.04);
     color: #0F62FE;
 }
 
-#version-container .dropdown-item.checked::after {
+#version-container .dropdown-item.checked::after,
+#mobile-menu-container .dropdown-item.checked::after {
     position: absolute;
     right: 12px;
     display: inline-block;
@@ -4127,7 +4136,8 @@ ol>.block-children {
     color: #0F62FE;
 }
 
-#version-container .dropdown-menu {
+#version-container .dropdown-menu,
+#mobile-menu-container .dropdown-menu {
     right: 0;
     left: auto;
 }

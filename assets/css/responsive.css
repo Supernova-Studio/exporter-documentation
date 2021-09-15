@@ -51,6 +51,12 @@
 /* ! Large devices (desktops, 992px and up) */
 
 @media (max-width: 991.98px) {
+    #mobile-menu-container {
+        display: initial;
+    }
+    #version-container {
+        display: none;
+    }
     .docs-navigation {
         margin-left: 0;
     }
@@ -85,6 +91,15 @@
 @media (min-width: 1119.98px) {
     #sidebarCollapse {
         display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    #mobile-menu-container {
+        display: none;
+    }
+    #version-container {
+        display: initial;
     }
 }
 

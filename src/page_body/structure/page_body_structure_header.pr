@@ -39,7 +39,36 @@
                 {[/]}
             </ul>
 
-            <div class="utility-nav">            
+
+            <div class="utility-nav">
+            
+            {[ if shouldShowTabbar ]}
+            {[ let rootGroup = ds.rootDocumentationGroup() /]}
+            <div id="mobile-menu-container" class="dropdown">
+                <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                    
+                        {[ for item in rootGroup.children ]}
+                            {* Re-enable if we only want to show groups *}
+                            {* {[ if item.type.equals("Group") ]} *}
+                                {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
+                                {[ if isActive ]}
+                                    {{ item.title }}
+                                {[/]}
+                            {* {[/]} *}
+                        {[/]}
+                </button>
+                <div class="dropdown-menu pull-right" aria-labelledby="mobile-menu-selector">
+                    {[ for item in rootGroup.children ]}
+                        {* Re-enable if we only want to show groups *}
+                        {* {[ if item.type.equals("Group") ]} *}
+                            {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
+                            <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}">{{ item.title }}</a>
+                        {* {[/]} *}
+                    {[/]}
+                </div>
+            </div>
+            {[/]}
+
             <div id="version-container" class="dropdown">
                 <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Loading
