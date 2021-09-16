@@ -13,5 +13,8 @@
         <span>{{ storybookError ? storybookError : "Storybook failed to load" }}</span>
     </div>
 </div>
+{[ if block.caption ]}
+    <p class="caption">{{ block.caption }}</p>
+{[/]}
 
 {[/]}
