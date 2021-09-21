@@ -3364,7 +3364,6 @@ input:-internal-autofill-selected {
 
 code {
     padding: 0;
-    margin-left: -450px;
 }
 
 .block-children {

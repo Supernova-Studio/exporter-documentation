@@ -1,0 +1,10 @@
+{[ const block = context /]}
+
+{* Render markdown block from configuration *}
+{[ let url = block.properties.markdownUrl /]}
+
+{* Fetch the markdown data from the remote URL *}
+{[ let markdownData = getNetworkData(url) /]}
+
+{* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
+{{ markdownToHTML(markdownData) }}

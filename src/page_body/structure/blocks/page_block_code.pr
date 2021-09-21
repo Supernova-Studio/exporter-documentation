@@ -41,7 +41,8 @@
 {[ else ]}
     {* Generate code which will be automatically highlighted *}
     <pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
-    ‏‏‎ ‎
+    
+    
     {{ highlightSafeString(block) }}
 
     </code></pre>

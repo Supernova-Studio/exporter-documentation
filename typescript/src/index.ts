@@ -3,8 +3,9 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { experimentalFigmaFrameBlock, experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
+import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
+import { markdownToHTML } from "./doc_functionality/markdown"
 import { encodeSandboxData, getFrontendSandboxData, isSandboxDefinition } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString } from "./doc_functionality/string_utils"
@@ -50,4 +51,6 @@ Pulsar.registerFunction("typographyDescription", typographyDescription)
 /* Experimental area for upcoming editor features */
 Pulsar.registerFunction("experimentalDefaultPageStyle", experimentalDefaultPageStyle);
 Pulsar.registerFunction("experimentalForcedPageStyle", experimentalForcedPageStyle);
-Pulsar.registerFunction("experimentalFigmaFrameBlock", experimentalFigmaFrameBlock);
+
+/* Markdown */
+Pulsar.registerFunction("markdownToHTML", markdownToHTML);

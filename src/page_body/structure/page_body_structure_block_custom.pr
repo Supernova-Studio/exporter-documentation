@@ -2,8 +2,11 @@
 
 {* Generate each block depending on this custom block identifier *}
 {[ switch block.key ]}
-{[ case "io.jiritrecak.block.giphy" ]}
-    {[ inject "page_block_giphy" context block /]}
-{[ case "io.jiritrecak.block.soundcloud" ]}
-    {[ inject "page_block_soundcloud" context block /]}
+{* Not in use right now, easter egg functionality :) *}
+{[ case "io.supernova.documentation-main.giphy" ]}
+    {[ inject "page_block_custom_giphy" context block /]}
+{[ case "io.supernova.documentation-main.markdown" ]}
+    {[ inject "page_block_custom_markdown" context block /]}
+{[ case "io.supernova.documentation-main.component-health" ]}
+    {[ inject "page_block_custom_component_health" context block /]}
 {[/]}
