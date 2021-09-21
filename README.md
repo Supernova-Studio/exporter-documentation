@@ -1,4 +1,4 @@
-<img src="./readme-icon.png" alt="Supernova Logo" style="max-width:100%;">
+<img src="https://raw.githubusercontent.com/Supernova-Studio/exporter-documentation/master/readme-icon.png" alt="Supernova Logo" style="max-width:100%;">
 
 
 [Supernova](https://supernova.io) is a design system platform that allows you to seamlessly translate your design system data to production-ready code. Supernova works with any platform or tech stack, is used by many developers and organizations around the world, and can help you save time by replacing manual and repetitive tasks that all developers hate. To learn everything Supernova, please check out our [developer documentation](https://developers.supernova.io/).
@@ -18,7 +18,7 @@ In order to make the Supernova HTML preview exporter available for your organiza
 
 In order to faciliate easy communication and speed up delivery of fixes and features for this exporter, we require everyone to log all issues and feature requests through the issue tracking of this repository. 
 
-Please read through the [existing issues](../../issues) before you open a new issue! It might be that we have already discussed it before. If you are sure your request wasn't mentioned just yet, proceed to [open a new issue](../../issues) and fill in the required information. Thank you!
+Please read through the [existing issues](https://github.com/Supernova-Studio/exporter-documentation/issues) before you open a new issue! It might be that we have already discussed it before. If you are sure your request wasn't mentioned just yet, proceed to [open a new issue](https://github.com/Supernova-Studio/exporter-documentation/issues) and fill in the required information. Thank you!
 
 ## Contributing
 
