@@ -1,0 +1,18 @@
+{[ const block = context /]}
+
+{* Render component health block *}
+{[ let health = block.properties.health /]}
+{[ let published = block.properties.published /]}
+{[ let updated = block.properties.updated /]}
+{[ let designUrl = block.properties.designUrl /]}
+{[ let repositoryUrl = block.properties.repositoryUrl /]}
+{[ let information = block.properties.information /]}
+
+{* Handle component health block *}
+<h3>Component health</h3>
+<p>This component is {{ health }}</p>
+<p>Published at {{ published }}</p>
+<p>Updated at {{ updated }}</p>
+<p>Design link to download is <a href="{{ designUrl }}">Here</a></p>
+<p>Repository link to download is <a href="{{ repositoryUrl }}">Here</a></p>
+<p>You should also know additional info: {{ information }}</p>

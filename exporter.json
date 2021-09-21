@@ -69,18 +69,69 @@
             }
         ],
         "blocks": [{
-            "key": "io.supernova.documentation-main.markdown",
-            "category": "Remote Data",
-            "description": "Embed and process markdown from remote URL",
-            "icon": "icons/markdown.png",
-            "mode": "block",
-            "title": "Markdown",
-            "properties": [{
-                "key": "markdownUrl",
-                "default": "",
-                "type": "string",
-                "label": "Markdown URL"
-            }]
-        }]
+                "key": "io.supernova.documentation-main.markdown",
+                "category": "Remote Data Blocks",
+                "title": "Markdown",
+                "description": "Embed and process markdown from remote URL",
+                "icon": "icons/markdown.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "markdownUrl",
+                    "default": "",
+                    "type": "string",
+                    "label": "Markdown URL"
+                }]
+            },
+            {
+                "key": "io.supernova.documentation-main.component-health",
+                "category": "Component Blocks",
+                "title": "Component Health",
+                "description": "Show component health and additional information",
+                "icon": "icons/component-health.png",
+                "mode": "block",
+                "properties": [{
+                        "key": "health",
+                        "default": "healthy",
+                        "type": "enum",
+                        "label": "Health",
+                        "values": [
+                            "healthy",
+                            "withering",
+                            "dormant"
+                        ]
+                    },
+                    {
+                        "key": "published",
+                        "default": "",
+                        "type": "string",
+                        "label": "Date Published"
+                    },
+                    {
+                        "key": "updated",
+                        "default": "",
+                        "type": "string",
+                        "label": "Date Updated"
+                    },
+                    {
+                        "key": "designUrl",
+                        "default": "",
+                        "type": "string",
+                        "label": "Design URL"
+                    },
+                    {
+                        "key": "repositoryUrl",
+                        "default": "",
+                        "type": "string",
+                        "label": "Repository URL"
+                    },
+                    {
+                        "key": "info",
+                        "default": "",
+                        "type": "string",
+                        "label": "Additional Info"
+                    }
+                ]
+            }
+        ]
     }
 }
