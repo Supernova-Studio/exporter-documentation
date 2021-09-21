@@ -365,3 +365,20 @@ $("#sidebarCollapse").on("click", function(e) {
     $(".docs-navigation").toggleClass("d-inline")
     e.preventDefault()
 })
+
+
+/*------------------------
+   Health status overlay
+-------------------------- */
+
+$('a[data-target="health-status"]').on("click", function(e) {
+    // Toggle the overlay
+    $(".health-overlay").toggleClass("d-none");
+    e.preventDefault();
+})
+
+$('.health-overlay').on("click", function(e) {
+    // Toggle the overlay
+    $(".health-overlay").toggleClass("d-none");
+    e.preventDefault();
+})

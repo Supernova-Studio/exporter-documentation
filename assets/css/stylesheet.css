@@ -4724,3 +4724,372 @@ body.dark .token-container table {
 body.dark .fa-moon:before {
     content: url("data:image/svg+xml,%3Csvg width='38' height='26' viewBox='0 0 38 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='16' y='4' width='18' height='18' rx='9' fill='white'/%3E%3Cpath d='M28.3301 7.67V11.67' stroke='%231E1E1E' stroke-linejoin='bevel'/%3E%3Cpath d='M30.3301 9.67H26.3301' stroke='%231E1E1E' stroke-linejoin='bevel'/%3E%3Cpath d='M28 15C27.1994 14.9975 26.411 14.8027 25.7013 14.4321C24.9915 14.0614 24.3812 13.5259 23.9216 12.8702C23.462 12.2146 23.1665 11.4582 23.0601 10.6646C22.9537 9.87105 23.0394 9.06354 23.31 8.31C22.5136 8.59139 21.8014 9.06998 21.2399 9.70111C20.6784 10.3322 20.286 11.0953 20.0993 11.9191C19.9126 12.743 19.9376 13.6007 20.172 14.4122C20.4065 15.2238 20.8427 15.9627 21.44 16.56C22.0374 17.1573 22.7763 17.5935 23.5878 17.828C24.3993 18.0625 25.257 18.0875 26.0809 17.9008C26.9047 17.714 27.6678 17.3216 28.2989 16.7601C28.9301 16.1987 29.4087 15.4865 29.69 14.69C29.1488 14.8901 28.577 14.995 28 15V15Z' stroke='%231E1E1E' stroke-linejoin='bevel'/%3E%3Cpath d='M13 1.5H25V0.5H13V1.5ZM25 24.5H13V25.5H25V24.5ZM13 24.5C6.64873 24.5 1.5 19.3513 1.5 13H0.5C0.5 19.9036 6.09644 25.5 13 25.5V24.5ZM36.5 13C36.5 19.3513 31.3513 24.5 25 24.5V25.5C31.9036 25.5 37.5 19.9036 37.5 13H36.5ZM25 1.5C31.3513 1.5 36.5 6.64873 36.5 13H37.5C37.5 6.09644 31.9036 0.5 25 0.5V1.5ZM13 0.5C6.09644 0.5 0.5 6.09644 0.5 13H1.5C1.5 6.64873 6.64873 1.5 13 1.5V0.5Z' fill='white' fill-opacity='0.8'/%3E%3C/svg%3E%0A");
 }
+
+
+/*  10. Responsive
+/* =================================== */
+
+@media (max-width: 576px) {
+    .container {
+        width: 95%;
+    }
+    .container-title>.slider {
+        max-width: 540px;
+    }
+    .token-container .grid>div {
+        flex: 0 1 49%;
+        margin: 0 0 8px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    .container-title>.slider {
+        padding: 30px 0px 0 0px;
+    }
+    .container-title>.slider h1 {
+        font-size: 32px;
+    }
+    .tile-container .grid.c8>div,
+    .tile-container .grid.c7>div,
+    .tile-container .grid.c6>div,
+    .tile-container .grid.c5>div,
+    .tile-container .grid.c4>div,
+    .tile-container .grid.c3>div,
+    .tile-container .grid.c2>div {
+        flex: 0 1 49%;
+    }
+}
+
+@media (min-width: 576px) {
+    .container-title>.slider {
+        /*max-width: 540px;*/
+    }
+    .container,
+    .container-sm {
+        max-width: 750px;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {}
+
+
+/* ! Large devices (desktops, 992px and up) */
+
+@media (max-width: 991.98px) {
+    #mobile-menu-container {
+        display: initial;
+    }
+    #version-container {
+        display: none;
+    }
+    .docs-navigation {
+        margin-left: 0;
+    }
+    .navbar-expand-lg .navbar-collapse {
+        position: relative;
+        top: inherit;
+        right: inherit;
+        left: inherit;
+        background: inherit;
+        margin-top: 0px;
+        z-index: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .navbar-nav {
+        display: none;
+    }
+    .utility-nav {
+        justify-content: right;
+    }
+    nav>.container-fluid {
+        width: 80%;
+    }
+    .primary-menu>.container-fluid {
+        padding: 0px 16px 0 16px;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 1119.98px) {
+    #sidebarCollapse {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    #mobile-menu-container {
+        display: none;
+    }
+    #version-container {
+        display: initial;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}
+
+@media (max-width: 1120px) {
+    .docs-navigation.bg-sidebar {
+        display: none;
+    }
+    .docs-content {
+        margin-left: inherit;
+        min-height: inherit;
+    }
+    #sidebarCollapse {
+        display: initial;
+    }
+    .logo-wrapper {
+        margin: 10px 0px;
+        display: none;
+    }
+    #header .navbar {
+        max-height: 60px;
+    }
+}
+
+
+/* Default full content large devices (large desktops, 1200px and up) */
+
+@media (max-width: 1360px) {
+    #content-nav-container {
+        display: none;
+    }
+    .container-title>.slider {
+        max-width: 750px;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    table {
+        border: 0;
+    }
+    table caption {
+        font-size: 1.3em;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+    .token-container table tr {
+        height: 100%;
+    }
+    .token-container table tr td:nth-child(2) {
+        width: auto;
+        padding: initial;
+        margin: -40px 0 0 50px;
+        text-align: left;
+    }
+    .token-container table tr td:nth-child(3) {
+        padding: initial;
+        text-align: left;
+        margin: 4px 0 0 50px;
+    }
+    .token-container table tr td:nth-child(4) {
+        width: auto;
+        padding: initial;
+        text-align: left;
+        margin: 4px 0 8px 50px;
+    }
+}
+
+
+/*  11. Custom blocks
+/* =================================== */
+
+.component-health-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ececec;
+}
+
+.component-health-row>a {
+    margin-right: 16px;
+}
+
+.component-health-row div.tag {
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.component-health-row div.tag.health {
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.component-health-row div.tag.health:hover,
+.component-health-row>a.health:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.component-health-row div.tag.healthy {
+    background-color: #ebf9eb;
+    color: rgb(41, 145, 41);
+}
+
+.component-health-row div.tag.withering {
+    background-color: #fff8e2;
+    color: #725c15;
+}
+
+.component-health-row div.tag.dormant {
+    background-color: rgb(255, 214, 214);
+    color: rgb(255, 95, 95);
+}
+
+.component-health-row div.tag.link,
+.component-health-row>a>div.tag.link {
+    /*
+    background-color: rgb(228, 228, 228);
+    color: rgb(43, 43, 43);
+    */
+    color: #676767;
+}
+
+.component-health-row>a>div.tag.link:hover {
+    /*
+    background-color: rgb(228, 228, 228);
+    color: rgb(43, 43, 43);
+    */
+    color: #313131;
+    text-decoration: underline;
+}
+
+.component-health-row>a>div.tag.link:hover {
+    /*
+    background-color: rgb(228, 228, 228);
+    color: rgb(43, 43, 43);
+    */
+    color: #313131;
+    text-decoration: underline;
+}
+
+.health-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 11;
+    cursor: pointer;
+}
+
+.health-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 12px;
+    background-color: white;
+    max-width: 375px;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.health-overlay-content .header {
+    padding: 16px;
+    background-color: #fafafa;
+}
+
+.health-overlay-content .links,
+.health-overlay-content .info {
+    border-top: 1px solid #e4e4e4;
+    padding: 12px 0px;
+}
+
+.health-overlay-content .info {
+    padding: 12px 12px;
+}
+
+.health-overlay-content .info span {
+    font-weight: bold;
+    padding: 8px 0px;
+    display: block;
+    font-size: 14px;
+}
+
+.health-overlay-content .info p {
+    line-height: 21px;
+    font-size: 12px;
+}
+
+.health-overlay-content .links .row {
+    padding: 4px 16px;
+}
+
+.health-overlay-content .header p {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.health-overlay-content .header .title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.health-overlay-content.healthy .header {
+    background-color: #ebf9eb;
+}
+
+.health-overlay-content.healthy .header .title {
+    color: rgb(41, 145, 41);
+}
+
+.health-overlay-content.withering .header {
+    background-color: #fff8e2;
+}
+
+.health-overlay-content.withering .header .title {
+    color: #725c15;
+}
+
+.health-overlay-content.dormant .header {
+    background-color: rgb(255, 214, 214);
+}
+
+.health-overlay-content.dormant .header .title {
+    color: rgb(255, 95, 95);
+}
