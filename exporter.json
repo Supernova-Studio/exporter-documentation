@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.6.4",
+    "version": "1.6.5",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -66,6 +66,22 @@
                 "description": "Meta description of the documentation site",
                 "category": "SEO",
                 "default": ""
+            },
+            {
+                "key": "componentHealthSourceIdentifier",
+                "type": "string",
+                "label": "Component Health Sheet Identifier",
+                "description": "Google Sheets identifier that points to a google sheets file containing component health statuses",
+                "category": "Components",
+                "default": ""
+            },
+            {
+                "key": "componentHealthSourceName",
+                "type": "string",
+                "label": "Component Health Sheet Name",
+                "description": "Name of a specific sheet that containing component health statuses. Note that this is case sensitive",
+                "category": "Components",
+                "default": ""
             }
         ],
         "blocks": [{
@@ -85,8 +101,8 @@
             {
                 "key": "io.supernova.documentation-main.component-health",
                 "category": "Component Blocks",
-                "title": "Component Health",
-                "description": "Show component health and additional information",
+                "title": "Static Health",
+                "description": "Show static component health information",
                 "icon": "icons/component-health.png",
                 "mode": "block",
                 "properties": [{
@@ -131,6 +147,20 @@
                         "label": "Additional Info"
                     }
                 ]
+            },
+            {
+                "key": "io.supernova.documentation-main.component-health-dynamic",
+                "category": "Component Blocks",
+                "title": "Dynamic Health",
+                "description": "Show component health information from API",
+                "icon": "icons/component-health.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "componentId",
+                    "default": "",
+                    "type": "string",
+                    "label": "Component ID"
+                }]
             }
         ]
     }
