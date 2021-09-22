@@ -6,6 +6,11 @@ import * as CSVParse from 'papaparse'
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Health
 
+/** Create URL that directly download CSV from google sheets API */
+export function constructGoogleSheetCSVUrl(sourceIdentifier, sourceName): string {
+    return "https://docs.google.com/spreadsheets/d/" + sourceIdentifier + "/gviz/tq?tqx=out:csv&sheet=" + sourceName
+}
+
 /** Construct block from component health data */
 export function constructDynamicHealthBlock(componentId: string, data: any) {
     
@@ -45,6 +50,7 @@ export function constructDynamicHealthBlock(componentId: string, data: any) {
                     updated: component["Updated"],
                     designUrl: component["Design URL"],
                     repositoryUrl: component["Repository URL"],
+                    documentationUrl: component["Documentation URL"],
                     info: component["Information"]
                 }
             }
@@ -84,21 +90,37 @@ export function constructDynamicHealthList(data: any) {
         return undefined
     }
 
-    let blocks: Array<object> = []
+    let components: Array<object> = []
+    let healthy: number = 0
+    let withering: number = 0
+    let dormant: number = 0
+
     for (let component of parsedData.data) {
-        blocks.push({
-            properties: {
-                id: component["ID"],
-                health: component["Health"],
-                published: component["Published"],
-                updated: component["Updated"],
-                designUrl: component["Design URL"],
-                repositoryUrl: component["Repository URL"],
-                info: component["Information"]
-            }
+        components.push({
+            id: component["ID"],
+            health: component["Health"],
+            published: component["Published"],
+            updated: component["Updated"],
+            designUrl: component["Design URL"],
+            repositoryUrl: component["Repository URL"],
+            documentationUrl: component["Documentation URL"],
+            info: component["Information"]
         })
+        let status = component["Health"]
+        switch (status) {
+            case "healthy": healthy += 1; break
+            case "withering": withering += 1; break
+            case "dormant": dormant += 1; break
+        }
     }
 
-    return blocks
+    return {
+        summary: {
+            healthy: healthy,
+            withering: withering,
+            dormant: dormant
+        }, 
+        components: components
+    }
 }
  

@@ -4,7 +4,7 @@
 // MARK: - Imports
 
 import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
-import { constructDynamicHealthBlock, constructDynamicHealthList } from "./doc_functionality/health"
+import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { encodeSandboxData, getFrontendSandboxData, isSandboxDefinition } from "./doc_functionality/sandbox"
@@ -59,3 +59,4 @@ Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 /* Component Health */
 Pulsar.registerFunction("constructDynamicHealthBlock", constructDynamicHealthBlock)
 Pulsar.registerFunction("constructDynamicHealthList", constructDynamicHealthList)
+Pulsar.registerFunction("constructGoogleSheetCSVUrl", constructGoogleSheetCSVUrl)

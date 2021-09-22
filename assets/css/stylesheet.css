@@ -5093,3 +5093,44 @@ body.dark .fa-moon:before {
 .health-overlay-content.dormant .header .title {
     color: rgb(255, 95, 95);
 }
+
+.component-health-summary div.large {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.component-health-summary div.healthy {
+    color: rgb(41, 145, 41);
+}
+
+.component-health-summary div.withering {
+    color: #debe54;
+}
+
+.component-health-summary div.dormant {
+    color: rgb(255, 95, 95);
+}
+
+.component-health-summary div.small {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 16px;
+}
+
+.component-health-list {
+    font-size: 14px;
+    margin: 30px 0px;
+}
+
+.component-health-list a:hover {
+    text-decoration: none;
+}
+
+.component-health-row.inline {
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
+
+.component-health-row.inline div.tag {
+    padding: 0px 12px;
+}
