@@ -21,11 +21,3 @@
 {[ let sheetCSVDownloadUrl = ("https://docs.google.com/spreadsheets/d/" + sourceIdentifier + "/gviz/tq?tqx=out:csv&sheet=" + sourceName) /]}
 {[ log sheetCSVDownloadUrl /]}
 {[ let data = getNetworkData(sheetCSVDownloadUrl) /]}
-
-{* Retrieve information from the API. In order to be compatible with component health block, we create expected block structure *}
-{[ if !data ]}
-    <p>Unable to fetch information about component ID {{ componentId }}</p>
-{[ else ]}
-    {[ let dynamicBlock = constructDynamicHealthBlock(componentId, data) /]}
-    {[ inject "page_block_custom_component_health" context dynamicBlock /]}
-{[/]}

@@ -4,6 +4,7 @@
 // MARK: - Imports
 
 import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
+import { constructDynamicHealthBlock, constructDynamicHealthList } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { encodeSandboxData, getFrontendSandboxData, isSandboxDefinition } from "./doc_functionality/sandbox"
@@ -34,9 +35,9 @@ Pulsar.registerFunction("slugifyHeading", slugifyHeading)
 Pulsar.registerFunction("textBlockPlainText", textBlockPlainText)
 
 /* Sandbox features */
-Pulsar.registerFunction("isSandboxDefinition", isSandboxDefinition);
-Pulsar.registerFunction("encodeSandboxdata", encodeSandboxData);
-Pulsar.registerFunction("getFrontendSandboxData", getFrontendSandboxData);
+Pulsar.registerFunction("isSandboxDefinition", isSandboxDefinition)
+Pulsar.registerFunction("encodeSandboxdata", encodeSandboxData)
+Pulsar.registerFunction("getFrontendSandboxData", getFrontendSandboxData)
 
 /* Token manipulation and formatting */
 Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)
@@ -49,8 +50,12 @@ Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUn
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 
 /* Experimental area for upcoming editor features */
-Pulsar.registerFunction("experimentalDefaultPageStyle", experimentalDefaultPageStyle);
-Pulsar.registerFunction("experimentalForcedPageStyle", experimentalForcedPageStyle);
+Pulsar.registerFunction("experimentalDefaultPageStyle", experimentalDefaultPageStyle)
+Pulsar.registerFunction("experimentalForcedPageStyle", experimentalForcedPageStyle)
 
 /* Markdown */
-Pulsar.registerFunction("markdownToHTML", markdownToHTML);
+Pulsar.registerFunction("markdownToHTML", markdownToHTML)
+
+/* Component Health */
+Pulsar.registerFunction("constructDynamicHealthBlock", constructDynamicHealthBlock)
+Pulsar.registerFunction("constructDynamicHealthList", constructDynamicHealthList)

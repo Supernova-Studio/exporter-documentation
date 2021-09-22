@@ -9,4 +9,9 @@
     {[ inject "page_block_custom_markdown" context block /]}
 {[ case "io.supernova.documentation-main.component-health" ]}
     {[ inject "page_block_custom_component_health" context block /]}
+{[ case "io.supernova.documentation-main.component-health-dynamic" ]}
+    {[ inject "page_block_custom_component_health_dynamic" context block /]}
+{[ case "io.supernova.documentation-main.component-health-dynamic-list" ]}
+    {[ inject "page_block_custom_component_health_dynamic_list" context block /]}
+
 {[/]}

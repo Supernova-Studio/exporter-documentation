@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.6.5",
+    "version": "1.6.6",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -144,7 +144,7 @@
                         "key": "info",
                         "default": "",
                         "type": "string",
-                        "label": "Additional Info"
+                        "label": "More Info"
                     }
                 ]
             },
@@ -160,6 +160,25 @@
                     "default": "",
                     "type": "string",
                     "label": "Component ID"
+                }]
+            },
+            {
+                "key": "io.supernova.documentation-main.component-health-dynamic-list",
+                "category": "Component Blocks",
+                "title": "Dynamic Health List",
+                "description": "Show component health information about all components from API",
+                "icon": "icons/component-health.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "showSummary",
+                    "default": true,
+                    "type": "boolean",
+                    "label": "Show summary"
+                }, {
+                    "key": "showList",
+                    "default": true,
+                    "type": "boolean",
+                    "label": "Show list"
                 }]
             }
         ]

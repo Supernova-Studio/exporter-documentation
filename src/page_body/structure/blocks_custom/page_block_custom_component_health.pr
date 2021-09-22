@@ -62,6 +62,7 @@
                 </div>  
             {[/]}
         </div>
+        {[ if (designUrl || repositoryUrl) ]}
         <div class="links">
             {[ if designUrl ]}
                 <div class="row">
@@ -76,6 +77,7 @@
                 </div>
             {[/]}
         </div>
+        {[/]}
         {[ if information ]}
         <div class="info">
             <span>Additional information</span>
