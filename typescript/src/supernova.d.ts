@@ -64,7 +64,7 @@ declare global {
 
   type HeadingType = "1" | "2" | "3"
 
-  type ImageAlignment = "Left" | "Center" | "Stretch"
+  type ContentAlignment = "Left" | "Center" | "Stretch"
 
   type HeaderAlignment = "Default" | "Center"
 
@@ -349,6 +349,19 @@ declare global {
     caption: string | null
   }
 
+  enum DocumentationPageBlockCodeLiveSandboxType {
+    react = "react"
+  }
+
+  type DocumentationPageBlockCodeLive = DocumentationPageBlock & {
+    alignment: ContentAlignment
+    backgroundColor: string | null
+    showCode: boolean
+    code: string
+    sandboxData: string
+    sandboxType: DocumentationPageBlockCodeLiveSandboxType
+  }
+
   type DocumentationPageBlockDivider = DocumentationPageBlock & {
     // No extra attributes
   }
@@ -360,7 +373,7 @@ declare global {
   type DocumentationPageBlockImage = DocumentationPageBlock & {
     url: string | null
     caption: string | null
-    alignment: ImageAlignment
+    alignment: ContentAlignment
   }
 
   type DocumentationPageBlockLink = DocumentationPageBlock & {

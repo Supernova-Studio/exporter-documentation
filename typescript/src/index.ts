@@ -7,7 +7,6 @@ import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc
 import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
-import { encodeSandboxData, getFrontendSandboxData, isSandboxDefinition } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString } from "./doc_functionality/string_utils"
 import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
@@ -33,11 +32,6 @@ Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
 Pulsar.registerFunction("textBlockPlainText", textBlockPlainText)
-
-/* Sandbox features */
-Pulsar.registerFunction("isSandboxDefinition", isSandboxDefinition)
-Pulsar.registerFunction("encodeSandboxdata", encodeSandboxData)
-Pulsar.registerFunction("getFrontendSandboxData", getFrontendSandboxData)
 
 /* Token manipulation and formatting */
 Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)

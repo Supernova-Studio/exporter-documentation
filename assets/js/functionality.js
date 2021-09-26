@@ -245,21 +245,18 @@ function loadVersions(url) {
     Live sandbox manipulation
 ------------------------------- */
 
-// Convert to instance
-const SandboxRenderer = window.sandboxRenderer
-window.sandboxRenderer = new SandboxRenderer()
-window.sandboxRenderer.listener = function(message) {
-    console.log(message)
-        // Remove sandbox loaders when loaded correctly
+// Add listeners for actions
+window.sandboxEngine.listener = function(message) {
+    // Remove sandbox loaders when loaded correctly
     if (message.message && message.type === "success") {
         $(`.sandbox-loader-container[data-target="${message.sandboxId}"]`).remove();
     }
-    // TODO: Handle incorrect parsing
 };
 
+// Build all sandboxes at the load of the page
 $(document).ready(function() {
     // Build all sandboxes
-    window.sandboxRenderer.buildSandboxesForTargetsWithIDStartingWith("sandbox")
+    window.sandboxEngine.buildSandboxStartingWith("sandbox")
 });
 
 

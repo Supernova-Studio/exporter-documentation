@@ -1,52 +1,13 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-{[ if isSandboxDefinition(block) ]}
+{* Generate code which will be automatically highlighted *}
+<pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
 
-    {* Generate unique ID for the sandbox, and retrieve its configuration *}
-    {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
-    {[ let sandboxConfiguration = getFrontendSandboxData(block) /]}
 
-    {* Generate sandbox code which will be automatically converted to live sandbox *}
-    <div class="sandbox-state-wrapper">
-        <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
-            <div class="sandbox-loader"></div>
-            <span>Preparing live component</span>
-        </div>
-        <div class="sandbox-container" style="height: {{ sandboxConfiguration.height.toString() }}">
-            <div id="{{ sandboxId }}" sn-sandbox-data="{{ encodeSandboxdata(block) }}"></div>
-        </div>
-    </div>
-    <div class="sandbox-container-meta">
+{{ highlightSafeString(block) }}
 
-        <div class="sandbox-container-buttons">
-            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Toggle code" data-offset="5">
-                <i class="fas fa-code" data-toggle="collapse" data-target="#codepreview-{{ sandboxId }}"></i>
-            </span>
-            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Copy code">
-                <i class="fas fa-copy" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></i>
-            </span>
-        </div>
-
-        {[ let shouldShow = "" /]}
-        {[ if sandboxConfiguration.showCodeByDefault ]}
-            {[ shouldShow = "show" /]}
-        {[/]}
-        <div class="sandbox-text collapse {{ shouldShow }}" id="codepreview-{{ sandboxId }}">
-            <pre><code class="language-javascript">
-    ‏‏‎ ‎       {{ sandboxConfiguration.code }}
-            </code></pre>
-        </div>
-    </div>
-{[ else ]}
-    {* Generate code which will be automatically highlighted *}
-    <pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
-    
-    
-    {{ highlightSafeString(block) }}
-
-    </code></pre>
-    {[ if block.caption ]}
-        <p class="caption">{{ block.caption }}</p>
-    {[/]}
+</code></pre>
+{[ if block.caption ]}
+    <p class="caption">{{ block.caption }}</p>
 {[/]}
