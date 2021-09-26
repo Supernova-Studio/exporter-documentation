@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "npx webpack --mode=development --watch",
-        "watch:dev": "npx webpack --mode=production --watch"
+        "watch:dev": "npx webpack --mode=development --watch",
+        "watch": "npx webpack --mode=production --watch"
     },
     "author": "Supernova.io",
     "license": "MIT",

@@ -2,7 +2,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Code sandbox
 
-function cleanupString(string: string): string {
+export function htmlSafeString(string: string): string {
 
   // Basic HTML encoding
   let encodedHTMLString = string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")

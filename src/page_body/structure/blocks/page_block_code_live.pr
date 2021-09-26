@@ -32,7 +32,9 @@
     {[/]}
     <div class="sandbox-text collapse {{ shouldShow }}" id="codepreview-{{ sandboxId }}">
         <pre><code class="language-javascript">
-‏‏‎ ‎       {{ block.code }}
+
+        {{ htmlSafeString(block.code) }}
+        
         </code></pre>
     </div>
 </div>

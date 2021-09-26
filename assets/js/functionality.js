@@ -248,7 +248,7 @@ function loadVersions(url) {
 // Add listeners for actions
 window.sandboxEngine.listener = function(message) {
     // Remove sandbox loaders when loaded correctly
-    if (message.message && message.type === "success") {
+    if (message.status === "done" || message.status === "error") {
         $(`.sandbox-loader-container[data-target="${message.sandboxId}"]`).remove();
     }
 };
