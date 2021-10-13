@@ -4014,6 +4014,11 @@ ol>.block-children {
     border-bottom: 0px;
 }
 
+.embed-responsive-item {
+    width: 100%;
+    height: 100%;
+}
+
 .embed-url {
     width: 100%;
     border: 1px solid #DCE0E4;

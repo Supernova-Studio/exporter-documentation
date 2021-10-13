@@ -6,4 +6,7 @@
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen></iframe>
 </div>
+{[ if block.caption ]}
+    <p class="caption">{{ block.caption }}</p>
+{[/]}
 {[/]}

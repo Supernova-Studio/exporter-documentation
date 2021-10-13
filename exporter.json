@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.7.2",
+    "version": "1.8.0",
     "config": {
         "sources": "sources.json",
         "output": "output.json",
@@ -96,6 +96,53 @@
                     "default": "",
                     "type": "string",
                     "label": "Markdown URL"
+                }]
+            }, {
+                "key": "io.supernova.documentation-main.appetizeio.android",
+                "category": "Native Blocks",
+                "title": "Appetize.io - Android",
+                "description": "Embed Appetize simulator Android view",
+                "icon": "icons/appetize.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "simViewKey",
+                    "default": "",
+                    "type": "string",
+                    "label": "Sim Key"
+                }, {
+                    "key": "device",
+                    "default": "iphonex",
+                    "values": [
+                        "iphonex",
+                        "iphone11pro",
+                        "ipadair"
+                    ],
+                    "label": "Device",
+                    "type": "enum"
+                }]
+            }, {
+                "key": "io.supernova.documentation-main.appetizeio.ios",
+                "category": "Native Blocks",
+                "title": "Appetize.io - iOS",
+                "description": "Embed Appetize simulator iOS view",
+                "icon": "icons/appetize.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "simViewKey",
+                    "default": "",
+                    "type": "string",
+                    "label": "Sim Key"
+                }, {
+                    "key": "device",
+                    "default": "pixel4",
+                    "values": [
+                        "nexus9",
+                        "pixel4",
+                        "pixel4xl",
+                        "galaxytabs7"
+                    ],
+                    "label": "Device",
+                    "type": "enum"
                 }]
             },
             {

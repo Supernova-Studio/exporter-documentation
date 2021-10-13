@@ -1,22 +1,12 @@
-{* Get embed block payload *}
+{* Get generic embed block payload *}
 {[ const block = context /]}
 
-{* Create youtube embed block *}
+{* Create generic embed block *}
 {[ if block.url ]}
-<a href="{{ block.url }}" target="_blank">
-<div class="embed-url row">
-    <div class="content col-8">
-        {[ if block.title ]}
-        <p class="title">{{ block.title }}</p>
-        {[/]}
-        {[ if block.description ]}
-        <p class="description">{{ block.description }}</p>
-        {[/]}
-        <p class="link">{{ block.url }}</p>
-    </div>
-    {[ if block.thumbnailUrl ]}
-    <div class="preview col-4" style="background: url({{ block.thumbnailUrl }});background-size: cover;background-position: center;"></div>
-    {[/]}
+<div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
+  <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
 </div>
-</a>
+{[ if block.caption ]}
+    <p class="caption">{{ block.caption }}</p>
+{[/]}
 {[/]}
