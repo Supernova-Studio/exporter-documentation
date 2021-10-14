@@ -84,7 +84,7 @@ export function typographyDescription(typographyToken: TypographyToken) {
 
 /** Describe complex shadow value as token */
 export function shadowTokenValue(shadowToken: ShadowToken) {
-  return `${shadowToken.value.x.measure}px ${shadowToken.value.y.measure}px ${shadowToken.value.radius.measure}px ${shadowToken.value.spread.measure}px #${shadowToken.value.color.hex}`
+  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${shadowToken.value.x.measure}px ${shadowToken.value.y.measure}px ${shadowToken.value.radius.measure}px ${shadowToken.value.spread.measure}px #${shadowToken.value.color.hex}`
 }
 
 /** Describe complex gradient value as token */

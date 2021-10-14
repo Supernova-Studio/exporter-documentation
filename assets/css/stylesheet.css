@@ -3422,6 +3422,13 @@ ol>.block-children {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.token-preview-container.large {
+    width: 100%;
+    height: 100%;
 }
 
 .token-preview-container-border {
@@ -3429,6 +3436,37 @@ ol>.block-children {
     height: 20px;
     margin: auto;
     border-radius: 4px;
+}
+
+.token-preview-container-border.large {
+    width: 64px;
+    height: 64px;
+}
+
+.token-preview-container-blur {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border-radius: 4px;
+    background-color: #363a3e;
+}
+
+.token-preview-container-blur.large {
+    width: 64px;
+    height: 64px;
+}
+
+.token-preview-container-blur-text-unblurred {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: white;
 }
 
 
@@ -3562,6 +3600,7 @@ ol>.block-children {
     align-items: center;
     justify-content: center;
     font-size: 60px;
+    border-radius: 8px 8px 0 0;
 }
 
 .token-container .grid>div>div.preview.small-text {

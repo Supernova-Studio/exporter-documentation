@@ -3,7 +3,27 @@
 {[ if token.tokenType.equals("Color") ]}
     <div class="token-preview-container" style="background-color: #{{ token.value.hex }};"></div>
 {[ elseif token.tokenType.equals("Border")]}
-    <div class="token-preview-container-border" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+    <div class="token-preview-container">
+        <div class="token-preview-container-border" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+    </div>
+{[ elseif token.tokenType.equals("Blur")]}
+    {[ let measure = token.value.radius.measure /]}
+    <div class="token-preview-container">
+    {[ switch token.value.type ]}
+        {[ case "Background" ]}
+            <div class="token-preview-container-blur" style="background-color: #363a3e; backdrop-filter: blur({{ measure }}px);">
+            </div>
+            <div class="token-preview-container-blur-text-unblurred">
+            {{ measure }}
+            </div>
+        {[ case "Layer" ]}
+            <div class="token-preview-container-blur" style="background-color: #363a3e; filter: blur({{ measure }}px);">
+            </div>
+            <div class="token-preview-container-blur-text-unblurred">
+            {{ measure }}
+            </div>
+    {[/]}
+    </div>
 {[ elseif token.tokenType.equals("Font")]}
     <div class="token-preview-container">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}

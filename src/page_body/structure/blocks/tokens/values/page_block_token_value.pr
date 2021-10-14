@@ -8,6 +8,13 @@
     #{{ token.value.hex }}<br />
     rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ (token.value.a / 255).rounded(3) }})
     {[/]}
+{[ elseif token.tokenType.equals("Blur") ]}
+    {[ switch token.value.type ]}
+        {[ case "Background" ]}
+            backdrop-filter: blur({{ token.value.radius.measure }}px)
+        {[ case "Layer" ]}
+            filter: blur({{ token.value.radius.measure }}px)
+    {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
     {{ token.value.width.measure }}px solid #{{ token.value.color.hex.uppercased() }}, {{ token.value.position.lowercased() }}
 {[ elseif token.tokenType.equals("Font") ]}

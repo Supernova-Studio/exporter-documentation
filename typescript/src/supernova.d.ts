@@ -74,6 +74,8 @@ declare global {
 
   type ShortcutType = "Internal" | "External"
 
+  type ShadowType = "Inner" | "Outer"
+
   //
   // Data Types
   // Subcategory: Design Token Shells
@@ -173,6 +175,7 @@ declare global {
     radius: MeasureTokenValue
     spread: MeasureTokenValue
     opacity: number
+    type: ShadowType
     referencedToken: ShadowToken | null
   }
 

@@ -3,7 +3,31 @@
 {[ if token.tokenType.equals("Color") ]}
     <div class="preview" style="background-color: #{{ token.value.hex }};"></div>
 {[ elseif token.tokenType.equals("Border")]}
-    <div class="preview" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+    <div class="preview">
+        <div class="token-preview-container large">
+            <div class="token-preview-container-border large" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
+        </div>
+    </div>
+{[ elseif token.tokenType.equals("Blur")]}
+    {[ let measure = token.value.radius.measure /]}
+    <div class="preview">
+        <div class="token-preview-container large">
+        {[ switch token.value.type ]}
+            {[ case "Background" ]}
+                <div class="token-preview-container-blur large" style="background-color: #363a3e; backdrop-filter: blur({{ measure }}px);">
+                </div>
+                <div class="token-preview-container-blur-text-unblurred">
+                {{ measure }}
+                </div>
+            {[ case "Layer" ]}
+                <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);">
+                </div>
+                <div class="token-preview-container-blur-text-unblurred">
+                {{ measure }}
+                </div>
+        {[/]}
+        </div>
+    </div>
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
@@ -14,7 +38,7 @@
     <div class="preview" style="border-radius: {{ token.value.radius.measure}}px"></div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="preview">
-        <div style="width: 20px; height: 20px; box-shadow: {{ shadowTokenValue(token) }}"></div>
+        <div style="width: 64px; height: 64px; box-shadow: {{ shadowTokenValue(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
