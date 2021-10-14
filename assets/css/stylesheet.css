@@ -4079,6 +4079,7 @@ ol>.block-children {
     border: 1px solid #DCE0E4;
     border-radius: 4px;
     margin-bottom: 1rem;
+    overflow: hidden;
 }
 
 .embed-url,
