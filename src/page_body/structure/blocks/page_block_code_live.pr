@@ -12,6 +12,7 @@
 
 {* Generate sandbox code which will be automatically converted to live sandbox *}
 <div class="sandbox-main-wrapper">
+    {* Render sandbox. Sandbox will be triggered by the library automatically, this is just wrapper *}
     <div class="sandbox-state-wrapper">
         <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
             <div class="sandbox-loader"></div>
@@ -20,27 +21,28 @@
             <div id="{{ sandboxId }}" sn-sandbox-data="{{ block.sandboxData }}"></div>
         </div>
     </div>
+    {* Only show code if the editor allows it *}
+    {[ if block.showCode ]}
     <div class="sandbox-container-meta">
 
         <div class="sandbox-container-buttons">
-            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Toggle code" data-offset="5">
-                <i class="fas fa-code" data-toggle="collapse" data-target="#codepreview-{{ sandboxId }}"></i>
-            </span>
-            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Copy code">
-                <i class="fas fa-copy" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></i>
-            </span>
+        {* Toggle code button *}
+        <a class="btn btn-light" data-toggle="collapse" href="#codepreview-{{ sandboxId }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Toggle code
+        </a>
+
+        {* Copy code button *}
+        <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
+            <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
+        </a>
         </div>
 
-        {[ let shouldShow = "" /]}
-        {[ if block.showCode ]}
-            {[ shouldShow = "show" /]}
-        {[/]}
-        <div class="sandbox-text collapse {{ shouldShow }}" id="codepreview-{{ sandboxId }}">
+        {* Rendered code *}
+        <div class="sandbox-text collapse" id="codepreview-{{ sandboxId }}">
             <pre><code class="language-javascript">
-
             {{ htmlSafeString(block.code) }}
-            
             </code></pre>
         </div>
     </div>
+    {[/]}
 </div>

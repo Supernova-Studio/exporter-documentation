@@ -278,7 +278,7 @@ $(function() {
         // Get code of the sandbox
         event.preventDefault()
         const sandboxId = $(this).attr('data-target');
-        const code = window.sandboxRenderer.getCodeForSandboxId(sandboxId)
+        const code = window.sandboxEngine.getCodeForSandboxId(sandboxId)
         const cb = navigator.clipboard;
         cb.writeText(code)
     });
