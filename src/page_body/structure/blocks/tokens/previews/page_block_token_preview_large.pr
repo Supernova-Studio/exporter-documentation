@@ -10,24 +10,26 @@
     </div>
 {[ elseif token.tokenType.equals("Blur")]}
     {[ let measure = token.value.radius.measure /]}
-    <div class="preview">
-        <div class="token-preview-container large">
         {[ switch token.value.type ]}
             {[ case "Background" ]}
-                <div class="token-preview-container-blur large" style="background-color: #363a3e; backdrop-filter: blur({{ measure }}px);">
-                </div>
-                <div class="token-preview-container-blur-text-unblurred">
-                {{ measure }}
+                <div class="preview checkered-background">
+                    <div class="token-preview-container large">
+                        <div class="token-preview-container-blur large" style="background-color: transparent; border: 1px solid #ccc; backdrop-filter: blur({{ measure }}px);"></div>
+                        <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
+                        {{ measure }}
+                        </div>
+                    </div>
                 </div>
             {[ case "Layer" ]}
-                <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);">
-                </div>
-                <div class="token-preview-container-blur-text-unblurred">
-                {{ measure }}
+                <div class="preview">
+                    <div class="token-preview-container large">
+                        <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);"></div>
+                        <div class="token-preview-container-blur-text-unblurred">
+                        {{ measure }}
+                        </div>
+                    </div>
                 </div>
         {[/]}
-        </div>
-    </div>
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}

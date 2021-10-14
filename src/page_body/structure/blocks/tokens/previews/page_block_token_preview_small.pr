@@ -8,19 +8,22 @@
     </div>
 {[ elseif token.tokenType.equals("Blur")]}
     {[ let measure = token.value.radius.measure /]}
-    <div class="token-preview-container">
     {[ switch token.value.type ]}
         {[ case "Background" ]}
-            <div class="token-preview-container-blur" style="background-color: #363a3e; backdrop-filter: blur({{ measure }}px);">
-            </div>
-            <div class="token-preview-container-blur-text-unblurred">
-            {{ measure }}
+            <div class="token-preview-container checkered-background">
+                <div class="token-preview-container-blur" style="background-color: transparent; width: 100%; height: 100%; backdrop-filter: blur({{ measure }}px);">
+                </div>
+                <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
+                {{ measure }}
+                </div>
             </div>
         {[ case "Layer" ]}
-            <div class="token-preview-container-blur" style="background-color: #363a3e; filter: blur({{ measure }}px);">
-            </div>
-            <div class="token-preview-container-blur-text-unblurred">
-            {{ measure }}
+            <div class="token-preview-container">
+                <div class="token-preview-container-blur" style="background-color: #363a3e; filter: blur({{ measure }}px);">
+                </div>
+                <div class="token-preview-container-blur-text-unblurred">
+                {{ measure }}
+                </div>
             </div>
     {[/]}
     </div>
