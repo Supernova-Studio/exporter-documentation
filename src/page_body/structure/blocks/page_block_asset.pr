@@ -1,0 +1,32 @@
+{[ const frame = context /]}
+
+{* Get the asset *}
+{[ let asset = ds.assetById(frame.assetId) /]}
+
+{* Only render asset if it actually exists *}
+{[ if asset ]}
+
+    {* Decide on properties *}
+    {[ let backgroundColor = "#f2f4f5" /]}
+    {[ if frame.backgroundColor ]}
+        {[ backgroundColor = frame.backgroundColor /]}
+    {[/]}
+    {[ let title = (frame.name ? frame.title : asset.name) /]}
+    {[ let description = (frame.description ? frame.description : asset.description) /]}
+
+    {* Render the asset *}
+    <div>      
+        <div class="preview frame" style="background-color: {{ backgroundColor }};">
+        {[ if asset.thumbnailUrl ]}
+            <img src="{{ asset.thumbnailUrl }}" />
+        {[/]}
+        
+        </div>
+        {[ if title ]}
+            <p class="title">{{ title }}</p>
+        {[/]}
+        {[ if description ]}
+            <p class="description">{{ description }}</p>    
+        {[/]}
+    </div>
+{[/]}

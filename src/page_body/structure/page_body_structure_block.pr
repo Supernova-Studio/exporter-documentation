@@ -53,6 +53,8 @@
         {[ inject "page_block_code" context block /]}
     {[ case "RenderCode" ]}
         {[ inject "page_block_code_live" context block /]}
+    {[ case "ComponentAssets" ]}
+        {[ inject "page_block_assets" context block /]}
 {[/]}
 
 {* Generate child blocks, if any *}

@@ -4456,7 +4456,7 @@ div.storybook-state-wrapper+p.caption {
 }
 
 .tile-container .grid.c1>div {
-    flex: 0 1 95%;
+    flex: 0 1 100%;
 }
 
 .tile-container .grid.c1 div.preview {
@@ -5160,4 +5160,10 @@ body.dark .fa-moon:before {
 
 .primary-menu ul.navbar-nav>li>a:not(.btn) {
     color: rgba(255, 255, 255, 0.6)
+}
+
+.tile-container.natural .grid div.preview {
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
 }

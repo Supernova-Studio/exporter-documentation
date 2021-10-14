@@ -1,7 +1,6 @@
 {* Get embed block payload *}
 {[ const block = context /]}
 
-{[ log block /]}
 {* Create youtube embed block *}
 {[ if block.url ]}
 <a href="{{ block.url }}" target="_blank">

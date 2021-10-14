@@ -3,6 +3,7 @@
 {[ if frame.backgroundColor ]}
     {[ backgroundColor = frame.backgroundColor /]}
 {[/]}
+
 <div>      
     <div class="preview frame" style="background-color: {{ backgroundColor }};">
     {[ if frame.previewUrl ]}
@@ -17,3 +18,5 @@
         <p class="description">{{ frame.description }}</p>    
     {[/]}
 </div>
+
+.tile-container.natural .grid div.preview

@@ -4,10 +4,10 @@
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
 
 {* Render tile per rendered frame *}
-<div class="tile-container {{ forceNaturalHeight ? "natural" : "" }}"">
+<div class="tile-container {{ forceNaturalHeight ? "natural" : "" }}">
   <div class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">
-  {[ for frame in block.frames ]}
-  {[ inject "page_block_frame" context frame /]}
+  {[ for asset in block.assets ]}
+  {[ inject "page_block_asset" context asset /]}
   {[/]}
     <div class="spacer"></div>
     <div class="spacer"></div>

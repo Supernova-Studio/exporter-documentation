@@ -1,7 +1,6 @@
 {* Get figma block payload *}
 {[ const block = context /]}
 
-{[ log block /]}
 {* Create figma embed block *}
 {[ if block.url ]}
 <div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
