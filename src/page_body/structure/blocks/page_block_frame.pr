@@ -18,5 +18,3 @@
         <p class="description">{{ frame.description }}</p>    
     {[/]}
 </div>
-
-.tile-container.natural .grid div.preview
