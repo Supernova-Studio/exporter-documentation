@@ -1,10 +1,15 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-{* Set background color *}
-{[ let backgroundColor = "#f9f9fa" /]}
-{[ if block.backgroundColor ]}
+{* Set background color. Note that currently, background color is provided by SDK by default (#f9f9faff), and it will be changed
+   soon so it actually comes as null - meaning it wasn't forced in the editor. 
+   We are going around it and treating the default as null. Nasty workaround, but will be fixed, pinky promise :)
+*}
+{[ let backgroundColor = "transparent" /]}
+{[ let showChecker = true /]}
+{[ if (block.backgroundColor != "#f9f9faff") ]}
     {[ backgroundColor = block.backgroundColor /]}
+    {[ showChecker = false /]}
 {[/]}
 
 {* Generate unique ID for the sandbox, and retrieve its configuration *}
@@ -17,7 +22,7 @@
         <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
             <div class="sandbox-loader"></div>
         </div>
-        <div class="sandbox-container checkered-background-light" style="height: {{ block.height.toString() }}px; background-color: {{ backgroundColor }}">
+        <div class="sandbox-container {{ showChecker ? "checkered-background-light" : ""}}" style="height: {{ block.height.toString() }}px; background-color: {{ backgroundColor }}">
             <div id="{{ sandboxId }}" sn-sandbox-data="{{ block.sandboxData }}"></div>
         </div>
     </div>
