@@ -788,6 +788,15 @@ hr {
     position: relative;
 }
 
+.docs-navigation .nav .nav-item:hover {
+    background: rgba(20, 22, 24, 0.04);
+    border-radius: 4px;
+}
+
+.docs-navigation .nav .nav-item:hover a {
+    color: #141618;
+}
+
 .docs-navigation .nav .nav {
     margin: 0 0 0 16px;
 }
@@ -2156,11 +2165,11 @@ hr {
 
 .nav:not(.nav-pills) .nav-item .nav-link.active,
 .nav:not(.nav-pills) .nav-item .nav-link:hover {
-    color: #0366d6;
+    color: #141618;
 }
 
 .nav-pills .nav-link:not(.active):hover {
-    color: #0366d6;
+    color: #141618;
 }
 
 .nav-pills .nav-link.active,
@@ -3783,6 +3792,7 @@ ol>.block-children {
 .docs-navigation .nav>.nav-item>.nav-link.active {
     background-color: var(--colorDocsViewPrimaryPrimaryLight);
     color: var(--colorDocsViewPrimaryPrimary);
+    border-radius: 4px;
 }
 
 
