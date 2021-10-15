@@ -2,7 +2,7 @@
 {[ const block = context /]}
 
 {* Generate code which will be automatically highlighted *}
-<pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
+<pre><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }} code-block">
 
 
 {{ highlightSafeString(block) }}
