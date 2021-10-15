@@ -73,7 +73,9 @@ pre[class*="language-"] {
     padding: 1em;
     margin: 0;
     overflow: auto;
-    border-radius: 0.3em;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    margin: 20px 0px;
 }
 
 

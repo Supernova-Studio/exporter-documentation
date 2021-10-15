@@ -7,16 +7,19 @@
 {[ if asset ]}
 
     {* Decide on properties *}
-    {[ let backgroundColor = "#f2f4f5" /]}
-    {[ if frame.backgroundColor ]}
+    {[ let backgroundColor = "transparent" /]}
+    {[ let showChecker = true /]}
+    {[ if (frame.backgroundColor != "#f9f9faff") ]}
         {[ backgroundColor = frame.backgroundColor /]}
+        {[ showChecker = false /]}
     {[/]}
+
     {[ let title = (frame.name ? frame.title : asset.name) /]}
     {[ let description = (frame.description ? frame.description : asset.description) /]}
 
     {* Render the asset *}
     <div>      
-        <div class="preview frame" style="background-color: {{ backgroundColor }};">
+        <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
             <img src="{{ asset.thumbnailUrl }}" />
         {[/]}

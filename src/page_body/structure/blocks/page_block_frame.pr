@@ -1,11 +1,16 @@
 {[ const frame = context /]}
-{[ let backgroundColor = "#f2f4f5" /]}
-{[ if frame.backgroundColor ]}
+
+{* Decide on properties *}
+{[ let backgroundColor = "transparent" /]}
+{[ let showChecker = true /]}
+{[ if (frame.backgroundColor != "#f9f9faff") ]}
     {[ backgroundColor = frame.backgroundColor /]}
+    {[ showChecker = false /]}
 {[/]}
 
+
 <div>      
-    <div class="preview frame" style="background-color: {{ backgroundColor }};">
+    <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
     {[ if frame.previewUrl ]}
         <img src="{{ frame.previewUrl }}" />
     {[/]}
