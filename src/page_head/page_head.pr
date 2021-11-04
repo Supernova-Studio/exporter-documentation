@@ -1,6 +1,6 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
-{[ const domain = ds.documentationConfiguration().domain /]}
+{[ const domain = ds.documentationDomain() /]}
 {[ const configuration = exportConfiguration() /]}
 <head>
     {* Add google analytics if key was provided *}

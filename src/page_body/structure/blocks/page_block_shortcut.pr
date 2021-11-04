@@ -7,7 +7,7 @@
         {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
         {[ let page = ds.documentationPageById(shortcut.internalId) /]}
         {[ if page ]}
-            {[ let url = pageUrl(page, ds.documentationConfiguration().domain) /]}
+            {[ let url = pageUrl(page, ds.documentationDomain()) /]}
             <a href="{{ url }}">
         {[ else ]}
         {* Links to group instead, find that and if exists, link to the first page in that group *}
@@ -15,7 +15,7 @@
             {[ if group ]}
                 {[ page = firstPageFromTop(group) /]}
                 {[ if page ]}
-                    {[ let url = pageUrl(page, ds.documentationConfiguration().domain) /]}
+                    {[ let url = pageUrl(page, ds.documentationDomain()) /]}
                     <a href="{{ url }}">
                 {[ else ]}
                 {* Doesn't link to anything *}

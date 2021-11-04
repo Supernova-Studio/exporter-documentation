@@ -1,6 +1,6 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
-{[ let domain = ds.documentationConfiguration().domain /]}
+{[ let domain = ds.documentationDomain() /]}
 {* Generate page scripts *}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 

@@ -3,10 +3,12 @@
 {[ let pageStyle = experimentalForcedPageStyle(page) /]}
 {[ let sizingClass = (pageStyle.hideSidebar ? "fullscreen" : "") /]}
 
+{[ let dsData = ds.currentDesignSystem() /]}
+
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
-{[ const domain = ds.documentationConfiguration().domain /]}
+{[ const domain = ds.documentationDomain() /]}
 
 <body class="light">
 {* <body class="{{ exportConfiguration().defaultVisualMode }}"> *}

@@ -1,5 +1,5 @@
 {[ let page = context /]}
-{[ const domain = ds.documentationConfiguration().domain /]}
+{[ let domain = ds.documentationDomain() /]}
 {[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 
 <!-- Header --> 
@@ -16,7 +16,7 @@
         <!-- Redirect to the first real page on logo click -->
         {[ let rootGroup = ds.rootDocumentationGroup() /]}
         {[ let topPage = firstPageFromTop(rootGroup) /]}
-        {[ let url = pageUrl(topPage, ds.documentationConfiguration().domain) /]}
+        {[ let url = pageUrl(topPage, ds.documentationDomain()) /]}
 
         <a href="{{ url }}">
             <div class="logo-wrapper">
@@ -39,7 +39,7 @@
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}">{{ item.title }}</a></li>
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a></li>
                         {* {[/]} *}
                     {[/]}
                 {[/]}
@@ -67,7 +67,7 @@
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
-                            <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}">{{ item.title }}</a>
+                            <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a>
                         {* {[/]} *}
                     {[/]}
                 </div>

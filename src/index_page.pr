@@ -1,7 +1,7 @@
 <!-- Redirect to the first real page -->
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
 {[ let page = firstPageFromTop(rootGroup) /]}
-{[ let url = pageUrl(page, ds.documentationConfiguration().domain) /]}
+{[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
 <!DOCTYPE HTML>
  

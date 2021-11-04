@@ -17,13 +17,13 @@
             {[ let activeClass = (isActive === true ? "active" : "") /]}
             {[ let itemId = item.id /]}
             {[ if item.type.equals("Page") ]}
-                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationConfiguration().domain) }}"> {{ item.title }}</a><li>
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ item.title }}</a><li>
             {[ else ]}
                 <li class="nav-item">
                 {[ let firstDescendingPage = firstPageFromTop(item) /]}
                 {* Group will either link to the first page, or be fully disabled *}
                 {[ if firstDescendingPage ]}
-                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationConfiguration().domain) }}"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ item.title }}</a>
                 {[ else ]}  
                     <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ item.title }}</a>
                 {[/]}
@@ -43,7 +43,6 @@
 
 <div class="nav-sn">
     <a href="https://supernova.io" target="_blank">
-        {[ const domain = ds.documentationConfiguration().domain /]}
-        <img src="{{ assetUrl("logos/powered-by-supernova.png", domain) }}" title="Supernova, the most advanced design system platform" alt="Supernova, the most advanced design system platform" />
+        <img src="{{ assetUrl("logos/powered-by-supernova.png", ds.documentationDomain()) }}" title="Supernova, the most advanced design system platform" alt="Supernova, the most advanced design system platform" />
     </a>
 </div>
