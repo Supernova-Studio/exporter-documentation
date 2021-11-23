@@ -31,7 +31,9 @@
     {[ case "TokenList" ]}
         {[ inject "page_block_token_list" context block /]}
     {[ case "TokenGroup" ]}
-        {[ inject "page_block_token_group" context block /]}
+        {[ if block.groupId ]}
+            {[ inject "page_block_token_group" context ({"block": block, "group": ds.tokenGroupById(block.groupId) }) /]}
+        {[/]}
     {[ case "Embed" ]}
         {[ inject "page_block_embed_url" context block /]}
     {[ case "FigmaEmbed" ]}
