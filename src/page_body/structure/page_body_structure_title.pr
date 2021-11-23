@@ -18,7 +18,7 @@
 
 {* Background image overrides all settings *}
 {[ if headerConfiguration.backgroundImageAssetUrl ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: cover;">
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 {* Background color takes over transparent default if provided *}
 {[ elseif headerConfiguration.backgroundColor ]}
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ headerConfiguration.backgroundColor.value }};">
@@ -26,6 +26,9 @@
 {[ else ]}
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
 {[/]}
+    {[ if headerConfiguration.showBackgroundOverlay ]}
+        <div class="container-title-overlay"></div>
+    {[/]}
     <div class="slider">
         {* Show title and description if enabled *}
         {[ if headerConfiguration.showCoverText ]}
