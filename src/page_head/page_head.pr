@@ -34,4 +34,3 @@
     <!-- Documentation Styling –->
     {[ inject "page_head_styles" context page /]}
 </head>
-{[ log page.configuration /]}

@@ -33,7 +33,6 @@
         {* Show title and description if enabled *}
         {[ if headerConfiguration.showCoverText ]}
         {[ let color = (headerConfiguration.foregroundColor ? headerConfiguration.foregroundColor.value : "") /]}
-        {[ log color /]}
             <h1 style="{{ color ? "color: " + color : "" }}">{{ title }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
