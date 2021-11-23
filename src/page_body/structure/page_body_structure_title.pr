@@ -38,19 +38,19 @@
             {[/]}
         {[/]}
     </div>
-    {* Generate tabs if parent is group *}
-    {[ if groupIsTabContainer ]}
-        
-        <ul class="nav nav-tabs" id="page-tab" role="tablist">
-            {[ for tab in group.pages ]}
-            <li class="nav-item">
-                {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
-                <a class="nav-link active" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
-            </li>
-            {[/]}
-        </ul>
-    {[/]}
 </div>
+{* Generate tabs if parent is group *}
+{[ if groupIsTabContainer ]}
+    
+    <ul class="nav nav-tabs" id="page-tab" role="tablist">
+        {[ for tab in group.pages ]}
+        <li class="nav-item">
+            {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
+            <a class="nav-link active" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
+        </li>
+        {[/]}
+    </ul>
+{[/]}
 
 {*
   backgroundImageScaleType:  AssetScaleType
