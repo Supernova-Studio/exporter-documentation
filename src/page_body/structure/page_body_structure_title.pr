@@ -1,38 +1,60 @@
 
-
+{* Get page from context *}
 {[ let page = context /]}
-{[ let pageStyle = experimentalForcedPageStyle(page) /]}
 
-{[ let invertedClass = (pageStyle.invertHeader ? "inverted" : "") /]}
-{[ let centeredClass = (pageStyle.textAlignment.equals("Center") ? "centered" : "") /]}
-{[ let flexedClass = (pageStyle.headerHeight ? "flexed" : "") /]}
-{[ let height = (pageStyle.headerHeight ? pageStyle.headerHeight.toString().suffixed("px") : "auto") /]}
+{* Get containing group. If the group represents tab, then use that group configuration to build header, and use its title as well. For non-tabbed pages, configuration is taken from the page object *}
+{[ let group = page.parent /]}
+{[ let groupIsTabContainer = group.groupBehavior === "Tabs" /]}
+{[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
+{[ let headerConfiguration = configuration.header /]}
 
+{* Title *}
+{[ let title = (group.groupBehavior === "Tabs" ? group.title : page.title) /]}
 
-{[ if pageStyle.backgroundImage ]}
-<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ pageStyle.backgroundImage }}) no-repeat center center; background-size: cover;">
-{[ elseif pageStyle.backgroundColor ]}
-<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ pageStyle.backgroundColor}};">
+{* Configure appropriate classes based on the configuration *}
+{[ let centeredClass = (headerConfiguration.alignment === "Center" ? "centered" : "") /]}
+{[ let flexedClass = (headerConfiguration.minHeight ? "flexed" : "") /]}
+{[ let height = (headerConfiguration.minHeight ? headerConfiguration.minHeight.toString() + "px" : "auto") /]}
+
+{* Background image overrides all settings *}
+{[ if headerConfiguration.backgroundImageAssetUrl ]}
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: cover;">
+{* Background color takes over transparent default if provided *}
+{[ elseif headerConfiguration.backgroundColor ]}
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ headerConfiguration.backgroundColor.value }};">
+{* Default without any configuration *}
 {[ else ]}
-<div class="container-title {{ invertedClass }} {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
 {[/]}
     <div class="slider">
-        <h1>{{ page.title }}</h1>
-        {[ if pageStyle.description ]}
-            <p class="subtitle">{{ pageStyle.description }}</p>
+        {* Show title and description if enabled *}
+        {[ if headerConfiguration.showCoverText ]}
+        {[ let color = (headerConfiguration.foregroundColor ? headerConfiguration.foregroundColor.value : "") /]}
+        {[ log color /]}
+            <h1 style="{{ color ? "color: " + color : "" }}">{{ title }}</h1>
+            {* Show description if provided *}
+            {[ if headerConfiguration.description ]}
+                <p class="subtitle" style="{{ color ? "color: " + color : "" }}">{{ headerConfiguration.description }}</p>
+            {[/]}
         {[/]}
-        {*
-        <p class="subtitle">Our colors convey our brand personality and values but also help users navigate through the interface.</p>
-        *}
-        {* Generate tabs eventually
-        <ul class="nav nav-tabs" id="page-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="tab-1" data-toggle="tab" href="#content-tab-1" role="tab" aria-controls="home" aria-selected="true">Content Tab #1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="tab-2" data-toggle="tab" href="#content-tab-2" role="tab" aria-controls="profile" aria-selected="false">Content Tab #2</a>
-            </li>
-        </ul>
-        *}
     </div>
+    {* Generate tabs if parent is group *}
+    {[ if groupIsTabContainer ]}
+        
+        <ul class="nav nav-tabs" id="page-tab" role="tablist">
+            {[ for tab in group.pages ]}
+            <li class="nav-item">
+                {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
+                <a class="nav-link active" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
+            </li>
+            {[/]}
+        </ul>
+    {[/]}
 </div>
+
+{*
+  backgroundImageScaleType:  AssetScaleType
+  foregroundColor: ColorTokenRemoteData | null
+  backgroundColor: ColorTokenRemoteData | null
+  showBackgroundOverlay: boolean
+*}
