@@ -68,6 +68,11 @@ export function slugifyHeading(header: DocumentationPageBlockHeading): string {
 }
 
 function slugify(str: string): string {
+
+  if (!str) {
+    return ""
+  }
+  
   // Thanks to https://gist.github.com/codeguy/6684588
   str = str.replace(/^\s+|\s+$/g, "")
   str = str.toLowerCase()
