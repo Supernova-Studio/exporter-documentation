@@ -83,8 +83,37 @@ export function typographyDescription(typographyToken: TypographyToken) {
 }
 
 /** Describe complex shadow value as token */
-export function shadowTokenValue(shadowToken: ShadowToken) {
+export function shadowTokenValue(shadowToken: ShadowToken): string {
   return `${shadowToken.value.type === "Inner" ? "inset " : ""}${shadowToken.value.x.measure}px ${shadowToken.value.y.measure}px ${shadowToken.value.radius.measure}px ${shadowToken.value.spread.measure}px #${shadowToken.value.color.hex}`
+}
+
+
+/** Scale token values so they are still okay in smaller previews */
+export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {
+    var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
+    var offsetX = shadowToken.value.x.measure;
+    var offsetY = shadowToken.value.y.measure;
+    var spreadRadius = shadowToken.value.spread.measure;
+  
+    if (scalingParamSum != null) {
+      var biggestOffset = Math.max(Math.abs(offsetX), Math.abs(offsetY));
+      var allParamsSum = Math.max(nonNegativeValue(blurRadius) + Math.max(spreadRadius, 0) + biggestOffset, 1);
+  
+      blurRadius = blurRadius * scalingParamSum / allParamsSum;
+      offsetX = offsetX * scalingParamSum / allParamsSum;
+      offsetY = offsetY * scalingParamSum / allParamsSum;
+      spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
+    }
+  
+    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX}px ${offsetY}px ${blurRadius}px ${spreadRadius}px #${shadowToken.value.color.hex}`
+}
+
+function nonNegativeValue(num: number) {
+  if (num <= 0) {
+    return 0
+  } else {
+    return num
+  }
 }
 
 /** Describe complex gradient value as token */

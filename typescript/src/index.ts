@@ -10,7 +10,7 @@ import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString } from "./doc_functionality/string_utils"
-import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
+import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "./doc_functionality/urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -41,6 +41,7 @@ Pulsar.registerFunction("gradientDescription", gradientDescription)
 Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
 Pulsar.registerFunction("shadowDescription", shadowDescription)
 Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
+Pulsar.registerFunction("scaledShadowTokenValue", scaledShadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 
