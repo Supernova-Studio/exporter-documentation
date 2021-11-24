@@ -1,23 +1,25 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
+import { firstPageFromTop } from "./lookup"
+
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - URLs
 
 /** Generate page slug for the generated page */
 export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string | undefined) {
-  if (object.type === "Group") {
-    let group = object as DocumentationGroup
-    let pages = group.children.filter((c) => c.type === "Page")
-    if (pages.length > 0) {
-      return pageUrl(pages[0] as DocumentationPage | DocumentationGroup, prefix)
-    } else {
-      // This is not handled, group must contain page otherwise it should be hidden from generation
-      return ""
-    }
+
+  let page: DocumentationPage | null = null
+  if (object.type === "Page") {
+    page = object as DocumentationPage
+  } else {
+    page = firstPageFromTop(object as DocumentationGroup)
   }
 
-  let page = object as DocumentationPage
+  if (!page) {
+    return ""
+  }
+
   let pageSlug = page.userSlug ?? page.slug
   let subpaths: Array<string> = []
 

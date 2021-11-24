@@ -3434,6 +3434,7 @@ ol>.block-children {
 
 .bg-sidebar {
     background-color: #fff;
+    z-index: 2;
 }
 
 .logo img {
