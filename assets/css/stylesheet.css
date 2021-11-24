@@ -5336,3 +5336,12 @@ body.dark .fa-moon:before {
     height: auto;
     padding: 10px 0px;
 }
+
+#page-tab-content> :first-child {
+    margin: 0px !important;
+}
+
+.no-container-tabs {
+    width: 100%;
+    height: 20px;
+}
