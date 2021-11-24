@@ -2226,7 +2226,7 @@ hr {
     background: transparent;
     position: relative;
     border-radius: 0;
-    padding: 0.6rem 1rem;
+    padding: 6px 16px;
     color: #7b8084;
     white-space: nowrap !important;
 }
@@ -2236,16 +2236,14 @@ hr {
 }
 
 .nav-tabs .nav-item .nav-link.active:after {
-    height: 2px;
+    height: 1px;
     width: 100%;
     content: " ";
     background-color: #0366d6;
     display: block;
     position: absolute;
-    bottom: -3px;
+    bottom: 0px;
     left: 0;
-    -webkit-transform: translateY(-3px);
-    transform: translateY(-3px);
 }
 
 .nav-tabs .nav-item .nav-link:not(.active):hover {
@@ -2294,6 +2292,7 @@ hr {
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
+    margin: 0;
 }
 
 .nav-tabs:not(.flex-column) .nav-item {
@@ -2307,6 +2306,25 @@ hr {
         margin-right: 10px;
         font-size: 0.875rem;
     }
+}
+
+.nav-tabs .nav-item .nav-link {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(20, 22, 24, 0.8);
+}
+
+.nav-tabs .nav-item .nav-link:hover {
+    background-color: rgba(20, 22, 24, 0.04);
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    color: #0f62fe !important;
+}
+
+.nav-tabs .nav-item .nav-link.active:after {
+    background-color: #0f62fe !important;
+    height: 1px;
 }
 
 
@@ -3902,7 +3920,13 @@ ol>.block-children {
 .container-title {
     width: 100%;
     background-color: var(--colorDocsViewGreyGrey3);
-    margin-bottom: 40px;
+    border-bottom: 1px solid #F2F4F5;
+    position: relative;
+}
+
+.container-tabs {
+    width: 100%;
+    margin-bottom: 20px;
     border-bottom: 1px solid #F2F4F5;
     position: relative;
 }
@@ -3912,6 +3936,36 @@ ol>.block-children {
     margin: 0px auto;
     padding: 60px 0px 20px 0px;
     z-index: 1;
+}
+
+.container-tabs>.tabbed-navigation {
+    max-width: 1000px;
+    margin: 0px auto;
+    padding: 0px;
+    z-index: 1;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+}
+
+.container-tabs>.tabbed-navigation::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+}
+
+.nav-tabs>li {
+    float: none;
 }
 
 .container-title>.slider h1 {
@@ -3942,19 +3996,26 @@ ol>.block-children {
     text-align: center;
 }
 
-.container-title.flexed {
+.container-title.flexed,
+.container-tabs {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.container-title.centered>.slider {
+.container-title.centered>.slider,
+.container-tabs>.tabbed-navigation {
     left: initial;
     display: flex;
     flex-direction: column;
     /* align-content: center; */
     align-items: center;
     justify-content: center;
+    height: 45px;
+}
+
+.container-tabs>.tabbed-navigation {
+    align-items: start;
 }
 
 #header-nav .search {
@@ -3991,6 +4052,9 @@ ol>.block-children {
 
 @media (min-width: 1170px) {
     .container-title>.slider {
+        width: 1000px;
+    }
+    .container-tabs>.tabbed-navigation {
         width: 1000px;
     }
     #section-content-page {
@@ -4104,6 +4168,7 @@ ol>.block-children {
 
 .nav-tabs {
     border-bottom: 0px;
+    margin-top: 8px !important;
 }
 
 .embed-responsive-item {
@@ -4805,6 +4870,9 @@ body.dark .fa-moon:before {
     .container-title>.slider {
         max-width: 540px;
     }
+    .container-tabs>.tabbed-navigation {
+        max-width: 540px;
+    }
     .token-container .grid>div {
         flex: 0 1 49%;
         margin: 0 0 8px 0;
@@ -4817,6 +4885,9 @@ body.dark .fa-moon:before {
     }
     .container-title>.slider {
         padding: 30px 0px 0 0px;
+    }
+    .container-tabs>.tabbed-navigation {
+        padding: 0px 0px 0 0px;
     }
     .container-title>.slider h1 {
         font-size: 32px;
@@ -4936,6 +5007,10 @@ body.dark .fa-moon:before {
         display: none;
     }
     .container-title>.slider {
+        max-width: 750px;
+        width: 95%;
+    }
+    .container-tabs>.tabbed-navigation {
         max-width: 750px;
         width: 95%;
     }

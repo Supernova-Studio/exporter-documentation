@@ -4,7 +4,7 @@
 
 {* Get containing group. If the group represents tab, then use that group configuration to build header, and use its title as well. For non-tabbed pages, configuration is taken from the page object *}
 {[ let group = page.parent /]}
-{[ let groupIsTabContainer = group.groupBehavior === "Tabs" /]}
+{[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let headerConfiguration = configuration.header /]}
 
@@ -41,22 +41,19 @@
         {[/]}
     </div>
 </div>
+
 {* Generate tabs if parent is group *}
 {[ if groupIsTabContainer ]}
-    
-    <ul class="nav nav-tabs" id="page-tab" role="tablist">
-        {[ for tab in group.pages ]}
-        <li class="nav-item">
-            {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
-            <a class="nav-link active" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
-        </li>
-        {[/]}
-    </ul>
+<div class="container-tabs">    
+    <div class="tabbed-navigation">
+        <ul class="nav nav-tabs" id="page-tab" role="tablist">
+            {[ for tab in group.pages ]}
+            <li class="nav-item">
+                {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
+                <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
+            </li>
+            {[/]}
+        </ul>
+    </div>
+</div>
 {[/]}
-
-{*
-  backgroundImageScaleType:  AssetScaleType
-  foregroundColor: ColorTokenRemoteData | null
-  backgroundColor: ColorTokenRemoteData | null
-  showBackgroundOverlay: boolean
-*}
