@@ -21,7 +21,7 @@
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 {* Background color takes over transparent default if provided *}
 {[ elseif headerConfiguration.backgroundColor ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ headerConfiguration.backgroundColor.value }};">
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ headerConfiguration.backgroundColor.value }};">
 {* Default without any configuration *}
 {[ else ]}
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
