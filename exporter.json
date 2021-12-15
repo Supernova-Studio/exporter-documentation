@@ -1,7 +1,7 @@
 {
     "id": "io.supernova.documentation-main",
-    "name": "Documentation (I)",
-    "description": "Base Documentation Exporter (I)",
+    "name": "Documentation",
+    "description": "Base Documentation Exporter",
     "author": "Jiri Trecak",
     "organization": "Supernova",
     "source_dir": "src",
@@ -44,17 +44,6 @@
                 "label": "Header Logo",
                 "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
                 "category": "Design"
-            }, {
-                "key": "defaultVisualMode",
-                "default": "dark",
-                "type": "enum",
-                "values": [
-                    "lighter",
-                    "dark"
-                ],
-                "label": "Default design theme",
-                "description": "Base theme configuration for the entire design system documentation. Can be additionally overriden with separate values."r
-                "category": "Design"
             },
             {
                 "key": "favicon",
@@ -94,20 +83,6 @@
                 "description": "Name of a specific sheet that containing component health statuses. Note that this is case sensitive",
                 "category": "Components",
                 "default": ""
-            },
-            {
-                "key": "logo",
-                "type": "image",
-                "label": "Image label",
-                "description": "Brand logo",
-                "category": "Design"
-            },
-            {
-                "key": "primaryColor",
-                "type": "color",
-                "label": "Primary color",
-                "description": "Color",
-                "category": "Design"
             }
         ],
         "blocks": [{
