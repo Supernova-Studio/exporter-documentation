@@ -1,5 +1,6 @@
 {[ let page = context /]}
 {[ let domain = ds.documentationDomain() /]}
+{[ let configuration = exportConfiguration() /]}
 {[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 
 <!-- Header --> 
@@ -17,14 +18,13 @@
         {[ let rootGroup = ds.rootDocumentationGroup() /]}
         {[ let topPage = firstPageFromTop(rootGroup) /]}
         {[ let url = pageUrl(topPage, ds.documentationDomain()) /]}
-
         <a href="{{ url }}">
             <div class="logo-wrapper">
             {* Use default Supernova logo OR custom uploaded one, if it was provided *}
-                {[ if (exportConfiguration().headerLogo && exportConfiguration().headerLogo.assetUrl) ]}
-                    <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" />
+                {[ if ((configuration.headerLogo !== null) && (configuration.headerLogo.assetUrl !== null)) ]}
+                    <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" style="content: none" />
                 {[ else ]}
-                    <img class="default" src="{{ assetUrl("logos/logo-main.svg", domain) }}" alt="Our Documentation" />
+                    <img class="default" alt="Our Documentation" />
                 {[/]}
             </div>
         </a>
