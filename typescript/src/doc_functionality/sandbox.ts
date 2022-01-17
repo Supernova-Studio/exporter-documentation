@@ -12,3 +12,7 @@ export function htmlSafeString(string: string): string {
   let encodedHTMLString = string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
   return encodedHTMLString
 }
+
+export function htmlSafeUrl(uri: string) {
+  return encodeURI(uri ?? '')
+}

@@ -7,7 +7,7 @@ import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc
 import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
-import { htmlSafeString } from "./doc_functionality/sandbox"
+import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString } from "./doc_functionality/string_utils"
 import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
@@ -59,3 +59,4 @@ Pulsar.registerFunction("constructGoogleSheetCSVUrl", constructGoogleSheetCSVUrl
 
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)
+Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
