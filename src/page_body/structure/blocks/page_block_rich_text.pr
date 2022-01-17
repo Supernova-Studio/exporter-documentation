@@ -14,7 +14,9 @@
             {[ case "Italic" ]}
                 {[ text = text.extended("<i>", "</i>") /]}
             {[ case "Link" ]}
-                {[ text = text.extended("<a href=\"\" target=\"_blank\">", "</a>") /]}
+                {[ let uri = htmlSafeUrl(attribute.link) /]}
+                {[ let anchorTag = uri.extended("<a href=\"", "\" target=\"_blank\">") /]}
+                {[ text = text.extended(anchorTag, "</a>") /]}
             {[ case "Strikethrough" ]}
                 {[ text = text.extended("<s>", "</s>") /]}
             {[ case "Code" ]}
