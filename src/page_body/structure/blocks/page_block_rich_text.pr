@@ -15,7 +15,7 @@
                 {[ text = text.extended("<i>", "</i>") /]}
             {[ case "Link" ]}
                 {[ let uri = htmlSafeUrl(attribute.link) /]}
-                {[ let anchorTag = uri.extended("<a href=\"", "target=\"_blank\">") /]}
+                {[ let anchorTag = uri.extended("<a href=\"", "\" target=\"_blank\">") /]}
                 {[ text = text.extended(anchorTag, "</a>") /]}
             {[ case "Strikethrough" ]}
                 {[ text = text.extended("<s>", "</s>") /]}
