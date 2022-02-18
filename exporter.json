@@ -103,14 +103,16 @@
                 "type": "string",
                 "label": "Custom CSS",
                 "description": "Any custom CSS to change the documentation site styling. Custom CSS will be injected last, and can override any visual aspect of the site. For even deeper customization, check our developer docs > modifying exporter packages which allows you to completely change how documentation gets created.",
-                "category": "Deep Customization"
+                "category": "Deep Customization",
+                "default": ""
             },
             {
                 "key": "deepCustomizationCustomJS",
                 "type": "string",
                 "label": "Custom Javascript",
                 "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last, and can be used for manipulating behaviors of the site. For even deeper customization, check our developer docs > modifying exporter packages which allows you to completely change how documentation gets created.",
-                "category": "Deep Customization"
+                "category": "Deep Customization",
+                "default": ""
             }
         ],
         "blocks": [{
