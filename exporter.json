@@ -83,6 +83,20 @@
                 "description": "Name of a specific sheet that containing component health statuses. Note that this is case sensitive",
                 "category": "Components",
                 "default": ""
+            },
+            {
+                "key": "stylingColorsPageTitle",
+                "type": "color",
+                "label": "Page Title",
+                "description": "Default color of the page titles. This can be further overridden per-page.",
+                "category": "Design"
+            },
+            {
+                "key": "stylingColorsPageDescription",
+                "type": "color",
+                "label": "Page Description",
+                "description": "Default color of the page description (optional text under the title). This can be further overridden per-page.",
+                "category": "Design"
             }
         ],
         "blocks": [{
