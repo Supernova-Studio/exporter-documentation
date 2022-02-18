@@ -5,6 +5,9 @@ All notable changes to this exporter are mentioned here in this file.
 
 ## [1.17] - (work in progress)
 ### Bugfixes & improvements
+- Rendering of blocks have been heavily improved, all spacings, block paddings etc. was streamlined
+- Fixed rendering of (un)ordered lists and numeric lists being incorrectly aligned with design
+- Fixed rendering of child blocks (created with tabs) when used alongside lists, will now be exactly aligned with lists, except the bullet point or number  
 - Foreground and background color of page titles can now be properly configured using both raw values and tokens
 - Quotes, Callouts, Texts, Headers and all other blocks with rich text type will properly render soft newlines
 - Page headers will properly render soft newlines for both title and description fields
@@ -23,7 +26,6 @@ All notable changes to this exporter are mentioned here in this file.
 - Exporter now uses Fuse.js to do the search and allows for very good customization of fuzzy searching as well
 - Search was fixed to be more precise and allows to find "exact" match, which wasn't previously possible
 - Search is now easier to modify and add additional sources of data into it, for example coming from external API when search index is built
-- Rendering of blocks have been heavily improved, all spacings, block paddings etc. was streamlined
 
 
 ## [1.0-1.15] - 2021 - 2022
