@@ -44,6 +44,10 @@ html {
     font-family: Inter, sans-serif;
 }
 
+html {
+    scroll-padding-top: 80px;
+}
+
 body {
     color: #4c4d4d;
 }
