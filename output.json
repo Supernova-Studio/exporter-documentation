@@ -12,7 +12,7 @@
         {
             "invoke": "search_index.pr",
             "write_to": "si.js",
-            "comment": "Create index data for the entire documentation to be used with lunr.js"
+            "comment": "Create index data for the entire documentation to be used with fuse.js"
         }
     ],
     "resources": [{

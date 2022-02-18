@@ -7,8 +7,9 @@ import { pageUrl } from "./urls"
 // MARK: - Search index processing
 
 export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): string {
-  // Very naive search index implementation. The performance of this will be absolutely abysmal.
-  // This will get optimized when the core search works over time. Probably moved to elastic search or something like that
+  // Construct search index for Fuse.js
+  // Note that by changing the data, or including more data here, you can improve behaviors of the search quite drastically
+  // Example: You can pre-download data from different source and include it in your doc search index as well
   let id = 0
   let data: Array<{
     id: number
@@ -88,24 +89,9 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
   }
 
   // Construct data and make index readable for easier debugging for now
-  // return JSON.stringify(data, null, 2)
-
-  // Experimental: Create index. WIP: Pregenerate loaded index
   let si = `
-    const lunrData = ${JSON.stringify(data, null, 2)};
-    const lunrIndexedData = {}
-    const lunrIndex = lunr(function () {
-      this.field('text')
-      this.ref('id')
-      this.metadataWhitelist = ['position']
-    
-      // Note index has been loaded into the page with page request
-      lunrData.forEach(function (doc) {
-        this.add(doc)
-        lunrIndexedData[doc.id] = doc
-      }, this)
-    });
-    `
+  const FuseSearchData = ${JSON.stringify(data, null, 2)};
+  `
   return si
 }
 

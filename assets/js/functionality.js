@@ -26,7 +26,6 @@ $(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
     })
 })
 
-
 /*------------------------
    Content menu tracking
 -------------------------- */
@@ -48,7 +47,7 @@ $(window).on("load", function() {
 			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
 		}
 	}*/
-        let visibleSections = sections.filter(s => isElementInViewport(s))
+        let visibleSections = sections.filter((s) => isElementInViewport(s))
         let sortedVisibleSections = visibleSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
             // Unactivate all sections
         for (let section of sections) {
@@ -120,7 +119,23 @@ $(".SNSearch-input").on("input", function(e) {
         return
     }
 
-    let searchResult = lunrIndex.search(`*${searchString}*`)
+    // Configure search. Note that this can be changed so the search returns fuzzy results
+    // by changing the trashold, distance (see example > https://fusejs.io/demo.html)
+    var options = {
+        shouldSort: true,
+        threshold: 0.1,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        ignoreLocation: true,
+        keys: ["text"],
+    }
+
+    // Note: FuseSearchData is index created by the exporter, loaded from si.js
+    const fuse = new Fuse(FuseSearchData, options)
+    let searchResult = fuse.search(searchString)
+
     if (searchResult.length === 0) {
         // No result found
         resultObject.html(`<p class="section-title empty">No results found, change your search phrase</p>`)
@@ -135,20 +150,14 @@ $(".SNSearch-input").on("input", function(e) {
     let headingResults = []
 
     for (let result of searchResult) {
-        let ref = result.ref
-        let data = lunrIndexedData[ref]
+        let item = result.item
+        item.startIndex = item.text.toLowerCase().indexOf(searchString.toLowerCase())
+        item.endIndex = item.startIndex + searchString.length
 
-        // Add engine index positions
-        Object.keys(result.matchData.metadata).forEach(function(term) {
-            Object.keys(result.matchData.metadata[term]).forEach(function(fieldName) {
-                data["position"] = result.matchData.metadata[term][fieldName].position
-            })
-        })
-
-        if (data.type === "body") {
-            textResults.push(data)
+        if (item.type === "body") {
+            textResults.push(item)
         } else {
-            headingResults.push(data)
+            headingResults.push(item)
         }
     }
 
@@ -160,7 +169,7 @@ $(".SNSearch-input").on("input", function(e) {
             resultObject.append(`
 		  <a href="${heading.url}">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(heading.text, heading.position)}</p>
+			<p class="section-result-header">${highlightRanges(heading.text, heading.startIndex, heading.endIndex)}</p>
 			<p class="section-result-text">On page ${heading.path}</p>
 		  </div>
 		  </a>`)
@@ -179,7 +188,7 @@ $(".SNSearch-input").on("input", function(e) {
             resultObject.append(`
 		  <a href="${text.url}">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(text.text, text.position)}</p>
+			<p class="section-result-header">${highlightRanges(text.text, text.startIndex, text.endIndex)}</p>
 			<p class="section-result-text">On page ${text.path}</p>
 		  </div>
 		  </a>`)
@@ -191,14 +200,17 @@ $(".SNSearch-input").on("input", function(e) {
     }
 })
 
-function highlightRanges(s, sortedRanges) {
-    let result = s
-        // We need to highlight from the last position, so we can use the ranges
-    for (let range of sortedRanges) {
-        result = replaceRange(result, range[1] + range[0], range[1] + range[0], "</span>")
-        result = replaceRange(result, range[0], range[0], "<span>")
+function highlightRanges(s, startIndex, endIndex) {
+
+    if (startIndex === -1) {
+        return s
     }
-    return result
+
+    let beginning = s.substring(0, startIndex)
+    let searchResult = s.substring(startIndex, endIndex)
+    let end = s.substring(endIndex)
+
+    return `${beginning}<span>${searchResult}</span>${end}`
 }
 
 function replaceRange(s, start, end, substitute) {
@@ -240,7 +252,6 @@ function loadVersions(url) {
     })
 }
 
-
 /*-----------------------------
     Live sandbox manipulation
 ------------------------------- */
@@ -249,16 +260,15 @@ function loadVersions(url) {
 window.sandboxEngine.listener = function(message) {
     // Remove sandbox loaders when loaded correctly
     if (message.status === "done" || message.status === "error") {
-        $(`.sandbox-loader-container[data-target="${message.sandboxId}"]`).remove();
+        $(`.sandbox-loader-container[data-target="${message.sandboxId}"]`).remove()
     }
-};
+}
 
 // Build all sandboxes at the load of the page
 $(document).ready(function() {
     // Build all sandboxes
     window.sandboxEngine.buildSandboxStartingWith("sandbox")
-});
-
+})
 
 /*-----------------------------
     Tooltips
@@ -268,7 +278,6 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
-
 /*-----------------------------
     Copy code
 ------------------------------- */
@@ -277,13 +286,12 @@ $(function() {
     $('[data-toggle="copy-from-sandbox"]').click(function(event) {
         // Get code of the sandbox
         event.preventDefault()
-        const sandboxId = $(this).attr('data-target');
+        const sandboxId = $(this).attr("data-target")
         const code = window.sandboxEngine.getCodeForSandboxId(sandboxId)
-        const cb = navigator.clipboard;
+        const cb = navigator.clipboard
         cb.writeText(code)
-    });
+    })
 })
-
 
 /*-----------------------------
     Theme switching & mode preservation
@@ -296,13 +304,11 @@ $(".switch-theme").on("click", function(e) {
 
     // Store selection
     if ($("body").is(".dark")) {
-        localStorage.setItem('sn.default.theme', 'dark');
+        localStorage.setItem("sn.default.theme", "dark")
     } else {
-        localStorage.setItem('sn.default.theme', 'light');
+        localStorage.setItem("sn.default.theme", "light")
     }
 })
-
-
 
 /*-----------------------------
     Theme switching & mode preservation
@@ -315,42 +321,38 @@ $(".switch-theme").on("click", function(e) {
 
     // Store selection
     if ($("body").is(".dark")) {
-        localStorage.setItem('sn.default.theme', 'dark');
+        localStorage.setItem("sn.default.theme", "dark")
     } else {
-        localStorage.setItem('sn.default.theme', 'light');
+        localStorage.setItem("sn.default.theme", "light")
     }
 })
-
 
 /*-----------------------------
     Storybook handling
 ------------------------------- */
 
 $(document).ready(function() {
-
     // Ping storybook for each frame embedding it and check if it is reachable, if so, show the content,
     // otherwise show formatted error message
     document.querySelectorAll("iframe.storybook").forEach((iframe) => {
         let src = iframe.getAttribute("src")
-        console.log(src)
         fetch(src, {
                 method: "GET",
                 cache: "no-cache",
-                mode: "no-cors"
+                mode: "no-cors",
             })
-            .then(_ => {
-                // Do nothing for the correct response, as we can't detect whether 
+            .then((_) => {
+                // Do nothing for the correct response, as we can't detect whether
                 // the page was truly reachable and contains storybook due to CORS protection
             })
-            .catch(_ => {
+            .catch((_) => {
                 // Show error for the specific frame
                 // [iframe] > storybook-container > storybook-state-wrapper > storybook-error.visible
-                iframe.parentElement.parentElement.lastElementChild.style.visibility = "visible";
-                iframe.parentElement.parentElement.firstElementChild.style.visibility = "hidden";
-            });
+                iframe.parentElement.parentElement.lastElementChild.style.visibility = "visible"
+                iframe.parentElement.parentElement.firstElementChild.style.visibility = "hidden"
+            })
     })
-});
-
+})
 
 /*-----------------------------
     Sidebar menu for mobile
@@ -358,11 +360,9 @@ $(document).ready(function() {
 
 $("#sidebarCollapse").on("click", function(e) {
     // Toggle the dark / light mode when clicking the mode selector
-    console.log(`toggle`)
     $(".docs-navigation").toggleClass("d-inline")
     e.preventDefault()
 })
-
 
 /*------------------------
    Health status overlay
@@ -370,12 +370,12 @@ $("#sidebarCollapse").on("click", function(e) {
 
 $('a[data-target="health-status"]').on("click", function(e) {
     // Toggle the overlay
-    $(".health-overlay").toggleClass("d-none");
-    e.preventDefault();
+    $(".health-overlay").toggleClass("d-none")
+    e.preventDefault()
 })
 
-$('.health-overlay').on("click", function(e) {
+$(".health-overlay").on("click", function(e) {
     // Toggle the overlay
-    $(".health-overlay").toggleClass("d-none");
-    e.preventDefault();
+    $(".health-overlay").toggleClass("d-none")
+    e.preventDefault()
 })

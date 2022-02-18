@@ -19,7 +19,7 @@
 <script src="{{ assetUrl("js/live-sandbox.js", domain)}}"></script> 
 
 <!-- Search Support-->
-<script src="https://unpkg.com/lunr/lunr.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
 <script src="{{ rootUrl("si.js", domain) }}"></script>  
 
 <!-- General scripts -->
