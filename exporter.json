@@ -43,14 +43,14 @@
                 "type": "image",
                 "label": "Header Logo",
                 "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
-                "category": "Design"
+                "category": "Look & Feel"
             },
             {
                 "key": "favicon",
                 "type": "image",
                 "label": "Site Favicon",
                 "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
-                "category": "Design"
+                "category": "Look & Feel"
             },
             {
                 "key": "metaTitlePrefix",
@@ -89,14 +89,28 @@
                 "type": "color",
                 "label": "Page Title",
                 "description": "Default color of the page titles. This can be further overridden per-page.",
-                "category": "Design"
+                "category": "Look & Feel"
             },
             {
                 "key": "stylingColorsPageDescription",
                 "type": "color",
                 "label": "Page Description",
                 "description": "Default color of the page description (optional text under the title). This can be further overridden per-page.",
-                "category": "Design"
+                "category": "Look & Feel"
+            },
+            {
+                "key": "deepCustomizationCustomCSS",
+                "type": "string",
+                "label": "Custom CSS",
+                "description": "Any custom CSS to change the documentation site styling. Custom CSS will be injected last, and can override any visual aspect of the site. For even deeper customization, check our developer docs > modifying exporter packages which allows you to completely change how documentation gets created.",
+                "category": "Deep Customization"
+            },
+            {
+                "key": "deepCustomizationCustomJS",
+                "type": "string",
+                "label": "Custom Javascript",
+                "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last, and can be used for manipulating behaviors of the site. For even deeper customization, check our developer docs > modifying exporter packages which allows you to completely change how documentation gets created.",
+                "category": "Deep Customization"
             }
         ],
         "blocks": [{
