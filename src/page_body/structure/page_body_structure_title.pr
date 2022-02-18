@@ -21,7 +21,15 @@
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 {* Background color takes over transparent default if provided *}
 {[ elseif headerConfiguration.backgroundColor ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ headerConfiguration.backgroundColor.value }};">
+    {[ if headerConfiguration.backgroundColor.value ]}
+        {* Background color provided as raw value *}
+        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ headerConfiguration.backgroundColor.value }};">
+    {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
+        {* Background color provided as token *}
+        {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
+        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+    {[/]}
+
 {* Default without any configuration *}
 {[ else ]}
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
@@ -32,11 +40,22 @@
     <div class="slider">
         {* Show title and description if enabled *}
         {[ if headerConfiguration.showCoverText ]}
-        {[ let color = (headerConfiguration.foregroundColor ? headerConfiguration.foregroundColor.value : "") /]}
-            <h1 style="{{ color ? "color: " + color : "" }}">{{ title }}</h1>
+            
+            {[ let color = "" /]}
+            {[ if (headerConfiguration.foregroundColor && headerConfiguration.foregroundColor.value) ]}
+                {* Foreground color provided as raw value *}
+                {[ color = headerConfiguration.foregroundColor.value /]}
+            {[ elseif (headerConfiguration.foregroundColor && headerConfiguration.foregroundColor.aliasTo) ]}
+                {* Foreground color provided as token *}
+                {[ let colorToken = ds.tokenById(headerConfiguration.foregroundColor.aliasTo) /]}
+                {[ color = colorToken.value.hex.prefixed("#") /]}
+            {[/]}
+            {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
+            {* Show title - always *}
+            <h1 style="{{ style }}">{{ title }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
-                <p class="subtitle" style="{{ color ? "color: " + color : "" }}">{{ headerConfiguration.description }}</p>
+                <p class="subtitle" style="{{ style }}">{{ headerConfiguration.description }}</p>
             {[/]}
         {[/]}
     </div>

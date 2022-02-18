@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+
+## [1.17] - (work in progress)
+### Bugfixes
+- Foreground and background color of page titles can now be properly configured using both raw values and tokens
+
+
 ## [1.16] - 2022-18-02
 ### New Search Engine + Rendering improvements
 - Exporter now uses Fuse.js to do the search
