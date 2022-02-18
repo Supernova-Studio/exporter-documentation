@@ -11,6 +11,7 @@ All notable changes to this exporter are mentioned here in this file.
 - Quotes will no longer incorrectly offset the first row
 - Auto-sized, cented page headers will no longer be too small to fix content
 - Added option to show / hide frame titles on figma frames
+- Fixed overriden asset titles now properly showing
 
 
 ## [1.16] - 2022-18-02

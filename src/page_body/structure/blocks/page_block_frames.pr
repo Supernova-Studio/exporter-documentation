@@ -2,7 +2,7 @@
 
 {* Configure tile to show natural height if needed *}
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
-{[ log block /]}
+
 {* Render tile per rendered frame *}
 <div class="tile-container {{ forceNaturalHeight ? "natural" : "" }}"">
   <div class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">

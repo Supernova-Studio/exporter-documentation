@@ -14,7 +14,7 @@
         {[ showChecker = false /]}
     {[/]}
 
-    {[ let title = (frame.name ? frame.title : asset.name) /]}
+    {[ let title = (frame.title ? frame.title : asset.name) /]}
     {[ let description = (frame.description ? frame.description : asset.description) /]}
 
     {* Render the asset *}
