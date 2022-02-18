@@ -6,6 +6,8 @@ All notable changes to this exporter are mentioned here in this file.
 ## [1.17] - (work in progress)
 ### Bugfixes
 - Foreground and background color of page titles can now be properly configured using both raw values and tokens
+- Quotes, Callouts, Texts, Headers and all other blocks with rich text type will properly render soft newlines
+- Page headers will properly render soft newlines for both title and description fields
 
 
 ## [1.16] - 2022-18-02
