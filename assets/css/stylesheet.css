@@ -4523,6 +4523,15 @@ div.storybook-state-wrapper+p.caption {
     font-size: 60px;
 }
 
+.tile-container .grid>div.titleless div.preview {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+.tile-container .grid>div.titleless {
+    padding-bottom: 0px;
+}
+
 
 /*
 .tile-container .grid>div div.preview.frame {

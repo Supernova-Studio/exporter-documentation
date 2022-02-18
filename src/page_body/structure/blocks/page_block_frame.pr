@@ -1,4 +1,4 @@
-{[ const frame = context /]}
+{[ const frame = context.frame /]}
 
 {* Decide on properties *}
 {[ let backgroundColor = "transparent" /]}
@@ -9,17 +9,19 @@
 {[/]}
 
 
-<div>      
+<div class="{{ !context.showTitles ? "titleless" : "" }}">      
     <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
     {[ if frame.previewUrl ]}
         <img src="{{ frame.previewUrl }}" />
     {[/]}
     
     </div>
-    {[ if frame.title ]}
-        <p class="title">{{ frame.title }}</p>
-    {[/]}
-    {[ if frame.description ]}
-        <p class="description">{{ frame.description }}</p>    
+    {[ if context.showTitles ]}
+        {[ if frame.title ]}
+            <p class="title">{{ frame.title }}</p>
+        {[/]}
+        {[ if frame.description ]}
+            <p class="description">{{ frame.description }}</p>    
+        {[/]}
     {[/]}
 </div>

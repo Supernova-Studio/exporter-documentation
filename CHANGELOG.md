@@ -4,12 +4,13 @@ All notable changes to this exporter are mentioned here in this file.
 
 
 ## [1.17] - (work in progress)
-### Bugfixes
+### Bugfixes & improvements
 - Foreground and background color of page titles can now be properly configured using both raw values and tokens
 - Quotes, Callouts, Texts, Headers and all other blocks with rich text type will properly render soft newlines
 - Page headers will properly render soft newlines for both title and description fields
 - Quotes will no longer incorrectly offset the first row
 - Auto-sized, cented page headers will no longer be too small to fix content
+- Added option to show / hide frame titles on figma frames
 
 
 ## [1.16] - 2022-18-02
