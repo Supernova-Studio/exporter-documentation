@@ -13,6 +13,9 @@ All notable changes to this exporter are mentioned here in this file.
 - Added option to show / hide frame titles on figma frames
 - Fixed overriden asset titles now properly showing
 - When scrolling through side content menu (headers), header will properly scroll to the viewport and won't be obscured be the top header anymore
+- Fixed rendering of transparent background for figma frames
+- Fixed rendering of transparent background for assets
+- Added option to override background colors for frames and assets, also on per-asset basis
 
 
 ## [1.16] - 2022-18-02

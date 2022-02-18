@@ -3,11 +3,11 @@
 {* Decide on properties *}
 {[ let backgroundColor = "transparent" /]}
 {[ let showChecker = true /]}
-{[ if (frame.backgroundColor != "#f9f9faff") ]}
-    {[ backgroundColor = frame.backgroundColor /]}
+{[ if (frame.backgroundColor && frame.backgroundColor.value) ]}
+    {* Only raw values are currently supported, tokens soon *}
+    {[ backgroundColor = frame.backgroundColor.value /]}
     {[ showChecker = false /]}
 {[/]}
-
 
 <div class="{{ !context.showTitles ? "titleless" : "" }}">      
     <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
