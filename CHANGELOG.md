@@ -9,6 +9,7 @@ All notable changes to this exporter are mentioned here in this file.
 - Quotes, Callouts, Texts, Headers and all other blocks with rich text type will properly render soft newlines
 - Page headers will properly render soft newlines for both title and description fields
 - Quotes will no longer incorrectly offset the first row
+- Auto-sized, cented page headers will no longer be too small to fix content
 
 
 ## [1.16] - 2022-18-02

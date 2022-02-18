@@ -4021,6 +4021,9 @@ ol>.block-children {
     /* align-content: center; */
     align-items: center;
     justify-content: center;
+}
+
+.container-tabs>.tabbed-navigation {
     height: 45px;
 }
 
