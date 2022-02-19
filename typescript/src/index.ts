@@ -3,9 +3,8 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { experimentalDefaultPageStyle, experimentalForcedPageStyle } from "./doc_functionality/experimental"
 import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
-import { firstPageFromTop, firstSubgroupOfPage, pageOrGroupActiveInContext } from "./doc_functionality/lookup"
+import { firstPageFromTop, firstSubgroupOfPage, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
@@ -20,6 +19,8 @@ import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
 Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
 Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
+Pulsar.registerFunction("previousPage", previousPage)
+Pulsar.registerFunction("nextPage", nextPage)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
@@ -44,10 +45,6 @@ Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
 Pulsar.registerFunction("scaledShadowTokenValue", scaledShadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
-
-/* Experimental area for upcoming editor features */
-Pulsar.registerFunction("experimentalDefaultPageStyle", experimentalDefaultPageStyle)
-Pulsar.registerFunction("experimentalForcedPageStyle", experimentalForcedPageStyle)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)

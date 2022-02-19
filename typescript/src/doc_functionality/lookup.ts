@@ -19,6 +19,7 @@ export function firstSubgroupOfPage(page: DocumentationPage) {
   }
 }
 
+/** Check whether targeted item is descendant of provided root */
 export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | DocumentationGroup, context: DocumentationPage | DocumentationGroup) {
   if (context.type === "Page") {
     // If we are checking against plain page, then we can only compare
@@ -38,6 +39,7 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
   }
 }
 
+/** Find first showable page from the top of the provided root */
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
   for (let child of documentationRoot.children) {
     if (child.type === "Page") {
@@ -48,6 +50,45 @@ export function firstPageFromTop(documentationRoot: DocumentationGroup): Documen
         return possiblePage
       }
     }
+  }
+  return null
+}
+
+/** Create flattened structure of pages */
+export function flattenedPageStructure(root: DocumentationGroup): Array<DocumentationPage> {
+
+  let pages: Array<DocumentationPage> = []
+  for (let item of root.children) {
+    if (item.type === "Page") {
+      pages.push(item as DocumentationPage)
+    } else if (item.type === "Group") {
+      pages = pages.concat(flattenedPageStructure(item as DocumentationGroup))
+    }
+  }
+
+  return pages
+}
+
+/** Find next page after provided page */
+export function nextPage(page: DocumentationPage, documentationRoot: DocumentationGroup): DocumentationPage | null {
+
+  let flattenedPages = flattenedPageStructure(documentationRoot)
+  let pageIndex = flattenedPages.findIndex(p => p.id === page.id)
+  if (pageIndex !== -1) {
+    if (pageIndex < flattenedPages.length - 1) {
+      return flattenedPages[pageIndex + 1]
+    }
+  }
+  return null
+}
+
+/** Find previous page of provided page */
+export function previousPage(page: DocumentationPage, documentationRoot: DocumentationGroup): DocumentationPage | null {
+
+  let flattenedPages = flattenedPageStructure(documentationRoot)
+  let pageIndex = flattenedPages.findIndex(p => p.id === page.id)
+  if (pageIndex > 0) {
+    return flattenedPages[pageIndex - 1]
   }
   return null
 }
