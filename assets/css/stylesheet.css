@@ -4576,8 +4576,8 @@ div.storybook-state-wrapper+p.caption {
 /* Tile grid configurations */
 
 .tile-container img {
-    max-width: 75%;
-    max-height: 75%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .tile-container .grid.c8>div {
@@ -5367,7 +5367,6 @@ body.dark .fa-moon:before {
 .tile-container.natural .grid div.preview {
     width: 100%;
     height: auto;
-    padding: 10px 0px;
 }
 
 #section-content-page> :first-child {

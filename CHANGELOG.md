@@ -7,6 +7,7 @@ All notable changes to this exporter are mentioned here in this file.
 - It is now possible to navigate back and forth between pages with new navigation menu
 - Added option to enable / disable this behavior
 - Removed dynamic health custom blocks and general cleanup - additional functionality like this will be moved to separate repository as submodule when this feature is available globally (spoiler alert :)
+- Significantly improved rendering of Figma frames, especially in large, single-image mode
 
 ## [1.17] - 2022-18-02
 ### Bugfixes & improvements
