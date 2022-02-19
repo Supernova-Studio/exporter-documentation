@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.19] - 2022-19-02
+### Tab Blocks
+- It is now possible to render tab blocks
+- Preparation for tables, columns
+- Cleanup of some experimental blocks and remnants of the old code
+
 ## [1.18] - 2022-19-02
 ### Previous & Next navigation
 - It is now possible to navigate back and forth between pages with new navigation menu
