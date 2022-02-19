@@ -57,6 +57,12 @@
         {[ inject "page_block_code_live" context block /]}
     {[ case "ComponentAssets" ]}
         {[ inject "page_block_assets" context block /]}
+    {[ case "Tabs" ]}
+        {[ inject "page_block_tabs" context block /]}
+        {* 
+           Note we are not generating "TabItem" which is associated with this. 
+           This is because TabItem generation is handled within the tab block itself.
+        *}
 {[/]}
 
 {* Generate child blocks, if any *}
