@@ -3,7 +3,7 @@
 {[ let blockId = block.id.prefixed("T") /]}
 
 {* Generate tab navigation *}
-<ul class="nav nav-tabs" id="{{ blockId }}" role="tablist">
+<ul class="nav nav-tabs nav-tabs-inline" id="{{ blockId }}" role="tablist">
   {[ map (block.children.enumerated()) to index tab ]}
       {[ let id = tab.id.prefixed("T") /]}
       {[ if (tab.type === "TabItem") ]}
@@ -15,7 +15,7 @@
 </ul>
 
 {* Generate tab content *}
-<div class="tab-content" id="{{ blockId }}-content">
+<div class="tab-content tab-content-block" id="{{ blockId }}-content">
   {[ map (block.children.enumerated()) to index tab ]}
       {[ let id = tab.id.prefixed("T") /]}
       {[ if (tab.type === "TabItem") ]}

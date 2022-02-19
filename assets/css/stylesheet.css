@@ -5443,3 +5443,28 @@ body.dark .fa-moon:before {
     line-height: 20px;
     color: #141618;
 }
+
+.tab-content-block {
+    background: #FFFFFF;
+    border: 1px solid #DCE0E4;
+    border-radius: 8px;
+    padding: 16px 24px;
+}
+
+.nav-tabs-inline {
+    margin-left: 24px;
+}
+
+.nav-tabs.nav-tabs-inline:not(.flex-column) {
+    margin-left: 24px;
+}
+
+.docs-content .tab-pane> :first-child {
+    padding-top: 16px;
+    margin-top: 0px;
+}
+
+.docs-content .tab-pane> :last-child {
+    padding-bottom: 16px;
+    margin-bottom: 0px;
+}

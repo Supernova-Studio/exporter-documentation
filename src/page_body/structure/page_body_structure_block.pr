@@ -65,8 +65,8 @@
         *}
 {[/]}
 
-{* Generate child blocks, if any *}
-{[ if block.children.count() > 0 ]}
+{* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}
+{[ if (block.children.count() > 0 && block.type !== "Tabs" && block.type !== "Columns" && block.type !== "Table") ]}
     <div class="block-children">
     {[ for child in block.children ]}
         {[ inject "page_body_structure_block" context child /]}
