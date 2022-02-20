@@ -118,11 +118,10 @@
             },
             {
                 "key": "seoSiteImage",
-                "type": "string",
+                "type": "image",
                 "label": "Site Image Override",
                 "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-                "category": "Search Engines",
-                "default": ""
+                "category": "Search Engines"
             },
             {
                 "key": "advancedCustomizationShowNextPreviousNavigation",
