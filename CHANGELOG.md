@@ -2,8 +2,14 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.18] - 2022-19-02
+### Previous & Next navigation
+- It is now possible to navigate back and forth between pages with new navigation menu
+- Added option to enable / disable this behavior
+- Removed dynamic health custom blocks and general cleanup - additional functionality like this will be moved to separate repository as submodule when this feature is available globally (spoiler alert :)
+- Significantly improved rendering of Figma frames, especially in large, single-image mode
 
-## [1.17] - (work in progress)
+## [1.17] - 2022-18-02
 ### Bugfixes & improvements
 - Rendering of blocks have been heavily improved, all spacings, block paddings etc. was streamlined
 - Fixed rendering of (un)ordered lists and numeric lists being incorrectly aligned with design
