@@ -18,6 +18,11 @@
             "invoke": "custom_styling.pr",
             "write_to": "assets/css/custom.css",
             "comment": "Create file containing custom styling information"
+        },
+        {
+            "invoke": "sitemap.pr",
+            "write_to": "sitemap.xml",
+            "comment": "Create file containing documentation sitemap"
         }
     ],
     "resources": [{
