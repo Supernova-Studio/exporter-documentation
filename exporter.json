@@ -73,7 +73,7 @@
                 "type": "boolean",
                 "label": "Show Next / Previous navigation",
                 "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-                "category": "Advanced Customization",
+                "category": "Advanced",
                 "default": true
             },
             {
@@ -81,7 +81,7 @@
                 "type": "boolean",
                 "label": "Show Footer",
                 "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-                "category": "Advanced Customization",
+                "category": "Advanced",
                 "default": true
             },
             {
@@ -89,17 +89,17 @@
                 "type": "string",
                 "label": "Custom Footer Code",
                 "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-                "category": "Advanced Customization",
+                "category": "Advanced",
                 "isMultiline": true,
                 "inputType": "code",
-                "default": "\r\n<footer class=\"pt-4 my-md-5 pt-md-5 border-top\">\r\n    <div class=\"row\">\r\n        <div class=\"col-6\">\r\n            <h5>My Doc Site<\/h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through<br \/>Supernova customization options. Head to site advanced customization to learn more!<\/p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company<\/p>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Resources<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Changelog<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Storybook<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Figma<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Support<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Report issue<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Terms & Conditions<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Privacy Policy<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n    <\/div>\r\n<\/footer>"
+                "default": "\r\n<footer class=\"pt-4 my-md-5 pt-md-5 border-top\">\r\n    <div class=\"row\">\r\n        <div class=\"col-6\">\r\n            <h5>My Doc Site<\/h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through<br \/>Supernova options. Head to site advanced to learn more!<\/p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company<\/p>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Resources<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Changelog<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Storybook<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Figma<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Support<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Report issue<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Terms & Conditions<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Privacy Policy<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n    <\/div>\r\n<\/footer>"
             },
             {
                 "key": "advancedCustomizationCustomCSS",
                 "type": "string",
                 "label": "Custom CSS",
                 "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-                "category": "Advanced Customization",
+                "category": "Advanced",
                 "default": "body,\r\nhtml {\r\n    font-family: Inter, sans-serif;\r\n}",
                 "isMultiline": true,
                 "inputType": "code"
@@ -109,7 +109,7 @@
                 "type": "string",
                 "label": "Custom Font - Header",
                 "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
-                "category": "Advanced Customization",
+                "category": "Advanced",
                 "default": "<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
                 "isMultiline": true,
                 "inputType": "code"
