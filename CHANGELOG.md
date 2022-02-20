@@ -2,12 +2,18 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.20] - (WIP)
-### Custom CSS, Custom JS, Custom Footers
-- Added new category - Advanced customization
-- Added ability to define custom CSS
-- Added ability to define custom Javascript
-- Added ability to define custom Footer
+## [1.20] - 2022-21-02
+### Custom CSS, Custom Footers
+- Added new configuration category - Advanced. This category contains super-powered features that are only available because of the Pulsar engine ❤️
+- Added ability to define custom CSS for the entire doc site
+- Added ability to change font definition for the site
+- Added ability to load additional fonts for the site, and remove default one
+- Added ability to define custom Footer using HTML
+- Added default font definition (CSS)
+- Added default font definition (HTML)
+- Added default footer definition (HTML)
+- Renamed all configuration sections to make more sense
+- Unified CSS definitions to be just one file
 
 ## [1.19] - 2022-19-02
 ### Tab Blocks
