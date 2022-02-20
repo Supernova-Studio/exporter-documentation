@@ -15,16 +15,9 @@
     <!-- End Google Analytics -->
     {[/]}
 
-    <!-- Meta information -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-    {[ if (configuration.favicon && configuration.favicon.assetUrl) ]}
-    <link href="{{ configuration.favicon.assetUrl }}" rel="icon" />
-    {[/]}
-    <title>{{ configuration.metaTitlePrefix }} {{ page.title }}</title>
-    <meta name="description" content="{{ configuration.metaDescription }}">
+    {* SEO *}
+    {[ inject "page_seo" context page /]}
 
-    <!-- Documentation Styling –->
+    {* Documentation styling *}
     {[ inject "page_head_styles" context page /]}
 </head>

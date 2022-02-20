@@ -1,0 +1,101 @@
+{* We are generating different SEO context for each page, and it must also work well with tabs *}
+{[ let page = context /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ let group = page.parent /]}
+{[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
+{[ let headerConfiguration = (groupIsTabContainer ? group.configuration : page.configuration).header /]}
+{[ let rootGroup = ds.rootDocumentationGroup() /]}
+
+{* Compute information *}
+{* Title - page title is page name, with optional prefix, unless SEO title override is provided. In that case, only override is taken into account  *}
+{[ let title = page.title /]}
+{[ if (configuration.seoTitleOverride && configuration.seoTitleOverride.count() > 0) ]}
+    {[ title = configuration.seoTitleOverride /]}
+{[ else ]}
+    {[ if (title.count() > 0) ]}
+        {[ title = title.extended(configuration.seoTitlePrefix, configuration.seoTitleSuffix) /]}
+    {[/]}
+{[/]}
+
+{* Description - page description is taken from page header description, unless SEO description override is provided. If not subtitle is provided, then first text block is used for context. In that case, only override is taken into account *}
+{[ let description = headerConfiguration.description /]}
+{[ if (configuration.seoDescriptionOverride && configuration.seoDescriptionOverride.count() > 0) ]}
+    {[ description = configuration.seoDescriptionOverride /]}
+{[ else ]}
+    {[ if (description.count() === 0) ]}
+        {* If description wasn't provided for the page, seek first text block (this is ignoring child blocks - just top level of blocks) *}
+        {[ let found = false /]}
+        {[ for block in page.blocks ]}
+            {[ if (block.type === "Text" && !found) ]}
+                {[ description = textBlockPlainText(block) /]}
+                {[ found = true /]}
+            {[/]}
+        {[/]}
+    {[/]}
+    {[ if (description.count() > 0) ]}
+        {[ description = description.extended(configuration.seoDescriptionPrefix, configuration.seoDescriptionSuffix) /]}
+    {[/]}
+{[/]}
+
+{* URL *}
+{[ let url = pageUrl(page, ds.documentationDomain()) /]}
+
+{* Favicon *}
+{[ let siteFaviconUrl = (configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : null /]}
+
+{* Site image - if provided, overrides all images. Otherwise, we'll try to find first image provided in the content *}
+{[ let siteImageUrl = (configuration.seoSiteImage && configuration.seoSiteImage.assetUrl) ? configuration.seoSiteImage.assetUrl : null /]}
+{[ if !siteImageUrl ]}
+    {[ let found = false /]}
+    {[ for block in page.blocks ]}
+        {[ if (!found && block.type === "Image" && block.url) ]}
+            {[ siteImageUrl = block.url /]}
+            {[ found = true /]}
+        {[/]}
+    {[/]}
+{[/]}
+
+<!-- Meta information -->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+{[ if siteImageUrl ]}
+<link href="{{ siteImageUrl }}" rel="icon" />
+{[/]}
+
+<!-- Primary Meta Tags -->
+<title>{{ title }}</title>
+{[ if (title.count() > 0) ]}
+<meta name="title" content="{{ title }}">
+{[/]}
+{[ if (description.count() > 0) ]}
+<meta name="description" content="{{ description }}">
+{[/]}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ url }}">
+{[ if (title.count() > 0) ]}
+<meta property="og:title" content="{{ title }}">
+{[/]}
+{[ if (description.count() > 0) ]}
+<meta property="og:description" content="{{ description }}">
+{[/]}
+{[ if siteImageUrl ]}
+<meta property="og:image" content="{{ siteImageUrl }}">
+{[/]}
+
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary">
+<meta property="twitter:url" content="{{ url }}">
+{[ if (title.count() > 0) ]}
+<meta property="twitter:title" content="{{ title }}">
+{[/]}
+{[ if (title.count() > 0) ]}
+<meta property="twitter:description" content="{{ description }}">
+{[/]}
+{[ if siteImageUrl ]}
+<meta property="twitter:image" content="{{ siteImageUrl }}">
+{[/]}

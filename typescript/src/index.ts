@@ -4,7 +4,7 @@
 // MARK: - Imports
 
 import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
-import { firstPageFromTop, firstSubgroupOfPage, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
+import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
@@ -18,6 +18,7 @@ import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "
 /* Local lookup */
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
 Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
+Pulsar.registerFunction("flattenedPageStructure", flattenedPageStructure)
 Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
 Pulsar.registerFunction("previousPage", previousPage)
 Pulsar.registerFunction("nextPage", nextPage)

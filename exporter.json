@@ -53,18 +53,66 @@
                 "category": "Look & Feel"
             },
             {
-                "key": "metaTitlePrefix",
-                "type": "string",
-                "label": "Meta Title Prefix",
-                "description": "Meta title of the documentation page. Page name will also be added to the title",
+                "key": "seoEnableIndexing",
+                "type": "boolean",
+                "label": "Enable Search Engine Indexing",
+                "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
                 "category": "Search Engines",
-                "default": "Documentation | "
+                "default": true
             },
             {
-                "key": "metaDescription",
+                "key": "seoGenerateSitemap",
+                "type": "boolean",
+                "label": "Enable Sitemap Generation",
+                "description": "When enabled, documentation sitemap will be generated",
+                "category": "Search Engines",
+                "default": true
+            },
+            {
+                "key": "seoTitlePrefix",
                 "type": "string",
-                "label": "Meta Description",
-                "description": "Meta description of the documentation site",
+                "label": "Site Title Prefix",
+                "description": "When provided, page title will be prefixed with this string",
+                "category": "Search Engines",
+                "default": ""
+            },
+            {
+                "key": "seoTitleSuffix",
+                "type": "string",
+                "label": "Site Title Suffix",
+                "description": "When provided, page title will be suffixed with this string",
+                "category": "Search Engines",
+                "default": " | Made with Supernova"
+            },
+            {
+                "key": "seoTitleOverride",
+                "type": "string",
+                "label": "Site Title Override",
+                "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
+                "category": "Search Engines",
+                "default": ""
+            },
+            {
+                "key": "seoDescriptionPrefix",
+                "type": "string",
+                "label": "Site Description Prefix",
+                "description": "When provided, page description will be prefixed with this string",
+                "category": "Search Engines",
+                "default": ""
+            },
+            {
+                "key": "seoDescriptionSuffix",
+                "type": "string",
+                "label": "Site Description Suffix",
+                "description": "When provided, page description will be suffixed with this string",
+                "category": "Search Engines",
+                "default": " | Design system documentation, made with ❤️ using Supernova"
+            },
+            {
+                "key": "seoDescriptionOverride",
+                "type": "string",
+                "label": "Site Description Override",
+                "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
                 "category": "Search Engines",
                 "default": ""
             },
