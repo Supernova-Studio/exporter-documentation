@@ -100,17 +100,17 @@
                 "label": "Custom CSS",
                 "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
                 "category": "Advanced Customization",
-                "default": "",
+                "default": "body,\r\nhtml {\r\n    font-family: Inter, sans-serif;\r\n}",
                 "isMultiline": true,
                 "inputType": "code"
             },
             {
-                "key": "advancedCustomizationCustomJS",
+                "key": "advancedCustomizationCustomFonts",
                 "type": "string",
-                "label": "Custom Javascript",
-                "description": "Any custom javascript to change the documentation behavior. Custom CSS is injected last, overriding everything before it.",
+                "label": "Custom Font - Header",
+                "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
                 "category": "Advanced Customization",
-                "default": "",
+                "default": "<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
                 "isMultiline": true,
                 "inputType": "code"
             }
