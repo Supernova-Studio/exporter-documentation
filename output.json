@@ -13,6 +13,11 @@
             "invoke": "search_index.pr",
             "write_to": "si.js",
             "comment": "Create index data for the entire documentation to be used with fuse.js"
+        },
+        {
+            "invoke": "custom_styling.pr",
+            "write_to": "assets/css/custom.css",
+            "comment": "Create file containing custom styling information"
         }
     ],
     "resources": [{
