@@ -57,45 +57,60 @@
 {[/]}
 
 <!-- Meta information -->
+{* Robot config *}
+{[ let index = configuration.seoEnableIndexing /]}
+{[ let follow = configuration.seoEnableLinkFollowing /]}
+{[ if (index && follow) ]}
+<meta name="robots" content="all" />
+{[ elseif (!index) ]}
+<meta name="robots" content="noindex" />
+{[ elseif (!follow) ]}
+<meta name="robots" content="nofollow" />
+{[ elseif (!index && !follow) ]}
+<meta name="robots" content="noindex, nofollow" />
+{[/]}
+
+{* Main settings *}
 <meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no" />
 {[ if siteImageUrl ]}
 <link href="{{ siteImageUrl }}" rel="icon" />
 {[/]}
 
+{* All SEO tags *}
 <!-- Primary Meta Tags -->
 <title>{{ title }}</title>
 {[ if (title.count() > 0) ]}
-<meta name="title" content="{{ title }}">
+<meta name="title" content="{{ title }}" />
 {[/]}
 {[ if (description.count() > 0) ]}
-<meta name="description" content="{{ description }}">
+<meta name="description" content="{{ description }}" />
 {[/]}
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="{{ url }}">
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ url }}" />
 {[ if (title.count() > 0) ]}
-<meta property="og:title" content="{{ title }}">
+<meta property="og:title" content="{{ title }}" />
 {[/]}
 {[ if (description.count() > 0) ]}
-<meta property="og:description" content="{{ description }}">
+<meta property="og:description" content="{{ description }}" />
 {[/]}
 {[ if siteImageUrl ]}
-<meta property="og:image" content="{{ siteImageUrl }}">
+<meta property="og:image" content="{{ siteImageUrl }}" />
 {[/]}
 
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary">
-<meta property="twitter:url" content="{{ url }}">
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:url" content="{{ url }}" />
 {[ if (title.count() > 0) ]}
-<meta property="twitter:title" content="{{ title }}">
+<meta property="twitter:title" content="{{ title }}" />
 {[/]}
 {[ if (title.count() > 0) ]}
-<meta property="twitter:description" content="{{ description }}">
+<meta property="twitter:description" content="{{ description }}" />
 {[/]}
 {[ if siteImageUrl ]}
-<meta property="twitter:image" content="{{ siteImageUrl }}">
+<meta property="twitter:image" content="{{ siteImageUrl }}" />
 {[/]}

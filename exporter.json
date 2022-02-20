@@ -61,10 +61,18 @@
                 "default": true
             },
             {
+                "key": "seoEnableLinkFollowing",
+                "type": "boolean",
+                "label": "Enable Search Engine Link Follow",
+                "description": "When enabled, search robots will follow the links on the indexed pages",
+                "category": "Search Engines",
+                "default": true
+            },
+            {
                 "key": "seoGenerateSitemap",
                 "type": "boolean",
-                "label": "Enable Sitemap Generation",
-                "description": "When enabled, documentation sitemap will be generated",
+                "label": "Generate Sitemap",
+                "description": "When enabled, documentation sitemap will be re-generated on every publish",
                 "category": "Search Engines",
                 "default": true
             },
