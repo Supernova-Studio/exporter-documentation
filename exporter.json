@@ -91,7 +91,7 @@
                 "label": "Markdown URL"
             }]
         }],
-        "variants": {
+        "blockVariants": {
             "Tabs": [{
                 "name": "Tabs",
                 "id": "tabs",
