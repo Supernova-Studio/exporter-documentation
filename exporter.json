@@ -69,14 +69,6 @@
                 "default": ""
             },
             {
-                "key": "designShowNextPreviousNavigation",
-                "type": "boolean",
-                "label": "Show Next / Previous navigation",
-                "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-                "category": "Design",
-                "default": true
-            },
-            {
                 "key": "advancedCustomizationShowNextPreviousNavigation",
                 "type": "boolean",
                 "label": "Show Next / Previous navigation",
@@ -93,22 +85,14 @@
                 "default": true
             },
             {
-                "key": "advancedCustomizationShowFooterFullWidth",
-                "type": "boolean",
-                "label": "Full-width Footer",
-                "description": "When enabled, footer will expand to the entire width of the site (minus left sidebar), not bound by content limit.",
-                "category": "Advanced Customization",
-                "default": true
-            },
-            {
                 "key": "advancedCustomizationCustomFooter",
                 "type": "string",
                 "label": "Custom Footer Code",
                 "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
                 "category": "Advanced Customization",
-                "default": "",
                 "isMultiline": true,
-                "inputType": "code"
+                "inputType": "code",
+                "default": "\r\n<footer class=\"pt-4 my-md-5 pt-md-5 border-top\">\r\n    <div class=\"row\">\r\n        <div class=\"col-6\">\r\n            <h5>My Doc Site<\/h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through<br \/>Supernova customization options. Head to site advanced customization to learn more!<\/p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company<\/p>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Resources<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Changelog<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Storybook<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Figma<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Support<\/h5>\r\n        <ul class=\"list-unstyled text-small\">\r\n            <li><a class=\"text-muted\" href=\"#\">Report issue<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Terms & Conditions<\/a><\/li>\r\n            <li><a class=\"text-muted\" href=\"#\">Privacy Policy<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n    <\/div>\r\n<\/footer>"
             },
             {
                 "key": "advancedCustomizationCustomCSS",
@@ -147,13 +131,15 @@
         }],
         "blockVariants": {
             "Tabs": [{
-                "name": "Tabs",
-                "id": "tabs",
-                "isDefault": true
-            }, {
-                "name": "Pills",
-                "id": "pills"
-            }]
+                    "name": "Tabs",
+                    "id": "tabs",
+                    "isDefault": true
+                },
+                {
+                    "name": "Pills",
+                    "id": "pills"
+                }
+            ]
         }
     }
 }
