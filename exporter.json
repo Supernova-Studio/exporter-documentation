@@ -77,22 +77,38 @@
                 "default": true
             },
             {
-                "key": "deepCustomizationCustomCSS",
-                "type": "string",
-                "label": "Custom CSS",
-                "description": "Any custom CSS to change the documentation site styling. Custom CSS will be injected last, and can override any visual aspect of the site. For even deeper customization, check our developer docs > modifying exporter packages which allows you to completely change how documentation gets created.",
-                "category": "Deep Customization",
-                "default": "",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
                 "key": "advancedCustomizationShowNextPreviousNavigation",
                 "type": "boolean",
                 "label": "Show Next / Previous navigation",
                 "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
                 "category": "Advanced Customization",
                 "default": true
+            },
+            {
+                "key": "advancedCustomizationShowFooter",
+                "type": "boolean",
+                "label": "Show Footer",
+                "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
+                "category": "Advanced Customization",
+                "default": true
+            },
+            {
+                "key": "advancedCustomizationShowFooterFullWidth",
+                "type": "boolean",
+                "label": "Full-width Footer",
+                "description": "When enabled, footer will expand to the entire width of the site (minus left sidebar), not bound by content limit.",
+                "category": "Advanced Customization",
+                "default": true
+            },
+            {
+                "key": "advancedCustomizationCustomFooter",
+                "type": "string",
+                "label": "Custom Footer Code",
+                "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
+                "category": "Advanced Customization",
+                "default": "",
+                "isMultiline": true,
+                "inputType": "code"
             },
             {
                 "key": "advancedCustomizationCustomCSS",
@@ -105,40 +121,10 @@
                 "inputType": "code"
             },
             {
-                "key": "deepCustomizationCustomJS",
+                "key": "advancedCustomizationCustomJS",
                 "type": "string",
                 "label": "Custom Javascript",
                 "description": "Any custom javascript to change the documentation behavior. Custom CSS is injected last, overriding everything before it.",
-                "category": "Advanced Customization",
-                "default": "",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "deepCustomizationShowFooter",
-                "type": "boolean",
-                "label": "Show Footer",
-                "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-                "category": "Advanced Customization",
-                "default": "",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "deepCustomizationShowFooterFullWidth",
-                "type": "boolean",
-                "label": "Full-width Footer",
-                "description": "When enabled, footer will expand to the entire width of the site (minus left sidebar), not bound by content limit.",
-                "category": "Advanced Customization",
-                "default": "",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "deepCustomizationCustomFooter",
-                "type": "string",
-                "label": "Custom Footer Code",
-                "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
                 "category": "Advanced Customization",
                 "default": "",
                 "isMultiline": true,

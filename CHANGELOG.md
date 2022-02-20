@@ -2,6 +2,13 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.20] - (WIP)
+### Custom CSS, Custom JS, Custom Footers
+- Added new category - Advanced customization
+- Added ability to define custom CSS
+- Added ability to define custom Javascript
+- Added ability to define custom Footer
+
 ## [1.19] - 2022-19-02
 ### Tab Blocks
 - It is now possible to render tab blocks

@@ -1,5 +1,5 @@
 
-{[ if exportConfiguration().designShowNextPreviousNavigation ]}
+{[ if exportConfiguration().advancedCustomizationShowNextPreviousNavigation ]}
 
 {* Find next and previous pages of the currently generated page *}
 {[ let page = context /]}
