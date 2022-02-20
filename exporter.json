@@ -158,6 +158,16 @@
                 "type": "string",
                 "label": "Markdown URL"
             }]
-        }]
+        }],
+        "blockVariants": {
+            "Tabs": [{
+                "name": "Tabs",
+                "id": "tabs",
+                "isDefault": true
+            }, {
+                "name": "Pills",
+                "id": "pills"
+            }]
+        }
     }
 }

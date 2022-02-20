@@ -2,16 +2,6 @@
 
 {* Generate each block depending on this custom block identifier *}
 {[ switch block.key ]}
-{* Not in use right now, easter egg functionality :) *}
-{[ case "io.supernova.documentation-main.giphy" ]}
-    {[ inject "page_block_custom_giphy" context block /]}
 {[ case "io.supernova.documentation-main.markdown" ]}
     {[ inject "page_block_custom_markdown" context block /]}
-{[ case "io.supernova.documentation-main.component-health" ]}
-    {[ inject "page_block_custom_component_health" context block /]}
-{[ case "io.supernova.documentation-main.component-health-dynamic" ]}
-    {[ inject "page_block_custom_component_health_dynamic" context block /]}
-{[ case "io.supernova.documentation-main.component-health-dynamic-list" ]}
-    {[ inject "page_block_custom_component_health_dynamic_list" context block /]}
-
 {[/]}
