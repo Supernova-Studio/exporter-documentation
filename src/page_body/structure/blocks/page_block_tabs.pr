@@ -4,7 +4,6 @@
 
 {* This block is variant enabled, fetch it *}
 {[ let variant = block.variant /]}
-
 {[ if (variant === "pills") ]}
   {* Tab variant where tabs render as sidebar with pills and content is side-by-side *}
   {* Pills navigation sidebar *}
