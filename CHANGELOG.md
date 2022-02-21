@@ -2,7 +2,7 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.20] - 2022-21-02
+## [1.21] - 2022-22-02
 ### Custom CSS, Custom Footers
 - Added new configuration category - Advanced. This category contains super-powered features that are only available because of the Pulsar engine ❤️
 - Added ability to define custom CSS for the entire doc site
@@ -11,7 +11,7 @@ All notable changes to this exporter are mentioned here in this file.
 - Added ability to define custom Footer using HTML
 - Added default font definition (CSS)
 - Added default font definition (HTML)
-- Added default footer definition (HTML)
+- Added default footer definition (HTML) and default generated footer
 - Renamed all configuration sections to make more sense
 - Unified CSS definitions to be just one file
 
