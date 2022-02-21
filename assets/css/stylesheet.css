@@ -2219,10 +2219,29 @@ hr {
     color: #141618;
 }
 
+.nav-pills .nav-link {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #141618;
+}
+
 .nav-pills .nav-link.active,
 .nav-pills.nav-light .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
+}
+
+.nav-pills .nav-link.active {
+    background-color: rgba(15, 98, 254, 0.04) !important;
+    color: #0F62FE;
+    border-right: 1px solid #0F62FE;
+    border-radius: 4px 0px 0px 4px;
+    margin-right: -1px;
+    z-index: 2;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .nav.nav-separator .nav-item .nav-link {
@@ -5466,9 +5485,13 @@ body.dark .fa-moon:before {
 
 .tab-content-block {
     background: #FFFFFF;
-    border: 1px solid #DCE0E4;
-    border-radius: 8px;
+    border-left: 1px solid #DCE0E4;
+    border-radius: 0;
     padding: 16px 24px;
+}
+
+.tab-pills .tab-content-block {
+    padding: 0px 24px;
 }
 
 .nav-tabs-inline {
@@ -5487,6 +5510,11 @@ body.dark .fa-moon:before {
 .docs-content .tab-pane> :last-child {
     padding-bottom: 16px;
     margin-bottom: 0px;
+}
+
+.docs-content .tab-pills .tab-pane> :first-child {
+    padding-top: 0px;
+    margin-top: 0px;
 }
 
 .typographyDocsViewNavigation {

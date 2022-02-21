@@ -8,9 +8,9 @@
 {[ if (variant === "pills") ]}
   {* Tab variant where tabs render as sidebar with pills and content is side-by-side *}
   {* Pills navigation sidebar *}
-    <div class="row no-gutters">
+    <div class="row no-gutters tab-pills">
       <div class="col-3">
-        <div class="nav flex-column nav-pills" id="{{ blockId }}" role="tablist" aria-orientation="vertical">
+        <div class="nav nav-pills flex-sm-column" id="{{ blockId }}" role="tablist" aria-orientation="vertical">
         {[ map (block.children.enumerated()) to index tab ]}
             {[ let id = tab.id.prefixed("T") /]}
             {[ if (tab.type === "TabItem") ]}
