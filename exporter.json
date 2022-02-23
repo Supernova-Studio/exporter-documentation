@@ -195,12 +195,12 @@
         "blockVariants": {
             "Tabs": [{
                     "name": "Tabs",
-                    "id": "tabs",
+                    "key": "tabs",
                     "isDefault": true
                 },
                 {
                     "name": "Pills",
-                    "id": "pills"
+                    "key": "pills"
                 }
             ]
         }
