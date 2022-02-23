@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.22] - 2022-22-02
+### Block variants
+- Added ability to define block variants. You can now select variant inside editor and access it through `variantKey` property
+- Added tab mode rendering variant "pill"
+
 ## [1.21] - 2022-22-02
 ### Custom CSS, Custom Footers
 - Added new configuration category - Advanced. This category contains super-powered features that are only available because of the Pulsar engine ❤️
@@ -18,7 +23,6 @@ All notable changes to this exporter are mentioned here in this file.
 ## [1.19] - 2022-19-02
 ### Tab Blocks
 - It is now possible to render tab blocks
-- Added tab mode rendering variant "pill"
 - Preparation for tables, columns
 - Cleanup of some experimental blocks and remnants of the old code
 

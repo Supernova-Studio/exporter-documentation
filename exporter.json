@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.21",
+    "version": "1.22",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -195,12 +195,12 @@
         "blockVariants": {
             "Tabs": [{
                     "name": "Tabs",
-                    "id": "tabs",
+                    "key": "tabs",
                     "isDefault": true
                 },
                 {
                     "name": "Pills",
-                    "id": "pills"
+                    "key": "pills"
                 }
             ]
         }
