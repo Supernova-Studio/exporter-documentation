@@ -1,9 +1,9 @@
 {
     "id": "io.supernova.documentation-main",
-    "name": "Documentation",
-    "description": "Base Documentation Exporter",
-    "author": "Jiri Trecak",
-    "organization": "Supernova",
+    "name": "Rapid7 X Design System Resource Documentation",
+    "description": "Rapid7 X Exporter",
+    "author": "PXE Team",
+    "organization": "Rapid7",
     "source_dir": "src",
     "assets_dir": "assets",
     "version": "1.22",
@@ -19,7 +19,7 @@
     },
     "type": "documentation",
     "tags": [
-        "Documentation"
+        "Rapid7 X Documentation"
     ],
     "contributes": {
         "configuration": [{
