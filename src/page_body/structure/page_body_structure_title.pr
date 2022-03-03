@@ -78,7 +78,8 @@
                 {[ color = exportConfiguration().lookAndFeelHeaderTextColor.value /]}
             {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.aliasTo) ]}
                 {* Foreground color provided as token from global configuration *}
-                {[ let colorToken = ds.tokenById(exportConfiguration().lookAndFeelHeaderTextColor.aliasTo) /]}
+                {[ let alias = exportConfiguration().lookAndFeelHeaderTextColor.aliasTo /]}
+                {[ let colorToken = ds.tokenById(alias) /]}
                 {[ color = colorToken.value.hex.prefixed("#") /]}
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
