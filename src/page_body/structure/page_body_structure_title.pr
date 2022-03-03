@@ -19,8 +19,10 @@
 {[ let height = "auto" /]}
 {[ if headerConfiguration.minHeight ]}
     {[ height = (headerConfiguration.minHeight.toString() + "px") /]}
+    {[ flexedClass = "flexed" /]}
 {[ elseif (exportConfiguration().lookAndFeelHeaderHeight !== 0) ]}
     {[ height = (exportConfiguration().lookAndFeelHeaderHeight.toString() + "px") /]}
+    {[ flexedClass = "flexed" /]}
 {[/]}
 
 {* Background image set on the page overrides all settings *}
