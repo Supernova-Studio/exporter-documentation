@@ -18,9 +18,9 @@
 {* Configure height *}
 {[ let height = "auto" /]}
 {[ if headerConfiguration.minHeight ]}
-    {[ height = headerConfiguration.minHeight.toString() /]}
+    {[ height = (headerConfiguration.minHeight.toString() + "px") /]}
 {[ elseif (exportConfiguration().lookAndFeelHeaderHeight !== 0) ]}
-    {[ height = exportConfiguration().lookAndFeelHeaderHeight.toString() /]}
+    {[ height = (exportConfiguration().lookAndFeelHeaderHeight.toString() + "px") /]}
 {[/]}
 
 {* Background image set on the page overrides all settings *}
