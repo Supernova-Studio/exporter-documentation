@@ -2,6 +2,14 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.23] - 2022-03-03
+### Block variants
+- Added option to apply header image to all pages at once by using documentation settings
+- Added option to apply header background color to all pages at once by using documentation settings
+- Added option to apply header text color to all pages at once by using documentation settings
+- Added option to apply header height to all pages at once by using documentation settings
+- All header properties that are set through the page configuration will now take precedence over the documentation configuration settings
+
 ## [1.22] - 2022-22-02
 ### Block variants
 - Added ability to define block variants. You can now select variant inside editor and access it through `variantKey` property

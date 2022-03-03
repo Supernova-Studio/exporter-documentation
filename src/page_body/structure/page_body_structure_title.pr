@@ -14,12 +14,24 @@
 {* Configure appropriate classes based on the configuration *}
 {[ let centeredClass = (headerConfiguration.alignment === "Center" ? "centered" : "") /]}
 {[ let flexedClass = (headerConfiguration.minHeight ? "flexed" : "") /]}
-{[ let height = (headerConfiguration.minHeight ? headerConfiguration.minHeight.toString() + "px" : "auto") /]}
 
-{* Background image overrides all settings *}
+{* Configure height *}
+{[ let height = "auto" /]}
+{[ if headerConfiguration.minHeight ]}
+    {[ height = headerConfiguration.minHeight.toString() /]}
+{[ elseif (exportConfiguration().lookAndFeelHeaderHeight !== 0) ]}
+    {[ height = exportConfiguration().lookAndFeelHeaderHeight.toString() /]}
+{[/]}
+
+{* Background image set on the page overrides all settings *}
 {[ if headerConfiguration.backgroundImageAssetUrl ]}
 <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
-{* Background color takes over transparent default if provided *}
+
+{* Background image set on doc export settings level overrides all settings *}
+{[ elseif (exportConfiguration().lookAndFeelHeaderBackgroundImage && exportConfiguration().lookAndFeelHeaderBackgroundImage.assetUrl) ]}
+<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ exportConfiguration().lookAndFeelHeaderBackgroundImage.assetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
+
+{* Background color provided per-page takes over transparent default if provided *}
 {[ elseif headerConfiguration.backgroundColor ]}
     {[ if headerConfiguration.backgroundColor.value ]}
         {* Background color provided as raw value *}
@@ -27,6 +39,18 @@
     {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
         {* Background color provided as token *}
         {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
+        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+    {[/]}
+
+{* Background color takes over transparent default if provided *}
+{[ elseif exportConfiguration().lookAndFeelHeaderBackgroundColor ]}
+    {[ let color = exportConfiguration().lookAndFeelHeaderBackgroundColor /]}
+    {[ if color.value ]}
+        {* Background color provided as raw value *}
+        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ color.value }};">
+    {[ elseif color.aliasTo ]}
+        {* Background color provided as token *}
+        {[ let colorToken = ds.tokenById(color.aliasTo) /]}
         <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
     {[/]}
 
@@ -48,6 +72,13 @@
             {[ elseif (headerConfiguration.foregroundColor && headerConfiguration.foregroundColor.aliasTo) ]}
                 {* Foreground color provided as token *}
                 {[ let colorToken = ds.tokenById(headerConfiguration.foregroundColor.aliasTo) /]}
+                {[ color = colorToken.value.hex.prefixed("#") /]}
+            {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.value) ]}
+                {* Foreground color provided as raw value from global configuration *}
+                {[ color = exportConfiguration().lookAndFeelHeaderTextColor.value /]}
+            {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.aliasTo) ]}
+                {* Foreground color provided as token from global configuration *}
+                {[ let colorToken = ds.tokenById(exportConfiguration().lookAndFeelHeaderTextColor.aliasTo) /]}
                 {[ color = colorToken.value.hex.prefixed("#") /]}
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}

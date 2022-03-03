@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.22",
+    "version": "1.23",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -41,7 +41,7 @@
             {
                 "key": "headerLogo",
                 "type": "image",
-                "label": "Header Logo",
+                "label": "Top Menu Logo",
                 "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
                 "category": "Look & Feel"
             },
@@ -51,6 +51,35 @@
                 "label": "Site Favicon",
                 "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
                 "category": "Look & Feel"
+            },
+            {
+                "key": "lookAndFeelHeaderBackgroundImage",
+                "type": "image",
+                "label": "Page Header Background Image",
+                "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
+                "category": "Look & Feel"
+            },
+            {
+                "key": "lookAndFeelHeaderBackgroundColor",
+                "type": "color",
+                "label": "Page Header Background Color",
+                "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
+                "category": "Look & Feel"
+            },
+            {
+                "key": "lookAndFeelHeaderTextColor",
+                "type": "color",
+                "label": "Page Header Text Color",
+                "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
+                "category": "Look & Feel"
+            },
+            {
+                "key": "lookAndFeelHeaderHeight",
+                "type": "number",
+                "label": "Page Header Height (px)",
+                "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
+                "category": "Look & Feel",
+                "default": 0
             },
             {
                 "key": "seoEnableIndexing",
@@ -195,12 +224,12 @@
         "blockVariants": {
             "Tabs": [{
                     "name": "Tabs",
-                    "key": "tabs",
+                    "id": "tabs",
                     "isDefault": true
                 },
                 {
                     "name": "Pills",
-                    "key": "pills"
+                    "id": "pills"
                 }
             ]
         }
