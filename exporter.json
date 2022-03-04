@@ -183,7 +183,7 @@
                 "label": "Health Spreadsheet ID",
                 "description": "Spreadsheet identifier that points towards a spreadsheet containing the health definition.",
                 "category": "Seeds Specific",
-                "default": "1zHvnF4_p5N3s_mdCbtvMID-jbWnomidTcnHrJ3MsNVk",
+                "default": "1foch4-Dn59cyJlGh6FdfPLi-0-RtyrMg8FkbSAtrPCI",
                 "isMultiline": false,
                 "inputType": "plain"
             },
