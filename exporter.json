@@ -183,7 +183,7 @@
                 "label": "Health Spreadsheet ID",
                 "description": "Spreadsheet identifier that points towards a spreadsheet containing the health definition.",
                 "category": "Custom Plugins",
-                "default": "1R5BsCkmdnvTGGWT2o57tQTXDYuATnGpTuOnB6eUsX_Y",
+                "default": "1ONHYpe8Wc8hY_8rlohNloziWPlgU1DQKGXSIyQU9-Ig",
                 "isMultiline": false,
                 "inputType": "plain"
             },
