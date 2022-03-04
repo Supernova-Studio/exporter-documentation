@@ -4,4 +4,6 @@
 {[ switch block.key ]}
 {[ case "io.supernova.documentation-main.markdown" ]}
     {[ inject "page_block_custom_markdown" context block /]}
+{[ case "io.supernova.documentation-main.component-health-dynamic" ]}
+    {[ inject "page_block_custom_component_health_dynamic" context block /]}
 {[/]}

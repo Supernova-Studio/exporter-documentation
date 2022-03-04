@@ -1,0 +1,27 @@
+{[ const block = context /]}
+
+{* Get component ID *}
+{[ let componentId = block.properties.componentId /]}
+
+{* Get base configuration *}
+{[ let sourceIdentifier = exportConfiguration().componentHealthSourceIdentifier /]}
+{[ let sourceName = exportConfiguration().componentHealthSourceName /]}
+
+{[ if (!sourceIdentifier || !sourceName) ]}
+    <p>Source identifier and source name for health status must be provided</p>
+{[ elseif (!componentId) ]}
+    <p>Component identifier that exists in definition file for health status must be provided</p>
+{[ else ]}
+
+    {* Create download sheet URL, and get its data *}
+    {[ let sheetUrl = constructGoogleSheetCSVUrl(sourceIdentifier, sourceName) /]}
+    {[ let data = getNetworkData(sheetUrl) /]}
+
+    {* Retrieve information from the API. In order to be compatible with content health block, we create expected block structure *}
+    {[ if !data ]}
+        <p>Unable to fetch information about component ID {{ componentId }}</p>
+    {[ else ]}
+        {[ let dynamicBlock = constructDynamicHealthBlock(componentId, data) /]}
+        {[ inject "page_block_custom_component_health" context dynamicBlock /]}
+    {[/]}
+{[/]}
