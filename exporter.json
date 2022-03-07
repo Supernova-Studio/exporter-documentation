@@ -1,9 +1,9 @@
 {
     "id": "io.supernova.documentation-main",
-    "name": "Documentation",
-    "description": "Base Documentation Exporter",
-    "author": "Jiri Trecak",
-    "organization": "Supernova",
+    "name": "RDC Exporter",
+    "description": "RDC Documentation Exporter",
+    "author": "Victor Perez",
+    "organization": "Move",
     "source_dir": "src",
     "assets_dir": "assets",
     "version": "1.23",
@@ -220,7 +220,54 @@
                 "type": "string",
                 "label": "Markdown URL"
             }]
-        }],
+        },
+        {
+            "key": "io.rdc.documentation-main.contact",
+            "category": "Component Blocks",
+            "title": "Contact",
+            "description": "Picture and information of a person",
+            "icon": "icons/contact.png",
+            "mode": "block",
+            "properties": [{
+                "key": "name",
+                "default": "Full name",
+                "type": "string",
+                "label": "Full name"
+            },
+            {
+                "key": "email",
+                "default": "example@move.com",
+                "type": "string",
+                "label": "Email"
+            },
+            {
+                "key": "photo",
+                "default": "https://media.github.move.com/user/213/files/a567cc00-5e27-11ea-8986-f01f501a367c",
+                "type": "string",
+                "label": "Photo"
+            }]
+        },
+        {
+                "key": "io.rdc.documentation-main.loom-embed",
+                "category": "Media Blocks",
+                "title": "Loom",
+                "description": "Embed a Loom video",
+                "icon": "icons/loom-color.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "url",
+                    "default": "https://",
+                    "type": "string",
+                    "label": "Video url"
+                },
+                {
+                    "key": "caption",
+                    "default": "",
+                    "type": "string",
+                    "label": "Caption"
+                }]
+            }
+        ],
         "blockVariants": {
             "Tabs": [{
                     "name": "Tabs",
