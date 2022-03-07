@@ -1,6 +1,6 @@
 {
     "id": "io.supernova.documentation-main",
-    "name": "Rapid7 X Design System Resource Documentation",
+    "name": "Rapid7 X Design System Resource Docs",
     "description": "Rapid7 X Exporter",
     "author": "PXE Team",
     "organization": "Rapid7",
@@ -182,7 +182,7 @@
                 "type": "string",
                 "label": "Health Spreadsheet ID",
                 "description": "Spreadsheet identifier that points towards a spreadsheet containing the health definition.",
-                "category": "Custom Plugins",
+                "category": "Rapid7 Plugins",
                 "default": "1ONHYpe8Wc8hY_8rlohNloziWPlgU1DQKGXSIyQU9-Ig",
                 "isMultiline": false,
                 "inputType": "plain"
@@ -192,7 +192,7 @@
                 "type": "string",
                 "label": "Spreadsheet page",
                 "description": "Spreadsheet page that points towards a page inside the spreadsheet containing the health definition.",
-                "category": "Custom Plugins",
+                "category": "Rapid7 Plugins",
                 "default": "Components",
                 "isMultiline": false,
                 "inputType": "plain"
