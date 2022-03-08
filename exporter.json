@@ -268,7 +268,7 @@
             }]
         },
         {
-            "key": "",
+            "key": "io.rdc.documentation-main.example",
             "category": "DO NOT USE",
             "title": "[WIP] Example block",
             "description": "for testing",
