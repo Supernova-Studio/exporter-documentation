@@ -295,6 +295,7 @@
             {
                 "key": "enum",
                 "default": "",
+                "values": ["first", "second", "third"],
                 "type": "enum",
                 "label": "enum"
             },
