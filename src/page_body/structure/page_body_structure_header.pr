@@ -80,10 +80,6 @@
                 </div>
             </div>
             <i class="fas fa-search search"></i>
-            {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
-            {[ if false ]}
-            <i class="far fa-moon switch-theme"></i>
-            {[/]}
             </div>
             
         </div>

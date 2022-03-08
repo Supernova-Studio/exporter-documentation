@@ -615,70 +615,6 @@ hr {
 }
 
 
-/* =================================== */
-
-
-/*  5. Elements
-/* =================================== */
-
-
-/*=== 5.1 List Style ===*/
-
-.list-style-1>li {
-    position: relative;
-    list-style-type: none;
-    line-height: 24px;
-}
-
-.list-style-1>li:after {
-    content: " ";
-    position: absolute;
-    top: 12px;
-    left: -15px;
-    border-color: #000;
-    border-top: 1px solid;
-    border-right: 1px solid;
-    width: 6px;
-    height: 6px;
-    -webkit-transform: translate(-50%, -50%) rotate(45deg);
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.list-style-2 {
-    padding: 0;
-}
-
-.list-style-2>li {
-    list-style-type: none;
-    border-bottom: 1px solid #eaeaea;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.list-style-2.list-style-light>li {
-    border-bottom: 1px solid rgba(250, 250, 250, 0.12);
-}
-
-
-/*=== 5.2 Changelog ===*/
-
-.changelog {
-    list-style: none;
-    padding: 0;
-}
-
-.changelog .badge {
-    width: 90px;
-    margin-right: 10px;
-    border-radius: 0.2rem;
-    text-transform: uppercase;
-}
-
-.changelog li {
-    line-height: 1.8;
-}
-
-
 /*=== 5.3 Accordion & Toggle ===*/
 
 .accordion .card {
@@ -1089,11 +1025,9 @@ hr {
 }
 
 
-/* =================================== */
-
-
-/*  6. Footer
-/* =================================== */
+/* =================================== 
+*  6. Footer
+* =================================== */
 
 .container-footer ul li {
     margin-bottom: 8px;
@@ -1139,74 +1073,6 @@ h6 {
     margin: 0;
 }
 
-
-/*=== 6.2 Back to Top ===*/
-
-#back-to-top {
-    display: none;
-    position: fixed;
-    z-index: 1030;
-    bottom: 8px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.22);
-    text-align: center;
-    color: #fff;
-    font-size: 14px;
-    width: 36px;
-    height: 36px;
-    line-height: 34px;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-#back-to-top:hover {
-    background-color: #0366d6;
-    -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-}
-
-@media (max-width: 575.98px) {
-    #back-to-top {
-        z-index: 1029;
-    }
-}
-
-
-/* =================================== */
-
-
-/*  Extras
-/* =================================== */
-
-.bg-secondary {
-    background-color: #6c757d !important;
-}
-
-.text-primary {
-    color: #0366d6 !important;
-}
-
-.text-secondary {
-    color: #6c757d !important;
-}
-
-.text-light {
-    color: #dee3e4 !important;
-}
-
-.text-body {
-    color: #4c4d4d !important;
-}
-
-.border-primary {
-    border-color: #0366d6 !important;
-}
-
-.border-secondary {
-    border-color: #6c757d !important;
-}
-
 .btn-primary {
     background-color: #0366d6;
     border-color: #0366d6;
@@ -1245,19 +1111,6 @@ h6 {
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: #0366d6;
-}
-
-.custom-radio .custom-control-input:checked~.custom-control-label:before,
-.custom-control-input:checked~.custom-control-label::before,
-.custom-checkbox .custom-control-input:checked~.custom-control-label:before,
-.custom-control-input:checked~.custom-control-label:before {
-    background-color: #0366d6;
-    border-color: #0366d6;
-}
-
-.list-group-item.active {
-    background-color: #0366d6;
-    border-color: #0366d6;
 }
 
 
@@ -1888,10 +1741,6 @@ ol>.block-children {
     color: #000;
     cursor: pointer;
     padding: 8px;
-}
-
-.fa-moon:before {
-    content: url("data:image/svg+xml,%3Csvg width='38' height='26' viewBox='0 0 38 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='4' width='18' height='18' rx='9' fill='black' fill-opacity='0.8'/%3E%3Cpath d='M13 16C14.6569 16 16 14.6569 16 13C16 11.3431 14.6569 10 13 10C11.3431 10 10 11.3431 10 13C10 14.6569 11.3431 16 13 16Z' stroke='white' stroke-miterlimit='10'/%3E%3Cpath d='M13 8V7' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M13 19V18' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M9.46001 9.45999L8.76001 8.75999' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M17.24 17.24L16.54 16.54' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M8 13H7' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M19 13H18' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M9.46001 16.54L8.76001 17.24' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M17.24 8.75999L16.54 9.45999' stroke='white' stroke-miterlimit='10' stroke-linecap='square'/%3E%3Cpath d='M13 1.5H25V0.5H13V1.5ZM25 24.5H13V25.5H25V24.5ZM13 24.5C6.64873 24.5 1.5 19.3513 1.5 13H0.5C0.5 19.9036 6.09644 25.5 13 25.5V24.5ZM36.5 13C36.5 19.3513 31.3513 24.5 25 24.5V25.5C31.9036 25.5 37.5 19.9036 37.5 13H36.5ZM25 1.5C31.3513 1.5 36.5 6.64873 36.5 13H37.5C37.5 6.09644 31.9036 0.5 25 0.5V1.5ZM13 0.5C6.09644 0.5 0.5 6.09644 0.5 13H1.5C1.5 6.64873 6.64873 1.5 13 1.5V0.5Z' fill='black' fill-opacity='0.8'/%3E%3C/svg%3E%0A");
 }
 
 #header-nav {
@@ -3168,32 +3017,6 @@ div.spacer {
 /**
  * One Light theme for prism.js
  * Based on Atom's One Light theme: https://github.com/atom/atom/tree/master/packages/one-light-syntax
- */
-
-
-/**
- * One Light colours (accurate as of commit eb064bf on 19 Feb 2021)
- * From colors.less
- * --mono-1: hsl(230, 8%, 24%);
- * --mono-2: hsl(230, 6%, 44%);
- * --mono-3: hsl(230, 4%, 64%)
- * --hue-1: hsl(198, 99%, 37%);
- * --hue-2: hsl(221, 87%, 60%);
- * --hue-3: hsl(301, 63%, 40%);
- * --hue-4: hsl(119, 34%, 47%);
- * --hue-5: hsl(5, 74%, 59%);
- * --hue-5-2: hsl(344, 84%, 43%);
- * --hue-6: hsl(35, 99%, 36%);
- * --hue-6-2: hsl(35, 99%, 40%);
- * --syntax-fg: hsl(230, 8%, 24%);
- * --syntax-bg: hsl(230, 1%, 98%);
- * --syntax-gutter: hsl(230, 1%, 62%);
- * --syntax-guide: hsla(230, 8%, 24%, 0.2);
- * --syntax-accent: hsl(230, 100%, 66%);
- * From syntax-variables.less
- * --syntax-selection-color: hsl(230, 1%, 90%);
- * --syntax-gutter-background-color-selected: hsl(230, 1%, 90%);
- * --syntax-cursor-line: hsla(230, 8%, 24%, 0.05);
  */
 
 code[class*="language-"],
