@@ -248,26 +248,63 @@
             }]
         },
         {
-                "key": "io.rdc.documentation-main.loom-embed",
-                "category": "Media Blocks",
-                "title": "Loom",
-                "description": "Embed a Loom video",
-                "icon": "icons/loom-color.png",
-                "mode": "block",
-                "properties": [{
-                    "key": "url",
-                    "default": "https://",
-                    "type": "string",
-                    "label": "Video url"
-                },
-                {
-                    "key": "caption",
-                    "default": "",
-                    "type": "string",
-                    "label": "Caption"
-                }]
-            }
-        ],
+            "key": "io.rdc.documentation-main.loom-embed",
+            "category": "Media Blocks",
+            "title": "Loom",
+            "description": "Embed a Loom video",
+            "icon": "icons/loom-color.png",
+            "mode": "block",
+            "properties": [{
+                "key": "url",
+                "default": "https://",
+                "type": "string",
+                "label": "Video url"
+            },
+            {
+                "key": "caption",
+                "default": "",
+                "type": "string",
+                "label": "Caption"
+            }]
+        },
+        {
+            "key": "",
+            "category": "DO NOT USE",
+            "title": "[WIP] Example block",
+            "description": "for testing",
+            "icon": "icons/contact.png",
+            "mode": "block",
+            "properties": [{
+                "key": "string",
+                "default": "",
+                "type": "string",
+                "label": "string"
+            },
+            {
+                "key": "number",
+                "default": 0,
+                "type": "number",
+                "label": "number"
+            },
+            {
+                "key": "boolean",
+                "default": false,
+                "type": "boolean",
+                "label": "boolean"
+            },
+            {
+                "key": "enum",
+                "default": [],
+                "type": "enum",
+                "label": "enum"
+            },
+            {
+                "key": "image",
+                "default": "",
+                "type": "image",
+                "label": "image"
+            }]
+        }],
         "blockVariants": {
             "Tabs": [{
                     "name": "Tabs",
