@@ -272,40 +272,6 @@ $(function() {
 })
 
 /*-----------------------------
-    Theme switching & mode preservation
-------------------------------- */
-
-$(".switch-theme").on("click", function(e) {
-    // Toggle the dark / light mode when clicking the mode selector
-    $("body").toggleClass("dark")
-    e.preventDefault()
-
-    // Store selection
-    if ($("body").is(".dark")) {
-        localStorage.setItem("sn.default.theme", "dark")
-    } else {
-        localStorage.setItem("sn.default.theme", "light")
-    }
-})
-
-/*-----------------------------
-    Theme switching & mode preservation
-------------------------------- */
-
-$(".switch-theme").on("click", function(e) {
-    // Toggle the dark / light mode when clicking the mode selector
-    $("body").toggleClass("dark")
-    e.preventDefault()
-
-    // Store selection
-    if ($("body").is(".dark")) {
-        localStorage.setItem("sn.default.theme", "dark")
-    } else {
-        localStorage.setItem("sn.default.theme", "light")
-    }
-})
-
-/*-----------------------------
     Storybook handling
 ------------------------------- */
 
