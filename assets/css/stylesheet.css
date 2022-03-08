@@ -1,39 +1,3 @@
-/*
-=================================================
-  Table of Contents
-=================================================
-
-	1. Basic
-	2. Helpers Classes
-	3. Layouts
-		3.1 Side Navigation
-		3.2 Docs Content
-		3.3 Section Divider
-	4. Header
-		4.1 Main Navigation
-	5 Elements
-		5.1 List Style
-		5.2 Changelog
-		5.3 Accordion & Toggle
-		5.4 Nav
-		5.5 Tabs
-		5.6 Popup Img
-		5.7 Featured Box
-	6 Footer
-		6.1 Social Icons
-		6.2 Back to Top
-  7 Blocks
-	8 Extra
-
-=======================================================*/
-
-
-/* =================================== */
-
-
-/*  1. Basic Style 
-/* =================================== */
-
 * {
     scroll-behavior: smooth !important;
 }
@@ -63,100 +27,6 @@ body {
     --colorDocsViewPrimaryPrimary: #0f62fe;
     --colorDocsViewPrimaryPrimaryLight: #0f62fe0a;
     --colorDocsViewPrimaryPrimaryHighlight: #0f62fe14;
-}
-
-
-/*-------- Preloader --------*/
-
-.preloader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 999999999 !important;
-    background-color: #fff;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.preloader .lds-ellipsis {
-    display: inline-block;
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    margin-top: -40px;
-    margin-left: -40px;
-    top: 50%;
-    left: 50%;
-}
-
-.preloader .lds-ellipsis div {
-    position: absolute;
-    top: 33px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: #000;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-
-.preloader .lds-ellipsis div:nth-child(1) {
-    left: 8px;
-    animation: lds-ellipsis1 0.6s infinite;
-}
-
-.preloader .lds-ellipsis div:nth-child(2) {
-    left: 8px;
-    animation: lds-ellipsis2 0.6s infinite;
-}
-
-.preloader .lds-ellipsis div:nth-child(3) {
-    left: 32px;
-    animation: lds-ellipsis2 0.6s infinite;
-}
-
-.preloader .lds-ellipsis div:nth-child(4) {
-    left: 56px;
-    animation: lds-ellipsis3 0.6s infinite;
-}
-
-@keyframes lds-ellipsis1 {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes lds-ellipsis3 {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0);
-    }
-}
-
-@keyframes lds-ellipsis2 {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(24px, 0);
-    }
-}
-
-
-/*--- Preloader Magnific Popup ----*/
-
-.mfp-container .preloader {
-    background: transparent;
-}
-
-.mfp-container .preloader .lds-ellipsis div {
-    background: #fff;
 }
 
 ::selection {
@@ -314,13 +184,6 @@ pre code {
     border: 1px solid #d6d6d6;
     border-radius: 3px;
     margin: 20px 0px;
-}
-
-
-/*=== Highlight Js ===*/
-
-.hljs {
-    padding: 1.5rem;
 }
 
 
@@ -3516,10 +3379,6 @@ ol>.block-children {
     position: relative;
     left: -26px;
     margin-left: -11px;
-}
-
-.hljs {
-    padding: 0;
 }
 
 .bg-sidebar {

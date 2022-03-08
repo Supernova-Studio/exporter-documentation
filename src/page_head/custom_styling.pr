@@ -1,5 +1,88 @@
 {* Inject any custom CSS provided by the user *}
 {{ exportConfiguration().advancedCustomizationCustomCSS }}
 
-{* Inject styles *}
-{* TODO *}
+{* Inject styling tokens *}
+
+{* Content / Text *}
+
+{* Content / Secondary Text *}
+
+{* Content / Header *}
+
+{* Content / Inverted Text *}
+
+{* Content / Hover *}
+
+{* Content / Background *}
+
+{* Content / Selected *}
+
+{* Content / Selected Background *}
+
+{* Content / Border *}
+
+{* Content / Secondary Background *}
+
+{* Content / Critical Text *}
+
+{* Content / Critical Background *}
+
+{* Content / Warning Text *}
+
+{* Content / Warning Background *}
+
+{* Content / Success Text *}
+
+{* Content / Success Background *}
+
+{* Content / Text *}
+
+{* Top Navigation / Background *}
+
+{* Top Navigation / Hover *}
+
+{* Top Navigation / Foreground *}
+
+{* Top Navigation / Border *}
+
+{* Top Navigation / CTA *}
+
+{* Top Navigation / CTA Hover *}
+
+{* Header / Hover *}
+
+{* Header / Background *}
+
+{* Header / Tab Button Label *}
+
+{* Header / Title *}
+
+{* Header / Description *}
+
+{* Header / Selected *}
+
+{* Header / Border *}
+
+{* Left Navigation / Hover *}
+
+{* Left Navigation / Background *}
+
+{* Left Navigation / Page Label *}
+
+{* Left Navigation / Border *}
+
+{* Left Navigation / Selected *}
+
+{* Left Navigation / Selected Background *}
+
+{* Left Navigation / Tab Label *}
+
+{* Left Navigation / Section Label *}
+
+{* Special / Opacity *}
+
+
+
+
+
+

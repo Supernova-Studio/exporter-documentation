@@ -4,28 +4,6 @@
 ================================================================
 */
 
-/*-----------------------------
-    Magnific Popups
-------------------------------- */
-
-// Image on Modal
-$(".popup-img").each(function() {
-    $(this).magnificPopup({
-        type: "image",
-        tLoading: '<div class="preloader"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>',
-        closeOnContentClick: !0,
-        mainClass: "mfp-fade",
-    })
-})
-
-// YouTube/Viemo Video & Gmaps
-$(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
-    $(this).magnificPopup({
-        type: "iframe",
-        mainClass: "mfp-fade",
-    })
-})
-
 /*------------------------
    Content menu tracking
 -------------------------- */

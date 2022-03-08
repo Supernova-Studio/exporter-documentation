@@ -9,8 +9,6 @@
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
 
-        <!-- Logo -->
-
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="toggle-navbar" type="button"></button>
 
