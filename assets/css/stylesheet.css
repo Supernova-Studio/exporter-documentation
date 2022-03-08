@@ -19,12 +19,17 @@
 		5.5 Tabs
 		5.6 Popup Img
 		5.7 Featured Box
-        5.7 Contact 
+        
 	6 Footer
 		6.1 Social Icons
 		6.2 Back to Top
-  7 Blocks
+    7 Blocks
 	8 Extra
+    9. Token previews
+    10. Responsive
+    11. Custom Blocks
+        11.1 Contact 
+        11.2 Component Health 
 
 =======================================================*/
 
@@ -2659,33 +2664,7 @@ hr {
         right: 0px;
     }
 }
-/*=== 5.8 Contact ===*/
 
-.contact-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 8px 0;
-}
-.contact-photo {
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-}
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 16px;
-}
-.contact-info p {
-    font-weight: bold;
-    margin-bottom: 0;
-}
-.contact-info a {
-    text-decoration: underline;
-    color: inherit;
-}
 /* =================================== */
 
 
@@ -5227,7 +5206,35 @@ body.dark .fa-moon:before {
 
 /*  11. Custom blocks
 /* =================================== */
+/*=== 11.1 Contact ===*/
 
+.contact-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 8px 0;
+}
+.contact-photo {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+}
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 16px;
+}
+.contact-info p {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.contact-info a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+/*=== 11.2 Component Health ===*/
 .component-health-row {
     display: flex;
     flex-direction: row;
