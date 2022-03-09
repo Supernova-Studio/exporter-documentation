@@ -1,44 +1,52 @@
 <img src="https://raw.githubusercontent.com/Supernova-Studio/exporter-documentation/master/readme-icon.png" alt="Supernova Logo" style="max-width:100%;">
 
 
-[Supernova](https://supernova.io) is a design system platform that allows you to seamlessly translate your design system data to production-ready code. Supernova works with any platform or tech stack, is used by many developers and organizations around the world, and can help you save time by replacing manual and repetitive tasks that all developers hate. To learn everything Supernova, please check out our [developer documentation](https://developers.supernova.io/).
+# exporter-rdc-documentation
+The RDC documentation exporter is a fork for Supernova's own [exporter](https://github.com/Supernova-Studio/exporter-documentation). It allows you to export static documentation built inside Supernova editor.
 
+## Table of contents 
+- [Exporter Overview](./documentation/EXPORTER_OVERVIEW.md) - An overview of the exporter and how to make changes to it 
+- [Block Creation](./documentation/BLOCK_CREATION.md) - Full step by step guide on creating custom blocks
+- [Documentation Guide](./documentation/DOCUMENTATION_GUIDE.md) - Learn how to write about your changes and custom blocks
 
-# Documentation Exporter
+## File Structure
+```
+├── assets
+│   ├── css
+│   ├── js
+│   └── logos
+├── icons
+├── src
+│   ├── page_body
+│   │   ├── loaders
+│   │   ├── structure
+│   │   │   ├── blocks
+│   │   │   │   ├── experimental
+│   │   │   │   └── tokens
+│   │   │   │       ├── previews
+│   │   │   │       └── values
+│   │   │   └── blocks_custom
+│   │   └── support
+│   ├── page_head
+│   ├── search
+│   └── seo
+└── typescript
+    └── src
+        └── doc_functionality
 
+```
+### Noteworthy files
+- `exporter.json` - Analogous to `package.json`, contains custom block declarations and configurations.
+- `src/page_body/structure/page_body_structure_block_custom.pr` - Exports of all custom blocks
+- `assets/css/stylesheet.css` - Contains almost all css for exporter (including custom block css)
 
-The documentation exporter allows you to export static documentation build inside Supernova editor. This exporter and description is currently work in progress.
-
-
-## Installing
-
-In order to make the Supernova HTML preview exporter available for your organization so you can start generating code from your design system, please follow the installation guide in our [developer documentation](https://developers.supernova.io/using-exporters/installing-exporters).
-
-## Reporting Bugs or Requesting Features
-
-In order to faciliate easy communication and speed up delivery of fixes and features for this exporter, we require everyone to log all issues and feature requests through the issue tracking of this repository. 
-
-Please read through the [existing issues](https://github.com/Supernova-Studio/exporter-documentation/issues) before you open a new issue! It might be that we have already discussed it before. If you are sure your request wasn't mentioned just yet, proceed to [open a new issue](https://github.com/Supernova-Studio/exporter-documentation/issues) and fill in the required information. Thank you!
-
-## Contributing
-
-If you have an idea for improving this exporter package or want a specific issue fixed quickly, we would love to see you contribute to its development! 
-
-There are multiple ways you can contribute, so we have written a [contribution guide](https://developers.supernova.io/building-exporters/contribution-and-requests) that will walk your through the process. Any pull requests to this repository are very welcome.
-
-## License
-
-This exporter is distributed under the [MIT license](./LICENSE.md). [We absolutely encourage you](https://developers.supernova.io/building-exporters/cloning-exporters) to clone it and modify it for your purposes, so it fits the requirements of your stack. If you see that you have created something amazing in the process that others would benefit from, we strongly recommend you consider [publishing it back to the community](https://developers.supernova.io/building-exporters/sharing-exporters-with-others) as well.
-
-## Useful Links
-
+## Useful Links From Supernova
 - To learn more about Supernova, [go visit our website](https://supernova.io)
 - To join our community of fellow developers where we try to push what is possible with design systems and code automation, join our [community discord](https://community.supernova.io)
 - To understand everything you can do with Supernova and how much time and resources it can save you, go read our [product documentation](https://learn.supernova.io/)
-- Finally, to learn everything about what exporters are and how you can integrate with your codebase, go read our [developer documentation](https://developers.supernova.io/)
+- Finally, to learn everything about what exporters are and how you can integrate with your codebase, go read our [developer documentation](https://developers.supernova.io/
 
 ## Other Supernova Exporters
-
 We are developing and maintaining exporters for many major technologies. Here are all the official exporters maintained by Supernova:
 
 - [iOS Exporter](https://github.com/Supernova-Studio/exporter-ios)
@@ -52,16 +60,9 @@ We are developing and maintaining exporters for many major technologies. Here ar
 - [LESS Exporter](https://github.com/Supernova-Studio/exporter-less)
 - [SASS Exporter](https://github.com/Supernova-Studio/exporter-sass)
 
-
 Additionally, we are also developing and maintaining exporters for specific use cases:
 
 - [Style Dictionary Exporter](https://github.com/Supernova-Studio/exporter-style-dictionary)
 - [HTML Preview Exporter](https://github.com/Supernova-Studio/exporter-html-preview)
 
 To browse all exporters created by our amazing community, please visit the [Supernova](https://supernova.io) Exporter Store.
-
-
-
-
-
-
