@@ -1,4 +1,4 @@
-![icon](https://user-images.githubusercontent.com/99918698/157535119-d72dc33c-f9aa-415e-9d51-9f44322dcb18.png)
+<img src="https://raw.githubusercontent.com/Supernova-Studio/exporter-documentation/master/readme-icon.png" alt="Supernova Logo" style="max-width:100%;">
 
 
 # exporter-rdc-documentation
