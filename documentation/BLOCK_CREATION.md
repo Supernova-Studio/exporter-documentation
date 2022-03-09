@@ -6,14 +6,14 @@ To get started writing a custom block, add in the block declaration to `"blocks"
 
 ```jsx       
 "blocks": [{
-                "key": "io.rdc.documentation-main.loom-embed",
-                "category": "Media Blocks",
-                "title": "Loom",
-                "description": "Embed a Loom video",
-                "icon": "icons/loom-color.png",
-                "mode": "block",
-                "properties": [...] // See properties section
-            }],
+    "key": "io.rdc.documentation-main.loom-embed",
+    "category": "Media Blocks",
+    "title": "Loom",
+    "description": "Embed a Loom video",
+    "icon": "icons/loom-color.png",
+    "mode": "block",
+    "properties": [...] // See properties section
+}],
 ```
 
 Block decelerations require:
@@ -34,24 +34,24 @@ This property is an array of inputs that are used in a given block. Like the nam
 
 ```jsx
 "properties": [{
-                    "key": "url",
-                    "default": "https://",
-                    "type": "string",
-                    "label": "Video url"
-                },
-                {
-                    "key": "caption",
-                    "default": "",
-                    "type": "string",
-                    "label": "Caption"
-                },
-				{
-	                "key": "enum",
-	                "default": "first",
-	                "values": ["first", "second", "third"],
-	                "type": "enum",
-	                "label": "enum"
-	            },]
+    "key": "url",
+    "default": "https://",
+    "type": "string",
+    "label": "Video url"
+},
+{
+    "key": "caption",
+    "default": "",
+    "type": "string",
+    "label": "Caption"
+},
+{
+    "key": "enum",
+    "default": "first",
+    "values": ["first", "second", "third"],
+    "type": "enum",
+    "label": "enum"
+},]
 ```
 
 Each property requires:
@@ -66,6 +66,7 @@ To start generating your declared blocks, there's a handful of setup steps neede
 
 ### Export blocks from block file
 First, your block needs to be exported from the block file you will set up in the next step. Inside of `src/page_body/structure/page_body_structure_block_custom.pr` is as follows:
+
 ```pulsar
 {[ const block = context /]}
 
@@ -96,6 +97,7 @@ Finally, to develop your custom block, go into the Supernova editor and add your
 
 ### Generating HTML using block properties
 Now that all the initial setup has been completed, you can now start developing the block. Open up `page_block_{BLOCK NAME}.pr`  which should only have the imported block context:
+
 ```pulsar
 `{[ const block = context /]}` 
 ```
@@ -119,6 +121,7 @@ The Pulsar language documentation isn't fully complete, but what exists should b
 
 ## Handling CSS
 Since almost all the exporter styles are located in `assets/css/stylesheet.css`, it's imperative that the stylesheet is kept as clean and organized as possible. First, add your block to the table of contents at the beginning of the stylesheet under "11. Custom Blocks":
+
 ```css
 /*
 =================================================
