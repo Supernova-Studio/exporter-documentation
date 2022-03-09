@@ -23,7 +23,7 @@ Pull requests and their corresponding branches must named accordingly: `<jira ti
 - ie: given a ticket to update `README.md`, with a Jira ticket of `WEBP-38`, the branch's name is: `WEBP-38-update-readme`
 
 ## Documentation
-Follow the guide [Documentation Guide](./documentation/DOCUMENTATION_GUIDE.md) for details.
+Follow the guide [Documentation Guide](./DOCUMENTATION_GUIDE.md) for details.
 
 ## Writing Custom blocks
-Follow the guide [Block Creation](./documentation/BLOCK_CREATION.md) for details.
+Follow the guide [Block Creation](./BLOCK_CREATION.md) for details.
