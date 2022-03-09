@@ -1,5 +1,6 @@
 # Creating New Blocks
-As of this document's creation
+A step by step guide on creating custom blocks and any "gotchas" you may need to worry about.
+
 ## Editing exporter.json
 To get started writing a custom block, add in the block declaration to `"blocks"` in	`exporter.json` . It contains all the data shown to the user and used in the Pulsar code:
 

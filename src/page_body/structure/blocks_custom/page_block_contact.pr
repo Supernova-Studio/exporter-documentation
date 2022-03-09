@@ -5,6 +5,7 @@
     <img class="contact-photo" src="{{ block.properties.photo }}"  />
     <span class="contact-info">
         <p>{{ block.properties.name }}</p>
+        <p>{{ block.properties.team }}</p>
         <a href="mailto:{{block.properties.email}}">{{block.properties.email}}</a>
     </span>
 </div>

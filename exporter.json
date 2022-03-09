@@ -234,6 +234,12 @@
                 "label": "Full name"
             },
             {
+                "key": "team",
+                "default": "",
+                "type": "string",
+                "label": "Team"
+            },
+            {
                 "key": "email",
                 "default": "example@move.com",
                 "type": "string",
