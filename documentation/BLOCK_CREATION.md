@@ -27,7 +27,7 @@ Block decelerations require:
 
 Once the block deceleration is added, it will be visible to anyone in the Supernova editor once you pull in the changes. It's important that you mark work in progress blocks with `[WIP]` in the title so designers known not to use them in their documentation. 
 
-**Note:** Like components, changing block keys and/or properties results in a **breaking** change for the documentation. Do not remove the `[WIP]` prefix until you are absolutely sure those values will not change, or else every instance of the block used in the documentation will need to be updated as well. 
+**Note:** Like components, changing block keys and/or properties results in a **breaking** change for the documentation. Do not remove the `[WIP]` prefix until you are absolutely sure those values will not change, or else every instance of the block used in the documentation will need to be updated as well. Additional properties may be added without causing a breaking change, but it is not recommended. 
 
 ### Properties
 This property is an array of inputs that are used in a given block. Like the name suggestions, these can be thought of as "props" for the "component" you are containing. In Supernova's studio, they are rendered as a list of fields.
