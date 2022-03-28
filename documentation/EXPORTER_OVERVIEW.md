@@ -10,7 +10,7 @@ No package installation is necessary, however you will need to install a VSCode 
 ## VSCode plugin
 You can pull in the Supernova design system using their VSCode plugin. This allows you to see your changes to the exporter in the design system on demand. Currently there is no livereload/hot reloading feature, so you will have to make changes and then hit "Run Exporter" on the bottom right of the Supernova VSCode tab panel to manually compile.
 
-Follow their documentation here: https://developers.supernova.io/getting-started.
+Follow their documentation here: https://developers.supernova.io/getting-started. You will need a Supernova account to generate an API key, contact the web platform team for access.
 
 ## CSS Changes
 This project is a fork of Supernova's default exporter, which is the primary way they deliver updates to the product. Unfortunately, almost all the exporter styles are located in `assets/css/stylesheet.css`. In order to not lose track of our changes, we want to avoid making changes to `stylesheet.css`. The one exception is custom block CSS, which is fairly standalone and should not cause any issues.
