@@ -16,7 +16,7 @@ To get started writing a custom block, add in the block declaration to `"blocks"
 }],
 ```
 
-Block decelerations require:
+Block declarations require:
 - `key` - Unique key used in code. Use the format  `io.rdc.documentation-main.{block name}` to identify the block as ours
 - `category` - Category name shown in Supernova's editor. Stick to the existing categories unless they don't make sense for your block
 - `title` - Name of block shown in editor
