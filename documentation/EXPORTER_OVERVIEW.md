@@ -16,11 +16,12 @@ Follow their documentation here: https://developers.supernova.io/getting-started
 This project is a fork of Supernova's default exporter, which is the primary way they deliver updates to the product. Unfortunately, almost all the exporter styles are located in `assets/css/stylesheet.css`. In order to not lose track of our changes, we want to avoid making changes to `stylesheet.css`. The one exception is custom block CSS, which is fairly standalone and should not cause any issues.
 
 ## Naming Your Branch
-Pull requests must also have a summary as well as a screenshot of your component.
-
-Pull requests and their corresponding branches must named accordingly: `<jira ticket name>-short-summary-of-story`.
+Pull requests must also have a summary as well as a screenshot of your changes. Their corresponding branches must also ve named accordingly: `<jira ticket name>-short-summary-of-story`.
 
 - ie: given a ticket to update `README.md`, with a Jira ticket of `WEBP-38`, the branch's name is: `WEBP-38-update-readme`
+
+## Pushing Change
+Supernova does not automatically pull in changes that are commited to `master`. They must be manually pulled in by visiting the [exporter settings](https://cloud.supernova.io/ws/rdc-docs/ds/default/latest/ci/exporter/96-rdc-exporter/settings) and pressing `PULL LATEST VERSION` under the updates section.
 
 ## Documentation
 Follow the guide [Documentation Guide](./DOCUMENTATION_GUIDE.md) for details.
