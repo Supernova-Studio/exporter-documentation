@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.23",
+    "version": "1.24",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -205,6 +205,42 @@
                 "default": "<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
                 "isMultiline": true,
                 "inputType": "code"
+            },
+            {
+                "key": "advancedCustomizationShowCTA",
+                "type": "boolean",
+                "label": "Show Site CTA",
+                "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
+                "category": "Advanced",
+                "default": false
+            },
+            {
+                "key": "advancedCustomizationCTAText",
+                "type": "string",
+                "label": "Site CTA - Text",
+                "description": "Text of the CTA button.",
+                "category": "Advanced",
+                "default": "Open",
+                "isMultiline": false,
+                "inputType": "plain"
+            },
+            {
+                "key": "advancedCustomizationCTAUrl",
+                "type": "string",
+                "label": "Site CTA - URL to open",
+                "description": "Link which will open when CTA button is clicked by the user.",
+                "category": "Advanced",
+                "default": "Open",
+                "isMultiline": false,
+                "inputType": "plain"
+            },
+            {
+                "key": "advancedCustomizationOpenInNewTab",
+                "type": "boolean",
+                "label": "Site CTA - Open in new tabs",
+                "description": "Link which will open when CTA button is clicked by the user.",
+                "category": "Advanced",
+                "default": true
             }
         ],
         "blocks": [{

@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.24] - 2022-04-07
+### CTA
+
+- Added option to create CTA button that can link to anything you want
+- Added better rendering of inline code blocks
+
 ## [1.23] - 2022-03-03
 ### Block variants
 - Added option to apply header image to all pages at once by using documentation settings

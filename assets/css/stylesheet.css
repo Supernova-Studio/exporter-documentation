@@ -5456,6 +5456,14 @@ body.dark .fa-moon:before {
     color: #c9d1d9;
 }
 
+.cta-button {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-left: 16px;
+}
+
 #version-container button::after {
     content: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.65039 0.650002L7.35039 1.35L4.00039 4.71L0.650391 1.35L1.35039 0.650002L4.00039 3.29L6.65039 0.650002Z' fill='white'/%3E%3C/svg%3E%0A");
 }
