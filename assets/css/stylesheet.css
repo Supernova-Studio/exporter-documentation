@@ -184,6 +184,18 @@ section p {
     margin-bottom: 0.25rem;
 }
 
+mark,
+.mark {
+    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #D23031;
+    padding: 4px;
+    background: rgba(20, 22, 24, 0.06);
+}
+
 a,
 a:focus {
     color: #0366d6;
