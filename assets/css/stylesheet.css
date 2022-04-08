@@ -4591,20 +4591,23 @@ div.storybook-state-wrapper+p.caption {
     align-items: stretch;
 }
 
-.tile-container .grid>div {
+.tile-container .grid>div,
+.tile-container .grid>a>div {
     flex: 0 1 180px;
     margin: 0 0 12px 0;
     position: relative;
 }
 
-.tile-container .grid>div.spacer {
+.tile-container .grid>div.spacer,
+.tile-container .grid>a>div.spacer {
     height: 0;
     flex: 0 1 180px;
     margin: 0 6px 12px 0;
     border: 0px;
 }
 
-.tile-container .grid>div div.preview {
+.tile-container .grid>div div.preview,
+.tile-container .grid>a>div div.preview {
     border-bottom: 1px solid #DCE0E4;
     background-color: #F2F4F5;
     display: flex;
@@ -4632,7 +4635,8 @@ div.storybook-state-wrapper+p.caption {
     font-size: 11px;
 }
 
-.tile-container .grid>div p.title {
+.tile-container .grid>div p.title,
+.tile-container .grid>a>div p.title {
     margin: 8px 12px 4px 8px;
     padding: 0;
     font-size: 14px;
@@ -4641,7 +4645,8 @@ div.storybook-state-wrapper+p.caption {
     color: #000;
 }
 
-.tile-container .grid>div p.description {
+.tile-container .grid>div p.description,
+.tile-container .grid>a>div p.description {
     margin: 0px 12px 4px 8px;
     padding: 0;
     font-size: 12px;
@@ -4650,7 +4655,8 @@ div.storybook-state-wrapper+p.caption {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.tile-container .grid>div {
+.tile-container .grid>div,
+.tile-container .grid>a>div {
     border: 1px solid #DCE0E4;
     border-radius: 8px;
     box-sizing: border-box;
@@ -4724,7 +4730,8 @@ div.storybook-state-wrapper+p.caption {
     height: 240px;
 }
 
-.tile-container .grid.c2>div {
+.tile-container .grid.c2>div,
+.tile-container .grid.c2>a {
     flex: 0 1 48%;
 }
 
@@ -4993,7 +5000,8 @@ body.dark .fa-moon:before {
     .container-tabs>.tabbed-navigation {
         max-width: 540px;
     }
-    .token-container .grid>div {
+    .token-container .grid>div,
+    .token-container .grid>a {
         flex: 0 1 49%;
         margin: 0 0 8px 0;
     }

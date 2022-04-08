@@ -10,7 +10,7 @@
         <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
     </div>
     <div class="storybook-error">
-        <span>{{ storybookError ? storybookError : "Storybook failed to load" }}</span>
+        <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
     </div>
 </div>
 {[ if block.caption ]}
