@@ -14,9 +14,33 @@
             {[ case "Italic" ]}
                 {[ text = text.extended("<i>", "</i>") /]}
             {[ case "Link" ]}
-                {[ let uri = htmlSafeUrl(attribute.link) /]}
-                {[ let anchorTag = uri.extended("<a href=\"", "\" target=\"_blank\">") /]}
-                {[ text = text.extended(anchorTag, "</a>") /]}
+                {[ let itemId = attribute.documentationItemId /]}
+                {[ if itemId ]}
+                    {* For dynamic links pointing to certain page, find that page (or group) and create the link. If page is not found, do nothing *}
+                    {[ let url = "" /]}
+                    {[ let page = value /]}
+                    {[ if ds.documentationPageById(itemId) ]}
+                        {[ url = pageUrl(ds.documentationPageById(itemId), ds.documentationDomain()) /]}
+                    {[ elseif ds.documentationGroupById(itemId) ]}
+                        {[ let firstPage = firstPageFromTop(ds.documentationGroupById(itemId)) /]}
+                        {[ if firstPage ]}
+                            {[ url = pageUrl(firstPage, ds.documentationDomain()) /]}
+                        {[/]}
+                    {[/]}
+
+                    {* Only extend link if actually present *}
+                    {[ if (url.count() > 0) ]}
+                        {[ let anchorTag = url.extended("<a href=\"", (attribute.openInNewWindow ? "\" target=\"_blank\">" : "\">")) /]}
+                        {[ text = text.extended(anchorTag, "</a>") /]}
+                    {[/]}
+                {[ else ]}
+                    {* For statically defined link, extend the text with it *}
+                    {[ if attribute.link ]}
+                        {[ let uri = htmlSafeUrl(attribute.link) /]}
+                        {[ let anchorTag = uri.extended("<a href=\"", (attribute.openInNewWindow ? "\" target=\"_blank\">" : "\">")) /]}
+                        {[ text = text.extended(anchorTag, "</a>") /]}
+                    {[/]}
+                {[/]}
             {[ case "Strikethrough" ]}
                 {[ text = text.extended("<s>", "</s>") /]}
             {[ case "Code" ]}

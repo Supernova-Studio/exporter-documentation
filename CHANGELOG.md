@@ -2,6 +2,13 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.25] - 2022-04-07
+### Inline links
+
+- It is now possible to generate inline rich text with links
+- It is now possible to open links in new tab
+- Incorrect links or links to deleted pages are now handled properly (ignored in generation)
+
 ## [1.24] - 2022-04-07
 ### CTA
 
