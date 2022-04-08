@@ -220,7 +220,7 @@
                 "label": "Site CTA - Text",
                 "description": "Text of the CTA button.",
                 "category": "Advanced",
-                "default": "Open",
+                "default": "Open site",
                 "isMultiline": false,
                 "inputType": "plain"
             },
@@ -230,15 +230,15 @@
                 "label": "Site CTA - URL to open",
                 "description": "Link which will open when CTA button is clicked by the user.",
                 "category": "Advanced",
-                "default": "Open",
+                "default": "",
                 "isMultiline": false,
                 "inputType": "plain"
             },
             {
                 "key": "advancedCustomizationOpenInNewTab",
                 "type": "boolean",
-                "label": "Site CTA - Open in new tabs",
-                "description": "Link which will open when CTA button is clicked by the user.",
+                "label": "Site CTA - Open in new tab",
+                "description": "When enabled, CTA url you provided will open in a new tab.",
                 "category": "Advanced",
                 "default": true
             }

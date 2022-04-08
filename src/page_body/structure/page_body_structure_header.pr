@@ -83,7 +83,7 @@
             </div>
             <i class="fas fa-search search"></i>
             {[ if exportConfiguration().advancedCustomizationShowCTA ]}
-                {[ let ctaText = (exportConfiguration().advancedCustomizationCTAText ? exportConfiguration().advancedCustomizationCTAText : "Open") /]}
+                {[ let ctaText = (exportConfiguration().advancedCustomizationCTAText ? exportConfiguration().advancedCustomizationCTAText : "Open site") /]}
                 {[ let ctaUrl = (exportConfiguration().advancedCustomizationCTAUrl ? exportConfiguration().advancedCustomizationCTAUrl : "") /]}
                 <a href="{{ ctaUrl }}" {{ exportConfiguration().advancedCustomizationOpenInNewTab ? "target='blank'" : "" }}>
                     <button type="button" class="btn btn-primary cta-button" id="cta-button">{{ ctaText }}</button>
