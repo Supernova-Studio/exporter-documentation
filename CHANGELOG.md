@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.26] - 2022-04-17
+### Tables
+
+- Tables will now be generated when used from the cloud editor
+- Table configuration is now properly taken into account when generating tables
+
 ## [1.25] - 2022-04-07
 ### Inline links
 
