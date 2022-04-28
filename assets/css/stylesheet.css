@@ -4435,6 +4435,10 @@ ol>.block-children {
     margin: 30px 0px;
 }
 
+td .image-container {
+    margin: 8px 0px;
+}
+
 .image-container p {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5);
@@ -5177,23 +5181,23 @@ body.dark .fa-moon:before {
         position: absolute;
         width: 1px;
     }
-    table tr {
+    table:not(.data-table) tr {
         border-bottom: 3px solid #ddd;
         display: block;
         margin-bottom: .625em;
     }
-    table td {
+    table:not(.data-table) td {
         display: block;
         font-size: .8em;
         text-align: right;
     }
-    table td::before {
+    table:not(.data-table) td::before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
         text-transform: uppercase;
     }
-    table td:last-child {
+    table:not(.data-table) td:last-child {
         border-bottom: 0;
     }
     .token-container table tr {
@@ -6293,60 +6297,38 @@ pre>code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
     }
 }
 
-@media screen and (max-width: 768px) {
-    table {
-        border: 0;
-    }
-    table caption {
-        font-size: 1.3em;
-    }
-    table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-    table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .625em;
-    }
-    table td {
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
-    table td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    table td:last-child {
-        border-bottom: 0;
-    }
-    .token-container table tr {
-        height: 100%;
-    }
-    .token-container table tr td:nth-child(2) {
-        width: auto;
-        padding: initial;
-        margin: -40px 0 0 50px;
-        text-align: left;
-    }
-    .token-container table tr td:nth-child(3) {
-        padding: initial;
-        text-align: left;
-        margin: 4px 0 0 50px;
-    }
-    .token-container table tr td:nth-child(4) {
-        width: auto;
-        padding: initial;
-        text-align: left;
-        margin: 4px 0 8px 50px;
-    }
+table.data-table {
+    border-collapse: collapse;
+    max-width: -moz-fit-content;
+    min-width: fit-content;
+    white-space: nowrap;
+}
+
+table.data-table,
+table.data-table th,
+table.data-table td {
+    border: 1px solid #dce0e4;
+    border-collapse: collapse;
+}
+
+table.data-table td {
+    padding: 4px;
+}
+
+table.data-table tr td> :first-child {
+    margin-top: 0 !important;
+}
+
+table.data-table tr td> :last-child {
+    margin-bottom: 0 !important;
+}
+
+div.data-table-wrapper {
+    overflow-x: scroll;
+}
+
+table.borderless,
+table.borderless td,
+table.borderless tr {
+    border: 0px;
 }
