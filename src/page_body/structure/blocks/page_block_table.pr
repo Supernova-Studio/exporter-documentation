@@ -1,0 +1,40 @@
+{[ let block = context /]}  
+
+{* Calculate table width for scrolling *}
+{[ let tableWidth = 0 /]}
+{[ for column in block.tableProperties.columns ]}
+    {[ tableWidth = (tableWidth + column.width.value.measure) /]}
+{[/]}
+
+{* Scroll wrapper boundary *}
+<div class="data-table-wrapper">
+<table class="data-table {{ !block.tableProperties.showBorders ? "borderless" : "" }}" style="width: {{ tableWidth }}px">
+{* Row scope *}
+{[ let rowIndex = 0 /]}
+{[ for row in block.children ]}
+  <tr>
+  {* Cell scope *}
+  {[ for cell in row.children ]}
+    {[ if (rowIndex === 0) ]}
+        {* provide size for column for the first row *}
+        {[ let columnSize = "auto" /]}
+        {[ for column in block.tableProperties.columns ]}
+            {[ if (column.id === cell.columnId) ]}
+                {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
+            {[/]}
+        {[/]}
+        <td style="width: {{ columnSize }}">
+    {[ else ]}
+    <td>
+    {[/]}
+      {* Cell content *}
+      {[ for cellBlock in cell.children ]}
+          {[ inject "page_body_structure_block" context cellBlock /]}
+      {[/]}      
+    </td>
+  {[/]}
+  </tr>
+  {[ rowIndex = (rowIndex + 1) /]}
+{[/]}
+</table>
+</div>

@@ -63,6 +63,8 @@
            Note we are not generating "TabItem" which is associated with this. 
            This is because TabItem generation is handled within the tab block itself.
         *}
+    {[ case "Table" ]}
+        {[ inject "page_block_table" context block /]}
 {[/]}
 
 {* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}

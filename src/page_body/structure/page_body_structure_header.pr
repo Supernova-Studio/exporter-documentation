@@ -82,9 +82,12 @@
                 </div>
             </div>
             <i class="fas fa-search search"></i>
-            {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
-            {[ if false ]}
-            <i class="far fa-moon switch-theme"></i>
+            {[ if exportConfiguration().advancedCustomizationShowCTA ]}
+                {[ let ctaText = (exportConfiguration().advancedCustomizationCTAText ? exportConfiguration().advancedCustomizationCTAText : "Open site") /]}
+                {[ let ctaUrl = (exportConfiguration().advancedCustomizationCTAUrl ? exportConfiguration().advancedCustomizationCTAUrl : "") /]}
+                <a href="{{ ctaUrl }}" {{ exportConfiguration().advancedCustomizationOpenInNewTab ? "target='blank'" : "" }}>
+                    <button type="button" class="btn btn-primary cta-button" id="cta-button">{{ ctaText }}</button>
+                </a>
             {[/]}
             </div>
             

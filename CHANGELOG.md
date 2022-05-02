@@ -2,6 +2,25 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.26] - 2022-04-17
+### Tables
+
+- Tables will now be generated when used from the cloud editor
+- Table configuration is now properly taken into account when generating tables
+
+## [1.25] - 2022-04-07
+### Inline links
+
+- It is now possible to generate inline rich text with links
+- It is now possible to open links in new tab
+- Incorrect links or links to deleted pages are now handled properly (ignored in generation)
+
+## [1.24] - 2022-04-07
+### CTA
+
+- Added option to create CTA button that can link to anything you want
+- Added better rendering of inline code blocks
+
 ## [1.23] - 2022-03-03
 ### Block variants
 - Added option to apply header image to all pages at once by using documentation settings

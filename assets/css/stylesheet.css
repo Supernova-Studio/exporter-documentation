@@ -190,6 +190,18 @@ section p {
     margin-bottom: 0.25rem;
 }
 
+mark,
+.mark {
+    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #D23031;
+    padding: 4px;
+    background: rgba(20, 22, 24, 0.06);
+}
+
 a,
 a:focus {
     color: #0366d6;
@@ -4428,6 +4440,10 @@ ol>.block-children {
     margin: 30px 0px;
 }
 
+td .image-container {
+    margin: 8px 0px;
+}
+
 .image-container p {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5);
@@ -4596,20 +4612,23 @@ div.storybook-state-wrapper+p.caption {
     align-items: stretch;
 }
 
-.tile-container .grid>div {
+.tile-container .grid>div,
+.tile-container .grid>a>div {
     flex: 0 1 180px;
     margin: 0 0 12px 0;
     position: relative;
 }
 
-.tile-container .grid>div.spacer {
+.tile-container .grid>div.spacer,
+.tile-container .grid>a>div.spacer {
     height: 0;
     flex: 0 1 180px;
     margin: 0 6px 12px 0;
     border: 0px;
 }
 
-.tile-container .grid>div div.preview {
+.tile-container .grid>div div.preview,
+.tile-container .grid>a>div div.preview {
     border-bottom: 1px solid #DCE0E4;
     background-color: #F2F4F5;
     display: flex;
@@ -4637,7 +4656,8 @@ div.storybook-state-wrapper+p.caption {
     font-size: 11px;
 }
 
-.tile-container .grid>div p.title {
+.tile-container .grid>div p.title,
+.tile-container .grid>a>div p.title {
     margin: 8px 12px 4px 8px;
     padding: 0;
     font-size: 14px;
@@ -4646,7 +4666,8 @@ div.storybook-state-wrapper+p.caption {
     color: #000;
 }
 
-.tile-container .grid>div p.description {
+.tile-container .grid>div p.description,
+.tile-container .grid>a>div p.description {
     margin: 0px 12px 4px 8px;
     padding: 0;
     font-size: 12px;
@@ -4655,7 +4676,8 @@ div.storybook-state-wrapper+p.caption {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.tile-container .grid>div {
+.tile-container .grid>div,
+.tile-container .grid>a>div {
     border: 1px solid #DCE0E4;
     border-radius: 8px;
     box-sizing: border-box;
@@ -4729,7 +4751,8 @@ div.storybook-state-wrapper+p.caption {
     height: 240px;
 }
 
-.tile-container .grid.c2>div {
+.tile-container .grid.c2>div,
+.tile-container .grid.c2>a {
     flex: 0 1 48%;
 }
 
@@ -4998,7 +5021,8 @@ body.dark .fa-moon:before {
     .container-tabs>.tabbed-navigation {
         max-width: 540px;
     }
-    .token-container .grid>div {
+    .token-container .grid>div,
+    .token-container .grid>a {
         flex: 0 1 49%;
         margin: 0 0 8px 0;
     }
@@ -5162,23 +5186,23 @@ body.dark .fa-moon:before {
         position: absolute;
         width: 1px;
     }
-    table tr {
+    table:not(.data-table) tr {
         border-bottom: 3px solid #ddd;
         display: block;
         margin-bottom: .625em;
     }
-    table td {
+    table:not(.data-table) td {
         display: block;
         font-size: .8em;
         text-align: right;
     }
-    table td::before {
+    table:not(.data-table) td::before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
         text-transform: uppercase;
     }
-    table td:last-child {
+    table:not(.data-table) td:last-child {
         border-bottom: 0;
     }
     .token-container table tr {
@@ -5467,6 +5491,14 @@ body.dark .fa-moon:before {
 
 #version-container button {
     color: #c9d1d9;
+}
+
+.cta-button {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-left: 16px;
 }
 
 #version-container button::after {
@@ -6298,60 +6330,38 @@ pre>code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
     }
 }
 
-@media screen and (max-width: 768px) {
-    table {
-        border: 0;
-    }
-    table caption {
-        font-size: 1.3em;
-    }
-    table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-    table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .625em;
-    }
-    table td {
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
-    table td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    table td:last-child {
-        border-bottom: 0;
-    }
-    .token-container table tr {
-        height: 100%;
-    }
-    .token-container table tr td:nth-child(2) {
-        width: auto;
-        padding: initial;
-        margin: -40px 0 0 50px;
-        text-align: left;
-    }
-    .token-container table tr td:nth-child(3) {
-        padding: initial;
-        text-align: left;
-        margin: 4px 0 0 50px;
-    }
-    .token-container table tr td:nth-child(4) {
-        width: auto;
-        padding: initial;
-        text-align: left;
-        margin: 4px 0 8px 50px;
-    }
+table.data-table {
+    border-collapse: collapse;
+    max-width: -moz-fit-content;
+    min-width: fit-content;
+    white-space: nowrap;
+}
+
+table.data-table,
+table.data-table th,
+table.data-table td {
+    border: 1px solid #dce0e4;
+    border-collapse: collapse;
+}
+
+table.data-table td {
+    padding: 4px;
+}
+
+table.data-table tr td> :first-child {
+    margin-top: 0 !important;
+}
+
+table.data-table tr td> :last-child {
+    margin-bottom: 0 !important;
+}
+
+div.data-table-wrapper {
+    overflow-x: scroll;
+}
+
+table.borderless,
+table.borderless td,
+table.borderless tr {
+    border: 0px;
 }
