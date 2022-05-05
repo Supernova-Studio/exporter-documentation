@@ -9,6 +9,7 @@
 
 <div class="previous-next row">
     {[ if previousPage ]}
+    {[ let group = previousPage.parent /]}
     <a href="{{ pageUrl(previousPage, ds.documentationDomain()) }}" class="{{ nextPage ? "col" : "col-6" }} left">
     <div class="segment">
         <div class="arrow">
@@ -17,17 +18,30 @@
             </svg>
         </div>
         <div class="segment-text">
-            <div class="direction">Previous</div>
+            {[ if (group && !group.isRoot) ]}
+                <div class="direction">{{ group.title }}</div>
+            {[ elseif group ]}
+                <div class="direction">{{ ds.currentDesignSystem().name }}</div>
+            {[ else ]}
+                <div class="direction">Next</div>
+            {[/]}
             <div class="pagename">{{ previousPage.title }}</div>
         </div>
         </div>
     </a>
     {[/]}
     {[ if nextPage ]}
+    {[ let group = nextPage.parent /]}
     <a href="{{ pageUrl(nextPage, ds.documentationDomain()) }}" class="{{ previousPage ? "col" : "offset-md-6 col-6" }} right">
     <div class="segment">
         <div class="segment-text">
-            <div class="direction">Next</div>
+            {[ if (group && !group.isRoot) ]}
+                <div class="direction">{{ group.title }}</div>
+            {[ elseif group ]}
+                <div class="direction">{{ ds.currentDesignSystem().name }}</div>
+            {[ else ]}
+                <div class="direction">Previous</div>
+            {[/]}
             <div class="pagename">{{ nextPage.title }}</div>
         </div>
         <div class="arrow">
