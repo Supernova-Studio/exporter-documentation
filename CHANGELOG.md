@@ -2,6 +2,14 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.27] - 2022-05-05
+### Table options
+
+- Tables can now hide borders
+- Tables can now highlight header row
+- Tables can now highlight header column
+- Table cells now have alignment (left, right, center) that applies to all content
+
 ## [1.26] - 2022-04-17
 ### Tables
 

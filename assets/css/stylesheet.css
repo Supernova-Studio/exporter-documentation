@@ -6327,8 +6327,53 @@ div.data-table-wrapper {
     overflow-x: scroll;
 }
 
+table.data-table td {
+    vertical-align: top;
+}
+
 table.borderless,
 table.borderless td,
 table.borderless tr {
     border: 0px;
+}
+
+table.header-row td:first-child {
+    background-color: #F9FAFA;
+}
+
+table.header-column tr:first-child {
+    background-color: #F9FAFA;
+}
+
+.sn-text-center {
+    text-align: center;
+}
+
+.sn-text-left {
+    text-align: left;
+}
+
+.sn-text-right {
+    text-align: right;
+}
+
+table td.left,
+table td.left .sn-text-left,
+table td.left .sn-text-center,
+table td.left .sn-text-right {
+    text-align: left;
+}
+
+table td.right,
+table td.right .sn-text-left,
+table td.right .sn-text-center,
+table td.right .sn-text-right {
+    text-align: right;
+}
+
+table td.center,
+table td.center .sn-text-left,
+table td.center .sn-text-center,
+table td.center .sn-text-right {
+    text-align: center;
 }

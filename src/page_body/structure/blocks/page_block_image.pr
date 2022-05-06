@@ -9,13 +9,13 @@
 {[ switch block.alignment ]}
     {[ case "Left" ]}
         {[ imgClass = "img-fluid" /]}
-        {[ alignClass = "text-left" /]}
+        {[ alignClass = "sn-text-left" /]}
     {[ case "Center" ]}
         {[ imgClass = "img-fluid" /]}
-        {[ alignClass = "text-center" /]}
+        {[ alignClass = "sn-text-center" /]}
     {[ case "Stretch" ]}
         {[ imgClass = "img-fluid max" /]}
-        {[ alignClass = "text-center" /]}
+        {[ alignClass = "sn-text-center" /]}
 {[/]}
 
 <div class="image-container {{ alignClass }}">
