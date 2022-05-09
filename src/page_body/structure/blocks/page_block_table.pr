@@ -6,15 +6,20 @@
     {[ tableWidth = (tableWidth + column.width.value.measure) /]}
 {[/]}
 
+{[ let borderless = (!block.tableProperties.showBorders ? "borderless" : "") /]}
+{[ let headerRow = (block.tableProperties.showHeaderRow ? "header-row" : "") /]}
+{[ let headerColumn = (block.tableProperties.showHeaderColumn ? "header-column" : "") /]}
+
 {* Scroll wrapper boundary *}
 <div class="data-table-wrapper">
-<table class="data-table {{ !block.tableProperties.showBorders ? "borderless" : "" }}" style="width: {{ tableWidth }}px">
+<table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}" style="width: {{ tableWidth }}px">
 {* Row scope *}
 {[ let rowIndex = 0 /]}
 {[ for row in block.children ]}
   <tr>
   {* Cell scope *}
   {[ for cell in row.children ]}
+    {[ let alignment = cell.alignment.lowercased() /]}
     {[ if (rowIndex === 0) ]}
         {* provide size for column for the first row *}
         {[ let columnSize = "auto" /]}
@@ -23,9 +28,9 @@
                 {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
             {[/]}
         {[/]}
-        <td style="width: {{ columnSize }}">
+        <td class="{{ alignment }}" style="width: {{ columnSize }}">
     {[ else ]}
-    <td>
+    <td class="{{ alignment }}">
     {[/]}
       {* Cell content *}
       {[ for cellBlock in cell.children ]}
