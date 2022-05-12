@@ -3,6 +3,12 @@
 All notable changes to this exporter are mentioned here in this file.
 
 ## [1.27] - 2022-05-05
+### Editable React Widgets
+
+- It is now possible to edit React widgets live, and play around with the code
+- It is now possible to open React widgets in Codesandbox.io
+
+## [1.27] - 2022-05-05
 ### Table options
 
 - Tables can now hide borders
