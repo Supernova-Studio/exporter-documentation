@@ -326,7 +326,6 @@ function makeLive(sandboxId) {
     $('#codepreview-editable-' + sandboxId).on("input", function(e) {
         let code = $(this).val()
         window.sandboxEngine.updateSandboxCode(sandboxId, code)
-        console.log("test")
     })
 }
 
