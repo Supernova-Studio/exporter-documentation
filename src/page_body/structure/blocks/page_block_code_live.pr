@@ -36,17 +36,42 @@
             Toggle code
         </a>
 
-        {* Copy code button *}
-        <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
-            <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
-        </a>
+        <div>
+            {[ if exportConfiguration().codeOpenInCodesandbox ]}
+            {* Open in code sandbox button *}
+            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Open in Codesandbox.io">
+                <div class="sandbox-codesandbox-icon" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}"></div>
+            </a>  
+            {[/]}
+
+            {[ if exportConfiguration().codeEditableReactWidgets ]}
+            {* Edit code button *}
+            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Edit code live">
+                <div class="sandbox-edit-icon" data-toggle="edit-sandbox" data-target="{{ sandboxId }}"></div>
+            </a>
+            {[/]}
+
+            {* Copy code button *}
+            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
+                <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
+            </a>
+        </div>
         </div>
 
         {* Rendered code *}
         <div class="sandbox-text collapse" id="codepreview-{{ sandboxId }}">
-            <pre><code class="language-javascript">
+            {* Static representation *}
+            <pre id="codepreview-static-{{ sandboxId }}"><code class="language-javascript">
             {{ htmlSafeString(block.code) }}
             </code></pre>
+            {* Editable representation *}
+            {[ if exportConfiguration().codeEditableReactWidgets ]}
+                <div id="codepreview-editable-message-{{ sandboxId }}" class="nodisplay live-code-message">
+                    Live mode enabled
+                </div>
+                <textarea id="codepreview-editable-{{ sandboxId }}" class="nodisplay" spellcheck="false">
+                </textarea>
+            {[/]}
         </div>
     </div>
     {[/]}
