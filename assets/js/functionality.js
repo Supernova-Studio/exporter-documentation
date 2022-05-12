@@ -322,9 +322,11 @@ function makeLive(sandboxId) {
     $('#codepreview-editable-message-' + sandboxId).css({ display: "inherit" })
 
     // Set observer to notify sandbox engine about changes to the code
+    $('#codepreview-editable-' + sandboxId).off("input")
     $('#codepreview-editable-' + sandboxId).on("input", function(e) {
         let code = $(this).val()
         window.sandboxEngine.updateSandboxCode(sandboxId, code)
+        console.log("test")
     })
 }
 
