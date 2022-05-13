@@ -5,7 +5,7 @@
     "organization": "Moveinc",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.27",
+    "version": "1.28",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -239,6 +239,22 @@
                 "label": "Site CTA - Open in new tab",
                 "description": "When enabled, CTA url you provided will open in a new tab.",
                 "category": "Advanced",
+                "default": true
+            },
+            {
+                "key": "codeEditableReactWidgets",
+                "type": "boolean",
+                "label": "Editable React Widgets",
+                "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
+                "category": "Code",
+                "default": true
+            },
+            {
+                "key": "codeOpenInCodesandbox",
+                "type": "boolean",
+                "label": "Open in Codesandbox.io",
+                "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
+                "category": "Code",
                 "default": true
             }
         ],

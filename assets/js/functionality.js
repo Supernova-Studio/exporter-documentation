@@ -294,6 +294,55 @@ $(function() {
 })
 
 /*-----------------------------
+    Edit code
+------------------------------- */
+
+$(function() {
+    $('[data-toggle="edit-sandbox"]').click(function(event) {
+        // Get code of the sandbox
+        event.preventDefault()
+        const sandboxId = $(this).attr("data-target")
+        makeLive(sandboxId)
+    })
+})
+
+function makeLive(sandboxId) {
+
+    // Set textarea code
+    const code = window.sandboxEngine.getCodeForSandboxId(sandboxId)
+    $('#codepreview-editable-' + sandboxId).val(code)
+
+    // Change code preview to textarea
+    $('#codepreview-static-' + sandboxId).css({ display: "none" })
+    $('#codepreview-editable-' + sandboxId).css({ display: "inherit" })
+
+    // Toggle code view, if it wasn't shown already, and focus
+    $('#codepreview-' + sandboxId).addClass("show")
+    $('#codepreview-editable-' + sandboxId).focus()
+    $('#codepreview-editable-message-' + sandboxId).css({ display: "inherit" })
+
+    // Set observer to notify sandbox engine about changes to the code
+    $('#codepreview-editable-' + sandboxId).off("input")
+    $('#codepreview-editable-' + sandboxId).on("input", function(e) {
+        let code = $(this).val()
+        window.sandboxEngine.updateSandboxCode(sandboxId, code)
+    })
+}
+
+/*-----------------------------
+    Open in sandbox
+------------------------------- */
+
+$(function() {
+    $('[data-toggle="open-in-sandbox"]').click(async function(event) {
+        // Get code of the sandbox
+        event.preventDefault()
+        const sandboxId = $(this).attr("data-target")
+        await window.sandboxEngine.openInSandbox(sandboxId)
+    })
+})
+
+/*-----------------------------
     Theme switching & mode preservation
 ------------------------------- */
 
