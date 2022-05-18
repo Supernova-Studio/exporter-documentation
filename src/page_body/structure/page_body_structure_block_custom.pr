@@ -4,4 +4,10 @@
 {[ switch block.key ]}
 {[ case "io.supernova.documentation-main.markdown" ]}
     {[ inject "page_block_custom_markdown" context block /]}
+{[ case "io.supernova.documentation-main.component-health" ]}
+    {[ inject "page_block_health" context block /]}
+{[ case "io.supernova.documentation-main.component-checklist" ]}
+    {[ inject "page_block_component_checklist" context block /]}
+{[ case "io.supernova.documentation-main.component-checklist-all" ]}
+    {[ inject "page_block_component_checklist_all" context block /]}
 {[/]}

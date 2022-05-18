@@ -1,0 +1,64 @@
+{[ const block = context /]}
+
+{* Render content health block *}
+{[ let components = ds.allComponents() /]}
+{[ let component = components.first() /]}
+{[ let properties = component.properties /]}
+{[ let propertyValues = component.propertyValues /]}
+
+{* Get health tag *}
+{[ let healthTag = convertHealthTagIfAny(component) /]}
+{[ let healthTagReadable = "" /]}
+{[ switch healthTag ]}
+    {[ case "healthy" ]}
+        {[ healthTagReadable = "Healthy" /]}
+    {[ case "withering" ]}
+        {[ healthTagReadable = "Withering" /]}
+    {[ case "dormant" ]}
+        {[ healthTagReadable = "Dormant" /]}
+    {[ case "unknown" ]}
+        {[ healthTagReadable = "Unknown" /]}
+{[/]}
+
+{* Handle content health block *}
+<div class="component-health-row">
+    <a class="health" href="#" data-target="health-status">
+        <div class="tag health {{ healthTag }}">
+            {{ healthTagReadable }}
+        </div>
+    </a>
+    <a href="#"><div class="tag link">Show more information</div></a>
+</div>
+
+<div class="health-overlay d-none">
+    <div class="health-overlay-content {{ healthTag }}">
+        <div class="header">
+            <div class="title">
+                {{ healthTagReadable }}
+            </div>
+            {[ switch healthTag ]}
+                {[ case "healthy" ]}
+                <p>Healthy component is accurate and represents our most up-to-date recommendations.</p>
+                {[ case "withering" ]}
+                <p>Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</p>
+                {[ case "dormant" ]}
+                <span>Dormant component hasn't been updated for some time and is not recommended for production use</span>
+                {[ case "unknown" ]}
+                <span>This component has not yet been tagged with its status</span>
+            {[/]}
+            <div class="row">
+                <div class="col-4"><strong>Last modified</strong><br />{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</div>
+            </div>  
+        </div>
+        <div class="links">
+            <div class="row">
+                <div class="col-6"><strong>Design Component</strong></div>
+                <div class="col-6 text-right"><strong><a href="#">Open Link</a></strong></div>
+            </div>
+            <div class="row">
+                <div class="col-6"><strong>Code Repository</strong></div>
+                <div class="col-6 text-right"><strong><a href="#">Open Link</a></strong></div>
+            </div>
+        </div>
+    </div>
+</div>

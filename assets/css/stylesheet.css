@@ -5250,7 +5250,7 @@ body.dark .fa-moon:before {
     flex-direction: row;
     justify-content: flex-start;
     padding-bottom: 16px;
-    border-bottom: 1px solid #ececec;
+    margin-bottom: 30px;
 }
 
 .component-health-row>a {
