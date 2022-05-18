@@ -1,8 +1,8 @@
 {[ const block = context /]}
 
 {* Get properties *}
-{[ let componentId = ds.allComponents().first().id /]}
-{[ let propertiesToHighlight = [] /]}
+{[ let componentId = "5323c700-d689-11ec-ac2c-67ac41cb6ee1" /]}
+{[ let propertiesToHighlight = ["uuid1231231"] /]}
 {* {[ let componentId = block.properties.componentId /]} *}
 {* {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]} *}
 
@@ -13,7 +13,6 @@
             
         {[ let properties = component.properties /]}
         {[ let propertyValues = component.propertyValues /]}
-        {[ log propertyValues /]}
 
         {* Get health tag *}
         {[ let healthTag = convertHealthTagIfAny(component) /]}
@@ -61,13 +60,10 @@
                     </div>  
                 </div>
                 {* Generate additional properties *}
-                {*{[ if (propertiesToHighlight.count() > 0) ]}*}
-                {[ if true ]}
+                {[ if (propertiesToHighlight.count() > 0) ]}
                     <div class="links">
                         {[ for property in component.properties ]}
-                            {[ log property /]}
-                            {*{[ if propertiesToHighlight.contains(property.persistentId) ]}*}
-                            {[ if true ]}
+                            {[ if propertiesToHighlight.contains(property.persistentId) ]}
                                 {* Show property as it was whitelisted by the user *}
                                 <div class="row">
                                     <div class="col-6"><strong>{{ property.name }}</strong></div>
