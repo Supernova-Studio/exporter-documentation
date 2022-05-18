@@ -38,13 +38,13 @@
             </div>
             {[ switch healthTag ]}
                 {[ case "healthy" ]}
-                <p>Healthy component is accurate and represents our most up-to-date recommendations.</p>
+                <span class="subtitle">Healthy component is accurate and represents our most up-to-date recommendations.</span>
                 {[ case "withering" ]}
-                <p>Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</p>
+                <span class="subtitle">Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</span>
                 {[ case "dormant" ]}
-                <span>Dormant component hasn't been updated for some time and is not recommended for production use</span>
+                <span class="subtitle">Dormant component hasn't been updated for some time and is not recommended for production use</span>
                 {[ case "unknown" ]}
-                <span>This component has not yet been tagged with its status</span>
+                <span class="subtitle">This component has not yet been tagged with its status</span>
             {[/]}
             <div class="row">
                 <div class="col-4"><strong>Last modified</strong><br />{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</div>

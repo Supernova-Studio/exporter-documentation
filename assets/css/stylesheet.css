@@ -5288,6 +5288,11 @@ body.dark .fa-moon:before {
     color: rgb(255, 95, 95);
 }
 
+.component-health-row div.tag.unknown {
+    background-color: rgb(211, 211, 211);
+    color: rgb(31, 31, 31);
+}
+
 .component-health-row div.tag.link,
 .component-health-row>a>div.tag.link {
     /*
@@ -5379,6 +5384,11 @@ body.dark .fa-moon:before {
 .health-overlay-content .header .title {
     font-size: 18px;
     font-weight: 500;
+}
+
+.health-overlay-content .header .subtitle {
+    margin: 10px 0px;
+    display: block;
 }
 
 .health-overlay-content.healthy .header {
