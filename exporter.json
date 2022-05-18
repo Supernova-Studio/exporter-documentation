@@ -312,6 +312,11 @@
                 "type": "image",
                 "label": "Yes Image"
             }, {
+                "key": "header",
+                "type": "string",
+                "default": "",
+                "label": "Header"
+            }, {
                 "key": "falseImage",
                 "type": "image",
                 "label": "No Image"

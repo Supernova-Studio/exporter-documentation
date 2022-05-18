@@ -1,0 +1,42 @@
+
+{* Get properties *}
+{[ let componentId = "5323c700-d689-11ec-ac2c-67ac41cb6ee1" /]}
+{[ let propertiesToHighlight = ["uuid1231231"] /]}
+{[ let checkedImage = "https://spectrum.adobe.com/static/dc_check@2x.png" /]}
+{[ let uncheckedImage = "https://spectrum.adobe.com/static/dc_unchecked@2x.png" /]}
+{[ let header = "Design Checklist" /]}
+{* 
+{[ let componentId = block.properties.componentId /]}
+{[ let header = block.properties.header /]}
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+{[ let checkedImage = block.properties.trueImage ? block.properties.trueImage.assetUrl : assetUrl("icons/checklist-yes.svg", ds.documentationDomain()) /]}
+{[ let uncheckedImage = block.properties.falseImage ? block.properties.falseImage.assetUrl : assetUrl("icons/checklist-no.svg", ds.documentationDomain()) /]}
+*}
+
+{* Render content health block *}
+{[ if componentId ]}
+    {[ let component = ds.componentById(componentId) /]}
+    {[ if component ]}
+        {[ if header ]}
+            <h3 class="checklist-header">{{ header }}</h3>
+        {[/]}
+        <div class="checklist">
+            {[ for property in component.properties ]}
+                {[ if (property.propertyType === "Boolean") ]}
+                    {[ let value = component.propertyValues[property.persistentId] /]}
+                    <div class="list-item">
+                        <div class="status"><img src="{{ value ? checkedImage : uncheckedImage }}"></div>
+                        <div class="text">
+                            <p class="heading">{{ property.name }}</p>
+                            <p class="body">{{ property.description }}</p>
+                        </div>
+                    </div>
+                {[/]}
+            {[/]}
+        </div>
+    {[ else ]}
+    <p>Unable to show component health - unknown component</p>
+    {[/]}
+{[ else ]}
+<p>Unable to show component health - please specify component first</p>
+{[/]}
