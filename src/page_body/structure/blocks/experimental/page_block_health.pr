@@ -1,64 +1,107 @@
 {[ const block = context /]}
 
+{* Get properties *}
+{[ let componentId = ds.allComponents().first().id /]}
+{[ let propertiesToHighlight = [] /]}
+{* {[ let componentId = block.properties.componentId /]} *}
+{* {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]} *}
+
 {* Render content health block *}
-{[ let components = ds.allComponents() /]}
-{[ let component = components.first() /]}
-{[ let properties = component.properties /]}
-{[ let propertyValues = component.propertyValues /]}
+{[ if componentId ]}
+    {[ let component = ds.componentById(componentId) /]}
+    {[ if component ]}
+            
+        {[ let properties = component.properties /]}
+        {[ let propertyValues = component.propertyValues /]}
+        {[ log propertyValues /]}
 
-{* Get health tag *}
-{[ let healthTag = convertHealthTagIfAny(component) /]}
-{[ let healthTagReadable = "" /]}
-{[ switch healthTag ]}
-    {[ case "healthy" ]}
-        {[ healthTagReadable = "Healthy" /]}
-    {[ case "withering" ]}
-        {[ healthTagReadable = "Withering" /]}
-    {[ case "dormant" ]}
-        {[ healthTagReadable = "Dormant" /]}
-    {[ case "unknown" ]}
-        {[ healthTagReadable = "Unknown" /]}
+        {* Get health tag *}
+        {[ let healthTag = convertHealthTagIfAny(component) /]}
+        {[ let healthTagReadable = "" /]}
+        {[ switch healthTag ]}
+            {[ case "healthy" ]}
+                {[ healthTagReadable = "Healthy" /]}
+            {[ case "withering" ]}
+                {[ healthTagReadable = "Withering" /]}
+            {[ case "dormant" ]}
+                {[ healthTagReadable = "Dormant" /]}
+            {[ case "unknown" ]}
+                {[ healthTagReadable = "Unknown" /]}
+        {[/]}
+
+        {* Generate inline component health *}
+        <div class="component-health-row">
+            <a class="health" href="#" data-target="health-status">
+                <div class="tag health {{ healthTag }}">
+                    {{ healthTagReadable }}
+                </div>
+            </a>
+            <a href="#"><div class="tag link">Show more information</div></a>
+        </div>
+
+        {* Generate component health popup *}
+        <div class="health-overlay d-none">
+            <div class="health-overlay-content {{ healthTag }}">
+                <div class="header">
+                    <div class="title">
+                        {{ healthTagReadable }}
+                    </div>
+                    {[ switch healthTag ]}
+                        {[ case "healthy" ]}
+                        <span class="subtitle">Healthy component is accurate and represents our most up-to-date recommendations.</span>
+                        {[ case "withering" ]}
+                        <span class="subtitle">Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</span>
+                        {[ case "dormant" ]}
+                        <span class="subtitle">Dormant component hasn't been updated for some time and is not recommended for production use</span>
+                        {[ case "unknown" ]}
+                        <span class="subtitle">This component has not yet been tagged with its status</span>
+                    {[/]}
+                    <div class="row">
+                        <div class="col-4"><strong>Last modified</strong><br />{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</div>
+                    </div>  
+                </div>
+                {* Generate additional properties *}
+                {*{[ if (propertiesToHighlight.count() > 0) ]}*}
+                {[ if true ]}
+                    <div class="links">
+                        {[ for property in component.properties ]}
+                            {[ log property /]}
+                            {*{[ if propertiesToHighlight.contains(property.persistentId) ]}*}
+                            {[ if true ]}
+                                {* Show property as it was whitelisted by the user *}
+                                <div class="row">
+                                    <div class="col-6"><strong>{{ property.name }}</strong></div>
+                                    <div class="col-6 text-right">
+                                        {* Generate different view based on the type of property *}
+                                        {[ switch property.propertyType ]}
+                                            {[ case "Text" ]}
+                                            {[ case "Number" ]}
+                                            {[ case "Generic" ]}
+                                                <p>{{ propertyValues[property.id] ? propertyValues[property.id] : "-"}}</p>
+                                            {[ case "Boolean" ]}
+                                                <p>{{ propertyValues[property.id] ? "Yes" : "No"}}</p>
+                                            {[ case "Select" ]}
+                                                {[ for option in property.options ]}
+                                                    {[ if (option.id === propertyValues[property.id]) ]}
+                                                        <p>{{ option.name }}</p>
+                                                    {[/]}
+                                                {[/]}  
+                                            {[ case "Link" ]}
+                                                TODO
+                                            {[ case "URL" ]}
+                                                <a href="{{ propertyValues[property.id] ? propertyValues[property.id] : "#" }}">Open Link</a>
+                                        {[/]}
+                                    </div>
+                                </div>
+                            {[/]}
+                        {[/]}
+                    </div>
+                {[/]}
+            </div>
+        </div>
+    {[ else ]}
+    <p>Unable to show component health - unknown component</p>
+    {[/]}
+{[ else ]}
+<p>Unable to show component health - please specify component first</p>
 {[/]}
-
-{* Handle content health block *}
-<div class="component-health-row">
-    <a class="health" href="#" data-target="health-status">
-        <div class="tag health {{ healthTag }}">
-            {{ healthTagReadable }}
-        </div>
-    </a>
-    <a href="#"><div class="tag link">Show more information</div></a>
-</div>
-
-<div class="health-overlay d-none">
-    <div class="health-overlay-content {{ healthTag }}">
-        <div class="header">
-            <div class="title">
-                {{ healthTagReadable }}
-            </div>
-            {[ switch healthTag ]}
-                {[ case "healthy" ]}
-                <span class="subtitle">Healthy component is accurate and represents our most up-to-date recommendations.</span>
-                {[ case "withering" ]}
-                <span class="subtitle">Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</span>
-                {[ case "dormant" ]}
-                <span class="subtitle">Dormant component hasn't been updated for some time and is not recommended for production use</span>
-                {[ case "unknown" ]}
-                <span class="subtitle">This component has not yet been tagged with its status</span>
-            {[/]}
-            <div class="row">
-                <div class="col-4"><strong>Last modified</strong><br />{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</div>
-            </div>  
-        </div>
-        <div class="links">
-            <div class="row">
-                <div class="col-6"><strong>Design Component</strong></div>
-                <div class="col-6 text-right"><strong><a href="#">Open Link</a></strong></div>
-            </div>
-            <div class="row">
-                <div class="col-6"><strong>Code Repository</strong></div>
-                <div class="col-6 text-right"><strong><a href="#">Open Link</a></strong></div>
-            </div>
-        </div>
-    </div>
-</div>
