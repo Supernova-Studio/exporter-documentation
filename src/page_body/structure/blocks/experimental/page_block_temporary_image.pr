@@ -1,5 +1,0 @@
-{* Get experimental block payload *}
-{[ const block = context /]}
-
-{* Create image that can't be interacted with *}
-<img src="{{ block.payload }}" class="img-fluid" alt="Responsive image">

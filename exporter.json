@@ -272,6 +272,63 @@
                 "type": "string",
                 "label": "Markdown URL"
             }]
+        }, {
+            "key": "io.supernova.documentation-main.component-health",
+            "category": "Components",
+            "title": "Component Health",
+            "description": "Show component health and additional attributes",
+            "icon": "icons/component-health.png",
+            "mode": "block",
+            "properties": [{
+                "key": "componentId",
+                "default": "",
+                "type": "component",
+                "label": "Component"
+            }, {
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "component",
+                "label": "Properties"
+            }]
+        }, {
+            "key": "io.supernova.documentation-main.component-checklist",
+            "category": "Components",
+            "title": "Component Checklist",
+            "description": "Highlight specific features of your components",
+            "icon": "icons/component-checklist.png",
+            "mode": "block",
+            "properties": [{
+                "key": "componentId",
+                "default": "",
+                "type": "component",
+                "label": "Component"
+            }, {
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperty",
+                "label": "Properties"
+            }, {
+                "key": "trueImage",
+                "type": "image",
+                "label": "Yes Image"
+            }, {
+                "key": "falseImage",
+                "type": "image",
+                "label": "No Image"
+            }]
+        }, {
+            "key": "io.supernova.documentation-main.component-checklist-all",
+            "category": "Components",
+            "title": "All Component Checklist",
+            "description": "Highlight specific features of all of your components",
+            "icon": "icons/component-checklist-all.png",
+            "mode": "block",
+            "properties": [{
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperty",
+                "label": "Properties"
+            }]
         }],
         "blockVariants": {
             "Tabs": [{
