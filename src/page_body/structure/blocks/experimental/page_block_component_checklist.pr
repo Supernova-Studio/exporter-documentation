@@ -23,7 +23,7 @@
         <div class="checklist">
             {[ for property in component.properties ]}
                 {[ if (property.propertyType === "Boolean") ]}
-                    {[ let value = component.propertyValues[property.persistentId] /]}
+                    {[ let value = component.propertyValues[property.codeName] /]}
                     <div class="list-item">
                         <div class="status"><img src="{{ value ? checkedImage : uncheckedImage }}"></div>
                         <div class="text">

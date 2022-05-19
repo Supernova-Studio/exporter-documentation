@@ -3,6 +3,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
+import { contrastColor } from "./doc_functionality/color"
 import { convertHealthTagIfAny } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
@@ -56,3 +57,6 @@ Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)
 Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
+
+/* Colors */
+Pulsar.registerFunction("contrastColor", contrastColor)

@@ -305,7 +305,7 @@
             }, {
                 "key": "propertiesToHighlight",
                 "default": "",
-                "type": "componentProperty",
+                "type": "componentProperties",
                 "label": "Properties"
             }, {
                 "key": "trueImage",
@@ -331,7 +331,7 @@
             "properties": [{
                 "key": "propertiesToHighlight",
                 "default": "",
-                "type": "componentProperty",
+                "type": "componentProperties",
                 "label": "Properties"
             }]
         }],

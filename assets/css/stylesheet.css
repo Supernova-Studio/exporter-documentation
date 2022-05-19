@@ -6339,14 +6339,17 @@ table.data-table td {
     border-collapse: collapse;
 }
 
+table.data-table th,
 table.data-table td {
     padding: 4px;
 }
 
+table.data-table tr th> :first-child,
 table.data-table tr td> :first-child {
     margin-top: 0 !important;
 }
 
+table.data-table tr th> :first-child,
 table.data-table tr td> :last-child {
     margin-bottom: 0 !important;
 }
@@ -6355,20 +6358,24 @@ div.data-table-wrapper {
     overflow-x: scroll;
 }
 
+table.data-table th,
 table.data-table td {
     vertical-align: top;
 }
 
 table.borderless,
 table.borderless td,
+table.borderless th,
 table.borderless tr {
     border: 0px;
 }
 
+table.header-row th:first-child,
 table.header-row td:first-child {
     background-color: #f9fafa;
 }
 
+table.header-column tr:first-child,
 table.header-column tr:first-child {
     background-color: #f9fafa;
 }
@@ -6385,6 +6392,7 @@ table.header-column tr:first-child {
     text-align: right;
 }
 
+table th.left,
 table td.left,
 table td.left .sn-text-left,
 table td.left .sn-text-center,
@@ -6392,6 +6400,7 @@ table td.left .sn-text-right {
     text-align: left;
 }
 
+table th.right,
 table td.right,
 table td.right .sn-text-left,
 table td.right .sn-text-center,
@@ -6399,6 +6408,7 @@ table td.right .sn-text-right {
     text-align: right;
 }
 
+table th.center,
 table td.center,
 table td.center .sn-text-left,
 table td.center .sn-text-center,
@@ -6448,7 +6458,7 @@ textarea:focus {
 .checklist {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 24px;
+    grid-gap: 12px 24px;
 }
 
 .checklist .list-item {
@@ -6465,9 +6475,7 @@ textarea:focus {
 }
 
 .checklist .status img {
-    min-width: 24px;
-    max-width: 48px;
-    width: 100%;
+    width: 24px;
 }
 
 .checklist .text {
@@ -6480,3 +6488,64 @@ textarea:focus {
     padding-bottom: 12px;
     border-bottom: 1px solid #dfdfdf;
 }
+
+.component-table-wrapper-outer {
+    position: relative
+}
+
+.component-table-wrapper-inner {
+    overflow-x: scroll;
+    overflow-y: visible;
+    width: 100%;
+    /*margin-left: 100px;*/
+}
+
+.component-table-wrapper-inner table {
+    table-layout: fixed;
+    white-space: normal;
+}
+
+.component-table-wrapper-inner table.data-table th,
+.component-table-wrapper-inner table.data-table td {
+    padding: 8px;
+    font-size: 12px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.component-table-wrapper-inner table.header-column tr:first-child,
+.component-table-wrapper-inner table.header-column tr:first-child {
+    font-weight: bold;
+}
+
+.component-table-wrapper-inner td,
+th {
+    vertical-align: center;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    width: 100px;
+}
+
+.component-select-tag {
+    font-size: 10px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.component-select-tag.light {
+    color: white;
+}
+
+.component-select-tag.dark {
+    color: black;
+}
+
+
+/*
+.component-table-wrapper-inner th {
+    position: absolute;
+    left: 0;
+    width: 150px;
+    height: 100%;
+}*/

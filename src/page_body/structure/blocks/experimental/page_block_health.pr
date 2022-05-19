@@ -73,19 +73,19 @@
                                             {[ case "Text" ]}
                                             {[ case "Number" ]}
                                             {[ case "Generic" ]}
-                                                <p>{{ propertyValues[property.id] ? propertyValues[property.id] : "-"}}</p>
+                                                <p>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</p>
                                             {[ case "Boolean" ]}
-                                                <p>{{ propertyValues[property.id] ? "Yes" : "No"}}</p>
+                                                <p>{{ propertyValues[property.codeName] ? "Yes" : "No"}}</p>
                                             {[ case "Select" ]}
                                                 {[ for option in property.options ]}
-                                                    {[ if (option.id === propertyValues[property.id]) ]}
+                                                    {[ if (option.id === propertyValues[property.codeName]) ]}
                                                         <p>{{ option.name }}</p>
                                                     {[/]}
                                                 {[/]}  
                                             {[ case "Link" ]}
                                                 TODO
                                             {[ case "URL" ]}
-                                                <a href="{{ propertyValues[property.id] ? propertyValues[property.id] : "#" }}">Open Link</a>
+                                                <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">Open Link</a>
                                         {[/]}
                                     </div>
                                 </div>

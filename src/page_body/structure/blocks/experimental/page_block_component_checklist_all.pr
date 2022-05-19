@@ -1,2 +1,77 @@
-<p>Checklist All</p>
 
+{* Get properties *}
+{[ let propertiesToHighlight = ["uuid1231231"] /]}
+{[ let header = "Component overview" /]}
+{[ let components = ds.allComponents() /]}
+{* 
+{[ let header = block.properties.header /]}
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+*}
+
+{* Only render if there is at least one component *}
+{[ if (components.count() > 0) ]}
+    {[ let firstComponent = components.first() /]}
+ 
+    {* Render header if enabled *}
+    {[ if header ]}
+        <h3 class="checklist-header">{{ header }}</h3>
+    {[/]}
+
+    {* Scroll wrapper boundary *}
+    <div class="component-table-wrapper-outer">
+    <div class="component-table-wrapper-inner">
+        <table class="data-table header-row header-column" style="width: {{ tableWidth }}px">
+
+        {* Create header row *}
+        <tr>
+            <th class="left">Component Name</th>
+            {[ for property in firstComponent.properties ]}
+            <td class="center">{{ property.name }}</td>
+            {[/]}
+            <td class="center">Last edited</td>
+        </tr>  
+
+        {* Create data rows *}
+        {* Generate different view based on the type of property *}
+        {[ for component in components ]}
+            {[ let propertyValues = component.propertyValues /]}
+            <tr>
+                <th>{{ component.name }}</th>
+                {[ for property in component.properties ]}
+                    {[ switch property.propertyType ]}
+                        {[ case "Text" ]}
+                        {[ case "Number" ]}
+                        {[ case "Generic" ]}
+                            <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
+                        {[ case "Boolean" ]}
+                            <td class="center">{{ propertyValues[property.codeName] ? "✅" : "🚫"}}</p>
+                        {[ case "Select" ]}
+                            {[ let optionValue = "" /]}
+                            {[ let optionColor = "" /]}
+                            {[ let contrastColor = "dark" /]}
+                            {[ for option in property.options ]}
+                                {[ if (option.id === propertyValues[property.codeName]) ]}
+                                    {[ optionValue = option.name /]}
+                                    {[ optionColor = option.backgroundColor /]}
+                                    {[ contrastColor = contrastColor(optionColor) /]}
+                                {[/]}
+                            {[/]}  
+                            <td class="center"><span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span></td>
+                        {[ case "Link" ]}
+                            <td>TODO</td>
+                        {[ case "URL" ]}
+                            <td>
+                                <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">Open Link</a>
+                            </td>
+                    {[/]}
+                {[/]}
+                <td>{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</td>
+            </tr>
+        {[/]}
+        </table>
+    </div>
+    </div> 
+{[ else ]}
+{* No component available to be shown just yet *}
+<p>There are no components to render the component list just yet. Please add the first component and republish</p>
+{[/]}
