@@ -12,7 +12,9 @@
     {[ if component ]}
             
         {[ let properties = component.properties /]}
+        {[ log properties /]}
         {[ let propertyValues = component.propertyValues /]}
+        {[ log propertyValues /]}
 
         {* Get health tag *}
         {[ let healthTag = convertHealthTagIfAny(component) /]}

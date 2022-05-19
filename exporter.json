@@ -277,7 +277,7 @@
             "category": "Components",
             "title": "Component Health",
             "description": "Show component health and additional attributes",
-            "icon": "icons/component-health.png",
+            "icon": "icons/custom-block-health.png",
             "mode": "block",
             "properties": [{
                 "key": "componentId",
@@ -295,7 +295,7 @@
             "category": "Components",
             "title": "Component Checklist",
             "description": "Highlight specific features of your components",
-            "icon": "icons/component-checklist.png",
+            "icon": "icons/custom-block-checklist.png",
             "mode": "block",
             "properties": [{
                 "key": "componentId",
@@ -326,7 +326,7 @@
             "category": "Components",
             "title": "All Component Checklist",
             "description": "Highlight specific features of all of your components",
-            "icon": "icons/component-checklist-all.png",
+            "icon": "icons/custom-block-checklist-all.png",
             "mode": "block",
             "properties": [{
                 "key": "propertiesToHighlight",
