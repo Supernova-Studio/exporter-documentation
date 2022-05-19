@@ -2,7 +2,7 @@
 
 {* Get properties *}
 {[ let componentId = "5323c700-d689-11ec-ac2c-67ac41cb6ee1" /]}
-{[ let propertiesToHighlight = ["uuid1231231"] /]}
+{[ let propertiesToHighlight = [] /]}
 {* {[ let componentId = block.properties.componentId /]} *}
 {* {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]} *}
 
@@ -12,9 +12,7 @@
     {[ if component ]}
             
         {[ let properties = component.properties /]}
-        {[ log properties /]}
         {[ let propertyValues = component.propertyValues /]}
-        {[ log propertyValues /]}
 
         {* Get health tag *}
         {[ let healthTag = convertHealthTagIfAny(component) /]}
@@ -29,38 +27,44 @@
             {[ case "unknown" ]}
                 {[ healthTagReadable = "Unknown" /]}
         {[/]}
+        {[ healthTag = "healthy" /]}
+        {[ healthTagReadable = "Healthy" /]}
 
         {* Generate inline component health *}
-        <div class="component-health-row">
-            <a class="health" href="#" data-target="health-status">
-                <div class="tag health {{ healthTag }}">
-                    {{ healthTagReadable }}
-                </div>
-            </a>
-            <a href="#"><div class="tag link">Show more information</div></a>
+        <div class="component-health-row {{ healthTag }}">
+            <div class="name">
+                {{ healthTagReadable }}
+            </div>
+            <div class="date">
+                Last modified {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}
+            </div>
         </div>
 
         {* Generate component health popup *}
         <div class="health-overlay d-none">
             <div class="health-overlay-content {{ healthTag }}">
                 <div class="header">
-                    <div class="title">
-                        {{ healthTagReadable }}
+                    <div class="component-health-row {{ healthTag }}">
+                        <div class="name">
+                            {{ healthTagReadable }}
+                        </div>
                     </div>
                     {[ switch healthTag ]}
                         {[ case "healthy" ]}
                         <span class="subtitle">Healthy component is accurate and represents our most up-to-date recommendations.</span>
                         {[ case "withering" ]}
-                        <span class="subtitle">Withering component is inaccurate and is in the need of updates, or will be soon deprecated completely.</span>
+                        <span class="subtitle">Withering component has known issues, but is still generally recomended for use.</span>
                         {[ case "dormant" ]}
-                        <span class="subtitle">Dormant component hasn't been updated for some time and is not recommended for production use</span>
+                        <span class="subtitle">Dormant component is no longer recommended for use, and is in need of foundational updates.</span>
                         {[ case "unknown" ]}
-                        <span class="subtitle">This component has not yet been tagged with its status</span>
+                        <span class="subtitle">This component doesn't provide information about its health</span>
                     {[/]}
                     <div class="row">
-                        <div class="col-4"><strong>Last modified</strong><br />{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</div>
+                        <div class="col-6"><strong>Published</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
+                        <div class="col-6"><strong>Modified</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
                     </div>  
                 </div>
+
                 {* Generate additional properties *}
                 {[ if (propertiesToHighlight.count() > 0) ]}
                     <div class="links">
@@ -74,20 +78,38 @@
                                         {[ switch property.propertyType ]}
                                             {[ case "Text" ]}
                                             {[ case "Number" ]}
+                                            <div class="row">           
+                                                <div class="col-6">{{ property.name }}</div>
+                                                <div class="col-6 text-right">{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</div>
+                                            </div>
                                             {[ case "Generic" ]}
-                                                <p>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</p>
+                                            <div class="row">           
+                                                <div class="col-6">{{ property.name }}</div>
+                                                <div class="col-6 text-right"><mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark></div>
+                                            </div>
                                             {[ case "Boolean" ]}
-                                                <p>{{ propertyValues[property.codeName] ? "Yes" : "No"}}</p>
+                                            <div class="row">           
+                                                <div class="col-6">{{ property.name }}</div>
+                                                <div class="col-6 text-right"><mark>{{ propertyValues[property.codeName] ? "Yes" : "No"}}</mark></div>
+                                            </div>
                                             {[ case "Select" ]}
+                                            <div class="row">           
+                                                <div class="col-6">{{ property.name }}</div>
                                                 {[ for option in property.options ]}
                                                     {[ if (option.id === propertyValues[property.codeName]) ]}
-                                                        <p>{{ option.name }}</p>
+                                                        <div class="col-6 text-right"><mark>{{ option.name }}</mark></div>            
                                                     {[/]}
                                                 {[/]}  
+                                            </div>
                                             {[ case "Link" ]}
-                                                TODO
+                                            {* Not supported yet *}
                                             {[ case "URL" ]}
-                                                <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">Open Link</a>
+                                            <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
+                                                <div class="row">
+                                                    <div class="col-6">{{ property.name }}</div>
+                                                    <div class="col-6 text-right"><img class="link-chevron" /></div>
+                                                </div>
+                                            </a>
                                         {[/]}
                                     </div>
                                 </div>

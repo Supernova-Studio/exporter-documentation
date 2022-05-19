@@ -417,14 +417,18 @@ $("#sidebarCollapse").on("click", function(e) {
    Health status overlay
 -------------------------- */
 
-$('a[data-target="health-status"]').on("click", function(e) {
-    // Toggle the overlay
-    $(".health-overlay").toggleClass("d-none")
-    e.preventDefault()
-})
+$(document).ready(function() {
 
-$(".health-overlay").on("click", function(e) {
-    // Toggle the overlay
-    $(".health-overlay").toggleClass("d-none")
-    e.preventDefault()
+    $('.component-health-row').on("click", function(e) {
+        console.log("tap")
+            // Toggle the overlay
+        $(".health-overlay").toggleClass("d-none");
+        e.preventDefault();
+    })
+
+    $('.health-overlay').on("click", function(e) {
+        // Toggle the overlay
+        $(".health-overlay").toggleClass("d-none");
+        e.preventDefault();
+    })
 })

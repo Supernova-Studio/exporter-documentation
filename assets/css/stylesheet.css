@@ -5248,76 +5248,88 @@ body.dark .fa-moon:before {
 .component-health-row {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    padding-bottom: 16px;
+    justify-content: space-between;
     margin-bottom: 30px;
+    padding: 12px 16px;
+    cursor: pointer;
 }
 
-.component-health-row>a {
-    margin-right: 16px;
+.component-health-row .name {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    margin-left: 32px;
 }
 
-.component-health-row div.tag {
-    padding: 6px 12px;
-    border-radius: 999px;
+.component-health-row .date {
+    font-size: 14px;
+    font-weight: normal;
+    position: relative;
+    margin-right: 20px;
 }
 
-.component-health-row div.tag.health {
-    font-weight: 500;
-    opacity: 0.8;
+.component-health-row .date:after {
+    right: -20px;
+    top: 1px;
+    position: absolute;
 }
 
-.component-health-row div.tag.health:hover,
-.component-health-row>a.health:hover {
-    opacity: 1;
-    text-decoration: none;
+.component-health-row .name:before {
+    left: -32px;
+    top: -1px;
+    position: absolute;
 }
 
-.component-health-row div.tag.healthy {
-    background-color: #ebf9eb;
-    color: rgb(41, 145, 41);
+.component-health-row.healthy .name:before {
+    content: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0003 20.1L10.7003 18.91C6.06027 14.71 3.00026 11.91 3.00026 8.53998C2.99357 7.88807 3.11705 7.2414 3.36345 6.63782C3.60984 6.03423 3.97418 5.48589 4.43516 5.0249C4.89615 4.56391 5.4445 4.19955 6.04808 3.95315C6.65166 3.70676 7.29837 3.58329 7.95027 3.58998C8.72047 3.59578 9.48047 3.76658 10.1791 4.09088C10.8777 4.41518 11.4987 4.88544 12.0003 5.46998C12.5018 4.88544 13.1228 4.41518 13.8214 4.09088C14.52 3.76658 15.28 3.59578 16.0502 3.58998C16.7021 3.58329 17.3489 3.70676 17.9524 3.95315C18.556 4.19955 19.1044 4.56391 19.5654 5.0249C20.0263 5.48589 20.3907 6.03423 20.6371 6.63782C20.8835 7.2414 21.0069 7.88807 21.0003 8.53998C21.0003 11.94 17.9402 14.71 13.3002 18.92L12.0003 20.1Z' fill='%2300A454'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.9004 8.31006L16.6004 9.02006L11.2504 14.3801L8.40039 11.5201L9.10039 10.8101L11.2504 12.9601L15.9004 8.31006Z' fill='white'/%3E%3C/svg%3E%0A");
 }
 
-.component-health-row div.tag.withering {
-    background-color: #fff8e2;
-    color: #725c15;
+.component-health-row.withering .name:before {
+    content: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0003 20.1L10.7003 18.91C6.06027 14.71 3.00026 11.91 3.00026 8.53998C2.99357 7.88807 3.11705 7.2414 3.36345 6.63782C3.60984 6.03423 3.97418 5.48589 4.43516 5.0249C4.89615 4.56391 5.4445 4.19955 6.04808 3.95315C6.65166 3.70676 7.29837 3.58329 7.95027 3.58998C8.72047 3.59578 9.48047 3.76658 10.1791 4.09088C10.8777 4.41518 11.4987 4.88544 12.0003 5.46998C12.5018 4.88544 13.1228 4.41518 13.8214 4.09088C14.52 3.76658 15.28 3.59578 16.0502 3.58998C16.7021 3.58329 17.3489 3.70676 17.9524 3.95315C18.556 4.19955 19.1044 4.56391 19.5654 5.0249C20.0263 5.48589 20.3907 6.03423 20.6371 6.63782C20.8835 7.2414 21.0069 7.88807 21.0003 8.53998C21.0003 11.94 17.9402 14.71 13.3002 18.92L12.0003 20.1Z' fill='%23E36B00'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12.5 8.05005V13.05H11.5V8.05005H12.5ZM12 14.05C12.2652 14.05 12.5196 14.1554 12.7071 14.3429C12.8946 14.5305 13 14.7848 13 15.05C13 15.3153 12.8946 15.5696 12.7071 15.7572C12.5196 15.9447 12.2652 16.05 12 16.05C11.7348 16.05 11.4804 15.9447 11.2929 15.7572C11.1054 15.5696 11 15.3153 11 15.05C11 14.7848 11.1054 14.5305 11.2929 14.3429C11.4804 14.1554 11.7348 14.05 12 14.05Z' fill='white'/%3E%3C/svg%3E%0A");
 }
 
-.component-health-row div.tag.dormant {
-    background-color: rgb(255, 214, 214);
-    color: rgb(255, 95, 95);
+.component-health-row.dormant .name:before {
+    content: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0003 20.1L10.7003 18.91C6.06027 14.71 3.00026 11.91 3.00026 8.53998C2.99357 7.88807 3.11705 7.2414 3.36345 6.63782C3.60984 6.03423 3.97418 5.48589 4.43516 5.0249C4.89615 4.56391 5.4445 4.19955 6.04808 3.95315C6.65166 3.70676 7.29837 3.58329 7.95027 3.58998C8.72047 3.59578 9.48047 3.76658 10.1791 4.09088C10.8777 4.41518 11.4987 4.88544 12.0003 5.46998C12.5018 4.88544 13.1228 4.41518 13.8214 4.09088C14.52 3.76658 15.28 3.59578 16.0502 3.58998C16.7021 3.58329 17.3489 3.70676 17.9524 3.95315C18.556 4.19955 19.1044 4.56391 19.5654 5.0249C20.0263 5.48589 20.3907 6.03423 20.6371 6.63782C20.8835 7.2414 21.0069 7.88807 21.0003 8.53998C21.0003 11.94 17.9402 14.71 13.3002 18.92L12.0003 20.1Z' fill='%23D23031'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.6504 7.48999L15.3504 8.19999L12.7104 10.85L15.3504 13.49L14.6504 14.2L12.0004 11.55L9.35039 14.2L8.65039 13.49L11.2904 10.85L8.65039 8.19999L9.35039 7.48999L12.0004 10.14L14.6504 7.48999Z' fill='white'/%3E%3C/svg%3E ");
 }
 
-.component-health-row div.tag.unknown {
-    background-color: rgb(211, 211, 211);
-    color: rgb(31, 31, 31);
+.component-health-row.unknown .name:before {
+    content: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.0003 20.1L10.7003 18.91C6.06027 14.71 3.00026 11.91 3.00026 8.53998C2.99357 7.88807 3.11705 7.2414 3.36345 6.63782C3.60984 6.03423 3.97418 5.48589 4.43516 5.0249C4.89615 4.56391 5.4445 4.19955 6.04808 3.95315C6.65166 3.70676 7.29837 3.58329 7.95027 3.58998C8.72047 3.59578 9.48047 3.76658 10.1791 4.09088C10.8777 4.41518 11.4987 4.88544 12.0003 5.46998C12.5018 4.88544 13.1228 4.41518 13.8214 4.09088C14.52 3.76658 15.28 3.59578 16.0502 3.58998C16.7021 3.58329 17.3489 3.70676 17.9524 3.95315C18.556 4.19955 19.1044 4.56391 19.5654 5.0249C20.0263 5.48589 20.3907 6.03423 20.6371 6.63782C20.8835 7.2414 21.0069 7.88807 21.0003 8.53998C21.0003 11.94 17.9402 14.71 13.3002 18.92L12.0003 20.1Z' fill='%2300A454'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.9004 8.31006L16.6004 9.02006L11.2504 14.3801L8.40039 11.5201L9.10039 10.8101L11.2504 12.9601L15.9004 8.31006Z' fill='white'/%3E%3C/svg%3E%0A");
 }
 
-.component-health-row div.tag.link,
-.component-health-row>a>div.tag.link {
-    /*
-    background-color: rgb(228, 228, 228);
-    color: rgb(43, 43, 43);
-    */
-    color: #676767;
+.component-health-row.healthy .date:after {
+    content: url("data:image/svg+xml,%3Csvg width='8' height='20' viewBox='0 0 8 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.65039 7.35002L3.35039 6.65002L6.71039 10L3.35039 13.35L2.65039 12.65L5.29039 10L2.65039 7.35002Z' fill='%23008141'/%3E%3C/svg%3E%0A");
 }
 
-.component-health-row>a>div.tag.link:hover {
-    /*
-    background-color: rgb(228, 228, 228);
-    color: rgb(43, 43, 43);
-    */
-    color: #313131;
-    text-decoration: underline;
+.component-health-row.withering .date:after {
+    content: url("data:image/svg+xml,%3Csvg width='8' height='20' viewBox='0 0 8 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.65039 7.35002L3.35039 6.65002L6.71039 10L3.35039 13.35L2.65039 12.65L5.29039 10L2.65039 7.35002Z' fill='%23BA4E00'/%3E%3C/svg%3E%0A");
 }
 
-.component-health-row>a>div.tag.link:hover {
-    /*
-    background-color: rgb(228, 228, 228);
-    color: rgb(43, 43, 43);
-    */
-    color: #313131;
-    text-decoration: underline;
+.component-health-row.dormant .date:after {
+    content: url("data:image/svg+xml,%3Csvg width='8' height='20' viewBox='0 0 8 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.65039 7.35002L3.35039 6.65002L6.71039 10L3.35039 13.35L2.65039 12.65L5.29039 10L2.65039 7.35002Z' fill='%239E2122'/%3E%3C/svg%3E%0A");
+}
+
+.component-health-row.unknown .date:after {
+    content: url("data:image/svg+xml,%3Csvg width='8' height='20' viewBox='0 0 8 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.65039 7.35002L3.35039 6.65002L6.71039 10L3.35039 13.35L2.65039 12.65L5.29039 10L2.65039 7.35002Z' fill='%23008141'/%3E%3C/svg%3E%0A");
+}
+
+.component-health-row.healthy {
+    background-color: #EAFEEF;
+    color: #00A454 !important;
+}
+
+.component-health-row.withering {
+    background-color: #FFF8F3;
+    color: #E36B00 !important;
+}
+
+.component-health-row.dormant {
+    background-color: #FFF8F8;
+    color: #D23031 !important;
+}
+
+.component-health-row.unknown {
+    background-color: #f6f6f6;
+    color: #1f1f1f;
 }
 
 .health-overlay {
@@ -5333,6 +5345,11 @@ body.dark .fa-moon:before {
     cursor: pointer;
 }
 
+.health-overlay-content .component-health-row {
+    margin: 0px;
+    padding: 8px 0px 4px 0px;
+}
+
 .health-overlay-content {
     position: absolute;
     top: 50%;
@@ -5341,12 +5358,11 @@ body.dark .fa-moon:before {
     background-color: white;
     max-width: 375px;
     transform: translate(-50%, -50%);
-    border-radius: 10px;
     overflow: hidden;
 }
 
 .health-overlay-content .header {
-    padding: 16px;
+    padding: 16px 16px 24px 16px;
     background-color: #fafafa;
 }
 
@@ -5373,7 +5389,17 @@ body.dark .fa-moon:before {
 }
 
 .health-overlay-content .links .row {
-    padding: 4px 16px;
+    padding: 6px 16px;
+}
+
+.health-overlay-content .links .row:nth-child(0) {
+    color: #14161880;
+    font-size: 12px;
+}
+
+.health-overlay-content .links .row:nth-child(1) {
+    color: #141618be;
+    font-size: 12px;
 }
 
 .health-overlay-content .header p {
@@ -5387,32 +5413,46 @@ body.dark .fa-moon:before {
 }
 
 .health-overlay-content .header .subtitle {
-    margin: 10px 0px;
+    margin: 10px 0px 20px 0px;
     display: block;
 }
 
 .health-overlay-content.healthy .header {
-    background-color: #ebf9eb;
+    background-color: #EAFEEF;
 }
 
 .health-overlay-content.healthy .header .title {
-    color: rgb(41, 145, 41);
+    color: #00A454 !important;
 }
 
 .health-overlay-content.withering .header {
-    background-color: #fff8e2;
+    background-color: #FFF8F3;
 }
 
 .health-overlay-content.withering .header .title {
-    color: #725c15;
+    color: #E36B00 !important;
 }
 
 .health-overlay-content.dormant .header {
-    background-color: rgb(255, 214, 214);
+    background-color: #FFF8F8;
 }
 
 .health-overlay-content.dormant .header .title {
-    color: rgb(255, 95, 95);
+    color: #D23031 !important;
+}
+
+.health-overlay-content.unknown .header {
+    background-color: #f6f6f6;
+}
+
+.health-overlay-content.unknown .header .title {
+    color: #1f1f1f !important;
+}
+
+.link-chevron {
+    width: 20px;
+    height: 20px;
+    content: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.65039 7.35002L9.35039 6.65002L12.7104 10L9.35039 13.35L8.65039 12.65L11.2904 10L8.65039 7.35002Z' fill='%23141618' fill-opacity='0.8'/%3E%3C/svg%3E%0A");
 }
 
 .component-health-summary div.large {
