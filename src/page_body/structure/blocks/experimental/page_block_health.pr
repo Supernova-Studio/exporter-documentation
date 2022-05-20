@@ -81,43 +81,26 @@
                                         {[ switch property.propertyType ]}
                                             {[ case "Text" ]}
                                             {[ case "Number" ]}
-                                            <div class="row">           
-                                                <div class="col-6">{{ property.name }}</div>
-                                                <div class="col-6 text-right">{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</div>
-                                            </div>
+                                                {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</div>
                                             {[ case "Generic" ]}
-                                            <div class="row">           
-                                                <div class="col-6">{{ property.name }}</div>
-                                                <div class="col-6 text-right"><mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark></div>
-                                            </div>
+                                                <mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark>
                                             {[ case "Boolean" ]}
-                                            <div class="row">           
-                                                <div class="col-6">{{ property.name }}</div>
-                                                <div class="col-6 text-right"><span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span></div>
-                                            </div>
+                                                <span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span>
                                             {[ case "Select" ]}
-                                            <div class="row">           
-                                                <div class="col-6">{{ property.name }}</div>
-                                                {[ for option in property.options ]}
-                                                    {[ if (option.id === propertyValues[property.codeName]) ]}
-                                                        <div class="col-6 text-right"><mark>{{ option.name }}</mark></div>            
-                                                    {[/]}
-                                                {[/]}  
-                                            </div>
+                                            {[ for option in property.options ]}
+                                                {[ if (option.id === propertyValues[property.codeName]) ]}
+                                                    {{ option.name }}
+                                                {[/]}
+                                            {[/]}  
                                             {[ case "Link" ]}
                                             {* Not supported yet properly *}
                                             <a href="#">
-                                                <div class="row">
-                                                    <div class="col-6">{{ property.name }}</div>
-                                                    <div class="col-6 text-right"><img class="link-chevron" /></div>
-                                                </div>
+                                                <img class="link-chevron" />
                                             </a>
                                             {[ case "URL" ]}
+                                            {* Not supported yet properly *}
                                             <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
-                                                <div class="row">
-                                                    <div class="col-6">{{ property.name }}</div>
-                                                    <div class="col-6 text-right"><img class="link-chevron" /></div>
-                                                </div>
+                                                <img class="link-chevron" />
                                             </a>
                                         {[/]}
                                     </div>
