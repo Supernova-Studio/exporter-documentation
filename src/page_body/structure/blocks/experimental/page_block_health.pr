@@ -1,10 +1,10 @@
+
+{* Get block *}
 {[ const block = context /]}
 
 {* Get properties *}
-{[ let componentId = "5323c700-d689-11ec-ac2c-67ac41cb6ee1" /]}
-{[ let propertiesToHighlight = [] /]}
-{* {[ let componentId = block.properties.componentId /]} *}
-{* {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]} *}
+{[ let componentId = block.properties.componentId /]}
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
 
 {* Render content health block *}
 {[ if componentId ]}
@@ -67,9 +67,12 @@
 
                 {* Generate additional properties *}
                 {[ if (propertiesToHighlight.count() > 0) ]}
+                    {[ log propertiesToHighlight /]}
                     <div class="links">
                         {[ for property in component.properties ]}
+                                {[ log property /]}
                             {[ if propertiesToHighlight.contains(property.persistentId) ]}
+                                {[ log "yes" /]}
                                 {* Show property as it was whitelisted by the user *}
                                 <div class="row">
                                     <div class="col-6"><strong>{{ property.name }}</strong></div>
@@ -90,7 +93,7 @@
                                             {[ case "Boolean" ]}
                                             <div class="row">           
                                                 <div class="col-6">{{ property.name }}</div>
-                                                <div class="col-6 text-right"><mark>{{ propertyValues[property.codeName] ? "Yes" : "No"}}</mark></div>
+                                                <div class="col-6 text-right"><span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span></div>
                                             </div>
                                             {[ case "Select" ]}
                                             <div class="row">           
@@ -102,7 +105,13 @@
                                                 {[/]}  
                                             </div>
                                             {[ case "Link" ]}
-                                            {* Not supported yet *}
+                                            {* Not supported yet properly *}
+                                            <a href="#">
+                                                <div class="row">
+                                                    <div class="col-6">{{ property.name }}</div>
+                                                    <div class="col-6 text-right"><img class="link-chevron" /></div>
+                                                </div>
+                                            </a>
                                             {[ case "URL" ]}
                                             <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
                                                 <div class="row">

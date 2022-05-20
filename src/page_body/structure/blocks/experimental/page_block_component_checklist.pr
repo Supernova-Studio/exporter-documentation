@@ -1,17 +1,13 @@
 
+{* Get block *}
+{[ const block = context /]}
+
 {* Get properties *}
-{[ let componentId = "5323c700-d689-11ec-ac2c-67ac41cb6ee1" /]}
-{[ let propertiesToHighlight = ["uuid1231231"] /]}
-{[ let checkedImage = "https://spectrum.adobe.com/static/dc_check@2x.png" /]}
-{[ let uncheckedImage = "https://spectrum.adobe.com/static/dc_unchecked@2x.png" /]}
-{[ let header = "Design Checklist" /]}
-{* 
+{[ let checkedImage = assetUrl("icons/component-checklist-yes.svg", ds.documentationDomain()) /]}
+{[ let uncheckedImage = assetUrl("icons/component-checklist-no.svg", ds.documentationDomain()) /]}
 {[ let componentId = block.properties.componentId /]}
 {[ let header = block.properties.header /]}
 {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
-{[ let checkedImage = block.properties.trueImage ? block.properties.trueImage.assetUrl : assetUrl("icons/checklist-yes.svg", ds.documentationDomain()) /]}
-{[ let uncheckedImage = block.properties.falseImage ? block.properties.falseImage.assetUrl : assetUrl("icons/checklist-no.svg", ds.documentationDomain()) /]}
-*}
 
 {* Render content health block *}
 {[ if componentId ]}
@@ -22,7 +18,7 @@
         {[/]}
         <div class="checklist">
             {[ for property in component.properties ]}
-                {[ if (property.propertyType === "Boolean") ]}
+                {[ if (property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId)) ]}
                     {[ let value = component.propertyValues[property.codeName] /]}
                     <div class="list-item">
                         <div class="status"><img src="{{ value ? checkedImage : uncheckedImage }}"></div>

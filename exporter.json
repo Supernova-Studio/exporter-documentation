@@ -264,7 +264,7 @@
             "category": "Remote Data Blocks",
             "title": "Markdown",
             "description": "Embed and process markdown from remote URL",
-            "icon": "icons/markdown.png",
+            "icon": "icons/custom-block-markdown.png",
             "mode": "block",
             "properties": [{
                 "key": "markdownUrl",
@@ -287,7 +287,7 @@
             }, {
                 "key": "propertiesToHighlight",
                 "default": "",
-                "type": "component",
+                "type": "componentProperties",
                 "label": "Properties"
             }]
         }, {
@@ -308,14 +308,14 @@
                 "type": "componentProperties",
                 "label": "Properties"
             }, {
-                "key": "trueImage",
-                "type": "image",
-                "label": "Yes Image"
-            }, {
                 "key": "header",
                 "type": "string",
                 "default": "",
                 "label": "Header"
+            }, {
+                "key": "trueImage",
+                "type": "image",
+                "label": "Yes Image"
             }, {
                 "key": "falseImage",
                 "type": "image",

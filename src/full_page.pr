@@ -60,16 +60,9 @@
         <section id="section-content-page">
         <div class="tab-content" id="page-tab-content">
 
-        {* REMOVE *}
-        {[ inject "page_block_health" context {} /]}
-
         {[ for block in page.blocks ]}
             {[ inject "page_body_structure_block" context block /]}
         {[/]}
-
-        {* REMOVE *}
-        {[ inject "page_block_component_checklist_all" context page /]}
-        {[ inject "page_block_component_checklist" context page /]}
 
         {[ inject "page_body_structure_next_previous" context page /]}
         </div>
