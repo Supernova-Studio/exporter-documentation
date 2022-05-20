@@ -6,6 +6,10 @@
 // MARK: - Health
 
 export function contrastColor(color: string): "dark" | "light" {
+    
+    if (color.indexOf('#') === 0) {
+        color = color.slice(1);
+    } 
 
     const r = parseInt(color.substr(0, 2), 16);
     const g = parseInt(color.substr(2, 2), 16);
