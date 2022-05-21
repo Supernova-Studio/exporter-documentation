@@ -27,7 +27,9 @@
         <tr>
             <th class="left">Component Name</th>
             {[ for property in firstComponent.properties ]}
-            <td class="center">{{ property.name }}</td>
+                {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
+                <td class="center">{{ property.name }}</td>
+                {[/]}
             {[/]}
             <td class="center">Last edited</td>
         </tr>  
@@ -69,7 +71,7 @@
                         {[/]}
                     {[/]}
                 {[/]}
-                <td>{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</td>
+                <td class="center">{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</td>
             </tr>
         {[/]}
         </table>
