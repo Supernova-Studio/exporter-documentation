@@ -63,10 +63,10 @@
                                 {[/]}  
                                 <td class="center"><span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span></td>
                             {[ case "Link" ]}
-                                <td>TODO</td>
+                                <td class="center"><a href="#" target="_blank">Open link</a></td>
                             {[ case "URL" ]}
                                 <td>
-                                    <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">Open Link</a>
+                                    <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}" target="_blank">Open Link</a>
                                 </td>
                         {[/]}
                     {[/]}

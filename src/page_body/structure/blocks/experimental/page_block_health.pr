@@ -21,14 +21,12 @@
             {[ case "healthy" ]}
                 {[ healthTagReadable = "Healthy" /]}
             {[ case "withering" ]}
-                {[ healthTagReadable = "Withering" /]}
+                {[ healthTagReadable = "Known Issues" /]}
             {[ case "dormant" ]}
-                {[ healthTagReadable = "Dormant" /]}
+                {[ healthTagReadable = "Deprecated" /]}
             {[ case "unknown" ]}
                 {[ healthTagReadable = "Unknown" /]}
         {[/]}
-        {[ healthTag = "healthy" /]}
-        {[ healthTagReadable = "Healthy" /]}
 
         {* Generate inline component health *}
         <div class="component-health-row {{ healthTag }}">
@@ -51,11 +49,11 @@
                     </div>
                     {[ switch healthTag ]}
                         {[ case "healthy" ]}
-                        <span class="subtitle">Healthy component is accurate and represents our most up-to-date recommendations.</span>
+                        <span class="subtitle">This component is accurate and represents our most up-to-date recommendations.</span>
                         {[ case "withering" ]}
-                        <span class="subtitle">Withering component has known issues, but is still generally recomended for use.</span>
+                        <span class="subtitle">This component has known issues, but is still generally recomended for use.</span>
                         {[ case "dormant" ]}
-                        <span class="subtitle">Dormant component is no longer recommended for use, and is in need of foundational updates.</span>
+                        <span class="subtitle">This component is no longer recommended for use, and is in need of foundational updates.</span>
                         {[ case "unknown" ]}
                         <span class="subtitle">This component doesn't provide information about its health</span>
                     {[/]}
@@ -67,12 +65,9 @@
 
                 {* Generate additional properties *}
                 {[ if (propertiesToHighlight.count() > 0) ]}
-                    {[ log propertiesToHighlight /]}
                     <div class="links">
                         {[ for property in component.properties ]}
-                                {[ log property /]}
                             {[ if propertiesToHighlight.contains(property.persistentId) ]}
-                                {[ log "yes" /]}
                                 {* Show property as it was whitelisted by the user *}
                                 <div class="row">
                                     <div class="col-6"><strong>{{ property.name }}</strong></div>

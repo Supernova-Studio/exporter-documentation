@@ -13,20 +13,25 @@ export function convertHealthTagIfAny(component: any): "healthy" | "withering" |
 
     // Find health property
     for (let property of properties) {
-        if (property.name === "Health") {
+        if (property.codeName === "status") {
             // Get value user selected. This will however only select id of the property, we need human-recognizable tag
-            let selectedOption = values[property.persistentId]
+            let selectedOption = values[property.codeName]
             
+            console.log(selectedOption)
+
             // Get options
             let options = property.options
             for (let option of options) {
+                console.log(JSON.stringify(option, null, 2))
                 // Select human name from the options
                 if (option.id === selectedOption) {
-                    selectedOptionName = option.name
+                    selectedOptionName = option.id
                 }
             }
         } 
     }
+
+    console.log(selectedOptionName)
 
     // Make sure it is lowercased for proper check
     if (selectedOptionName) {
@@ -34,12 +39,13 @@ export function convertHealthTagIfAny(component: any): "healthy" | "withering" |
     } else {
         return "unknown"
     }
+
     
     // Check for health status, or none
     switch (selectedOptionName) {
-        case "healthy": return "healthy"
-        case "dormant": return "dormant"
-        case "withering": return "withering"
+        case "status-healthy": return "healthy"
+        case "status-known-issues": return "withering"
+        case "status-deprecated": return "dormant"
         default: return "unknown"
     }
 }
