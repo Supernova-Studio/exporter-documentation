@@ -41,7 +41,9 @@
     {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
         {* Background color provided as token *}
         {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
+        {[ if colorToken ]}
         <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+        {[/]}
     {[/]}
 
 {* Background color takes over transparent default if provided *}
@@ -53,7 +55,9 @@
     {[ elseif color.aliasTo ]}
         {* Background color provided as token *}
         {[ let colorToken = ds.tokenById(color.aliasTo) /]}
+        {[ if colorToken ]}
         <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+        {[/]}
     {[/]}
 
 {* Default without any configuration *}
@@ -74,7 +78,9 @@
             {[ elseif (headerConfiguration.foregroundColor && headerConfiguration.foregroundColor.aliasTo) ]}
                 {* Foreground color provided as token *}
                 {[ let colorToken = ds.tokenById(headerConfiguration.foregroundColor.aliasTo) /]}
-                {[ color = colorToken.value.hex.prefixed("#") /]}
+                {[ if colorToken ]}
+                    {[ color = colorToken.value.hex.prefixed("#") /]}
+                {[/]}
             {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.value) ]}
                 {* Foreground color provided as raw value from global configuration *}
                 {[ color = exportConfiguration().lookAndFeelHeaderTextColor.value /]}
@@ -82,7 +88,9 @@
                 {* Foreground color provided as token from global configuration *}
                 {[ let alias = exportConfiguration().lookAndFeelHeaderTextColor.aliasTo /]}
                 {[ let colorToken = ds.tokenById(alias) /]}
-                {[ color = colorToken.value.hex.prefixed("#") /]}
+                {[ if colorToken ]}
+                    {[ color = colorToken.value.hex.prefixed("#") /]}
+                {[/]}
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
             {* Show title - always *}
