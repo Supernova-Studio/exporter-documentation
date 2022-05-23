@@ -1,0 +1,114 @@
+
+{* Get block *}
+{[ const block = context /]}
+
+{* Get properties *}
+{[ let componentId = block.properties.componentId /]}
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+
+{* Render content health block *}
+{[ if componentId ]}
+    {[ let component = ds.componentById(componentId) /]}
+    {[ if component ]}
+            
+        {[ let properties = component.properties /]}
+        {[ let propertyValues = component.propertyValues /]}
+
+        {* Get health tag *}
+        {[ let healthTag = convertHealthTagIfAny(component) /]}
+        {[ let healthTagReadable = "" /]}
+        {[ switch healthTag ]}
+            {[ case "healthy" ]}
+                {[ healthTagReadable = "Healthy" /]}
+            {[ case "withering" ]}
+                {[ healthTagReadable = "Known Issues" /]}
+            {[ case "dormant" ]}
+                {[ healthTagReadable = "Deprecated" /]}
+            {[ case "unknown" ]}
+                {[ healthTagReadable = "Unknown" /]}
+        {[/]}
+
+        {* Generate inline component health *}
+        <div class="component-health-row {{ healthTag }}">
+            <div class="name">
+                {{ healthTagReadable }}
+            </div>
+            <div class="date">
+                Last modified {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}
+            </div>
+        </div>
+
+        {* Generate component health popup *}
+        <div class="health-overlay d-none">
+            <div class="health-overlay-content {{ healthTag }}">
+                <div class="header">
+                    <div class="component-health-row {{ healthTag }}">
+                        <div class="name">
+                            {{ healthTagReadable }}
+                        </div>
+                    </div>
+                    {[ switch healthTag ]}
+                        {[ case "healthy" ]}
+                        <span class="subtitle">This component is accurate and represents our most up-to-date recommendations.</span>
+                        {[ case "withering" ]}
+                        <span class="subtitle">This component has known issues, but is still generally recomended for use.</span>
+                        {[ case "dormant" ]}
+                        <span class="subtitle">This component is no longer recommended for use, and is in need of foundational updates.</span>
+                        {[ case "unknown" ]}
+                        <span class="subtitle">This component doesn't provide information about its health</span>
+                    {[/]}
+                    <div class="row">
+                        <div class="col-6"><strong>Published</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
+                        <div class="col-6"><strong>Modified</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
+                    </div>  
+                </div>
+
+                {* Generate additional properties *}
+                {[ if (propertiesToHighlight.count() > 0) ]}
+                    <div class="links">
+                        {[ for property in component.properties ]}
+                            {[ if propertiesToHighlight.contains(property.persistentId) ]}
+                                {* Show property as it was whitelisted by the user *}
+                                <div class="row">
+                                    <div class="col-6"><strong>{{ property.name }}</strong></div>
+                                    <div class="col-6 text-right">
+                                        {* Generate different view based on the type of property *}
+                                        {[ switch property.propertyType ]}
+                                            {[ case "Text" ]}
+                                            {[ case "Number" ]}
+                                                {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</div>
+                                            {[ case "Generic" ]}
+                                                <mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark>
+                                            {[ case "Boolean" ]}
+                                                <span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span>
+                                            {[ case "Select" ]}
+                                            {[ for option in property.options ]}
+                                                {[ if (option.id === propertyValues[property.codeName]) ]}
+                                                    {{ option.name }}
+                                                {[/]}
+                                            {[/]}  
+                                            {[ case "Link" ]}
+                                            {* Not supported yet properly *}
+                                            <a href="#">
+                                                <img class="link-chevron" />
+                                            </a>
+                                            {[ case "URL" ]}
+                                            {* Not supported yet properly *}
+                                            <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
+                                                <img class="link-chevron" />
+                                            </a>
+                                        {[/]}
+                                    </div>
+                                </div>
+                            {[/]}
+                        {[/]}
+                    </div>
+                {[/]}
+            </div>
+        </div>
+    {[ else ]}
+    <p>Unable to show component health - unknown component</p>
+    {[/]}
+{[ else ]}
+<p>Unable to show component health - please specify component first</p>
+{[/]}

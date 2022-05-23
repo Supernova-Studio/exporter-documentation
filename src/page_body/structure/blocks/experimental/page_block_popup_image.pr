@@ -1,8 +1,0 @@
-{* Get experimental block payload *}
-{[ const block = context /]}
-
-{* Create image that can't be interacted with *}
-<a class="popup-img" href="{{ block.payload }}">
-  <img src="{{ block.payload }}" class="img-fluid img-thumbnail" alt="image">
-</a>
-
