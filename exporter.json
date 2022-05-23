@@ -5,7 +5,7 @@
     "organization": "Moveinc",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.28",
+    "version": "1.29",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -258,12 +258,13 @@
                 "default": true
             }
         ],
-        "blocks": [{
+        "blocks": [
+            {
             "key": "io.supernova.documentation-main.markdown",
             "category": "Remote Data Blocks",
             "title": "Markdown",
             "description": "Embed and process markdown from remote URL",
-            "icon": "icons/markdown.png",
+            "icon": "icons/custom-block-markdown.png",
             "mode": "block",
             "properties": [{
                 "key": "markdownUrl",
@@ -361,6 +362,68 @@
                 "default": "",
                 "type": "image",
                 "label": "image"
+            }]
+        }, {
+            "key": "io.supernova.documentation-main.component-health",
+            "category": "Components",
+            "title": "Component Health",
+            "description": "Show component health and additional attributes",
+            "icon": "icons/custom-block-health.png",
+            "mode": "block",
+            "properties": [{
+                "key": "componentId",
+                "default": "",
+                "type": "component",
+                "label": "Component"
+            }, {
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperties",
+                "label": "Properties"
+            }]
+        }, {
+            "key": "io.supernova.documentation-main.component-checklist",
+            "category": "Components",
+            "title": "Component Checklist",
+            "description": "Highlight specific features of your components",
+            "icon": "icons/custom-block-checklist.png",
+            "mode": "block",
+            "properties": [{
+                "key": "componentId",
+                "default": "",
+                "type": "component",
+                "label": "Component"
+            }, {
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperties",
+                "label": "Properties"
+            }, {
+                "key": "header",
+                "type": "string",
+                "default": "",
+                "label": "Header"
+            }, {
+                "key": "trueImage",
+                "type": "image",
+                "label": "Yes Image"
+            }, {
+                "key": "falseImage",
+                "type": "image",
+                "label": "No Image"
+            }]
+        }, {
+            "key": "io.supernova.documentation-main.component-checklist-all",
+            "category": "Components",
+            "title": "All Component Checklist",
+            "description": "Highlight specific features of all of your components",
+            "icon": "icons/custom-block-checklist-all.png",
+            "mode": "block",
+            "properties": [{
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperties",
+                "label": "Properties"
             }]
         }],
         "blockVariants": {

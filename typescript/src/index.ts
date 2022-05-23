@@ -3,7 +3,8 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { constructDynamicHealthBlock, constructDynamicHealthList, constructGoogleSheetCSVUrl } from "./doc_functionality/health"
+import { contrastColor } from "./doc_functionality/color"
+import { convertHealthTagIfAny } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
@@ -51,10 +52,11 @@ Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 
 /* Component Health */
-Pulsar.registerFunction("constructDynamicHealthBlock", constructDynamicHealthBlock)
-Pulsar.registerFunction("constructDynamicHealthList", constructDynamicHealthList)
-Pulsar.registerFunction("constructGoogleSheetCSVUrl", constructGoogleSheetCSVUrl)
+Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
 
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)
 Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
+
+/* Colors */
+Pulsar.registerFunction("contrastColor", contrastColor)

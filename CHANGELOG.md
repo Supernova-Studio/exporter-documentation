@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.28] - 2022-20-05
+### Component widgets!
+
+- We have added 3 new widgets: Component health, component checklist and component overview blocks
+- Those blocks complement new functionality we are announcing today: System to replace all your spreadsheets!
+
 ## [1.27] - 2022-05-05
 ### Editable React Widgets
 

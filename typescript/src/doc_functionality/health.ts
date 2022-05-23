@@ -1,126 +1,52 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import * as CSVParse from 'papaparse'
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Health
 
-/** Create URL that directly download CSV from google sheets API */
-export function constructGoogleSheetCSVUrl(sourceIdentifier, sourceName): string {
-    return "https://docs.google.com/spreadsheets/d/" + sourceIdentifier + "/gviz/tq?tqx=out:csv&sheet=" + sourceName
-}
+export function convertHealthTagIfAny(component: any): "healthy" | "withering" | "dormant" | "unknown" {
 
-/** Construct block from component health data */
-export function constructDynamicHealthBlock(componentId: string, data: any) {
-    
-    // Use papaparse(r) to parse the google sheet CSV
-    let parsedData = CSVParse.parse(data, {
-        header: true
-    })
+    let properties = component.properties
+    let values = component.propertyValues
+    let selectedOptionName: string | null = null
 
-    /* Example parsed output:
+    // Find health property
+    for (let property of properties) {
+        if (property.codeName === "status") {
+            // Get value user selected. This will however only select id of the property, we need human-recognizable tag
+            let selectedOption = values[property.codeName]
+            
+            console.log(selectedOption)
 
-    {
-        "data":[
-            {
-                "ID": "Button",
-                "Health": "healthy",
-                "Published": "1.1.1990",
-                "Updated": "1.2.1990",
-                "Design URL": "link"
-                "Repository URL": "link"
-                "Information": "Information about the component"
-            }
-        ],
-    */
-
-    // Find the component that has ID equal to component id
-    if (!parsedData) {
-        return undefined
-    }
-
-    for (let component of parsedData.data) {
-        if (component.ID === componentId) {
-            return {
-                properties: {
-                    id: component["ID"],
-                    health: component["Health"],
-                    published: component["Published"],
-                    updated: component["Updated"],
-                    designUrl: component["Design URL"],
-                    repositoryUrl: component["Repository URL"],
-                    documentationUrl: component["Documentation URL"],
-                    info: component["Information"]
+            // Get options
+            let options = property.options
+            for (let option of options) {
+                console.log(JSON.stringify(option, null, 2))
+                // Select human name from the options
+                if (option.id === selectedOption) {
+                    selectedOptionName = option.id
                 }
             }
-        }
+        } 
     }
+
+    console.log(selectedOptionName)
+
+    // Make sure it is lowercased for proper check
+    if (selectedOptionName) {
+        selectedOptionName = selectedOptionName.toLowerCase()
+    } else {
+        return "unknown"
+    }
+
     
-    return undefined
-}
- 
-
-/** Construct blocks from component health data */
-export function constructDynamicHealthList(data: any) {
-    
-    // Use papaparse(r) to parse the google sheet CSV
-    let parsedData = CSVParse.parse(data, {
-        header: true
-    })
-
-    /* Example parsed output:
-
-    {
-        "data":[
-            {
-                "ID": "Button",
-                "Health": "healthy",
-                "Published": "1.1.1990",
-                "Updated": "1.2.1990",
-                "Design URL": "link"
-                "Repository URL": "link"
-                "Information": "Information about the component"
-            }
-        ],
-    */
-
-    // Find the component that has ID equal to component id
-    if (!parsedData) {
-        return undefined
-    }
-
-    let components: Array<object> = []
-    let healthy: number = 0
-    let withering: number = 0
-    let dormant: number = 0
-
-    for (let component of parsedData.data) {
-        components.push({
-            id: component["ID"],
-            health: component["Health"],
-            published: component["Published"],
-            updated: component["Updated"],
-            designUrl: component["Design URL"],
-            repositoryUrl: component["Repository URL"],
-            documentationUrl: component["Documentation URL"],
-            info: component["Information"]
-        })
-        let status = component["Health"]
-        switch (status) {
-            case "healthy": healthy += 1; break
-            case "withering": withering += 1; break
-            case "dormant": dormant += 1; break
-        }
-    }
-
-    return {
-        summary: {
-            healthy: healthy,
-            withering: withering,
-            dormant: dormant
-        }, 
-        components: components
+    // Check for health status, or none
+    switch (selectedOptionName) {
+        case "status-healthy": return "healthy"
+        case "status-known-issues": return "withering"
+        case "status-deprecated": return "dormant"
+        default: return "unknown"
     }
 }
  
