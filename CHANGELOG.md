@@ -2,7 +2,13 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.28] - 2022-20-05
+
+## [1.31] - 2022-24-05
+### New injection point
+
+- It is now possible to inject custom css and js (or any kind of code / text, really) into the `<head>` block. This gives you even more flexibility than before!
+
+## [1.28-1.30] - 2022-20-05
 ### Component widgets!
 
 - We have added 3 new widgets: Component health, component checklist and component overview blocks
