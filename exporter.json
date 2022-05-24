@@ -354,6 +354,20 @@
                     "type": "componentProperties",
                     "label": "Properties"
                 }]
+            },
+            {
+                "key": "io.supernova.documentation-main.vectary",
+                "category": "Web",
+                "title": "Vectary",
+                "description": "Bring Vectary 3D assets to life in Supernova!",
+                "icon": "icons/vectary.png",
+                "mode": "block",
+                "properties": [{
+                    "key": "componentId",
+                    "default": "",
+                    "type": "component",
+                    "label": "3D Asset"
+                }]
             }
         ],
         "blockVariants": {

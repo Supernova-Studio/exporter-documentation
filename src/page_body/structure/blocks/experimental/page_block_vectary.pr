@@ -1,0 +1,21 @@
+
+{* Get block *}
+{[ const block = context /]}
+
+{* Get properties *}
+{[ let componentId = block.properties.componentId /]}
+
+{* Render content health block *}
+{[ if componentId ]}
+    {[ let component = ds.componentById(componentId) /]}
+    {[ if component ]}
+            
+        {[ let assetId = (component.propertyValues["assetId"]) /]}
+        <iframe id="{{ assetId }}" src="https://www.vectary.com/embed/viewer/v1/viewer.html?model={{ assetId }}&env=studio1&envRotation=0&autoplay=1&turntable=0.5&showPreloader=1" frameborder="0" width="100%" height="480"></iframe>
+    {[ else ]}
+    <p>Unable to show component health - unknown component</p>
+    {[/]}
+{[ else ]}
+<p>Unable to show component health - please specify component first</p>
+{[/]}
+

@@ -10,4 +10,7 @@
     {[ inject "page_block_component_checklist" context block /]}
 {[ case "io.supernova.documentation-main.component-checklist-all" ]}
     {[ inject "page_block_component_checklist_all" context block /]}
+{[ case "io.supernova.documentation-main.vectary" ]}
+    {[ inject "page_block_vectary" context block /]}
+
 {[/]}
