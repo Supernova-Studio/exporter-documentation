@@ -2,6 +2,7 @@
 {[ const block = context /]}
 
 {* Generate rich text *}
+{[ inject "page_block_anchor" context block /]}
 {[ if (textBlockPlainText(block).count() === 0) ]}
     <p>&nbsp;</p>
 {[ else ]}

@@ -2,6 +2,10 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.32] - 2022-24-05
+### More precise search
+
+- Search will now autoscroll to the specific block instead of going into top of the selected page
 
 ## [1.31] - 2022-24-05
 ### New injection point

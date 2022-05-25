@@ -2,6 +2,7 @@
 {[ const block = context /]}
 
 {* Generate different types of heading. Note that even headings can have formatting, so we are using rich text formatter *}
+{[ inject "page_block_anchor" context block /]}
 {[ switch block.headingType ]}
     {[ case "1" ]}
     <h1 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h1>
