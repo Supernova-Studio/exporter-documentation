@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.32",
+    "version": "1.33",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -223,6 +223,14 @@
                 "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
                 "category": "Advanced",
                 "default": false
+            },
+            {
+                "key": "advancedCustomizationShowVersionDropdown",
+                "type": "boolean",
+                "label": "Show Version Dropdown",
+                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+                "category": "Advanced",
+                "default": true
             },
             {
                 "key": "advancedCustomizationCTAText",

@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.33] - 2022-26-05
+### Hideable version dropdown
+
+- It is now possible to hide documentation version dropdown through documentation settings
+
 ## [1.32] - 2022-24-05
 ### More precise search
 
