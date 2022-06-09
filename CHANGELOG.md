@@ -7,6 +7,8 @@ All notable changes to this exporter are mentioned here in this file.
 
 - Table will no longer scroll if not necessary 
 - Header Row and Header Column are no longer swapped
+- Content menu will no longer show for pages without headers
+- Component lists will no longer scroll if not necessary
 
 ## [1.33] - 2022-26-05
 ### Hideable version dropdown
