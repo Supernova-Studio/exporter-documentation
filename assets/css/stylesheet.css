@@ -6422,7 +6422,7 @@ table.data-table tr td> :last-child {
 }
 
 div.data-table-wrapper {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 table.data-table th,
@@ -6437,13 +6437,13 @@ table.borderless tr {
     border: 0px;
 }
 
-table.header-row th:first-child,
-table.header-row td:first-child {
+table.header-column th:first-child,
+table.header-column td:first-child {
     background-color: #f9fafa;
 }
 
-table.header-column tr:first-child,
-table.header-column tr:first-child {
+table.header-row tr:first-child,
+table.header-row tr:first-child {
     background-color: #f9fafa;
 }
 

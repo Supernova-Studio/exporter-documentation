@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.34] - 2022-09-06
+### Visual fixes
+
+- Table will no longer scroll if not necessary 
+- Header Row and Header Column are no longer swapped
+
 ## [1.33] - 2022-26-05
 ### Hideable version dropdown
 
