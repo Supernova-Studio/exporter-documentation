@@ -2,13 +2,15 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.34] - 2022-09-06
+## [1.36] - 2022-09-06
 ### Visual fixes
 
 - Table will no longer scroll if not necessary 
 - Header Row and Header Column are no longer swapped
 - Content menu will no longer show for pages without headers
 - Component lists will no longer scroll if not necessary
+- Fixed issue where sidebar could not be hidden inside the documentation if that page was not part of the tabbed group
+- Removed unnecessary logs
 
 ## [1.33] - 2022-26-05
 ### Hideable version dropdown

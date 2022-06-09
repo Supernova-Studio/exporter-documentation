@@ -3,7 +3,7 @@
 
 {* Get containing group. If the group represents tab, then use that group configuration to build header, and use its title as well. For non-tabbed pages, configuration is taken from the page object *}
 {[ let group = page.parent /]}
-{[ let groupIsTabContainer = group.groupBehavior === "Tabs" /]}
+{[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
   
     {* Add content header - always enabled *}
     {[ inject "page_body_structure_header" context page /]}
-    
+
     {[ if configuration.showSidebar ]}
       <!-- Sidebar Navigation -->
       <div class="docs-navigation bg-sidebar">

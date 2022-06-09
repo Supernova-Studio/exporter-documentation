@@ -16,13 +16,10 @@ export function convertHealthTagIfAny(component: any): "healthy" | "withering" |
         if (property.codeName === "status") {
             // Get value user selected. This will however only select id of the property, we need human-recognizable tag
             let selectedOption = values[property.codeName]
-            
-            console.log(selectedOption)
 
             // Get options
             let options = property.options
             for (let option of options) {
-                console.log(JSON.stringify(option, null, 2))
                 // Select human name from the options
                 if (option.id === selectedOption) {
                     selectedOptionName = option.id
@@ -30,8 +27,6 @@ export function convertHealthTagIfAny(component: any): "healthy" | "withering" |
             }
         } 
     }
-
-    console.log(selectedOptionName)
 
     // Make sure it is lowercased for proper check
     if (selectedOptionName) {
