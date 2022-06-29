@@ -20,3 +20,10 @@
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("css/custom.css", domain) }}" />
 
 
+<!-- Live sandbox -->
+<script src="{{ assetUrl("js/renderer.js", domain)}}"></script> 
+
+<!-- Custom js libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js"></script> 
+<script src="https://cdn.rawgit.com/mrdoob/three.js/r86/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/threex.windowresize/master/threex.windowresize.js"></script>

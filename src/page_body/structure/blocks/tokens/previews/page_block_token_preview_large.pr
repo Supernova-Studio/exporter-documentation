@@ -1,7 +1,10 @@
 {[ const token = context /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    <div class="preview" style="background-color: #{{ token.value.hex }};"></div>
+    <div id="token-container-{{ token.id }}" class="preview" style="background-color: transparent"></div>
+    <script>
+        createTokenScene("token-container-{{ token.id }}", "{{ token.value.hex }}")
+    </script>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="preview">
         <div class="token-preview-container large">
