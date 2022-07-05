@@ -5,7 +5,7 @@
     "organization": "Moveinc",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.29",
+    "version": "1.36",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -196,6 +196,16 @@
                 "inputType": "code"
             },
             {
+                "key": "advancedCustomizationCustomHeadInject",
+                "type": "string",
+                "label": "Custom Head Code",
+                "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
+                "category": "Advanced",
+                "default": "<style>\r\nbody {\r\n\r\n}\r\n<\/style>\r\n\r\n<script>\r\n    \r\n<\/script>",
+                "isMultiline": true,
+                "inputType": "code"
+            },
+            {
                 "key": "advancedCustomizationCustomFonts",
                 "type": "string",
                 "label": "Custom Font - Header",
@@ -212,6 +222,14 @@
                 "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
                 "category": "Advanced",
                 "default": false
+            },
+            {
+                "key": "advancedCustomizationShowVersionDropdown",
+                "type": "boolean",
+                "label": "Show Version Dropdown",
+                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+                "category": "Advanced",
+                "default": true
             },
             {
                 "key": "advancedCustomizationCTAText",
@@ -258,8 +276,7 @@
                 "default": true
             }
         ],
-        "blocks": [
-            {
+        "blocks": [{
             "key": "io.supernova.documentation-main.markdown",
             "category": "Remote Data Blocks",
             "title": "Markdown",
@@ -271,6 +288,78 @@
                 "default": "",
                 "type": "string",
                 "label": "Markdown URL"
+            }]
+        },
+        {
+            "key": "io.supernova.documentation-main.component-health",
+            "category": "Components",
+            "title": "Component Health",
+            "description": "Show component health and additional attributes",
+            "icon": "icons/custom-block-health.png",
+            "mode": "block",
+            "properties": [{
+                    "key": "componentId",
+                    "default": "",
+                    "type": "component",
+                    "label": "Component"
+                },
+                {
+                    "key": "propertiesToHighlight",
+                    "default": "",
+                    "type": "componentProperties",
+                    "label": "Properties"
+                }
+            ]
+        },
+        {
+            "key": "io.supernova.documentation-main.component-checklist",
+            "category": "Components",
+            "title": "Component Checklist",
+            "description": "Highlight specific features of your components",
+            "icon": "icons/custom-block-checklist.png",
+            "mode": "block",
+            "properties": [{
+                    "key": "componentId",
+                    "default": "",
+                    "type": "component",
+                    "label": "Component"
+                },
+                {
+                    "key": "propertiesToHighlight",
+                    "default": "",
+                    "type": "componentProperties",
+                    "label": "Properties"
+                },
+                {
+                    "key": "header",
+                    "type": "string",
+                    "default": "",
+                    "label": "Header"
+                },
+                {
+                    "key": "trueImage",
+                    "type": "image",
+                    "label": "Yes Image"
+                },
+                {
+                    "key": "falseImage",
+                    "type": "image",
+                    "label": "No Image"
+                }
+            ]
+        },
+        {
+            "key": "io.supernova.documentation-main.component-checklist-all",
+            "category": "Components",
+            "title": "All Component Checklist",
+            "description": "Highlight specific features of all of your components",
+            "icon": "icons/custom-block-checklist-all.png",
+            "mode": "block",
+            "properties": [{
+                "key": "propertiesToHighlight",
+                "default": "",
+                "type": "componentProperties",
+                "label": "Properties"
             }]
         },
         {
@@ -362,68 +451,6 @@
                 "default": "",
                 "type": "image",
                 "label": "image"
-            }]
-        }, {
-            "key": "io.supernova.documentation-main.component-health",
-            "category": "Components",
-            "title": "Component Health",
-            "description": "Show component health and additional attributes",
-            "icon": "icons/custom-block-health.png",
-            "mode": "block",
-            "properties": [{
-                "key": "componentId",
-                "default": "",
-                "type": "component",
-                "label": "Component"
-            }, {
-                "key": "propertiesToHighlight",
-                "default": "",
-                "type": "componentProperties",
-                "label": "Properties"
-            }]
-        }, {
-            "key": "io.supernova.documentation-main.component-checklist",
-            "category": "Components",
-            "title": "Component Checklist",
-            "description": "Highlight specific features of your components",
-            "icon": "icons/custom-block-checklist.png",
-            "mode": "block",
-            "properties": [{
-                "key": "componentId",
-                "default": "",
-                "type": "component",
-                "label": "Component"
-            }, {
-                "key": "propertiesToHighlight",
-                "default": "",
-                "type": "componentProperties",
-                "label": "Properties"
-            }, {
-                "key": "header",
-                "type": "string",
-                "default": "",
-                "label": "Header"
-            }, {
-                "key": "trueImage",
-                "type": "image",
-                "label": "Yes Image"
-            }, {
-                "key": "falseImage",
-                "type": "image",
-                "label": "No Image"
-            }]
-        }, {
-            "key": "io.supernova.documentation-main.component-checklist-all",
-            "category": "Components",
-            "title": "All Component Checklist",
-            "description": "Highlight specific features of all of your components",
-            "icon": "icons/custom-block-checklist-all.png",
-            "mode": "block",
-            "properties": [{
-                "key": "propertiesToHighlight",
-                "default": "",
-                "type": "componentProperties",
-                "label": "Properties"
             }]
         }],
         "blockVariants": {

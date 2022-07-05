@@ -40,8 +40,14 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
 
     // Header and text parsing
     let allBlocks = flattenedBlocksOfPage(page)
-    var texts: Array<string> = []
-    var headers: Array<string> = []
+    var texts: Array<{
+      text: string,
+      blockId: string
+    }> = []
+    var headers: Array<{
+      text: string,
+      blockId: string
+    }> = []
 
     for (let block of allBlocks) {
       if (
@@ -52,12 +58,12 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
         block.type === "Quote"
       ) {
         let text = textOfBlock(block as DocumentationPageBlockText)
-        if (text.length > 0) {
+        if (text.text.length > 0) {
           texts.push(text)
         }
       } else if (block.type === "Heading") {
         let text = textOfBlock(block as DocumentationPageBlockText)
-        if (text.length > 0) {
+        if (text.text.length > 0) {
           headers.push(text)
         }
       }
@@ -69,8 +75,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
         id: id++,
         name: name,
         path: path,
-        url: url,
-        text: text,
+        url: url + "#search-" + text.blockId,
+        text: text.text,
         type: "body",
       })
     }
@@ -81,8 +87,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
         id: id++,
         name: name,
         path: path,
-        url: url,
-        text: header,
+        url: url + "#search-" + header.blockId,
+        text: header.text,
         type: "header",
       })
     }
@@ -112,6 +118,9 @@ function flattenedBlocksOfBlock(block: DocumentationPageBlock): Array<Documentat
   return subblocks
 }
 
-function textOfBlock(block: DocumentationPageBlockText): string {
-  return block.text.spans.map((s) => s.text).join("")
+function textOfBlock(block: DocumentationPageBlockText): { text: string, blockId: string } {
+  return {
+    text: block.text.spans.map((s) => s.text).join(""),
+    blockId: block.id 
+  }
 }

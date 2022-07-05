@@ -167,7 +167,7 @@ $(".SNSearch-input").on("input", function(e) {
         let count = 0
         for (let heading of headingResults) {
             resultObject.append(`
-		  <a href="${heading.url}">
+		  <a href="${heading.url}" class="sn-search-result-link">
 		  <div class="result">
 			<p class="section-result-header">${highlightRanges(heading.text, heading.startIndex, heading.endIndex)}</p>
 			<p class="section-result-text">On page ${heading.path}</p>
@@ -186,7 +186,7 @@ $(".SNSearch-input").on("input", function(e) {
         let count = 0
         for (let text of textResults) {
             resultObject.append(`
-		  <a href="${text.url}">
+		  <a href="${text.url}" class="sn-search-result-link">
 		  <div class="result">
 			<p class="section-result-header">${highlightRanges(text.text, text.startIndex, text.endIndex)}</p>
 			<p class="section-result-text">On page ${text.path}</p>
@@ -198,6 +198,11 @@ $(".SNSearch-input").on("input", function(e) {
             }
         }
     }
+
+    $(".sn-search-result-link").on("click", function(e) {
+        console.log("click!")
+        $(".SNSearch").removeClass("active")
+    })
 })
 
 function highlightRanges(s, startIndex, endIndex) {

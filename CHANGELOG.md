@@ -2,7 +2,32 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.28] - 2022-20-05
+## [1.36] - 2022-09-06
+### Visual fixes
+
+- Table will no longer scroll if not necessary 
+- Header Row and Header Column are no longer swapped
+- Content menu will no longer show for pages without headers
+- Component lists will no longer scroll if not necessary
+- Fixed issue where sidebar could not be hidden inside the documentation if that page was not part of the tabbed group
+- Removed unnecessary logs
+
+## [1.33] - 2022-26-05
+### Hideable version dropdown
+
+- It is now possible to hide documentation version dropdown through documentation settings
+
+## [1.32] - 2022-24-05
+### More precise search
+
+- Search will now autoscroll to the specific block instead of going into top of the selected page
+
+## [1.31] - 2022-24-05
+### New injection point
+
+- It is now possible to inject custom css and js (or any kind of code / text, really) into the `<head>` block. This gives you even more flexibility than before!
+
+## [1.28-1.30] - 2022-20-05
 ### Component widgets!
 
 - We have added 3 new widgets: Component health, component checklist and component overview blocks

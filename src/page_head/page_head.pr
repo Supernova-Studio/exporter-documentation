@@ -20,4 +20,7 @@
 
     {* Documentation styling *}
     {[ inject "page_head_styles" context page /]}
+
+    {* Injection point - inject head *}
+    {{ exportConfiguration().advancedCustomizationCustomHeadInject }}
 </head>

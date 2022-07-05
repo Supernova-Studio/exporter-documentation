@@ -1,13 +1,21 @@
 {[ let page = context /]}
+{[ let headings = 0 /]}
+{[ for block in page.blocks ]}
+    {[ if block.type.equals("Heading") ]}
+        {[ headings = 1 /]}
+    {[/]}
+{[/]}
 <div id="content-nav-container">
     <nav id="content-nav">
-        <span class="content-nav-header">CONTENTS</span>
-        <ul>
-            {[ for block in page.blocks ]}
-            {[ if block.type.equals("Heading") ]}
-            <li class="{{ block.headingType.equals(3) ? "sub" : "" }}"><a href="#{{ slugifyHeading(block) }}">{{ textBlockPlainText(block) }}</a></li>
-            {[/]}
-            {[/]}
-        </ul>
+        {[ if (headings > 0) ]}
+            <span class="content-nav-header">CONTENTS</span>
+            <ul>
+                {[ for block in page.blocks ]}
+                {[ if block.type.equals("Heading") ]}
+                <li class="{{ block.headingType.equals(3) ? "sub" : "" }}"><a href="#{{ slugifyHeading(block) }}">{{ textBlockPlainText(block) }}</a></li>
+                {[/]}
+                {[/]}
+            </ul>
+        {[/]}
     </nav>
 </div>
