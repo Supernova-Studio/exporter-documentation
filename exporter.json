@@ -395,26 +395,6 @@
             }]
         },
         {
-            "key": "io.rdc.documentation-main.loom-embed",
-            "category": "Media Blocks",
-            "title": "Loom",
-            "description": "Embed a Loom video",
-            "icon": "icons/loom-color.png",
-            "mode": "block",
-            "properties": [{
-                "key": "url",
-                "default": "https://",
-                "type": "string",
-                "label": "Video url"
-            },
-            {
-                "key": "caption",
-                "default": "",
-                "type": "string",
-                "label": "Caption"
-            }]
-        },
-        {
             "key": "io.rdc.documentation-main.example",
             "category": "DO NOT USE",
             "title": "[WIP] Example block",

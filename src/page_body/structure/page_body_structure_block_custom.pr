@@ -6,8 +6,6 @@
     {[ inject "page_block_custom_markdown" context block /]}
 {[ case "io.rdc.documentation-main.contact" ]}
     {[ inject "page_block_contact" context block /]}
-{[ case "io.rdc.documentation-main.loom-embed" ]}
-    {[ inject "page_block_loom_embed" context block /]}
 {[ case "io.supernova.documentation-main.component-health" ]}
     {[ inject "page_block_health" context block /]}
 {[ case "io.supernova.documentation-main.component-checklist" ]}
