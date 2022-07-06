@@ -161,11 +161,19 @@
                 "category": "Search Engines"
             },
             {
+                "key": "contentMarkdownToken",
+                "type": "string",
+                "label": "Markdown private token",
+                "description": "If provided, your markdown will authenticate using this token. Token must contain its type, format: ['basic' | 'Bearer' | 'token'] [token].",
+                "category": "Content",
+                "default": ""
+            },
+            {
                 "key": "advancedCustomizationShowNextPreviousNavigation",
                 "type": "boolean",
                 "label": "Show Next / Previous navigation",
                 "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": true
             },
             {
@@ -173,7 +181,7 @@
                 "type": "boolean",
                 "label": "Show Footer",
                 "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": true
             },
             {
@@ -191,7 +199,7 @@
                 "type": "string",
                 "label": "Custom CSS",
                 "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "body,\r\nhtml {\r\n    font-family: Inter, sans-serif;\r\n}",
                 "isMultiline": true,
                 "inputType": "code"
@@ -221,23 +229,15 @@
                 "type": "boolean",
                 "label": "Show Site CTA",
                 "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": false
-            },
-            {
-                "key": "advancedCustomizationShowVersionDropdown",
-                "type": "boolean",
-                "label": "Show Version Dropdown",
-                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-                "category": "Advanced",
-                "default": true
             },
             {
                 "key": "advancedCustomizationCTAText",
                 "type": "string",
                 "label": "Site CTA - Text",
                 "description": "Text of the CTA button.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "Open site",
                 "isMultiline": false,
                 "inputType": "plain"
@@ -247,7 +247,7 @@
                 "type": "string",
                 "label": "Site CTA - URL to open",
                 "description": "Link which will open when CTA button is clicked by the user.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "",
                 "isMultiline": false,
                 "inputType": "plain"
@@ -257,6 +257,14 @@
                 "type": "boolean",
                 "label": "Site CTA - Open in new tab",
                 "description": "When enabled, CTA url you provided will open in a new tab.",
+                "category": "Look & Feel",
+                "default": true
+            },
+            {
+                "key": "advancedCustomizationShowVersionDropdown",
+                "type": "boolean",
+                "label": "Show Version Dropdown",
+                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
                 "category": "Advanced",
                 "default": true
             },
