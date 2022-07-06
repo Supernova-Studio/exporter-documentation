@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.37] - 2022-06-07
+### Markdown fixes
+
+- Markdown will no longer fail build if it fails to download itself
+- Prepared base work for private markdowns
+
 ## [1.36] - 2022-09-06
 ### Visual fixes
 

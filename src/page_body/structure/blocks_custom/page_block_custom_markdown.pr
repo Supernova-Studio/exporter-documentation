@@ -1,11 +1,17 @@
 {[ const block = context /]}
 
 {* Render markdown block from configuration *}
-{[ let url = block.properties.markdownUrl /]}
 {[ if url && url.trim().length > 0 ]}
     {* Fetch the markdown data from the remote URL *}
-    {[ let markdownData = getNetworkData(url) /]}
+    {[ let markdownData = getNetworkData(url, { "failable": true, "timeout": 10000 }) /]}
 
-    {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
-    {{ markdownToHTML(markdownData) }}
+    {[ if markdownData ]}
+        {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
+        {{ markdownToHTML(markdownData) }}
+    {[ else ]}
+        {* Markdown download failed *}
+        <p>Unable to render Markdown block with url {{ url }}, might not be Markdown definition or is unreachable. If Markdown is private, please provide authentication token in the documentation settings first.</p>
+    {[/]}
+{[ else ]}
+<p>Unable to render Markdown block, please provide valid URL first.</p>
 {[/]}
