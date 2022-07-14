@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.38] - 2022-14-07
+### Deployment fixes
+
+- Fixed issue where status could prevent deployment of the docs under certain scenarios
+
 ## [1.37] - 2022-06-07
 ### Markdown fixes
 
