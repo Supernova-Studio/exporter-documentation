@@ -5,9 +5,9 @@
 {[ inject "page_block_anchor" context block /]}
 {[ switch block.headingType ]}
     {[ case "1" ]}
-    <h1 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h1>
+    <h1 id="section-{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h1>
     {[ case "2" ]}
-    <h2 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h2>
+    <h2 id="section-{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h2>
     {[ case "3" ]}
-    <h3 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h3>
+    <h3 id="section-{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h3>
 {[/]}
