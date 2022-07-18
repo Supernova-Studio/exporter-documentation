@@ -4213,6 +4213,10 @@ ol>.block-children {
     margin-left: 12px;
 }
 
+#content-nav>ul>li.sub-2 {
+    margin-left: 24px;
+}
+
 
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 
