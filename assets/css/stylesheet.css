@@ -5675,6 +5675,7 @@ body.dark .fa-moon:before {
     border: 0;
     border-left: 1px solid #dce0e4;
     border-radius: 0px;
+    min-height: 100%;
 }
 
 .nav-tabs-inline {
