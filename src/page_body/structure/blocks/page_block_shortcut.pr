@@ -36,9 +36,9 @@
     <div class="preview empty"></div>
     {[/]}
     
-    <p class="title">{{ shortcut.title }}</p>
+    <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
     {[ if shortcut.description ]}
-        <p class="description">{{ shortcut.description }}</p>    
+        <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
     {[/]}
     </a>
 </div>

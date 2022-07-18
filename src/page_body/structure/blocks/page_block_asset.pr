@@ -27,10 +27,10 @@
         
         </div>
         {[ if title ]}
-            <p class="title">{{ title }}</p>
+            <p class="title">{{ withHTMLNewlines(title) }}</p>
         {[/]}
         {[ if description ]}
-            <p class="description">{{ description }}</p>    
+            <p class="description">{{ withHTMLNewlines(description) }}</p>    
         {[/]}
     </div>
 {[/]}

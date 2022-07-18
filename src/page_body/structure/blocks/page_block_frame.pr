@@ -18,10 +18,10 @@
     </div>
     {[ if context.showTitles ]}
         {[ if frame.title ]}
-            <p class="title">{{ frame.title }}</p>
+            <p class="title">{{ withHTMLNewlines(frame.title) }}</p>
         {[/]}
         {[ if frame.description ]}
-            <p class="description">{{ frame.description }}</p>    
+            <p class="description">{{ withHTMLNewlines(frame.description) }}</p>    
         {[/]}
     {[/]}
 </div>

@@ -94,10 +94,10 @@
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
             {* Show title - always *}
-            <h1 style="{{ style }}">{{ title.replacing("\n", "<br />") }}</h1>
+            <h1 style="{{ style }}">{{ withHTMLNewlines(title) }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
-                <p class="subtitle" style="{{ style }}">{{ headerConfiguration.description.replacing("\n", "<br />") }}</p>
+                <p class="subtitle" style="{{ style }}">{{ withHTMLNewlines(headerConfiguration.description) }}</p>
             {[/]}
         {[/]}
     </div>

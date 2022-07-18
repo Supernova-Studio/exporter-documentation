@@ -24,7 +24,7 @@
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p>{{ block.caption }}</p>
+    <p>{{ withHTMLNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}

@@ -50,4 +50,4 @@
     {[ finalString = finalString.suffixed(text) /]}
 {[/]}
 {* Render final text string, replacing soft returns with linebreaks *}
-{{ finalString.replacing("\n", "<br />") }}
+{{ withHTMLNewlines(finalString) }}

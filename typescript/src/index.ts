@@ -9,7 +9,7 @@ import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, nextPage
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString } from "./doc_functionality/string_utils"
+import { highlightSafeString, withHTMLNewlines } from "./doc_functionality/string_utils"
 import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "./doc_functionality/urls"
 
@@ -26,6 +26,7 @@ Pulsar.registerFunction("nextPage", nextPage)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
+Pulsar.registerFunction("withHTMLNewlines", withHTMLNewlines)
 
 /* Front-end search support */
 Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)

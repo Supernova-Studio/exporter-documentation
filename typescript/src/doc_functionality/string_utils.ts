@@ -58,3 +58,8 @@ function escapeHtml(string) {
 
   return lastIndex !== index ? html + str.substring(lastIndex, index) : html
 }
+
+
+export function withHTMLNewlines(string: string): string {
+  return string.split("\n").join("<br />")
+}
