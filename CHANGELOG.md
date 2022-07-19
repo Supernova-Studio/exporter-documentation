@@ -2,7 +2,7 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
-## [1.40] - 2022-14-07
+## [1.40,41] - 2022-14-07
 ### Deployment + usability fixes and improvements
 
 - Fixed lot of various issues
