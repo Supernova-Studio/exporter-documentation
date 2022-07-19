@@ -19,13 +19,13 @@
         </div>
         <div class="segment-text">
             {[ if (group && !group.isRoot) ]}
-                <div class="direction">{{ group.title }}</div>
+                <div class="direction">{{ htmlSafeString(group.title) }}</div>
             {[ elseif group ]}
-                <div class="direction">{{ ds.currentDesignSystem().name }}</div>
+                <div class="direction">{{ htmlSafeString(ds.currentDesignSystem().name) }}</div>
             {[ else ]}
                 <div class="direction">Next</div>
             {[/]}
-            <div class="pagename">{{ previousPage.title }}</div>
+            <div class="pagename">{{ htmlSafeString(previousPage.title) }}</div>
         </div>
         </div>
     </a>
@@ -36,13 +36,13 @@
     <div class="segment">
         <div class="segment-text">
             {[ if (group && !group.isRoot) ]}
-                <div class="direction">{{ group.title }}</div>
+                <div class="direction">{{ htmlSafeString(group.title) }}</div>
             {[ elseif group ]}
-                <div class="direction">{{ ds.currentDesignSystem().name }}</div>
+                <div class="direction">{{ htmlSafeString(ds.currentDesignSystem().name) }}</div>
             {[ else ]}
                 <div class="direction">Previous</div>
             {[/]}
-            <div class="pagename">{{ nextPage.title }}</div>
+            <div class="pagename">{{ htmlSafeString(nextPage.title) }}</div>
         </div>
         <div class="arrow">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

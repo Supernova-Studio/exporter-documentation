@@ -17,15 +17,15 @@
             {[ let activeClass = (isActive === true ? "active" : "") /]}
             {[ let itemId = item.id /]}
             {[ if item.type.equals("Page") ]}
-                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ item.title }}</a><li>
+                <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a><li>
             {[ else ]}
                 <li class="nav-item">
                 {[ let firstDescendingPage = firstPageFromTop(item) /]}
                 {* Group will either link to the first page, or be fully disabled *}
                 {[ if firstDescendingPage ]}
-                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a>
                 {[ else ]}  
-                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ item.title }}</a>
+                    <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ htmlSafeString(item.title) }}</a>
                 {[/]}
                 {[ if isActive ]}
                     {[ let data = { "page": page, "groupId": itemId } /]}
@@ -37,7 +37,7 @@
     </ul>
 {[ else ]}
     <div class="nav-name">
-        <span class="typographyDocsViewLabelCaps">{{ context.page.title.uppercased() }}</span>
+        <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(context.page.title.uppercased()) }}</span>
     </div>
 {[/]}
 
