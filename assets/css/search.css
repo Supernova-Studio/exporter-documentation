@@ -79,13 +79,14 @@
 }
 
 .SNSearch-footer {
-    height: 52px;
+    height: 44px;
     width: 100%;
     padding: 12px;
     border-top: 1px solid #f2f4f5;
     display: flex;
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.3);
+    font-size: 13px;
 }
 
 .SNSearch-footer span {

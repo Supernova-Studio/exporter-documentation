@@ -1,31 +1,3 @@
-/*
-================================================================
-* Use this file to modify the JS behavior of the documentation
-================================================================
-*/
-
-/*-----------------------------
-    Magnific Popups
-------------------------------- */
-
-// Image on Modal
-$(".popup-img").each(function() {
-    $(this).magnificPopup({
-        type: "image",
-        tLoading: '<div class="preloader"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>',
-        closeOnContentClick: !0,
-        mainClass: "mfp-fade",
-    })
-})
-
-// YouTube/Viemo Video & Gmaps
-$(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
-    $(this).magnificPopup({
-        type: "iframe",
-        mainClass: "mfp-fade",
-    })
-})
-
 /*------------------------
    Content menu tracking
 -------------------------- */
@@ -33,20 +5,20 @@ $(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
 $(window).on("load", function() {
     let sections = []
 
+    // Store and restore menu scroll offset
+    const scroll = localStorage.getItem('menu.scroll.position.top')
+    if (scroll) {
+        $('.bg-sidebar').scrollTop(scroll);
+    }
+
+    document.querySelectorAll(".bg-sidebar").forEach((section) => {
+        section.addEventListener('scroll', function() {
+            localStorage.setItem('menu.scroll.position.top', section.scrollTop);
+        }, false);
+    })
+
     // Create intersection observer for all sections
     const observer = new IntersectionObserver((_entries) => {
-        /* Use this version if you want to highlight all headers in the viewport. The enabled version tracks only the top-most visible header item
-    let isSelected = false
-	for (let section of sections) {
-		let id = section.getAttribute("id")
-		console.log(id)
-		if (isElementInViewport(section) && !isSelected) {
-			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
-			// isSelected = true
-		} else {
-			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
-		}
-	}*/
         let visibleSections = sections.filter((s) => isElementInViewport(s))
         let sortedVisibleSections = visibleSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
             // Unactivate all sections
@@ -89,6 +61,12 @@ function isElementInViewport(el) {
 ------------------------------- */
 
 $(".search").on("click", function(e) {
+    showSearch()
+    e.preventDefault()
+})
+
+function showSearch() {
+
     // Toggle the search view when clicking the search icon
     $(".SNSearch").toggleClass("active")
     if ($(".SNSearch").is(".active")) {
@@ -96,17 +74,28 @@ $(".search").on("click", function(e) {
         $(".SNSearch-input").focus()
         $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
     }
-    e.preventDefault()
-})
+}
 
-$(document).keyup(function(e) {
-    // Hide the search view with escape key
-    if (e.which == 27) $(".SNSearch").removeClass("active")
-})
+hotkeys.filter = function(event) {
+    return true;
+}
+
+hotkeys('cmd+k,ctrl+k,esc', function(event, handler) {
+    switch (handler.key) {
+        case 'esc':
+            $(".SNSearch").removeClass("active");
+            break;
+        case 'cmd+k':
+        case 'ctrl+k':
+            showSearch();
+            break;
+    }
+});
+
 
 /*-----------------------------
-	  Search - Results and processing
-  ------------------------------- */
+    Search - Results and processing
+------------------------------- */
 
 $(".SNSearch-input").on("input", function(e) {
     let searchString = $(this).val()
@@ -200,7 +189,6 @@ $(".SNSearch-input").on("input", function(e) {
     }
 
     $(".sn-search-result-link").on("click", function(e) {
-        console.log("click!")
         $(".SNSearch").removeClass("active")
     })
 })
@@ -425,8 +413,7 @@ $("#sidebarCollapse").on("click", function(e) {
 $(document).ready(function() {
 
     $('.component-health-row').on("click", function(e) {
-        console.log("tap")
-            // Toggle the overlay
+        // Toggle the overlay
         $(".health-overlay").toggleClass("d-none");
         e.preventDefault();
     })

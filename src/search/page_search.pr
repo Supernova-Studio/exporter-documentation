@@ -15,10 +15,11 @@
         
       </div>
       <footer class="SNSearch-footer">
-         <div>
+         <div class="info">
+            <span>Cmd</span>/<span>Ctrl</span> + <span>K</span> to search
          </div>
          <div class="info">
-            to exit <span>ESC</span>
+            <span>ESC</span> to exit
          </div>
       </footer>
    </div>

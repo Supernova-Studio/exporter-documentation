@@ -34,9 +34,7 @@
 /*  1. Basic Style 
 /* =================================== */
 
-* {
-    scroll-behavior: smooth !important;
-}
+* {}
 
 body,
 html {
@@ -146,17 +144,6 @@ body {
     100% {
         transform: translate(24px, 0);
     }
-}
-
-
-/*--- Preloader Magnific Popup ----*/
-
-.mfp-container .preloader {
-    background: transparent;
-}
-
-.mfp-container .preloader .lds-ellipsis div {
-    background: #fff;
 }
 
 ::selection {
@@ -842,7 +829,7 @@ hr {
 }
 
 .docs-navigation>.nav {
-    margin: 0px 20px 60px 20px;
+    margin: 0px 20px 80px 20px;
     padding: 16px 0px;
     color: var(--colorDocsViewBlackBlack1);
 }
