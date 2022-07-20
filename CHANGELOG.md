@@ -2,6 +2,19 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.42] - 2022-19-07
+### New Search
+
+- Search was completely rewritten
+- It is now possible to search through pages, sections, text
+- Results are better formatted and show categories where the result comes from
+- It is now possible to invoke search using (cmd/ctrl)+(k)
+- It is now possible to clear input using (esc), second (esc) will close search
+- If there is no search, first (esc) will close search immediately
+- It is now possible to go through results using arrow up, arrow down
+- It is now possible to go directly to the result by pressing (enter/return)
+- New animation was added to make it feel much nicer :)
+
 ## [1.40,41] - 2022-14-07
 ### Deployment + usability fixes and improvements
 
