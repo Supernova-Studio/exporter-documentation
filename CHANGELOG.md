@@ -2,6 +2,13 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.43] - 2022-19-07
+### New polished design
+
+- We have polished design of the documentation - everything now has proper spacings, margings, paddings, line heights etc. This is to prepare documentation for customization
+- We have introduced several new variants how to render tokens
+- We have polished how lists and grids behave
+
 ## [1.42] - 2022-19-07
 ### New Search
 
