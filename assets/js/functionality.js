@@ -105,15 +105,15 @@ function hideIfShownSearch() {
 
 document.addEventListener('animationstart', function(e) {
     if (e.animationName === 'fade-in') {
-        e.target.classList.add('did-fade-in');
+        e.target.classList.add('did-fade-in')
     }
-});
+})
 
 document.addEventListener('animationend', function(e) {
     if (e.animationName === 'fade-out') {
-        e.target.classList.remove('did-fade-in');
+        e.target.classList.remove('did-fade-in')
     }
-});
+})
 
 /*-----------------------------
     Search - Results and processing
@@ -249,9 +249,12 @@ function resetActiveSearchIndex() {
 }
 
 function updateActiveSearchIndex() {
-    console.log(activeSearchIndex)
     $(".sn-search-result-link").removeClass("selected")
-    $(`.sn-search-result-link:eq(${activeSearchIndex})`).addClass("selected")
+    const activeResult = $(`.sn-search-result-link:eq(${activeSearchIndex})`)
+    if (activeResult) {
+        activeResult.addClass("selected")
+        scrollIntoViewIfNeeded(activeResult[0], activeResult.parent()[0])
+    }
 }
 
 function previousSearchResult() {
@@ -279,7 +282,6 @@ function activateCurrentSearchResult() {
     if (link) {
         const href = link.attr('href')
         if (href) {
-            console.log(href)
             window.location.href = href
         }
     }
@@ -305,6 +307,13 @@ hotkeys.filter = function(event) {
     return true
 }
 
+function scrollIntoViewIfNeeded(target, parent) {
+    let rectElem = target.getBoundingClientRect(),
+        rectContainer = parent.getBoundingClientRect()
+    if (rectElem.bottom > rectContainer.bottom) target.scrollIntoView(false)
+    if (rectElem.top < rectContainer.top) target.scrollIntoView()
+}
+
 /*-----------------------------
     Hotkeys
 ------------------------------- */
@@ -312,7 +321,7 @@ hotkeys.filter = function(event) {
 hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
     switch (handler.key) {
         case "esc":
-            hideOrClearSearch();
+            hideOrClearSearch()
             break
         case "cmd+k":
         case "ctrl+k":
@@ -320,10 +329,10 @@ hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
             break
         case "up":
             previousSearchResult()
-            break;
+            break
         case "down":
             nextSearchResult()
-            break;
+            break
         case "enter":
         case "return":
             event.preventDefault()
