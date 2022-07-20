@@ -8,6 +8,7 @@
   <div class="token-container">
 
   {[ const token = ds.tokenById(block.tokenId) /]}
+{[ log token /]}
 
     {[ if (variant === "table") ]}
     {* Displaying the token as a table row *}
