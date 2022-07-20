@@ -105,8 +105,8 @@
 .SNSearch-results p.section-title {
     font-size: 12px;
     line-height: 14px;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    color: #868F98;
     margin: 24px 0px 12px 0px;
 }
 
@@ -146,8 +146,12 @@
     color: #0F62FE;
 }
 
+.SNSearch-results .result {
+    border-radius: 6px;
+}
+
 .SNSearch-results .result:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: #F9F9FA;
 }
 
 .SNSearch-close {
@@ -162,8 +166,11 @@
 }
 
 .sn-search-result-link.selected {
-    background-color: #e6e7e7;
     display: block;
+}
+
+.sn-search-result-link.selected .result {
+    background-color: #F2F4F5;
 }
 
 
