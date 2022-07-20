@@ -6,15 +6,19 @@ $(window).on("load", function() {
     let sections = []
 
     // Store and restore menu scroll offset
-    const scroll = localStorage.getItem('menu.scroll.position.top')
+    const scroll = localStorage.getItem("menu.scroll.position.top")
     if (scroll) {
-        $('.bg-sidebar').scrollTop(scroll);
+        $(".bg-sidebar").scrollTop(scroll)
     }
 
     document.querySelectorAll(".bg-sidebar").forEach((section) => {
-        section.addEventListener('scroll', function() {
-            localStorage.setItem('menu.scroll.position.top', section.scrollTop);
-        }, false);
+        section.addEventListener(
+            "scroll",
+            function() {
+                localStorage.setItem("menu.scroll.position.top", section.scrollTop)
+            },
+            false
+        )
     })
 
     // Create intersection observer for all sections
@@ -66,32 +70,55 @@ $(".search").on("click", function(e) {
 })
 
 function showSearch() {
-
-    // Toggle the search view when clicking the search icon
+    // Show the search view by running fade-in of the view
     $(".SNSearch").toggleClass("active")
     if ($(".SNSearch").is(".active")) {
+        // Remove all results
         $(".SNSearch-input").val("")
         $(".SNSearch-input").focus()
         $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
     }
 }
 
-hotkeys.filter = function(event) {
-    return true;
+function hideOrClearSearch() {
+    // Hide the search view by running fade-out of the view or clear input if not empty
+    if ($(".SNSearch-input").val().length > 0) {
+        $(".SNSearch-input").val("")
+    } else {
+        $(".SNSearch").removeClass("active")
+    }
 }
 
-hotkeys('cmd+k,ctrl+k,esc', function(event, handler) {
-    switch (handler.key) {
-        case 'esc':
-            $(".SNSearch").removeClass("active");
-            break;
-        case 'cmd+k':
-        case 'ctrl+k':
-            showSearch();
-            break;
+document.addEventListener('animationstart', function(e) {
+    if (e.animationName === 'fade-in') {
+        console.log("adding animation")
+        e.target.classList.add('did-fade-in');
     }
 });
 
+document.addEventListener('animationend', function(e) {
+    console.log(e.animationName)
+    if (e.animationName === 'fade-out') {
+        console.log("removed animation")
+        e.target.classList.remove('did-fade-in');
+    }
+});
+
+hotkeys.filter = function(event) {
+    return true
+}
+
+hotkeys("cmd+k,ctrl+k,esc", function(event, handler) {
+    switch (handler.key) {
+        case "esc":
+            hideOrClearSearch();
+            break
+        case "cmd+k":
+        case "ctrl+k":
+            showSearch()
+            break
+    }
+})
 
 /*-----------------------------
     Search - Results and processing
@@ -135,31 +162,54 @@ $(".SNSearch-input").on("input", function(e) {
     resultObject.html("")
 
     // Prepare data
-    let textResults = []
-    let headingResults = []
+    let contentResults = []
+    let sectionResults = []
+    let pageResults = []
 
     for (let result of searchResult) {
         let item = result.item
         item.startIndex = item.text.toLowerCase().indexOf(searchString.toLowerCase())
         item.endIndex = item.startIndex + searchString.length
 
-        if (item.type === "body") {
-            textResults.push(item)
+        if (item.type === "contentBlock") {
+            contentResults.push(item)
+        } else if (item.type === "sectionHeader") {
+            sectionResults.push(item)
         } else {
-            headingResults.push(item)
+            pageResults.push(item)
+        }
+    }
+
+    // Add pages
+    if (pageResults.length > 0) {
+        let results = pageResults
+        resultObject.append(`<p class="section-title">Pages (${results.length})</p>`)
+        let count = 0
+        for (let result of results) {
+            resultObject.append(`
+		  <a href="${result.url}" class="sn-search-result-link">
+		  <div class="result">
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">${result.category}</p>
+		  </div>
+		  </a>`)
+                // Allow up to 5 results to be shown
+            if (++count > 5) {
+                break
+            }
         }
     }
 
     // Add results matching titles first, then text block results
-    if (headingResults.length > 0) {
-        resultObject.append(`<p class="section-title">Sections (${headingResults.length})</p>`)
+    if (sectionResults.length > 0) {
+        resultObject.append(`<p class="section-title">Page sections (${sectionResults.length})</p>`)
         let count = 0
-        for (let heading of headingResults) {
+        for (let result of sectionResults) {
             resultObject.append(`
-		  <a href="${heading.url}" class="sn-search-result-link">
+		  <a href="${result.url}" class="sn-search-result-link">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(heading.text, heading.startIndex, heading.endIndex)}</p>
-			<p class="section-result-text">On page ${heading.path}</p>
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">On page ${result.category}</p>
 		  </div>
 		  </a>`)
                 // Allow up to 5 results to be shown
@@ -170,18 +220,18 @@ $(".SNSearch-input").on("input", function(e) {
     }
 
     // Add text block results
-    if (textResults.length > 0) {
-        resultObject.append(`<p class="section-title">Text (${textResults.length})</p>`)
+    if (contentResults.length > 0) {
+        resultObject.append(`<p class="section-title">Text (${contentResults.length})</p>`)
         let count = 0
-        for (let text of textResults) {
+        for (let result of contentResults) {
             resultObject.append(`
-		  <a href="${text.url}" class="sn-search-result-link">
+		  <a href="${result.url}" class="sn-search-result-link">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(text.text, text.startIndex, text.endIndex)}</p>
-			<p class="section-result-text">On page ${text.path}</p>
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">On page ${result.category}</p>
 		  </div>
 		  </a>`)
-                // Allow up to 5 results to be shown
+                // Allow up to 20 results to be shown
             if (++count > 5) {
                 break
             }
@@ -194,7 +244,6 @@ $(".SNSearch-input").on("input", function(e) {
 })
 
 function highlightRanges(s, startIndex, endIndex) {
-
     if (startIndex === -1) {
         return s
     }
@@ -300,23 +349,22 @@ $(function() {
 })
 
 function makeLive(sandboxId) {
-
     // Set textarea code
     const code = window.sandboxEngine.getCodeForSandboxId(sandboxId)
-    $('#codepreview-editable-' + sandboxId).val(code)
+    $("#codepreview-editable-" + sandboxId).val(code)
 
     // Change code preview to textarea
-    $('#codepreview-static-' + sandboxId).css({ display: "none" })
-    $('#codepreview-editable-' + sandboxId).css({ display: "inherit" })
+    $("#codepreview-static-" + sandboxId).css({ display: "none" })
+    $("#codepreview-editable-" + sandboxId).css({ display: "inherit" })
 
     // Toggle code view, if it wasn't shown already, and focus
-    $('#codepreview-' + sandboxId).addClass("show")
-    $('#codepreview-editable-' + sandboxId).focus()
-    $('#codepreview-editable-message-' + sandboxId).css({ display: "inherit" })
+    $("#codepreview-" + sandboxId).addClass("show")
+    $("#codepreview-editable-" + sandboxId).focus()
+    $("#codepreview-editable-message-" + sandboxId).css({ display: "inherit" })
 
     // Set observer to notify sandbox engine about changes to the code
-    $('#codepreview-editable-' + sandboxId).off("input")
-    $('#codepreview-editable-' + sandboxId).on("input", function(e) {
+    $("#codepreview-editable-" + sandboxId).off("input")
+    $("#codepreview-editable-" + sandboxId).on("input", function(e) {
         let code = $(this).val()
         window.sandboxEngine.updateSandboxCode(sandboxId, code)
     })
@@ -411,16 +459,15 @@ $("#sidebarCollapse").on("click", function(e) {
 -------------------------- */
 
 $(document).ready(function() {
-
-    $('.component-health-row').on("click", function(e) {
+    $(".component-health-row").on("click", function(e) {
         // Toggle the overlay
-        $(".health-overlay").toggleClass("d-none");
-        e.preventDefault();
+        $(".health-overlay").toggleClass("d-none")
+        e.preventDefault()
     })
 
-    $('.health-overlay').on("click", function(e) {
+    $(".health-overlay").on("click", function(e) {
         // Toggle the overlay
-        $(".health-overlay").toggleClass("d-none");
-        e.preventDefault();
+        $(".health-overlay").toggleClass("d-none")
+        e.preventDefault()
     })
 })

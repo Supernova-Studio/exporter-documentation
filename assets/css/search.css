@@ -5,10 +5,20 @@
     position: fixed;
     top: 0;
     z-index: 99;
-    display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, .25);
     padding: 1rem;
+    display: none;
+}
+
+.SNSearch.active {
+    display: block;
+    animation: fade-in 0.15s;
+}
+
+.SNSearch:not(.active) .did-fade-in {
+    display: block;
+    animation: fade-out 0.15s;
 }
 
 .SNSearch.SNSearch-container {
@@ -34,14 +44,6 @@
     border-bottom: 1px solid #f2f4f5;
     display: flex;
     justify-content: space-between;
-}
-
-.SNSearch {
-    display: none;
-}
-
-.SNSearch.SNSearch-container.active {
-    display: block;
 }
 
 .SNSearch-input {
@@ -161,5 +163,28 @@
 @media (max-width: 768px) {
     .SNSearch.SNSearch-container {
         padding: 0;
+    }
+}
+
+.backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
