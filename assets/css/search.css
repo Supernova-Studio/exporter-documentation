@@ -11,12 +11,16 @@
     display: none;
 }
 
+.SNSearch a {
+    text-decoration: none;
+}
+
 .SNSearch.active {
     display: block;
     animation: fade-in 0.15s;
 }
 
-.SNSearch:not(.active) .did-fade-in {
+.SNSearch:not(.active).did-fade-in {
     display: block;
     animation: fade-out 0.15s;
 }
@@ -155,6 +159,11 @@
     background-position-y: center;
     background-size: auto;
     cursor: pointer;
+}
+
+.sn-search-result-link.selected {
+    background-color: #e6e7e7;
+    display: block;
 }
 
 

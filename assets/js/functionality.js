@@ -60,13 +60,21 @@ function isElementInViewport(el) {
     )
 }
 
+/*------------------------
+   Content quick copy links
+-------------------------- */
+
 /*-----------------------------
-    Search - Interface
+    Search - Interface manipulation
 ------------------------------- */
 
 $(".search").on("click", function(e) {
     showSearch()
     e.preventDefault()
+})
+
+$(".SNSearch").on("click", function(e) {
+    hideIfShownSearch()
 })
 
 function showSearch() {
@@ -89,40 +97,30 @@ function hideOrClearSearch() {
     }
 }
 
+function hideIfShownSearch() {
+    if ($(".SNSearch-input").is(".active")) {
+        $(".SNSearch").removeClass("active")
+    }
+}
+
 document.addEventListener('animationstart', function(e) {
     if (e.animationName === 'fade-in') {
-        console.log("adding animation")
         e.target.classList.add('did-fade-in');
     }
 });
 
 document.addEventListener('animationend', function(e) {
-    console.log(e.animationName)
     if (e.animationName === 'fade-out') {
-        console.log("removed animation")
         e.target.classList.remove('did-fade-in');
     }
 });
 
-hotkeys.filter = function(event) {
-    return true
-}
-
-hotkeys("cmd+k,ctrl+k,esc", function(event, handler) {
-    switch (handler.key) {
-        case "esc":
-            hideOrClearSearch();
-            break
-        case "cmd+k":
-        case "ctrl+k":
-            showSearch()
-            break
-    }
-})
-
 /*-----------------------------
     Search - Results and processing
 ------------------------------- */
+
+let activeSearchResults = []
+let activeSearchIndex = 0
 
 $(".SNSearch-input").on("input", function(e) {
     let searchString = $(this).val()
@@ -232,16 +230,60 @@ $(".SNSearch-input").on("input", function(e) {
 		  </div>
 		  </a>`)
                 // Allow up to 20 results to be shown
-            if (++count > 5) {
+            if (++count > 20) {
                 break
             }
         }
     }
 
     $(".sn-search-result-link").on("click", function(e) {
-        $(".SNSearch").removeClass("active")
+        hideIfShownSearch()
     })
+
+    resetActiveSearchIndex()
+    updateActiveSearchIndex()
 })
+
+function resetActiveSearchIndex() {
+    activeSearchIndex = 0
+}
+
+function updateActiveSearchIndex() {
+    console.log(activeSearchIndex)
+    $(".sn-search-result-link").removeClass("selected")
+    $(`.sn-search-result-link:eq(${activeSearchIndex})`).addClass("selected")
+}
+
+function previousSearchResult() {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    if (activeSearchIndex > 0) {
+        activeSearchIndex--
+    }
+    updateActiveSearchIndex()
+}
+
+function nextSearchResult() {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    if (activeSearchIndex < $(".sn-search-result-link").length - 1) {
+        activeSearchIndex++
+    }
+    updateActiveSearchIndex()
+}
+
+function activateCurrentSearchResult() {
+    const link = $(`.sn-search-result-link:eq(${activeSearchIndex})`)
+    if (link) {
+        const href = link.attr('href')
+        if (href) {
+            console.log(href)
+            window.location.href = href
+        }
+    }
+}
 
 function highlightRanges(s, startIndex, endIndex) {
     if (startIndex === -1) {
@@ -258,6 +300,36 @@ function highlightRanges(s, startIndex, endIndex) {
 function replaceRange(s, start, end, substitute) {
     return s.substring(0, start) + substitute + s.substring(end)
 }
+
+hotkeys.filter = function(event) {
+    return true
+}
+
+/*-----------------------------
+    Hotkeys
+------------------------------- */
+
+hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
+    switch (handler.key) {
+        case "esc":
+            hideOrClearSearch();
+            break
+        case "cmd+k":
+        case "ctrl+k":
+            showSearch()
+            break
+        case "up":
+            previousSearchResult()
+            break;
+        case "down":
+            nextSearchResult()
+            break;
+        case "enter":
+        case "return":
+            event.preventDefault()
+            activateCurrentSearchResult()
+    }
+})
 
 /*-----------------------------
     Versions
