@@ -394,6 +394,10 @@
             ],
             "TokenList": [
                 {
+                    "name": "Table",
+                    "key": "table"
+                },
+                {
                     "name": "Grid (4 columns)",
                     "key": "grid-4",
                     "isDefault": true
@@ -409,10 +413,6 @@
                 {
                     "name": "Grid (1 column)",
                     "key": "grid-1"
-                },
-                {
-                    "name": "Table",
-                    "key": "table"
                 }
             ],
             "TokenGroup": [
@@ -431,19 +431,27 @@
                     "key": "grid-3"
                 },
                 {
-                    "name": "Grid (1 column)",
-                    "key": "grid-1"
+                    "name": "Grid (2 column)",
+                    "key": "grid-2"
                 },
                 {
-                    "name": "Grid (2 columns)",
-                    "key": "grid-2"
+                    "name": "Grid (1 columns)",
+                    "key": "grid-1"
                 }
             ],
             "Token": [
                 {
-                    "name": "Grid Item (1/3 width)",
-                    "key": "grid-3",
+                    "name": "Table Row",
+                    "key": "table"
+                },
+                {
+                    "name": "Grid Item (1/4 width)",
+                    "key": "grid-4",
                     "isDefault": true
+                },
+                {
+                    "name": "Grid Item (1/3 width)",
+                    "key": "grid-3"
                 },
                 {
                     "name": "Grid Item (1/2 width)",
@@ -452,10 +460,6 @@
                 {
                     "name": "Grid Item (Full width)",
                     "key": "grid-1"
-                },
-                {
-                    "name": "Table Row",
-                    "key": "table"
                 }
             ]
         }
