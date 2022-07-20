@@ -382,7 +382,21 @@
                     "name": "Pills",
                     "key": "pills"
                 }
-            ]
+            ],
+            "TokenList": [{
+                "name": "Grid (4 columns)",
+                "key": "grid-4",
+                "isDefault": true
+            },
+            {
+                "name": "Grid (3 columns)",
+                "key": "grid-3",
+            },
+            {
+                "name": "Grid (2 columns)",
+                "key": "grid-2"
+            }
+        ]
         }
     }
 }
