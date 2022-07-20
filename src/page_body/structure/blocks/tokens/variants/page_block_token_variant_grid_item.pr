@@ -1,0 +1,13 @@
+{* Fetch block from injection context, expected type 'Token' *}
+{[ const token = context /]}
+
+<div>
+  {* Render large tile preview *}
+  {[ inject "page_block_token_preview_large" context token /]}
+  <p class="title">{{ token.name }}</p>
+  {* Render description if this is not text and generic token, which are rendering values into the tile itself *}
+  {[ if !token.tokenType.equals("Text") && !token.tokenType.equals("GenericToken") ]}
+    <p class="description">{[ inject "page_block_token_value" context token /]}</p>
+    {[ inject "page_block_token_properties" context token /]}       
+  {[/]}
+</div>

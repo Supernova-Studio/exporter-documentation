@@ -1,0 +1,12 @@
+{* Fetch block from injection context, expected type 'Token' *}
+{[ const token = context /]}
+
+<tr class="color">
+    <td>{[ inject "page_block_token_preview_small" context token /]}</td>
+    <td>{{ token.name }}</td>
+    <td>{{ token.description ? token.description : "No description" }}</td>
+    <td>
+    {[ inject "page_block_token_value" context token /]}       
+    {[ inject "page_block_token_properties" context token /]}       
+    </td>
+</tr>

@@ -3,35 +3,35 @@
 {[ const group = context.group /]}
 {[ const tokens = ds.tokensByGroupId(group.id) /]}
 
+{[ let variant = block.variantKey /]}
+
 {* Ignore group content if it is empty *}
 {[ if (tokens.count() > 0) ]}
     <div class="token-container">
         {* Show group header consisting of group segments and current group name *}
         <p class="token-group-header">{{ formattedTokenGroupHeader(group, true) }}</p>
-        <table class="token-wrapper">
-        {* Render all tokens *}
-        {[ for token in tokens ]}
-        <tr class="color">
-            <td>{[ inject "page_block_token_preview_small" context token /]}</td>
-            <td>{{ token.name }}</td>
-            <td>{{ token.description ? token.description : "No description" }}</td>
-            <td>
-            {[ inject "page_block_token_value" context token /]}       
-            {[ for prop in token.properties ]}
-                {[ if prop.type.equals("String") ]}
-                    {[ if prop.value ]}
-                        <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
-                    {[/]}
-                {[ else ]}
-                    <br /><span class="label">{{ prop.name }}</span>: <span class="custom-value">{{ prop.value.toString() }}</span>
-                {[/]}
+
+        {[ if (variant === "table" || variant === null) ]}
+            {* Default variant – Displaying the list of tokens as a table *}
+
+            <table class="token-wrapper">
+            {* Render all tokens *}
+            {[ for token in tokens ]}
+                {[ inject "page_block_token_variant_table_item" context token /]}
             {[/]}
-            </td>
-        </tr>
-        {[/]}
-        </table>
+            </table>
+
+            {[ else ]}
+            {* Grid variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
+
+            <div class="grid {{ variant }}">
+                {[ for token in tokens ]}
+                    {[ inject "page_block_token_variant_grid_item" context token /]}
+                {[/]}
+            </div>
+
+        {[/]} 
     </div>
-    {[/]}
 {[/]}
 
 {* Render nested groups, if enabled *}

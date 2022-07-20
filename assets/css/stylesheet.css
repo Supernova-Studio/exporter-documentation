@@ -3646,7 +3646,7 @@ ol>.block-children {
 .token-group-header {
     color: #363a3e;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .token-group-header span.light {
@@ -3720,7 +3720,7 @@ ol>.block-children {
     display: inline-block;
 }
 
-.token-container table span.custom-value {
+.token-container span.custom-value {
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
@@ -3733,11 +3733,11 @@ ol>.block-children {
     font-weight: 500;
 }
 
-.token-container table span.label {
+.token-container span.label {
+    display: inline-flex;
     font-style: normal;
     font-size: 11px;
     line-height: 16px;
-    font-style: italic;
     color: rgba(0, 0, 0, 0.5);
 }
 
@@ -3745,28 +3745,28 @@ ol>.block-children {
 /* Token grids */
 
 .token-container .grid {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
 }
 
-.token-container .grid>div {
-    flex: 0 1 24%;
-    margin: 0 0 8px 0;
+.token-container .grid.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.token-container .grid>div.spacer {
-    height: 0;
-    flex: 0 1 24%;
-    margin: 0 0 8px 0;
-    border: 0px;
+.token-container .grid.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.token-container .grid.grid-1 {
+    grid-template-columns: repeat(1, 1fr);
 }
 
 .token-container .grid>div>div.preview {
     width: 100%;
     height: 120px;
-    border-bottom: 1px solid #dce0e4;
+    border-bottom: 1px solid #F2F4F5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3783,6 +3783,7 @@ ol>.block-children {
     padding: 0;
     font-size: 14px;
     font-weight: 500;
+    line-height: 1.3;
     color: #000;
 }
 
@@ -3795,7 +3796,7 @@ ol>.block-children {
 }
 
 .token-container .grid>div {
-    border: 1px solid #dce0e4;
+    border: 1px solid #F2F4F5;
     border-radius: 8px;
     box-sizing: border-box;
     overflow: hidden;
@@ -3803,6 +3804,15 @@ ol>.block-children {
 
 .token-container .grid>div.spacer {
     border: 0px;
+}
+
+.token-container .grid .custom-properties {
+    margin: 0px 12px 8px 8px;
+    line-height: 1;
+}
+
+.token-container .grid .custom-properties .custom-property-item {
+    overflow-wrap: break-word;
 }
 
 .alert {
