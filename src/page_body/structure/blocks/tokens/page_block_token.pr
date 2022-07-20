@@ -1,24 +1,27 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const block = context /]}
 
+{[ let variant = block.variantKey /]}
+
 {* Ignore block if it doesn't have id set *}
 {[ if block.tokenId ]}
-{[ const token = ds.tokenById(block.tokenId) /]}
+  <div class="token-container">
 
-<div class="token-container">
-  <div class="grid">
-    <div>
-      {[ inject "page_block_token_preview_large" context token /]}
-      <p class="title">{{ token.name }}</p>
-      {* Render description if this is not text and generic token, which are rendering values into the tile itself *}
-      {[ if !token.tokenType.equals("Text") && !token.tokenType.equals("GenericToken") ]}
-      <p class="description">{[ inject "page_block_token_value" context token /]}</p>    
-      {[/]}
-    </div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
+  {[ const token = ds.tokenById(block.tokenId) /]}
+
+    {[ if (variant === "table") ]}
+    {* Displaying the token as a table row *}
+      <table class="token-wrapper">
+          {[ inject "page_block_token_variant_table_item" context token /]}
+      </table>
+
+    {[ else ]}
+    {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
+
+      <div class="grid {{ variant }}">
+          {[ inject "page_block_token_variant_grid_item" context token /]}
+      </div>
+
+    {[/]} 
   </div>
-</div>
-
 {[/]}
