@@ -77,6 +77,10 @@ $(".SNSearch").on("click", function(e) {
     hideIfShownSearch()
 })
 
+$(".SNSearch-box").on("click", function(e) {
+    e.stopPropagation()
+})
+
 function showSearch() {
     // Show the search view by running fade-in of the view
     $(".SNSearch").toggleClass("active")
@@ -98,7 +102,7 @@ function hideOrClearSearch() {
 }
 
 function hideIfShownSearch() {
-    if ($(".SNSearch-input").is(".active")) {
+    if ($(".SNSearch").is(".active")) {
         $(".SNSearch").removeClass("active")
     }
 }
@@ -257,32 +261,39 @@ function updateActiveSearchIndex() {
     }
 }
 
-function previousSearchResult() {
+function previousSearchResult(event) {
     if (!$(".SNSearch").is(".active")) {
         return
     }
+    event.preventDefault()
     if (activeSearchIndex > 0) {
         activeSearchIndex--
     }
     updateActiveSearchIndex()
 }
 
-function nextSearchResult() {
+function nextSearchResult(event) {
     if (!$(".SNSearch").is(".active")) {
         return
     }
+    event.preventDefault()
     if (activeSearchIndex < $(".sn-search-result-link").length - 1) {
         activeSearchIndex++
     }
     updateActiveSearchIndex()
 }
 
-function activateCurrentSearchResult() {
+function activateCurrentSearchResult(event) {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    event.preventDefault()
     const link = $(`.sn-search-result-link:eq(${activeSearchIndex})`)
     if (link) {
         const href = link.attr('href')
         if (href) {
             window.location.href = href
+            hideIfShownSearch()
         }
     }
 }
@@ -303,15 +314,15 @@ function replaceRange(s, start, end, substitute) {
     return s.substring(0, start) + substitute + s.substring(end)
 }
 
-hotkeys.filter = function(event) {
-    return true
-}
-
 function scrollIntoViewIfNeeded(target, parent) {
     let rectElem = target.getBoundingClientRect(),
         rectContainer = parent.getBoundingClientRect()
     if (rectElem.bottom > rectContainer.bottom) target.scrollIntoView(false)
     if (rectElem.top < rectContainer.top) target.scrollIntoView()
+}
+
+hotkeys.filter = function(event) {
+    return true
 }
 
 /*-----------------------------
@@ -328,15 +339,14 @@ hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
             showSearch()
             break
         case "up":
-            previousSearchResult()
+            previousSearchResult(event)
             break
         case "down":
-            nextSearchResult()
+            nextSearchResult(event)
             break
         case "enter":
         case "return":
-            event.preventDefault()
-            activateCurrentSearchResult()
+            activateCurrentSearchResult(event)
     }
 })
 
