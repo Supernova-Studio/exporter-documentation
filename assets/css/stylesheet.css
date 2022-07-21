@@ -48,6 +48,7 @@ html {
 body {
     color: #141618;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -4237,7 +4238,7 @@ ol>.block-children {
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 
 #content-nav li.active>a {
-    color: #5b5b5b;
+    color: #0f62fe;
     font-weight: 500;
     position: relative;
 }
@@ -4249,7 +4250,15 @@ ol>.block-children {
     height: 100%;
     left: -17px;
     top: 0px;
-    border-left: 1px solid #5b5b5b;
+    border-left: 1px solid #0f62fe;
+}
+
+#content-nav li.sub.active>a::before {
+    left: -29px;
+}
+
+#content-nav li.sub-2.active>a::before {
+    left: -41px;
 }
 
 #content-nav ul {
@@ -4272,7 +4281,7 @@ ol>.block-children {
 
 #content-nav {
     padding-left: 16px;
-    /* border-left: 1px solid #dce0e4; */
+    border-left: 1px solid #dce0e4;
     width: 160px;
 }
 
