@@ -211,7 +211,7 @@ $(".SNSearch-input").on("input", function(e) {
     // Add pages
     if (pageResults.length > 0) {
         let results = pageResults
-        resultObject.append(`<p class="section-title">Pages & Sections (${results.length})</p>`)
+        resultObject.append(`<p class="section-title">Pages & Categories (${results.length})</p>`)
         let count = 0
         for (let result of results) {
             resultObject.append(`
@@ -230,7 +230,7 @@ $(".SNSearch-input").on("input", function(e) {
 
     // Add results matching titles first, then text block results
     if (sectionResults.length > 0) {
-        resultObject.append(`<p class="section-title">Page sections (${sectionResults.length})</p>`)
+        resultObject.append(`<p class="section-title">Content sections (${sectionResults.length})</p>`)
         let count = 0
         for (let result of sectionResults) {
             resultObject.append(`
@@ -249,7 +249,7 @@ $(".SNSearch-input").on("input", function(e) {
 
     // Add text block results
     if (contentResults.length > 0) {
-        resultObject.append(`<p class="section-title">Text (${contentResults.length})</p>`)
+        resultObject.append(`<p class="section-title">Content (${contentResults.length})</p>`)
         let count = 0
         for (let result of contentResults) {
             resultObject.append(`
