@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.44] - 2022-21-07
+### Content menu improvements
+
+- Content menu will now properly track all headers in viewport
+- Introduced logic that also checks for the last header in the viewport and will persist it until new one shows up
+
 ## [1.43] - 2022-19-07
 ### New polished design
 
