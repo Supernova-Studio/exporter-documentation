@@ -105,7 +105,7 @@ $(".SNSearch-box").on("click", function(e) {
     e.stopPropagation()
 })
 
-function showSearch() {
+function showSearch(e) {
     // Show the search view by running fade-in of the view
     $(".SNSearch").toggleClass("active")
     if ($(".SNSearch").is(".active")) {
@@ -114,15 +114,17 @@ function showSearch() {
         $(".SNSearch-input").focus()
         $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
     }
+    e.preventDefault()
 }
 
-function hideOrClearSearch() {
+function hideOrClearSearch(e) {
     // Hide the search view by running fade-out of the view or clear input if not empty
     if ($(".SNSearch-input").val().length > 0) {
         $(".SNSearch-input").val("")
     } else {
         $(".SNSearch").removeClass("active")
     }
+    e.preventDefault()
 }
 
 function hideIfShownSearch() {
@@ -356,11 +358,11 @@ hotkeys.filter = function(event) {
 hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
     switch (handler.key) {
         case "esc":
-            hideOrClearSearch()
+            hideOrClearSearch(event)
             break
         case "cmd+k":
         case "ctrl+k":
-            showSearch()
+            showSearch(event)
             break
         case "up":
             previousSearchResult(event)
