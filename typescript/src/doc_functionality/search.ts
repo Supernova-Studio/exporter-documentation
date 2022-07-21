@@ -10,12 +10,14 @@ export enum DocSearchResultDataType {
   contentBlock = "contentBlock",
   sectionHeader = "sectionHeader",
   pageTitle = "pageTitle",
+  groupTitle = "groupTitle",
 }
 
 export type DocSearchResultData = {
   id: number
   pageName: string
-  pageId: string
+  pageId: string | undefined
+  groupId: string | undefined
   blockId: string | undefined
   text: string,
   category: string,
@@ -26,7 +28,7 @@ export type DocSearchResultData = {
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Search index processing
 
-export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): string {
+export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Array<DocumentationGroup>, domain: string): string {
   // Construct search index for Fuse.js
   // Note that by changing the data, or including more data here, you can improve behaviors of the search quite drastically
   // Example: You can pre-download data from different source and include it in your doc search index as well
@@ -65,6 +67,7 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
           type: block.type === "Heading" ? DocSearchResultDataType.sectionHeader : DocSearchResultDataType.contentBlock,
           blockId: block.id,
           pageId: page.id,
+          groupId: undefined,
           pageName: pageName,
           category: category,
           url: url + "#search-" + block.id,
@@ -79,9 +82,39 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
       type: DocSearchResultDataType.pageTitle,
       blockId: undefined,
       pageId: page.id,
+      groupId: undefined,
       pageName: pageName,
       category: category,
       url: url,
+    })
+  }
+
+  // Process every group for data
+  for (let group of groups) {
+    // Path and url creation
+    let subpaths: Array<string> = [group.title]
+    let parent: DocumentationGroup | null = group.parent
+    while (parent) {
+      if (parent?.isRoot) {
+        break
+      }
+      subpaths.splice(0, 0, parent.title)
+      parent = parent.parent
+    }
+    let groupUrl = pageUrl(group, domain)
+    let category = subpaths.join(" / ")
+
+    // Push page information
+    data.push({
+      id: id++,
+      text: group.title,
+      type: DocSearchResultDataType.groupTitle,
+      blockId: undefined,
+      pageId: undefined,
+      groupId: group.id,
+      pageName: group.title,
+      category: category,
+      url: groupUrl,
     })
   }
 

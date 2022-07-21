@@ -211,7 +211,7 @@ $(".SNSearch-input").on("input", function(e) {
     // Add pages
     if (pageResults.length > 0) {
         let results = pageResults
-        resultObject.append(`<p class="section-title">Pages (${results.length})</p>`)
+        resultObject.append(`<p class="section-title">Pages & Sections (${results.length})</p>`)
         let count = 0
         for (let result of results) {
             resultObject.append(`
