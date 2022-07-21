@@ -4237,17 +4237,19 @@ ol>.block-children {
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 
 #content-nav li.active>a {
-    color: #0f62fe;
+    color: #5b5b5b;
     font-weight: 500;
+    position: relative;
 }
 
 #content-nav li.active>a::before {
     content: "";
     position: absolute;
     width: 1px;
-    height: 16px;
-    left: -1px;
-    border-left: 1px solid #0f62fe;
+    height: 100%;
+    left: -17px;
+    top: 0px;
+    border-left: 1px solid #5b5b5b;
 }
 
 #content-nav ul {
@@ -4270,7 +4272,7 @@ ol>.block-children {
 
 #content-nav {
     padding-left: 16px;
-    border-left: 1px solid #dce0e4;
+    /* border-left: 1px solid #dce0e4; */
     width: 160px;
 }
 

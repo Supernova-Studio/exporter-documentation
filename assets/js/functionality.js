@@ -23,16 +23,19 @@ $(window).on("load", function() {
 
     // Create intersection observer for all sections
     const observer = new IntersectionObserver((_entries) => {
-        let visibleSections = sections.filter((s) => isElementInViewport(s))
-        let sortedVisibleSections = visibleSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
-            // Unactivate all sections
+
+        let isSelected = false
         for (let section of sections) {
-            document.querySelector(`nav li a[href="#${section.getAttribute("id")}"]`).parentElement.classList.remove("active")
+            let id = section.getAttribute("id")
+            console.log(id)
+            if (isElementInViewport(section) && !isSelected) {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+                    // isSelected = true
+            } else {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
+            }
         }
-        // Activate top most visible in the viewport section
-        if (sortedVisibleSections.length > 0) {
-            document.querySelector(`nav li a[href="#${sortedVisibleSections[0].getAttribute("id")}"]`).parentElement.classList.add("active")
-        }
+
     })
 
     // Track all headers that have an `id` applied
