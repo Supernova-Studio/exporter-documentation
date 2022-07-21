@@ -24,18 +24,34 @@ $(window).on("load", function() {
     // Create intersection observer for all sections
     const observer = new IntersectionObserver((_entries) => {
 
-        let isSelected = false
+        // Highlight headers in viewport
+        let isAnythingSelected = false
         for (let section of sections) {
             let id = section.getAttribute("id")
-            console.log(id)
-            if (isElementInViewport(section) && !isSelected) {
+            if (isElementInViewport(section)) {
                 document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
-                    // isSelected = true
+                isAnythingSelected = true
             } else {
                 document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
             }
         }
 
+        // If there are no headers in the viewport, then highlight the one which is closest to the viewport currently.
+        if (!isAnythingSelected) {
+            let minDistance = 9999999
+            let currentSection = undefined
+            for (let section of sections) {
+                let distance = closestDistanceToViewportEdge(section)
+                if (distance < minDistance) {
+                    minDistance = distance
+                    currentSection = section
+                }
+            }
+            if (currentSection) {
+                let id = currentSection.getAttribute("id")
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+            }
+        }
     })
 
     // Track all headers that have an `id` applied
@@ -63,9 +79,14 @@ function isElementInViewport(el) {
     )
 }
 
-/*------------------------
-   Content quick copy links
--------------------------- */
+function closestDistanceToViewportEdge(el) {
+    var rect = el.getBoundingClientRect()
+    return Math.min(
+        Math.abs(rect.top),
+        Math.abs(rect.bottom)
+    )
+}
+
 
 /*-----------------------------
     Search - Interface manipulation
