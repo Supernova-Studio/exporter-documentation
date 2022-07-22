@@ -50,4 +50,3 @@
         {[ inject "page_block_token_group_loop" context ({"block": block, "group": subgroup }) /]}
     {[/]}
 {[/]}
-            
