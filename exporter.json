@@ -413,6 +413,10 @@
                 {
                     "name": "Grid (1 column)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Color Stack",
+                    "key": "color-stack"
                 }
             ],
             "TokenGroup": [
@@ -437,6 +441,10 @@
                 {
                     "name": "Grid (1 columns)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Color Stack",
+                    "key": "color-stack"
                 }
             ],
             "Token": [
@@ -460,6 +468,10 @@
                 {
                     "name": "Grid Item (Full width)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Color Stack",
+                    "key": "color-stack"
                 }
             ]
         }
