@@ -405,8 +405,8 @@
                     "key": "grid-1"
                 },
                 {
-                    "name": "Color Stack",
-                    "key": "color-stack"
+                    "name": "Stack",
+                    "key": "stack"
                 }
             ],
             "TokenGroup": [{
@@ -432,12 +432,12 @@
                     "key": "grid-1"
                 },
                 {
-                    "name": "Color Stack",
-                    "key": "color-stack"
+                    "name": "Stack",
+                    "key": "stack"
                 },
                 {
-                    "name": "Color Stack (2 columns)",
-                    "key": "color-stack-2"
+                    "name": "Stack (2 columns)",
+                    "key": "stack-2"
                 }
             ],
             "Token": [{
@@ -462,8 +462,8 @@
                     "key": "grid-1"
                 },
                 {
-                    "name": "Color Stack",
-                    "key": "color-stack"
+                    "name": "Stack",
+                    "key": "stack"
                 }
             ]
         }

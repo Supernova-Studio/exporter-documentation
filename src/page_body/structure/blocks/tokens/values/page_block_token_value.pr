@@ -24,7 +24,7 @@
 {[ elseif token.tokenType.equals("Measure")]}
     {{ token.value.measure }}{{ measureTypeIntoReadableUnit(token.value.unit) }}
 {[ elseif token.tokenType.equals("Radius")]}
-    {{ token.value.radius.measure }}{{ measureTypeIntoReadableUnit(token.value.radius.unit) }}  
+    {{ token.value.radius.measure }}{{ measureTypeIntoReadableUnit(token.value.radius.unit) }}
 {[ elseif token.tokenType.equals("Shadow")]}
     {{ shadowDescription(token) }}
 {[ elseif token.tokenType.equals("Text")]}

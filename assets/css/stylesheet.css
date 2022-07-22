@@ -798,6 +798,11 @@ pre code {
     background-color: #6c757d !important;
 }
 
+/* Paddings */
+.p-8 {
+    padding: 8px;
+}
+
 
 /* Progress Bar */
 
@@ -3818,13 +3823,13 @@ ol>.block-children {
     overflow-wrap: break-word;
 }
 
-/* Token color stack */
-.token-container .color-stack {
+/* Token stack */
+.token-container .stack {
     border: 1px solid #f2f4f5;
     border-radius: 8px;
 }
 
-.token-group-container.variant-color-stack-2 {
+.token-group-container.variant-stack-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 12px;
@@ -3832,12 +3837,12 @@ ol>.block-children {
 }
 
 @media (max-width: 768px) {
-    .token-group-container.variant-color-stack-2 {
+    .token-group-container.variant-stack-2 {
         grid-template-columns: repeat(1, 1fr);
     }
 }
 
-.token-container .color-stack .stack {
+.token-container .stack .stack-item {
     padding: 12px;
     display: flex;
     justify-content: space-between;
@@ -3845,24 +3850,39 @@ ol>.block-children {
     font-weight: 500;
 }
 
-.token-container .color-stack .stack .value {
+.token-container .stack .stack-item .value {
     text-align: right;
     font-size: 13px;
     white-space: nowrap;
 }
 
-.token-container .color-stack .stack.inverted-text {
+.token-container .stack .stack-item.inverted-text {
     color: white;
 }
 
-.token-container .color-stack .stack:first-child {
+.token-container .stack .stack-item:first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
-.token-container .color-stack .stack:last-child {
+.token-container .stack .stack-item:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+/* fallback support for non-color tokens in Color stack type */
+.token-container .stack .stack-item.fallback .name {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.token-container .stack .stack-item.fallback  {
+    align-items: center;
+    border-bottom: 1px solid #f2f4f5;
+}
+.token-container .stack .stack-item.fallback:last-child  {
+    border-bottom: 0;
 }
 
 /* Alert */

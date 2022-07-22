@@ -1,0 +1,27 @@
+{* Fetch block from injection context, expected type 'Token' *}
+{[ const token = context /]}
+
+{[ if token.tokenType.equals("Color") ]}
+
+    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
+
+    <div class="stack-item{[ if colorLightnessCheck ]} inverted-text{[/]}" style="background-color: #{{ token.value.hex }};">
+        <div class="name">{{ token.origin.name.replacing("/", " / ") }}</div>
+        <div class="value">
+            {[ inject "page_block_token_value" context token /]}     
+        </div>
+    </div>
+
+{[ else ]}
+    <div class="stack-item fallback">
+        <div class="name">
+            {[ inject "page_block_token_preview_small" context token /]}
+            {[ if (token.origin !== null) ]}
+                {{ token.origin.name.replacing("/", " / ") }}
+            {[ else ]}
+                {{ token.name.replacing("/", " / ") }}
+            {[/]}
+        </div>
+        <div class="value">{[ inject "page_block_token_value" context token /]}</div>
+    </div>
+{[/]}

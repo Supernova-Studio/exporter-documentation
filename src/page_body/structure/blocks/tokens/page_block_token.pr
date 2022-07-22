@@ -15,11 +15,11 @@
           {[ inject "page_block_token_variant_table_item" context token /]}
       </table>
 
-      {[ elseif (variant.contains("color-stack")) ]}
-      {* Color stack – Displaying the list of tokens as a table *}
+      {[ elseif (variant.contains("stack")) ]}
+      {* Stack – Displaying the list of tokens as a stack (great for colors) *}
 
-        <div class="color-stack {{ variant }}">
-            {[ inject "page_block_token_variant_color_stack_item" context token /]}
+        <div class="stack {{ variant }}">
+            {[ inject "page_block_token_variant_stack_item" context token /]}
         </div>
 
     {[ else ]}
