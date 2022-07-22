@@ -2,11 +2,11 @@
     "id": "io.supernova.documentation-main",
     "name": "Documentation",
     "description": "Base Documentation Exporter",
-    "author": "Jiri Trecak",
+    "author": "Supernova",
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.46",
+    "version": "1.47.0",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -434,6 +434,10 @@
                 {
                     "name": "Color Stack",
                     "key": "color-stack"
+                },
+                {
+                    "name": "Color Stack (2 columns)",
+                    "key": "color-stack-2"
                 }
             ],
             "Token": [{
