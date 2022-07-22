@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.48] - 2022-21-07
+### Added new token options
+
+- Added option to render tokens as column (1, 2, 3, 4), tables and now stacks
+
 ## [1.44] - 2022-21-07
 ### Content menu improvements
 
