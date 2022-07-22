@@ -23,15 +23,34 @@ $(window).on("load", function() {
 
     // Create intersection observer for all sections
     const observer = new IntersectionObserver((_entries) => {
-        let visibleSections = sections.filter((s) => isElementInViewport(s))
-        let sortedVisibleSections = visibleSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
-            // Unactivate all sections
+
+        // Highlight headers in viewport
+        let isAnythingSelected = false
         for (let section of sections) {
-            document.querySelector(`nav li a[href="#${section.getAttribute("id")}"]`).parentElement.classList.remove("active")
+            let id = section.getAttribute("id")
+            if (isElementInViewport(section)) {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+                isAnythingSelected = true
+            } else {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
+            }
         }
-        // Activate top most visible in the viewport section
-        if (sortedVisibleSections.length > 0) {
-            document.querySelector(`nav li a[href="#${sortedVisibleSections[0].getAttribute("id")}"]`).parentElement.classList.add("active")
+
+        // If there are no headers in the viewport, then highlight the one which is closest to the viewport currently.
+        if (!isAnythingSelected) {
+            let minDistance = 9999999
+            let currentSection = undefined
+            for (let section of sections) {
+                let distance = closestDistanceToViewportEdge(section)
+                if (distance < minDistance) {
+                    minDistance = distance
+                    currentSection = section
+                }
+            }
+            if (currentSection) {
+                let id = currentSection.getAttribute("id")
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+            }
         }
     })
 
@@ -60,9 +79,14 @@ function isElementInViewport(el) {
     )
 }
 
-/*------------------------
-   Content quick copy links
--------------------------- */
+function closestDistanceToViewportEdge(el) {
+    var rect = el.getBoundingClientRect()
+    return Math.min(
+        Math.abs(rect.top),
+        Math.abs(rect.bottom)
+    )
+}
+
 
 /*-----------------------------
     Search - Interface manipulation
@@ -81,7 +105,7 @@ $(".SNSearch-box").on("click", function(e) {
     e.stopPropagation()
 })
 
-function showSearch() {
+function showSearch(e) {
     // Show the search view by running fade-in of the view
     $(".SNSearch").toggleClass("active")
     if ($(".SNSearch").is(".active")) {
@@ -90,15 +114,17 @@ function showSearch() {
         $(".SNSearch-input").focus()
         $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
     }
+    e.preventDefault()
 }
 
-function hideOrClearSearch() {
+function hideOrClearSearch(e) {
     // Hide the search view by running fade-out of the view or clear input if not empty
     if ($(".SNSearch-input").val().length > 0) {
         $(".SNSearch-input").val("")
     } else {
         $(".SNSearch").removeClass("active")
     }
+    e.preventDefault()
 }
 
 function hideIfShownSearch() {
@@ -185,7 +211,7 @@ $(".SNSearch-input").on("input", function(e) {
     // Add pages
     if (pageResults.length > 0) {
         let results = pageResults
-        resultObject.append(`<p class="section-title">Pages (${results.length})</p>`)
+        resultObject.append(`<p class="section-title">Pages & Categories (${results.length})</p>`)
         let count = 0
         for (let result of results) {
             resultObject.append(`
@@ -204,7 +230,7 @@ $(".SNSearch-input").on("input", function(e) {
 
     // Add results matching titles first, then text block results
     if (sectionResults.length > 0) {
-        resultObject.append(`<p class="section-title">Page sections (${sectionResults.length})</p>`)
+        resultObject.append(`<p class="section-title">Content sections (${sectionResults.length})</p>`)
         let count = 0
         for (let result of sectionResults) {
             resultObject.append(`
@@ -223,7 +249,7 @@ $(".SNSearch-input").on("input", function(e) {
 
     // Add text block results
     if (contentResults.length > 0) {
-        resultObject.append(`<p class="section-title">Text (${contentResults.length})</p>`)
+        resultObject.append(`<p class="section-title">Content (${contentResults.length})</p>`)
         let count = 0
         for (let result of contentResults) {
             resultObject.append(`
@@ -332,11 +358,11 @@ hotkeys.filter = function(event) {
 hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
     switch (handler.key) {
         case "esc":
-            hideOrClearSearch()
+            hideOrClearSearch(event)
             break
         case "cmd+k":
         case "ctrl+k":
-            showSearch()
+            showSearch(event)
             break
         case "up":
             previousSearchResult(event)

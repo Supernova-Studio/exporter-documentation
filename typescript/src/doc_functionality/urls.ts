@@ -66,7 +66,7 @@ export function textBlockPlainText(header: DocumentationPageBlockHeading): strin
 
 export function slugifyHeading(header: DocumentationPageBlockHeading): string {
   let fullText = textBlockPlainText(header)
-  return slugify(fullText)
+  return "section-" + slugify(fullText) + "-" + header.id.substring(0, 2)
 }
 
 function slugify(str: string): string {

@@ -46,7 +46,9 @@ html {
 }
 
 body {
-    color: #4c4d4d;
+    color: #141618;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -168,16 +170,16 @@ img {
 }
 
 section p {
-    margin-bottom: 0.25rem;
+    margin: 4px 0 8px 0;
 }
 
 mark,
 .mark {
-    font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-family: "Fira Mono", "Fira Code", Menlo, Consolas, "DejaVu Sans Mono", monospace;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 24px;
     color: #d23031;
     padding: 4px;
     background: rgba(20, 22, 24, 0.06);
@@ -185,7 +187,7 @@ mark,
 
 a,
 a:focus {
-    color: #0366d6;
+    color: #0F62FE;
 }
 
 a:hover,
@@ -219,7 +221,23 @@ p,
 section ul,
 section li {
     line-height: 1.8;
-    margin: 0;
+}
+
+section ul {
+    list-style-type: disc;
+}
+
+.docs-content section ol li,
+.docs-content section ul li {
+    margin-top: 10px;
+}
+
+.docs-content section ol li {
+    padding-left: 8px;
+}
+
+.docs-content section ul li {
+    padding-left: 5px;
 }
 
 blockquote {
@@ -244,38 +262,45 @@ h3,
 h4,
 h5,
 h6 {
-    color: #252b33;
+    color: #141618;
     line-height: 1.5;
-    margin: 3rem 0 0.5rem 0;
+    margin-top: 32px;
+    margin-bottom: 12px;
 }
 
 h1 {
-    font-size: 2.4rem;
+    margin-top: 48px;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
     font-weight: 700;
+    line-height: 1.4;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-style: normal;
     font-weight: 700;
+    font-size: 28px;
+    line-height: 40px;
     margin-top: 40px;
-    padding-top: 0px;
-    margin-bottom: 12px;
-    padding-bottom: 0px;
 }
 
 h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 24px;
-    padding-top: 0px;
     margin-bottom: 8px;
-    padding-bottom: 0px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 24px;
+    margin-bottom: 8px;
 }
 
 h4,
 h5,
 h6 {
-    margin-top: 0px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 24px;
     margin-bottom: 8px;
 }
 
@@ -284,13 +309,18 @@ section blockquote,
 div.alert,
 ul,
 li {
-    font-size: 14px;
+    color: rgba(20, 22, 24, 0.8);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
 }
 
 p.lead {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 1rem;
+    margin: 24px 0;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 pre,
@@ -305,10 +335,6 @@ pre {
     overflow-y: scroll;
 }
 
-pre[class*="language-"] {
-    margin: 0 0 0 0;
-}
-
 pre code {
     font-size: 12px;
 }
@@ -316,7 +342,7 @@ pre code {
 .code-block {
     border: 1px solid #d6d6d6;
     border-radius: 3px;
-    margin: 20px 0px;
+    margin: 24px 0px;
 }
 
 
@@ -784,7 +810,7 @@ pre code {
 }
 
 hr {
-    border-top: 1px solid rgba(16, 85, 96, 0.1);
+    border-top: 1px solid #DCE0E4;
 }
 
 
@@ -873,10 +899,6 @@ hr {
     margin-left: 0px;
 }
 
-.docs-content section:first-child {
-    padding-top: 1rem;
-}
-
 .docs-content ol li,
 .docs-content ul li {
     margin-top: 10px;
@@ -899,7 +921,7 @@ hr {
 /*=== 3.3 Section Divider ===*/
 
 .divider {
-    margin: 4rem 0;
+    margin: 32px 0;
 }
 
 
@@ -911,7 +933,7 @@ hr {
 
 #header .navbar {
     padding: 0px;
-    max-height: 70px;
+    max-height: 68px;
     align-content: center;
 }
 
@@ -2205,8 +2227,8 @@ hr {
 /* 5.4 Nav */
 
 .nav .nav-item .nav-link {
-    color: #222222;
-    height: 36px;
+    color: rgba(20, 22, 24, 0.8);
+    height: 40px;
 }
 
 .nav.nav-light .nav-item .nav-link {
@@ -2301,7 +2323,7 @@ hr {
 }
 
 .nav-tabs .nav-item .nav-link:not(.active):hover {
-    color: #0366d6;
+    color: #141618;
 }
 
 .nav-tabs.flex-column {
@@ -2363,12 +2385,15 @@ hr {
 }
 
 .nav-tabs .nav-item .nav-link {
+    padding: 8px 16px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 24px;
     color: rgba(20, 22, 24, 0.8);
 }
 
 .nav-tabs .nav-item .nav-link:hover {
+    border-radius: 4px 4px 0px 0px;
     background-color: rgba(20, 22, 24, 0.04);
 }
 
@@ -3505,11 +3530,10 @@ code {
 
 ul>.block-children,
 ol>.block-children {
-    margin-left: 0px;
+    margin-left: 11px;
 }
 
 .lead {
-    padding: 0px 0px 0px 20px;
     border-left: 1px solid #007bff;
     margin-left: 20px;
 }
@@ -3517,6 +3541,7 @@ ol>.block-children {
 .lead::before {
     content: url("data:image/svg+xml,%3Csvg width='7' height='7' viewBox='0 0 7 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.628 0C2.772 0.888 2.844 1.812 2.844 2.772C2.844 3.924 2.604 4.752 2.124 5.256C1.644 5.76 0.936 6.012 0 6.012V5.04C0.6 5.04 1.032 4.896 1.296 4.608C1.56 4.32 1.692 3.876 1.692 3.276V2.34H0.144V0H2.628ZM6.336 0C6.504 1.032 6.588 1.956 6.588 2.772C6.588 3.924 6.348 4.752 5.868 5.256C5.388 5.76 4.68 6.012 3.744 6.012V5.04C4.344 5.04 4.764 4.896 5.004 4.608C5.268 4.32 5.4 3.876 5.4 3.276V2.34H3.888V0H6.336Z' fill='%230F62FE'/%3E%3C/svg%3E%0A");
     position: relative;
+    top: -10px;
     left: -26px;
     margin-left: -11px;
 }
@@ -3546,7 +3571,7 @@ ol>.block-children {
 /* Token containers */
 
 .token-container {
-    margin: 30px 0px;
+    margin: 24px 0px;
 }
 
 .token-preview-container {
@@ -3794,7 +3819,7 @@ ol>.block-children {
 .alert {
     padding: 20px 20px 20px 52px;
     border: 0px;
-    margin-top: 20px;
+    margin: 24px 0 48px 0;
 }
 
 .embed-responsive {
@@ -3803,7 +3828,6 @@ ol>.block-children {
 }
 
 .alert.alert-info {
-    color: rgba(0, 0, 0, 0.8);
     background-color: #f2f4f5;
 }
 
@@ -4035,7 +4059,7 @@ ol>.block-children {
 
 .container-tabs {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     border-bottom: 1px solid #f2f4f5;
     position: relative;
 }
@@ -4082,9 +4106,9 @@ ol>.block-children {
 .container-footer>.slider h1 {
     padding: 0px;
     margin: 0px;
-    color: var(--colorDocsViewBlackBlack1);
-    font-size: 48px;
-    font-weight: bold;
+    color: #141618;
+    font-size: 40px;
+    font-weight: 700;
     margin: 0 0 20px 0;
 }
 
@@ -4092,10 +4116,10 @@ ol>.block-children {
 .container-footer>.slider .subtitle {
     padding: 0px 0 28px 0;
     margin: 0;
-    color: var(--colorDocsViewBlackBlack1);
+    color: #141618;
+    font-weight: 400;
     font-size: 20px;
-    font-weight: normal;
-    line-height: 28px;
+    line-height: 30px;
     max-width: 768px;
 }
 
@@ -4126,7 +4150,7 @@ ol>.block-children {
 }
 
 .container-tabs>.tabbed-navigation {
-    height: 45px;
+    height: 48px;
 }
 
 .container-tabs>.tabbed-navigation {
@@ -4202,10 +4226,6 @@ ol>.block-children {
     align-self: flex-start;
 }
 
-#content-nav-container {
-    margin-top: 16px;
-}
-
 #content-nav>ul>li.sub {
     margin-left: 12px;
 }
@@ -4220,15 +4240,25 @@ ol>.block-children {
 #content-nav li.active>a {
     color: #0f62fe;
     font-weight: 500;
+    position: relative;
 }
 
 #content-nav li.active>a::before {
     content: "";
     position: absolute;
     width: 1px;
-    height: 16px;
-    left: -1px;
+    height: 100%;
+    left: -17px;
+    top: 0px;
     border-left: 1px solid #0f62fe;
+}
+
+#content-nav li.sub.active>a::before {
+    left: -29px;
+}
+
+#content-nav li.sub-2.active>a::before {
+    left: -41px;
 }
 
 #content-nav ul {
@@ -4259,18 +4289,18 @@ ol>.block-children {
     text-decoration: none;
     display: block;
     padding: 6px 0px;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 12px;
-    line-height: 16px;
+    color: rgba(20, 22, 24, 0.5);
+    font-size: 13px;
+    line-height: 20px;
     transition: all 50ms ease-in-out;
     /* 💡 This small transition makes setting of the active state smooth */
 }
 
 #content-nav .content-nav-header {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(20, 22, 24, 0.5);
     text-transform: uppercase;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     line-height: 16px;
     display: block;
     padding-top: 8px;
@@ -4287,8 +4317,12 @@ ol>.block-children {
 }
 
 .nav-tabs {
+    margin-top: 8px!important;
     border-bottom: 0px;
-    margin-top: 8px !important;
+}
+
+#section-content-page .nav-tabs {
+    margin-top: 24px !important;
 }
 
 .embed-responsive-item {
@@ -4302,6 +4336,7 @@ ol>.block-children {
     border-radius: 4px;
     margin-bottom: 1rem;
     overflow: hidden;
+    margin: 24px 0;
 }
 
 .embed-url,
@@ -4437,7 +4472,11 @@ ol>.block-children {
 
 .image-container {
     width: 100%;
-    margin: 30px 0px;
+    margin: 24px 0px;
+}
+
+.image-container img {
+    border-radius: 4px;
 }
 
 td .image-container {
@@ -4446,19 +4485,19 @@ td .image-container {
 
 .image-container p {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(20, 22, 24, 0.5);
 }
 
 .caption {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(20, 22, 24, 0.5);
 }
 
 .sandbox-main-wrapper {
     border: 1px solid #d6d6d6;
     border-radius: 3px;
     overflow: hidden;
-    margin: 20px 0px;
+    margin: 24px 0px;
 }
 
 .sandbox-container {
@@ -4577,7 +4616,7 @@ iframe {
 
 .storybook-state-wrapper {
     display: grid;
-    margin: 0px 0px;
+    margin: 24px 0px;
 }
 
 .storybook-error,
@@ -4617,7 +4656,7 @@ div.storybook-state-wrapper+p.caption {
 /* Tile grids */
 
 .tile-container {
-    margin: 30px 0px;
+    margin: 24px 0px;
 }
 
 .tile-container .grid {
@@ -5508,7 +5547,7 @@ body.dark .fa-moon:before {
 
 .component-health-list {
     font-size: 14px;
-    margin: 30px 0px;
+    margin: 24px 0px;
 }
 
 .component-health-list a:hover {
@@ -5664,10 +5703,15 @@ body.dark .fa-moon:before {
     color: #141618;
 }
 
+.tab-pills {
+    margin-top: 24px!important;
+    margin-bottom: 24px;
+}
+
 .tab-content-block {
     background: #ffffff;
     border: 1px solid #dce0e4;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 16px 24px;
 }
 
@@ -5676,7 +5720,8 @@ body.dark .fa-moon:before {
     border: 0;
     border-left: 1px solid #dce0e4;
     border-radius: 0px;
-    min-height: 100%;
+    margin-bottom: 24px;
+    min-height: calc(100% - 24px);
 }
 
 .nav-tabs-inline {
@@ -6421,6 +6466,10 @@ table.data-table tr td> :first-child {
 table.data-table tr th> :first-child,
 table.data-table tr td> :last-child {
     margin-bottom: 0 !important;
+}
+
+.data-table-wrapper {
+    margin: 24px 0;
 }
 
 div.data-table-wrapper {

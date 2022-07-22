@@ -23,7 +23,7 @@
                         {[ case 3 ]}
                             {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
                     {[/]}
-                    <li class="{{ menuClass }}"><a href="#section-{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
+                    <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
                     {[/]}
                 {[/]}
             </ul>
