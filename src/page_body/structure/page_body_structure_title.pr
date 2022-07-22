@@ -9,7 +9,7 @@
 {[ let headerConfiguration = configuration.header /]}
 
 {* Title *}
-{[ let title = (group.groupBehavior === "Tabs" ? group.title : page.title) /]}
+{[ let title = (group.groupBehavior === "Tabs" ? htmlSafeString(group.title) : htmlSafeString(page.title)) /]}
 
 {* Configure appropriate classes based on the configuration *}
 {[ let centeredClass = (headerConfiguration.alignment === "Center" ? "centered" : "") /]}
@@ -94,10 +94,10 @@
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
             {* Show title - always *}
-            <h1 style="{{ style }}">{{ title.replacing("\n", "<br />") }}</h1>
+            <h1 style="{{ style }}">{{ withHTMLNewlines(title) }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
-                <p class="subtitle" style="{{ style }}">{{ headerConfiguration.description.replacing("\n", "<br />") }}</p>
+                <p class="subtitle" style="{{ style }}">{{ withHTMLNewlines(htmlSafeString(headerConfiguration.description)) }}</p>
             {[/]}
         {[/]}
     </div>
@@ -111,7 +111,7 @@
             {[ for tab in group.pages ]}
             <li class="nav-item">
                 {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
-                <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ tab.title }}</a>
+                <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ htmlSafeString(tab.title) }}</a>
             </li>
             {[/]}
         </ul>

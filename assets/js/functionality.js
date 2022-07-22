@@ -1,31 +1,3 @@
-/*
-================================================================
-* Use this file to modify the JS behavior of the documentation
-================================================================
-*/
-
-/*-----------------------------
-    Magnific Popups
-------------------------------- */
-
-// Image on Modal
-$(".popup-img").each(function() {
-    $(this).magnificPopup({
-        type: "image",
-        tLoading: '<div class="preloader"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>',
-        closeOnContentClick: !0,
-        mainClass: "mfp-fade",
-    })
-})
-
-// YouTube/Viemo Video & Gmaps
-$(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
-    $(this).magnificPopup({
-        type: "iframe",
-        mainClass: "mfp-fade",
-    })
-})
-
 /*------------------------
    Content menu tracking
 -------------------------- */
@@ -33,29 +5,52 @@ $(".popup-youtube, .popup-vimeo, .popup-gmaps").each(function() {
 $(window).on("load", function() {
     let sections = []
 
+    // Store and restore menu scroll offset
+    const scroll = localStorage.getItem("menu.scroll.position.top")
+    if (scroll) {
+        $(".bg-sidebar").scrollTop(scroll)
+    }
+
+    document.querySelectorAll(".bg-sidebar").forEach((section) => {
+        section.addEventListener(
+            "scroll",
+            function() {
+                localStorage.setItem("menu.scroll.position.top", section.scrollTop)
+            },
+            false
+        )
+    })
+
     // Create intersection observer for all sections
     const observer = new IntersectionObserver((_entries) => {
-        /* Use this version if you want to highlight all headers in the viewport. The enabled version tracks only the top-most visible header item
-    let isSelected = false
-	for (let section of sections) {
-		let id = section.getAttribute("id")
-		console.log(id)
-		if (isElementInViewport(section) && !isSelected) {
-			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
-			// isSelected = true
-		} else {
-			document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
-		}
-	}*/
-        let visibleSections = sections.filter((s) => isElementInViewport(s))
-        let sortedVisibleSections = visibleSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
-            // Unactivate all sections
+
+        // Highlight headers in viewport
+        let isAnythingSelected = false
         for (let section of sections) {
-            document.querySelector(`nav li a[href="#${section.getAttribute("id")}"]`).parentElement.classList.remove("active")
+            let id = section.getAttribute("id")
+            if (isElementInViewport(section)) {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+                isAnythingSelected = true
+            } else {
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove("active")
+            }
         }
-        // Activate top most visible in the viewport section
-        if (sortedVisibleSections.length > 0) {
-            document.querySelector(`nav li a[href="#${sortedVisibleSections[0].getAttribute("id")}"]`).parentElement.classList.add("active")
+
+        // If there are no headers in the viewport, then highlight the one which is closest to the viewport currently.
+        if (!isAnythingSelected) {
+            let minDistance = 9999999
+            let currentSection = undefined
+            for (let section of sections) {
+                let distance = closestDistanceToViewportEdge(section)
+                if (distance < minDistance) {
+                    minDistance = distance
+                    currentSection = section
+                }
+            }
+            if (currentSection) {
+                let id = currentSection.getAttribute("id")
+                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add("active")
+            }
         }
     })
 
@@ -84,29 +79,78 @@ function isElementInViewport(el) {
     )
 }
 
+function closestDistanceToViewportEdge(el) {
+    var rect = el.getBoundingClientRect()
+    return Math.min(
+        Math.abs(rect.top),
+        Math.abs(rect.bottom)
+    )
+}
+
+
 /*-----------------------------
-    Search - Interface
+    Search - Interface manipulation
 ------------------------------- */
 
 $(".search").on("click", function(e) {
-    // Toggle the search view when clicking the search icon
+    showSearch()
+    e.preventDefault()
+})
+
+$(".SNSearch").on("click", function(e) {
+    hideIfShownSearch()
+})
+
+$(".SNSearch-box").on("click", function(e) {
+    e.stopPropagation()
+})
+
+function showSearch(e) {
+    // Show the search view by running fade-in of the view
     $(".SNSearch").toggleClass("active")
     if ($(".SNSearch").is(".active")) {
+        // Remove all results
         $(".SNSearch-input").val("")
         $(".SNSearch-input").focus()
         $(".SNSearch-results").html(`<p class="section-title empty">Start your search by typing your phrase</p>`)
     }
     e.preventDefault()
+}
+
+function hideOrClearSearch(e) {
+    // Hide the search view by running fade-out of the view or clear input if not empty
+    if ($(".SNSearch-input").val().length > 0) {
+        $(".SNSearch-input").val("")
+    } else {
+        $(".SNSearch").removeClass("active")
+    }
+    e.preventDefault()
+}
+
+function hideIfShownSearch() {
+    if ($(".SNSearch").is(".active")) {
+        $(".SNSearch").removeClass("active")
+    }
+}
+
+document.addEventListener('animationstart', function(e) {
+    if (e.animationName === 'fade-in') {
+        e.target.classList.add('did-fade-in')
+    }
 })
 
-$(document).keyup(function(e) {
-    // Hide the search view with escape key
-    if (e.which == 27) $(".SNSearch").removeClass("active")
+document.addEventListener('animationend', function(e) {
+    if (e.animationName === 'fade-out') {
+        e.target.classList.remove('did-fade-in')
+    }
 })
 
 /*-----------------------------
-	  Search - Results and processing
-  ------------------------------- */
+    Search - Results and processing
+------------------------------- */
+
+let activeSearchResults = []
+let activeSearchIndex = 0
 
 $(".SNSearch-input").on("input", function(e) {
     let searchString = $(this).val()
@@ -146,31 +190,54 @@ $(".SNSearch-input").on("input", function(e) {
     resultObject.html("")
 
     // Prepare data
-    let textResults = []
-    let headingResults = []
+    let contentResults = []
+    let sectionResults = []
+    let pageResults = []
 
     for (let result of searchResult) {
         let item = result.item
         item.startIndex = item.text.toLowerCase().indexOf(searchString.toLowerCase())
         item.endIndex = item.startIndex + searchString.length
 
-        if (item.type === "body") {
-            textResults.push(item)
+        if (item.type === "contentBlock") {
+            contentResults.push(item)
+        } else if (item.type === "sectionHeader") {
+            sectionResults.push(item)
         } else {
-            headingResults.push(item)
+            pageResults.push(item)
+        }
+    }
+
+    // Add pages
+    if (pageResults.length > 0) {
+        let results = pageResults
+        resultObject.append(`<p class="section-title">Pages & Categories (${results.length})</p>`)
+        let count = 0
+        for (let result of results) {
+            resultObject.append(`
+		  <a href="${result.url}" class="sn-search-result-link">
+		  <div class="result">
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">${result.category}</p>
+		  </div>
+		  </a>`)
+                // Allow up to 5 results to be shown
+            if (++count > 5) {
+                break
+            }
         }
     }
 
     // Add results matching titles first, then text block results
-    if (headingResults.length > 0) {
-        resultObject.append(`<p class="section-title">Sections (${headingResults.length})</p>`)
+    if (sectionResults.length > 0) {
+        resultObject.append(`<p class="section-title">Content sections (${sectionResults.length})</p>`)
         let count = 0
-        for (let heading of headingResults) {
+        for (let result of sectionResults) {
             resultObject.append(`
-		  <a href="${heading.url}" class="sn-search-result-link">
+		  <a href="${result.url}" class="sn-search-result-link">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(heading.text, heading.startIndex, heading.endIndex)}</p>
-			<p class="section-result-text">On page ${heading.path}</p>
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">On page ${result.category}</p>
 		  </div>
 		  </a>`)
                 // Allow up to 5 results to be shown
@@ -181,32 +248,83 @@ $(".SNSearch-input").on("input", function(e) {
     }
 
     // Add text block results
-    if (textResults.length > 0) {
-        resultObject.append(`<p class="section-title">Text (${textResults.length})</p>`)
+    if (contentResults.length > 0) {
+        resultObject.append(`<p class="section-title">Content (${contentResults.length})</p>`)
         let count = 0
-        for (let text of textResults) {
+        for (let result of contentResults) {
             resultObject.append(`
-		  <a href="${text.url}" class="sn-search-result-link">
+		  <a href="${result.url}" class="sn-search-result-link">
 		  <div class="result">
-			<p class="section-result-header">${highlightRanges(text.text, text.startIndex, text.endIndex)}</p>
-			<p class="section-result-text">On page ${text.path}</p>
+			<p class="section-result-header">${highlightRanges(result.text, result.startIndex, result.endIndex)}</p>
+			<p class="section-result-text">On page ${result.category}</p>
 		  </div>
 		  </a>`)
-                // Allow up to 5 results to be shown
-            if (++count > 5) {
+                // Allow up to 20 results to be shown
+            if (++count > 20) {
                 break
             }
         }
     }
 
     $(".sn-search-result-link").on("click", function(e) {
-        console.log("click!")
-        $(".SNSearch").removeClass("active")
+        hideIfShownSearch()
     })
+
+    resetActiveSearchIndex()
+    updateActiveSearchIndex()
 })
 
-function highlightRanges(s, startIndex, endIndex) {
+function resetActiveSearchIndex() {
+    activeSearchIndex = 0
+}
 
+function updateActiveSearchIndex() {
+    $(".sn-search-result-link").removeClass("selected")
+    const activeResult = $(`.sn-search-result-link:eq(${activeSearchIndex})`)
+    if (activeResult) {
+        activeResult.addClass("selected")
+        scrollIntoViewIfNeeded(activeResult[0], activeResult.parent()[0])
+    }
+}
+
+function previousSearchResult(event) {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    event.preventDefault()
+    if (activeSearchIndex > 0) {
+        activeSearchIndex--
+    }
+    updateActiveSearchIndex()
+}
+
+function nextSearchResult(event) {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    event.preventDefault()
+    if (activeSearchIndex < $(".sn-search-result-link").length - 1) {
+        activeSearchIndex++
+    }
+    updateActiveSearchIndex()
+}
+
+function activateCurrentSearchResult(event) {
+    if (!$(".SNSearch").is(".active")) {
+        return
+    }
+    event.preventDefault()
+    const link = $(`.sn-search-result-link:eq(${activeSearchIndex})`)
+    if (link) {
+        const href = link.attr('href')
+        if (href) {
+            window.location.href = href
+            hideIfShownSearch()
+        }
+    }
+}
+
+function highlightRanges(s, startIndex, endIndex) {
     if (startIndex === -1) {
         return s
     }
@@ -221,6 +339,42 @@ function highlightRanges(s, startIndex, endIndex) {
 function replaceRange(s, start, end, substitute) {
     return s.substring(0, start) + substitute + s.substring(end)
 }
+
+function scrollIntoViewIfNeeded(target, parent) {
+    let rectElem = target.getBoundingClientRect(),
+        rectContainer = parent.getBoundingClientRect()
+    if (rectElem.bottom > rectContainer.bottom) target.scrollIntoView(false)
+    if (rectElem.top < rectContainer.top) target.scrollIntoView()
+}
+
+hotkeys.filter = function(event) {
+    return true
+}
+
+/*-----------------------------
+    Hotkeys
+------------------------------- */
+
+hotkeys("cmd+k,ctrl+k,esc, up, down, enter, return", function(event, handler) {
+    switch (handler.key) {
+        case "esc":
+            hideOrClearSearch(event)
+            break
+        case "cmd+k":
+        case "ctrl+k":
+            showSearch(event)
+            break
+        case "up":
+            previousSearchResult(event)
+            break
+        case "down":
+            nextSearchResult(event)
+            break
+        case "enter":
+        case "return":
+            activateCurrentSearchResult(event)
+    }
+})
 
 /*-----------------------------
     Versions
@@ -312,23 +466,22 @@ $(function() {
 })
 
 function makeLive(sandboxId) {
-
     // Set textarea code
     const code = window.sandboxEngine.getCodeForSandboxId(sandboxId)
-    $('#codepreview-editable-' + sandboxId).val(code)
+    $("#codepreview-editable-" + sandboxId).val(code)
 
     // Change code preview to textarea
-    $('#codepreview-static-' + sandboxId).css({ display: "none" })
-    $('#codepreview-editable-' + sandboxId).css({ display: "inherit" })
+    $("#codepreview-static-" + sandboxId).css({ display: "none" })
+    $("#codepreview-editable-" + sandboxId).css({ display: "inherit" })
 
     // Toggle code view, if it wasn't shown already, and focus
-    $('#codepreview-' + sandboxId).addClass("show")
-    $('#codepreview-editable-' + sandboxId).focus()
-    $('#codepreview-editable-message-' + sandboxId).css({ display: "inherit" })
+    $("#codepreview-" + sandboxId).addClass("show")
+    $("#codepreview-editable-" + sandboxId).focus()
+    $("#codepreview-editable-message-" + sandboxId).css({ display: "inherit" })
 
     // Set observer to notify sandbox engine about changes to the code
-    $('#codepreview-editable-' + sandboxId).off("input")
-    $('#codepreview-editable-' + sandboxId).on("input", function(e) {
+    $("#codepreview-editable-" + sandboxId).off("input")
+    $("#codepreview-editable-" + sandboxId).on("input", function(e) {
         let code = $(this).val()
         window.sandboxEngine.updateSandboxCode(sandboxId, code)
     })
@@ -423,17 +576,15 @@ $("#sidebarCollapse").on("click", function(e) {
 -------------------------- */
 
 $(document).ready(function() {
-
-    $('.component-health-row').on("click", function(e) {
-        console.log("tap")
-            // Toggle the overlay
-        $(".health-overlay").toggleClass("d-none");
-        e.preventDefault();
+    $(".component-health-row").on("click", function(e) {
+        // Toggle the overlay
+        $(".health-overlay").toggleClass("d-none")
+        e.preventDefault()
     })
 
-    $('.health-overlay').on("click", function(e) {
+    $(".health-overlay").on("click", function(e) {
         // Toggle the overlay
-        $(".health-overlay").toggleClass("d-none");
-        e.preventDefault();
+        $(".health-overlay").toggleClass("d-none")
+        e.preventDefault()
     })
 })

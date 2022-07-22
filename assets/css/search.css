@@ -5,10 +5,24 @@
     position: fixed;
     top: 0;
     z-index: 99;
-    display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, .25);
     padding: 1rem;
+    display: none;
+}
+
+.SNSearch a {
+    text-decoration: none;
+}
+
+.SNSearch.active {
+    display: block;
+    animation: fade-in 0.15s;
+}
+
+.SNSearch:not(.active).did-fade-in {
+    display: block;
+    animation: fade-out 0.15s;
 }
 
 .SNSearch.SNSearch-container {
@@ -34,14 +48,6 @@
     border-bottom: 1px solid #f2f4f5;
     display: flex;
     justify-content: space-between;
-}
-
-.SNSearch {
-    display: none;
-}
-
-.SNSearch.SNSearch-container.active {
-    display: block;
 }
 
 .SNSearch-input {
@@ -79,13 +85,14 @@
 }
 
 .SNSearch-footer {
-    height: 52px;
+    height: 44px;
     width: 100%;
     padding: 12px;
     border-top: 1px solid #f2f4f5;
     display: flex;
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.3);
+    font-size: 13px;
 }
 
 .SNSearch-footer span {
@@ -98,8 +105,8 @@
 .SNSearch-results p.section-title {
     font-size: 12px;
     line-height: 14px;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    color: #868F98;
     margin: 24px 0px 12px 0px;
 }
 
@@ -139,8 +146,12 @@
     color: #0F62FE;
 }
 
+.SNSearch-results .result {
+    border-radius: 6px;
+}
+
 .SNSearch-results .result:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: #F9F9FA;
 }
 
 .SNSearch-close {
@@ -154,11 +165,46 @@
     cursor: pointer;
 }
 
+.sn-search-result-link.selected {
+    display: block;
+}
+
+.sn-search-result-link.selected .result {
+    background-color: #F2F4F5;
+}
+
 
 /* Responsive */
 
 @media (max-width: 768px) {
     .SNSearch.SNSearch-container {
         padding: 0;
+    }
+}
+
+.backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(1.1, 1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.1, 1.1);
     }
 }

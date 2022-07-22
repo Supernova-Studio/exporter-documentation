@@ -38,6 +38,8 @@ declare global {
 
   type DocumentationItemType = "Page" | "Group"
 
+  type DocumentationGroupBehavior = "Tabs" | "Group"
+
   type DocumentationPageBlockType =
     | "Text"
     | "Heading"
@@ -286,6 +288,7 @@ declare global {
     childrenIds: Array<string>
     children: Array<DocumentationItem>
     parent: DocumentationGroup | null
+    groupBehavior: DocumentationGroupBehavior
   }
 
   type DocumentationPage = DocumentationItem & {

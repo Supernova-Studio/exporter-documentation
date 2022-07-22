@@ -39,7 +39,7 @@
                         {* Re-enable if we only want to show groups *}
                         {* {[ if item.type.equals("Group") ]} *}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a></li>
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ htmlSafeString(item.title) }}</a></li>
                         {* {[/]} *}
                     {[/]}
                 {[/]}

@@ -7,6 +7,10 @@
 
 export function contrastColor(color: string): "dark" | "light" {
     
+    if (!color) {
+        return "dark"
+    }
+
     if (color.indexOf('#') === 0) {
         color = color.slice(1);
     } 

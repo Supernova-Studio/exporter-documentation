@@ -4,29 +4,40 @@
 import { pageUrl } from "./urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+// MARK: - Definition
+
+export enum DocSearchResultDataType {
+  contentBlock = "contentBlock",
+  sectionHeader = "sectionHeader",
+  pageTitle = "pageTitle",
+  groupTitle = "groupTitle",
+}
+
+export type DocSearchResultData = {
+  id: number
+  pageName: string
+  pageId: string | undefined
+  groupId: string | undefined
+  blockId: string | undefined
+  text: string,
+  category: string,
+  type: DocSearchResultDataType
+  url: string
+}
+
+// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Search index processing
 
-export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: string): string {
+export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Array<DocumentationGroup>, domain: string): string {
   // Construct search index for Fuse.js
   // Note that by changing the data, or including more data here, you can improve behaviors of the search quite drastically
   // Example: You can pre-download data from different source and include it in your doc search index as well
-  let id = 0
-  let data: Array<{
-    id: number
-    name: string
-    path: string
-    url: string
-    text: string
-    type: "header" | "body"
-  }> = []
-
+  let id: number = 0
+  let data: Array<DocSearchResultData> = []
   // Process every page for data
   for (let page of pages) {
-    // Basic information
-    let name = page.title
-
     // Path and url creation
-    let subpaths: Array<string> = [name]
+    let subpaths: Array<string> = [page.title]
     let parent: DocumentationGroup | null = page.parent
     while (parent) {
       if (parent?.isRoot) {
@@ -35,63 +46,76 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, domain: st
       subpaths.splice(0, 0, parent.title)
       parent = parent.parent
     }
-    let path = subpaths.join(" / ")
     let url = pageUrl(page, domain)
 
-    // Header and text parsing
-    let allBlocks = flattenedBlocksOfPage(page)
-    var texts: Array<{
-      text: string,
-      blockId: string
-    }> = []
-    var headers: Array<{
-      text: string,
-      blockId: string
-    }> = []
+    // For tabs, use name of the containing group, otherwise we get lot of design/code which is not very useful
+    let pageName = page.title
+    if (page.parent && page.parent.groupBehavior === "Tabs") {
+      pageName = page.parent.title + "/" + pageName
+    }
 
+    let category = subpaths.join(" / ")
+
+    // Extract rich text from headers and any text piece there is
+    let allBlocks = flattenedBlocksOfPage(page)
     for (let block of allBlocks) {
-      if (
-        block.type === "Text" ||
-        block.type === "Callout" ||
-        block.type === "OrderedList" ||
-        block.type === "UnorderedList" ||
-        block.type === "Quote"
-      ) {
-        let text = textOfBlock(block as DocumentationPageBlockText)
-        if (text.text.length > 0) {
-          texts.push(text)
-        }
-      } else if (block.type === "Heading") {
-        let text = textOfBlock(block as DocumentationPageBlockText)
-        if (text.text.length > 0) {
-          headers.push(text)
-        }
+      if (block.hasOwnProperty("text")) {
+        let textBlock = block as DocumentationPageBlockText
+        data.push({
+          id: id++,
+          text: textBlock.text.spans.map((s) => s.text).join(""),
+          type: block.type === "Heading" ? DocSearchResultDataType.sectionHeader : DocSearchResultDataType.contentBlock,
+          blockId: block.id,
+          pageId: page.id,
+          groupId: undefined,
+          pageName: pageName,
+          category: category,
+          url: url + "#search-" + block.id,
+        })
       }
     }
 
-    // Construct pieces from text information
-    for (let text of texts) {
-      data.push({
-        id: id++,
-        name: name,
-        path: path,
-        url: url + "#search-" + text.blockId,
-        text: text.text,
-        type: "body",
-      })
-    }
+    // Push page information
+    data.push({
+      id: id++,
+      text: page.title,
+      type: DocSearchResultDataType.pageTitle,
+      blockId: undefined,
+      pageId: page.id,
+      groupId: undefined,
+      pageName: pageName,
+      category: category,
+      url: url,
+    })
+  }
 
-    // Construct pieces from headers
-    for (let header of headers) {
-      data.push({
-        id: id++,
-        name: name,
-        path: path,
-        url: url + "#search-" + header.blockId,
-        text: header.text,
-        type: "header",
-      })
+  // Process every group for data
+  for (let group of groups) {
+    // Path and url creation
+    let subpaths: Array<string> = [group.title]
+    let parent: DocumentationGroup | null = group.parent
+    while (parent) {
+      if (parent?.isRoot) {
+        break
+      }
+      subpaths.splice(0, 0, parent.title)
+      parent = parent.parent
     }
+    let groupUrl = pageUrl(group, domain)
+    let category = subpaths.join(" / ")
+
+    // Push page information
+    data.push({
+      id: id++,
+      text: group.title,
+      type: DocSearchResultDataType.groupTitle,
+      blockId: undefined,
+      pageId: undefined,
+      groupId: group.id,
+      pageName: group.title,
+      category: category,
+      url: groupUrl,
+    })
   }
 
   // Construct data and make index readable for easier debugging for now
@@ -118,9 +142,9 @@ function flattenedBlocksOfBlock(block: DocumentationPageBlock): Array<Documentat
   return subblocks
 }
 
-function textOfBlock(block: DocumentationPageBlockText): { text: string, blockId: string } {
+function textOfBlock(block: DocumentationPageBlockText): { text: string; blockId: string } {
   return {
     text: block.text.spans.map((s) => s.text).join(""),
-    blockId: block.id 
+    blockId: block.id,
   }
 }

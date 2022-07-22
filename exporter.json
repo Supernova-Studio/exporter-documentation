@@ -5,7 +5,7 @@
     "organization": "Moveinc",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.36",
+    "version": "1.46",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -160,11 +160,19 @@
                 "category": "Search Engines"
             },
             {
+                "key": "contentMarkdownToken",
+                "type": "string",
+                "label": "Markdown private token",
+                "description": "If provided, your markdown will authenticate using this token. Token must contain its type, format: ['basic' | 'Bearer' | 'token'] [token].",
+                "category": "Content",
+                "default": ""
+            },
+            {
                 "key": "advancedCustomizationShowNextPreviousNavigation",
                 "type": "boolean",
                 "label": "Show Next / Previous navigation",
                 "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": true
             },
             {
@@ -172,7 +180,7 @@
                 "type": "boolean",
                 "label": "Show Footer",
                 "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": true
             },
             {
@@ -183,14 +191,14 @@
                 "category": "Advanced",
                 "isMultiline": true,
                 "inputType": "code",
-                "default": "<div class=\"container-footer\"\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-5\">\r\n            <h5>My Doc Site<\/h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!<\/p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company<\/p>\r\n        <\/div>\r\n        <div class=\"col-3 offset-1\">\r\n        <h5>Resources<\/h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog<\/a><\/li>\r\n            <li><a href=\"#\">Storybook<\/a><\/li>\r\n            <li><a href=\"#\">Figma<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n        <div class=\"col-3\">\r\n        <h5>Support<\/h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue<\/a><\/li>\r\n            <li><a href=\"#\">Terms & Conditions<\/a><\/li>\r\n            <li><a href=\"#\">Privacy Policy<\/a><\/li>\r\n        <\/ul>\r\n        <\/div>\r\n    <\/div>\r\n    <\/div>\r\n<\/div>"
+                "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
             },
             {
                 "key": "advancedCustomizationCustomCSS",
                 "type": "string",
                 "label": "Custom CSS",
                 "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "body,\r\nhtml {\r\n    font-family: Inter, sans-serif;\r\n}",
                 "isMultiline": true,
                 "inputType": "code"
@@ -201,7 +209,7 @@
                 "label": "Custom Head Code",
                 "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
                 "category": "Advanced",
-                "default": "<style>\r\nbody {\r\n\r\n}\r\n<\/style>\r\n\r\n<script>\r\n    \r\n<\/script>",
+                "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
                 "isMultiline": true,
                 "inputType": "code"
             },
@@ -211,7 +219,7 @@
                 "label": "Custom Font - Header",
                 "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
                 "category": "Advanced",
-                "default": "<link href=\"https:\/\/fonts.googleapis.com\/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
+                "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
                 "isMultiline": true,
                 "inputType": "code"
             },
@@ -220,23 +228,15 @@
                 "type": "boolean",
                 "label": "Show Site CTA",
                 "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": false
-            },
-            {
-                "key": "advancedCustomizationShowVersionDropdown",
-                "type": "boolean",
-                "label": "Show Version Dropdown",
-                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-                "category": "Advanced",
-                "default": true
             },
             {
                 "key": "advancedCustomizationCTAText",
                 "type": "string",
                 "label": "Site CTA - Text",
                 "description": "Text of the CTA button.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "Open site",
                 "isMultiline": false,
                 "inputType": "plain"
@@ -246,7 +246,7 @@
                 "type": "string",
                 "label": "Site CTA - URL to open",
                 "description": "Link which will open when CTA button is clicked by the user.",
-                "category": "Advanced",
+                "category": "Look & Feel",
                 "default": "",
                 "isMultiline": false,
                 "inputType": "plain"
@@ -256,6 +256,14 @@
                 "type": "boolean",
                 "label": "Site CTA - Open in new tab",
                 "description": "When enabled, CTA url you provided will open in a new tab.",
+                "category": "Look & Feel",
+                "default": true
+            },
+            {
+                "key": "advancedCustomizationShowVersionDropdown",
+                "type": "boolean",
+                "label": "Show Version Dropdown",
+                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
                 "category": "Advanced",
                 "default": true
             },
@@ -442,6 +450,73 @@
                 {
                     "name": "Pills",
                     "key": "pills"
+                }
+            ],
+            "TokenList": [{
+                    "name": "Table",
+                    "key": "table"
+                },
+                {
+                    "name": "Grid (4 columns)",
+                    "key": "grid-4",
+                    "isDefault": true
+                },
+                {
+                    "name": "Grid (3 columns)",
+                    "key": "grid-3"
+                },
+                {
+                    "name": "Grid (2 columns)",
+                    "key": "grid-2"
+                },
+                {
+                    "name": "Grid (1 column)",
+                    "key": "grid-1"
+                }
+            ],
+            "TokenGroup": [{
+                    "name": "Table",
+                    "key": "table",
+                    "isDefault": true
+                },
+                {
+                    "name": "Grid (4 columns)",
+                    "key": "grid-4"
+
+                },
+                {
+                    "name": "Grid (3 columns)",
+                    "key": "grid-3"
+                },
+                {
+                    "name": "Grid (2 column)",
+                    "key": "grid-2"
+                },
+                {
+                    "name": "Grid (1 columns)",
+                    "key": "grid-1"
+                }
+            ],
+            "Token": [{
+                    "name": "Table Row",
+                    "key": "table"
+                },
+                {
+                    "name": "Grid Item (1/4 width)",
+                    "key": "grid-4",
+                    "isDefault": true
+                },
+                {
+                    "name": "Grid Item (1/3 width)",
+                    "key": "grid-3"
+                },
+                {
+                    "name": "Grid Item (1/2 width)",
+                    "key": "grid-2"
+                },
+                {
+                    "name": "Grid Item (Full width)",
+                    "key": "grid-1"
                 }
             ]
         }

@@ -2,6 +2,49 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [1.44] - 2022-21-07
+### Content menu improvements
+
+- Content menu will now properly track all headers in viewport
+- Introduced logic that also checks for the last header in the viewport and will persist it until new one shows up
+
+## [1.43] - 2022-19-07
+### New polished design
+
+- We have polished design of the documentation - everything now has proper spacings, margings, paddings, line heights etc. This is to prepare documentation for customization
+- We have introduced several new variants how to render tokens
+- We have polished how lists and grids behave
+
+## [1.42] - 2022-19-07
+### New Search
+
+- Search was completely rewritten
+- It is now possible to search through pages, sections, text
+- Results are better formatted and show categories where the result comes from
+- It is now possible to invoke search using (cmd/ctrl)+(k)
+- It is now possible to clear input using (esc), second (esc) will close search
+- If there is no search, first (esc) will close search immediately
+- It is now possible to go through results using arrow up, arrow down
+- It is now possible to go directly to the result by pressing (enter/return)
+- New animation was added to make it feel much nicer :)
+
+## [1.40,41] - 2022-14-07
+### Deployment + usability fixes and improvements
+
+- Fixed lot of various issues
+- Added option to invoke search by keyboard (cmd/ctrl+k)
+
+## [1.38] - 2022-14-07
+### Deployment fixes
+
+- Fixed issue where status could prevent deployment of the docs under certain scenarios
+
+## [1.37] - 2022-06-07
+### Markdown fixes
+
+- Markdown will no longer fail build if it fails to download itself
+- Prepared base work for private markdowns
+
 ## [1.36] - 2022-09-06
 ### Visual fixes
 
