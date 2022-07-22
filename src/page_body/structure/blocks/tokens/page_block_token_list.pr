@@ -9,21 +9,31 @@
     {[ if (variant === "table") ]}
     {* Displaying the list of tokens as a table *}
 
-    <table class="token-wrapper">
-      {* Render all tokens *}
-       {[ for tokenId in block.tokenIds ]}
+      <table class="token-wrapper">
+        {* Render all tokens *}
+        {[ for tokenId in block.tokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
           {[ inject "page_block_token_variant_table_item" context token /]}
-      {[/]}
-    </table>
+        {[/]}
+      </table>
 
+      {[ elseif (variant.contains("color-stack")) ]}
+        {* Color stack – Displaying the list of tokens as a table *}
+
+        <div class="color-stack {{ variant }}">
+            {* Render all tokens *}
+        {[ for tokenId in block.tokenIds ]}
+          {[ const token = ds.tokenById(tokenId) /]}
+          {[ inject "page_block_token_variant_color_stack_item" context token /]}
+        {[/]}
+        </div>
     {[ else ]}
     {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
 
       <div class="grid {{ variant }}">
         {[ for tokenId in block.tokenIds ]}
-            {[ const token = ds.tokenById(tokenId) /]}
-            {[ inject "page_block_token_variant_grid_item" context token /]}
+          {[ const token = ds.tokenById(tokenId) /]}
+          {[ inject "page_block_token_variant_grid_item" context token /]}
         {[/]}
       </div>
 

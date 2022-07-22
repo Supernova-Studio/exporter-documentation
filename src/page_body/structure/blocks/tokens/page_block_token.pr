@@ -15,6 +15,13 @@
           {[ inject "page_block_token_variant_table_item" context token /]}
       </table>
 
+      {[ elseif (variant.contains("color-stack")) ]}
+      {* Color stack – Displaying the list of tokens as a table *}
+
+        <div class="color-stack {{ variant }}">
+            {[ inject "page_block_token_variant_color_stack_item" context token /]}
+        </div>
+
     {[ else ]}
     {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
 
