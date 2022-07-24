@@ -26,8 +26,8 @@
                 "key": "googleAnalyticsAPIKey",
                 "default": "",
                 "type": "string",
-                "label": "Google Analytics API key",
-                "description": "Add Google Analytics tracking to your documentation site by providing an API key",
+                "label": "Google Analytics Measurement ID",
+                "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
                 "category": "Analytics"
             },
             {
