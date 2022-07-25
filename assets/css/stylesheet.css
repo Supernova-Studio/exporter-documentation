@@ -798,7 +798,9 @@ pre code {
     background-color: #6c757d !important;
 }
 
+
 /* Paddings */
+
 .p-8 {
     padding: 8px;
 }
@@ -3823,7 +3825,9 @@ ol>.block-children {
     overflow-wrap: break-word;
 }
 
+
 /* Token stack */
+
 .token-container .stack {
     border: 1px solid #f2f4f5;
     border-radius: 8px;
@@ -3870,20 +3874,24 @@ ol>.block-children {
     border-bottom-right-radius: 8px;
 }
 
+
 /* fallback support for non-color tokens in Color stack type */
+
 .token-container .stack .stack-item.fallback .name {
     display: flex;
     gap: 8px;
     align-items: center;
 }
 
-.token-container .stack .stack-item.fallback  {
+.token-container .stack .stack-item.fallback {
     align-items: center;
     border-bottom: 1px solid #f2f4f5;
 }
-.token-container .stack .stack-item.fallback:last-child  {
+
+.token-container .stack .stack-item.fallback:last-child {
     border-bottom: 0;
 }
+
 
 /* Alert */
 
@@ -5453,7 +5461,6 @@ body.dark .fa-moon:before {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 11;
-    cursor: pointer;
 }
 
 .health-overlay-content .component-health-row {
@@ -5499,8 +5506,24 @@ body.dark .fa-moon:before {
     font-size: 12px;
 }
 
+.health-overlay-content .links a {
+    text-decoration: none;
+}
+
+.health-overlay-content .links .lighter {
+    color: #14161880;
+}
+
 .health-overlay-content .links .row {
     padding: 6px 16px;
+}
+
+.health-overlay-content .links a .row {
+    height: 30px;
+}
+
+.health-overlay-content .links a .row:hover {
+    background-color: rgb(236, 236, 236);
 }
 
 .health-overlay-content .links .row>div:nth-child(0) {

@@ -587,4 +587,9 @@ $(document).ready(function() {
         $(".health-overlay").toggleClass("d-none")
         e.preventDefault()
     })
+
+    $(".health-overlay-content").on("click", function(e) {
+        // Prevent closing the window
+        e.stopPropagation()
+    })
 })

@@ -4,7 +4,6 @@
 
 {* Get properties *}
 {[ let componentId = block.properties.componentId /]}
-{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
 
 {* Render content health block *}
 {[ if componentId ]}
@@ -13,6 +12,15 @@
             
         {[ let properties = component.properties /]}
         {[ let propertyValues = component.propertyValues /]}
+
+        {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+        {[ let linkPropertiesToHighlight = 0 /]}
+        {[ for property in component.properties ]}
+            {[ if (propertiesToHighlight.contains(property.persistentId) && property.propertyType === "URL" || property.propertyType === "Link") ]}
+                {[ linkPropertiesToHighlight = (linkPropertiesToHighlight + 1) /]}
+            {[/]}
+        {[/]}
+        {[ let staticPropertiesToHighlight = (propertiesToHighlight.count() - linkPropertiesToHighlight) /]}
 
         {* Get health tag *}
         {[ let healthTag = convertHealthTagIfAny(component) /]}
@@ -63,43 +71,72 @@
                     </div>  
                 </div>
 
-                {* Generate additional properties *}
-                {[ if (propertiesToHighlight.count() > 0) ]}
+                {* Generate properties that are of non-link type properties *}
+                {[ if (staticPropertiesToHighlight > 0) ]}
                     <div class="links">
                         {[ for property in component.properties ]}
-                            {[ if propertiesToHighlight.contains(property.persistentId) ]}
-                                {* Show property as it was whitelisted by the user *}
+                            {[ if (propertiesToHighlight.contains(property.persistentId) && ["Text", "Number", "Generic", "Boolean", "Select"].contains(property.propertyType)) ]}
+                                {* Generate content for each property *}
                                 <div class="row">
-                                    <div class="col-6"><strong>{{ property.name }}</strong></div>
+                                    {* Property name *}
+                                    <div class="col-6 lighter">{{ property.name }}</div>
+                                    {* Property value *}
                                     <div class="col-6 text-right">
-                                        {* Generate different view based on the type of property *}
-                                        {[ switch property.propertyType ]}
-                                            {[ case "Text" ]}
-                                            {[ case "Number" ]}
-                                                {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</div>
-                                            {[ case "Generic" ]}
-                                                <mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark>
-                                            {[ case "Boolean" ]}
-                                                <span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span>
-                                            {[ case "Select" ]}
+                                    {[ switch property.propertyType ]}
+                                        {[ case "Text" ]}
+                                            {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}
+                                        {[ case "Number" ]}
+                                            {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}
+                                        {[ case "Generic" ]}
+                                            <mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark>
+                                        {[ case "Boolean" ]}
+                                            <span class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span>
+                                        {[ case "Select" ]}
+                                            {[ let optionValue = "" /]}
+                                            {[ let optionColor = "" /]}
+                                            {[ let contrastColor = "dark" /]}
                                             {[ for option in property.options ]}
                                                 {[ if (option.id === propertyValues[property.codeName]) ]}
-                                                    {{ option.name }}
+                                                    {[ optionValue = option.name /]}
+                                                    {[ optionColor = option.backgroundColor /]}
+                                                    {[ contrastColor = contrastColor(optionColor) /]}
                                                 {[/]}
                                             {[/]}  
-                                            {[ case "Link" ]}
-                                            {* Not supported yet properly *}
-                                            <a href="#">
-                                                <img class="link-chevron" />
-                                            </a>
-                                            {[ case "URL" ]}
-                                            {* Not supported yet properly *}
-                                            <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
-                                                <img class="link-chevron" />
-                                            </a>
-                                        {[/]}
+                                            <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span>
+                                    {[/]}
                                     </div>
                                 </div>
+                            {[/]}
+                        {[/]}
+                    </div>
+                {[/]}
+
+                {[ if (linkPropertiesToHighlight > 0) ]}
+                    <div class="links">
+                        {[ for property in component.properties ]}
+                            {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL", "Link"].contains(property.propertyType)) ]}
+                                {* Generate link container, if needed *}
+                                {[ switch property.propertyType ]}
+                                    {[ case "URL" ]}
+                                    <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
+                                    {[ case "Link" ]}
+                                    <a href="#TODO">
+                                {[/]}
+                                {* Generate content for each property *}
+                                <div class="row">
+                                    {* Property name *}
+                                    <div class="col-6 lighter">{{ property.name }}</div>
+                                    {* Property value *}
+                                    <div class="col-6 text-right">
+                                    {[ switch property.propertyType ]}
+                                        {[ case "Link" ]}
+                                        <img class="link-chevron" />
+                                        {[ case "URL" ]}
+                                        <img class="link-chevron" />
+                                    {[/]}
+                                    </div>
+                                </div>
+                                </a>
                             {[/]}
                         {[/]}
                     </div>
