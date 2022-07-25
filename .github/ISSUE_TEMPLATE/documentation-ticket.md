@@ -2,7 +2,7 @@
 name: Documentation ticket
 about: Template for documentation tickets
 title: 'Docs: '
-labels: ''
+labels: 'S: User docs'
 assignees: ''
 
 ---
