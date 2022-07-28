@@ -466,7 +466,7 @@
                     "key": "stack"
                 }
             ],
-            "Shortcut": [{
+            "Shortcuts": [{
                     "name": "Image on top (4 columns)",
                     "key": "image-on-top-4",
                     "isDefault": true
