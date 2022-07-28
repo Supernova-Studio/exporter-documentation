@@ -3540,6 +3540,34 @@ ol>.block-children {
     margin-left: 11px;
 }
 
+.heading {
+    position: relative;
+}
+
+.heading a.copy-anchor {
+    display: inline-flex;
+    opacity: 0;
+    transform: translateX(4px);
+    position: absolute;
+    left: -24px;
+    top: -2px;
+    transition: opacity 0.2s ease-out 0s, transform 0.2s ease-out 0s;
+    width: 24px;
+    text-align: center;
+}
+
+
+.heading a.copy-anchor svg {
+    width: 20px;
+    height: 20px;
+}
+
+.heading:hover a.copy-anchor {
+    opacity: 1;
+    transition-duration: 0.1s;
+    transform: none;
+}
+
 .lead {
     border-left: 1px solid #007bff;
     margin-left: 20px;
@@ -6564,6 +6592,7 @@ table.data-table tr td> :last-child {
 
 .data-table-wrapper {
     margin: 24px 0;
+    width: 752px; /* fixing a bug with horizontal scrolling of full-width table */
 }
 
 div.data-table-wrapper {

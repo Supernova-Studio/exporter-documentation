@@ -1,13 +1,24 @@
 {* Fetch block from injection context, expected type 'Heading' *}
 {[ const block = context /]}
 
-{* Generate different types of heading. Note that even headings can have formatting, so we are using rich text formatter *}
 {[ inject "page_block_anchor" context block /]}
+
+{* Generate different types of heading. Note that even headings can have formatting, so we are using rich text formatter *}
+{[ const headingSlug = slugifyHeading(block) /]}
 {[ switch block.headingType ]}
     {[ case "1" ]}
-    <h1 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h1>
+        <h1 class="heading" id="{{ headingSlug }}">
+            {[ inject "page_block_rich_text" context block.text /]}
+            {[ inject "page_block_copy_anchor" context headingSlug /]}
+        </h1>
     {[ case "2" ]}
-    <h2 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h2>
+        <h2 class="heading" id="{{ headingSlug }}">
+            {[ inject "page_block_rich_text" context block.text /]}
+            {[ inject "page_block_copy_anchor" context headingSlug /]}
+        </h2>
     {[ case "3" ]}
-    <h3 id="{{ slugifyHeading(block) }}">{[ inject "page_block_rich_text" context block.text /]}</h3>
+        <h3 class="heading" id="{{ headingSlug }}">
+            {[ inject "page_block_rich_text" context block.text /]}
+            {[ inject "page_block_copy_anchor" context headingSlug /]}
+        </h3>
 {[/]}

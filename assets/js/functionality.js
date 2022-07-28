@@ -452,6 +452,30 @@ $(function() {
     })
 })
 
+
+/*-----------------------------
+    Copy a link to heading
+------------------------------- */
+
+$(function() {
+    $('[data-copy-url="true"]').click(function(event) {
+        // Get code of the sandbox
+        event.preventDefault()
+        const text = $(this).attr("href")
+        const cb = navigator.clipboard
+        const pageURL = document.location.href.match(/(^[^#]*)/)
+        const finalURL = pageURL[0] + text;
+        console.log(finalURL)
+        cb.writeText(finalURL)
+
+        $.toast({
+            title: 'URL to heading copied',
+            position: "bottom"
+        });
+
+    })
+})
+
 /*-----------------------------
     Edit code
 ------------------------------- */
