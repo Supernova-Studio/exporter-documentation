@@ -6,7 +6,7 @@
     "organization": "Supernova",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.48.0",
+    "version": "1.49.0",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -460,6 +460,32 @@
                 {
                     "name": "Grid Item (Full width)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Stack",
+                    "key": "stack"
+                }
+            ],
+            "Shortcut": [{
+                    "name": "Image on top (4 columns)",
+                    "key": "image-on-top-4",
+                    "isDefault": true
+                },
+                {
+                    "name": "Image on top (3 columns)",
+                    "key": "image-on-top-3"
+                },
+                {
+                    "name": "Icon on top (4 columns)",
+                    "key": "icon-on-top-4"
+                },
+                {
+                    "name": "Icon on top (3 columns)",
+                    "key": "icon-on-top-3"
+                },
+                {
+                    "name": "Icon on top (2 columns)",
+                    "key": "icon-on-top-2"
                 },
                 {
                     "name": "Stack",
