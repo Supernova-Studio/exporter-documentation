@@ -468,28 +468,48 @@
             ],
             "Shortcuts": [{
                     "name": "Image on top (4 columns)",
-                    "key": "image-on-top-4",
+                    "key": "image-top-4",
                     "isDefault": true
                 },
                 {
                     "name": "Image on top (3 columns)",
-                    "key": "image-on-top-3"
-                },
-                {
-                    "name": "Icon on top (4 columns)",
-                    "key": "icon-on-top-4"
-                },
-                {
-                    "name": "Icon on top (3 columns)",
-                    "key": "icon-on-top-3"
+                    "key": "image-top-3"
                 },
                 {
                     "name": "Icon on top (2 columns)",
-                    "key": "icon-on-top-2"
+                    "key": "image-top-2"
                 },
                 {
-                    "name": "Stack",
-                    "key": "stack"
+                    "name": "Leading image (2 columns)",
+                    "key": "image-leading-2"
+                },
+                {
+                    "name": "Leading image (Full width)",
+                    "key": "image-leading-1"
+                },
+                {
+                    "name": "Icon on top (4 columns)",
+                    "key": "icon-top-4"
+                },
+                {
+                    "name": "Icon on top (3 columns)",
+                    "key": "icon-top-3"
+                },
+                {
+                    "name": "Icon on top (2 columns)",
+                    "key": "icon-top-2"
+                },
+                {
+                    "name": "Leading icon (3 columns)",
+                    "key": "icon-leading-3"
+                },
+                {
+                    "name": "Leading icon (2 columns)",
+                    "key": "icon-leading-2"
+                },
+                {
+                    "name": "Leading icon (Full width)",
+                    "key": "icon-leading-1"
                 }
             ]
         }
