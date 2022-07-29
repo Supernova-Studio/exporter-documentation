@@ -515,7 +515,17 @@
                     "name": "Leading icon (Full width)",
                     "key": "icon-leading-1"
                 }
-            ]
+            ],
+            "Frames": [{
+                "name": "Bordered",
+                "key": "bordered",
+                "isDefault": true
+            },
+            {
+                "name": "Plain",
+                "key": "plain"
+            }
+        ],
         }
     }
 }
