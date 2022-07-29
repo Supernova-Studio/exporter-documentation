@@ -46,7 +46,7 @@
         </div>
         <div class="arrow">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3536 5.14648L16.7071 10.5L11.3536 15.8536L10.6464 15.1465L14.7929 11H4V10H14.7929L10.6464 5.85359L11.3536 5.14648Z" fill="#141618" fill-opacity="0.5"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3536 5.14648L16.7071 10.5L11.3536 15.8536L10.6464 15.1465L14.7929 11H4V10H14.7929L10.6464 5.85359L11.3536 5.14648Z" fill="currentColor" fill-opacity="0.5"/>
             </svg>
         </div>
         </div>

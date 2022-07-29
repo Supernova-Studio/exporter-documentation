@@ -331,7 +331,7 @@ section blockquote,
 div.alert,
 ul,
 li {
-    color: rgba(20, 22, 24, 0.8);
+    color: var(--colorDocsViewBlack);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -839,7 +839,7 @@ pre code {
 }
 
 hr {
-    border-top: 1px solid #DCE0E4;
+    border-top: 1px solid var(--colorDocsViewGrey2);
 }
 
 
@@ -2445,12 +2445,12 @@ hr {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: rgba(20, 22, 24, 0.8);
+    color: var(--colorDocsViewBlack);
 }
 
 .nav-tabs .nav-item .nav-link:hover {
     border-radius: var(--borderRadiusDefault) var(--borderRadiusDefault) 0px 0px;
-    background-color: rgba(20, 22, 24, 0.04);
+    background-color: var(--colorDocsViewGrey2);
 }
 
 .nav-tabs .nav-item .nav-link.active {
@@ -2787,7 +2787,7 @@ h6 {
 }
 
 .container-footer p.copy {
-    color: rgba(20, 22, 24, 0.5);
+    color: var(--colorDocsViewBlack1);
     line-height: 26px;
 }
 
@@ -3734,7 +3734,7 @@ ol>.block-children {
 }
 
 .token-group-header span.light {
-    color: #868F98;
+    color: var(--colorDocsViewBlack2);;
 }
 
 
@@ -3776,7 +3776,7 @@ ol>.block-children {
     font-weight: normal;
     font-size: 12px;
     padding: 20px 12px 12px 12px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--colorDocsViewBlack2);
     line-height: 20px;
     vertical-align: top;
 }
@@ -3786,7 +3786,7 @@ ol>.block-children {
     font-weight: normal;
     font-size: 12px;
     padding: 20px 12px 12px 12px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--colorDocsViewBlack2);
     vertical-align: top;
 }
 
@@ -3794,7 +3794,7 @@ ol>.block-children {
     font-style: normal;
     font-size: 11px;
     line-height: 16px;
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--colorDocsViewBlack1);
     font-family: "Fira Code", monospace;
     font-weight: 500;
 }
@@ -3809,8 +3809,8 @@ ol>.block-children {
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
-    color: rgba(0, 0, 0, 0.8);
-    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--colorDocsViewBlack2);
+    background-color:var(--colorDocsViewGrey2);
     border-radius: 2px;
     padding: 0px 2px;
     font-family: "Fira Code", monospace;
@@ -3822,7 +3822,7 @@ ol>.block-children {
     font-style: normal;
     font-size: 11px;
     line-height: 16px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--colorDocsViewBlack2);
 }
 
 
@@ -3860,6 +3860,13 @@ ol>.block-children {
     border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0 0;
 }
 
+.token-container .grid>div>div.preview .color-preview {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0 0;
+}
+
 .token-container .grid>div>div.preview.small-text {
     font-size: 11px;
 }
@@ -3877,12 +3884,13 @@ ol>.block-children {
     margin: 0px 12px 12px 8px;
     padding: 0;
     font-size: 12px;
+    line-height: 1.6;
     font-weight: normal;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--colorDocsViewBlack2)
 }
 
 .token-container .grid>div {
-    border: 1px solid #F2F4F5;
+    border: 1px solid var(--colorDocsViewGrey2);
     border-radius: var(--borderRadiusLarge);
     box-sizing: border-box;
     overflow: hidden;
@@ -4196,7 +4204,7 @@ ol>.block-children {
     display: flex;
     align-content: center;
     justify-content: center;
-    background-color: #f9fafa;
+    background-color: var(--colorDocsViewGrey3);
 }
 
 .nav-sn img {
@@ -4669,16 +4677,16 @@ td .image-container {
 
 .image-container p {
     font-size: 14px;
-    color: rgba(20, 22, 24, 0.5);
+    color: var(--colorDocsViewBlack2);
 }
 
 .caption {
     font-size: 14px;
-    color: rgba(20, 22, 24, 0.5);
+    color: var(--colorDocsViewBlack2);
 }
 
 .sandbox-main-wrapper {
-    border: 1px solid #d6d6d6;
+    border: 1px solid var(--colorDocsViewGrey2);
     border-radius: var(--borderRadiusDefault);
     overflow: hidden;
     margin: 24px 0px;
@@ -4726,7 +4734,7 @@ iframe {
     justify-content: space-between;
     padding: 8px;
     background-color: hsl(230, 1%, 98%);
-    border-top: 1px solid var(--colorDocsViewGrey1);
+    border-top: 1px solid var(--colorDocsViewGrey2);
     height: 44px;
 }
 
@@ -4820,7 +4828,7 @@ iframe {
     align-items: center;
     flex-direction: column;
     border: 1px solid var(--colorDocsViewGrey1);
-    background-color: #f5f7f7;
+    background-color: var(--colorDocsViewGrey3);
     border-radius: var(--borderRadiusDefault);
     visibility: hidden;
     font-size: 14px;
@@ -4832,7 +4840,7 @@ iframe {
     width: 100%;
     height: 100%;
     border: 1px solid var(--colorDocsViewGrey1);
-    background-color: #f5f7f7;
+    background-color: var(--colorDocsViewGrey3);
     border-radius: var(--borderRadiusDefault);
 }
 
@@ -5054,8 +5062,8 @@ div.storybook-state-wrapper+p.caption {
 
 .tile-container .grid>div div.preview,
 .tile-container .grid>a>div div.preview {
-    border-bottom: 1px solid var(--colorDocsViewGrey1);
-    background-color: var(--colorDocsViewGrey2);
+    border-bottom: 1px solid var(--colorDocsViewGrey2);
+    background-color: var(--colorDocsViewGrey3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5100,12 +5108,12 @@ div.storybook-state-wrapper+p.caption {
     font-size: 12px;
     line-height: 16px;
     font-weight: normal;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--colorDocsViewBlack2);
 }
 
 .tile-container .grid>div,
 .tile-container .grid>a>div {
-    border: 1px solid var(--colorDocsViewGrey1);
+    border: 1px solid var(--colorDocsViewGrey2);
     border-radius: var(--borderRadiusLarge);
     box-sizing: border-box;
     overflow: hidden;
@@ -5978,7 +5986,7 @@ body.dark .fa-moon:before {
 }
 
 .bg-sidebar {
-    background-color: #f9fafa;
+    background-color: var(--colorDocsViewGrey3);
 }
 
 #version-container button {
@@ -6076,6 +6084,7 @@ body.dark .fa-moon:before {
     width: 20px;
     height: 20px;
     margin: 0px 16px 8px 16px;
+    color: var(--colorDocsViewBlack2);
 }
 
 .previous-next .segment .segment-text {
@@ -6882,12 +6891,12 @@ table.borderless tr {
 
 table.header-column th:first-child,
 table.header-column td:first-child {
-    background-color: #f9fafa;
+    background-color: var(--colorDocsViewGrey3);
 }
 
 table.header-row tr:first-child,
 table.header-row tr:first-child {
-    background-color: #f9fafa;
+    background-color: var(--colorDocsViewGrey3);
 }
 
 .sn-text-center {

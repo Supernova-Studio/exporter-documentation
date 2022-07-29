@@ -1,7 +1,9 @@
 {[ const token = context /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    <div class="preview" style="background-color: #{{ token.value.hex }};"></div>
+    <div class="preview checkered-background-light">
+        <div class="color-preview" style="background-color: #{{ token.value.hex }};"></div>
+    </div>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="preview">
         <div class="token-preview-container large">
@@ -33,7 +35,9 @@
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
-    <div class="preview" style="background: {{ gradientTokenValue(token) }}"></div>
+    <div class="preview checkered-background-light">
+        <div class="color-preview" style="background: {{ gradientTokenValue(token) }}"></div>
+    </div>
 {[ elseif token.tokenType.equals("Measure")]}
     <div class="preview">px</div>
 {[ elseif token.tokenType.equals("Radius")]}
