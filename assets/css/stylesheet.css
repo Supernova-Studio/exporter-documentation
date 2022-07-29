@@ -33,26 +33,26 @@
 /*  0. Design tokens 
 /* =================================== */
 :root {
-    --colorDocsViewBlack: #141618;
-    --colorDocsViewBlack1: #141618cc;
-    --colorDocsViewBlack2: #141618ad;
-    --colorDocsViewBlack3: #1416187a;
-    --colorDocsViewBlack4: #1416180a;
-    --colorDocsViewGrey1: #dce0e4;
-    --colorDocsViewGrey2: #f2f4f5;
-    --colorDocsViewGrey3: #f9f9fA;
+    --colorDocsViewInk: #141618;
+    --colorDocsViewInk1: #141618cc;
+    --colorDocsViewInk2: #141618ad;
+    --colorDocsViewInk3: #1416187a;
+    --colorDocsViewInk4: #1416180a;
+    --colorDocsViewPaint1: #dce0e4;
+    --colorDocsViewPaint2: #f2f4f5;
+    --colorDocsViewPaint3: #f9f9fA;
     --colorDocsViewPrimary: #0f62fe;
     --colorDocsViewPrimaryDark: #0043CE;
     --colorDocsViewPrimaryLight: #0f62fe0a;
     --colorDocsViewPrimaryHighlight: #0f62fe14;
-    --uiHeaderBackground: var(--colorDocsViewBlack);
+    --uiHeaderBackground: var(--colorDocsViewInk);
     --uiHeaderHeight: 68px;
     --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
     --borderRadiusDefault: 4px;
     --borderRadiusLarge: 6px;
     --transitionDefault: 200ms all ease-in-out;
-    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px var(--colorDocsViewGrey3);
-    --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorDocsViewGrey2);
+    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px var(--colorDocsViewPaint3);
+    --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorDocsViewPaint2);
     --shortcutIconHeight: 48px;
     --shortcutIconWidth: 48px;
 }
@@ -73,7 +73,7 @@ html {
 }
 
 body {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     font-family: var(--fontFamily);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -112,7 +112,7 @@ body {
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: var(--colorDocsViewBlack);
+    background: var(--colorDocsViewInk);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
@@ -226,7 +226,7 @@ button:active {
 a:focus-visible,
 .btn:focus-visible,
 button:focus-visible {
-    outline: var(--colorDocsViewBlack) solid 2px;
+    outline: var(--colorDocsViewInk) solid 2px;
     border-radius: 2px;
 }
 
@@ -284,7 +284,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     line-height: 1.5;
     margin-top: 32px;
     margin-bottom: 12px;
@@ -331,10 +331,14 @@ section blockquote,
 div.alert,
 ul,
 li {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.text-muted {
+    color: var(--colorDocsViewInk2) !important;
 }
 
 p.lead {
@@ -362,7 +366,7 @@ pre code {
 }
 
 .code-block {
-    border: 1px solid #d6d6d6;
+    border: 1px solid var(--colorDocsViewPaint2);
     border-radius: var(--borderRadiusDefault);
     margin: 24px 0px;
 }
@@ -839,7 +843,7 @@ pre code {
 }
 
 hr {
-    border-top: 1px solid var(--colorDocsViewGrey2);
+    border-top: 1px solid var(--colorDocsViewPaint2);
 }
 
 
@@ -880,13 +884,13 @@ hr {
     width: 300px;
     height: calc(100vh - 50px);
     z-index: 1;
-    border-right: 1px solid var(--colorDocsViewGrey2);
+    border-right: 1px solid var(--colorDocsViewPaint2);
 }
 
 .docs-navigation>.nav {
     margin: 0px 20px 80px 20px;
     padding: 16px 0px;
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
 }
 
 .docs-navigation .nav .nav-item {
@@ -900,7 +904,7 @@ hr {
 }
 
 .docs-navigation .nav .nav-item:hover a {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .docs-navigation .nav .nav {
@@ -1026,7 +1030,7 @@ hr {
     -ms-flex-item-align: stretch;
     align-self: stretch;
     background: #fff;
-    border-bottom: 1px solid var(--colorDocsViewGrey1);
+    border-bottom: 1px solid var(--colorDocsViewPaint1);
 }
 
 .primary-menu.bg-transparent {
@@ -1237,7 +1241,7 @@ hr {
     position: absolute;
     top: 50%;
     left: 50%;
-    border-color: var(--colorDocsViewBlack);
+    border-color: var(--colorDocsViewInk);
     border-top: 1px solid;
     border-right: 1px solid;
     width: 6px;
@@ -2000,7 +2004,7 @@ hr {
     position: absolute;
     top: 12px;
     left: -15px;
-    border-color: var(--colorDocsViewBlack);
+    border-color: var(--colorDocsViewInk);
     border-top: 1px solid;
     border-right: 1px solid;
     width: 6px;
@@ -2279,7 +2283,7 @@ hr {
 .nav .nav-item .nav-link {
     display: flex;
     align-items: center;
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
     height: 40px;
     border-top-left-radius: var(--borderRadiusDefault);
     border-top-right-radius: var(--borderRadiusDefault);
@@ -2292,18 +2296,18 @@ hr {
 
 .nav:not(.nav-pills) .nav-item .nav-link.active,
 .nav:not(.nav-pills) .nav-item .nav-link:hover {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .nav-pills .nav-link:not(.active):hover {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .nav-pills .nav-link {
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .nav-pills .nav-link.active,
@@ -2379,7 +2383,7 @@ hr {
 }
 
 .nav-tabs .nav-item .nav-link:not(.active):hover {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .nav-tabs.flex-column {
@@ -2445,12 +2449,12 @@ hr {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .nav-tabs .nav-item .nav-link:hover {
     border-radius: var(--borderRadiusDefault) var(--borderRadiusDefault) 0px 0px;
-    background-color: var(--colorDocsViewGrey2);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 .nav-tabs .nav-item .nav-link.active {
@@ -2752,7 +2756,7 @@ hr {
 
 #footer {
     background: #fff;
-    color: #252b33;
+    color: var(--colorDocsViewInk1);
     margin-left: 260px;
     padding: 2rem 0;
     margin: 48px 0 0 260px;
@@ -2769,7 +2773,7 @@ hr {
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
-    color: rgba(20, 22, 24, 0.8);
+    color: var(--colorDocsViewInk2);
 }
 
 .container-footer h4,
@@ -2778,7 +2782,7 @@ h6 {
     font-weight: bold;
     font-size: 20px;
     line-height: 28px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     margin-bottom: 16px;
 }
 
@@ -2787,7 +2791,7 @@ h6 {
 }
 
 .container-footer p.copy {
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
     line-height: 26px;
 }
 
@@ -3728,13 +3732,13 @@ ol>.block-children {
 /* Token Headers */
 
 .token-group-header {
-    color: #363a3e;
+    color: var(--colorDocsViewInk);
     font-size: 1rem;
     font-weight: 500;
 }
 
 .token-group-header span.light {
-    color: var(--colorDocsViewBlack2);;
+    color: var(--colorDocsViewInk2);;
 }
 
 
@@ -3743,13 +3747,13 @@ ol>.block-children {
 .token-container table {
     width: 100%;
     font-size: 12px;
-    color: #363a3e;
+    color: var(--colorDocsViewInk);
     border-collapse: collapse;
-    border-top: 1px solid var(--colorDocsViewGrey2);
+    border-top: 1px solid var(--colorDocsViewPaint2);
 }
 
 .token-container table tr {
-    border-bottom: 1px solid var(--colorDocsViewGrey2);
+    border-bottom: 1px solid var(--colorDocsViewPaint2);
     height: 45px;
 }
 
@@ -3767,7 +3771,7 @@ ol>.block-children {
     padding: 20px 12px 12px 12px;
     font-weight: 500;
     font-size: 14px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     vertical-align: top;
 }
 
@@ -3776,7 +3780,7 @@ ol>.block-children {
     font-weight: normal;
     font-size: 12px;
     padding: 20px 12px 12px 12px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
     line-height: 20px;
     vertical-align: top;
 }
@@ -3786,7 +3790,7 @@ ol>.block-children {
     font-weight: normal;
     font-size: 12px;
     padding: 20px 12px 12px 12px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
     vertical-align: top;
 }
 
@@ -3794,7 +3798,7 @@ ol>.block-children {
     font-style: normal;
     font-size: 11px;
     line-height: 16px;
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
     font-family: "Fira Code", monospace;
     font-weight: 500;
 }
@@ -3809,8 +3813,8 @@ ol>.block-children {
     font-weight: 500;
     font-size: 11px;
     line-height: 16px;
-    color: var(--colorDocsViewBlack2);
-    background-color:var(--colorDocsViewGrey2);
+    color: var(--colorDocsViewInk2);
+    background-color:var(--colorDocsViewPaint2);
     border-radius: 2px;
     padding: 0px 2px;
     font-family: "Fira Code", monospace;
@@ -3822,7 +3826,7 @@ ol>.block-children {
     font-style: normal;
     font-size: 11px;
     line-height: 16px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 
@@ -3877,7 +3881,7 @@ ol>.block-children {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.3;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .token-container .grid>div>p.description {
@@ -3886,11 +3890,11 @@ ol>.block-children {
     font-size: 12px;
     line-height: 1.6;
     font-weight: normal;
-    color: var(--colorDocsViewBlack2)
+    color: var(--colorDocsViewInk2)
 }
 
 .token-container .grid>div {
-    border: 1px solid var(--colorDocsViewGrey2);
+    border: 1px solid var(--colorDocsViewPaint2);
     border-radius: var(--borderRadiusLarge);
     box-sizing: border-box;
     overflow: hidden;
@@ -3934,7 +3938,7 @@ ol>.block-children {
 }
 
 .token-container .stack .stack-item.bordered {
-    border: 1px solid var(--colorDocsViewGrey2);
+    border: 1px solid var(--colorDocsViewPaint2);
 
 }
 
@@ -3987,7 +3991,7 @@ ol>.block-children {
 
 .token-container .stack .stack-item.fallback {
     align-items: center;
-    border-bottom: 1px solid var(--colorDocsViewGrey2);
+    border-bottom: 1px solid var(--colorDocsViewPaint2);
 }
 
 .token-container .stack .stack-item.fallback:last-child {
@@ -4009,7 +4013,7 @@ ol>.block-children {
 }
 
 .alert.alert-info {
-    background-color: var(--colorDocsViewGrey2);
+    background-color: var(--colorDocsViewPaint);
 }
 
 .alert.alert-info::before {
@@ -4134,7 +4138,7 @@ ol>.block-children {
 }
 
 .nav-name span {
-    color: var(--colorDocsViewBlack3);
+    color: var(--colorDocsViewInk3);
 }
 
 .nav-link {
@@ -4154,7 +4158,7 @@ ol>.block-children {
   content: " ";
   top: 50%;
   right: 10px;
-  border-color: var(--colorDocsViewBlack1);
+  border-color: var(--colorDocsViewInk1);
   border-top: 1px solid;
   border-right: 1px solid;
   width: 5px;
@@ -4165,7 +4169,7 @@ ol>.block-children {
 */
 
 .docs-navigation .nav>.nav-item>.nav-link.active.group {
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
     background-color: transparent;
 }
 
@@ -4174,7 +4178,7 @@ ol>.block-children {
     content: " ";
     top: 50%;
     right: 10px;
-    border-color: var(--colorDocsViewBlack1);
+    border-color: var(--colorDocsViewInk1);
     border-top: 1px solid;
     border-right: 1px solid;
     width: 5px;
@@ -4200,11 +4204,11 @@ ol>.block-children {
     width: 299px;
     height: 60px;
     z-index: 1;
-    border-top: 1px solid var(--colorDocsViewGrey2);
+    border-top: 1px solid var(--colorDocsViewPaint2);
     display: flex;
     align-content: center;
     justify-content: center;
-    background-color: var(--colorDocsViewGrey3);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 .nav-sn img {
@@ -4217,7 +4221,7 @@ ol>.block-children {
 }
 
 .container-footer {
-    border-top: 1px solid var(--colorDocsViewGrey2);
+    border-top: 1px solid var(--colorDocsViewPaint2);
 }
 
 .container-title-overlay {
@@ -4226,22 +4230,22 @@ ol>.block-children {
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--colorDocsViewBlack);
+    background: var(--colorDocsViewInk);
     opacity: 0.4;
     z-index: 0;
 }
 
 .container-title {
     width: 100%;
-    background-color: var(--colorDocsViewGrey2);
-    border-bottom: 1px solid var(--colorDocsViewGrey2);
+    background-color: var(--colorDocsViewPaint3);
+    border-bottom: 1px solid var(--colorDocsViewPaint2);
     position: relative;
 }
 
 .container-tabs {
     width: 100%;
     margin-bottom: 40px;
-    border-bottom: 1px solid var(--colorDocsViewGrey2);
+    border-bottom: 1px solid var(--colorDocsViewPaint2);
     position: relative;
 }
 
@@ -4287,7 +4291,7 @@ ol>.block-children {
 .container-footer>.slider h1 {
     padding: 0px;
     margin: 0px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     font-size: 40px;
     font-weight: 700;
     margin: 0 0 20px 0;
@@ -4297,7 +4301,7 @@ ol>.block-children {
 .container-footer>.slider .subtitle {
     padding: 0px 0 28px 0;
     margin: 0;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
@@ -4339,7 +4343,7 @@ ol>.block-children {
 }
 
 #header-nav .search {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     cursor: pointer;
     padding: 10px 8px 8px 8px;
 }
@@ -4349,7 +4353,7 @@ ol>.block-children {
 }
 
 #header-nav .switch-theme {
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     cursor: pointer;
     padding: 8px;
 }
@@ -4462,7 +4466,7 @@ ol>.block-children {
 
 #content-nav {
     padding-left: 16px;
-    border-left: 1px solid var(--colorDocsViewGrey1);
+    border-left: 1px solid var(--colorDocsViewPaint1);
     width: 160px;
 }
 
@@ -4470,7 +4474,7 @@ ol>.block-children {
     text-decoration: none;
     display: block;
     padding: 4px 0px;
-    color: var(--colorDocsViewBlack3);
+    color: var(--colorDocsViewInk3);
     font-size: 13px;
     line-height: 20px;
     transition: all 50ms ease-in-out;
@@ -4478,7 +4482,7 @@ ol>.block-children {
 }
 
 #content-nav .content-nav-header {
-    color: var(--colorDocsViewBlack3);
+    color: var(--colorDocsViewInk3);
     text-transform: uppercase;
     font-size: 11px;
     font-weight: 700;
@@ -4490,7 +4494,7 @@ ol>.block-children {
 
 #content-nav a:hover,
 #content-nav a:focus {
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .container-title .slider .nav.nav-tabs a {
@@ -4513,7 +4517,7 @@ ol>.block-children {
 
 .embed-url {
     width: 100%;
-    border: 1px solid var(--colorDocsViewGrey1);
+    border: 1px solid var(--colorDocsViewPaint1);
     border-radius: var(--borderRadiusDefault);
     margin-bottom: 1rem;
     overflow: hidden;
@@ -4539,7 +4543,7 @@ ol>.block-children {
     font-weight: bold;
     font-size: 14px;
     line-height: 20px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .embed-url div.content p.description {
@@ -4623,7 +4627,7 @@ ol>.block-children {
     right: 16px;
     top: 4px;
     display: inline-block;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     content: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.6499 0.650002L7.3499 1.35L3.9999 4.71L0.649902 1.35L1.3499 0.650002L3.9999 3.29L6.6499 0.650002Z' fill='white'/%3E%3C/svg%3E%0A");
 }
 
@@ -4632,7 +4636,7 @@ ol>.block-children {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     padding: 0.25rem 1rem;
     text-transform: capitalize;
 }
@@ -4677,16 +4681,16 @@ td .image-container {
 
 .image-container p {
     font-size: 14px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .caption {
     font-size: 14px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .sandbox-main-wrapper {
-    border: 1px solid var(--colorDocsViewGrey2);
+    border: 1px solid var(--colorDocsViewPaint2);
     border-radius: var(--borderRadiusDefault);
     overflow: hidden;
     margin: 24px 0px;
@@ -4733,8 +4737,8 @@ iframe {
     align-items: flex-end;
     justify-content: space-between;
     padding: 8px;
-    background-color: hsl(230, 1%, 98%);
-    border-top: 1px solid var(--colorDocsViewGrey2);
+    background-color: var(--colorDocsViewPaint3);
+    border-top: 1px solid var(--colorDocsViewPaint2);
     height: 44px;
 }
 
@@ -4749,7 +4753,7 @@ iframe {
 
 .sandbox-container-buttons i {
     margin: 0px 8px;
-    color: var(--colorDocsViewBlack4);
+    color: var(--colorDocsViewInk4);
     cursor: pointer;
 }
 
@@ -4827,8 +4831,8 @@ iframe {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid var(--colorDocsViewGrey1);
-    background-color: var(--colorDocsViewGrey3);
+    border: 1px solid var(--colorDocsViewPaint1);
+    background-color: var(--colorDocsViewPaint3);
     border-radius: var(--borderRadiusDefault);
     visibility: hidden;
     font-size: 14px;
@@ -4839,8 +4843,8 @@ iframe {
 .storybook-container iframe {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--colorDocsViewGrey1);
-    background-color: var(--colorDocsViewGrey3);
+    border: 1px solid var(--colorDocsViewPaint1);
+    background-color: var(--colorDocsViewPaint3);
     border-radius: var(--borderRadiusDefault);
 }
 
@@ -4899,7 +4903,7 @@ div.storybook-state-wrapper+p.caption {
     background-repeat: no-repeat;
     background-position: center;
     color: red;
-    background-color: var(--colorDocsViewGrey3);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 .shortcut-container div.preview {
@@ -4917,7 +4921,7 @@ div.storybook-state-wrapper+p.caption {
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .shortcut-container p.description {
@@ -4926,7 +4930,7 @@ div.storybook-state-wrapper+p.caption {
     font-size: 12px;
     line-height: 16px;
     font-weight: normal;
-    color: var(--colorDocsViewBlack1);
+    color: var(--colorDocsViewInk1);
 }
 
 /* Shortcut variants */
@@ -5062,8 +5066,8 @@ div.storybook-state-wrapper+p.caption {
 
 .tile-container .grid>div div.preview,
 .tile-container .grid>a>div div.preview {
-    border-bottom: 1px solid var(--colorDocsViewGrey2);
-    background-color: var(--colorDocsViewGrey3);
+    border-bottom: 1px solid var(--colorDocsViewPaint2);
+    background-color: var(--colorDocsViewPaint3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5098,7 +5102,7 @@ div.storybook-state-wrapper+p.caption {
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
 }
 
 .tile-container .grid>div p.description,
@@ -5108,12 +5112,12 @@ div.storybook-state-wrapper+p.caption {
     font-size: 12px;
     line-height: 16px;
     font-weight: normal;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .tile-container .grid>div,
 .tile-container .grid>a>div {
-    border: 1px solid var(--colorDocsViewGrey2);
+    border: 1px solid var(--colorDocsViewPaint2);
     border-radius: var(--borderRadiusLarge);
     box-sizing: border-box;
     overflow: hidden;
@@ -5813,7 +5817,7 @@ body.dark .fa-moon:before {
 }
 
 .health-overlay-content .links .lighter {
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .health-overlay-content .links .row {
@@ -5829,7 +5833,7 @@ body.dark .fa-moon:before {
 }
 
 .health-overlay-content .links .row>div:nth-child(0) {
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
     font-size: 12px;
 }
 
@@ -5986,7 +5990,7 @@ body.dark .fa-moon:before {
 }
 
 .bg-sidebar {
-    background-color: var(--colorDocsViewGrey3);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 #version-container button {
@@ -6084,7 +6088,7 @@ body.dark .fa-moon:before {
     width: 20px;
     height: 20px;
     margin: 0px 16px 8px 16px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
 }
 
 .previous-next .segment .segment-text {
@@ -6095,7 +6099,7 @@ body.dark .fa-moon:before {
     font-weight: normal;
     font-size: 12px;
     line-height: 16px;
-    color: var(--colorDocsViewBlack2);
+    color: var(--colorDocsViewInk2);
     margin-bottom: 2px;
 }
 
@@ -6103,7 +6107,7 @@ body.dark .fa-moon:before {
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: var(--colorDocsViewBlack);
+    color: var(--colorDocsViewInk);
     transition: var(--transitionDefault);
 }
 
@@ -6114,7 +6118,7 @@ body.dark .fa-moon:before {
 
 .tab-content-block {
     background: #ffffff;
-    border: 1px solid var(--colorDocsViewGrey1);
+    border: 1px solid var(--colorDocsViewPaint1);
     border-radius: var(--borderRadiusLarge);
     padding: 16px 24px;
 }
@@ -6122,7 +6126,7 @@ body.dark .fa-moon:before {
 .tab-pills .tab-content-block {
     padding: 0px 24px;
     border: 0;
-    border-left: 1px solid var(--colorDocsViewGrey1);
+    border-left: 1px solid var(--colorDocsViewPaint1);
     border-radius: 0px;
     margin-bottom: 24px;
     min-height: calc(100% - 24px);
@@ -6221,8 +6225,8 @@ body.dark .fa-moon:before {
 
 code[class*="language-"],
 pre[class*="language-"] {
-    background: hsl(230, 1%, 98%);
-    color: hsl(230, 8%, 24%);
+    background: var(--colorDocsViewPaint3);
+    color: var(--colorDocsViewInk);
     font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
     direction: ltr;
     text-align: left;
@@ -6245,14 +6249,14 @@ pre[class*="language-"] {
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] *::-moz-selection,
 pre[class*="language-"] *::-moz-selection {
-    background: hsl(230, 1%, 90%);
+    background: var(--colorDocsViewPaint2);
     color: inherit;
 }
 
 code[class*="language-"]::selection,
 code[class*="language-"] *::selection,
 pre[class*="language-"] *::selection {
-    background: hsl(230, 1%, 90%);
+    background: var(--colorDocsViewPaint2);
     color: inherit;
 }
 
@@ -6849,7 +6853,7 @@ table.data-table {
 table.data-table,
 table.data-table th,
 table.data-table td {
-    border: 1px solid var(--colorDocsViewGrey1);
+    border: 1px solid var(--colorDocsViewPaint1);
     border-collapse: collapse;
 }
 
@@ -6891,12 +6895,12 @@ table.borderless tr {
 
 table.header-column th:first-child,
 table.header-column td:first-child {
-    background-color: var(--colorDocsViewGrey3);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 table.header-row tr:first-child,
 table.header-row tr:first-child {
-    background-color: var(--colorDocsViewGrey3);
+    background-color: var(--colorDocsViewPaint3);
 }
 
 .sn-text-center {
