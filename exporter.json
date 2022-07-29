@@ -520,12 +520,12 @@
                 "name": "Bordered",
                 "key": "bordered",
                 "isDefault": true
-            },
-            {
-                "name": "Plain",
-                "key": "plain"
-            }
-        ],
+                },
+                {
+                    "name": "Plain",
+                    "key": "plain"
+                }
+            ]
         }
     }
 }
