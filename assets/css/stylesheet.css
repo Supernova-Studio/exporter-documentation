@@ -57,7 +57,7 @@
     /** Semantic tokens **/
     /* Docs Header */
     --uiHeaderPaint: var(--colorInk);
-    --uiHeaderBorder: var(--colorPaint2);
+    --uiHeaderBorder: var(--uiHeaderPaint);
     --uiHeaderInk: #fff; /* main header text and icons */
     --uiHeaderItemInkHover: var(--uiHeaderInk); /* main header item text on hover  */
     --uiHeaderItemInkActive: var(--uiHeaderInk); /* main header item text when active */
