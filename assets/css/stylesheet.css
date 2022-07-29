@@ -39,7 +39,7 @@
     --colorInk2: #141618ad;
     --colorInk3: #1416187a;
     --colorInk4: #1416180a;
-    --colorPaint: #ffffff; /* main bg */
+    --colorPaint: #ffffff; /* main bg for components */
     --colorPaint1: #dce0e4; /* inputs, ... */
     --colorPaint2: #f2f4f5; /* borders, darker background, ... */
     --colorPaint3: #f9f9fA; /* secondary background, hr, ... */
@@ -55,6 +55,8 @@
     --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorPaint2);
 
     /** Semantic tokens **/
+    /* Global */
+    --pageBackground: var(--colorPaint);
     /* Docs Header */
     --uiHeaderPaint: var(--colorInk);
     --uiHeaderBorder: var(--uiHeaderPaint);
@@ -866,7 +868,7 @@ hr {
 /* =================================== */
 
 #main-wrapper {
-    background: var(--colorPaint);
+    background: var(--pageBackground);
 }
 
 .box {
@@ -3915,7 +3917,7 @@ ol>.block-children {
     font-size: 12px;
     line-height: 1.6;
     font-weight: normal;
-    color: var(--colorInk2)
+    color: var(--colorInk2);
 }
 
 .token-container .grid>div {
@@ -3923,6 +3925,7 @@ ol>.block-children {
     border-radius: var(--borderRadiusLarge);
     box-sizing: border-box;
     overflow: hidden;
+    background: var(--colorPaint);
 }
 
 .token-container .grid>div.spacer {
@@ -4923,7 +4926,7 @@ div.storybook-state-wrapper+p.caption {
     box-sizing: border-box;
     overflow: hidden;
     transition: var(--transitionDefault);
-}
+    background: var(--colorPaint);}
 
 .shortcut-container .shortcut-item:hover {
     box-shadow: var(--boxShadowLevel2);
@@ -5164,6 +5167,7 @@ div.storybook-state-wrapper+p.caption {
     box-sizing: border-box;
     overflow: hidden;
     padding-bottom: 4px;
+    background: var(--colorPaint);
 }
 
 .tile-container.plain .grid>div,
@@ -6134,6 +6138,7 @@ body.dark .fa-moon:before {
     justify-content: space-between;
     align-items: center;
     transition: var(--transitionDefault);
+    background: var(--colorPaint);
 }
 
 .previous-next .segment:hover {
