@@ -476,8 +476,12 @@
                     "key": "image-top-3"
                 },
                 {
-                    "name": "Icon on top (2 columns)",
+                    "name": "Image on top (2 columns)",
                     "key": "image-top-2"
+                },
+                {
+                    "name": "Image on top (Full width)",
+                    "key": "image-top-1"
                 },
                 {
                     "name": "Leading image (2 columns)",
