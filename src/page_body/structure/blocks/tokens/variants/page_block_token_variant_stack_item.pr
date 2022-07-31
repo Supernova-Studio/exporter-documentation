@@ -8,7 +8,13 @@
 
     <div class="stack-item is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}">
         <div class="preview" style="background-color: #{{ token.value.hex }};">
-            <div class="name">{{ token.origin.name.replacing("/", " / ") }}</div>
+            <div class="name">
+                {[ if (token.origin !== null) ]}
+                    {{ token.origin.name.replacing("/", " / ") }}
+                {[ else ]}
+                    {{ token.name.replacing("/", " / ") }}
+                {[/]}
+            </div>
             <div class="value">
                 {[ inject "page_block_token_value" context token /]}   
                 {{token.value.hex}}  

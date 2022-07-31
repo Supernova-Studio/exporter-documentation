@@ -1,0 +1,105 @@
+/* =================================== */
+/*  Layouts
+/* =================================== */
+
+#main-wrapper {
+  background: var(--pageBackground);
+}
+
+.box {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  padding-bottom: 60px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px !important;
+  }
+}
+
+/*=== Side Navigation ===*/
+
+.docs-navigation {
+  position: fixed;
+  top: 70;
+  left: 0;
+  overflow: scroll;
+  overflow-y: auto;
+  width: 300px;
+  height: calc(100vh - 50px);
+  z-index: 1;
+  border-right: 1px solid var(--colorPaint2);
+}
+
+.docs-navigation > .nav {
+  margin: 0px 20px 80px 20px;
+  padding: 16px 0px;
+  color: var(--colorInk1);
+}
+
+.docs-navigation .nav .nav-item {
+  position: relative;
+  transition: var(--transitionDefault);
+}
+
+.docs-navigation .nav .nav-item:hover {
+  background: rgba(20, 22, 24, 0.04);
+  border-radius: var(--borderRadiusDefault);
+}
+
+.docs-navigation .nav .nav-item:hover a {
+  color: var(--colorInk);
+}
+
+.docs-navigation .nav .nav {
+  margin: 0 0 0 16px;
+}
+
+.docs-navigation .nav .nav-link {
+  position: relative;
+}
+
+.docs-navigation .nav .nav-item .nav-link.active + .nav {
+  display: block;
+}
+
+/*=== Docs Content ===*/
+
+.docs-content {
+  position: relative;
+  margin-left: 300px;
+  padding: 0px;
+  min-height: calc(100vh - 242px);
+}
+
+.docs-content.fullscreen {
+  margin-left: 0px;
+}
+
+.docs-content ol li,
+.docs-content ul li {
+  margin-top: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .docs-navigation {
+    margin-left: -260px;
+  }
+  .docs-navigation.active {
+    margin-left: 0;
+  }
+  .docs-content {
+    margin-left: 0px;
+    padding: 0px;
+  }
+}
+
+/*=== Section Divider ===*/
+
+.divider {
+  margin: 32px 0;
+}

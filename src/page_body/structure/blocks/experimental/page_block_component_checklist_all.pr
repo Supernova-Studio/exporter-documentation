@@ -61,7 +61,11 @@
                                         {[ contrastColor = contrastColor(optionColor) /]}
                                     {[/]}
                                 {[/]}  
-                                <td class="center"><span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span></td>
+                                <td class="center">
+                                  <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+                                    {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
+                                  </span>
+                                </td>
                             {[ case "Link" ]}
                                 <td class="center"><a href="#" target="_blank">Open link</a></td>
                             {[ case "URL" ]}
@@ -71,7 +75,7 @@
                         {[/]}
                     {[/]}
                 {[/]}
-                <td class="center">{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</td>
+                <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
             </tr>
         {[/]}
         </table>

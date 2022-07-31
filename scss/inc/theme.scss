@@ -1,0 +1,40 @@
+/*  0. Design tokens 
+/* =================================== */
+:root {
+    /** Core tokens **/
+    --colorInk: #141618; /* main text */
+    --colorInk1: #141618cc;
+    --colorInk2: #141618ad;
+    --colorInk3: #1416187a;
+    --colorInk4: #1416180a;
+    --colorPaint: #ffffff; /* main bg for components */
+    --colorPaint1: #dce0e4; /* inputs, ... */
+    --colorPaint2: #f2f4f5; /* borders, darker background, ... */
+    --colorPaint3: #f9f9fA; /* secondary background, hr, ... */
+    --colorPrimary: #0f62fe; /* links, active states, ... */
+    --colorPrimaryDark: #0043CE; /* hovers for primary */
+    --colorPrimaryLight: #0f62fe0a;
+    --colorPrimaryHighlight: #0f62fe14;
+    --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
+    --borderRadiusDefault: 4px;
+    --borderRadiusLarge: 6px;
+    --transitionDefault: 200ms all ease-in-out;
+    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px var(--colorPaint3);
+    --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorPaint2);
+
+    /** Semantic tokens **/
+    /* Global */
+    --pageBackground: var(--colorPaint);
+    /* Docs Header */
+    --uiHeaderPaint: var(--colorInk);
+    --uiHeaderBorder: var(--uiHeaderPaint);
+    --uiHeaderInk: #fff; /* main header text and icons */
+    --uiHeaderItemInkHover: var(--uiHeaderInk); /* main header item text on hover  */
+    --uiHeaderItemInkActive: var(--uiHeaderInk); /* main header item text when active */
+    --uiHeaderItemPaintHover: rgba(255, 255, 255, 0.15); /* main header item background on hover */
+    --uiHeaderItemPaintActive: var(--uiHeaderItemPaintHover);  /* main header item background when active */
+    --uiHeaderHeight: 68px;
+     /* Shortcuts */
+    --shortcutIconHeight: 48px;
+    --shortcutIconWidth: 48px;
+}

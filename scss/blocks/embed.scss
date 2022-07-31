@@ -1,0 +1,65 @@
+/* =================================== */
+/*  Embed
+/* =================================== */
+.embed-responsive-item {
+  width: 100%;
+  height: 100%;
+}
+
+.embed-url {
+  width: 100%;
+  border: 1px solid var(--colorPaint1);
+  border-radius: var(--borderRadiusDefault);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+.embed-url,
+.embed-url:hover {
+  text-decoration: none;
+}
+
+.embed-url div.preview {
+  min-height: 112px;
+  background-size: cover;
+}
+
+.embed-url div.content {
+  padding: 16px;
+}
+
+.embed-url div.content p.title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--colorInk);
+}
+
+.embed-url div.content p.description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  /* Limit to max of 3 lines. Remove entire section for no limiting of the embedded text */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.embed-url.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.embed-url div.content p.link {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: underline;
+}

@@ -14,8 +14,8 @@
     {[ let measure = token.value.radius.measure /]}
         {[ switch token.value.type ]}
             {[ case "Background" ]}
-                <div class="preview checkered-background">
-                    <div class="token-preview-container large">
+                <div class="preview">
+                    <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: transparent; border: 1px solid #ccc; backdrop-filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
                         {{ measure }}
@@ -24,7 +24,7 @@
                 </div>
             {[ case "Layer" ]}
                 <div class="preview">
-                    <div class="token-preview-container large">
+                    <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred">
                         {{ measure }}

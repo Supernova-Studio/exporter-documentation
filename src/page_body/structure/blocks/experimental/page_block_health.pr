@@ -37,7 +37,7 @@
         {[/]}
 
         {* Generate inline component health *}
-        <div class="component-health-row {{ healthTag }}">
+        <div class="component-health-row {{ healthTag }}" data-block-id="{{ block.id }}">
             <div class="name">
                 {{ healthTagReadable }}
             </div>
@@ -47,7 +47,7 @@
         </div>
 
         {* Generate component health popup *}
-        <div class="health-overlay d-none">
+        <div class="health-overlay d-none" id="overlay-{{ block.id }}">
             <div class="health-overlay-content {{ healthTag }}">
                 <div class="header">
                     <div class="component-health-row {{ healthTag }}">
@@ -102,7 +102,9 @@
                                                     {[ contrastColor = contrastColor(optionColor) /]}
                                                 {[/]}
                                             {[/]}  
-                                            <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span>
+                                            <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+                                                {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
+                                            </span>
                                     {[/]}
                                     </div>
                                 </div>

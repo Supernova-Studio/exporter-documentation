@@ -1,14 +1,10 @@
 <img src="https://raw.githubusercontent.com/Supernova-Studio/exporter-documentation/master/readme-icon.png" alt="Supernova Logo" style="max-width:100%;">
 
-
 [Supernova](https://supernova.io) is a design system platform that allows you to seamlessly translate your design system data to production-ready code. Supernova works with any platform or tech stack, is used by many developers and organizations around the world, and can help you save time by replacing manual and repetitive tasks that all developers hate. To learn everything Supernova, please check out our [developer documentation](https://developers.supernova.io/).
-
 
 # Documentation Exporter
 
-
 The documentation exporter allows you to export static documentation build inside Supernova editor. This exporter and description is currently work in progress.
-
 
 ## Installing
 
@@ -16,15 +12,21 @@ In order to make the Supernova HTML preview exporter available for your organiza
 
 ## Reporting Bugs or Requesting Features
 
-In order to faciliate easy communication and speed up delivery of fixes and features for this exporter, we require everyone to log all issues and feature requests through the issue tracking of this repository. 
+In order to faciliate easy communication and speed up delivery of fixes and features for this exporter, we require everyone to log all issues and feature requests through the issue tracking of this repository.
 
 Please read through the [existing issues](https://github.com/Supernova-Studio/exporter-documentation/issues) before you open a new issue! It might be that we have already discussed it before. If you are sure your request wasn't mentioned just yet, proceed to [open a new issue](https://github.com/Supernova-Studio/exporter-documentation/issues) and fill in the required information. Thank you!
 
 ## Contributing
 
-If you have an idea for improving this exporter package or want a specific issue fixed quickly, we would love to see you contribute to its development! 
+If you have an idea for improving this exporter package or want a specific issue fixed quickly, we would love to see you contribute to its development!
 
 There are multiple ways you can contribute, so we have written a [contribution guide](https://developers.supernova.io/building-exporters/contribution-and-requests) that will walk your through the process. Any pull requests to this repository are very welcome.
+
+## Developing styles
+
+Do not directly edit styles in `assets/css` folder. `main.min.css` file is automatically generated from Sass files.
+
+To change a style, edit files in `scss` and run `npm run build`. You can also run `npm run watch` to trigger the build when files are changed.
 
 ## License
 
@@ -52,16 +54,9 @@ We are developing and maintaining exporters for many major technologies. Here ar
 - [LESS Exporter](https://github.com/Supernova-Studio/exporter-less)
 - [SASS Exporter](https://github.com/Supernova-Studio/exporter-sass)
 
-
 Additionally, we are also developing and maintaining exporters for specific use cases:
 
 - [Style Dictionary Exporter](https://github.com/Supernova-Studio/exporter-style-dictionary)
 - [HTML Preview Exporter](https://github.com/Supernova-Studio/exporter-html-preview)
 
 To browse all exporters created by our amazing community, please visit the [Supernova](https://supernova.io) Exporter Store.
-
-
-
-
-
-
