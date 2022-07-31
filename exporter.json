@@ -537,7 +537,7 @@
           "key": "plain"
         }
       ],
-      "io.supernova.documentation-main.markdown": [
+      "Custom": [
         {
           "name": "Default",
           "key": "default",
