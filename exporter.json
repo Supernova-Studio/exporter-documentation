@@ -536,6 +536,21 @@
           "name": "Plain",
           "key": "plain"
         }
+      ],
+      "io.supernova.documentation-main.markdown": [
+        {
+          "name": "Default",
+          "key": "default",
+          "isDefault": true
+        },
+        {
+          "name": "Bordered",
+          "key": "bordered"
+        },
+        {
+          "name": "Boxed",
+          "key": "boxed"
+        }
       ]
     }
   }

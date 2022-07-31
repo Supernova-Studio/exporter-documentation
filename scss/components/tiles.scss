@@ -82,6 +82,7 @@
 .tile-container.plain .grid > a > div {
   border: 0;
   border-radius: var(--borderRadiusLarge);
+  background: var(--pageBackground);
 }
 
 .tile-container.plain .grid > div img,
