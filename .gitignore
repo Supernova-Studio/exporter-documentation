@@ -2,3 +2,5 @@ node_modules
 .build
 build
 /.idea/
+.DS_Store
+.gitignore

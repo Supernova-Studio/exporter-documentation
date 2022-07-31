@@ -76,15 +76,15 @@
   margin: 0px;
   overflow-y: auto;
   padding: 12px 0;
+  /* disabling scroll shadows for now
   background-image: 
       
-      /* Shadows */ linear-gradient(
+      linear-gradient(
       to right,
       var(--uiHeaderPaint),
       var(--uiHeaderPaint)
     ),
     linear-gradient(to right, var(--uiHeaderPaint), var(--uiHeaderPaint)),
-    /* Shadow covers */
       linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0)),
     linear-gradient(to left, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0));
 
@@ -92,8 +92,9 @@
   background-repeat: no-repeat;
   background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
 
-  /* Opera doesn't support this in the shorthand */
+  // Opera doesn't support this in the shorthand
   background-attachment: local, local, scroll, scroll;
+  */
 }
 
 .navbar-light .navbar-nav .active > .nav-link {
@@ -512,6 +513,33 @@
 .primary-menu {
   background-color: var(--uiHeaderPaint);
   border-color: var(--uiHeaderBorder);
+}
+
+.primary-menu a.active {
+  background-color: var(--colorPrimaryLight);
+  color: var(--colorPrimary);
+}
+
+.header-nav {
+  height: 76px;
+  padding: 16px;
+}
+
+.primary-menu ul.navbar-nav > li > a:not(.btn) {
+  height: 36px;
+  margin: 0px 2px;
+  padding: 0px 12px;
+  border-radius: var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+}
+
+.primary-menu .container-fluid {
+  margin: 0px;
+  padding: 0px 16px 0 0px;
+}
+
+.primary-menu ul.navbar-nav > li + li {
+  margin-left: 0px;
 }
 
 /* Hamburger Menu Button */
@@ -1094,6 +1122,10 @@
 }
 
 @media (max-width: 991.98px) {
+  .primary-menu > .container-fluid {
+    padding: 0px 16px 0 16px;
+  }
+
   .navbar-expand-lg .navbar-collapse {
     position: absolute;
     top: 99%;
@@ -1220,6 +1252,12 @@
   }
   #version-container {
     display: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  #mobile-menu-container {
+    display: none;
   }
 }
 

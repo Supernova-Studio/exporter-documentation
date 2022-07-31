@@ -945,33 +945,6 @@ ol > .block-children {
   height: 44px;
 }
 
-.primary-menu a.active {
-  background-color: var(--colorPrimaryLight);
-  color: var(--colorPrimary);
-}
-
-.header-nav {
-  height: 76px;
-  padding: 16px;
-}
-
-.primary-menu ul.navbar-nav > li > a:not(.btn) {
-  height: 36px;
-  margin: 0px 2px;
-  padding: 0px 12px;
-  border-radius: var(--borderRadiusDefault);
-  transition: var(--transitionDefault);
-}
-
-.primary-menu .container-fluid {
-  margin: 0px;
-  padding: 0px 16px 0 0px;
-}
-
-.primary-menu ul.navbar-nav > li + li {
-  margin-left: 0px;
-}
-
 .docs-content ol li,
 .docs-content ul li {
   margin-top: 0px;
@@ -1400,9 +1373,6 @@ ol > .block-children {
   nav > .container-fluid {
     width: 80%;
   }
-  .primary-menu > .container-fluid {
-    padding: 0px 16px 0 16px;
-  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1410,31 +1380,6 @@ ol > .block-children {
 @media (min-width: 1119.98px) {
   #sidebarCollapse {
     display: none;
-  }
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-
-@media (min-width: 1200px) {
-}
-
-@media (max-width: 1120px) {
-  .docs-navigation.bg-sidebar {
-    display: none;
-  }
-  .docs-content {
-    margin-left: inherit;
-    min-height: inherit;
-  }
-  #sidebarCollapse {
-    display: initial;
-  }
-  .logo-wrapper {
-    margin: 10px 0px;
-    display: none;
-  }
-  #header .navbar {
-    max-height: 60px;
   }
 }
 
@@ -1542,77 +1487,6 @@ ol > .block-children {
     font-size: 32px;
   }
 }
-
-@media (min-width: 576px) {
-  .container-title > .slider,
-  .container-footer > .slider {
-    /*max-width: 540px;*/
-  }
-  .container,
-  .container-sm {
-    max-width: 750px;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-
-@media (min-width: 768px) {
-}
-
-/* ! Large devices (desktops, 992px and up) */
-
-@media (max-width: 991.98px) {
-  #mobile-menu-container {
-    display: initial;
-  }
-  #version-container {
-    display: none;
-  }
-  .docs-navigation {
-    margin-left: 0;
-  }
-  .navbar-expand-lg .navbar-collapse {
-    position: relative;
-    top: inherit;
-    right: inherit;
-    left: inherit;
-    background: inherit;
-    margin-top: 0px;
-    z-index: inherit;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-  .navbar-nav {
-    display: none;
-  }
-  .utility-nav {
-    justify-content: right;
-  }
-  nav > .container-fluid {
-    width: 80%;
-  }
-  .primary-menu > .container-fluid {
-    padding: 0px 16px 0 16px;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-
-@media (min-width: 1119.98px) {
-  #sidebarCollapse {
-    display: none;
-  }
-}
-
-@media (min-width: 992px) {
-  #mobile-menu-container {
-    display: none;
-  }
-  #version-container {
-    display: initial;
-  }
-}
-
 /* Extra large devices (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {
