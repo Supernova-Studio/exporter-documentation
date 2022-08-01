@@ -17,6 +17,12 @@
     <!-- End Google Analytics -->
     {[/]}
 
+    {* SEO *}
+    {[ inject "page_seo" context page /]}
+
+    {* Documentation styling *}
+    {[ inject "page_head_styles" context page /]}
+
     {* Hotjar integration *}
     {[ let HotjarSiteId = configuration.hotjarSiteId /]}
     {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]}
@@ -32,12 +38,6 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     {[/]}
-
-    {* SEO *}
-    {[ inject "page_seo" context page /]}
-
-    {* Documentation styling *}
-    {[ inject "page_head_styles" context page /]}
 
     {* Injection point - inject head *}
     {{ exportConfiguration().advancedCustomizationCustomHeadInject }}
