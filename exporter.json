@@ -38,6 +38,14 @@
         "category": "Analytics"
       },
       {
+        "key": "hotjarSiteId",
+        "default": "",
+        "type": "string",
+        "label": "Hotjar site ID",
+        "description": "Add Hotjar to your documentation site by providing a Site ID",
+        "category": "Analytics"
+      },
+      {
         "key": "headerLogo",
         "type": "image",
         "label": "Top Menu Logo",
@@ -537,7 +545,7 @@
           "key": "plain"
         }
       ],
-      "Custom": [
+      "io.supernova.documentation-main.markdown": [
         {
           "name": "Default",
           "key": "default",
