@@ -1,0 +1,52 @@
+{* Get block payload. We are fetching both block and group from context as we want to reuse this blueprint for different groups, not just the one defined inside block itself *}
+{[ const block = context.block /]}
+{[ const group = context.group /]}
+{[ const tokens = ds.tokensByGroupId(group.id) /]}
+
+{[ let variant = block.variantKey /]}
+
+{* Ignore group content if it is empty *}
+{[ if (tokens.count() > 0) ]}
+    <div class="token-container">
+        {* Show group header consisting of group segments and current group name *}
+        <p class="token-group-header">{{ formattedTokenGroupHeader(group, true) }}</p>
+
+        {[ if (variant === "table" || variant === null) ]}
+            {* Default variant – Displaying the list of tokens as a table *}
+
+            <table class="token-wrapper">
+            {* Render all tokens *}
+            {[ for token in tokens ]}
+                {[ inject "page_block_token_variant_table_item" context token /]}
+            {[/]}
+            </table>
+
+        {[ elseif (variant.contains("stack")) ]}
+        {* Stack – Displaying the list of tokens as a stack (great for colors) *}
+
+            <div class="stack {{ variant }}">
+                {* Render all tokens *}
+                {[ for token in tokens ]}
+                    {[ inject "page_block_token_variant_stack_item" context token /]}
+                {[/]}
+            </div>
+
+        {[ else ]}
+        {* Grid variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
+
+            <div class="grid {{ variant }}">
+                {[ for token in tokens ]}
+                    {[ inject "page_block_token_variant_grid_item" context token /]}
+                {[/]}
+            </div>
+
+        {[/]} 
+    </div>
+{[/]}
+
+{* Render nested groups, if enabled *}
+{[ if block.showNestedGroups ]}
+    {[ for subgroup in group.subgroups ]}
+        {[ inject "page_block_token_group_loop" context ({"block": block, "group": subgroup }) /]}
+    {[/]}
+{[/]}

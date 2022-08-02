@@ -4,14 +4,16 @@
 {[ const configuration = exportConfiguration() /]}
 <head>
     {* Add google analytics if key was provided *}
-    {[ if (configuration.googleAnalyticsAPIKey && configuration.googleAnalyticsAPIKey.count() > 0) ]}
+    {[ let key = configuration.googleAnalyticsAPIKey /]}
+    {[ if (key && key.count() > 0) ]}
     <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ key }}"></script>
     <script>
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    ga('create', '{{ exportConfiguration().googleAnalyticsAPIKey }}', 'auto');
-    ga('send', 'pageview');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ key }}');
     </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
     <!-- End Google Analytics -->
     {[/]}
 

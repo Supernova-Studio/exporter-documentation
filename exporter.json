@@ -2,10 +2,11 @@
     "id": "io.supernova.documentation-main",
     "name": "RDC Exporter",
     "description": "RDC Documentation Exporter",
+    "author": "Web Platform Team",
     "organization": "Moveinc",
     "source_dir": "src",
     "assets_dir": "assets",
-    "version": "1.46",
+    "version": "1.48.0",
     "usesBrands": false,
     "config": {
         "sources": "sources.json",
@@ -25,8 +26,8 @@
                 "key": "googleAnalyticsAPIKey",
                 "default": "",
                 "type": "string",
-                "label": "Google Analytics API key",
-                "description": "Add Google Analytics tracking to your documentation site by providing an API key",
+                "label": "Google Analytics Measurement ID",
+                "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
                 "category": "Analytics"
             },
             {
@@ -472,6 +473,10 @@
                 {
                     "name": "Grid (1 column)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Stack",
+                    "key": "stack"
                 }
             ],
             "TokenGroup": [{
@@ -495,6 +500,14 @@
                 {
                     "name": "Grid (1 columns)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Stack",
+                    "key": "stack"
+                },
+                {
+                    "name": "Stack (2 columns)",
+                    "key": "stack-2"
                 }
             ],
             "Token": [{
@@ -517,6 +530,10 @@
                 {
                     "name": "Grid Item (Full width)",
                     "key": "grid-1"
+                },
+                {
+                    "name": "Stack",
+                    "key": "stack"
                 }
             ]
         }

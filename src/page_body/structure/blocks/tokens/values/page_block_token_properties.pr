@@ -3,7 +3,16 @@
 {[ if token.properties ]}
     <div class="custom-properties">
         {[ if (token.value.referencedToken !== null) ]}
-            <div class="custom-property-item"><span class="label">Alias of:&nbsp;</span><span class="custom-value">{{ token.value.referencedToken.origin.name }}</span></div>
+            <div class="custom-property-item">
+                <span class="label">Reference:&nbsp;</span>
+                <span class="custom-value">
+                    {[ if (token.value.referencedToken.origin !== null) ]}
+                        {{ token.value.referencedToken.origin.name }}
+                    {[ else ]}
+                        {{ token.value.referencedToken.name }}
+                    {[/]}
+                </span>
+            </div>
         {[/]}
         {[ for prop in token.properties ]}
             {[ if prop.type.equals("String") ]}
