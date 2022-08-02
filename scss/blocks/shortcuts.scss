@@ -118,7 +118,6 @@
 .shortcut-container.icon-leading-3 .shortcut-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
 .shortcut-container.icon-leading-1 div.preview,
@@ -128,12 +127,16 @@
   height: var(--shortcutIconHeight);
   margin: 8px 4px 8px 8px;
   border-radius: var(--borderRadiusDefault);
+  flex-shrink: 0;
 }
 
 .shortcut-container.icon-leading-1 .shortcut-item .content,
 .shortcut-container.icon-leading-2 .shortcut-item .content,
 .shortcut-container.icon-leading-3 .shortcut-item .content {
   padding: 8px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .shortcut-container.image-leading-1 .shortcut-item,
