@@ -61,11 +61,19 @@
   --colorAccentDark: #0043ce;
   /* Background for active items, e.g. in left nav or tabs */
   --colorAccentSurface: #ecf4ff;
+  /* Ink color on accent */
+  --colorAccentInk: var(--colorWhite);
 
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
 
-  /* Docs Header */
+  /* Page Header */
+  --pageHeaderBackground: var(--colorBackgroundSecondary);
+  --pageHeaderInk: var(--colorInkPrimary);
+  --pageHeaderDescription: var(--colorInkSecondary);
+  --pageHeaderBorderColor: var(--colorBorderColorSubtle);
+
+  /* Top Navigation */
   --topNavBackground: var(--colorInkPrimary);
   --topNavBorderColor: var(--topNavBackground);
   /* main header text and icons */
@@ -94,9 +102,17 @@
   --leftNavInkSection: var(--colorInkSecondary);
   --leftNavElevation: none;
 
+  /* CTA button */
+  --ctaButtonBackground: var(--colorAccent);
+  --ctaButtonBackgroundHover: var(--colorAccentDark);
+  --ctaButtonInk: var(--colorWhite);
+
   /* Block: Shortcuts */
   --shortcutIconHeight: 48px;
   --shortcutIconWidth: 48px;
+
+  /* Block: Heading */
+  --headingInk: var(--colorInkPrimary);
 
   /* Block: Alert */
   --alertSuccessInk: var(--colorGreen900);
