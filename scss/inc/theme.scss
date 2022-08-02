@@ -111,28 +111,32 @@
   --alertInfoInk: var(--colorInkPrimary);
   --alertInfoInkSecondary: var(--colorInkSecondary);
   --alertInfoBackground: var(--colorBackgroundSecondary);
+
+  /* Dark theme (non-polished)
+  --leftNavBackground: var(--colorBackgroundSecondary);
+  --leftNavBorderColor: var(--colorBorderColorSubtle);
+  --leftNavInk: #fff;
+  --leftNavItemHoverBackground: var(--colorBackgroundPrimary);
+  --leftNavItemHoverInk: var(--leftNavInk);
+  --leftNavItemActiveBackground: var(--colorAccentSurface);
+  --leftNavItemActiveInk: var(--colorAccent);
+  --leftNavInkTab: var(--colorNeutral500);
+  --leftNavInkSection: var(--colorNeutral500);
+  --colorInkPrimary: var(--colorWhite);
+  --colorInkSecondary: var(--colorNeutral500);
+  --colorInkInverted: #202f3e;
+  --pageBackground: var(--colorNeutral900);
+  --colorBackgroundPrimary: #162433;
+  --colorBackgroundSecondary: #111d2a;
+  --colorBackgroundAlternative: #122a43;
+  --colorBorderColorProminent: #36455f;
+  --colorBorderColorSubtle: #232d3e;
+  --topNavBackground: var(--colorBackgroundPrimary);
+  --topNavBorderColor: var(--colorBackgroundPrimary);
+  --topNavInk: var(--colorInkPrimary);
+  --borderRadiusDefault: 24px;
+  --colorAccent: #fffd00;
+  --colorAccentDark: #f6f40d;
+  --colorAccentSurface: #313100;
+   */
 }
-
-/* Dark theme (non-polished)
---leftNavBackground: var(--colorBackgroundSecondary);
---leftNavBorderColor: var(--colorBorderColorSubtle);
---leftNavInk: #fff;
---leftNavItemHoverBackground: var(--colorBackgroundPrimary);
---leftNavItemHoverInk: var(--leftNavInk);
---leftNavItemActiveBackground: var(--colorAccentSurface);
---leftNavItemActiveInk: var(--colorAccent);
---leftNavInkTab: #f9f9fa;
---leftNavInkSection: #f9f9fa;
---colorInkPrimary: #ffffff; 
---colorInkSecondary: #dde1e7; 
---colorInkInverted: #202f3e; 
---colorBackgroundPrimary: #08141f;
---colorBackgroundSecondary: #162433;
---colorBackgroundAlternative: #122a43;
---colorBorderColorProminent: #36455f;
---colorBorderColorSubtle: #232d3e; 
---topNavBackground: var(--colorBackgroundPrimary);
---topNavBorderColor: var(--colorBackgroundPrimary);
---topNavInk: var(--colorInkPrimary);
-
-*/

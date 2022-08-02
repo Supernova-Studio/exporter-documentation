@@ -246,7 +246,7 @@
 
 .token-container .grid > div {
   border: 1px solid var(--colorBorderColorSubtle);
-  border-radius: var(--borderRadiusLarge);
+  border-radius: var(--borderRadiusDefault);
   box-sizing: border-box;
   overflow: hidden;
   background: var(--colorBackgroundPrimary);
@@ -315,6 +315,7 @@
   font-size: 14px;
   font-weight: 500;
   padding: 12px;
+  color: var(--colorNeutral900);
 }
 
 .token-container .stack .stack-item .value {
@@ -323,8 +324,8 @@
   white-space: nowrap;
 }
 
-.token-container .stack .stack-item.inverted-text {
-  color: white;
+.token-container .stack .stack-item.inverted-text .preview {
+  color: var(--colorWhite);
 }
 
 .token-container .stack .stack-item:first-child,

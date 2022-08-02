@@ -37,7 +37,7 @@
         {[/]}
 
         {* Generate inline component health *}
-        <div class="component-health-row {{ healthTag }}" data-block-id="{{ block.id }}">
+        <div class="component-health-row {{ healthTag }}" aria-role="button" data-block-id="{{ block.id }}">
             <div class="name">
                 {{ healthTagReadable }}
             </div>
@@ -94,7 +94,7 @@
                                         {[ case "Select" ]}
                                             {[ let optionValue = "" /]}
                                             {[ let optionColor = "" /]}
-                                            {[ let contrastColor = "dark" /]}
+                                            {[ let contrastColor = "" /]}
                                             {[ for option in property.options ]}
                                                 {[ if (option.id === propertyValues[property.codeName]) ]}
                                                     {[ optionValue = option.name /]}

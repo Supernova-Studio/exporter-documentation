@@ -53,7 +53,7 @@
                             {[ case "Select" ]}
                                 {[ let optionValue = "" /]}
                                 {[ let optionColor = "" /]}
-                                {[ let contrastColor = "dark" /]}
+                                {[ let contrastColor = "" /]}
                                 {[ for option in property.options ]}
                                     {[ if (option.id === propertyValues[property.codeName]) ]}
                                         {[ optionValue = option.name /]}

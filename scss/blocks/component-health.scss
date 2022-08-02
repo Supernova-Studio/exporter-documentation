@@ -5,15 +5,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   padding: 12px 16px;
-  cursor: pointer;
   border-radius: var(--borderRadiusDefault);
   transition: var(--transitionDefault);
-}
 
-.component-health-row:hover {
-  box-shadow: var(--boxShadowLevel1);
+  &[aria-role='button'] {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: var(--boxShadowLevel1);
+    }
+  }
 }
 
 .component-health-row .name {
@@ -75,18 +78,18 @@
 }
 
 .component-health-row.healthy {
-  background-color: #eafeef;
-  color: #00a454 !important;
+  background-color: var(--colorGreen100);
+  color: var(--colorGreen900) !important;
 }
 
 .component-health-row.withering {
-  background-color: #fff8f3;
-  color: #e36b00 !important;
+  background-color: var(--colorOrange100);
+  color: var(--colorOrange900) !important;
 }
 
 .component-health-row.dormant {
-  background-color: #fff8f8;
-  color: #d23031 !important;
+  background-color: var(--colorRed100);
+  color: var(--colorRed900) !important;
 }
 
 .component-health-row.unknown {
@@ -121,6 +124,19 @@
   transform: translate(-50%, -50%);
   overflow: hidden;
   border-radius: var(--borderRadiusDefault);
+  color: var(--colorInkPrimary);
+
+  &.healthy {
+    color: var(--colorGreen900);
+  }
+
+  &.withering {
+    color: var(--colorOrange900);
+  }
+
+  &.dormant {
+    color: var(--colorRed900);
+  }
 }
 
 .health-overlay-content .header {
@@ -177,14 +193,14 @@
 }
 
 .health-overlay-content .links .row > div:nth-child(1) {
-  color: #141618be;
+  color: var(--colorInkPrimary);
   font-size: 12px;
 }
 
 .health-overlay-content .links .yes {
   margin-right: 20px;
   position: relative;
-  color: #008141;
+  color: var(--colorGreen500);
 }
 
 .health-overlay-content .links .yes:after {
@@ -228,31 +244,31 @@
 }
 
 .health-overlay-content.healthy .header .title {
-  color: #00a454 !important;
+  color: var(--colorGreen500) !important;
 }
 
 .health-overlay-content.withering .header {
-  background-color: #fff8f3;
+  background-color: var(--colorOrange100);
 }
 
 .health-overlay-content.withering .header .title {
-  color: #e36b00 !important;
+  color: var(--colorOrange500) !important;
 }
 
 .health-overlay-content.dormant .header {
-  background-color: #fff8f8;
+  background-color: var(--colorRed100);
 }
 
 .health-overlay-content.dormant .header .title {
-  color: #d23031 !important;
+  color: var(--colorRed500) !important;
 }
 
 .health-overlay-content.unknown .header {
-  background-color: #f6f6f6;
+  background-color: var(--colorBackgroundSecondary);
 }
 
 .health-overlay-content.unknown .header .title {
-  color: #1f1f1f !important;
+  color: var(--colorInkPrimary) !important;
 }
 
 .link-chevron {
@@ -267,15 +283,15 @@
 }
 
 .component-health-summary div.healthy {
-  color: rgb(41, 145, 41);
+  color: var(--colorGreen500);
 }
 
 .component-health-summary div.withering {
-  color: #debe54;
+  color: var(--colorOrange100);
 }
 
 .component-health-summary div.dormant {
-  color: rgb(255, 95, 95);
+  color: var(--colorRed500);
 }
 
 .component-health-summary div.small {
@@ -389,15 +405,15 @@ th {
   padding: 4px 6px;
   border-radius: var(--borderRadiusDefault);
   font-weight: 500;
-  background: var(--colorBackgroundSecondary);
+  background: var(--colorBackgroundAlternative);
 }
 
 .component-select-tag.light {
-  color: var(--colorInkInverted);
+  color: var(--colorWhite);
 }
 
 .component-select-tag.dark {
-  color: var(--colorInkPrimary);
+  color: var(--colorNeutral900);
 }
 
 /*

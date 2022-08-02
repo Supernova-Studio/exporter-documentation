@@ -41,15 +41,16 @@
   flex-direction: column;
   min-height: 0;
   border-radius: var(--borderRadiusLarge);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  background: #fff;
+  box-shadow: var(--boxShadowLevel2);
+  background: var(--pageBackground);
+  color: var(--colorInkPrimary);
 }
 
 .SNSearch-header {
   height: 52px;
   width: 100%;
   padding: 12px;
-  border-bottom: 1px solid #f2f4f5;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
   display: flex;
   justify-content: space-between;
 }
@@ -61,6 +62,8 @@
   font-weight: 400;
   width: 100%;
   margin: 3px 16px 0px 9px;
+  background-color: var(--pageBackground);
+  color: var(--colorInkPrimary);
 }
 
 .SNSearch-header form {
@@ -92,25 +95,25 @@
   height: 44px;
   width: 100%;
   padding: 12px;
-  border-top: 1px solid #f2f4f5;
+  border-top: 1px solid var(--colorBorderColorSubtle);
   display: flex;
   justify-content: space-between;
-  color: rgba(0, 0, 0, 0.3);
+  color: var(--colorInkSecondary);
   font-size: 13px;
 }
 
 .SNSearch-footer span {
   padding: 4px;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: var(--colorBackgroundSecondary);
   border-radius: 2px;
-  color: #000;
+  color: var(--colorInPrimary);
 }
 
 .SNSearch-results p.section-title {
   font-size: 12px;
   line-height: 14px;
-  font-weight: 500;
-  color: #868f98;
+  font-weight: 600;
+  color: var(--colorInkSecondary);
   margin: 24px 0px 12px 0px;
 }
 
@@ -118,7 +121,7 @@
   font-size: 14px;
   line-height: 14px;
   font-weight: normal;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--colorInkSecondary);
   margin: 36px 0px 16px 0px;
 }
 
@@ -126,7 +129,7 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--colorInkSecondary);
   padding-top: 12px;
   padding-bottom: 4px;
   margin: 0px;
@@ -136,7 +139,7 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: normal;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--colorInkSecondary);
   padding-top: 0px;
   padding-bottom: 12px;
   margin: 0px;
@@ -147,7 +150,7 @@
 }
 
 .SNSearch-results p span {
-  color: #0f62fe;
+  color: var(--colorAccent);
 }
 
 .SNSearch-results .result {
@@ -155,7 +158,7 @@
 }
 
 .SNSearch-results .result:hover {
-  background-color: #f9f9fa;
+  background-color: var(--colorBackgroundSecondary);
 }
 
 .SNSearch-close {
@@ -174,7 +177,7 @@
 }
 
 .sn-search-result-link.selected .result {
-  background-color: #f2f4f5;
+  background-color: var(--colorBackgroundSecondary);
 }
 
 /* Responsive */

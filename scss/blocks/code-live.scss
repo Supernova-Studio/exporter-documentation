@@ -61,6 +61,10 @@ iframe {
   align-items: center;
   font-weight: 500;
   transition: var(--transitionDefault);
+  background: var(--colorBackgroundAlternative);
+  border: 1px solid var(--colorBorderColorSubtle);
+  color: var(--colorInkPrimary);
+  border-radius: var(--borderRadiusDefault);
 }
 
 .sandbox-container-buttons i {
