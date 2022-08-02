@@ -521,6 +521,7 @@
 .primary-menu a.active {
   background-color: var(--colorAccentSurface);
   color: var(--colorAccent);
+  transition: var(--transitionDefault);
 }
 
 .header-nav {
