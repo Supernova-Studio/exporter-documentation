@@ -1255,8 +1255,10 @@ ol > .block-children {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #ffffff;
+  color: var(--ctaButtonInk);
   margin-left: 16px;
+  white-space: nowrap;
+  transition: var(--transitionDefault);
 }
 
 #section-content-page > :first-child {
