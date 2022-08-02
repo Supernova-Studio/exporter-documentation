@@ -41,8 +41,8 @@
 }
 
 #header-nav .btn-search svg {
-  height: 24px;
-  width: 24px;
+  height: 22px;
+  width: 22px;
 }
 
 .fa-search:before {
@@ -493,7 +493,7 @@
 
 .primary-menu ul.navbar-nav > li > a:not(.btn) {
   color: var(--topNavInk);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .logo-wrapper img.default {
@@ -506,11 +506,11 @@
 
 .primary-menu ul.navbar-nav > li > a.active {
   background-color: rgba(15, 98, 254, 0.12);
-  color: #4589ff;
+  color: var(--colorAccent);
 }
 
 .primary-menu ul.navbar-nav > li:hover > a {
-  color: #4589ff;
+  color: var(--colorAccentDark);
 }
 
 .primary-menu {
@@ -810,7 +810,8 @@
 
 #version-container button:hover,
 #mobile-menu-container button:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: var(--topNavItemHoverBackground);
+  color: var(--topNavInk);
 }
 
 .utility-nav {

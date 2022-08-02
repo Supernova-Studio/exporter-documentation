@@ -128,7 +128,23 @@
   --alertInfoInkSecondary: var(--colorInkSecondary);
   --alertInfoBackground: var(--colorBackgroundSecondary);
 
-  /* Dark theme (non-polished)
+  /* Purple theme (testing) 
+  --colorAccent: #6a2bbf;
+  --colorAccentDark: #874ce6;
+  --colorAccentSurface: #f5f2fd;
+  --topNavBackground: var(--colorBackgroundPrimary);
+  --topNavBorderColor: var(--colorBorderColorSubtle);
+  --topNavInk: var(--colorInk);
+  --topNavItemHoverInk: var(--colorAccent);
+  --topNavItemActiveInk: var(--colorWhite);
+  --topNavItemHoverBackground: var(--colorAccentSurface);
+  --topNavItemActiveBackground: var(--colorAccent);
+  --topNavHeaderHeight: 64px;
+  --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
+  --pageHeaderBackground: var(--colorBackgroundPrimary);
+  */
+
+  /* Dark theme (testing) 
   --leftNavBackground: var(--colorBackgroundSecondary);
   --leftNavBorderColor: var(--colorBorderColorSubtle);
   --leftNavInk: #fff;
@@ -154,5 +170,5 @@
   --colorAccent: #fffd00;
   --colorAccentDark: #f6f40d;
   --colorAccentSurface: #313100;
-   */
+  */
 }
