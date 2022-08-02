@@ -9,6 +9,11 @@
   padding: 12px 16px;
   cursor: pointer;
   border-radius: var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+}
+
+.component-health-row:hover {
+  box-shadow: var(--boxShadowLevel1);
 }
 
 .component-health-row .name {
@@ -85,8 +90,8 @@
 }
 
 .component-health-row.unknown {
-  background-color: #f6f6f6;
-  color: var(--colorInk);
+  background-color: var(--colorBackgroundSecondary);
+  color: var(--colorInkPrimary);
 }
 
 .health-overlay {
@@ -97,7 +102,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(20, 22, 24, 0.8);
   z-index: 11;
 }
 
@@ -111,20 +116,21 @@
   top: 50%;
   left: 50%;
   font-size: 12px;
-  background-color: white;
+  background-color: var(--colorBackgroundPrimary);
   max-width: 375px;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border-radius: var(--borderRadiusDefault);
 }
 
 .health-overlay-content .header {
-  padding: 16px 16px 24px 16px;
-  background-color: #fafafa;
+  padding: 16px;
+  background-color: var(--colorBackgroundSecondary);
 }
 
 .health-overlay-content .links,
 .health-overlay-content .info {
-  border-top: 1px solid var(--colorPaint2);
+  border-top: 1px solid var(--colorBorderColorSubtle);
   padding: 12px 0px;
 }
 
@@ -149,7 +155,7 @@
 }
 
 .health-overlay-content .links .lighter {
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 .health-overlay-content .links .row {
@@ -162,11 +168,11 @@
 }
 
 .health-overlay-content .links a .row:hover {
-  background-color: var(--colorPaint3);
+  background-color: var(--colorBackgroundSecondary);
 }
 
 .health-overlay-content .links .row > div:nth-child(0) {
-  color: var(--colorInk1);
+  color: var(--colorInkSecondary);
   font-size: 12px;
 }
 
@@ -328,7 +334,7 @@
 
     &.description {
       font-size: 14px;
-      color: var(--colorInk2);
+      color: var(--colorInkSecondary);
     }
   }
 }
@@ -336,7 +342,7 @@
 .checklist-header {
   margin-bottom: 24px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
 }
 
 .component-table-wrapper-outer {
@@ -373,7 +379,7 @@
 .component-table-wrapper-inner td,
 th {
   vertical-align: center;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--colorBorderColorSubtle);
   padding: 10px;
   width: 100px;
 }
@@ -383,15 +389,15 @@ th {
   padding: 4px 6px;
   border-radius: var(--borderRadiusDefault);
   font-weight: 500;
-  background: var(--colorPaint2);
+  background: var(--colorBackgroundSecondary);
 }
 
 .component-select-tag.light {
-  color: #fff;
+  color: var(--colorInkInverted);
 }
 
 .component-select-tag.dark {
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
 }
 
 /*

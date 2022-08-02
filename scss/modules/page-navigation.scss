@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   transition: var(--transitionDefault);
-  background: var(--colorPaint);
+  background: var(--colorBackgroundPrimary);
 }
 
 .previous-next .segment:hover {
@@ -28,7 +28,7 @@
 }
 
 .previous-next .segment:hover div.pagename {
-  color: var(--colorPrimary);
+  color: var(--colorAccent);
 }
 
 .previous-next .col.left {
@@ -49,7 +49,7 @@
   width: 20px;
   height: 20px;
   margin: 0px 16px 8px 16px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 .previous-next .segment .segment-text {
@@ -60,7 +60,7 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 16px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
   margin-bottom: 2px;
 }
 
@@ -68,6 +68,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
   transition: var(--transitionDefault);
 }

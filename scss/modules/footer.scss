@@ -4,7 +4,7 @@
 
 #footer {
   background: #fff;
-  color: var(--colorInk1);
+  color: var(--colorInkPrimary);
   margin-left: 260px;
   padding: 2rem 0;
   margin: 48px 0 0 260px;
@@ -21,7 +21,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 .container-footer h4,
@@ -30,7 +30,7 @@ h6 {
   font-weight: bold;
   font-size: 20px;
   line-height: 28px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
   margin-bottom: 16px;
 }
 
@@ -39,12 +39,12 @@ h6 {
 }
 
 .container-footer p.copy {
-  color: var(--colorInk1);
+  color: var(--colorInkSecondary);
   line-height: 26px;
 }
 
 .container-footer a {
-  color: var(--colorPrimary);
+  color: var(--colorAccent);
 }
 
 .container-footer .nav .nav-item {

@@ -1,0 +1,61 @@
+/* =================================== */
+/*  Callout
+/* =================================== */
+.callout {
+  padding: 16px;
+  border: 0px;
+  margin: 24px 0;
+  border-radius: var(--borderRadiusDefault);
+  display: flex;
+  gap: 12px;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &.callout-info {
+    color: var(--alertInfoInk);
+    background-color: var(--alertInfoBackground);
+
+    .icon {
+      color: var(--alertInfoInkSecondary);
+    }
+  }
+
+  &.callout-success {
+    color: var(--alertSuccessInk);
+    background-color: var(--alertSuccessBackground);
+
+    .icon {
+      color: var(--alertSuccessInkSecondary);
+    }
+  }
+
+  &.callout-warning {
+    color: var(--alertWarningInk);
+    background-color: var(--alertWarningBackground);
+
+    .icon {
+      color: var(--alertWarningInkSecondary);
+    }
+  }
+
+  &.callout-danger {
+    color: var(--alertDangerInk);
+    background-color: var(--alertDangerBackground);
+
+    .icon {
+      color: var(--alertDangerInkSecondary);
+    }
+  }
+}
+
+.embed-responsive {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

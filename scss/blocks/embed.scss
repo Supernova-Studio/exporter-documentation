@@ -8,11 +8,12 @@
 
 .embed-url {
   width: 100%;
-  border: 1px solid var(--colorPaint1);
+  border: 1px solid var(--colorBorderColorSubtle);
   border-radius: var(--borderRadiusDefault);
   margin-bottom: 1rem;
   overflow: hidden;
-  margin: 24px 0;
+  margin: 24px 0 0;
+  transition: var(--transitionDefault);
 }
 
 .embed-url,
@@ -34,7 +35,8 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 20px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
+  transition: var(--transitionDefault);
 }
 
 .embed-url div.content p.description {
@@ -42,7 +44,7 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 16px;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--colorInkSecondary);
   /* Limit to max of 3 lines. Remove entire section for no limiting of the embedded text */
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -61,5 +63,31 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-decoration: underline;
+  font-size: 12px;
+  color: var(--colorInkSecondary);
+}
+
+.embed-link {
+  text-decoration: none;
+
+  .embed-url {
+    border: 0;
+    box-shadow: var(--boxShadowLevel1);
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    p.title {
+      color: var(--colorAccent) !important;
+    }
+
+    .embed-url {
+      box-shadow: var(--boxShadowLevel2);
+    }
+
+    * {
+      text-decoration: none;
+    }
+  }
 }

@@ -1,7 +1,8 @@
 {
   "extends": "stylelint-config-sass-guidelines",
   "rules": {
-    "max-nesting-depth": 3,
-    "rule-nested-empty-line-before": "always"
+    "max-nesting-depth": 5,
+    "rule-nested-empty-line-before": "always",
+    "max-line-length": 120
   }
 }

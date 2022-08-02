@@ -6,7 +6,7 @@
     </div>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="preview">
-        <div class="token-preview-container large">
+        <div class="token-preview-container large checkered-background-light">
             <div class="token-preview-container-border large" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
         </div>
     </div>
@@ -39,17 +39,19 @@
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    <div class="preview">px</div>
+    <div class="preview">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}</div>
 {[ elseif token.tokenType.equals("Radius")]}
-    <div class="preview" style="border-radius: {{ token.value.radius.measure}}px"></div>
+    <div class="preview token-preview-container large checkered-background-light">
+        <div class="token-preview-container-radius large" style="border-radius: {{ token.value.radius.measure}}px"></div>
+    </div>
 {[ elseif token.tokenType.equals("Shadow")]}
-    <div class="preview">
-        <div style="width: 64px; height: 64px; box-shadow: {{ shadowTokenValue(token) }}"></div>
+    <div class="preview token-preview-container large">
+        <div class="token-type-shadow" style="box-shadow: {{ shadowTokenValue(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    <div class="preview">Ag</div>
+    <div class="preview" style="font-size: {{ token.value.fontSize.measure }}{{ measureTypeIntoReadableUnit(token.value.fontSize.unit) }} !important;font-size: {{ token.value.lineHeight.measure }}{{ measureTypeIntoReadableUnit(token.value.lineHeight.unit) }} !important">Ag</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[/]}

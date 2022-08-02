@@ -8,13 +8,13 @@
 
   &.bordered {
     padding: 16px;
-    border: 1px solid var(--colorPaint2);
+    border: 1px solid var(--colorBorderColorSubtle);
     border-radius: var(--borderRadiusDefault);
   }
 
   &.boxed {
     padding: 16px;
-    background: var(--colorPaint3);
+    background: var(--colorBackgroundSecondary);
     border-radius: var(--borderRadiusDefault);
   }
 }

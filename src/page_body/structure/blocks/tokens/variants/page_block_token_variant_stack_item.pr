@@ -17,7 +17,6 @@
             </div>
             <div class="value">
                 {[ inject "page_block_token_value" context token /]}   
-                {{token.value.hex}}  
             </div>
         </div>
     </div>

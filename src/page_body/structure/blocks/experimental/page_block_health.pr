@@ -117,28 +117,31 @@
                     <div class="links">
                         {[ for property in component.properties ]}
                             {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL", "Link"].contains(property.propertyType)) ]}
-                                {* Generate link container, if needed *}
-                                {[ switch property.propertyType ]}
-                                    {[ case "URL" ]}
-                                    <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
-                                    {[ case "Link" ]}
-                                    <a href="#TODO">
-                                {[/]}
-                                {* Generate content for each property *}
-                                <div class="row">
-                                    {* Property name *}
-                                    <div class="col-6 lighter">{{ property.name }}</div>
-                                    {* Property value *}
-                                    <div class="col-6 text-right">
+                                {* Limiting only to URL now, since the Link doesn't have data in the payload yet *}
+                                {[ if (["URL"].contains(property.propertyType) && propertyValues[property.codeName]) ]}
+                                    {* Generate link container, if needed *}
                                     {[ switch property.propertyType ]}
-                                        {[ case "Link" ]}
-                                        <img class="link-chevron" />
                                         {[ case "URL" ]}
-                                        <img class="link-chevron" />
+                                            <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
+                                        {[ case "Link" ]}
+                                            <a href="#TODO">
                                     {[/]}
+                                    {* Generate content for each property *}
+                                    <div class="row">
+                                        {* Property name *}
+                                        <div class="col-6 lighter">{{ property.name }}</div>
+                                        {* Property value *}
+                                        <div class="col-6 text-right">
+                                        {[ switch property.propertyType ]}
+                                            {[ case "Link" ]}
+                                            <img class="link-chevron" />
+                                            {[ case "URL" ]}
+                                            <img class="link-chevron" />
+                                        {[/]}
+                                        </div>
                                     </div>
-                                </div>
-                                </a>
+                                    </a>
+                                {[/]}
                             {[/]}
                         {[/]}
                     </div>

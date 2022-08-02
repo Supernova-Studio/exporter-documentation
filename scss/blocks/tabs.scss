@@ -18,43 +18,45 @@
   position: relative;
   border-radius: 0;
   padding: 6px 16px;
-  color: #7b8084;
+  color: var(--colorInkSecondary);
   white-space: nowrap !important;
   transition: var(--transitionDefault);
 }
 
 .nav-tabs .nav-item .nav-link.active {
-  color: #0c2f55;
+  color: var(--colorAccent) !important;
 }
 
 .nav-tabs .nav-item .nav-link.active:after {
   height: 1px;
   width: 100%;
   content: ' ';
-  background-color: #0366d6;
+  background-color: var(--colorAccent);
   display: block;
   position: absolute;
   bottom: 0px;
   left: 0;
+  border-radius: var(--borderRadiusDefault);
 }
 
 .nav-tabs .nav-item .nav-link:not(.active):hover {
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
+  box-shadow: inset 0px -1px 0 0px var(--colorBorderColorProminent);
 }
 
 .nav-tabs.flex-column {
-  border-right: 1px solid #d7dee3;
+  border-right: 1px solid var(--colorBorderColorSubtle);
   border-bottom: 0px;
   padding: 1.5rem 0;
 }
 
 .nav-tabs.flex-column .nav-item .nav-link {
-  border: 1px solid #d7dee3;
+  border: 1px solid var(--colorBorderColorSubtle);
   border-right: 0px;
-  background-color: #f6f7f8;
-  font-size: 14px;
+  background-color: var(--pageBackground);
+  font-size: 12px;
   padding: 0.75rem 1rem;
-  color: #535b61;
+  color: var(--colorInkSecondary);
 }
 
 .nav-tabs.flex-column .nav-item:first-of-type .nav-link {
@@ -73,7 +75,7 @@
 .nav-tabs.flex-column .nav-item .nav-link.active:after {
   height: 100%;
   width: 2px;
-  background: #fff;
+  background: var(--colorBackgroundPrimary);
   right: -1px;
   left: auto;
 }
@@ -94,22 +96,18 @@
 .nav-tabs .nav-item .nav-link {
   padding: 8px 16px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
 }
 
 .nav-tabs .nav-item .nav-link:hover {
   border-radius: var(--borderRadiusDefault) var(--borderRadiusDefault) 0px 0px;
-  background-color: var(--colorPaint3);
-}
-
-.nav-tabs .nav-item .nav-link.active {
-  color: var(--colorPrimary) !important;
+  background-color: var(--colorBackgroundSecondary);
 }
 
 .nav-tabs .nav-item .nav-link.active:after {
-  background-color: var(--colorPrimary) !important;
+  background-color: var(--colorAccent) !important;
   height: 1px;
 }
 
@@ -119,16 +117,17 @@
 }
 
 .tab-content-block {
-  background: #ffffff;
-  border: 1px solid var(--colorPaint1);
+  background: var(--colorBackgroundPrimary);
+  border: 1px solid var(--colorBorderColorProminent);
   border-radius: var(--borderRadiusLarge);
   padding: 16px 24px;
+  margin-top: -1px;
 }
 
 .tab-pills .tab-content-block {
   padding: 0px 24px;
   border: 0;
-  border-left: 1px solid var(--colorPaint1);
+  border-left: 1px solid var(--colorBorderColorProminent);
   border-radius: 0px;
   margin-bottom: 24px;
   min-height: calc(100% - 24px);
@@ -148,14 +147,50 @@
 }
 
 .docs-content .tab-pane > :last-child {
-  padding-bottom: 16px;
+  padding-bottom: 0px; // originally 16px, but it was breaking the last block
   margin-bottom: 0px;
 }
 
-.docs-content .tab-pills .tab-pane > :first-child {
+.docs-content .tab-pane > :nth-child(2) {
+  // 2nd child, because the first one is anchor
   padding-top: 0px;
   margin-top: 0px;
 }
+
+/* Variant: Pills */
+.nav-pills .nav-link:not(.active):hover {
+  color: var(--colorInkPrimary);
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.nav-pills .nav-link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--colorInkPrimary);
+  margin-bottom: 2px;
+  border-radius: var(--borderRadiusDefault) 0px 0px var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills.nav-light .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--colorInkInverted);
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--colorAccentSurface) !important;
+  color: var(--colorAccent);
+  border-right: 1px solid var(--colorAccent);
+  margin-right: -1px;
+  z-index: 2;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Responsive behavior */
 
 @media (max-width: 575.98px) {
   .nav-tabs .nav-item .nav-link {

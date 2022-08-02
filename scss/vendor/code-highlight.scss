@@ -30,8 +30,8 @@
 
 code[class*='language-'],
 pre[class*='language-'] {
-  background: var(--colorPaint3);
-  color: var(--colorInk);
+  background: var(--colorBackgroundSecondary);
+  color: var(--colorInkPrimary);
   font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono',
     monospace;
   direction: ltr;
@@ -54,14 +54,14 @@ pre[class*='language-'] {
 code[class*='language-']::-moz-selection,
 code[class*='language-'] *::-moz-selection,
 pre[class*='language-'] *::-moz-selection {
-  background: var(--colorPaint2);
+  background: var(--colorBackgroundAlternative);
   color: inherit;
 }
 
 code[class*='language-']::selection,
 code[class*='language-'] *::selection,
 pre[class*='language-'] *::selection {
-  background: var(--colorPaint2);
+  background: var(--colorBackgroundAlternative);
   color: inherit;
 }
 

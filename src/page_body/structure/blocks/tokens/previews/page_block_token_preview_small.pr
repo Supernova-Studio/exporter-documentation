@@ -29,14 +29,16 @@
 {[ elseif token.tokenType.equals("Font")]}
     <div class="token-preview-container">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
-    <div class="token-preview-container" style="background: {{ gradientTokenValue(token) }}"></div>
+    <div class="token-preview-container checkered-background-light">
+        <div class="color-preview" style="background: {{ gradientTokenValue(token) }}"></div>
+    </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    <div class="token-preview-container">px</div>
+    <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}</div>
 {[ elseif token.tokenType.equals("Radius")]}
-    <div class="token-preview-container" style="border-radius: {{ token.value.radius.measure}}px"></div>
+    <div class="token-preview-container" style="border-radius: {{ token.value.radius.measure}}px; border-color: var(--colorBorderColorProminent)"></div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="token-preview-container">
-        <div style="width: 20px; height: 20px; background: #fff; box-shadow: {{ scaledShadowTokenValue(token, 4) }}"></div>
+        <div class="token-type-shadow" style="box-shadow: {{ scaledShadowTokenValue(token, 4) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="token-preview-container">T</div>

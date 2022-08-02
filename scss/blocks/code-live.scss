@@ -2,7 +2,7 @@
 /*  Code (Live render)
 /* =================================== */
 .sandbox-main-wrapper {
-  border: 1px solid var(--colorPaint2);
+  border: 1px solid var(--colorBorderColorSubtle);
   border-radius: var(--borderRadiusDefault);
   overflow: hidden;
   margin: 24px 0px;
@@ -49,8 +49,8 @@ iframe {
   align-items: flex-end;
   justify-content: space-between;
   padding: 8px;
-  background-color: var(--colorPaint3);
-  border-top: 1px solid var(--colorPaint2);
+  background-color: var(--colorBackgroundSecondary);
+  border-top: 1px solid var(--colorBorderColorSubtle);
   height: 44px;
 }
 
@@ -65,7 +65,7 @@ iframe {
 
 .sandbox-container-buttons i {
   margin: 0px 8px;
-  color: var(--colorInk4);
+  color: var(--colorBackgroundSecondary);
   cursor: pointer;
 }
 

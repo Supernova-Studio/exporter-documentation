@@ -12,27 +12,48 @@
   width: 36px;
   height: 36px;
   border-radius: var(--borderRadiusDefault);
-  border: 1px solid var(--colorPaint2);
+  border: 1px solid var(--colorBorderColorSubtle);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+
+  &.large {
+    width: 100%;
+    height: 100%;
+    border: 0;
+
+    .token-type-shadow {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .token-type-shadow {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--borderRadiusSmall);
+    background-color: var(--colorBackgroundPrimary);
+  }
 }
 
-.token-preview-container.large {
-  width: 100%;
-  height: 100%;
-}
-
-.token-preview-container-border {
+.token-preview-container-border,
+.token-preview-container-radius {
   width: 20px;
   height: 20px;
   margin: auto;
-  border-radius: var(--borderRadiusDefault);
+  border-radius: var(--borderRadiusSmall);
+  background-color: var(--colorBackgroundPrimary);
 }
 
-.token-preview-container-border.large {
+.token-preview-container-radius {
+  border: 1px solid var(--colorBorderColorProminent);
+}
+
+.token-preview-container-border.large,
+.token-preview-container-radius.large,
+.token-preview-container-blur.large {
   width: 64px;
   height: 64px;
 }
@@ -42,12 +63,7 @@
   height: 20px;
   margin: auto;
   border-radius: var(--borderRadiusDefault);
-  background-color: #363a3e;
-}
-
-.token-preview-container-blur.large {
-  width: 64px;
-  height: 64px;
+  background-color: var(--colorInkSecondary);
 }
 
 .token-preview-container-blur-text-unblurred {
@@ -66,13 +82,13 @@
 /* Token Headers */
 
 .token-group-header {
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
   font-size: 1rem;
   font-weight: 500;
 }
 
 .token-group-header span.light {
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 /* Token tables */
@@ -80,13 +96,13 @@
 .token-container table {
   width: 100%;
   font-size: 12px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
   border-collapse: collapse;
-  border-top: 1px solid var(--colorPaint2);
+  border-top: 1px solid var(--colorBorderColorSubtle);
 }
 
 .token-container table tr {
-  border-bottom: 1px solid var(--colorPaint2);
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
   height: 45px;
 }
 
@@ -103,7 +119,7 @@
   padding: 20px 12px 12px 12px;
   font-weight: 500;
   font-size: 14px;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
   vertical-align: top;
 }
 
@@ -112,7 +128,7 @@
   font-weight: normal;
   font-size: 12px;
   padding: 20px 12px 12px 12px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
   line-height: 20px;
   vertical-align: top;
 }
@@ -122,7 +138,7 @@
   font-weight: normal;
   font-size: 12px;
   padding: 20px 12px 12px 12px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
   vertical-align: top;
 }
 
@@ -130,7 +146,7 @@
   font-style: normal;
   font-size: 11px;
   line-height: 16px;
-  color: var(--colorInk1);
+  color: var(--colorInkPrimary);
   font-family: 'Fira Code', monospace;
   font-weight: 500;
 }
@@ -145,8 +161,8 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
-  color: var(--colorInk2);
-  background-color: var(--colorPaint2);
+  color: var(--colorInkSecondary);
+  background-color: var(--colorBackgroundSecondary);
   border-radius: 2px;
   padding: 0px 2px;
   font-family: 'Fira Code', monospace;
@@ -156,9 +172,9 @@
 .token-container span.label {
   display: inline-flex;
   font-style: normal;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 16px;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 /* Token grids */
@@ -187,19 +203,23 @@
 .token-container .grid > div > div.preview {
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid #f2f4f5;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 24px;
   border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0 0;
+  overflow: hidden;
 }
 
 .token-container .grid > div > div.preview .color-preview {
+  border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0 0;
   border: 0;
+}
+
+.token-container .color-preview {
   width: 100%;
   height: 100%;
-  border-radius: var(--borderRadiusLarge) var(--borderRadiusLarge) 0 0;
 }
 
 .token-container .grid > div > div.preview.small-text {
@@ -212,24 +232,25 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
-  color: var(--colorInk);
+  color: var(--colorInkPrimary);
 }
 
 .token-container .grid > div > p.description {
-  margin: 0px 12px 12px 8px;
+  margin: 0px 12px 4px 8px;
   padding: 0;
   font-size: 12px;
   line-height: 1.6;
   font-weight: normal;
-  color: var(--colorInk2);
+  color: var(--colorInkSecondary);
 }
 
 .token-container .grid > div {
-  border: 1px solid var(--colorPaint2);
+  border: 1px solid var(--colorBorderColorSubtle);
   border-radius: var(--borderRadiusLarge);
   box-sizing: border-box;
   overflow: hidden;
-  background: var(--colorPaint);
+  background: var(--colorBackgroundPrimary);
+  padding-bottom: 4px;
 }
 
 .token-container .grid > div.spacer {
@@ -237,7 +258,7 @@
 }
 
 .token-container .grid .custom-properties {
-  margin: 0px 12px 8px 8px;
+  margin: 0px 12px 4px 8px;
   line-height: 1;
 }
 
@@ -263,14 +284,26 @@
 }
 
 .token-container .stack .stack-item.bordered {
-  border: 1px solid var(--colorPaint2);
+  border: 1px solid var(--colorBorderColorSubtle);
 }
 
 .token-container .stack .stack-item.is-color {
-  background-image: linear-gradient(45deg, #f7f7f7 25%, transparent 25%),
-    linear-gradient(-45deg, #f7f7f7 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f7f7f7 75%),
-    linear-gradient(-45deg, transparent 75%, #f7f7f7 75%);
+  background-image: linear-gradient(
+      45deg,
+      var(--colorBackgroundSecondary) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      -45deg,
+      var(--colorBackgroundSecondary) 25%,
+      transparent 25%
+    ),
+    linear-gradient(45deg, transparent 75%, var(--colorBackgroundSecondary) 75%),
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      var(--colorBackgroundSecondary) 75%
+    );
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
@@ -316,7 +349,7 @@
 
 .token-container .stack .stack-item.fallback {
   align-items: center;
-  border-bottom: 1px solid var(--colorPaint2);
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
 }
 
 .token-container .stack .stack-item.fallback:last-child {

@@ -1,40 +1,138 @@
-/*  0. Design tokens 
+/*  Design tokens 
 /* =================================== */
 :root {
-    /** Core tokens **/
-    --colorInk: #141618; /* main text */
-    --colorInk1: #141618cc;
-    --colorInk2: #141618ad;
-    --colorInk3: #1416187a;
-    --colorInk4: #1416180a;
-    --colorPaint: #ffffff; /* main bg for components */
-    --colorPaint1: #dce0e4; /* inputs, ... */
-    --colorPaint2: #f2f4f5; /* borders, darker background, ... */
-    --colorPaint3: #f9f9fA; /* secondary background, hr, ... */
-    --colorPrimary: #0f62fe; /* links, active states, ... */
-    --colorPrimaryDark: #0043CE; /* hovers for primary */
-    --colorPrimaryLight: #0f62fe0a;
-    --colorPrimaryHighlight: #0f62fe14;
-    --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
-    --borderRadiusDefault: 4px;
-    --borderRadiusLarge: 6px;
-    --transitionDefault: 200ms all ease-in-out;
-    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px var(--colorPaint3);
-    --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorPaint2);
+  /*  Palette 
+  /* =================================== */
+  --colorWhite: #fff;
+  --colorNeutral100: #f9f9fa;
+  --colorNeutral200: #f2f4f5;
+  --colorNeutral400: #dce0e4;
+  --colorNeutral500: #9298a0;
+  --colorNeutral600: #6e747e;
+  --colorNeutral700: #666e7a;
+  --colorNeutral800: #313c4d;
+  --colorNeutral900: #0f172a;
+  --colorRed100: #fff5f5;
+  --colorRed500: #d23031;
+  --colorRed900: #9e2122;
+  --colorGreen100: #ebfff0;
+  --colorGreen500: #00a454;
+  --colorGreen900: #008141;
+  --colorOrange100: #fff6f0;
+  --colorOrange500: #e36b00;
+  --colorOrange900: #ba4e00;
 
-    /** Semantic tokens **/
-    /* Global */
-    --pageBackground: var(--colorPaint);
-    /* Docs Header */
-    --uiHeaderPaint: var(--colorInk);
-    --uiHeaderBorder: var(--uiHeaderPaint);
-    --uiHeaderInk: #fff; /* main header text and icons */
-    --uiHeaderItemInkHover: var(--uiHeaderInk); /* main header item text on hover  */
-    --uiHeaderItemInkActive: var(--uiHeaderInk); /* main header item text when active */
-    --uiHeaderItemPaintHover: rgba(255, 255, 255, 0.15); /* main header item background on hover */
-    --uiHeaderItemPaintActive: var(--uiHeaderItemPaintHover);  /* main header item background when active */
-    --uiHeaderHeight: 68px;
-     /* Shortcuts */
-    --shortcutIconHeight: 48px;
-    --shortcutIconWidth: 48px;
+  /*  Core tokens 
+  /* =================================== */
+  --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
+  --borderRadiusSmall: 2px;
+  --borderRadiusDefault: 4px;
+  --borderRadiusLarge: 6px;
+  --transitionDefault: 200ms all ease-in-out;
+  --boxShadowLevel0: 0px 0px 0px 1px var(--colorBackgroundPrimary);
+  --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05),
+    0px 0px 0px 1px var(--colorBackgroundSecondary);
+  --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08),
+    0px 0px 0px 1px var(--colorBorderColorSubtle);
+
+  /*  Semantic 
+  /* =================================== */
+  /* main text */
+  --colorInkPrimary: var(--colorNeutral900);
+  /* secondary text */
+  --colorInkSecondary: var(--colorNeutral700);
+  /* eyebrow headings */
+  --colorInkTertiary: var(--colorNeutral500);
+  /* inverted text, e.g. for us on dark bg */
+  --colorInkInverted: var(--colorWhite);
+  /* Main bg for components */
+  --colorBackgroundPrimary: var(--colorWhite);
+  /* Secondary background (code, etc) ... */
+  --colorBackgroundSecondary: var(--colorNeutral100);
+  /* For hovers, etc., works on both Primary and Secondary ... */
+  --colorBackgroundAlternative: var(--colorNeutral200);
+  /* inputs, s... */
+  --colorBorderColorProminent: var(--colorNeutral400);
+  /* borders, page structure ... */
+  --colorBorderColorSubtle: var(--colorNeutral200);
+  /* links, active states, ... */
+  --colorAccent: #0f62fe;
+  /* hovers for primary */
+  --colorAccentDark: #0043ce;
+  /* Background for active items, e.g. in left nav or tabs */
+  --colorAccentSurface: #ecf4ff;
+
+  /* Site */
+  --pageBackground: var(--colorBackgroundPrimary);
+
+  /* Docs Header */
+  --topNavBackground: var(--colorInkPrimary);
+  --topNavBorderColor: var(--topNavBackground);
+  /* main header text and icons */
+  --topNavInk: var(--colorInkInverted);
+  /* main header item text on hover  */
+  --topNavItemHoverInk: var(--topNavInk);
+  /* main header item text when active */
+  --topNavItemActiveInk: var(--topNavInk);
+  /* main header item background on hover */
+  --topNavItemHoverBackground: rgba(255, 255, 255, 0.15);
+  /* main header item background when active */
+  --topNavItemActiveBackground: var(--topNavItemHoverBackground);
+  --topNavHeaderHeight: 68px;
+  --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
+
+  /* Left Navigation */
+  --leftNavWidth: 300px;
+  --leftNavBackground: var(--colorBackgroundSecondary);
+  --leftNavBorderColor: var(--colorBorderColorSubtle);
+  --leftNavInk: var(--colorInkPrimary);
+  --leftNavItemHoverBackground: var(--colorBackgroundAlternative);
+  --leftNavItemHoverInk: var(--leftNavInk);
+  --leftNavItemActiveBackground: var(--colorAccentSurface);
+  --leftNavItemActiveInk: var(--colorAccent);
+  --leftNavInkTab: var(--colorInkSecondary);
+  --leftNavInkSection: var(--colorInkSecondary);
+  --leftNavElevation: none;
+
+  /* Block: Shortcuts */
+  --shortcutIconHeight: 48px;
+  --shortcutIconWidth: 48px;
+
+  /* Block: Alert */
+  --alertSuccessInk: var(--colorGreen900);
+  --alertSuccessInkSecondary: var(--colorGreen500);
+  --alertSuccessBackground: var(--colorGreen100);
+  --alertWarningInk: var(--colorOrange900);
+  --alertWarningInkSecondary: var(--colorOrange500);
+  --alertWarningBackground: var(--colorOrange100);
+  --alertDangerInk: var(--colorRed900);
+  --alertDangerInkSecondary: var(--colorRed500);
+  --alertDangerBackground: var(--colorRed100);
+  --alertInfoInk: var(--colorInkPrimary);
+  --alertInfoInkSecondary: var(--colorInkSecondary);
+  --alertInfoBackground: var(--colorBackgroundSecondary);
 }
+
+/* Dark theme (non-polished)
+--leftNavBackground: var(--colorBackgroundSecondary);
+--leftNavBorderColor: var(--colorBorderColorSubtle);
+--leftNavInk: #fff;
+--leftNavItemHoverBackground: var(--colorBackgroundPrimary);
+--leftNavItemHoverInk: var(--leftNavInk);
+--leftNavItemActiveBackground: var(--colorAccentSurface);
+--leftNavItemActiveInk: var(--colorAccent);
+--leftNavInkTab: #f9f9fa;
+--leftNavInkSection: #f9f9fa;
+--colorInkPrimary: #ffffff; 
+--colorInkSecondary: #dde1e7; 
+--colorInkInverted: #202f3e; 
+--colorBackgroundPrimary: #08141f;
+--colorBackgroundSecondary: #162433;
+--colorBackgroundAlternative: #122a43;
+--colorBorderColorProminent: #36455f;
+--colorBorderColorSubtle: #232d3e; 
+--topNavBackground: var(--colorBackgroundPrimary);
+--topNavBorderColor: var(--colorBackgroundPrimary);
+--topNavInk: var(--colorInkPrimary);
+
+*/
