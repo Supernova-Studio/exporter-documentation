@@ -806,10 +806,10 @@ ol > .block-children {
   opacity: 0;
   transform: translateX(4px);
   position: absolute;
-  left: -24px;
+  left: -28px;
   top: -2px;
-  transition: opacity 0.2s ease-out 0s, transform 0.2s ease-out 0s;
-  width: 24px;
+  transition: opacity 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s;
+  width: 28px;
   text-align: center;
 }
 
