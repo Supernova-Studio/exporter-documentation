@@ -1,0 +1,94 @@
+/* =================================== */
+/*  Embed
+/* =================================== */
+.embed-responsive-item {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--borderRadiusDefault);
+}
+
+.embed-url {
+  width: 100%;
+  border: 1px solid var(--colorBorderColorSubtle);
+  border-radius: var(--borderRadiusDefault);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  margin: 24px 0 0;
+  transition: var(--transitionDefault);
+}
+
+.embed-url,
+.embed-url:hover {
+  text-decoration: none;
+}
+
+.embed-url div.preview {
+  min-height: 112px;
+  background-size: cover;
+}
+
+.embed-url div.content {
+  padding: 16px;
+}
+
+.embed-url div.content p.title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--colorInkPrimary);
+  transition: var(--transitionDefault);
+}
+
+.embed-url div.content p.description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--colorInkSecondary);
+  /* Limit to max of 3 lines. Remove entire section for no limiting of the embedded text */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.embed-url.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.embed-url div.content p.link {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--colorInkSecondary);
+}
+
+.embed-link {
+  text-decoration: none;
+
+  .embed-url {
+    border: 0;
+    box-shadow: var(--boxShadowLevel1);
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    p.title {
+      color: var(--colorAccent) !important;
+    }
+
+    .embed-url {
+      box-shadow: var(--boxShadowLevel2);
+    }
+
+    * {
+      text-decoration: none;
+    }
+  }
+}

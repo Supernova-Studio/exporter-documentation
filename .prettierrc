@@ -1,0 +1,6 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "max-line-length": 120
+}

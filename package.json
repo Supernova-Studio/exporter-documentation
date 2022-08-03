@@ -1,0 +1,35 @@
+{
+  "name": "sn-export-compile",
+  "version": "1.0.0",
+  "description": "JS Exporter Compiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:dev": "npx webpack --mode=development --watch",
+    "watch": "npx webpack --mode=production --watch",
+    "build": "npx webpack --config webpack.config.js --mode='production'"
+  },
+  "author": "Supernova.io",
+  "license": "MIT",
+  "dependencies": {
+    "abab": "^2.0.5",
+    "papaparse": "^5.3.1",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/showdown": "^2.0.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.1",
+    "prettier-stylelint": "^0.4.2",
+    "sass-loader": "^13.0.2",
+    "stylelint": "^14.9.1",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

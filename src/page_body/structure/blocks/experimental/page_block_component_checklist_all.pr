@@ -27,7 +27,7 @@
         <tr>
             <th class="left">Component Name</th>
             {[ for property in firstComponent.properties ]}
-                {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
+                {[ if (propertiesToHighlight.contains(property.persistentId) && !["Link"].contains(property.propertyType)) ]}
                 <td class="center">{{ property.name }}</td>
                 {[/]}
             {[/]}
@@ -42,7 +42,7 @@
                 <th>{{ component.name }}</th>
                 {[ for property in component.properties ]}
                     {* Only show selected properties in addition to name *}
-                    {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
+                    {[ if (propertiesToHighlight.contains(property.persistentId) && !["Link"].contains(property.propertyType)) ]}
                         {[ switch property.propertyType ]}
                             {[ case "Text" ]}
                             {[ case "Number" ]}
@@ -53,7 +53,7 @@
                             {[ case "Select" ]}
                                 {[ let optionValue = "" /]}
                                 {[ let optionColor = "" /]}
-                                {[ let contrastColor = "dark" /]}
+                                {[ let contrastColor = "" /]}
                                 {[ for option in property.options ]}
                                     {[ if (option.id === propertyValues[property.codeName]) ]}
                                         {[ optionValue = option.name /]}
@@ -61,17 +61,25 @@
                                         {[ contrastColor = contrastColor(optionColor) /]}
                                     {[/]}
                                 {[/]}  
-                                <td class="center"><span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">{{ optionValue }}</span></td>
+                                <td class="center">
+                                  <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+                                    {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
+                                  </span>
+                                </td>
                             {[ case "Link" ]}
                                 <td class="center"><a href="#" target="_blank">Open link</a></td>
                             {[ case "URL" ]}
-                                <td>
-                                    <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}" target="_blank">Open Link</a>
+                                <td class="center">
+                                {[ if propertyValues[property.codeName] ]}
+                                    <a href="{{ propertyValues[property.codeName] }}" target="_blank">Open link</a>
+                                {[ else ]}
+                                    -
+                                {[/]}
                                 </td>
                         {[/]}
                     {[/]}
                 {[/]}
-                <td class="center">{{ component.updatedAt.formatDate("MM/DD/YYYY") }}</td>
+                <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
             </tr>
         {[/]}
         </table>

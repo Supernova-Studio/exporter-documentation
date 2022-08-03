@@ -1,0 +1,202 @@
+/* =================================== */
+/*  Tabs (block & page tabs too)
+/* =================================== */
+.nav-tabs {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+}
+
+.nav-tabs > li {
+  float: none;
+}
+
+.nav-tabs .nav-item .nav-link {
+  border: 0;
+  background: transparent;
+  position: relative;
+  border-radius: 0;
+  padding: 6px 16px;
+  color: var(--colorInkSecondary);
+  white-space: nowrap !important;
+  transition: var(--transitionDefault);
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  color: var(--colorAccent) !important;
+}
+
+.nav-tabs .nav-item .nav-link.active:after {
+  height: 1px;
+  width: 100%;
+  content: ' ';
+  background-color: var(--colorAccent);
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  border-radius: var(--borderRadiusDefault);
+}
+
+.nav-tabs .nav-item .nav-link:not(.active):hover {
+  color: var(--colorInkPrimary);
+  box-shadow: inset 0px -1px 0 0px var(--colorBorderColorProminent);
+}
+
+.nav-tabs.flex-column {
+  border-right: 1px solid var(--colorBorderColorSubtle);
+  border-bottom: 0px;
+  padding: 1.5rem 0;
+}
+
+.nav-tabs.flex-column .nav-item .nav-link {
+  border: 1px solid var(--colorBorderColorSubtle);
+  border-right: 0px;
+  background-color: var(--pageBackground);
+  font-size: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--colorInkSecondary);
+}
+
+.nav-tabs.flex-column .nav-item:first-of-type .nav-link {
+  border-top-left-radius: var(--borderRadiusDefault);
+}
+
+.nav-tabs.flex-column .nav-item:last-of-type .nav-link {
+  border-bottom-left-radius: var(--borderRadiusDefault);
+}
+
+.nav-tabs.flex-column .nav-item .nav-link.active {
+  background-color: transparent;
+  color: #0366d6;
+}
+
+.nav-tabs.flex-column .nav-item .nav-link.active:after {
+  height: 100%;
+  width: 2px;
+  background: var(--colorBackgroundPrimary);
+  right: -1px;
+  left: auto;
+}
+
+.nav-tabs:not(.flex-column) {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+}
+
+.nav-tabs:not(.flex-column) .nav-item {
+  margin-bottom: 0px;
+}
+
+.nav-tabs .nav-item .nav-link {
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--colorInkPrimary);
+}
+
+.nav-tabs .nav-item .nav-link:hover {
+  border-radius: var(--borderRadiusDefault) var(--borderRadiusDefault) 0px 0px;
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.nav-tabs .nav-item .nav-link.active:after {
+  background-color: var(--colorAccent) !important;
+  height: 1px;
+}
+
+.tab-pills {
+  margin-top: 24px !important;
+  margin-bottom: 24px;
+}
+
+.tab-content-block {
+  background: var(--colorBackgroundPrimary);
+  border: 1px solid var(--colorBorderColorProminent);
+  border-radius: var(--borderRadiusLarge);
+  padding: 16px 24px;
+  margin-top: -1px;
+}
+
+.tab-pills .tab-content-block {
+  padding: 0px 24px;
+  border: 0;
+  border-left: 1px solid var(--colorBorderColorProminent);
+  border-radius: 0px;
+  margin-bottom: 24px;
+  min-height: calc(100% - 24px);
+}
+
+.nav-tabs-inline {
+  margin-left: 24px;
+}
+
+.nav-tabs.nav-tabs-inline:not(.flex-column) {
+  margin-left: 24px;
+}
+
+.docs-content .tab-pane > :first-child {
+  padding-top: 16px;
+  margin-top: 0px;
+}
+
+.docs-content .tab-pane > :last-child {
+  padding-bottom: 0px; // originally 16px, but it was breaking the last block
+  margin-bottom: 0px;
+}
+
+.docs-content .tab-pane > :nth-child(2) {
+  // 2nd child, because the first one is anchor
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+/* Variant: Pills */
+.nav-pills .nav-link:not(.active):hover {
+  color: var(--colorInkPrimary);
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.nav-pills .nav-link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--colorInkPrimary);
+  margin-bottom: 2px;
+  border-radius: var(--borderRadiusDefault) 0px 0px var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills.nav-light .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--colorInkInverted);
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--colorAccentSurface) !important;
+  color: var(--colorAccent);
+  border-right: 1px solid var(--colorAccent);
+  margin-right: -1px;
+  z-index: 2;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Responsive behavior */
+
+@media (max-width: 575.98px) {
+  .nav-tabs .nav-item .nav-link {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 10px;
+    font-size: 0.875rem;
+  }
+}

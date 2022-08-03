@@ -1,471 +1,565 @@
 {
-    "id": "io.supernova.documentation-main",
-    "name": "Documentation",
-    "description": "Base Documentation Exporter",
-    "author": "Supernova",
-    "organization": "Supernova",
-    "source_dir": "src",
-    "assets_dir": "assets",
-    "version": "1.48.0",
-    "usesBrands": false,
-    "config": {
-        "sources": "sources.json",
-        "output": "output.json",
-        "js": "src/js_helpers.js"
-    },
-    "engines": {
-        "pulsar": "1.0.0",
-        "supernova": "1.0.0"
-    },
-    "type": "documentation",
-    "tags": [
-        "Documentation"
+  "id": "io.supernova.documentation-main",
+  "name": "Documentation",
+  "description": "Base Documentation Exporter",
+  "author": "Supernova",
+  "organization": "Supernova",
+  "source_dir": "src",
+  "assets_dir": "assets",
+  "version": "2.0.0",
+  "usesBrands": false,
+  "config": {
+    "sources": "sources.json",
+    "output": "output.json",
+    "js": "src/js_helpers.js"
+  },
+  "engines": {
+    "pulsar": "1.0.0",
+    "supernova": "1.0.0"
+  },
+  "type": "documentation",
+  "tags": ["Documentation"],
+  "contributes": {
+    "configuration": [
+      {
+        "key": "googleAnalyticsAPIKey",
+        "default": "",
+        "type": "string",
+        "label": "Google Analytics Measurement ID",
+        "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
+        "category": "Analytics"
+      },
+      {
+        "key": "intercomAPIKey",
+        "default": "",
+        "type": "string",
+        "label": "Intercom API key",
+        "description": "Add Intercom to your documentation site by providing an API key",
+        "category": "Analytics"
+      },
+      {
+        "key": "hotjarSiteId",
+        "default": "",
+        "type": "string",
+        "label": "Hotjar site ID",
+        "description": "Add Hotjar to your documentation site by providing a Site ID",
+        "category": "Analytics"
+      },
+      {
+        "key": "headerLogo",
+        "type": "image",
+        "label": "Top Menu Logo",
+        "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
+        "category": "Look & Feel"
+      },
+      {
+        "key": "favicon",
+        "type": "image",
+        "label": "Site Favicon",
+        "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
+        "category": "Look & Feel"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundImage",
+        "type": "image",
+        "label": "Page Header Background Image",
+        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
+        "category": "Look & Feel"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundColor",
+        "type": "color",
+        "label": "Page Header Background Color",
+        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
+        "category": "Look & Feel"
+      },
+      {
+        "key": "lookAndFeelHeaderTextColor",
+        "type": "color",
+        "label": "Page Header Text Color",
+        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
+        "category": "Look & Feel"
+      },
+      {
+        "key": "lookAndFeelHeaderHeight",
+        "type": "number",
+        "label": "Page Header Height (px)",
+        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
+        "category": "Look & Feel",
+        "default": 0
+      },
+      {
+        "key": "seoEnableIndexing",
+        "type": "boolean",
+        "label": "Enable Search Engine Indexing",
+        "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
+        "category": "Search Engines",
+        "default": true
+      },
+      {
+        "key": "seoEnableLinkFollowing",
+        "type": "boolean",
+        "label": "Enable Search Engine Link Follow",
+        "description": "When enabled, search robots will follow the links on the indexed pages",
+        "category": "Search Engines",
+        "default": true
+      },
+      {
+        "key": "seoGenerateSitemap",
+        "type": "boolean",
+        "label": "Generate Sitemap",
+        "description": "When enabled, documentation sitemap will be re-generated on every publish",
+        "category": "Search Engines",
+        "default": true
+      },
+      {
+        "key": "seoTitlePrefix",
+        "type": "string",
+        "label": "Site Title Prefix",
+        "description": "When provided, page title will be prefixed with this string",
+        "category": "Search Engines",
+        "default": ""
+      },
+      {
+        "key": "seoTitleSuffix",
+        "type": "string",
+        "label": "Site Title Suffix",
+        "description": "When provided, page title will be suffixed with this string",
+        "category": "Search Engines",
+        "default": " | Made with Supernova"
+      },
+      {
+        "key": "seoTitleOverride",
+        "type": "string",
+        "label": "Site Title Override",
+        "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
+        "category": "Search Engines",
+        "default": ""
+      },
+      {
+        "key": "seoDescriptionPrefix",
+        "type": "string",
+        "label": "Site Description Prefix",
+        "description": "When provided, page description will be prefixed with this string",
+        "category": "Search Engines",
+        "default": ""
+      },
+      {
+        "key": "seoDescriptionSuffix",
+        "type": "string",
+        "label": "Site Description Suffix",
+        "description": "When provided, page description will be suffixed with this string",
+        "category": "Search Engines",
+        "default": " | Design system documentation, made with ❤️ using Supernova"
+      },
+      {
+        "key": "seoDescriptionOverride",
+        "type": "string",
+        "label": "Site Description Override",
+        "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
+        "category": "Search Engines",
+        "default": ""
+      },
+      {
+        "key": "seoSiteImage",
+        "type": "image",
+        "label": "Site Image Override",
+        "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
+        "category": "Search Engines"
+      },
+      {
+        "key": "contentMarkdownToken",
+        "type": "string",
+        "label": "Markdown private token",
+        "description": "If provided, your markdown will authenticate using this token. Token must contain its type, format: ['basic' | 'Bearer' | 'token'] [token].",
+        "category": "Content",
+        "default": ""
+      },
+      {
+        "key": "advancedCustomizationShowNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show Next / Previous navigation",
+        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
+        "category": "Look & Feel",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowFooter",
+        "type": "boolean",
+        "label": "Show Footer",
+        "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
+        "category": "Look & Feel",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationCustomFooter",
+        "type": "string",
+        "label": "Custom Footer Code",
+        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
+        "category": "Advanced",
+        "isMultiline": true,
+        "inputType": "code",
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
+      },
+      {
+        "key": "advancedCustomizationCustomCSS",
+        "type": "string",
+        "label": "Custom CSS",
+        "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
+        "category": "Look & Feel",
+        "default": "body,\r\nhtml {\r\n\r\n}",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "advancedCustomizationCustomHeadInject",
+        "type": "string",
+        "label": "Custom Head Code",
+        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
+        "category": "Advanced",
+        "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "advancedCustomizationCustomFonts",
+        "type": "string",
+        "label": "Custom Font - Header",
+        "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
+        "category": "Advanced",
+        "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "advancedCustomizationShowCTA",
+        "type": "boolean",
+        "label": "Show Site CTA",
+        "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
+        "category": "Look & Feel",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationCTAText",
+        "type": "string",
+        "label": "Site CTA - Text",
+        "description": "Text of the CTA button.",
+        "category": "Look & Feel",
+        "default": "Open site",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationCTAUrl",
+        "type": "string",
+        "label": "Site CTA - URL to open",
+        "description": "Link which will open when CTA button is clicked by the user.",
+        "category": "Look & Feel",
+        "default": "",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationOpenInNewTab",
+        "type": "boolean",
+        "label": "Site CTA - Open in new tab",
+        "description": "When enabled, CTA url you provided will open in a new tab.",
+        "category": "Look & Feel",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show Version Dropdown",
+        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+        "category": "Advanced",
+        "default": true
+      },
+      {
+        "key": "codeEditableReactWidgets",
+        "type": "boolean",
+        "label": "Editable React Widgets",
+        "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
+        "category": "Code",
+        "default": true
+      },
+      {
+        "key": "codeOpenInCodesandbox",
+        "type": "boolean",
+        "label": "Open in Codesandbox.io",
+        "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
+        "category": "Code",
+        "default": true
+      }
     ],
-    "contributes": {
-        "configuration": [{
-                "key": "googleAnalyticsAPIKey",
-                "default": "",
-                "type": "string",
-                "label": "Google Analytics Measurement ID",
-                "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
-                "category": "Analytics"
-            },
-            {
-                "key": "intercomAPIKey",
-                "default": "",
-                "type": "string",
-                "label": "Intercom API key",
-                "description": "Add Intercom to your documentation site by providing an API key",
-                "category": "Analytics"
-            },
-            {
-                "key": "headerLogo",
-                "type": "image",
-                "label": "Top Menu Logo",
-                "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
-                "category": "Look & Feel"
-            },
-            {
-                "key": "favicon",
-                "type": "image",
-                "label": "Site Favicon",
-                "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
-                "category": "Look & Feel"
-            },
-            {
-                "key": "lookAndFeelHeaderBackgroundImage",
-                "type": "image",
-                "label": "Page Header Background Image",
-                "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
-                "category": "Look & Feel"
-            },
-            {
-                "key": "lookAndFeelHeaderBackgroundColor",
-                "type": "color",
-                "label": "Page Header Background Color",
-                "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
-                "category": "Look & Feel"
-            },
-            {
-                "key": "lookAndFeelHeaderTextColor",
-                "type": "color",
-                "label": "Page Header Text Color",
-                "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
-                "category": "Look & Feel"
-            },
-            {
-                "key": "lookAndFeelHeaderHeight",
-                "type": "number",
-                "label": "Page Header Height (px)",
-                "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
-                "category": "Look & Feel",
-                "default": 0
-            },
-            {
-                "key": "seoEnableIndexing",
-                "type": "boolean",
-                "label": "Enable Search Engine Indexing",
-                "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
-                "category": "Search Engines",
-                "default": true
-            },
-            {
-                "key": "seoEnableLinkFollowing",
-                "type": "boolean",
-                "label": "Enable Search Engine Link Follow",
-                "description": "When enabled, search robots will follow the links on the indexed pages",
-                "category": "Search Engines",
-                "default": true
-            },
-            {
-                "key": "seoGenerateSitemap",
-                "type": "boolean",
-                "label": "Generate Sitemap",
-                "description": "When enabled, documentation sitemap will be re-generated on every publish",
-                "category": "Search Engines",
-                "default": true
-            },
-            {
-                "key": "seoTitlePrefix",
-                "type": "string",
-                "label": "Site Title Prefix",
-                "description": "When provided, page title will be prefixed with this string",
-                "category": "Search Engines",
-                "default": ""
-            },
-            {
-                "key": "seoTitleSuffix",
-                "type": "string",
-                "label": "Site Title Suffix",
-                "description": "When provided, page title will be suffixed with this string",
-                "category": "Search Engines",
-                "default": " | Made with Supernova"
-            },
-            {
-                "key": "seoTitleOverride",
-                "type": "string",
-                "label": "Site Title Override",
-                "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
-                "category": "Search Engines",
-                "default": ""
-            },
-            {
-                "key": "seoDescriptionPrefix",
-                "type": "string",
-                "label": "Site Description Prefix",
-                "description": "When provided, page description will be prefixed with this string",
-                "category": "Search Engines",
-                "default": ""
-            },
-            {
-                "key": "seoDescriptionSuffix",
-                "type": "string",
-                "label": "Site Description Suffix",
-                "description": "When provided, page description will be suffixed with this string",
-                "category": "Search Engines",
-                "default": " | Design system documentation, made with ❤️ using Supernova"
-            },
-            {
-                "key": "seoDescriptionOverride",
-                "type": "string",
-                "label": "Site Description Override",
-                "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-                "category": "Search Engines",
-                "default": ""
-            },
-            {
-                "key": "seoSiteImage",
-                "type": "image",
-                "label": "Site Image Override",
-                "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-                "category": "Search Engines"
-            },
-            {
-                "key": "contentMarkdownToken",
-                "type": "string",
-                "label": "Markdown private token",
-                "description": "If provided, your markdown will authenticate using this token. Token must contain its type, format: ['basic' | 'Bearer' | 'token'] [token].",
-                "category": "Content",
-                "default": ""
-            },
-            {
-                "key": "advancedCustomizationShowNextPreviousNavigation",
-                "type": "boolean",
-                "label": "Show Next / Previous navigation",
-                "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-                "category": "Look & Feel",
-                "default": true
-            },
-            {
-                "key": "advancedCustomizationShowFooter",
-                "type": "boolean",
-                "label": "Show Footer",
-                "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-                "category": "Look & Feel",
-                "default": true
-            },
-            {
-                "key": "advancedCustomizationCustomFooter",
-                "type": "string",
-                "label": "Custom Footer Code",
-                "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-                "category": "Advanced",
-                "isMultiline": true,
-                "inputType": "code",
-                "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
-            },
-            {
-                "key": "advancedCustomizationCustomCSS",
-                "type": "string",
-                "label": "Custom CSS",
-                "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-                "category": "Look & Feel",
-                "default": "body,\r\nhtml {\r\n    font-family: Inter, sans-serif;\r\n}",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "advancedCustomizationCustomHeadInject",
-                "type": "string",
-                "label": "Custom Head Code",
-                "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
-                "category": "Advanced",
-                "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "advancedCustomizationCustomFonts",
-                "type": "string",
-                "label": "Custom Font - Header",
-                "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
-                "category": "Advanced",
-                "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
-                "isMultiline": true,
-                "inputType": "code"
-            },
-            {
-                "key": "advancedCustomizationShowCTA",
-                "type": "boolean",
-                "label": "Show Site CTA",
-                "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-                "category": "Look & Feel",
-                "default": false
-            },
-            {
-                "key": "advancedCustomizationCTAText",
-                "type": "string",
-                "label": "Site CTA - Text",
-                "description": "Text of the CTA button.",
-                "category": "Look & Feel",
-                "default": "Open site",
-                "isMultiline": false,
-                "inputType": "plain"
-            },
-            {
-                "key": "advancedCustomizationCTAUrl",
-                "type": "string",
-                "label": "Site CTA - URL to open",
-                "description": "Link which will open when CTA button is clicked by the user.",
-                "category": "Look & Feel",
-                "default": "",
-                "isMultiline": false,
-                "inputType": "plain"
-            },
-            {
-                "key": "advancedCustomizationOpenInNewTab",
-                "type": "boolean",
-                "label": "Site CTA - Open in new tab",
-                "description": "When enabled, CTA url you provided will open in a new tab.",
-                "category": "Look & Feel",
-                "default": true
-            },
-            {
-                "key": "advancedCustomizationShowVersionDropdown",
-                "type": "boolean",
-                "label": "Show Version Dropdown",
-                "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-                "category": "Advanced",
-                "default": true
-            },
-            {
-                "key": "codeEditableReactWidgets",
-                "type": "boolean",
-                "label": "Editable React Widgets",
-                "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
-                "category": "Code",
-                "default": true
-            },
-            {
-                "key": "codeOpenInCodesandbox",
-                "type": "boolean",
-                "label": "Open in Codesandbox.io",
-                "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
-                "category": "Code",
-                "default": true
-            }
-        ],
-        "blocks": [{
-                "key": "io.supernova.documentation-main.markdown",
-                "category": "Remote Data Blocks",
-                "title": "Markdown",
-                "description": "Embed and process markdown from remote URL",
-                "icon": "icons/custom-block-markdown.png",
-                "mode": "block",
-                "properties": [{
-                    "key": "markdownUrl",
-                    "default": "",
-                    "type": "string",
-                    "label": "Markdown URL"
-                }]
-            },
-            {
-                "key": "io.supernova.documentation-main.component-health",
-                "category": "Components",
-                "title": "Component Health",
-                "description": "Show component health and additional attributes",
-                "icon": "icons/custom-block-health.png",
-                "mode": "block",
-                "properties": [{
-                        "key": "componentId",
-                        "default": "",
-                        "type": "component",
-                        "label": "Component"
-                    },
-                    {
-                        "key": "propertiesToHighlight",
-                        "default": "",
-                        "type": "componentProperties",
-                        "label": "Properties"
-                    }
-                ]
-            },
-            {
-                "key": "io.supernova.documentation-main.component-checklist",
-                "category": "Components",
-                "title": "Component Checklist",
-                "description": "Highlight specific features of your components",
-                "icon": "icons/custom-block-checklist.png",
-                "mode": "block",
-                "properties": [{
-                        "key": "componentId",
-                        "default": "",
-                        "type": "component",
-                        "label": "Component"
-                    },
-                    {
-                        "key": "propertiesToHighlight",
-                        "default": "",
-                        "type": "componentProperties",
-                        "label": "Properties"
-                    },
-                    {
-                        "key": "header",
-                        "type": "string",
-                        "default": "",
-                        "label": "Header"
-                    },
-                    {
-                        "key": "trueImage",
-                        "type": "image",
-                        "label": "Yes Image"
-                    },
-                    {
-                        "key": "falseImage",
-                        "type": "image",
-                        "label": "No Image"
-                    }
-                ]
-            },
-            {
-                "key": "io.supernova.documentation-main.component-checklist-all",
-                "category": "Components",
-                "title": "All Component Checklist",
-                "description": "Highlight specific features of all of your components",
-                "icon": "icons/custom-block-checklist-all.png",
-                "mode": "block",
-                "properties": [{
-                    "key": "propertiesToHighlight",
-                    "default": "",
-                    "type": "componentProperties",
-                    "label": "Properties"
-                }]
-            }
-        ],
-        "blockVariants": {
-            "Tabs": [{
-                    "name": "Tabs",
-                    "key": "tabs",
-                    "isDefault": true
-                },
-                {
-                    "name": "Pills",
-                    "key": "pills"
-                }
-            ],
-            "TokenList": [{
-                    "name": "Table",
-                    "key": "table"
-                },
-                {
-                    "name": "Grid (4 columns)",
-                    "key": "grid-4",
-                    "isDefault": true
-                },
-                {
-                    "name": "Grid (3 columns)",
-                    "key": "grid-3"
-                },
-                {
-                    "name": "Grid (2 columns)",
-                    "key": "grid-2"
-                },
-                {
-                    "name": "Grid (1 column)",
-                    "key": "grid-1"
-                },
-                {
-                    "name": "Stack",
-                    "key": "stack"
-                }
-            ],
-            "TokenGroup": [{
-                    "name": "Table",
-                    "key": "table",
-                    "isDefault": true
-                },
-                {
-                    "name": "Grid (4 columns)",
-                    "key": "grid-4"
-
-                },
-                {
-                    "name": "Grid (3 columns)",
-                    "key": "grid-3"
-                },
-                {
-                    "name": "Grid (2 column)",
-                    "key": "grid-2"
-                },
-                {
-                    "name": "Grid (1 columns)",
-                    "key": "grid-1"
-                },
-                {
-                    "name": "Stack",
-                    "key": "stack"
-                },
-                {
-                    "name": "Stack (2 columns)",
-                    "key": "stack-2"
-                }
-            ],
-            "Token": [{
-                    "name": "Table Row",
-                    "key": "table"
-                },
-                {
-                    "name": "Grid Item (1/4 width)",
-                    "key": "grid-4",
-                    "isDefault": true
-                },
-                {
-                    "name": "Grid Item (1/3 width)",
-                    "key": "grid-3"
-                },
-                {
-                    "name": "Grid Item (1/2 width)",
-                    "key": "grid-2"
-                },
-                {
-                    "name": "Grid Item (Full width)",
-                    "key": "grid-1"
-                },
-                {
-                    "name": "Stack",
-                    "key": "stack"
-                }
-            ]
+    "blocks": [
+      {
+        "key": "io.supernova.documentation-main.markdown",
+        "category": "Remote Data Blocks",
+        "title": "Markdown",
+        "description": "Embed and process markdown from remote URL",
+        "icon": "icons/custom-block-markdown.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "markdownUrl",
+            "default": "",
+            "type": "string",
+            "label": "Markdown URL"
+          }
+        ]
+      },
+      {
+        "key": "io.supernova.documentation-main.component-health",
+        "category": "Components",
+        "title": "Component Health (beta)",
+        "description": "Show component health and additional attributes",
+        "icon": "icons/custom-block-health.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "componentId",
+            "default": "",
+            "type": "component",
+            "label": "Component"
+          },
+          {
+            "key": "propertiesToHighlight",
+            "default": "",
+            "type": "componentProperties",
+            "label": "Properties"
+          }
+        ]
+      },
+      {
+        "key": "io.supernova.documentation-main.component-checklist",
+        "category": "Components",
+        "title": "Component Checklist (beta)",
+        "description": "Highlight specific features of your components",
+        "icon": "icons/custom-block-checklist.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "componentId",
+            "default": "",
+            "type": "component",
+            "label": "Component"
+          },
+          {
+            "key": "propertiesToHighlight",
+            "default": "",
+            "type": "componentProperties",
+            "label": "Properties"
+          },
+          {
+            "key": "header",
+            "type": "string",
+            "default": "",
+            "label": "Header"
+          },
+          {
+            "key": "trueImage",
+            "type": "image",
+            "label": "Yes Image"
+          },
+          {
+            "key": "falseImage",
+            "type": "image",
+            "label": "No Image"
+          }
+        ]
+      },
+      {
+        "key": "io.supernova.documentation-main.component-checklist-all",
+        "category": "Components",
+        "title": "All Component Checklist (beta)",
+        "description": "Highlight specific features of all of your components",
+        "icon": "icons/custom-block-checklist-all.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "propertiesToHighlight",
+            "default": "",
+            "type": "componentProperties",
+            "label": "Properties"
+          }
+        ]
+      }
+    ],
+    "blockVariants": {
+      "Tabs": [
+        {
+          "name": "Tabs",
+          "key": "tabs",
+          "isDefault": true
+        },
+        {
+          "name": "Pills",
+          "key": "pills"
         }
+      ],
+      "TokenList": [
+        {
+          "name": "Table",
+          "key": "table"
+        },
+        {
+          "name": "Grid (4 columns)",
+          "key": "grid-4",
+          "isDefault": true
+        },
+        {
+          "name": "Grid (3 columns)",
+          "key": "grid-3"
+        },
+        {
+          "name": "Grid (2 columns)",
+          "key": "grid-2"
+        },
+        {
+          "name": "Grid (1 column)",
+          "key": "grid-1"
+        },
+        {
+          "name": "Stack",
+          "key": "stack"
+        }
+      ],
+      "TokenGroup": [
+        {
+          "name": "Table",
+          "key": "table",
+          "isDefault": true
+        },
+        {
+          "name": "Grid (4 columns)",
+          "key": "grid-4"
+        },
+        {
+          "name": "Grid (3 columns)",
+          "key": "grid-3"
+        },
+        {
+          "name": "Grid (2 column)",
+          "key": "grid-2"
+        },
+        {
+          "name": "Grid (1 columns)",
+          "key": "grid-1"
+        },
+        {
+          "name": "Stack",
+          "key": "stack"
+        },
+        {
+          "name": "Stack (2 columns)",
+          "key": "stack-2"
+        }
+      ],
+      "Token": [
+        {
+          "name": "Table Row",
+          "key": "table"
+        },
+        {
+          "name": "Grid Item (1/4 width)",
+          "key": "grid-4",
+          "isDefault": true
+        },
+        {
+          "name": "Grid Item (1/3 width)",
+          "key": "grid-3"
+        },
+        {
+          "name": "Grid Item (1/2 width)",
+          "key": "grid-2"
+        },
+        {
+          "name": "Grid Item (Full width)",
+          "key": "grid-1"
+        },
+        {
+          "name": "Stack",
+          "key": "stack"
+        }
+      ],
+      "Shortcuts": [
+        {
+          "name": "Image on top (4 columns)",
+          "key": "image-top-4",
+          "isDefault": true
+        },
+        {
+          "name": "Image on top (3 columns)",
+          "key": "image-top-3"
+        },
+        {
+          "name": "Image on top (2 columns)",
+          "key": "image-top-2"
+        },
+        {
+          "name": "Image on top (Full width)",
+          "key": "image-top-1"
+        },
+        {
+          "name": "Leading image (2 columns)",
+          "key": "image-leading-2"
+        },
+        {
+          "name": "Leading image (Full width)",
+          "key": "image-leading-1"
+        },
+        {
+          "name": "Icon on top (4 columns)",
+          "key": "icon-top-4"
+        },
+        {
+          "name": "Icon on top (3 columns)",
+          "key": "icon-top-3"
+        },
+        {
+          "name": "Icon on top (2 columns)",
+          "key": "icon-top-2"
+        },
+        {
+          "name": "Leading icon (3 columns)",
+          "key": "icon-leading-3"
+        },
+        {
+          "name": "Leading icon (2 columns)",
+          "key": "icon-leading-2"
+        },
+        {
+          "name": "Leading icon (Full width)",
+          "key": "icon-leading-1"
+        }
+      ],
+      "FigmaFrames": [
+        {
+          "name": "Bordered",
+          "key": "bordered",
+          "isDefault": true
+        },
+        {
+          "name": "Plain",
+          "key": "plain"
+        }
+      ],
+      "io.supernova.documentation-main.markdown": [
+        {
+          "name": "Default",
+          "key": "default",
+          "isDefault": true
+        },
+        {
+          "name": "Bordered",
+          "key": "bordered"
+        },
+        {
+          "name": "Boxed",
+          "key": "boxed"
+        }
+      ]
     }
+  }
 }

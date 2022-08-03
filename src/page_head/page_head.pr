@@ -4,15 +4,15 @@
 {[ const configuration = exportConfiguration() /]}
 <head>
     {* Add google analytics if key was provided *}
-    {[ let key = configuration.googleAnalyticsAPIKey /]}
-    {[ if (key && key.count() > 0) ]}
+    {[ let GoogleAnalyticsKey = configuration.googleAnalyticsAPIKey /]}
+    {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]}
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ key }}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GoogleAnalyticsKey }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '{{ key }}');
+        gtag('config', '{{ GoogleAnalyticsKey }}');
     </script>
     <!-- End Google Analytics -->
     {[/]}
@@ -22,6 +22,22 @@
 
     {* Documentation styling *}
     {[ inject "page_head_styles" context page /]}
+
+    {* Hotjar integration *}
+    {[ let HotjarSiteId = configuration.hotjarSiteId /]}
+    {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]}
+    <!-- Hotjar Tracking Code-->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:{{ HotjarSiteId }},hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    {[/]}
 
     {* Injection point - inject head *}
     {{ exportConfiguration().advancedCustomizationCustomHeadInject }}

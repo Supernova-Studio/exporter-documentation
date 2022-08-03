@@ -1,0 +1,100 @@
+#styles-switcher {
+  background: #fff;
+  width: 202px;
+  position: fixed;
+  top: 35%;
+  z-index: 99;
+  padding: 20px;
+  left: -202px;
+}
+
+#styles-switcher ul {
+  padding: 0;
+}
+
+#styles-switcher ul li {
+  list-style-type: none;
+  width: 25px;
+  height: 25px;
+  margin: 4px 2px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#styles-switcher ul li.blue {
+  background: #007bff;
+}
+
+#styles-switcher ul li.brown {
+  background: #795548;
+}
+
+#styles-switcher ul li.purple {
+  background: #6f42c1;
+}
+
+#styles-switcher ul li.indigo {
+  background: #6610f2;
+}
+
+#styles-switcher ul li.red {
+  background: #dc3545;
+}
+
+#styles-switcher ul li.orange {
+  background: #fd7e14;
+}
+
+#styles-switcher ul li.yellow {
+  background: #ffc107;
+}
+
+#styles-switcher ul li.green {
+  background: #28a745;
+}
+
+#styles-switcher ul li.teal {
+  background: #20c997;
+}
+
+#styles-switcher ul li.cyan {
+  background: #17a2b8;
+}
+
+#styles-switcher ul li.active {
+  transform: scale(0.7);
+  cursor: default;
+}
+
+#styles-switcher .switcher-toggle {
+  position: absolute;
+  background: #333;
+  color: #fff;
+  font-size: 1.25rem;
+  border-radius: 0px var(--borderRadiusDefault) var(--borderRadiusDefault) 0;
+  right: -40px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+#styles-switcher #reset-color {
+  background: #e83e8c;
+}
+
+input:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+#styles-switcher.right {
+  left: auto;
+  right: -202px;
+}
+
+#styles-switcher.right .switcher-toggle {
+  right: auto;
+  left: -40px;
+  border-radius: var(--borderRadiusDefault) 0px 0px var(--borderRadiusDefault);
+}

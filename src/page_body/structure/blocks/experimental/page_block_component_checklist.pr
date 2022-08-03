@@ -23,8 +23,8 @@
                     <div class="list-item">
                         <div class="status"><img src="{{ value ? checkedImage : uncheckedImage }}"></div>
                         <div class="text">
-                            <p class="heading">{{ property.name }}</p>
-                            <p class="body">{{ property.description }}</p>
+                            <p class="title">{{ property.name }}</p>
+                            <p class="description">{{ property.description }}</p>
                         </div>
                     </div>
                 {[/]}
@@ -34,5 +34,5 @@
     <p>Unable to show component health - unknown component</p>
     {[/]}
 {[ else ]}
-<p>Unable to show component health - please specify component first</p>
+<p>Unable to show component health - please select a component in the block.</p>
 {[/]}

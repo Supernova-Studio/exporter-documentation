@@ -1,0 +1,29 @@
+/* =================================== */
+/*  Image
+/* =================================== */
+.img-fluid.max {
+  width: 100%;
+}
+
+.image-container {
+  width: 100%;
+  margin: 24px 0px;
+}
+
+.image-container img {
+  border-radius: var(--borderRadiusDefault);
+}
+
+td .image-container {
+  margin: 8px 0px;
+}
+
+.image-container p {
+  font-size: 14px;
+  color: var(--colorInkSecondary);
+}
+
+.caption {
+  font-size: 14px;
+  color: var(--colorInkSecondary);
+}

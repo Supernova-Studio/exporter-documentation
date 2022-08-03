@@ -1,0 +1,20 @@
+/* =================================== */
+/*  Markdown
+/* =================================== */
+.markdown-container {
+  img {
+    border-radius: var(--borderRadiusDefault);
+  }
+
+  &.bordered {
+    padding: 16px;
+    border: 1px solid var(--colorBorderColorSubtle);
+    border-radius: var(--borderRadiusDefault);
+  }
+
+  &.boxed {
+    padding: 16px;
+    background: var(--colorBackgroundSecondary);
+    border-radius: var(--borderRadiusDefault);
+  }
+}
