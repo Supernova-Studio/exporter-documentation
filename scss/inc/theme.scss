@@ -6,12 +6,13 @@
   --colorWhite: #fff;
   --colorNeutral100: #f9f9fa;
   --colorNeutral200: #f2f4f5;
+  --colorNeutral300: #e5e9eb;
   --colorNeutral400: #dce0e4;
   --colorNeutral500: #9298a0;
   --colorNeutral600: #6e747e;
   --colorNeutral700: #666e7a;
-  --colorNeutral800: #313c4d;
-  --colorNeutral900: #0f172a;
+  --colorNeutral800: #313f4d;
+  --colorNeutral900: #141618;
   --colorRed100: #fff5f5;
   --colorRed500: #d23031;
   --colorRed900: #9e2122;
@@ -50,7 +51,7 @@
   /* Secondary background (code, etc) ... */
   --colorBackgroundSecondary: var(--colorNeutral100);
   /* For hovers, etc., works on both Primary and Secondary ... */
-  --colorBackgroundAlternative: var(--colorNeutral200);
+  --colorBackgroundAlt: var(--colorNeutral200);
   /* inputs, s... */
   --colorBorderColorProminent: var(--colorNeutral400);
   /* borders, page structure ... */
@@ -94,7 +95,8 @@
   --leftNavBackground: var(--colorBackgroundSecondary);
   --leftNavBorderColor: var(--colorBorderColorSubtle);
   --leftNavInk: var(--colorInkPrimary);
-  --leftNavItemHoverBackground: var(--colorBackgroundAlternative);
+  --leftNavItemHoverBackground: var(--colorBackgroundAlt);
+  --leftNavItemHoverBackgroundAlt: var(--colorNeutral300);
   --leftNavItemHoverInk: var(--leftNavInk);
   --leftNavItemActiveBackground: var(--colorAccentSurface);
   --leftNavItemActiveInk: var(--colorAccent);
@@ -160,7 +162,7 @@
   --pageBackground: var(--colorNeutral900);
   --colorBackgroundPrimary: #162433;
   --colorBackgroundSecondary: #111d2a;
-  --colorBackgroundAlternative: #122a43;
+  --colorBackgroundAlt: #122a43;
   --colorBorderColorProminent: #36455f;
   --colorBorderColorSubtle: #232d3e;
   --topNavBackground: var(--colorBackgroundPrimary);
