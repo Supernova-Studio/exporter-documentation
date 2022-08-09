@@ -1,10 +1,12 @@
 {[ const token = context /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    <div class="preview" style="background-color: #{{ token.value.hex }};"></div>
+    <div class="preview checkered-background-light">
+        <div class="color-preview" style="background-color: #{{ token.value.hex }};"></div>
+    </div>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="preview">
-        <div class="token-preview-container large">
+        <div class="token-preview-container large checkered-background-light">
             <div class="token-preview-container-border large" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
         </div>
     </div>
@@ -12,8 +14,8 @@
     {[ let measure = token.value.radius.measure /]}
         {[ switch token.value.type ]}
             {[ case "Background" ]}
-                <div class="preview checkered-background">
-                    <div class="token-preview-container large">
+                <div class="preview">
+                    <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: transparent; border: 1px solid #ccc; backdrop-filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
                         {{ measure }}
@@ -22,7 +24,7 @@
                 </div>
             {[ case "Layer" ]}
                 <div class="preview">
-                    <div class="token-preview-container large">
+                    <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred">
                         {{ measure }}
@@ -33,19 +35,23 @@
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
-    <div class="preview" style="background: {{ gradientTokenValue(token) }}"></div>
+    <div class="preview checkered-background-light">
+        <div class="color-preview" style="background: {{ gradientTokenValue(token) }}"></div>
+    </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    <div class="preview">px</div>
+    <div class="preview">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}</div>
 {[ elseif token.tokenType.equals("Radius")]}
-    <div class="preview" style="border-radius: {{ token.value.radius.measure}}px"></div>
+    <div class="preview token-preview-container large checkered-background-light">
+        <div class="token-preview-container-radius large" style="border-radius: {{ token.value.radius.measure}}px"></div>
+    </div>
 {[ elseif token.tokenType.equals("Shadow")]}
-    <div class="preview">
-        <div style="width: 64px; height: 64px; box-shadow: {{ shadowTokenValue(token) }}"></div>
+    <div class="preview token-preview-container large">
+        <div class="token-type-shadow" style="box-shadow: {{ shadowTokenValue(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    <div class="preview">Ag</div>
+    <div class="preview" style="font-size: {{ token.value.fontSize.measure }}{{ measureTypeIntoReadableUnit(token.value.fontSize.unit) }} !important;font-size: {{ token.value.lineHeight.measure }}{{ measureTypeIntoReadableUnit(token.value.lineHeight.unit) }} !important">Ag</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[/]}

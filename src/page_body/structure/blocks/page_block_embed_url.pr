@@ -3,9 +3,9 @@
 
 {* Create generic embed block *}
 {[ if block.url ]}
-<div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
-  <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
-</div>
+  <div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
+    <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+  </div>
 {[ if block.caption ]}
     <p class="caption">{{ block.caption }}</p>
 {[/]}

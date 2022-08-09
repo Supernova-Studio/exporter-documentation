@@ -46,7 +46,7 @@ The RDC documentation exporter is a fork for Supernova's own [exporter](https://
 - To understand everything you can do with Supernova and how much time and resources it can save you, go read our [product documentation](https://learn.supernova.io/)
 - Finally, to learn everything about what exporters are and how you can integrate with your codebase, go read our [developer documentation](https://developers.supernova.io/)
 
-## Other Supernova Exporters
+### Other Supernova Exporters
 We are developing and maintaining exporters for many major technologies. Here are all the official exporters maintained by Supernova:
 
 - [iOS Exporter](https://github.com/Supernova-Studio/exporter-ios)

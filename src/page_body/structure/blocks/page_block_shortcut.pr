@@ -1,14 +1,13 @@
 {[ const shortcut = context /]}
 
-<div>     
-    {[ if shortcut.externalUrl ]}
-    <a href="{{ shortcut.externalUrl }}" target="_blank">
+{[ if shortcut.externalUrl ]}
+    <a href="{{ shortcut.externalUrl }}" class="shortcut-item" target="_blank">
     {[ elseif shortcut.internalId ]}
         {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
         {[ let page = ds.documentationPageById(shortcut.internalId) /]}
         {[ if page ]}
             {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-            <a href="{{ url }}">
+            <a href="{{ url }}" class="shortcut-item">
         {[ else ]}
         {* Links to group instead, find that and if exists, link to the first page in that group *}
             {[ let group = ds.documentationGroupById(shortcut.internalId) /]}
@@ -16,18 +15,18 @@
                 {[ page = firstPageFromTop(group) /]}
                 {[ if page ]}
                     {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                    <a href="{{ url }}">
+                    <a href="{{ url }}" class="shortcut-item">
                 {[ else ]}
                 {* Doesn't link to anything *}
-                    <a>
+                    <a class="shortcut-item">
                 {[/]}
             {[ else ]}
             {* Doesn't link to anything *}
-            <a>
+            <a class="shortcut-item">
             {[/]}
         {[/]}
     {[ else ]}
-    <a> 
+    <a class="shortcut-item"> 
     {[/]}
 
     {[ if shortcut.previewUrl ]}
@@ -35,10 +34,10 @@
     {[ else ]}
     <div class="preview empty"></div>
     {[/]}
-    
-    <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
-    {[ if shortcut.description ]}
-        <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
-    {[/]}
-    </a>
-</div>
+    <div class="content">
+        <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
+        {[ if (shortcut.description && shortcut.description != "-") ]}
+            <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
+        {[/]}
+    </div>
+</a>

@@ -22,6 +22,7 @@
 
 <!-- General scripts -->
 <script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
+<script src="{{ assetUrl("js/toast.js", domain)}}"></script> 
 
 <!-- Versions -->
 <script>

@@ -4,24 +4,35 @@
 {[ if token.tokenType.equals("Color") ]}
 
     {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
+    {[ const whiteCheck = (token.value.hex === "ffffffff") /]}
 
-    <div class="stack-item{[ if colorLightnessCheck ]} inverted-text{[/]}" style="background-color: #{{ token.value.hex }};">
-        <div class="name">{{ token.origin.name.replacing("/", " / ") }}</div>
-        <div class="value">
-            {[ inject "page_block_token_value" context token /]}     
+    <div class="stack-item is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}">
+        <div class="preview" style="background-color: #{{ token.value.hex }};">
+            <div class="name">
+                {[ if (token.origin !== null) ]}
+                    {{ token.origin.name.replacing("/", " / ") }}
+                {[ else ]}
+                    {{ token.name.replacing("/", " / ") }}
+                {[/]}
+            </div>
+            <div class="value">
+                {[ inject "page_block_token_value" context token /]}   
+            </div>
         </div>
     </div>
 
 {[ else ]}
     <div class="stack-item fallback">
-        <div class="name">
-            {[ inject "page_block_token_preview_small" context token /]}
-            {[ if (token.origin !== null) ]}
-                {{ token.origin.name.replacing("/", " / ") }}
-            {[ else ]}
-                {{ token.name.replacing("/", " / ") }}
-            {[/]}
+        <div class="preview">
+            <div class="name">
+                {[ inject "page_block_token_preview_small" context token /]}
+                {[ if (token.origin !== null) ]}
+                    {{ token.origin.name.replacing("/", " / ") }}
+                {[ else ]}
+                    {{ token.name.replacing("/", " / ") }}
+                {[/]}
+            </div>
+            <div class="value">{[ inject "page_block_token_value" context token /]}</div>
         </div>
-        <div class="value">{[ inject "page_block_token_value" context token /]}</div>
     </div>
 {[/]}

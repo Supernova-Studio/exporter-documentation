@@ -1,0 +1,195 @@
+/* =================================== */
+/*  Search
+/* =================================== */
+
+.SNSearch {
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+  display: none;
+}
+
+.SNSearch a {
+  text-decoration: none;
+}
+
+.SNSearch.active {
+  display: block;
+  animation: fade-in 0.15s;
+}
+
+.SNSearch:not(.active).did-fade-in {
+  display: block;
+  animation: fade-out 0.15s;
+}
+
+.SNSearch.SNSearch-container {
+  padding: 12vh;
+}
+
+.SNSearch-box {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: var(--borderRadiusLarge);
+  box-shadow: var(--boxShadowLevel2);
+  background: var(--pageBackground);
+  color: var(--colorInkPrimary);
+}
+
+.SNSearch-header {
+  height: 52px;
+  width: 100%;
+  padding: 12px;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
+  display: flex;
+  justify-content: space-between;
+}
+
+.SNSearch-input {
+  border: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  width: 100%;
+  margin: 3px 16px 0px 9px;
+  background-color: var(--pageBackground);
+  color: var(--colorInkPrimary);
+}
+
+.SNSearch-header form {
+  width: calc(100% - 24px);
+}
+
+.SNSearch-input:focus {
+  border: 0px;
+  outline: none;
+}
+
+.SNSearch-input-label {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.SNSearch-results {
+  padding: 0px 20px 20px 20px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.SNSearch-footer {
+  height: 44px;
+  width: 100%;
+  padding: 12px;
+  border-top: 1px solid var(--colorBorderColorSubtle);
+  display: flex;
+  justify-content: space-between;
+  color: var(--colorInkSecondary);
+  font-size: 13px;
+}
+
+.SNSearch-footer span {
+  padding: 4px;
+  background-color: var(--colorBackgroundSecondary);
+  border-radius: 2px;
+  color: var(--colorInPrimary);
+}
+
+.SNSearch-results p.section-title {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: var(--colorInkSecondary);
+  margin: 24px 0px 12px 0px;
+}
+
+.SNSearch-results p.section-title.empty {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: normal;
+  color: var(--colorInkSecondary);
+  margin: 36px 0px 16px 0px;
+}
+
+.SNSearch-results p.section-result-header {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--colorInkPrimary);
+  padding-top: 12px;
+  padding-bottom: 4px;
+  margin: 0px;
+}
+
+.SNSearch-results p.section-result-text {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: normal;
+  color: var(--colorInkSecondary);
+  padding-top: 0px;
+  padding-bottom: 12px;
+  margin: 0 0 4px;
+}
+
+.SNSearch-results p {
+  padding: 0px 12px;
+}
+
+.SNSearch-results p span {
+  color: var(--colorAccent);
+}
+
+.SNSearch-results .result {
+  border-radius: var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+}
+
+.SNSearch-results .result:hover {
+  background-color: var(--colorBackgroundAlt);
+}
+
+.SNSearch-close {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.6499 5.65L14.3499 6.35L10.7099 10L14.3499 13.65L13.6499 14.35L9.9999 10.71L6.3499 14.35L5.6499 13.65L9.2899 10L5.6499 6.35L6.3499 5.65L9.9999 9.29L13.6499 5.65Z' fill='%23141618' fill-opacity='0.8'/%3E%3C/svg%3E%0A");
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: auto;
+  cursor: pointer;
+}
+
+.sn-search-result-link.selected {
+  display: block;
+}
+
+.sn-search-result-link.selected .result {
+  background-color: var(--colorBackgroundAlt);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .SNSearch.SNSearch-container {
+    padding: 0;
+  }
+}
+
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}

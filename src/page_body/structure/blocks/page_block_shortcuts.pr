@@ -1,16 +1,9 @@
 {[ let block = context /]}
 
-<div class="tile-container">
-  <div class="grid c4 shortcuts">
+{[ let variant = block.variantKey /]}
+
+<div class="shortcut-container {{ variant }}">
   {[ for shortcut in block.shortcuts ]}
-  {[ inject "page_block_shortcut" context shortcut /]}
+    {[ inject "page_block_shortcut" context shortcut /]}
   {[/]}
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-    <div class="spacer"></div>
-  </div>
 </div>

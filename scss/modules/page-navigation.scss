@@ -1,0 +1,73 @@
+.previous-next {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+
+.previous-next a {
+  text-decoration: none;
+}
+
+.previous-next .segment {
+  padding: 12px;
+  display: flex;
+  box-shadow: var(--boxShadowLevel1);
+  border-radius: var(--borderRadiusLarge);
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transitionDefault);
+  background: var(--colorBackgroundPrimary);
+}
+
+.previous-next .segment:hover {
+  box-shadow: var(--boxShadowLevel2);
+}
+
+.previous-next .segment:hover div.pagename {
+  color: var(--colorAccent);
+}
+
+.previous-next .col.left {
+  padding-left: 0px;
+  text-align: left;
+}
+
+.previous-next .col-6 {
+  padding: 0px;
+}
+
+.previous-next .col.right {
+  padding-right: 0px;
+  text-align: right;
+}
+
+.previous-next .segment .arrow {
+  width: 20px;
+  height: 20px;
+  margin: 0px 16px 8px 16px;
+  color: var(--colorInkSecondary);
+}
+
+.previous-next .segment .segment-text {
+  width: 100%;
+}
+
+.segment-text > .direction {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--colorInkSecondary);
+  margin-bottom: 2px;
+}
+
+.segment-text > .pagename {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--colorInkPrimary);
+  transition: var(--transitionDefault);
+}

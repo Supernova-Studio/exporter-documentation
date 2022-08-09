@@ -1,0 +1,179 @@
+/* =================================== */
+/*  Shortcut
+/* =================================== */
+
+.shortcut-container {
+  margin: 24px 0px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  .shortcut-item {
+    border-radius: var(--borderRadiusDefault);
+    box-shadow: var(--boxShadowLevel1);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: var(--transitionDefault);
+    background: var(--colorBackgroundPrimary);
+
+    &:hover {
+      box-shadow: var(--boxShadowLevel2);
+      text-decoration: none;
+
+      p.title {
+        color: var(--colorAccent);
+      }
+
+      * {
+        text-decoration: none;
+      }
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    div.preview {
+      background-color: var(--colorBackgroundPrimary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      width: 100%;
+      height: 100px;
+
+      &.empty {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' viewBox='0 0 20 20'%3E%3Cpath d='M16.971 3.029a4.367 4.367 0 0 0-6.175 0l-2.27 2.269 1.25 1.249 2.269-2.269a2.6 2.6 0 1 1 3.677 3.677l-2.269 2.269 1.25 1.25 2.268-2.27a4.367 4.367 0 0 0 0-6.175Z' fill='rgba(0,0,0,0.5)'/%3E%3Cpath d='m13.526 7.798-1.324-1.324-5.728 5.728 1.324 1.324 5.728-5.728Z' fill='rgba(0,0,0,0.5)'/%3E%3Cpath d='m6.547 9.776-1.25-1.25-2.268 2.27a4.367 4.367 0 1 0 6.175 6.175l2.27-2.269-1.25-1.249-2.269 2.269a2.6 2.6 0 1 1-3.677-3.677l2.269-2.269Z' fill='rgba(0,0,0,0.5)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: var(--colorBackgroundSecondary);
+      }
+    }
+
+    p.title {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      color: var(--colorInkPrimary);
+    }
+
+    p.description {
+      margin: 4px 0 0 0;
+      padding: 0;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: normal;
+      color: var(--colorInkSecondary);
+    }
+  }
+}
+
+/* Shortcut variants */
+.shortcut-container.image-top-3,
+.shortcut-container.icon-top-3,
+.shortcut-container.icon-leading-3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.shortcut-container.image-top-2,
+.shortcut-container.icon-top-2,
+.shortcut-container.icon-leading-2,
+.shortcut-container.image-leading-2 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.shortcut-container.icon-leading-1,
+.shortcut-container.image-leading-1,
+.shortcut-container.image-top-1 {
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 12px;
+}
+
+.shortcut-container.image-top-3 div.preview {
+  height: 128px;
+}
+
+.shortcut-container.image-top-2 div.preview {
+  height: 156px;
+}
+
+.shortcut-container.icon-top-4 div.preview,
+.shortcut-container.icon-top-3 div.preview,
+.shortcut-container.icon-top-2 div.preview {
+  width: var(--shortcutIconWidth);
+  height: var(--shortcutIconHeight);
+  margin: 16px 16px 0;
+  border-radius: var(--borderRadiusDefault);
+}
+
+.shortcut-container.icon-leading-1 .shortcut-item,
+.shortcut-container.icon-leading-2 .shortcut-item,
+.shortcut-container.icon-leading-3 .shortcut-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.shortcut-container.icon-leading-1 div.preview,
+.shortcut-container.icon-leading-2 div.preview,
+.shortcut-container.icon-leading-3 div.preview {
+  width: var(--shortcutIconWidth);
+  height: var(--shortcutIconHeight);
+  margin: 8px 4px 8px 8px;
+  border-radius: var(--borderRadiusDefault);
+  flex-shrink: 0;
+}
+
+.shortcut-container.icon-leading-1 .shortcut-item .content,
+.shortcut-container.icon-leading-2 .shortcut-item .content,
+.shortcut-container.icon-leading-3 .shortcut-item .content {
+  padding: 8px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.shortcut-container.image-leading-1 .shortcut-item,
+.shortcut-container.image-leading-2 .shortcut-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.shortcut-container.image-leading-1 .shortcut-item div.preview {
+  max-width: 28%;
+  aspect-ratio: 16 / 9;
+  height: 100%;
+}
+
+.shortcut-container.image-leading-2 .shortcut-item div.preview {
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  max-width: 32%;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .shortcut-container {
+    // applied to all the variants because of !important
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .shortcut-container,
+  .shortcut-container.icon-top-3,
+  .shortcut-container.image-top-3,
+  .shortcut-container.icon-leading-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shortcut-container.image-leading-1,
+  .shortcut-container.image-leading-2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
