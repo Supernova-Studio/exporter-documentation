@@ -458,6 +458,7 @@ window.sandboxEngine.listener = function(message) {
 // Load sandboxes that are present on the page
 function loadSandboxes(url) {
 
+    const engine = window.sandboxEngine
     let targets = engine.getSandboxTargetsStartingWith("sandbox")
     if (targets && targets.length > 0) {
         engine.buildSandboxesSessionAuthorized(targets, url)
