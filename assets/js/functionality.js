@@ -458,11 +458,30 @@ window.sandboxEngine.listener = function(message) {
 // Load sandboxes that are present on the page
 function loadSandboxes(url) {
 
-    const engine = window.sandboxEngine
-    let targets = engine.getSandboxTargetsStartingWith("sandbox")
-    if (targets && targets.length > 0) {
-        engine.buildSandboxesSessionAuthorized(targets, url)
-    }
+    console.log("loading sandboxes")
+    const asyncLoader = new Promise(resolve => {
+        console.log("let's go")
+        const engine = window.sandboxEngine
+        let targets = engine.getSandboxTargetsStartingWith("sandbox")
+        if (targets && targets.length > 0) {
+            // Build sandboxes
+            await engine.buildSandboxesAnonymous(targets)
+
+            // Configure code mirror for all code targets on the page
+            for (let target of targets) {
+                const code = window.sandboxEngine.getCodeForSandboxId(target);
+                const editorTarget = document.getElementById(`codepreview-editable-${target}`)
+                const editor = CodeMirror.fromTextArea(editorTarget, {
+                    lineNumbers: true
+                });
+                editor.getDoc().setValue(code)
+                console.log(code)
+                console.log(editor)
+            }
+        }
+    })
+
+    asyncLoader()
 }
 
 /*-----------------------------
@@ -523,7 +542,9 @@ $(function() {
     });
 });
 
+
 function makeLive(sandboxId) {
+
     // Set textarea code
     const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
     $('#codepreview-editable-' + sandboxId).val(code);

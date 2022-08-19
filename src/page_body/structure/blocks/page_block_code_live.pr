@@ -1,5 +1,6 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
+{[ log block /]}
 
 {* Set background color. Note that currently, background color is provided by SDK by default (#f9f9faff), and it will be changed
    soon so it actually comes as null - meaning it wasn't forced in the editor. 
@@ -60,16 +61,9 @@
 
         {* Rendered code *}
         <div class="sandbox-text collapse" id="codepreview-{{ sandboxId }}">
-            {* Static representation *}
-            <pre id="codepreview-static-{{ sandboxId }}"><code class="language-javascript">
-            {{ htmlSafeString(block.code) }}
-            </code></pre>
             {* Editable representation *}
             {[ if exportConfiguration().codeEditableReactWidgets ]}
-                <div id="codepreview-editable-message-{{ sandboxId }}" class="nodisplay live-code-message">
-                    Live mode enabled
-                </div>
-                <textarea id="codepreview-editable-{{ sandboxId }}" class="nodisplay" spellcheck="false">
+                <textarea id="codepreview-editable-{{ sandboxId }}" class="nodisplay textarea-codemirror" spellcheck="false">
                 </textarea>
             {[/]}
         </div>
