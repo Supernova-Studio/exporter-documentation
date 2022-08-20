@@ -547,21 +547,21 @@
       ],
       "RenderCode": [
         {
-          "name": "Full width (component top)",
-          "key": "componentTop",
+          "name": "Full width, code bottom",
+          "key": "codeBottom",
           "isDefault": true
         },
         {
-          "name": "Full width (component bottom)",
-          "key": "componentBottom"
+          "name": "Full width, code top",
+          "key": "codeTop"
         },
         {
-          "name": "Side by side (component left)",
-          "key": "componentLeft"
+          "name": "Side by side, code left",
+          "key": "codeLeft"
         },
         {
-          "name": "Side by side (component right)",
-          "key": "componentRight"
+          "name": "Side by side, code right",
+          "key": "codeRight"
         }
       ],
       "io.supernova.documentation-main.markdown": [
