@@ -480,7 +480,7 @@ function loadSandboxes(url) {
                     editor.getDoc().setValue(code)
                     editor.setOption("theme", "supernova")
                     editor.on('change', editor => {
-                        let code = $(this).val();
+                        let code = editor.doc.getValue()
                         window.sandboxEngine.updateSandboxCode(target, code);
                     })
                 }
