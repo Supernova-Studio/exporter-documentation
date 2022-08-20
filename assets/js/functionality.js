@@ -455,41 +455,43 @@ window.sandboxEngine.listener = function(message) {
     }
 };
 
+let trackedEditors = new Map();
+
 // Load sandboxes that are present on the page
 function loadSandboxes(url) {
-
     const asyncLoader = new Promise(resolve => {
-        const engine = window.sandboxEngine
-        let targets = engine.getSandboxTargetsStartingWith("sandbox")
-        console.log(targets)
+        const engine = window.sandboxEngine;
+        let targets = engine.getSandboxTargetsStartingWith('sandbox');
         if (targets && targets.length > 0) {
             // Build sandboxes
-            engine.buildSandboxesAnonymous(targets).then(() => {
-                console.log("built")
-                    // Configure code mirror for all code targets on the page
+            engine.buildSandboxesSessionAuthorized(targets, url).then(() => {
+                // Configure code mirror for all code targets on the page
                 for (let target of targets) {
                     const code = window.sandboxEngine.getCodeForSandboxId(target);
-                    const editorTarget = document.getElementById(`codepreview-editable-${target}`)
-                        // In some cases, editor target might not exist, for example if user used no code mode
+                    const editorTarget = document.getElementById(
+                        `codepreview-editable-${target}`
+                    );
+                    // In some cases, editor target might not exist, for example if user used no code mode
                     if (editorTarget) {
                         const editor = CodeMirror.fromTextArea(editorTarget, {
                             value: code,
                             lineNumbers: true,
-                            mode: "text/jsx",
-                            theme: "supernova",
+                            mode: 'text/jsx',
+                            theme: 'supernova',
                             styleActiveLine: { nonEmpty: true }
-                        })
-                        editor.getDoc().setValue(code)
-                        editor.setOption("theme", "supernova")
+                        });
+                        editor.getDoc().setValue(code);
+                        editor.setOption('theme', 'supernova');
                         editor.on('change', editor => {
-                            let code = editor.doc.getValue()
+                            let code = editor.doc.getValue();
                             window.sandboxEngine.updateSandboxCode(target, code);
-                        })
+                        });
+                        trackedEditors.set(target, editor);
                     }
                 }
-            })
+            });
         }
-    })
+    });
 }
 
 /*-----------------------------
@@ -505,8 +507,7 @@ $(function() {
 ------------------------------- */
 
 $('[data-toggle="copy-from-sandbox"]').click(function(event) {
-    console.log("copy from sandbox")
-        // Get code of the sandbox
+    // Get code of the sandbox
     event.preventDefault();
     const sandboxId = $(this).attr('data-target');
     const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
@@ -521,20 +522,22 @@ $('[data-toggle="copy-from-sandbox"]').click(function(event) {
 });
 
 $('[data-toggle="open-in-sandbox"]').click(async function(event) {
-    console.log("open in sandbox")
-        // Get code of the sandbox
+    // Get code of the sandbox
     event.preventDefault();
     const sandboxId = $(this).attr('data-target');
     await window.sandboxEngine.openInSandbox(sandboxId);
 });
 
-
 $('[data-toggle="reset-sandbox"]').click(async function(event) {
-    console.log("reset sandbox")
-        // Reset sandbox code
+    // Reset sandbox code
     event.preventDefault();
     const sandboxId = $(this).attr('data-target');
-    await window.sandboxEngine.resetSandbox(sandboxId);
+    await window.sandboxEngine.resetSandboxToInitial(sandboxId);
+    const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
+    const editor = trackedEditors.get(sandboxId);
+    if (editor) {
+        editor.getDoc().setValue(code);
+    }
 });
 
 /*-----------------------------
@@ -548,7 +551,6 @@ $('[data-copy-url="true"]').click(function(event) {
     const cb = navigator.clipboard;
     const pageURL = document.location.href.match(/(^[^#]*)/);
     const finalURL = pageURL[0] + text;
-    console.log(finalURL);
     cb.writeText(finalURL);
 
     // Notify user
@@ -638,7 +640,6 @@ $('#sidebarCollapse').on('click', function(e) {
 $(document).ready(function() {
     $('.component-health-row').on('click', function(e) {
         const blockId = $(this).data('block-id');
-        console.log(blockId);
         // Toggle the overlay
         $('#overlay-' + blockId).toggleClass('d-none');
         e.preventDefault();
