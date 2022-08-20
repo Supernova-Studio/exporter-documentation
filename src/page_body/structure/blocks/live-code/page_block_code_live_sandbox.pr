@@ -1,0 +1,18 @@
+{[ let block = context.block /]}
+{[ let sandboxId = context.sandboxId /]}
+
+{* Compute background color *}
+{[ let backgroundColor = "#ffffff" /]}
+{[ if (block.backgroundColor) ]}
+    {[ backgroundColor = block.backgroundColor /]}
+{[/]}
+
+{* Render sandbox. Sandbox will be triggered by the library automatically, this is just wrapper *}
+<div class="sandbox-state-wrapper">
+    <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
+        <div class="sandbox-loader"></div>
+    </div>
+    <div class="sandbox-container" style="height: {{ block.height.toString() }}px; background-color: {{ backgroundColor }}">
+        <div id="{{ sandboxId }}" sn-sandbox-data="{{ block.sandboxData }}"></div>
+    </div>
+</div>

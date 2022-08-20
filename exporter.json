@@ -562,6 +562,10 @@
         {
           "name": "Side by side, code right",
           "key": "codeRight"
+        },
+        {
+          "name": "Only preview, no code",
+          "key": "noCode"
         }
       ],
       "io.supernova.documentation-main.markdown": [

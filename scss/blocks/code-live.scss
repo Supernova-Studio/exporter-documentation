@@ -5,10 +5,17 @@
 /* =================================== */
 
 .sandbox-main-wrapper {
-    box-shadow: var(--boxShadowLevel1);
+    box-shadow: var(--boxShadowLevel2);
     border-radius: var(--borderRadiusLarge);
     overflow: hidden;
     margin: 24px -24px;
+}
+
+@media (min-width: 576px) {
+    .sandbox-main-wrapper .row .col-sm {
+        max-width: 50% !important;
+        padding: 0;
+    }
 }
 
 .sandbox-container {
@@ -65,6 +72,7 @@ iframe {
     align-content: center;
     font-size: 12px;
     padding: 0px 16px;
+    border-bottom: 1px solid var(--leftNavBorderColor);
 }
 
 .sandbox-container-buttons a {
@@ -97,8 +105,6 @@ iframe {
 
 .sandbox-state-wrapper {
     display: grid;
-    border-top: 1px solid var(--leftNavBorderColor);
-    border-bottom: 1px solid var(--leftNavBorderColor);
     background-color: #f9f9fa;
     padding: 16px;
 }
@@ -141,4 +147,21 @@ iframe {
     border: 3px solid rgb(104, 104, 104);
     border-color: rgb(105, 105, 105) transparent rgb(104, 104, 104) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
+}
+
+.sandbox-main-wrapper.codeBottom .sandbox-state-wrapper,
+.sandbox-main-wrapper:not(.codeTop):not(.codeLeft):not(.codeRight):not(.noCode) {
+    border-bottom: 1px solid var(--leftNavBorderColor);
+}
+
+.sandbox-main-wrapper.codeTop .sandbox-state-wrapper {
+    border-top: 1px solid var(--leftNavBorderColor);
+}
+
+.sandbox-main-wrapper.codeLeft .sandbox-state-wrapper {
+    border-left: 1px solid var(--leftNavBorderColor);
+}
+
+.sandbox-main-wrapper.codeRight .sandbox-state-wrapper {
+    border-right: 1px solid var(--leftNavBorderColor);
 }

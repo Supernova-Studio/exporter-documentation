@@ -470,19 +470,22 @@ function loadSandboxes(url) {
                 for (let target of targets) {
                     const code = window.sandboxEngine.getCodeForSandboxId(target);
                     const editorTarget = document.getElementById(`codepreview-editable-${target}`)
-                    const editor = CodeMirror.fromTextArea(editorTarget, {
-                        value: code,
-                        lineNumbers: true,
-                        mode: "text/jsx",
-                        theme: "supernova",
-                        styleActiveLine: { nonEmpty: true }
-                    })
-                    editor.getDoc().setValue(code)
-                    editor.setOption("theme", "supernova")
-                    editor.on('change', editor => {
-                        let code = editor.doc.getValue()
-                        window.sandboxEngine.updateSandboxCode(target, code);
-                    })
+                        // In some cases, editor target might not exist, for example if user used no code mode
+                    if (editorTarget) {
+                        const editor = CodeMirror.fromTextArea(editorTarget, {
+                            value: code,
+                            lineNumbers: true,
+                            mode: "text/jsx",
+                            theme: "supernova",
+                            styleActiveLine: { nonEmpty: true }
+                        })
+                        editor.getDoc().setValue(code)
+                        editor.setOption("theme", "supernova")
+                        editor.on('change', editor => {
+                            let code = editor.doc.getValue()
+                            window.sandboxEngine.updateSandboxCode(target, code);
+                        })
+                    }
                 }
             })
         }

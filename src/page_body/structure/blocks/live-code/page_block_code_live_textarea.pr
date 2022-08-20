@@ -1,0 +1,4 @@
+{* Code view *}
+<div class="sandbox-container-meta">
+    <textarea id="codepreview-editable-{{ context.sandboxId }}" class="textarea-codemirror" spellcheck="false" {{ exportConfiguration().codeEditableReactWidgets ? "" : "readonly" }}></textarea>
+</div>
