@@ -51,6 +51,10 @@
     padding: 4px 0 30px 0px !important;
 }
 
+.CodeMirror-gutter.CodeMirror-linenumbers {
+    display: none;
+}
+
 .cm-s-supernova .CodeMirror-guttermarker,
 .cm-s-supernova .CodeMirror-guttermarker-subtle,
 .cm-s-supernova .CodeMirror-linenumber {
