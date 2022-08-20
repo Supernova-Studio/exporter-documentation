@@ -460,30 +460,36 @@ function loadSandboxes(url) {
 
     console.log("loading sandboxes")
     const asyncLoader = new Promise(resolve => {
-        console.log("let's go")
+        console.log("test")
         const engine = window.sandboxEngine
         let targets = engine.getSandboxTargetsStartingWith("sandbox")
+        console.log(targets)
         if (targets && targets.length > 0) {
             // Build sandboxes
-            await engine.buildSandboxesAnonymous(targets)
-
-            // Configure code mirror for all code targets on the page
-            for (let target of targets) {
-                const code = window.sandboxEngine.getCodeForSandboxId(target);
-                const editorTarget = document.getElementById(`codepreview-editable-${target}`)
-                const editor = CodeMirror.fromTextArea(editorTarget, {
-                    lineNumbers: true
-                });
-                editor.getDoc().setValue(code)
-                console.log(code)
-                console.log(editor)
-            }
+            engine.buildSandboxesAnonymous(targets).then(() => {
+                console.log("built")
+                    // Configure code mirror for all code targets on the page
+                for (let target of targets) {
+                    const code = window.sandboxEngine.getCodeForSandboxId(target);
+                    const editorTarget = document.getElementById(`codepreview-editable-${target}`)
+                    const editor = CodeMirror.fromTextArea(editorTarget, {
+                        value: code,
+                        lineNumbers: true,
+                        mode: "text/jsx",
+                        theme: "supernova",
+                        styleActiveLine: { nonEmpty: true }
+                    })
+                    editor.getDoc().setValue(code)
+                    editor.setOption("theme", "supernova")
+                    editor.on('change', editor => {
+                        let code = $(this).val();
+                        window.sandboxEngine.updateSandboxCode(target, code);
+                    })
+                }
+            })
         }
     })
-
-    asyncLoader()
 }
-
 /*-----------------------------
     Tooltips
 ------------------------------- */
@@ -526,19 +532,6 @@ $(function() {
             title: 'URL to heading copied',
             position: 'bottom'
         });
-    });
-});
-
-/*-----------------------------
-    Edit code
-------------------------------- */
-
-$(function() {
-    $('[data-toggle="edit-sandbox"]').click(function(event) {
-        // Get code of the sandbox
-        event.preventDefault();
-        const sandboxId = $(this).attr('data-target');
-        makeLive(sandboxId);
     });
 });
 

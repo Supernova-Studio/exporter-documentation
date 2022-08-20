@@ -18,6 +18,38 @@
 
 {* Generate sandbox code which will be automatically converted to live sandbox *}
 <div class="sandbox-main-wrapper">
+    {* Always show code *}
+    <div class="sandbox-container-meta">
+        <div class="sandbox-container-buttons">
+        {* File showcase *}
+        <div>
+            Component.js
+        </div>
+        {* Edit code *}
+        <div>
+
+            {* Copy code button *}
+            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
+                <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
+                Copy code
+            </a>
+            
+            {[ if exportConfiguration().codeOpenInCodesandbox ]}
+            {* Open in code sandbox button *}
+            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Open in Codesandbox">
+                <div class="sandbox-codesandbox-icon" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}"></div>
+                Open Sandbox
+            </a>  
+            {[/]}
+
+            {* reset demo button *}
+            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
+                <div class="sandbox-reset-icon" data-toggle="reset-sandbox" data-target="{{ sandboxId }}"></div>
+                Reset demo
+            </a>
+        </div>
+        </div>
+    </div>
     {* Render sandbox. Sandbox will be triggered by the library automatically, this is just wrapper *}
     <div class="sandbox-state-wrapper">
         <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
@@ -27,46 +59,8 @@
             <div id="{{ sandboxId }}" sn-sandbox-data="{{ block.sandboxData }}"></div>
         </div>
     </div>
-    {* Only show code if the editor allows it *}
-    {[ if block.showCode ]}
+    {* Code view *}
     <div class="sandbox-container-meta">
-
-        <div class="sandbox-container-buttons">
-        {* Toggle code button *}
-        <a class="btn btn-light" data-toggle="collapse" href="#codepreview-{{ sandboxId }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Toggle code
-        </a>
-
-        <div>
-            {[ if exportConfiguration().codeOpenInCodesandbox ]}
-            {* Open in code sandbox button *}
-            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Open in Codesandbox.io">
-                <div class="sandbox-codesandbox-icon" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}"></div>
-            </a>  
-            {[/]}
-
-            {[ if exportConfiguration().codeEditableReactWidgets ]}
-            {* Edit code button *}
-            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Edit code live">
-                <div class="sandbox-edit-icon" data-toggle="edit-sandbox" data-target="{{ sandboxId }}"></div>
-            </a>
-            {[/]}
-
-            {* Copy code button *}
-            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
-                <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
-            </a>
-        </div>
-        </div>
-
-        {* Rendered code *}
-        <div class="sandbox-text collapse" id="codepreview-{{ sandboxId }}">
-            {* Editable representation *}
-            {[ if exportConfiguration().codeEditableReactWidgets ]}
-                <textarea id="codepreview-editable-{{ sandboxId }}" class="nodisplay textarea-codemirror" spellcheck="false">
-                </textarea>
-            {[/]}
-        </div>
+        <textarea id="codepreview-editable-{{ sandboxId }}" class="textarea-codemirror" spellcheck="false"></textarea>
     </div>
-    {[/]}
 </div>

@@ -1,14 +1,20 @@
 /* =================================== */
+
+
 /*  Theme & variables
 /* =================================== */
+
 @import './inc/variables';
 @import './inc/theme';
 @import './inc/utilities';
 @import './inc/keyframes';
 
 /* =================================== */
+
+
 /*  Modules
 /* =================================== */
+
 @import './modules/search';
 @import './modules/layout';
 @import './modules/header';
@@ -16,13 +22,19 @@
 @import './modules/footer';
 
 /* =================================== */
+
+
 /*  Components
 /* =================================== */
+
 @import './components/tiles';
 
 /* =================================== */
+
+
 /*  Blocks
 /* =================================== */
+
 @import './blocks/callout';
 @import './blocks/code-live';
 @import './blocks/component-health';
@@ -36,18 +48,35 @@
 @import './blocks/tokens';
 
 /* =================================== */
+
+
+/*  Code hightlight
+/* =================================== */
+
+@import './code/highlight.scss';
+
+/* =================================== */
+
+
 /*  Vendor
 /* =================================== */
+
 @import './vendor/code-highlight';
 
 /* =================================== */
+
+
 /*  Legacy (all the original stylingú
 /* =================================== */
+
 @import './legacy/stylesheet';
 
 /* =================================== */
+
+
 /*  Deprecated (doesn't seem to be used in exporter anywhere)
 /* =================================== */
+
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
