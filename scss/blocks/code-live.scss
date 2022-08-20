@@ -16,6 +16,10 @@
         max-width: 50% !important;
         padding: 0;
     }
+    .sandbox-main-wrapper .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }
 
 .sandbox-container {
@@ -75,6 +79,10 @@ iframe {
     border-bottom: 1px solid var(--leftNavBorderColor);
 }
 
+.sandbox-container-buttons>div {
+    font-weight: bold;
+}
+
 .sandbox-container-buttons a {
     height: 28px;
     font-size: 11px;
@@ -105,8 +113,10 @@ iframe {
 
 .sandbox-state-wrapper {
     display: grid;
-    background-color: #f9f9fa;
-    padding: 16px;
+    // background-color: #f9f9fa;
+    // padding: 16px;
+    background-color: #ffffff;
+    // padding: 0px;
 }
 
 .sandbox-offset {
@@ -121,7 +131,9 @@ iframe {
 }
 
 .sandbox-container {
-    box-shadow: var(--boxShadowLevel1);
+    // box-shadow: var(--boxShadowLevel1);
+    // border-radius: 8px;
+    // overflow: hidden;
 }
 
 .sandbox-loader-container {
@@ -150,7 +162,7 @@ iframe {
 }
 
 .sandbox-main-wrapper.codeBottom .sandbox-state-wrapper,
-.sandbox-main-wrapper:not(.codeTop):not(.codeLeft):not(.codeRight):not(.noCode) {
+.sandbox-main-wrapper:not(.codeTop):not(.codeLeft):not(.codeRight):not(.noCode) .sandbox-state-wrapper {
     border-bottom: 1px solid var(--leftNavBorderColor);
 }
 
@@ -164,4 +176,11 @@ iframe {
 
 .sandbox-main-wrapper.codeRight .sandbox-state-wrapper {
     border-right: 1px solid var(--leftNavBorderColor);
+}
+
+.sandbox-main-wrapper.codeLeft .sandbox-state-wrapper,
+.sandbox-main-wrapper.codeRight .sandbox-state-wrapper,
+.sandbox-main-wrapper.codeLeft .sandbox-container,
+.sandbox-main-wrapper.codeRight .sandbox-container {
+    height: 100% !important;
 }
