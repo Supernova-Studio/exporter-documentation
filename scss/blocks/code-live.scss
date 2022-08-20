@@ -8,7 +8,7 @@
     box-shadow: var(--boxShadowLevel1);
     border-radius: var(--borderRadiusLarge);
     overflow: hidden;
-    margin: 24px -40px;
+    margin: 24px -24px;
 }
 
 .sandbox-container {
@@ -99,6 +99,8 @@ iframe {
     display: grid;
     border-top: 1px solid var(--leftNavBorderColor);
     border-bottom: 1px solid var(--leftNavBorderColor);
+    background-color: #f9f9fa;
+    padding: 16px;
 }
 
 .sandbox-offset {
@@ -110,6 +112,10 @@ iframe {
 .sandbox-container {
     grid-area: 1 / 1;
     width: 100%;
+}
+
+.sandbox-container {
+    box-shadow: var(--boxShadowLevel1);
 }
 
 .sandbox-loader-container {
