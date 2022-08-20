@@ -1,16 +1,13 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
-{[ log block /]}
 
 {* Set background color. Note that currently, background color is provided by SDK by default (#f9f9faff), and it will be changed
    soon so it actually comes as null - meaning it wasn't forced in the editor. 
    We are going around it and treating the default as null. Nasty workaround, but will be fixed, pinky promise :)
 *}
-{[ let backgroundColor = "transparent" /]}
-{[ let showChecker = true /]}
-{[ if (block.backgroundColor != "#f9f9faff") ]}
+{[ let backgroundColor = "#ffffff" /]}
+{[ if (block.backgroundColor) ]}
     {[ backgroundColor = block.backgroundColor /]}
-    {[ showChecker = false /]}
 {[/]}
 
 {* Generate unique ID for the sandbox, and retrieve its configuration *}
@@ -27,24 +24,23 @@
         </div>
         {* Edit code *}
         <div>
-
             {* Copy code button *}
-            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
-                <div class="sandbox-copy-icon" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}"></div>
+            <a class="btn btn-light sandbox-copy" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-copy-icon"></div>
                 Copy code
             </a>
             
             {[ if exportConfiguration().codeOpenInCodesandbox ]}
             {* Open in code sandbox button *}
-            <a class="btn btn-light sandbox-edit" data-toggle="tooltip" title="Open in Codesandbox">
-                <div class="sandbox-codesandbox-icon" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}"></div>
+            <a class="btn btn-light sandbox-edit" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-codesandbox-icon"></div>
                 Open Sandbox
             </a>  
             {[/]}
 
             {* reset demo button *}
-            <a class="btn btn-light sandbox-copy" data-toggle="tooltip" title="Copy component code">
-                <div class="sandbox-reset-icon" data-toggle="reset-sandbox" data-target="{{ sandboxId }}"></div>
+            <a class="btn btn-light sandbox-copy" data-toggle="reset-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-reset-icon"></div>
                 Reset demo
             </a>
         </div>
@@ -55,12 +51,12 @@
         <div class="sandbox-loader-container" data-target="{{ sandboxId }}">
             <div class="sandbox-loader"></div>
         </div>
-        <div class="sandbox-container {{ showChecker ? "checkered-background-light" : ""}}" style="height: {{ block.height.toString() }}px; background-color: {{ backgroundColor }}">
+        <div class="sandbox-container" style="height: {{ block.height.toString() }}px; background-color: {{ backgroundColor }}">
             <div id="{{ sandboxId }}" sn-sandbox-data="{{ block.sandboxData }}"></div>
         </div>
     </div>
     {* Code view *}
     <div class="sandbox-container-meta">
-        <textarea id="codepreview-editable-{{ sandboxId }}" class="textarea-codemirror" spellcheck="false"></textarea>
+        <textarea id="codepreview-editable-{{ sandboxId }}" class="textarea-codemirror" spellcheck="false" {{ exportConfiguration().codeEditableReactWidgets ? "" : "readonly" }}></textarea>
     </div>
 </div>

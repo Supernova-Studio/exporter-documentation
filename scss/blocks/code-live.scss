@@ -101,6 +101,11 @@ iframe {
     border-bottom: 1px solid var(--leftNavBorderColor);
 }
 
+.sandbox-offset {
+    width: 100%;
+    height: 100%;
+}
+
 .sandbox-loader-container,
 .sandbox-container {
     grid-area: 1 / 1;

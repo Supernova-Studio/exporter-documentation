@@ -458,9 +458,7 @@ window.sandboxEngine.listener = function(message) {
 // Load sandboxes that are present on the page
 function loadSandboxes(url) {
 
-    console.log("loading sandboxes")
     const asyncLoader = new Promise(resolve => {
-        console.log("test")
         const engine = window.sandboxEngine
         let targets = engine.getSandboxTargetsStartingWith("sandbox")
         console.log(targets)
@@ -490,6 +488,7 @@ function loadSandboxes(url) {
         }
     })
 }
+
 /*-----------------------------
     Tooltips
 ------------------------------- */
@@ -499,76 +498,60 @@ $(function() {
 });
 
 /*-----------------------------
-    Copy code
+    Sandbox helpers
 ------------------------------- */
 
-$(function() {
-    $('[data-toggle="copy-from-sandbox"]').click(function(event) {
+$('[data-toggle="copy-from-sandbox"]').click(function(event) {
+    console.log("copy from sandbox")
         // Get code of the sandbox
-        event.preventDefault();
-        const sandboxId = $(this).attr('data-target');
-        const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
-        const cb = navigator.clipboard;
-        cb.writeText(code);
+    event.preventDefault();
+    const sandboxId = $(this).attr('data-target');
+    const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
+    const cb = navigator.clipboard;
+    cb.writeText(code);
+
+    // Notify user
+    $.toast({
+        title: 'Component code copied to clipboard',
+        position: 'bottom'
     });
+});
+
+$('[data-toggle="open-in-sandbox"]').click(async function(event) {
+    console.log("open in sandbox")
+        // Get code of the sandbox
+    event.preventDefault();
+    const sandboxId = $(this).attr('data-target');
+    await window.sandboxEngine.openInSandbox(sandboxId);
+});
+
+
+$('[data-toggle="reset-sandbox"]').click(async function(event) {
+    console.log("reset sandbox")
+        // Reset sandbox code
+    event.preventDefault();
+    const sandboxId = $(this).attr('data-target');
+    await window.sandboxEngine.resetSandbox(sandboxId);
 });
 
 /*-----------------------------
     Copy a link to heading
 ------------------------------- */
 
-$(function() {
-    $('[data-copy-url="true"]').click(function(event) {
-        // Get code of the sandbox
-        event.preventDefault();
-        const text = $(this).attr('href');
-        const cb = navigator.clipboard;
-        const pageURL = document.location.href.match(/(^[^#]*)/);
-        const finalURL = pageURL[0] + text;
-        console.log(finalURL);
-        cb.writeText(finalURL);
+$('[data-copy-url="true"]').click(function(event) {
+    // Get code of the sandbox
+    event.preventDefault();
+    const text = $(this).attr('href');
+    const cb = navigator.clipboard;
+    const pageURL = document.location.href.match(/(^[^#]*)/);
+    const finalURL = pageURL[0] + text;
+    console.log(finalURL);
+    cb.writeText(finalURL);
 
-        $.toast({
-            title: 'URL to heading copied',
-            position: 'bottom'
-        });
-    });
-});
-
-
-function makeLive(sandboxId) {
-
-    // Set textarea code
-    const code = window.sandboxEngine.getCodeForSandboxId(sandboxId);
-    $('#codepreview-editable-' + sandboxId).val(code);
-
-    // Change code preview to textarea
-    $('#codepreview-static-' + sandboxId).css({ display: 'none' });
-    $('#codepreview-editable-' + sandboxId).css({ display: 'inherit' });
-
-    // Toggle code view, if it wasn't shown already, and focus
-    $('#codepreview-' + sandboxId).addClass('show');
-    $('#codepreview-editable-' + sandboxId).focus();
-    $('#codepreview-editable-message-' + sandboxId).css({ display: 'inherit' });
-
-    // Set observer to notify sandbox engine about changes to the code
-    $('#codepreview-editable-' + sandboxId).off('input');
-    $('#codepreview-editable-' + sandboxId).on('input', function(e) {
-        let code = $(this).val();
-        window.sandboxEngine.updateSandboxCode(sandboxId, code);
-    });
-}
-
-/*-----------------------------
-    Open in sandbox
-------------------------------- */
-
-$(function() {
-    $('[data-toggle="open-in-sandbox"]').click(async function(event) {
-        // Get code of the sandbox
-        event.preventDefault();
-        const sandboxId = $(this).attr('data-target');
-        await window.sandboxEngine.openInSandbox(sandboxId);
+    // Notify user
+    $.toast({
+        title: 'URL to heading copied',
+        position: 'bottom'
     });
 });
 
