@@ -545,6 +545,23 @@
           "key": "plain"
         }
       ],
+      "RenderCode": [
+        {
+          "name": "Full width",
+          "key": "fullWidth",
+          "isDefault": true
+        },
+        {
+          "name": "Side by side (code left)",
+          "key": "codeLeft",
+          "isDefault": true
+        },
+        {
+          "name": "Side by side (code right)",
+          "key": "codeRight",
+          "isDefault": true
+        }
+      ],
       "io.supernova.documentation-main.markdown": [
         {
           "name": "Default",
