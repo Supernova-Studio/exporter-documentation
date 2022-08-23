@@ -2,6 +2,16 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [2.1.0] - 2022-23-08
+### New code blocks
+
+- Code blocks were completely reworked. You can now select from 5 different ways how to render your components, and we have added intergration with codemirror for amazing editing experience. Enjoy!
+
+## [2.0.0] - 2022-23-08
+### Welcome private libraries!
+
+- We have completely reworked our sandbox engine and are now able to render private libraries! You can now link your private NPM repositories and render your live components directly in your browser. We have additionally made ton of improvements to many aspects of the documentation.
+
 ## [1.48] - 2022-21-07
 ### Added new token options
 

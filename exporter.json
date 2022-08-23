@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -614,6 +614,29 @@
         {
           "name": "Plain",
           "key": "plain"
+        }
+      ],
+      "RenderCode": [
+        {
+          "name": "Full width, code bottom",
+          "key": "codeBottom",
+          "isDefault": true
+        },
+        {
+          "name": "Full width, code top",
+          "key": "codeTop"
+        },
+        {
+          "name": "Side by side, code left",
+          "key": "codeLeft"
+        },
+        {
+          "name": "Side by side, code right",
+          "key": "codeRight"
+        },
+        {
+          "name": "Only preview, no code",
+          "key": "noCode"
         }
       ],
       "io.supernova.documentation-main.markdown": [

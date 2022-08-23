@@ -1,0 +1,184 @@
+/*
+  Name:       supernova
+  Author:     Jiri Trecak
+  Website:    https://supernova.io/
+*/
+
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/source-code-pro.min.css");
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+    font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    background-color: #fff;
+    color: #16181d;
+    border: 0px;
+}
+
+.CodeMirror-scroll {
+    padding: 16px 0px 20px 8px !important;
+    height: auto;
+    max-height: 300px !important;
+    margin-bottom: 0 !important;
+    margin-right: -50px;
+    position: initial !important;
+}
+
+.CodeMirror {
+    height: auto !important;
+    max-height: 300px !important;
+}
+
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+    padding-left: 8px !important;
+}
+
+.cm-s-supernova.CodeMirror {
+    background-color: #fff;
+    color: #16181d;
+}
+
+.CodeMirror-gutters {
+    border: 0px !important;
+}
+
+.CodeMirror-lines {
+    padding: 4px 0 30px 0px !important;
+}
+
+.CodeMirror-gutters,
+.CodeMirror-gutter.CodeMirror-linenumbers {
+    background-color: transparent !important;
+}
+
+.cm-s-supernova .CodeMirror-guttermarker,
+.cm-s-supernova .CodeMirror-guttermarker-subtle,
+.cm-s-supernova .CodeMirror-linenumber {
+    color: #16181d;
+    font-size: 12px;
+}
+
+.cm-s-supernova .CodeMirror-cursor {
+    border-left: 1px solid #FFCC00;
+}
+
+.cm-s-supernova.cm-fat-cursor .CodeMirror-cursor {
+    background-color: #a2a8a175 !important;
+}
+
+.cm-s-supernova .cm-animate-fat-cursor {
+    background-color: #a2a8a175 !important;
+}
+
+.cm-s-supernova div.CodeMirror-selected {
+    background: rgba(113, 124, 180, 0.2);
+}
+
+.cm-s-supernova.CodeMirror-focused div.CodeMirror-selected {
+    background: rgba(113, 124, 180, 0.2);
+}
+
+.cm-s-supernova .CodeMirror-line::selection,
+.cm-s-supernova .CodeMirror-line>span::selection,
+.cm-s-supernova .CodeMirror-line>span>span::selection {
+    background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-supernova .CodeMirror-line::-moz-selection,
+.cm-s-supernova .CodeMirror-line>span::-moz-selection,
+.cm-s-supernova .CodeMirror-line>span>span::-moz-selection {
+    background: rgba(128, 203, 196, 0.2);
+}
+
+.cm-s-supernova .CodeMirror-activeline-background {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.cm-s-supernova .cm-keyword {
+    color: #ce1856;
+}
+
+.cm-s-supernova .cm-operator {
+    color: #89DDFF;
+}
+
+.cm-s-supernova .cm-variable-2 {
+    color: #EEFFFF;
+}
+
+.cm-s-supernova .cm-variable-3,
+.cm-s-supernova .cm-type {
+    color: #f07178;
+}
+
+.cm-s-supernova .cm-builtin {
+    color: #FFCB6B;
+}
+
+.cm-s-supernova .cm-atom {
+    color: #F78C6C;
+}
+
+.cm-s-supernova .cm-number {
+    color: #FF5370;
+}
+
+.cm-s-supernova .cm-def {
+    color: #3f51b5;
+}
+
+.cm-s-supernova .cm-string {
+    color: #982e6f;
+}
+
+.cm-s-supernova .cm-string-2 {
+    color: #982e6f;
+}
+
+.cm-s-supernova .cm-comment {
+    color: #84899b;
+}
+
+.cm-s-supernova .cm-variable {
+    color: #f07178;
+}
+
+.cm-s-supernova .cm-tag {
+    color: #a150ad;
+}
+
+.cm-s-supernova .cm-meta {
+    color: #FFCB6B;
+}
+
+.cm-s-supernova .cm-attribute {
+    color: #2e2e2e;
+}
+
+.cm-s-supernova .cm-property {
+    color: #77b7d7;
+}
+
+.cm-s-supernova .cm-qualifier {
+    color: #DECB6B;
+}
+
+.cm-s-supernova .cm-variable-3,
+.cm-s-supernova .cm-type {
+    color: #DECB6B;
+}
+
+.cm-s-supernova .cm-error {
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #FF5370;
+}
+
+.cm-s-supernova .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}

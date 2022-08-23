@@ -1,0 +1,49 @@
+{* Fetch block from injection context, expected type 'Code' *}
+{[ const block = context /]}
+{[ let variant = block.variantKey /]}
+{[ log variant /]}
+
+{* Generate unique ID for the sandbox, and retrieve its configuration *}
+{[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
+
+{* Generate sandbox code which will be automatically converted to live sandbox *}
+<div class="sandbox-main-wrapper {{ (block.variantKey !== null) ? block.variantKey : "" }}">
+    {* Panel is always on top *}
+    {[ inject "page_block_code_live_panel" context { "sandboxId" : sandboxId } /]}
+
+    {* Generate different layouts based on the variant of the code block *}
+    {[ let sandboxData = { "sandboxId" : sandboxId, "block" : block, "backgroundColor": backgroundColor } /]}
+
+    {[ if (variant === "codeBottom" || variant === null) ]}
+        {* Code bottom, component top, full width *}
+        {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+        {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
+    {[ elseif (variant === "codeTop") ]}
+        {* Code top, component bottom, full width *}
+        {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
+        {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+    {[ elseif (variant === "noCode") ]}
+        {* No code, only full width component preview *}
+        {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+    {[ elseif (variant === "codeLeft") ]}
+        {* Code left, component right, split screen *}
+        <div class="row">
+            <div class="col-sm">
+            {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
+            </div>
+            <div class="col-sm">
+            {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+            </div>
+        </div>
+    {[ elseif (variant === "codeRight") ]}
+        {* Code right, component left, split screen *}
+        <div class="row">
+            <div class="col-sm">
+            {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+            </div>
+            <div class="col-sm">
+            {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
+            </div>
+        </div>
+    {[/]}
+</div>

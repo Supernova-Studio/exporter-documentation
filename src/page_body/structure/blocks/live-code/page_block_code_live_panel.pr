@@ -1,0 +1,33 @@
+{[ let sandboxId = context.sandboxId /]}
+
+{* Always show code *}
+    <div class="sandbox-container-meta">
+        <div class="sandbox-container-buttons">
+        {* File showcase *}
+        <div>
+            Component.js
+        </div>
+        {* Edit code *}
+        <div>
+            {* Copy code button *}
+            <a class="btn btn-light sandbox-copy" data-toggle="copy-from-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-copy-icon"></div>
+                Copy code
+            </a>
+            
+            {[ if exportConfiguration().codeOpenInCodesandbox ]}
+            {* Open in code sandbox button *}
+            <a class="btn btn-light sandbox-edit" data-toggle="open-in-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-codesandbox-icon"></div>
+                Open Sandbox
+            </a>  
+            {[/]}
+
+            {* reset demo button *}
+            <a class="btn btn-light sandbox-copy" data-toggle="reset-sandbox" data-target="{{ sandboxId }}">
+                <div class="sandbox-reset-icon"></div>
+                Reset demo
+            </a>
+        </div>
+        </div>
+    </div>

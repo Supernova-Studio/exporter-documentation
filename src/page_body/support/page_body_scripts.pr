@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
 
 <!-- Live sandbox -->
-<script src="{{ assetUrl("js/live-sandbox.js", domain)}}"></script> 
+<script src="{{ assetUrl("js/sandbox.js", domain)}}"></script> 
 
 <!-- Search Support-->
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
@@ -24,10 +24,16 @@
 <script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
 <script src="{{ assetUrl("js/toast.js", domain)}}"></script> 
 
-<!-- Versions -->
+<!-- After loading -->
 <script>
 $(document).ready(function() {
-    loadVersions("{{ domain }}/../versions.json")
+    // Load versions
+    const versionUrl = "{{ domain }}/../versions.json"
+    loadVersions(versionUrl)
+
+    // Load sandboxes, if any
+    const sandboxConfigUrl = "{{ domain }}/../sandbox.json"
+    loadSandboxes(sandboxConfigUrl)
 });
 </script>
 
