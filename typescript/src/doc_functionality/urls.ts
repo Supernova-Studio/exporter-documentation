@@ -26,7 +26,8 @@ export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: 
   // Construct group path segments
   let parent: DocumentationGroup | null = page.parent
   while (parent) {
-    subpaths.push(slugify(parent.title))
+    let parentSlug = parent.userSlug ?? parent.slug
+    subpaths.push(parentSlug)
     parent = parent.parent
   }
 
