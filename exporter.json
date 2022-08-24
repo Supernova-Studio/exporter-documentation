@@ -236,7 +236,7 @@
         "type": "boolean",
         "label": "Show Site CTA",
         "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": false
       },
       {
@@ -244,7 +244,7 @@
         "type": "string",
         "label": "Site CTA - Text",
         "description": "Text of the CTA button.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": "Open site",
         "isMultiline": false,
         "inputType": "plain"
@@ -254,7 +254,7 @@
         "type": "string",
         "label": "Site CTA - URL to open",
         "description": "Link which will open when CTA button is clicked by the user.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": "",
         "isMultiline": false,
         "inputType": "plain"
@@ -264,7 +264,7 @@
         "type": "boolean",
         "label": "Site CTA - Open in new tab",
         "description": "When enabled, CTA url you provided will open in a new tab.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": true
       },
       {
