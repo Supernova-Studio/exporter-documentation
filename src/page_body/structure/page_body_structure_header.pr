@@ -38,15 +38,15 @@
             <ul class="navbar-nav">
                 {[ if shouldShowTabbar ]}
                     {[ for item in rootGroup.children ]}
-                        {* Re-enable if we only want to show groups *}
-                        {* {[ if item.type.equals("Group") ]} *}
+                        {* Only show if group or page is exportable *}
+                        {[ log item /]}
+                        {[ if isExportable(item) ]}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
                             <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ htmlSafeString(item.title) }}</a></li>
-                        {* {[/]} *}
+                        {[/]}
                     {[/]}
                 {[/]}
             </ul>
-
 
             <div class="utility-nav">
             

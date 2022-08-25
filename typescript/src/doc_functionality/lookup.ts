@@ -42,12 +42,14 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
 /** Find first showable page from the top of the provided root */
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
   for (let child of documentationRoot.children) {
-    if (child.type === "Page") {
-      return child as DocumentationPage
-    } else {
-      let possiblePage = firstPageFromTop(child as DocumentationGroup)
-      if (possiblePage) {
-        return possiblePage
+    if (isExportable(child as DocumentationPage)) {
+      if (child.type === "Page") {
+        return child as DocumentationPage
+      } else {
+        let possiblePage = firstPageFromTop(child as DocumentationGroup)
+        if (possiblePage) {
+          return possiblePage
+        }
       }
     }
   }
@@ -59,10 +61,12 @@ export function flattenedPageStructure(root: DocumentationGroup): Array<Document
 
   let pages: Array<DocumentationPage> = []
   for (let item of root.children) {
-    if (item.type === "Page") {
-      pages.push(item as DocumentationPage)
-    } else if (item.type === "Group") {
-      pages = pages.concat(flattenedPageStructure(item as DocumentationGroup))
+    if (isExportable(item as DocumentationPage | DocumentationGroup)) {
+      if (item.type === "Page") {
+        pages.push(item as DocumentationPage)
+      } else if (item.type === "Group") {
+        pages = pages.concat(flattenedPageStructure(item as DocumentationGroup))
+      }
     }
   }
 
@@ -91,4 +95,29 @@ export function previousPage(page: DocumentationPage, documentationRoot: Documen
     return flattenedPages[pageIndex - 1]
   }
   return null
+}
+
+/** Check whether page or group is exportable. Currently page is considered exportable if it doesn't start with underscore */
+export function isExportable(object: DocumentationPage | DocumentationGroup): boolean {
+
+  if (object === null || object === undefined) {
+    return false
+  }
+  if (object.type === "Group") {
+    if (object.title.startsWith("_")) {
+      return false
+    } else {
+      let parent = (object as DocumentationGroup).parent
+      if (parent) {
+        return isExportable(parent)
+      } else {
+        // Reached root structure without any group being non-exportable, so the entire structure is exportable
+        return true
+      }
+    }
+  } else if (object.type === "Page") {
+    return object.title.startsWith("_")
+  } else {
+    return false
+  }
 }
