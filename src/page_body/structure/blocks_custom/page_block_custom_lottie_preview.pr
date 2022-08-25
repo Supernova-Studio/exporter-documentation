@@ -1,0 +1,11 @@
+{[ const block = context /]}
+
+{* Render lottie file block from configuration *}
+{[ let config = block.properties /]}
+{[ let url = config.jsonURL /]}
+
+{[ if url && url.trim().length > 0 ]}
+   <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ config.width }}px; height: {{ config.height }}px;" loop {{ config.playerControls ? " controls" : "" }} {{ config.autoplay ? " autoplay" : "" }} ></lottie-player>
+{[ else ]}
+    <p>Unable to render Lottie Preview, please provide valid <code>.json</code> URL with your Lottie animation.</p>
+{[/]}

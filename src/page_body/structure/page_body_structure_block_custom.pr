@@ -10,4 +10,6 @@
     {[ inject "page_block_component_checklist" context block /]}
 {[ case "io.supernova.documentation-main.component-checklist-all" ]}
     {[ inject "page_block_component_checklist_all" context block /]}
+{[ case "io.supernova.documentation-main.lottie-preview" ]}
+    {[ inject "page_block_custom_lottie_preview" context block /]}
 {[/]}

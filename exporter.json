@@ -290,6 +290,14 @@
         "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
         "category": "Code",
         "default": true
+      },
+      {
+        "key": "contentIncludeLottiePlayer",
+        "type": "boolean",
+        "label": "Include Lottie player",
+        "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
+        "category": "Content",
+        "default": false
       }
     ],
     "blocks": [
