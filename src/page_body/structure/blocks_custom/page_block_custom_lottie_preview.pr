@@ -9,7 +9,7 @@
         <div class="content"><strong>Lottie Player isn't enabled in documentation</strong><br />To fix this, go to Settings / Content section, enable "Include Lottie player" option, and re-publish documentation.</div>
     </div>
 {[ elseif url && url.trim().length > 0 ]}
-   <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ block.properties.width }}px; height: {{ block.properties.height }}px;" loop {{ block.properties.playerControls ? " controls" : "" }} {{ config.autoplay ? " autoplay" : "" }} ></lottie-player>
+   <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ block.properties.width }}px; height: {{ block.properties.height }}px;" loop {{ block.properties.playerControls ? " controls" : "" }} {{ block.properties.autoplay ? " autoplay" : "" }} ></lottie-player>
 {[ else ]}
     <div class="callout callout-warning">
         <div class="content"><strong>Unable to render Lottie Preview</strong><br />Please provide valid <code>.json</code> URL with your Lottie animation.</div>
