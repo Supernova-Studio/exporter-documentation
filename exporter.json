@@ -379,6 +379,7 @@
         "properties": [
           {
             "key": "jsonURL",
+            "default": "",
             "type": "string",
             "label": "Lottie File URL (.json)"
           },
