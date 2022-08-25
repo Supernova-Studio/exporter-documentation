@@ -40,7 +40,7 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
     // Path and url creation
     let subpaths: Array<string> = [page.title]
     let parent: DocumentationGroup | null = page.parent
-    let skipGenBecauseHidden: boolean = false
+    let skipGenBecauseHidden: boolean = !isExportable(page)
     while (parent) {
       if (!isExportable(parent)) {
         skipGenBecauseHidden = true
