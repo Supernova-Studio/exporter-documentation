@@ -42,7 +42,7 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
 /** Find first showable page from the top of the provided root */
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
   for (let child of documentationRoot.children) {
-    if (isExportable(child as DocumentationPage)) {
+    if (isExportable(child as DocumentationPage | DocumentationGroup)) {
       if (child.type === "Page") {
         return child as DocumentationPage
       } else {
@@ -116,7 +116,7 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
       }
     }
   } else if (object.type === "Page") {
-    return object.title.startsWith("_")
+    return !object.title.startsWith("_")
   } else {
     return false
   }

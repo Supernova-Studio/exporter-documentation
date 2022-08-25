@@ -21,13 +21,11 @@
     <ul class="nav flex-column ">
         {[ for item in rootGroup.children ]}
             {* Only show items that are exportable *}
-            {[ log item /]}
             {[ if isExportable(item) ]}
                 {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                 {[ let activeClass = (isActive === true ? "active" : "") /]}
                 {[ let itemId = item.id /]}
                 {[ let isTab = (item.parent.groupBehavior === "Tabs" ? true : false) /]}
-
                 {[ if item.type.equals("Page") ]}
                     <li class="nav-item{{ isTab === true ? " is-tab" : "" }}"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a><li>
                 {[ else ]}

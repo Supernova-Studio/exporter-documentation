@@ -1,6 +1,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Import
 
+import { isExportable } from "./lookup"
 import { pageUrl } from "./urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -39,12 +40,20 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
     // Path and url creation
     let subpaths: Array<string> = [page.title]
     let parent: DocumentationGroup | null = page.parent
+    let skipGenBecauseHidden: boolean = false
     while (parent) {
+      if (!isExportable(parent)) {
+        skipGenBecauseHidden = true
+      } 
       if (parent?.isRoot) {
         break
       }
       subpaths.splice(0, 0, parent.title)
       parent = parent.parent
+    }
+    if (skipGenBecauseHidden) {
+      // Don't generate content for hidden pages
+      continue
     }
     let url = pageUrl(page, domain)
 
@@ -91,6 +100,10 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
 
   // Process every group for data
   for (let group of groups) {
+    if (!isExportable(group)) {
+      // Don't generate content for hidden groups
+      continue
+    }
     // Path and url creation
     let subpaths: Array<string> = [group.title]
     let parent: DocumentationGroup | null = group.parent

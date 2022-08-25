@@ -14,7 +14,6 @@
     <ul class="nav full flex-column ">
         {[ for item in rootGroup.children ]}
             {* Only show items that are exportable *}
-            {[ log item /]}
             {[ if isExportable(item) ]}
                 {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                 {[ let activeClass = (isActive === true ? "active" : "") /]}

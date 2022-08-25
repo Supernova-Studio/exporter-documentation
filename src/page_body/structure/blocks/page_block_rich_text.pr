@@ -20,7 +20,6 @@
                     {[ let url = "" /]}
                     {[ let page = ds.documentationPageById(itemId) /]}
                     {[ if page ]}
-                        {[ log page /]}
                         {[ if isExportable(page) ]}
                             {[ url = pageUrl(page, ds.documentationDomain()) /]}
                         {[/]}
@@ -28,7 +27,6 @@
                         {[ let group = ds.documentationGroupById(itemId) /]}
                         {[ if group ]}
                             {[ let firstPage = firstPageFromTop(group) /]}
-                            {[ log group /]}
                             {[ if (firstPage && isExportable(firstPage) && isExportable(group)) ]}
                                 {[ url = pageUrl(firstPage, ds.documentationDomain()) /]}
                             {[/]}

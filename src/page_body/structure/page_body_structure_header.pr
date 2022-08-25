@@ -39,7 +39,6 @@
                 {[ if shouldShowTabbar ]}
                     {[ for item in rootGroup.children ]}
                         {* Only show if group or page is exportable *}
-                        {[ log item /]}
                         {[ if isExportable(item) ]}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
                             <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ htmlSafeString(item.title) }}</a></li>
