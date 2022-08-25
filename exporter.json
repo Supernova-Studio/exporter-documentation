@@ -370,6 +370,45 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.lottie-preview",
+        "category": "Media blocks",
+        "title": "Lottie Preview",
+        "description": "Preview Lottie animation",
+        "icon": "icons/custom-block-checklist.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "jsonURL",
+            "type": "string",
+            "label": "Lottie File URL (.json)"
+          },
+          {
+            "key": "width",
+            "type": "number",
+            "default": 480,
+            "label": "Width (px)"
+          },
+          {
+            "key": "height",
+            "type": "number",
+            "default": 270,
+            "label": "Height (px)"
+          },
+          {
+            "key": "autoplay",
+            "default": true,
+            "type": "boolean",
+            "label": "Autoplay"
+          },
+          {
+            "key": "playerControls",
+            "default": false,
+            "type": "boolean",
+            "label": "Player controls"
+          }
+        ]
+      },
+      {
         "key": "io.supernova.documentation-main.component-checklist-all",
         "category": "Components",
         "title": "All Component Checklist (beta)",
