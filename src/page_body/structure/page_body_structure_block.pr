@@ -42,8 +42,6 @@
         {[ inject "page_block_embed_storybook" context block /]}
     {[ case "YoutubeEmbed" ]}
         {[ inject "page_block_embed_youtube" context block /]}
-    {[ case "Image" ]}
-        {[ inject "page_block_image" context block /]}
     {[ case "FigmaFrames" ]}
         {[ inject "page_block_frames" context block /]}
     {[ case "Shortcuts" ]}
