@@ -1,11 +1,17 @@
 {[ const block = context /]}
 
 {* Render lottie file block from configuration *}
-{[ let config = block.properties /]}
-{[ let url = config.jsonURL /]}
+{[ let url = block.properties.jsonURL /]}
+{[ let configuration = exportConfiguration() /]}
 
-{[ if url && url.trim().length > 0 ]}
-   <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ config.width }}px; height: {{ config.height }}px;" loop {{ config.playerControls ? " controls" : "" }} {{ config.autoplay ? " autoplay" : "" }} ></lottie-player>
+{[ if !configuration.contentIncludeLottiePlayer ]}
+    <div class="callout callout-warning">
+        <div class="content"><strong>Lottie Player isn't enabled in documentation</strong><br />To fix this, go to Settings / Content section, enable "Include Lottie player" option, and re-publish documentation.</div>
+    </div>
+{[ elseif url && url.trim().length > 0 ]}
+   <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ block.properties.width }}px; height: {{ block.properties.height }}px;" loop {{ block.properties.playerControls ? " controls" : "" }} {{ config.autoplay ? " autoplay" : "" }} ></lottie-player>
 {[ else ]}
-    <p>Unable to render Lottie Preview, please provide valid <code>.json</code> URL with your Lottie animation.</p>
+    <div class="callout callout-warning">
+        <div class="content"><strong>Unable to render Lottie Preview</strong><br />Please provide valid <code>.json</code> URL with your Lottie animation.</div>
+    </div>
 {[/]}

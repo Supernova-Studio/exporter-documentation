@@ -413,7 +413,7 @@
             "key": "playerControls",
             "default": false,
             "type": "boolean",
-            "label": "Player controls"
+            "label": "Controls"
           }
         ]
       },
