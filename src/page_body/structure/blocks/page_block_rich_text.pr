@@ -16,15 +16,20 @@
             {[ case "Link" ]}
                 {[ let itemId = attribute.documentationItemId /]}
                 {[ if itemId ]}
-                    {* For dynamic links pointing to certain page, find that page (or group) and create the link. If page is not found, do nothing *}
+                    {* For dynamic links pointing to certain page, find that page (or group) and create the link. If page is not found, do nothing. If page is hidden, do nothing as well *}
                     {[ let url = "" /]}
-                    {[ let page = value /]}
-                    {[ if ds.documentationPageById(itemId) ]}
-                        {[ url = pageUrl(ds.documentationPageById(itemId), ds.documentationDomain()) /]}
-                    {[ elseif ds.documentationGroupById(itemId) ]}
-                        {[ let firstPage = firstPageFromTop(ds.documentationGroupById(itemId)) /]}
-                        {[ if firstPage ]}
-                            {[ url = pageUrl(firstPage, ds.documentationDomain()) /]}
+                    {[ let page = ds.documentationPageById(itemId) /]}
+                    {[ if page ]}
+                        {[ if isExportable(page) ]}
+                            {[ url = pageUrl(page, ds.documentationDomain()) /]}
+                        {[/]}
+                    {[ else ]}
+                        {[ let group = ds.documentationGroupById(itemId) /]}
+                        {[ if group ]}
+                            {[ let firstPage = firstPageFromTop(group) /]}
+                            {[ if (firstPage && isExportable(firstPage) && isExportable(group)) ]}
+                                {[ url = pageUrl(firstPage, ds.documentationDomain()) /]}
+                            {[/]}
                         {[/]}
                     {[/]}
 

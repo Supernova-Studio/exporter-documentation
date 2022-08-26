@@ -281,6 +281,8 @@ declare global {
     persistentId: string
     title: string
     type: DocumentationItemType
+    slug: string
+    userSlug: string | null
   }
 
   type DocumentationGroup = DocumentationItem & {
@@ -292,8 +294,6 @@ declare global {
   }
 
   type DocumentationPage = DocumentationItem & {
-    slug: string
-    userSlug: string | null
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
   }

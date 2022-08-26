@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.1.0",
+  "version": "2.1.3",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -50,42 +50,42 @@
         "type": "image",
         "label": "Top Menu Logo",
         "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
-        "category": "Look & Feel"
+        "category": "Appearance"
       },
       {
         "key": "favicon",
         "type": "image",
         "label": "Site Favicon",
         "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
-        "category": "Look & Feel"
+        "category": "Appearance"
       },
       {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
         "label": "Page Header Background Image",
         "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
-        "category": "Look & Feel"
+        "category": "Appearance"
       },
       {
         "key": "lookAndFeelHeaderBackgroundColor",
         "type": "color",
         "label": "Page Header Background Color",
         "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
-        "category": "Look & Feel"
+        "category": "Appearance"
       },
       {
         "key": "lookAndFeelHeaderTextColor",
         "type": "color",
         "label": "Page Header Text Color",
         "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
-        "category": "Look & Feel"
+        "category": "Appearance"
       },
       {
         "key": "lookAndFeelHeaderHeight",
         "type": "number",
         "label": "Page Header Height (px)",
         "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": 0
       },
       {
@@ -93,7 +93,7 @@
         "type": "boolean",
         "label": "Enable Search Engine Indexing",
         "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": true
       },
       {
@@ -101,7 +101,7 @@
         "type": "boolean",
         "label": "Enable Search Engine Link Follow",
         "description": "When enabled, search robots will follow the links on the indexed pages",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": true
       },
       {
@@ -109,7 +109,7 @@
         "type": "boolean",
         "label": "Generate Sitemap",
         "description": "When enabled, documentation sitemap will be re-generated on every publish",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": true
       },
       {
@@ -117,7 +117,7 @@
         "type": "string",
         "label": "Site Title Prefix",
         "description": "When provided, page title will be prefixed with this string",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": ""
       },
       {
@@ -125,7 +125,7 @@
         "type": "string",
         "label": "Site Title Suffix",
         "description": "When provided, page title will be suffixed with this string",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": " | Made with Supernova"
       },
       {
@@ -133,7 +133,7 @@
         "type": "string",
         "label": "Site Title Override",
         "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": ""
       },
       {
@@ -141,7 +141,7 @@
         "type": "string",
         "label": "Site Description Prefix",
         "description": "When provided, page description will be prefixed with this string",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": ""
       },
       {
@@ -149,7 +149,7 @@
         "type": "string",
         "label": "Site Description Suffix",
         "description": "When provided, page description will be suffixed with this string",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": " | Design system documentation, made with ❤️ using Supernova"
       },
       {
@@ -157,7 +157,7 @@
         "type": "string",
         "label": "Site Description Override",
         "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-        "category": "Search Engines",
+        "category": "Search engines",
         "default": ""
       },
       {
@@ -165,7 +165,7 @@
         "type": "image",
         "label": "Site Image Override",
         "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-        "category": "Search Engines"
+        "category": "Search engines"
       },
       {
         "key": "contentMarkdownToken",
@@ -180,7 +180,7 @@
         "type": "boolean",
         "label": "Show Next / Previous navigation",
         "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": true
       },
       {
@@ -188,7 +188,7 @@
         "type": "boolean",
         "label": "Show Footer",
         "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": true
       },
       {
@@ -206,7 +206,7 @@
         "type": "string",
         "label": "Custom CSS",
         "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,
         "inputType": "code"
@@ -236,7 +236,7 @@
         "type": "boolean",
         "label": "Show Site CTA",
         "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": false
       },
       {
@@ -244,7 +244,7 @@
         "type": "string",
         "label": "Site CTA - Text",
         "description": "Text of the CTA button.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": "Open site",
         "isMultiline": false,
         "inputType": "plain"
@@ -254,7 +254,7 @@
         "type": "string",
         "label": "Site CTA - URL to open",
         "description": "Link which will open when CTA button is clicked by the user.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": "",
         "isMultiline": false,
         "inputType": "plain"
@@ -264,7 +264,7 @@
         "type": "boolean",
         "label": "Site CTA - Open in new tab",
         "description": "When enabled, CTA url you provided will open in a new tab.",
-        "category": "Look & Feel",
+        "category": "Appearance",
         "default": true
       },
       {

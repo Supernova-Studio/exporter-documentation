@@ -6,16 +6,21 @@
 {* Create image with lightbox interaction, or ignore it if url is not set *}
 {[ if block.url ]}
 {* Align image based on the configuration *}
-{[ switch block.alignment ]}
-    {[ case "Left" ]}
-        {[ imgClass = "img-fluid" /]}
-        {[ alignClass = "sn-text-left" /]}
-    {[ case "Center" ]}
-        {[ imgClass = "img-fluid" /]}
-        {[ alignClass = "sn-text-center" /]}
-    {[ case "Stretch" ]}
-        {[ imgClass = "img-fluid max" /]}
-        {[ alignClass = "sn-text-center" /]}
+{[ if block.alignment ]}
+    {[ switch block.alignment ]}
+        {[ case "Left" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-left" /]}
+        {[ case "Center" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-center" /]}
+        {[ case "Stretch" ]}
+            {[ imgClass = "img-fluid max" /]}
+            {[ alignClass = "sn-text-center" /]}
+    {[/]}
+{[ else ]}
+    {[ imgClass = "img-fluid" /]}
+    {[ alignClass = "sn-text-left" /]}
 {[/]}
 
 <div class="image-container {{ alignClass }}">

@@ -9,6 +9,11 @@ import { firstPageFromTop } from "./lookup"
 /** Generate page slug for the generated page */
 export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string | undefined) {
 
+  // Prevent generation of URLs for objects that are not provided
+  if (!object) {
+    return "#"
+  }
+
   let page: DocumentationPage | null = null
   if (object.type === "Page") {
     page = object as DocumentationPage
@@ -26,7 +31,8 @@ export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: 
   // Construct group path segments
   let parent: DocumentationGroup | null = page.parent
   while (parent) {
-    subpaths.push(slugify(parent.title))
+    let parentSlug = parent.userSlug ?? parent.slug
+    subpaths.push(parentSlug)
     parent = parent.parent
   }
 
