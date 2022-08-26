@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [2.1.2] - 2022-23-08
+### Add _hide pages
+
+- It is now possible to force-hide pages if they are named with `_`. If group is named with `_`, it will hide all content inside it.
+
 ## [2.1.0] - 2022-23-08
 ### New code blocks
 

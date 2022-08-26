@@ -1,7 +1,6 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 {[ let variant = block.variantKey /]}
-{[ log variant /]}
 
 {* Generate unique ID for the sandbox, and retrieve its configuration *}
 {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}

@@ -109,10 +109,12 @@
     <div class="tabbed-navigation">
         <ul class="nav nav-tabs" id="page-tab" role="tablist">
             {[ for tab in group.pages ]}
-            <li class="nav-item">
-                {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
-                <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ htmlSafeString(tab.title) }}</a>
-            </li>
+                {[ if isExportable(tab) ]}
+                <li class="nav-item">
+                    {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
+                    <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ htmlSafeString(tab.title) }}</a>
+                </li>
+                {[/]}
             {[/]}
         </ul>
     </div>
