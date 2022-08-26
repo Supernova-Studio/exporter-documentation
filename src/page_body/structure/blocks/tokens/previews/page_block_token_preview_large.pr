@@ -51,7 +51,11 @@
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    <div class="preview" style="font-size: {{ token.value.fontSize.measure }}{{ measureTypeIntoReadableUnit(token.value.fontSize.unit) }} !important;font-size: {{ token.value.lineHeight.measure }}{{ measureTypeIntoReadableUnit(token.value.lineHeight.unit) }} !important">Ag</div>
+    {[ if token.value.fontSize ]}
+        <div class="preview" style="font-size: {{ token.value.fontSize.measure }}{{ measureTypeIntoReadableUnit(token.value.fontSize.unit) }} !important;">Ag</div>
+    {[ else ]}
+        <div class="preview" style="font-size: 12px !important;">Ag</div>
+    {[/]}
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[/]}
