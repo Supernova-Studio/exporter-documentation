@@ -1058,7 +1058,7 @@ ol>.block-children {
 /* 3. ScrollSpy active styles (see JS tab for activation) */
 
 #content-nav li.active>a {
-    color: var(--colorAccent);
+    color: var(--contentNavCustom);
     font-weight: 500;
     position: relative;
 }
@@ -1070,8 +1070,8 @@ ol>.block-children {
     height: 100%;
     left: -17px;
     top: 0px;
-    border-left: 1px solid var(--colorAccent);
-}
+    border-left: 1px solid var(--contentNavCustom);
+}f
 
 #content-nav li.sub.active>a::before {
     left: -29px;
@@ -1110,7 +1110,7 @@ ol>.block-children {
     display: block;
     padding: 4px 0px;
     color: var(--colorInkSecondary);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 20px;
     transition: all 50ms ease-in-out, color 200ms ease-in-out;
     /* 💡 This small transition makes setting of the active state smooth */
