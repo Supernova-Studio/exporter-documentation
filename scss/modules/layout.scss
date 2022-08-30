@@ -37,7 +37,7 @@
 }
 
 .bg-sidebar {
-  background-color: var(--leftNavBackground);
+  background-color: var(--colorBackgroundPrimary);
   z-index: 2;
 }
 
@@ -102,6 +102,7 @@
   display: flex;
   align-items: center;
   color: var(--leftNavInk);
+  font-weight: 400;
   height: 40px;
   border-top-left-radius: var(--borderRadiusDefault);
   border-top-right-radius: var(--borderRadiusDefault);
@@ -146,8 +147,9 @@
 }
 
 .docs-navigation .nav > .nav-item > .nav-link.active {
-  background-color: var(--leftNavItemActiveBackground);
-  color: var(--leftNavItemActiveInk);
+  background-color: var(--rdcBackgroundTertiary);
+  color: var(--colorInkPrimary);
+  font-weight: 500;
   border-radius: var(--borderRadiusDefault);
 }
 
@@ -169,6 +171,7 @@
 
 .docs-navigation .nav > .nav-item > .nav-link.active.group {
   color: var(--leftNavInk);
+  font-weight: 700;
   background-color: transparent;
 }
 

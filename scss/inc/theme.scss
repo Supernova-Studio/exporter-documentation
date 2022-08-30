@@ -39,9 +39,9 @@
   /*  Semantic 
   /* =================================== */
   /* main text */
-  --colorInkPrimary: var(--colorNeutral900);
+  --colorInkPrimary: #2B2B2B;
   /* secondary text */
-  --colorInkSecondary: var(--colorNeutral700);
+  --colorInkSecondary: #4B4B4B;
   /* eyebrow headings */
   --colorInkTertiary: var(--colorNeutral500);
   /* inverted text, e.g. for us on dark bg */
@@ -131,7 +131,7 @@
   --alertInfoBackground: var(--colorBackgroundSecondary);
 
   /* RDC Custom tokens */
-  --contentNavCustom: #4B4B4B
+  --rdcBackgroundTertiary: #F7F7F7;
   /* Purple theme (testing) 
   --colorAccent: #6a2bbf;
   --colorAccentDark: #874ce6;
