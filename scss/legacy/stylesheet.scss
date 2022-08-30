@@ -663,18 +663,21 @@ button.bg-primary:hover {
 }
 
 .btn-primary:hover {
+    color: var(--ctaButtonInk);
     background-color: var(--ctaButtonBackgroundHover);
     border-color: var(--ctaButtonBackgroundHover);
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active {
+    color: var(--ctaButtonInk);
     background-color: var(--ctaButtonBackgroundHover);
     border-color: var(--ctaButtonBackgroundHover);
 }
 
 .btn-primary.focus,
 .btn-primary:focus {
+    color: var(--ctaButtonInk);
     background-color: var(--ctaButtonBackgroundHover);
     border-color: var(--ctaButtonBackgroundHover);
 }
@@ -757,6 +760,10 @@ button.bg-primary:hover {
     margin: 0 0.22rem;
     font-size: 16px;
     font-size: 1rem;
+}
+
+.page-link:hover {
+    background-color: #e9eff0;
 }
 
 
