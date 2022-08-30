@@ -1066,7 +1066,7 @@ ol>.block-children {
 #content-nav li.active>a::before {
     content: '';
     position: absolute;
-    width: 1px;
+    width: 2px;
     height: 100%;
     left: -17px;
     top: 0px;
@@ -1282,7 +1282,6 @@ ol>.block-children {
     font-size: 16px;
     line-height: 20px;
     padding: 12px 24px;
-    color: var(--colorInkPrimary);
     border: 1px solid var(--colorInkPrimary);
     border-radius: 100px;
     width: 177px;

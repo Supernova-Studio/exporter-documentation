@@ -105,9 +105,9 @@
   --leftNavElevation: none;
 
   /* CTA button */
-  --ctaButtonBackground: var(--colorAccent);
-  --ctaButtonBackgroundHover: var(--colorAccentDark);
-  --ctaButtonInk: var(--colorWhite);
+  --ctaButtonBackground: var(--colorWhite);
+  --ctaButtonBackgroundHover: var(--rdcBackgroundTertiary);
+  --ctaButtonInk: var(--colorInkPrimary);
 
   /* Block: Shortcuts */
   --shortcutIconHeight: 48px;
