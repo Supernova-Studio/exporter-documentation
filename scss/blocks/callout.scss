@@ -2,25 +2,38 @@
 /*  Callout
 /* =================================== */
 .callout {
-  padding: 16px;
+  padding: 18px 16px;
   border: 0px;
   margin: 24px 0;
-  border-radius: var(--borderRadiusDefault);
+  background-color: var(--rdcBackgroundTertiary);
   display: flex;
   gap: 12px;
 
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     flex-shrink: 0;
+    margin-right: 26px;
+    
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
-
+  .content {
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--colorInkPrimary)
+  }
   &.callout-info {
-    color: var(--alertInfoInk);
-    background-color: var(--alertInfoBackground);
+    strong {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--alertInfoInk);
+    }
 
     .icon {
       color: var(--alertInfoInkSecondary);
@@ -28,27 +41,33 @@
   }
 
   &.callout-success {
-    color: var(--alertSuccessInk);
-    background-color: var(--alertSuccessBackground);
-
+    strong {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--alertSuccessInk);
+    }
     .icon {
       color: var(--alertSuccessInkSecondary);
     }
   }
 
   &.callout-warning {
-    color: var(--alertWarningInk);
-    background-color: var(--alertWarningBackground);
-
+    strong {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--alertWarningInk);
+    }
     .icon {
       color: var(--alertWarningInkSecondary);
     }
   }
 
   &.callout-danger {
-    color: var(--alertDangerInk);
-    background-color: var(--alertDangerBackground);
-
+    strong {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--alertDangerInk);
+    }
     .icon {
       color: var(--alertDangerInkSecondary);
     }
