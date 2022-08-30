@@ -759,10 +759,6 @@ button.bg-primary:hover {
     font-size: 1rem;
 }
 
-.page-link:hover {
-    background-color: #e9eff0;
-}
-
 
 /* Vertical Multilple input group */
 
@@ -1070,7 +1066,7 @@ ol>.block-children {
     height: 100%;
     left: -17px;
     top: 0px;
-    border-left: 1px solid var(--colorInkPrimary);
+    border-left: 2px solid var(--colorInkPrimary);
 }f
 
 #content-nav li.sub.active>a::before {
