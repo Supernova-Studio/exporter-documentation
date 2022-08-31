@@ -51,7 +51,7 @@
                             {[ case "Generic" ]}
                                 <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
                             {[ case "Boolean" ]}
-                                <td class="center"><img src="{{ propertyValues[property.codeName] ? checkedImage : uncheckedImage }}" /></p>
+                                <td class="center"><img src="{{ propertyValues[property.codeName] ? checkedImage : uncheckedImage }}" /></td>
                             {[ case "Select" ]}
                                 {[ let optionValue = "" /]}
                                 {[ let optionColor = "" /]}
