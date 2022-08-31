@@ -25,13 +25,15 @@
 
         {* Create header row *}
         <tr>
-            <th class="left">Component Name</th>
+            <th class="left">Component</th>
             {[ for property in firstComponent.properties ]}
                 {[ if (propertiesToHighlight.contains(property.persistentId) && !["Link"].contains(property.propertyType)) ]}
                 <td class="center">{{ property.name }}</td>
                 {[/]}
             {[/]}
-            <td class="center">Last edited</td>
+            {[ if block.properties.showLastUpdatedColumn ]}
+                <td class="center">Last updated</td>
+            {[/]}     
         </tr>  
 
         {* Create data rows *}
@@ -79,7 +81,9 @@
                         {[/]}
                     {[/]}
                 {[/]}
-                <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
+                {[ if block.properties.showLastUpdatedColumn ]}
+                    <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
+                {[/]}  
             </tr>
         {[/]}
         </table>

@@ -420,8 +420,8 @@
       {
         "key": "io.supernova.documentation-main.component-checklist-all",
         "category": "Components",
-        "title": "Components Overview (beta)",
-        "description": "Highlight specific features of all of your components",
+        "title": "Component Overview Table (beta)",
+        "description": "Show the overview of all of your components",
         "icon": "icons/custom-block-checklist-all.png",
         "mode": "block",
         "properties": [
@@ -434,8 +434,8 @@
           {
             "key": "showLastUpdatedColumn",
             "type": "boolean",
-            "default": false,
-            "label": "Last updated column"
+            "default": true,
+            "label": "Date of update"
           }
         ]
       }
