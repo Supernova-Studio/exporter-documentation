@@ -290,6 +290,14 @@
         "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
         "category": "Code",
         "default": true
+      },
+      {
+        "key": "contentIncludeLottiePlayer",
+        "type": "boolean",
+        "label": "Include Lottie player",
+        "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
+        "category": "Content",
+        "default": false
       }
     ],
     "blocks": [
@@ -366,6 +374,46 @@
             "key": "falseImage",
             "type": "image",
             "label": "No Image"
+          }
+        ]
+      },
+      {
+        "key": "io.supernova.documentation-main.lottie-preview",
+        "category": "Media Blocks",
+        "title": "Lottie Preview",
+        "description": "Preview Lottie animation",
+        "icon": "icons/custom-block-lottie-preview.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "jsonURL",
+            "default": "",
+            "type": "string",
+            "label": "JSON URL"
+          },
+          {
+            "key": "width",
+            "type": "number",
+            "default": 480,
+            "label": "Width (px)"
+          },
+          {
+            "key": "height",
+            "type": "number",
+            "default": 270,
+            "label": "Height (px)"
+          },
+          {
+            "key": "autoplay",
+            "default": true,
+            "type": "boolean",
+            "label": "Autoplay"
+          },
+          {
+            "key": "playerControls",
+            "default": false,
+            "type": "boolean",
+            "label": "Controls"
           }
         ]
       },
