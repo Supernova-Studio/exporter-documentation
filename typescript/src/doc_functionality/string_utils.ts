@@ -13,7 +13,7 @@ export function highlightSafeString(block: DocumentationPageBlockCode) {
   return escapeHtml(string)
 }
 
-function escapeHtml(string) {
+function escapeHtml(string: string) {
   var matchHtmlRegExp = /["'&<>]/
   var str = "" + string
   var match = matchHtmlRegExp.exec(str)
@@ -62,4 +62,11 @@ function escapeHtml(string) {
 
 export function withHTMLNewlines(string: string): string {
   return string.split("\n").join("<br />")
+}
+
+export function getUrlExtension(url: string): string | undefined {
+  console.log(url);
+  console.log(url.split('.').pop())
+
+  return url.split('.').pop()
 }
