@@ -65,8 +65,5 @@ export function withHTMLNewlines(string: string): string {
 }
 
 export function getUrlExtension(url: string): string | undefined {
-  console.log(url);
-  console.log(url.split('.').pop())
-
   return url.split('.').pop()
 }
