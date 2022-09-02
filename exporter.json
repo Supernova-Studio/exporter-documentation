@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.1.3",
+  "version": "2.3.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -290,6 +290,14 @@
         "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
         "category": "Code",
         "default": true
+      },
+      {
+        "key": "contentIncludeLottiePlayer",
+        "type": "boolean",
+        "label": "Include Lottie player",
+        "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
+        "category": "Content",
+        "default": false
       }
     ],
     "blocks": [
@@ -370,10 +378,50 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.lottie-preview",
+        "category": "Media Blocks",
+        "title": "Lottie Preview",
+        "description": "Preview Lottie animation",
+        "icon": "icons/custom-block-lottie-preview.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "jsonURL",
+            "default": "",
+            "type": "string",
+            "label": "JSON URL"
+          },
+          {
+            "key": "width",
+            "type": "number",
+            "default": 480,
+            "label": "Width (px)"
+          },
+          {
+            "key": "height",
+            "type": "number",
+            "default": 270,
+            "label": "Height (px)"
+          },
+          {
+            "key": "autoplay",
+            "default": true,
+            "type": "boolean",
+            "label": "Autoplay"
+          },
+          {
+            "key": "playerControls",
+            "default": false,
+            "type": "boolean",
+            "label": "Controls"
+          }
+        ]
+      },
+      {
         "key": "io.supernova.documentation-main.component-checklist-all",
         "category": "Components",
-        "title": "All Component Checklist (beta)",
-        "description": "Highlight specific features of all of your components",
+        "title": "Component Overview Table (beta)",
+        "description": "Show the overview of all of your components",
         "icon": "icons/custom-block-checklist-all.png",
         "mode": "block",
         "properties": [
@@ -382,6 +430,12 @@
             "default": "",
             "type": "componentProperties",
             "label": "Properties"
+          },
+          {
+            "key": "showLastUpdatedColumn",
+            "type": "boolean",
+            "default": true,
+            "label": "Date of update"
           }
         ]
       },
