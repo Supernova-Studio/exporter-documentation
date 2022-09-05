@@ -247,3 +247,19 @@
   padding: 16px 24px;
   margin-top: -1px;
 }
+
+.accordion-body > :first-child {
+  padding-top: 16px;
+  margin-top: 0px;
+}
+
+.accordion-body > :last-child {
+  padding-bottom: 0px; // originally 16px, but it was breaking the last block
+  margin-bottom: 0px;
+}
+
+.accordion-body > :nth-child(2) {
+  // 2nd child, because the first one is anchor
+  padding-top: 0px;
+  margin-top: 0px;
+}

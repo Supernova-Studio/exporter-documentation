@@ -62,6 +62,16 @@
 
 {[ elseif (variant === "columns") ]}
   {* Tab variant where tabs render as columns *}
+  <div class="row">
+    {[ map (block.children.enumerated()) to index tab ]}
+        {[ let id = tab.id.prefixed("T") /]}
+      <div class="col-sm">
+        {[ for child in tab.children ]}
+          {[ inject "page_body_structure_block" context child /]}
+        {[/]}
+      </div>
+    {[/]}
+  </div>
 
 {[ else ]}
   {* Default variant - tabs with header row and content below it *}
