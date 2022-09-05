@@ -41,17 +41,15 @@
 {[ map (block.children.enumerated()) to index tab ]}
     {[ let id = tab.id.prefixed("T") /]}
     {[ if (tab.type === "TabItem") ]}
-    <div class="card">
-      <div class="card-header" id="{{ id }}">
-        <h2 class="mb-0">
-          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
-            {{ tab.caption }}
-          </button>
-        </h2>
-      </div>
+    <div class="accordion-section">
+      <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+        <div class="accordion-header" id="{{ id }}">
+        {{ tab.caption }}
+        </div>
+      </a>
 
       <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
-        <div class="card-body">
+        <div class="accordion-body">
         {[ for child in tab.children ]}
             {[ inject "page_body_structure_block" context child /]}
         {[/]}
