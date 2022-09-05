@@ -37,6 +37,30 @@
 {[ elseif (variant === "accordion") ]}
   {* Tab variant where tabs render as collapsible blocks with exactly one block opened *}
 
+<div class="accordion" id="{{ blockId }}">
+{[ map (block.children.enumerated()) to index tab ]}
+    {[ let id = tab.id.prefixed("T") /]}
+    {[ if (tab.type === "TabItem") ]}
+    <div class="card">
+      <div class="card-header" id="{{ id }}">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+            {{ tab.caption }}
+          </button>
+        </h2>
+      </div>
+
+      <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
+        <div class="card-body">
+        {[ for child in tab.children ]}
+            {[ inject "page_body_structure_block" context child /]}
+        {[/]}
+        </div>
+      </div>
+    </div>
+    {[/]}
+{[/]}
+</div>
 
 {[ elseif (variant === "columns") ]}
   {* Tab variant where tabs render as columns *}
