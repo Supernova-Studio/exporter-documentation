@@ -450,6 +450,14 @@
         {
           "name": "Pills",
           "key": "pills"
+        },
+        {
+          "name": "Columns",
+          "key": "columns"
+        },
+        {
+          "name": "Accordion",
+          "key": "accordion"
         }
       ],
       "TokenList": [
