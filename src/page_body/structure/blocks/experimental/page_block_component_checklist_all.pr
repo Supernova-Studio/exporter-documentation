@@ -81,9 +81,11 @@
                         {[/]}
                     {[/]}
                 {[/]}
+                {*
                 {[ if block.properties.showLastUpdatedColumn ]}
                     <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
                 {[/]}  
+                *}
             </tr>
         {[/]}
         </table>
