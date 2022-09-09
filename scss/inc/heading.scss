@@ -1,0 +1,46 @@
+/*  Typography
+/* =================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+h1 {
+    margin-bottom: 2.5rem;
+    font-size: calc(42 / 16 * 1rem);
+}
+
+h2 {
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+    font-size: calc(36 / 16 * 1rem);
+}
+
+h3 {
+    margin-top: 3.75rem;
+    margin-bottom: 2.5rem;
+    font-size: calc(24 / 16 * 1rem);
+}
+
+h4 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: calc(20 / 16 * 1rem);
+}
+
+h5 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+h6 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: calc(14 / 16 * 1rem);
+}

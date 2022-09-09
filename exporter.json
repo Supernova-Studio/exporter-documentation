@@ -1,6 +1,6 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Documentation",
+  "name": "UIG-Test",
   "description": "Base Documentation Exporter",
   "author": "Supernova",
   "organization": "Supernova",
@@ -438,6 +438,22 @@
             "label": "Date of update"
           }
         ]
+      },
+      {
+        "key": "uig.badge",
+        "category": "UIG",
+        "title": "Status Badge",
+        "description": "A badge indicating the status of the element.",
+        "icon": "icons/custom-block-badge.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "url",
+            "type": "string",
+            "default": "",
+            "label": "URL"
+          }
+        ]
       }
     ],
     "blockVariants": {
@@ -643,6 +659,37 @@
         {
           "name": "Boxed",
           "key": "boxed"
+        }
+      ],
+      "uig.badge": [
+        {
+          "name": "Pending",
+          "key": "pending",
+          "isDefault": true
+        },
+        {
+          "name": "Design Only",
+          "key": "design"
+        },
+        {
+          "name": "See JIRA",
+          "key": "jira"
+        },
+        {
+          "name": "Now Available",
+          "key": "available"
+        },
+        {
+          "name": "Implemented",
+          "key": "implemented"
+        },
+        {
+          "name": "Standard",
+          "key": "standard"
+        },
+        {
+          "name": "Required",
+          "key": "required"
         }
       ]
     }

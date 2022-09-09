@@ -25,7 +25,7 @@
 
   /*  Core tokens 
   /* =================================== */
-  --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
+  --fontFamily: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,sans-serif;
   --borderRadiusSmall: 2px;
   --borderRadiusDefault: 4px;
   --borderRadiusLarge: 6px;
@@ -87,7 +87,7 @@
   --topNavItemHoverBackground: rgba(255, 255, 255, 0.15);
   /* main header item background when active */
   --topNavItemActiveBackground: var(--topNavItemHoverBackground);
-  --topNavHeaderHeight: 68px;
+  --topNavHeaderHeight: 50px;
   --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
 
   /* Left Navigation */
@@ -98,8 +98,8 @@
   --leftNavItemHoverBackground: var(--colorBackgroundAlt);
   --leftNavItemHoverBackgroundAlt: var(--colorNeutral300);
   --leftNavItemHoverInk: var(--leftNavInk);
-  --leftNavItemActiveBackground: var(--colorAccentSurface);
-  --leftNavItemActiveInk: var(--colorAccent);
+  --leftNavItemActiveBackground: #00a1ff;
+  --leftNavItemActiveInk: #000;
   --leftNavInkTab: var(--colorInkSecondary);
   --leftNavInkSection: var(--colorInkSecondary);
   --leftNavElevation: none;
