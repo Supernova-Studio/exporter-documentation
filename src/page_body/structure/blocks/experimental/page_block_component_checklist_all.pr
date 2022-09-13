@@ -12,6 +12,7 @@
 {* Only render if there is at least one component *}
 {[ if (components.count() > 0) ]}
     {[ let firstComponent = components.first() /]}
+    {[ components = sortComponentsAlphabetically(components) /]}
  
     {* Render header if enabled *}
     {[ if header ]}
@@ -21,7 +22,7 @@
     {* Scroll wrapper boundary *}
     <div class="component-table-wrapper-outer">
     <div class="component-table-wrapper-inner">
-        <table class="data-table header-row header-column" style="width: {{ tableWidth }}px">
+        <table class="data-table header-row header-column" style="min-width: 100%;">
 
         {* Create header row *}
         <tr>
@@ -31,62 +32,68 @@
                 <td class="center">{{ property.name }}</td>
                 {[/]}
             {[/]}
+            {*
             {[ if block.properties.showLastUpdatedColumn ]}
                 <td class="center">Last updated</td>
-            {[/]}     
+            {[/]}  
+             *}   
         </tr>  
 
         {* Create data rows *}
         {* Generate different view based on the type of property *}
         {[ for component in components ]}
-            {[ let propertyValues = component.propertyValues /]}
-            <tr>
-                <th>{{ component.name }}</th>
-                {[ for property in component.properties ]}
-                    {* Only show selected properties in addition to name *}
-                    {[ if (propertiesToHighlight.contains(property.persistentId) && !["Link"].contains(property.propertyType)) ]}
-                        {[ switch property.propertyType ]}
-                            {[ case "Text" ]}
-                            {[ case "Number" ]}
-                            {[ case "Generic" ]}
-                                <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
-                            {[ case "Boolean" ]}
-                                <td class="center"><img src="{{ propertyValues[property.codeName] ? checkedImage : uncheckedImage }}" /></td>
-                            {[ case "Select" ]}
-                                {[ let optionValue = "" /]}
-                                {[ let optionColor = "" /]}
-                                {[ let contrastColor = "" /]}
-                                {[ for option in property.options ]}
-                                    {[ if (option.id === propertyValues[property.codeName]) ]}
-                                        {[ optionValue = option.name /]}
-                                        {[ optionColor = option.backgroundColor /]}
-                                        {[ contrastColor = contrastColor(optionColor) /]}
-                                    {[/]}
-                                {[/]}  
-                                <td class="center">
-                                  <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
-                                    {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
-                                  </span>
-                                </td>
-                            {[ case "Link" ]}
-                                <td class="center"><a href="#" target="_blank">Open link</a></td>
-                            {[ case "URL" ]}
-                                <td class="center">
-                                {[ if propertyValues[property.codeName] ]}
-                                    <a href="{{ propertyValues[property.codeName] }}" target="_blank">Open link</a>
-                                {[ else ]}
-                                    -
-                                {[/]}
-                                </td>
+            {[ if !component.name.startsWith("_") ]} 
+                {[ let propertyValues = component.propertyValues /]}
+                <tr>
+                    <th>{{ component.name }}</th>
+                    {[ for property in component.properties ]}
+                        {* Only show selected properties in addition to name *}
+                        {[ if (propertiesToHighlight.contains(property.persistentId) && !["Link"].contains(property.propertyType)) ]}
+                            {[ switch property.propertyType ]}
+                                {[ case "Text" ]}
+                                    <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
+                                {[ case "Number" ]}
+                                    <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
+                                {[ case "Generic" ]}
+                                    <td>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-"}}</td>
+                                {[ case "Boolean" ]}
+                                    <td class="center"><img src="{{ propertyValues[property.codeName] ? checkedImage : uncheckedImage }}" /></td>
+                                {[ case "Select" ]}
+                                    {[ let optionValue = "" /]}
+                                    {[ let optionColor = "" /]}
+                                    {[ let contrastColor = "" /]}
+                                    {[ for option in property.options ]}
+                                        {[ if (option.id === propertyValues[property.codeName]) ]}
+                                            {[ optionValue = option.name /]}
+                                            {[ optionColor = option.backgroundColor /]}
+                                            {[ contrastColor = contrastColor(optionColor) /]}
+                                        {[/]}
+                                    {[/]}  
+                                    <td class="center">
+                                        <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+                                            {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
+                                        </span>
+                                    </td>
+                                {[ case "Link" ]}
+                                    <td class="center"><a href="#" target="_blank">Open link</a></td>
+                                {[ case "URL" ]}
+                                    <td class="center">
+                                        {[ if propertyValues[property.codeName] ]}
+                                            <a href="{{ propertyValues[property.codeName] }}" target="_blank">Open link</a>
+                                        {[ else ]}
+                                            -
+                                        {[/]}
+                                    </td>
+                            {[/]}
                         {[/]}
                     {[/]}
-                {[/]}
-                {*
-                {[ if block.properties.showLastUpdatedColumn ]}
-                    <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
-                {[/]}  
-                *}
-            </tr>
+                    {*
+                    {[ if block.properties.showLastUpdatedColumn ]}
+                        <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
+                    {[/]}  
+                    *}
+                </tr>
+            {[/]} 
         {[/]}
         </table>
     </div>
