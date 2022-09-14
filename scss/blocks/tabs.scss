@@ -44,7 +44,7 @@
 
 .nav-tabs .nav-item .nav-link:not(.active):hover {
   color: var(--colorInkPrimary);
-  box-shadow: inset 0px -1px 0 0px var(--colorBorderColorProminent);
+  box-shadow: inset 0px -1px 0 0px var(--colorBorderColorSubtle);
 }
 
 .nav-tabs.flex-column {
@@ -121,7 +121,7 @@
 
 .tab-content-block {
   background: var(--colorBackgroundPrimary);
-  border: 1px solid var(--colorBorderColorProminent);
+  border: 1px solid var(--colorBorderColorSubtle);
   border-radius: var(--borderRadiusLarge);
   padding: 16px 24px;
   margin-top: -1px;
@@ -130,7 +130,7 @@
 .tab-pills .tab-content-block {
   padding: 0px 24px;
   border: 0;
-  border-left: 1px solid var(--colorBorderColorProminent);
+  border-left: 1px solid var(--colorBorderColorSubtle);
   border-radius: 0px;
   margin-bottom: 24px;
   min-height: calc(100% - 24px);
@@ -202,4 +202,67 @@
     margin-right: 10px;
     font-size: 0.875rem;
   }
+}
+
+/* =================================== */
+/*  Accordion
+/* =================================== */
+
+.accordion {
+  border: 1px solid var(--colorBorderColorSubtle);
+  border-radius: var(--borderRadiusLarge);
+  overflow: hidden;
+}
+
+.accordion a {
+  text-decoration: none;
+}
+
+.accordion-header {
+  z-index: 2;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.accordion-section a.collapsed .accordion-header {
+  background-color: transparent;
+  color: var(--colorInkPrimary);
+  border-top: 1px solid var(--colorBorderColorSubtle);
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
+}
+
+.accordion-section a.collapsed .accordion-header:hover {
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.accordion-section a:not(.collapsed) .accordion-header {
+  background-color: var(--colorAccentSurface);
+  color: var(--colorAccent);
+  border-bottom: 1px solid var(--colorAccent);
+  margin-bottom: 1px;
+}
+
+.accordion-body {
+  background: var(--colorBackgroundPrimary);
+  padding: 16px 24px;
+  margin-top: -1px;
+}
+
+.accordion-body > :first-child {
+  padding-top: 16px;
+  margin-top: 0px;
+}
+
+.accordion-body > :last-child {
+  padding-bottom: 0px; // originally 16px, but it was breaking the last block
+  margin-bottom: 0px;
+}
+
+.accordion-body > :nth-child(2) {
+  // 2nd child, because the first one is anchor
+  padding-top: 0px;
+  margin-top: 0px;
 }

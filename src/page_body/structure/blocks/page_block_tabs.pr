@@ -34,6 +34,44 @@
         </div>
       </div>
   </div>
+{[ elseif (variant === "accordion") ]}
+  {* Tab variant where tabs render as collapsible blocks with exactly one block opened *}
+
+<div class="accordion" id="{{ blockId }}">
+{[ map (block.children.enumerated()) to index tab ]}
+    {[ let id = tab.id.prefixed("T") /]}
+    {[ if (tab.type === "TabItem") ]}
+    <div class="accordion-section">
+      <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+        <div class="accordion-header" id="{{ id }}">
+        {{ tab.caption }}
+        </div>
+      </a>
+
+      <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
+        <div class="accordion-body">
+        {[ for child in tab.children ]}
+            {[ inject "page_body_structure_block" context child /]}
+        {[/]}
+        </div>
+      </div>
+    </div>
+    {[/]}
+{[/]}
+</div>
+
+{[ elseif (variant === "columns") ]}
+  {* Tab variant where tabs render as columns *}
+  <div class="row">
+    {[ map (block.children.enumerated()) to index tab ]}
+        {[ let id = tab.id.prefixed("T") /]}
+      <div class="col-sm">
+        {[ for child in tab.children ]}
+          {[ inject "page_body_structure_block" context child /]}
+        {[/]}
+      </div>
+    {[/]}
+  </div>
 
 {[ else ]}
   {* Default variant - tabs with header row and content below it *}
