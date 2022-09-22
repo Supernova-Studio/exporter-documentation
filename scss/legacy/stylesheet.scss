@@ -805,245 +805,9 @@ ol>.block-children {
     margin-top: 0px;
 }
 
-.container {
-    padding: 0px;
-}
-
-.container-footer {
-    border-top: 1px solid var(--colorBorderColorSubtle);
-}
-
-.container-title-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: var(--colorBorderColorSubtle);
-    opacity: 0.4;
-    z-index: 0;
-}
-
-.container-title {
-    width: 100%;
-    background-color: var(--pageHeaderBackground);
-    border-bottom: 1px solid var(--pageHeaderBorderColor);
-    color: var(--pageHeaderInk);
-    position: relative;
-}
-
-.container-tabs {
-    width: 100%;
-    margin-bottom: 40px;
-    box-shadow: inset 0px -1px 0 0px var(--pageHeaderBorderColor);
-    position: relative;
-}
-
-.container-title>.slider,
-.container-footer>.slider {
-    max-width: 1000px;
-    margin: 0px auto;
-    padding: 60px 0px 20px 0px;
-    z-index: 1;
-}
-
-.container-tabs>.tabbed-navigation {
-    max-width: 1000px;
-    margin: 0px auto;
-    padding: 0px;
-    z-index: 1;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* Internet Explorer 10+ */
-}
-
-.container-tabs>.tabbed-navigation::-webkit-scrollbar {
-    /* WebKit */
-    width: 0;
-    height: 0;
-}
-
-.container-title>.slider h1,
-.container-footer>.slider h1 {
-    color: var(--pageHeaderInk);
-}
-
-.container-title>.slider .subtitle,
-.container-footer>.slider .subtitle {
-    font-size: 1.25rem;
-}
-
-.container-title.inverted>.slider h1,
-.container-title.inverted>.slider .subtitle {
-    color: var(--colorInkInverted);
-}
-
-.container-title.centered {
-    text-align: center;
-}
-
-.container-title.flexed,
-.container-tabs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.container-title.centered>.slider,
-.container-tabs>.tabbed-navigation {
-    left: initial;
-    display: flex;
-    flex-direction: column;
-    /* align-content: center; */
-    align-items: center;
-    justify-content: center;
-}
-
-.container-tabs>.tabbed-navigation {
-    height: 48px;
-}
-
-.container-tabs>.tabbed-navigation {
-    align-items: start;
-}
-
-@media (min-width: 1170px) {
-    .container-title>.slider,
-    .container-footer>.slider {
-        width: 1000px;
-    }
-    .container-tabs>.tabbed-navigation {
-        width: 1000px;
-    }
-    #section-content-page {
-        width: 750px;
-    }
-}
-
-@media (max-width: 1169px) {
-    #content-nav {
-        display: none;
-    }
-}
-
-#section-content-page {
-    max-width: 750px;
-    width: 100%;
-    margin-bottom: 100px;
-}
-
-
-/* 2. Make nav sticky */
-
-#content-nav {
-    position: sticky;
-    float: right;
-    top: 120px;
-    z-index: 10;
-    margin-left: 100px;
-    align-self: flex-start;
-}
-
-#content-nav>ul>li.sub {
-    margin-left: 12px;
-}
-
-#content-nav>ul>li.sub-2 {
-    margin-left: 24px;
-}
-
-
-/* 3. ScrollSpy active styles (see JS tab for activation) */
-
-#content-nav li.active>a {
-    color: var(--colorAccent);
-    font-weight: 500;
-    position: relative;
-}
-
-#content-nav li.active>a::before {
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 100%;
-    left: -17px;
-    top: 0px;
-    border-left: 1px solid var(--colorAccent);
-}
-
-#content-nav li.sub.active>a::before {
-    left: -29px;
-}
-
-#content-nav li.sub-2.active>a::before {
-    left: -41px;
-}
-
-#content-nav ul {
-    list-style-type: none;
-    margin: 0 0 0 16px;
-    padding: 0;
-}
-
-#content-nav>ul {
-    margin: 0;
-}
-
-.docs-content>.container {
-    display: flex;
-    justify-content: center;
-}
-
-
-/* Sidebar Navigation */
-
-#content-nav {
-    padding-left: 16px;
-    border-left: 1px solid var(--colorBorderColorProminent);
-    width: 160px;
-}
-
-#content-nav a {
-    text-decoration: none;
-    display: block;
-    padding: 4px 0px;
-    color: var(--colorInkSecondary);
-    font-size: 13px;
-    line-height: 20px;
-    transition: all 50ms ease-in-out, color 200ms ease-in-out;
-    /* 💡 This small transition makes setting of the active state smooth */
-}
-
-#content-nav .content-nav-header {
-    color: var(--colorInkSecondary);
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 16px;
-    display: block;
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
-
-#content-nav a:hover,
-#content-nav a:focus {
-    color: var(--colorInkPrimary);
-}
-
-.container-title .slider .nav.nav-tabs a {
-    height: 48px;
-}
-
 .nav-tabs {
     margin-top: 8px !important;
     border-bottom: 0px;
-}
-
-#section-content-page .nav-tabs {
-    margin-top: 24px !important;
 }
 
 .btn.focus,
@@ -1061,48 +825,6 @@ ol>.block-children {
 
 /*  10. Responsive
 /* =================================== */
-
-@media (max-width: 576px) {
-    .container {
-        width: 95%;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        max-width: 540px;
-    }
-    .container-tabs>.tabbed-navigation {
-        max-width: 540px;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        padding: 30px 0px 0 0px;
-    }
-    .container-tabs>.tabbed-navigation {
-        padding: 0px 0px 0 0px;
-    }
-    .container-title>.slider h1,
-    .container-footer>.slider h1 {
-        font-size: 32px;
-    }
-}
-
-@media (min-width: 576px) {
-    .container-title>.slider,
-    .container-footer>.slider {
-        /*max-width: 540px;*/
-    }
-    .container,
-    .container-sm {
-        max-width: 750px;
-    }
-}
-
 
 /* Medium devices (tablets, 768px and up) */
 
@@ -1152,25 +874,6 @@ ol>.block-children {
     }
 }
 
-
-/* Default full content large devices (large desktops, 1200px and up) */
-
-@media (max-width: 1360px) {
-    #content-nav-container {
-        display: none;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        max-width: 750px;
-        width: 95%;
-    }
-    .container-tabs>.tabbed-navigation {
-        max-width: 750px;
-        width: 95%;
-    }
-}
-
-
 /*  11. Custom blocks
 /* =================================== */
 
@@ -1186,10 +889,6 @@ ol>.block-children {
     margin-left: 16px;
     white-space: nowrap;
     transition: var(--transitionDefault);
-}
-
-#section-content-page> :first-child {
-    margin-top: 0px !important;
 }
 
 .no-container-tabs {
@@ -1224,29 +923,7 @@ ol>.block-children {
     text-indent: 0px;
 }
 
-@media (max-width: 576px) {
-    .container {
-        width: 95%;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        max-width: 540px;
-    }
-}
 
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        padding: 30px 0px 0 0px;
-    }
-    .container-title>.slider h1,
-    .container-footer>.slider h1 {
-        font-size: 32px;
-    }
-}
 
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -1274,18 +951,7 @@ ol>.block-children {
 }
 
 
-/* Default full content large devices (large desktops, 1200px and up) */
 
-@media (max-width: 1360px) {
-    #content-nav-container {
-        display: none;
-    }
-    .container-title>.slider,
-    .container-footer>.slider {
-        max-width: 750px;
-        width: 95%;
-    }
-}
 
 textarea {
     background: #fff;

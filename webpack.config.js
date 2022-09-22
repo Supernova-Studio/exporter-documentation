@@ -47,6 +47,7 @@ module.exports = (env, argv) => ({
   output: {
     publicPath: '',
     filename: 'src/js_helpers.js',
-    path: path.resolve(__dirname, './')
+    path: argv.mode === 'production' ? path.resolve(__dirname, './') : path.join(__dirname, '/.build')
+    // path: path.resolve(__dirname, './')
   }
 });

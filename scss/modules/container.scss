@@ -1,0 +1,146 @@
+/* =================================== */
+/*  Container
+/* =================================== */
+.container {
+  max-width: 100%;
+  padding: 0 40px 100px;
+}
+
+.docs-content > .container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 40px;
+
+  @media (min-width: 1260px) {
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+
+.container-footer {
+  border-top: 1px solid var(--colorBorderColorSubtle);
+}
+
+.container-title-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--colorBorderColorSubtle);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.container-title {
+  width: 100%;
+  background-color: var(--pageHeaderBackground);
+  border-bottom: 1px solid var(--pageHeaderBorderColor);
+  color: var(--pageHeaderInk);
+  position: relative;
+}
+
+.container-title .slider .nav.nav-tabs a {
+  height: 48px;
+}
+
+.container-tabs {
+  width: 100%;
+  margin-bottom: 40px;
+  box-shadow: inset 0px -1px 0 0px var(--pageHeaderBorderColor);
+  position: relative;
+}
+
+.container-title > .slider,
+.container-footer > .slider {
+  padding: 60px 40px 20px;
+  z-index: 1;
+}
+
+.container-tabs > .tabbed-navigation {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  z-index: 1;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.container-tabs > .tabbed-navigation::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.container-title > .slider h1,
+.container-footer > .slider h1 {
+  color: var(--pageHeaderInk);
+}
+
+.container-title > .slider .subtitle,
+.container-footer > .slider .subtitle {
+  font-size: 1.25rem;
+}
+
+.container-title.inverted > .slider h1,
+.container-title.inverted > .slider .subtitle {
+  color: var(--colorInkInverted);
+}
+
+.container-title.centered {
+  text-align: center;
+}
+
+.container-title.flexed,
+.container-tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container-title.centered > .slider,
+.container-tabs > .tabbed-navigation {
+  left: initial;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-tabs > .tabbed-navigation {
+  height: 48px;
+}
+
+.container-tabs > .tabbed-navigation {
+  align-items: start;
+}
+
+@media (min-width: 1170px) {
+  .container-tabs > .tabbed-navigation {
+    width: 1000px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-tabs > .tabbed-navigation {
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-tabs > .tabbed-navigation {
+    padding: 0;
+  }
+}
+
+
+/* Default full content large devices (large desktops, 1200px and up) */
+
+@media (max-width: 1360px) {
+  .container-tabs > .tabbed-navigation {
+    max-width: 750px;
+    width: 95%;
+  }
+}

@@ -1,0 +1,17 @@
+/* =================================== */
+/*  section-content-page
+/* =================================== */
+#section-content-page {
+
+  @media (min-width: 1260px) {
+
+  }
+}
+
+#section-content-page> :first-child {
+  margin-top: 0 !important;
+}
+
+#section-content-page .nav-tabs {
+  margin-top: 24px !important;
+}
