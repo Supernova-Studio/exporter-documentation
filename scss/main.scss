@@ -22,6 +22,9 @@
 @import './modules/header';
 @import './modules/page-navigation';
 @import './modules/footer';
+@import './modules/container';
+@import './modules/section-content-page';
+@import './modules/content-nav-container';
 
 /* =================================== */
 
@@ -37,6 +40,7 @@
 /*  Blocks
 /* =================================== */
 
+@import './blocks/grid';
 @import './blocks/callout';
 @import './blocks/code-live';
 @import './blocks/component-health';

@@ -1,0 +1,93 @@
+/* =================================== */
+/*  content-nav-container
+/* =================================== */
+#content-nav-container {
+
+
+  @media (min-width: 1260px) {
+    flex-shrink: 0;
+    width: 300px;
+  }
+}
+
+#content-nav {
+  padding-left: 16px;
+  align-self: flex-start;
+  border-left: 1px solid var(--colorBorderColorProminent);
+
+  @media (min-width: 1260px) {
+    position: sticky;
+    top: 120px;
+    z-index: 10;
+    width: 100%;
+  }
+}
+
+#content-nav ul {
+  list-style-type: none;
+  margin: 0 0 0 16px;
+  padding: 0;
+}
+
+#content-nav > ul {
+  margin: 0;
+}
+
+#content-nav > ul > li.sub {
+  margin-left: 12px;
+}
+
+#content-nav > ul > li.sub-2 {
+  margin-left: 24px;
+}
+
+#content-nav li.active > a {
+  color: var(--colorAccent);
+  font-weight: 500;
+  position: relative;
+}
+
+#content-nav li.active > a::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: -17px;
+  top: 0px;
+  border-left: 1px solid var(--colorAccent);
+}
+
+#content-nav li.sub.active > a::before {
+  left: -29px;
+}
+
+#content-nav li.sub-2.active > a::before {
+  left: -41px;
+}
+
+#content-nav a {
+  text-decoration: none;
+  display: block;
+  padding: 4px 0px;
+  color: var(--colorInkSecondary);
+  font-size: 13px;
+  line-height: 20px;
+  transition: all 50ms ease-in-out, color 200ms ease-in-out;
+  /* 💡 This small transition makes setting of the active state smooth */
+}
+
+#content-nav .content-nav-header {
+  color: var(--colorInkSecondary);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#content-nav a:hover,
+#content-nav a:focus {
+  color: var(--colorInkPrimary);
+}
