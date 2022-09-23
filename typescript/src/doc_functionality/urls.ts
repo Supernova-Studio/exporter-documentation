@@ -8,7 +8,7 @@ import { firstPageFromTop } from "./lookup"
 
 /** Generate page slug for the generated page */
 export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string | undefined) {
-
+  
   // Prevent generation of URLs for objects that are not provided
   if (!object) {
     return "#"
@@ -40,7 +40,7 @@ export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: 
   subpaths.pop()
 
   // Retrieve url-safe path constructed as [host][group-slugs][path-slug][.html]
-  let path = [prefix, ...subpaths.reverse(), pageSlug].join("/") + ".html"
+  let path = [prefix, (Pulsar.blueprintData() as any)?.locale, ...subpaths.reverse(), pageSlug].join("/") + ".html"
   return path
 }
 

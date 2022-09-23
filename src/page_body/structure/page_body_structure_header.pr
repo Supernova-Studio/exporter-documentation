@@ -75,8 +75,13 @@
             </div>
             {[/]}
 
+            <ul class="navbar-nav">
+                <li><a class="typographyDocsViewNavigation" href="{{ ds.documentationDomain() }}/index.html">EN</a></li>
+                <li><a class="typographyDocsViewNavigation" href="{{ ds.documentationDomain() }}/index_jp.html">JP</a></li>
+            </ul>
+
             {[ if exportConfiguration().advancedCustomizationShowVersionDropdown ]}
-            <div id="version-container" class="dropdown">
+            <div id="version-container" class="dropdown"> 
                 <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Loading
                 </button>

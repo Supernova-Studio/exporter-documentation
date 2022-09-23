@@ -2,12 +2,33 @@
     "blueprints": [{
             "invoke": "full_page.pr",
             "write_using": "full_page_path.pr",
-            "comment": "Main blueprint that is invoked for each page. This blueprint is invoked exactly as many times as there are pages, with different `pageId`"
+            "comment": "Main blueprint that is invoked for each page. This blueprint is invoked exactly as many times as there are pages, with different `pageId`",
+            "blueprint_data": {
+                "locale": "en"
+            }
+        }, {
+            "invoke": "full_page.pr",
+            "write_using": "full_page_path.pr",
+            "comment": "Main blueprint that is invoked for each page. This blueprint is invoked exactly as many times as there are pages, with different `pageId`",
+            "blueprint_data": {
+                "locale": "jp"
+            }
         },
         {
             "invoke": "index_page.pr",
             "write_to": "index.html",
-            "comment": "Create entrypoint for the documentation. Will immediately redirect to the first page of the docs"
+            "comment": "Create entrypoint for the documentation. Will immediately redirect to the first page of the docs",
+            "blueprint_data": {
+                "locale": "en"
+            }
+        },
+        {
+            "invoke": "index_page.pr",
+            "write_to": "index_jp.html",
+            "comment": "Create entrypoint for the documentation. Will immediately redirect to the first page of the docs",
+            "blueprint_data": {
+                "locale": "jp"
+            }
         },
         {
             "invoke": "search_index.pr",
