@@ -925,6 +925,16 @@ ol>.block-children {
     margin-bottom: 40px;
     box-shadow: inset 0px -1px 0 0px var(--pageHeaderBorderColor);
     position: relative;
+    position: sticky;
+    top: var(--topNavHeaderHeight);
+    background: var(--colorBackgroundPrimary);
+    z-index: 20;
+}
+
+@media (max-width: 1120px) {
+    .container-tabs {
+        top: 60px;
+    }
 }
 
 .container-title>.slider,
