@@ -10,31 +10,24 @@
     {[ rootGroup = ds.rootDocumentationGroup() /]}
 {[/]}
 
-
 {[ if rootGroup ]}
     <ul class="nav full flex-column ">
         {[ for item in rootGroup.children ]}
-
-            {[ let title = htmlSafeString(item.title) /]}
-            {[ if (blueprintData.locale === "jp") ]}
-                {[ title = randomJapaneseString(title) /]}
-            {[/]}
-            
             {* Only show items that are exportable *}
             {[ if isExportable(item) ]}
                 {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                 {[ let activeClass = (isActive === true ? "active" : "") /]}
                 {[ let itemId = item.id /]}
                 {[ if item.type.equals("Page") ]}
-                    <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ title }}</a><li>
+                    <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a><li>
                 {[ else ]}
                     <li class="nav-item">
                     {[ let firstDescendingPage = firstPageFromTop(item) /]}
                     {* Group will either link to the first page, or be fully disabled *}
                     {[ if firstDescendingPage ]}
-                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ title }}</a>
+                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a>
                     {[ else ]}  
-                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ title }}</a>
+                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ htmlSafeString(item.title) }}</a>
                     {[/]}
                     {[ if isActive ]}
                         {[ let data = { "page": page, "groupId": itemId } /]}
