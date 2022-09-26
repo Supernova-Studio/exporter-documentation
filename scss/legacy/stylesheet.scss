@@ -110,9 +110,10 @@ mark,
     font-size: 14px;
     line-height: 24px;
     padding: 4px;
-    background: var(--colorBackgroundAlt);
+    background: var(--colorBackgroundSecondary);
     color: var(--colorCodeMark);
     border-radius: var(--borderRadiusDefault);
+    border: 1px solid var(--colorBorderColorSubtle);
 }
 
 a,
