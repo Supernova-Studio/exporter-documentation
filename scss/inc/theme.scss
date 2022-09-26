@@ -15,6 +15,7 @@
   --colorNeutral900: #141618;
   --colorRed100: #fff5f5;
   --colorRed500: #d23031;
+  --colorRed700: #C13F39;
   --colorRed900: #9e2122;
   --colorGreen100: #ebfff0;
   --colorGreen500: #00a454;
@@ -64,6 +65,8 @@
   --colorAccentSurface: #ecf4ff;
   /* Ink color on accent */
   --colorAccentInk: var(--colorWhite);
+  /* Inline code mark color */
+  --colorCodeMark: var(--colorRed700);
 
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);

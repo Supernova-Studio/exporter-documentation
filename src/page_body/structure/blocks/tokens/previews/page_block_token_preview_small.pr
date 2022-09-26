@@ -43,7 +43,8 @@
 {[ elseif token.tokenType.equals("Text")]}
     <div class="token-preview-container">T</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    <div class="token-preview-container">Ag</div>
+    {[ const typographyCSS = convertTypographyTokenToCSS(token, true) /]}
+    <div class="token-preview-container"" style="{{ typographyCSS }}">Ag</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="token-preview-container small-text">{{ token.value.text }}</div>
 {[/]}

@@ -120,7 +120,7 @@
   background: var(--colorBackgroundPrimary);
   border: 1px solid var(--colorBorderColorSubtle);
   border-radius: var(--borderRadiusLarge);
-  padding: 16px 24px;
+  padding: 24px;
   margin-top: -1px;
 }
 
@@ -147,7 +147,6 @@
 }
 
 .docs-content .tab-pane > :last-child {
-  padding-bottom: 0px; // originally 16px, but it was breaking the last block
   margin-bottom: 0px;
 }
 

@@ -116,7 +116,7 @@ function nonNegativeValue(num: number) {
   }
 }
 
-/** Describe complex gradient value as token */
+/** Convert type to CSS unit */
 export function measureTypeIntoReadableUnit(type: Unit): string {
   switch (type) {
     case "Points":
@@ -128,4 +128,62 @@ export function measureTypeIntoReadableUnit(type: Unit): string {
     case "Ems":
       return "em"
   }
+}
+
+/** Convert textCase to CSS text transform */
+export function convertTextCaseToTextTransform(textCase: TextCase): string {
+
+  switch (textCase) {
+    case "Upper":
+      return "uppercase"
+    case "Lower":
+      return "lowercase"
+    case "Camel":
+      return "capitalize"
+    default: 
+      return "none"
+  }
+}
+
+/** Convert textCase to CSS text transform */
+export function convertSubfamilyToFontWeight(subfamily: string): string {
+
+  switch (subfamily.toLowerCase()) {
+    case "thin":
+      return "100"
+    case "extralight":
+      return "200"
+    case "light":
+      return "300"
+    case "regular":
+      return "400"
+    case "medium":
+      return "500"
+    case "semibold":
+      return "600"
+    case "bold":
+      return "700"
+    case "extrabold":
+      return "800"
+    case "black":
+      return "900"
+    default:
+      return "400"
+  }
+}
+
+/** Scale token values so they are still okay in smaller previews */
+export function convertTypographyTokenToCSS(typographyToken: TypographyToken, maxFontSize: boolean = false): string {
+  let font = typographyToken.value.font;
+  let fontSize = typographyToken.value.fontSize;
+  let fontSizeMeasure = typographyToken.value.fontSize.measure;
+  let textDecoration = typographyToken.value.textDecoration;
+  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase);
+  let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.font.subfamily);
+
+  if (maxFontSize === true && fontSize.measure > 24) {
+    fontSizeMeasure = 24;
+  }
+
+  return `font-family: '${font.family}', Inter, sans-serif; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
 }
