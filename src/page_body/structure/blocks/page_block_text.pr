@@ -3,13 +3,9 @@
 
 {* Generate rich text *}
 {[ inject "page_block_anchor" context block /]}
-{[ if (blueprintData.locale === "jp") ]}
-    {* For the purposes of the demo *}
-    {{ randomJapaneseString(textBlockPlainText(block)) }}
+{[ if (textBlockPlainText(block).count() === 0) ]}
+    <p>&nbsp;</p>
 {[ else ]}
-    {[ if (textBlockPlainText(block).count() === 0) ]}
-        <p>&nbsp;</p>
-    {[ else ]}
-        <p>{[ inject "page_block_rich_text" context block.text /]}</p>
-    {[/]}
+    <p>{[ inject "page_block_rich_text" context block.text /]}</p>
 {[/]}
+
