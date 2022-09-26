@@ -14,8 +14,8 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 20px;
-    background-color: #fff;
-    color: #16181d;
+    background-color: var(--colorBackgroundPrimary);
+    color: var(--colorInkPrimary);
     border: 0px;
 }
 
@@ -39,8 +39,8 @@
 }
 
 .cm-s-supernova.CodeMirror {
-    background-color: #fff;
-    color: #16181d;
+    background-color: var(--colorBackgroundPrimary);
+    color: var(--colorInkPrimary);
 }
 
 .CodeMirror-gutters {
@@ -48,7 +48,7 @@
 }
 
 .CodeMirror-lines {
-    padding: 4px 0 30px 0px !important;
+    padding: 4px 0 0px 0px !important;
 }
 
 .CodeMirror-gutters,
@@ -59,7 +59,7 @@
 .cm-s-supernova .CodeMirror-guttermarker,
 .cm-s-supernova .CodeMirror-guttermarker-subtle,
 .cm-s-supernova .CodeMirror-linenumber {
-    color: #16181d;
+    color: var(--colorInkPrimary);
     font-size: 12px;
 }
 
