@@ -22,7 +22,7 @@
     <div>      
         <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
-            <img src="{{ asset.thumbnailUrl }}" />
+            <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" />
         {[/]}
         
         </div>
