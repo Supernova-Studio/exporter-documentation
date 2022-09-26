@@ -8,6 +8,45 @@ import { firstPageFromTop } from "./lookup"
 
 /** Generate page slug for the generated page */
 export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: string | undefined) {
+  
+  // Prevent generation of URLs for objects that are not provided
+  if (!object) {
+    return "#"
+  }
+
+  let page: DocumentationPage | null = null
+  if (object.type === "Page") {
+    page = object as DocumentationPage
+  } else {
+    page = firstPageFromTop(object as DocumentationGroup)
+  }
+
+  if (!page) {
+    return ""
+  }
+
+  let pageSlug = page.userSlug ?? page.slug
+  let subpaths: Array<string> = []
+
+  // Construct group path segments
+  let parent: DocumentationGroup | null = page.parent
+  while (parent) {
+    let parentSlug = parent.userSlug ?? parent.slug
+    subpaths.push(parentSlug)
+    parent = parent.parent
+  }
+
+  // Remove last segment added, because we don't care about root group
+  subpaths.pop()
+
+  // Retrieve url-safe path constructed as [host][group-slugs][path-slug][.html]
+  let path = [prefix, (Pulsar.blueprintData() as any)?.locale, ...subpaths.reverse(), pageSlug].join("/") + ".html"
+  return path
+}
+
+
+/** Generate page slug for the generated page */
+export function pageIdentifier(object: DocumentationPage | DocumentationGroup) {
 
   // Prevent generation of URLs for objects that are not provided
   if (!object) {
@@ -40,7 +79,7 @@ export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: 
   subpaths.pop()
 
   // Retrieve url-safe path constructed as [host][group-slugs][path-slug][.html]
-  let path = [prefix, ...subpaths.reverse(), pageSlug].join("/") + ".html"
+  let path = ["page", "body", ...subpaths.reverse(), pageSlug].join("-")
   return path
 }
 

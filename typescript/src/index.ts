@@ -4,14 +4,14 @@
 // MARK: - Imports
 
 import { contrastColor } from "./doc_functionality/color"
-import { convertHealthTagIfAny } from "./doc_functionality/health"
+import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString, withHTMLNewlines, getUrlExtension } from "./doc_functionality/string_utils"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, randomJapaneseString } from "./doc_functionality/string_utils"
 import { formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription } from "./doc_functionality/tokens"
-import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading } from "./doc_functionality/urls"
+import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -35,6 +35,7 @@ Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)
 
 /* URL manipulation and support */
 Pulsar.registerFunction("pageUrl", pageUrl)
+Pulsar.registerFunction("pageIdentifier", pageIdentifier)
 Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
@@ -56,6 +57,7 @@ Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 
 /* Component Health */
 Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
+Pulsar.registerFunction("sortComponentsAlphabetically", sortComponentsAlphabetically)
 
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)
@@ -63,3 +65,6 @@ Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
 
 /* Colors */
 Pulsar.registerFunction("contrastColor", contrastColor)
+
+/* Japanese */
+Pulsar.registerFunction("randomJapaneseString", randomJapaneseString)
