@@ -11,7 +11,7 @@
 {[ inject "page_head" context page /]}
 {[ const domain = ds.documentationDomain() /]}
 
-<body class="light">
+<body class="light {{ pageIdentifier(page) }}">
 {* <body class="{{ exportConfiguration().defaultVisualMode }}"> *}
 {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
 {[ if false ]}
