@@ -85,7 +85,7 @@
             </div>
             {[/]}
             <button class="btn-search search">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.608 3a7.608 7.608 0 1 0 4.557 13.702L19.463 21 21 19.463l-4.298-4.298A7.608 7.608 0 0 0 10.608 3Zm-5.434 7.608a5.435 5.435 0 1 1 10.869 0 5.435 5.435 0 0 1-10.87 0Z" fill="currentColor"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.608 3a7.608 7.608 0 1 0 4.557 13.702L19.463 21 21 19.463l-4.298-4.298A7.608 7.608 0 0 0 10.608 3Zm-5.434 7.608a5.435 5.435 0 1 1 10.869 0 5.435 5.435 0 0 1-10.87 0Z" fill="currentColor"/></svg>
             </button>
             {[ if exportConfiguration().advancedCustomizationShowCTA ]}
                 {[ let ctaText = (exportConfiguration().advancedCustomizationCTAText ? exportConfiguration().advancedCustomizationCTAText : "Open site") /]}

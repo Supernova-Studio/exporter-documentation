@@ -15,6 +15,7 @@
   --colorNeutral900: #141618;
   --colorRed100: #fff5f5;
   --colorRed500: #d23031;
+  --colorRed700: #C13F39;
   --colorRed900: #9e2122;
   --colorGreen100: #ebfff0;
   --colorGreen500: #00a454;
@@ -64,6 +65,8 @@
   --colorAccentSurface: #ecf4ff;
   /* Ink color on accent */
   --colorAccentInk: var(--colorWhite);
+  /* Inline code mark color */
+  --colorCodeMark: var(--colorRed700);
 
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
@@ -109,6 +112,9 @@
   --ctaButtonBackgroundHover: var(--colorAccentDark);
   --ctaButtonInk: var(--colorWhite);
 
+  /* Blocks */
+  --spacingBlockAfter: 24px;
+
   /* Block: Shortcuts */
   --shortcutIconHeight: 48px;
   --shortcutIconWidth: 48px;
@@ -116,19 +122,19 @@
   /* Block: Heading */
   --headingInk: var(--colorInkPrimary);
 
-  /* Block: Alert */
-  --alertSuccessInk: var(--colorGreen900);
-  --alertSuccessInkSecondary: var(--colorGreen500);
-  --alertSuccessBackground: var(--colorGreen100);
-  --alertWarningInk: var(--colorOrange900);
-  --alertWarningInkSecondary: var(--colorOrange500);
-  --alertWarningBackground: var(--colorOrange100);
-  --alertDangerInk: var(--colorRed900);
-  --alertDangerInkSecondary: var(--colorRed500);
-  --alertDangerBackground: var(--colorRed100);
-  --alertInfoInk: var(--colorInkPrimary);
-  --alertInfoInkSecondary: var(--colorInkSecondary);
-  --alertInfoBackground: var(--colorBackgroundSecondary);
+  /* Block: Banner */
+  --calloutSuccessInk: var(--colorGreen900);
+  --calloutSuccessInkSecondary: var(--colorGreen500);
+  --calloutSuccessBackground: var(--colorGreen100);
+  --calloutWarningInk: var(--colorOrange900);
+  --calloutWarningInkSecondary: var(--colorOrange500);
+  --calloutWarningBackground: var(--colorOrange100);
+  --calloutDangerInk: var(--colorRed900);
+  --calloutDangerInkSecondary: var(--colorRed500);
+  --calloutDangerBackground: var(--colorRed100);
+  --calloutInfoInk: var(--colorInkPrimary);
+  --calloutInfoInkSecondary: var(--colorInkSecondary);
+  --calloutInfoBackground: var(--colorBackgroundAlt);
 
   /* Purple theme (testing) 
   --colorAccent: #6a2bbf;

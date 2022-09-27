@@ -25,7 +25,7 @@
 
 <div class="image-container {{ alignClass }}">
 {* Add <a class="popup-img" href="{{ block.url }}"> <img> </a> if you want to enable lightbox-functionality *}
-    <img src="{{ block.url }}" class="{{ imgClass }}" alt="" />
+    <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ block.caption }}" />
     
 {* Add caption if set *}
 {[ if block.caption ]}
