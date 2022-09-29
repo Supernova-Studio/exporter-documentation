@@ -2,13 +2,15 @@
 /*  Grid (Modified Bootstrap)
 /* =================================== */
 .row {
-  gap: 1.5rem;
   margin-bottom: 3.75rem;
   margin-left: 0;
   margin-right: 0;
 
+  #section-content-page & {
+    gap: 1.5rem;
+  }
+
   & > * {
-    /*@apply flex flex-col flex-shrink-0 w-full max-w-full;*/
     padding-left: 0;
     padding-right: 0;
 
