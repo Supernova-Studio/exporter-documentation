@@ -1,7 +1,7 @@
 {* Retrieve page object from context *}
 {[ const page = context /]}
 {[ const domain = ds.documentationDomain() /]}
-{[ const version = "2.2.0" /]}
+{[ const version = "2.4.0" /]}
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
