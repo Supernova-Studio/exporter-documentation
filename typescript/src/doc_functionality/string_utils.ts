@@ -67,17 +67,3 @@ export function withHTMLNewlines(string: string): string {
 export function getUrlExtension(url: string): string | undefined {
   return url.split('.').pop()
 }
-
-export function randomJapaneseString(text: string): string {
-
-  let characters = ["ひ","む","る","お","ひ","や","こ","ほ","ひ","に","ち"]
-  let length = text.length
-  let string = ""
-  for (let i = 0; i < length; i++) {
-    let character = characters[Math.floor(Math.random() * characters.length)]
-    if (character) {
-      string += character
-    }
-  }
-  return string
-}

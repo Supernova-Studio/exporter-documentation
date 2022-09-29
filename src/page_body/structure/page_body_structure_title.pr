@@ -10,9 +10,6 @@
 
 {* Title *}
 {[ let title = (group.groupBehavior === "Tabs" ? htmlSafeString(group.title) : htmlSafeString(page.title)) /]}
-{[ if (blueprintData.locale === "jp") ]}
-    {[ title = randomJapaneseString(title) /]}
-{[/]}        
 
 {* Configure appropriate classes based on the configuration *}
 {[ let centeredClass = (headerConfiguration.alignment === "Center" ? "centered" : "") /]}
@@ -100,11 +97,7 @@
             <h1 style="{{ style }}">{{ withHTMLNewlines(title) }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
-                {[ let description = withHTMLNewlines(htmlSafeString(headerConfiguration.description)) /]}
-                {[ if (blueprintData.locale === "jp") ]}
-                    {[ description = randomJapaneseString(description) /]}
-                {[/]}
-                <p class="subtitle" style="{{ style }}">{{ description }}</p>
+                <p class="subtitle" style="{{ style }}">{{ withHTMLNewlines(htmlSafeString(headerConfiguration.description)) }}</p>
             {[/]}
         {[/]}
     </div>

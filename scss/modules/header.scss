@@ -33,6 +33,7 @@
   align-items: center;
   transition: var(--transitionDefault);
   border-radius: var(--borderRadiusDefault);
+  flex-shrink: 0;
 }
 
 #header-nav .btn-search:hover {
@@ -43,6 +44,7 @@
 #header-nav .btn-search svg {
   height: 22px;
   width: 22px;
+  flex-shrink: 0;
 }
 
 .fa-search:before {
