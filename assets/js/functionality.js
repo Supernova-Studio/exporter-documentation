@@ -629,7 +629,8 @@ $(document).ready(function() {
 
 $('#sidebarCollapse').on('click', function(e) {
     // Toggle the dark / light mode when clicking the mode selector
-    $('.docs-navigation').toggleClass('d-inline');
+    // $('.docs-navigation').toggleClass('d-inline');
+    document.body.classList.toggle('docs-nav-toggle');
     e.preventDefault();
 });
 

@@ -1,0 +1,26 @@
+/* =================================== */
+/*  docs-content
+/* =================================== */
+.docs-content {
+  position: relative;
+  margin-left: 0;
+  min-height: calc(100vh - 242px);
+  transition: margin-left .2s ease;
+
+  @media (min-width: 960px) {
+    margin-left: var(--leftNavWidth);
+
+    .docs-nav-toggle & {
+      margin-left: 0;
+    }
+  }
+}
+
+.docs-content.fullscreen {
+  margin-left: 0;
+}
+
+.docs-content ol li,
+.docs-content ul li {
+  margin-top: 10px;
+}

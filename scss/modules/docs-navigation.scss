@@ -1,0 +1,108 @@
+/* =================================== */
+/*  docs-navigation
+/* =================================== */
+.docs-navigation {
+  position: fixed;
+  top: var(--topNavHeaderHeight);
+  left: 0;
+  overflow: scroll;
+  overflow-y: auto;
+  width: var(--leftNavWidth);
+  height: calc(100vh - 50px);
+  z-index: 2;
+  background-color: #fff;
+  box-shadow: -3px 1px 8px #82adbd;
+  transform: translateX(calc(0px - var(--leftNavWidth)));
+  transition: transform .2s ease;
+
+  .docs-nav-toggle & {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 960px) {
+    transform: translateX(0);
+
+    .docs-nav-toggle & {
+      transform: translateX(calc(0px - var(--leftNavWidth)));
+    }
+  }
+}
+
+.docs-navigation > .nav {
+  color: var(--colorInkPrimary);
+}
+
+.docs-navigation .nav .nav-item {
+  position: relative;
+  transition: var(--transitionDefault);
+
+  &.is-tab a {
+    color: var(--leftNavInkTab);
+  }
+}
+
+.nav-name {
+  margin: 24px 0px 0px 28px;
+}
+
+.nav-name span {
+  text-transform: uppercase;
+  color: var(--leftNavInkSection);
+}
+
+.nav-link {
+  padding: 5px 15px;
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+}
+
+.docs-navigation .nav .nav {
+  margin: 0 0 0 16px;
+}
+
+.docs-navigation .nav .nav-link {
+  position: relative;
+}
+
+.docs-navigation .nav .nav-item .nav-link.active + .nav {
+  display: block;
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.active {
+  background-color: var(--leftNavItemActiveBackground);
+  color: var(--leftNavItemActiveInk);
+  font-weight: 600;
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.active.group {
+  color: var(--leftNavInk);
+  background-color: transparent;
+  font-weight: inherit;
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.group:after {
+  position: absolute;
+  content: ' ';
+  top: 50%;
+  right: 10px;
+  border-color: var(--leftNavBorderColor);
+  border-top: 2px solid;
+  border-right: 2px solid;
+  width: 6px;
+  height: 6px;
+  transition: var(--transitionDefault);
+  opacity: 0.6;
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.group::after {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.docs-navigation .nav > .nav-item > .nav-link.group.active::after {
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+  top: 14px;
+}
