@@ -119,7 +119,8 @@ mark,
 a,
 a:focus {
     transition: var(--transitionDefault);
-    color: var(--colorAccent);
+  color: var(--colorInkPrimary);
+    text-decoration: underline;
 }
 
 a:hover,
@@ -1292,16 +1293,16 @@ ol>.block-children {
 }
 
 .cta-button {
-    font-weight: 800;
+    font-weight: 500;
     font-size: 16px;
     line-height: 20px;
     padding: 12px 24px;
-    color: var(--colorInkPrimary);
-    border: 1px solid var(--colorInkPrimary);
+    color: var(--colorInkInverted);
+    border: 1px solid var(--colorInkInverted);
     border-radius: 100px;
     width: 177px;
     height: 48px;
-    background-color: white;
+    background-color: var(--topNavBackground);
     margin-left: 16px;
     white-space: nowrap;
     transition: var(--transitionDefault);
