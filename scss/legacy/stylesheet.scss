@@ -119,13 +119,14 @@ mark,
 a,
 a:focus {
     transition: var(--transitionDefault);
-  color: var(--colorInkPrimary);
+    color: var(--colorInkPrimary);
     text-decoration: underline;
 }
 
 a:hover,
 a:active {
-    color: var(--colorAccentDark);
+    color: var(--colorInkSecondary);
+    text-decoration: underline;
 }
 
 a:focus,
