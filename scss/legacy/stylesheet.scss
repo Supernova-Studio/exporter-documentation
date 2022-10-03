@@ -111,8 +111,9 @@ mark,
     line-height: 24px;
     padding: 4px;
     background: var(--colorBackgroundSecondary);
-    color: var(--colorInkPrimary);
+    color: var(--colorCodeMark);
     border-radius: var(--borderRadiusDefault);
+    border: 1px solid var(--colorBorderColorSubtle);
 }
 
 a,
@@ -151,8 +152,8 @@ button:focus-visible {
 }
 
 .btn-light {
-    background: rgba(20, 22, 24, 0.04);
-    color: rgba(20, 22, 24, 0.8);
+    background: var(--colorBackgroundSecondary);
+    color: var(--colorInkPrimary);
 }
 
 p,
@@ -187,7 +188,7 @@ dl,
 ol,
 ul {
     margin: 0px;
-    padding-left: 16px;
+    padding-left: 24px;
 }
 
 ol>li::marker {
@@ -928,6 +929,16 @@ ol>.block-children {
     margin-bottom: 40px;
     box-shadow: inset 0px -1px 0 0px var(--pageHeaderBorderColor);
     position: relative;
+    position: sticky;
+    top: var(--topNavHeaderHeight);
+    background: var(--colorBackgroundPrimary);
+    z-index: 20;
+}
+
+@media (max-width: 1120px) {
+    .container-tabs {
+        top: 60px;
+    }
 }
 
 .container-title>.slider,

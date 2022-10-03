@@ -276,10 +276,13 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item {
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > button,
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > a,
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > span {
-  background: hsl(230, 1%, 90%);
-  color: hsl(230, 6%, 44%);
-  padding: 0.1em 0.4em;
-  border-radius: 0.3em;
+  background: var(--colorBackgroundPrimary);
+  color: var(--colorInkSecondary);
+  padding: 4px 6px;
+  border-radius: var(--borderRadiusDefault);
+  font-weight: 500;
+  box-shadow: var(--boxShadowLevel2);
+  font-size: 13px;
 }
 
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > button:hover,
@@ -288,9 +291,9 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > a:hover,
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > a:focus,
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:hover,
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:focus {
-  background: hsl(230, 1%, 78%);
+  background: var(--colorBackgroundSecondary);
   /* custom: darken(--syntax-bg, 20%) */
-  color: hsl(230, 8%, 24%);
+  color: var(--colorInkPrimary);
 }
 
 /* Line Highlight plugin overrides */
@@ -468,4 +471,40 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 
 .prism-previewer-easing.prism-previewer-easing circle {
   fill: transparent;
+}
+
+/* Prism toolbar */
+div.code-toolbar {
+  position: relative;
+}
+div.code-toolbar > .toolbar {
+  position: absolute;
+  top: 0.3em;
+  right: 0.2em;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+div.code-toolbar:focus-within > .toolbar {
+  opacity: 1;
+}
+div.code-toolbar > .toolbar > .toolbar-item {
+  display: inline-block;
+}
+div.code-toolbar > .toolbar > .toolbar-item > a {
+  cursor: pointer;
+}
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

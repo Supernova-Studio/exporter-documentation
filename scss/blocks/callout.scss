@@ -36,7 +36,7 @@
     }
 
     .icon {
-      color: var(--alertInfoInkSecondary);
+      color: var(--calloutInfoInkSecondary);
     }
   }
 
@@ -47,7 +47,7 @@
       color: var(--alertSuccessInk);
     }
     .icon {
-      color: var(--alertSuccessInkSecondary);
+      color: var(--calloutSuccessInkSecondary);
     }
   }
 
@@ -58,7 +58,7 @@
       color: var(--alertWarningInk);
     }
     .icon {
-      color: var(--alertWarningInkSecondary);
+      color: var(--calloutWarningInkSecondary);
     }
   }
 
@@ -69,7 +69,7 @@
       color: var(--alertDangerInk);
     }
     .icon {
-      color: var(--alertDangerInkSecondary);
+      color: var(--calloutDangerInkSecondary);
     }
   }
 }

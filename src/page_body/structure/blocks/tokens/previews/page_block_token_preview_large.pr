@@ -51,11 +51,8 @@
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    {[ if token.value.fontSize ]}
-        <div class="preview" style="font-size: {{ token.value.fontSize.measure }}{{ measureTypeIntoReadableUnit(token.value.fontSize.unit) }} !important;">Ag</div>
-    {[ else ]}
-        <div class="preview" style="font-size: 12px !important;">Ag</div>
-    {[/]}
+    {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
+    <div class="preview" style="{{ typographyCSS }}">Ag</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="preview small-text">{{ token.value.text }}</div>
 {[/]}

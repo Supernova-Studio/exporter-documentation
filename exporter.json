@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
