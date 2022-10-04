@@ -28,7 +28,7 @@ export function gradientDescription(gradientToken: GradientToken) {
   let type = `${gradientToken.value.type} Gradient`
   let stops = gradientToken.value.stops
     .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()}, ${stop.position * 100}%`
+      return `#${stop.color.hex.toUpperCase()}, ${(stop.position * 100).toFixed(2)}%`
     })
     .join(", ")
 
@@ -38,9 +38,19 @@ export function gradientDescription(gradientToken: GradientToken) {
 /** Describe complex gradient value as token */
 export function gradientTokenValue(gradientToken) {
   let gradientType = ""
+
   switch (gradientToken.value.type) {
     case "Linear":
-      gradientType = "linear-gradient(0deg, "
+
+      // calculate the gradient angle
+      const deltaX = Math.round((gradientToken.value.to.x - gradientToken.value.from.x)*100);
+      const deltaY = Math.round((gradientToken.value.to.y - gradientToken.value.from.y)*100);
+
+      // adding 90 to move the angle to the correct position
+      // todo: take into account the direction of the gradient and position of the each stop
+      const angle = Math.round(Math.atan2(deltaY, deltaX)*(180/Math.PI))+90;
+
+      gradientType = `linear-gradient(${angle}deg, `
       break
     case "Radial":
       gradientType = "radial-gradient(circle, "
@@ -54,7 +64,7 @@ export function gradientTokenValue(gradientToken) {
   // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
   let stops = gradientToken.value.stops
     .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()} ${stop.position * 100}%`
+      return `#${stop.color.hex.toUpperCase()} ${(stop.position * 100).toFixed(2)}%`
     })
     .join(", ")
 

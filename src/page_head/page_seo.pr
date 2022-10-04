@@ -10,11 +10,18 @@
 {* Compute information *}
 {* Title - page title is page name, with optional prefix, unless SEO title override is provided. In that case, only override is taken into account  *}
 {[ let title = page.title /]}
+
 {[ if (configuration.seoTitleOverride && configuration.seoTitleOverride.count() > 0) ]}
     {[ title = configuration.seoTitleOverride /]}
 {[ else ]}
     {[ if (title.count() > 0) ]}
+        {* Add page title to the tab title too *}
+        {[ if (page.parent && (page.parent.groupBehavior === "Tabs") && (page.parent.title.count() > 0)) ]}
+            {[ title = title.extended("", " | " + page.parent.title) /]}
+        {[/]}
+
         {[ title = title.extended(configuration.seoTitlePrefix, configuration.seoTitleSuffix) /]}
+        
     {[/]}
 {[/]}
 
