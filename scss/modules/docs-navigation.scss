@@ -9,7 +9,7 @@
   overflow-y: auto;
   width: var(--leftNavWidth);
   height: calc(100vh - 50px);
-  z-index: 2;
+  z-index: 21;
   background-color: #fff;
   box-shadow: -3px 1px 8px #82adbd;
   transform: translateX(calc(0px - var(--leftNavWidth)));
