@@ -81,6 +81,7 @@ export function typographyDescription(typographyToken: TypographyToken) {
   let value = typographyToken.value
   let fontName = `${value.font.family} ${value.font.subfamily}`
   let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
+  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : null;
   let textDecoration: string = ""
   let textCase: string = ""
   if (value.textDecoration !== "None") {
@@ -89,7 +90,7 @@ export function typographyDescription(typographyToken: TypographyToken) {
   if (value.textCase !== "Original") {
     textCase = `, ${value.textCase.toLowerCase()}`
   }
-  return `${fontName} ${fontValue}${textDecoration}${textCase}`
+  return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
 /** Describe complex shadow value as token */
