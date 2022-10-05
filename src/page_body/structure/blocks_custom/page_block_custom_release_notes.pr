@@ -1,1 +1,24 @@
-RELEASE NOTES
+{[ let versions = ds.allDesignSystemVersions() /]}
+{[ if (versions.count() > 1) ]}
+{* Generate entry per each version *}
+    {[ for version in versions ]}
+    {* Ignore draft version, only show stable versions *}
+        {[ if (!version.isSharedDraft) ]}
+            {[ let entries = changelogToEntries(version.changeLog) /]}
+            <h2>{{ version.version }}</h2>
+            {[ if (entries.count() > 0) ]}
+                <ul>
+                {[ for entry in entries ]}
+                    <li>{{ entry }}</li>
+                {[/]}
+                </ul>
+            {[ else ]}
+                <p>No release notes for this version</p>
+            {[/]}
+        {[/]}
+    {[/]}
+{[ else ]}
+{* No published versions just yet *}
+<p>There are no released design system versions just yet.</p>
+{[/]}
+
