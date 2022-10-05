@@ -2,19 +2,19 @@
 /* =================================== */
 body,
 html {
-    height: 100%;
+  height: 100%;
 }
 
 html {
-    scroll-padding-top: var(--topNavHeaderHeight);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--topNavHeaderHeight);
 }
 
 body {
-    color: var(--colorInkPrimary);
-    font-family: var(--fontFamily);
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.625;
-    overflow-x: hidden;
+  color: var(--colorInkPrimary);
+  font-family: var(--fontFamily);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.625;
+  overflow-x: hidden;
 }
