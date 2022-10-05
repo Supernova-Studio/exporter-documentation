@@ -340,6 +340,15 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.release-notes",
+        "category": "Versioning",
+        "title": "Release Notes",
+        "description": "Show formatted release notes from all previously released versions",
+        "icon": "icons/custom-block-release-notes.png",
+        "mode": "block",
+        "properties": []
+      },
+      {
         "key": "io.supernova.documentation-main.component-checklist",
         "category": "Components",
         "title": "Component Checklist (beta)",
