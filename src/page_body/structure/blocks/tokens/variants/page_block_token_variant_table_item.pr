@@ -2,16 +2,17 @@
 {[ const token = context /]}
 
 <div class="item">
-    <div class="preview">
-        {[ inject "page_block_token_preview_small" context token /]}
-        {[ inject "page_block_token_value" context token /]}       
-    </div>
-    <div class="info">
-        <div class="name">{{ token.name }}</div>
-        {[ if token.description ]}
-            <div class="description">{{ token.description }}</div>
-        {[/]}
-        
+    <div class="basic-info">
+        <div class="preview">
+            {[ inject "page_block_token_preview_small" context token /]}
+            {[ inject "page_block_token_value" context token /]}       
+        </div>
+        <div class="info">
+            <div class="name">{{ token.name }}</div>
+            {[ if token.description ]}
+                <div class="description">{{ token.description }}</div>
+            {[/]}
+        </div>
     </div>
     {[ inject "page_block_token_properties" context token /]}       
 </div>

@@ -73,27 +73,17 @@ export function gradientTokenValue(gradientToken) {
 
 /** Describe complex shadow token */
 export function shadowDescription(shadowToken: ShadowToken) {
-  return shadowTokenValue(shadowToken)
+  
+  let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
+      return shadowTokenValue(shadow)
+    })
+    .join(", ")
+  
+
+  return connectedShadow
 }
 
-/** Describe complex shadow token */
-export function typographyDescription(typographyToken: TypographyToken) {
-  let value = typographyToken.value
-  let fontName = `${value.font.family} ${value.font.subfamily}`
-  let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
-  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : null;
-  let textDecoration: string = ""
-  let textCase: string = ""
-  if (value.textDecoration !== "None") {
-    textDecoration = `, ${value.textDecoration.toLowerCase()}`
-  }
-  if (value.textCase !== "Original") {
-    textCase = `, ${value.textCase.toLowerCase()}`
-  }
-  return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
-}
-
-/** Describe complex shadow value as token */
+/** Convert complex shadow value to CSS representation */
 export function shadowTokenValue(shadowToken: ShadowToken): string {
   var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
   var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
@@ -131,8 +121,25 @@ export function getFormattedRGB(colorValue: {r: number, g: number, b: number, a:
   } else {
     const opacity = Math.round((colorValue.a/255) * 100) / 100;
     return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
+  } 
+}
+
+
+/** Describe complex shadow token */
+export function typographyDescription(typographyToken: TypographyToken) {
+  let value = typographyToken.value
+  let fontName = `${value.font.family} ${value.font.subfamily}`
+  let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
+  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : null;
+  let textDecoration: string = ""
+  let textCase: string = ""
+  if (value.textDecoration !== "None") {
+    textDecoration = `, ${value.textDecoration.toLowerCase()}`
   }
-  
+  if (value.textCase !== "Original") {
+    textCase = `, ${value.textCase.toLowerCase()}`
+  }
+  return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
 function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {

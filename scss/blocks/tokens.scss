@@ -43,6 +43,7 @@
     height: 100%;
     border-radius: var(--borderRadiusSmall);
     background-color: var(--colorBackgroundPrimary);
+    z-index: 2;
   }
 }
 
@@ -127,6 +128,21 @@
   border-radius: var(--borderRadiusSmall);
   display: inline-flex;
   color: var(--colorInkPrimary);
+  max-height: 38px;
+  max-width: 300px;
+  position: relative;
+  overflow: auto;
+  background: /* Shadow covers */
+  linear-gradient(var(--colorBackgroundPrimary) 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), var(--colorBackgroundPrimary) 70%) 0 100%, /* Shadows */
+  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background: /* Shadow covers */
+  linear-gradient(var(--colorBackgroundPrimary) 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), var(--colorBackgroundPrimary) 70%) 0 100%, /* Shadows */
+  radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: var(--colorBackgroundPrimary);
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
 }
 
 .token-table {
@@ -136,6 +152,12 @@
     margin: 0 0 20px 0;
     padding: 0 0 20px 0;
     border-bottom: 1px solid var(--colorBorderColorSubtle);
+
+    .basic-info {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+    }
 
     .preview {
       width: 148px;
@@ -168,6 +190,23 @@
       border-left: 1px solid var(--colorBorderColorSubtle);
       background: var(--colorBackgroundPrimary);
       padding: 0 0 0 16px;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .token-table {
+    .item {
+      flex-direction: column;
+      border-bottom: 1px solid var(--colorBorderColorProminent);
+
+      .custom-properties {
+        border-top: 1px solid var(--colorBorderColorSubtle);
+        border-left: 0;
+        padding: 16px 0 0 0;
+        width: 100%;
+      }
     }
   }
 }
@@ -245,6 +284,22 @@ a.custom-property-link {
 .token-container .grid.grid-1 {
   grid-template-columns: repeat(1, 1fr);
 }
+
+@media (max-width: 768px) {
+  .token-container .grid,
+  .token-container .grid.grid-3,
+  .token-container .grid.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .token-container .grid,
+  .token-container .grid.grid-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 
 .token-container .grid > div > div.preview {
   width: 100%;
@@ -348,6 +403,7 @@ a.custom-property-link {
     .reference-badge {
       svg {
         color: rgba(0,0,0,0.3);
+        fill: var(--colorInkInverted);
       }
     }
   }
@@ -395,7 +451,6 @@ a.custom-property-link {
 .token-container .stack .stack-item .value {
   text-align: right;
   font-size: 13px;
-  white-space: nowrap;
 }
 
 .token-container .stack .stack-item.inverted-text .preview {

@@ -47,7 +47,7 @@
     </div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="preview token-preview-container large">
-        <div class="token-type-shadow" style="box-shadow: {{ shadowTokenValue(token) }}"></div>
+        <div class="token-type-shadow" style="box-shadow: {{ shadowDescription(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text">{{ token.value.text }}</div>
