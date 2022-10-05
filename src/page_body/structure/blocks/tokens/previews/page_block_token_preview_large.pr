@@ -2,6 +2,7 @@
 
 {[ if token.tokenType.equals("Color") ]}
     <div class="preview checkered-background-light">
+        {[ inject "page_block_token_reference_badge" context token /]}
         <div class="color-preview" style="background-color: #{{ token.value.hex }};"></div>
     </div>
 {[ elseif token.tokenType.equals("Border")]}

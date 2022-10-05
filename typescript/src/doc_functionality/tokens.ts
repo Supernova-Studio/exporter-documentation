@@ -95,12 +95,17 @@ export function typographyDescription(typographyToken: TypographyToken) {
 
 /** Describe complex shadow value as token */
 export function shadowTokenValue(shadowToken: ShadowToken): string {
-  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${shadowToken.value.x.measure}px ${shadowToken.value.y.measure}px ${shadowToken.value.radius.measure}px ${shadowToken.value.spread.measure}px #${shadowToken.value.color.hex}`
+  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
+  var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
+  var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
+  var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
+
+  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedRGB(shadowToken.value.color)}`
 }
 
 
 /** Scale token values so they are still okay in smaller previews */
-export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {
+export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {  
     var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
     var offsetX = shadowToken.value.x.measure;
     var offsetY = shadowToken.value.y.measure;
@@ -116,7 +121,27 @@ export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum
       spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
     }
   
-    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX}px ${offsetY}px ${blurRadius}px ${spreadRadius}px #${shadowToken.value.color.hex}`
+    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedRGB(shadowToken.value.color)}`
+}
+
+export function getFormattedRGB(colorValue: {r: number, g: number, b: number, a: number}): string {
+ 
+  if (colorValue.a === 0) {
+    return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
+  } else {
+    const opacity = Math.round((colorValue.a/255) * 100) / 100;
+    return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
+  }
+  
+}
+
+function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
+  if (value === 0 && forceUnit !== true) {
+    return `${value}`
+  } else {
+    // todo: add support for other units (px, rem, em, etc.)
+    return `${value}px`
+  }
 }
 
 function nonNegativeValue(num: number) {

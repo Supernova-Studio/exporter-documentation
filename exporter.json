@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -364,16 +364,6 @@
             "type": "string",
             "default": "",
             "label": "Header"
-          },
-          {
-            "key": "trueImage",
-            "type": "image",
-            "label": "Yes Image"
-          },
-          {
-            "key": "falseImage",
-            "type": "image",
-            "label": "No Image"
           }
         ]
       },

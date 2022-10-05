@@ -1,27 +1,18 @@
 {[ const token = context /]}
+{[ const propertyValueCount = token.propertyValues.count() /]}
 
-{[ if token.properties ]}
+{[ if propertyValueCount > 0 ]}
     <div class="custom-properties">
-        {[ if (token.value.referencedToken !== null) ]}
-            <div class="custom-property-item">
-                <span class="label">Reference:&nbsp;</span>
-                <span class="custom-value">
-                    {[ if (token.value.referencedToken.origin !== null) ]}
-                        {{ token.value.referencedToken.origin.name }}
-                    {[ else ]}
-                        {{ token.value.referencedToken.name }}
-                    {[/]}
-                </span>
+    {[ for property in token.properties ]}
+        {[ const propertyValue = token.propertyValues[property.codeName] /]}
+
+        {* We display only the ones that have some value chosen *}
+        {[ if propertyValue ]}
+            <div class="property">
+                <div class="label">{{ property.name }}</div>
+                <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property } /]} </div>
             </div>
         {[/]}
-        {[ for prop in token.properties ]}
-            {[ if prop.type.equals("String") ]}
-                {[ if prop.value ]}
-                    <div class="custom-property-item"><span class="label">{{ prop.name }}:&nbsp;</span><span class="custom-value">{{ prop.value.toString() }}</span></div>
-                {[/]}
-            {[ else ]}
-                <div class="custom-property-item"><span class="label">{{ prop.name }}:&nbsp;</span><span class="custom-value">{{ prop.value.toString() }}</span></div>
-            {[/]}
-        {[/]}
+    {[/]}
     </div>
 {[/]}
