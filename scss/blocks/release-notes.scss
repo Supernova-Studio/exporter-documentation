@@ -1,0 +1,22 @@
+.rn-heading-tag {
+    font-size: 11px;
+    padding: 0 6px;
+    height: 20px;
+    display: flex;
+    margin-left: 10px;
+    border-radius: var(--borderRadiusDefault);
+    font-weight: 500;
+    background: var(--colorBackgroundAlt);
+    white-space: nowrap;
+    align-items: center;
+}
+
+.rn-heading-tag.latest {
+    background: var(--leftNavItemActiveBackground);
+    color: var(--leftNavItemActiveInk);
+}
+
+.rn-heading {
+    display: inline-flex;
+    align-items: center;
+}

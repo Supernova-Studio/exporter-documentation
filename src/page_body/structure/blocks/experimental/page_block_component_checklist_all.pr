@@ -31,11 +31,9 @@
                         <th class="center">{{ property.name }}</th>
                     {[/]}
                 {[/]}
-                {*
                 {[ if block.properties.showLastUpdatedColumn ]}
                     <td class="center">Last updated</td>
                 {[/]}  
-                *}   
             </tr>   
         </thead>
         {* Create data rows *}
@@ -61,11 +59,9 @@
                             {[/]}
                         {[/]}
                     {[/]}
-                    {*
-                    {[ if block.properties.showLastUpdatedColumn ]}
+                    {[ if (block.properties.showLastUpdatedColumn) ]}
                         <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
                     {[/]}  
-                    *}
                 </tr>
             {[/]} 
         {[/]}
