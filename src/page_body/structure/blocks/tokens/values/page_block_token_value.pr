@@ -1,5 +1,5 @@
 {[ let token = context /]}
-<span class="value">
+<span class="token-value">
 {[ if token.tokenType.equals("Color") ]}
     {[ if (token.value.a === 255) ]}
     #{{ token.value.hex.substring(0, 6) }}<br />
@@ -16,7 +16,7 @@
             filter: blur({{ token.value.radius.measure }}px)
     {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
-    {{ token.value.width.measure }}px solid #{{ token.value.color.hex.uppercased() }}, {{ token.value.position.lowercased() }}
+    {{ token.value.width.measure }}px solid #{{ getFormattedRGB(token.value.color) }}
 {[ elseif token.tokenType.equals("Font") ]}
     {{ token.value.family }} {{ token.value.subfamily }}
 {[ elseif token.tokenType.equals("Gradient") ]}

@@ -62,7 +62,7 @@
 
 {[ elseif (variant === "columns") ]}
   {* Tab variant where tabs render as columns *}
-  <div class="row">
+  <div class="row tabs-as-columns">
     {[ map (block.children.enumerated()) to index tab ]}
         {[ let id = tab.id.prefixed("T") /]}
       <div class="col-sm">
