@@ -320,7 +320,7 @@
       {
         "key": "io.supernova.documentation-main.component-health",
         "category": "Components",
-        "title": "Component Health (beta)",
+        "title": "Component Health",
         "description": "Show component health and additional attributes",
         "icon": "icons/custom-block-health.png",
         "mode": "block",
@@ -342,8 +342,8 @@
       {
         "key": "io.supernova.documentation-main.component-checklist",
         "category": "Components",
-        "title": "Component Checklist (beta)",
-        "description": "Highlight specific features of your components",
+        "title": "Component Checklist",
+        "description": "Highlight specific properties of your components",
         "icon": "icons/custom-block-checklist.png",
         "mode": "block",
         "properties": [
@@ -410,7 +410,7 @@
       {
         "key": "io.supernova.documentation-main.component-checklist-all",
         "category": "Components",
-        "title": "Component Overview Table (beta)",
+        "title": "Component Overview Table",
         "description": "Show the overview of all of your components",
         "icon": "icons/custom-block-checklist-all.png",
         "mode": "block",
