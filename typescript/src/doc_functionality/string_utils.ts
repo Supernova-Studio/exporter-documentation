@@ -79,6 +79,6 @@ export function changelogToEntries(changeLog: string): Array<string> {
     }
   }
 
-  modifiedLines = modifiedLines.map(l => l.trim())
+  modifiedLines = modifiedLines.map(l => l.trim()).filter(l => l.trim().length > 0)
   return modifiedLines
 }

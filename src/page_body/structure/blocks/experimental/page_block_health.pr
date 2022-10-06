@@ -38,13 +38,11 @@
                     {{ healthTagReadable }}
                 </div>
             </div>
-            {*
             {[ if (component && component.updatedAt) ]}
             <div class="date">
                 Last updated: {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}
             </div>
             {[/]}
-            *}
         </div>
 
         {* Generate component health popup *}
@@ -59,12 +57,10 @@
                             {{ healthTagReadable }}
                         </div>
                     </div>
-                    {*
                     <div>
                         <div><strong>Published:</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
                         <div><strong>Updated:</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
                     </div>  
-                    *}
                 </div>
 
                 {* Generate properties that are of non-link type properties *}

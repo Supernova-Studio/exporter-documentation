@@ -1,11 +1,21 @@
 {[ let versions = ds.allDesignSystemVersions() /]}
 {[ if (versions.count() > 1) ]}
 {* Generate entry per each version *}
+    {[ let index = 0 /]}
     {[ for version in versions ]}
     {* Ignore draft version, only show stable versions *}
         {[ if (!version.isSharedDraft) ]}
             {[ let entries = changelogToEntries(version.changeLog) /]}
-            <h2>{{ version.version }}</h2>
+            {[ log entries /]}
+            <h3 class="rn-heading">
+                {{ version.version }}
+                {[ if (version.name !== null && version.name !== "") ]}
+                    <span class="rn-heading-tag">Codename: {{ version.name }}</span>
+                {[/]}
+                {[ if (index === 0) ]}
+                    <span class="rn-heading-tag latest">Latest</span>
+                {[/]}
+            </h3>
             {[ if (entries.count() > 0) ]}
                 <ul>
                 {[ for entry in entries ]}
@@ -15,6 +25,7 @@
             {[ else ]}
                 <p>No release notes for this version</p>
             {[/]}
+            {[ index = (index + 1) /]}
         {[/]}
     {[/]}
 {[ else ]}
