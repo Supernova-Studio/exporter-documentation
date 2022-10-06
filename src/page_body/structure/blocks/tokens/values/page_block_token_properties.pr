@@ -7,7 +7,7 @@
         {[ const propertyValue = token.propertyValues[property.codeName] /]}
 
         {* We display only the ones that have some value chosen *}
-        {[ if propertyValue ]}
+        {[ if (propertyValue || property.propertyType.equals("Boolean")) ]}
             <div class="property">
                 <div class="label">{{ property.name }}</div>
                 <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property } /]} </div>
