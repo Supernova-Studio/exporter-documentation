@@ -8,7 +8,13 @@
             {[ inject "page_block_token_value" context token /]}       
         </div>
         <div class="info">
-            <div class="name">{{ token.name }}</div>
+            <div class="name">
+                {[ if (token.origin !== null && token.tokenType.equals("Shadow")) ]}
+                    {{ token.origin.name.replacing("/", " / ") }}
+                {[ else ]}
+                    {{ token.name.replacing("/", " / ") }}
+                {[/]}
+            </div>
             {[ if token.description ]}
                 <div class="description">{{ token.description }}</div>
             {[/]}
