@@ -58,8 +58,12 @@
                         </div>
                     </div>
                     <div>
+                        {[ if component.createdAt ]}
                         <div><strong>Published:</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
+                        {[/]}
+                        {[ if component.updatedAt ]}
                         <div><strong>Updated:</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
+                        {[/]}
                     </div>  
                 </div>
 
