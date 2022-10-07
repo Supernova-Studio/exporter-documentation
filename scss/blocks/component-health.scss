@@ -286,6 +286,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 24px;
+  margin-bottom: 24px;
 }
 
 .checklist .list-item {
@@ -327,6 +328,7 @@
 
 .component-table-wrapper-outer {
   position: relative;
+  margin-bottom: 24px;
 }
 
 .component-table-wrapper-inner {
@@ -351,8 +353,8 @@
   vertical-align: middle;
 }
 
-.component-table-wrapper-inner table.header-column tr:first-child,
-.component-table-wrapper-inner table.header-column tr:first-child {
+.component-table-wrapper-inner table.header-column thead tr:first-child,
+.component-table-wrapper-inner table.header-column thead tr:first-child {
   font-weight: bold;
 }
 
@@ -366,7 +368,7 @@ th {
 
 .component-select-tag {
   font-size: 11px;
-  padding: 4px 6px;
+  padding: 2px 4px;
   border-radius: var(--borderRadiusDefault);
   font-weight: 500;
   background: var(--colorBackgroundAlt);

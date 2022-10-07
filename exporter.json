@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "2.4.0",
+  "version": "3.0.1",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -320,7 +320,7 @@
       {
         "key": "io.supernova.documentation-main.component-health",
         "category": "Components",
-        "title": "Component Health (beta)",
+        "title": "Component Health",
         "description": "Show component health and additional attributes",
         "icon": "icons/custom-block-health.png",
         "mode": "block",
@@ -340,10 +340,19 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.release-notes",
+        "category": "Versioning",
+        "title": "Release Notes",
+        "description": "Show formatted release notes from all previously released versions",
+        "icon": "icons/custom-block-release-notes.png",
+        "mode": "block",
+        "properties": []
+      },
+      {
         "key": "io.supernova.documentation-main.component-checklist",
         "category": "Components",
-        "title": "Component Checklist (beta)",
-        "description": "Highlight specific features of your components",
+        "title": "Component Checklist",
+        "description": "Highlight specific properties of your components",
         "icon": "icons/custom-block-checklist.png",
         "mode": "block",
         "properties": [
@@ -364,16 +373,6 @@
             "type": "string",
             "default": "",
             "label": "Header"
-          },
-          {
-            "key": "trueImage",
-            "type": "image",
-            "label": "Yes Image"
-          },
-          {
-            "key": "falseImage",
-            "type": "image",
-            "label": "No Image"
           }
         ]
       },
@@ -420,7 +419,7 @@
       {
         "key": "io.supernova.documentation-main.component-checklist-all",
         "category": "Components",
-        "title": "Component Overview Table (beta)",
+        "title": "Component Overview Table",
         "description": "Show the overview of all of your components",
         "icon": "icons/custom-block-checklist-all.png",
         "mode": "block",

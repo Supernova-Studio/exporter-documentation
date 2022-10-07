@@ -4,6 +4,13 @@
 /* =================================== */
 .tile-container {
   margin: 24px 0px;
+
+  &.icons-size-adjustment {
+    img {
+      max-width: 28px;
+      max-height: 28px;
+    }
+  }
 }
 
 .tile-container .grid {
