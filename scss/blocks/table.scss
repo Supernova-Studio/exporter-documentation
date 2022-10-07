@@ -55,8 +55,8 @@ table.borderless tr {
 
 table.header-column th:first-child,
 table.header-column td:first-child,
-table.header-row tr:first-child,
-table.header-row tr:first-child {
+table.header-row thead tr:first-child,
+table.header-row thead tr:first-child {
   background-color: var(--colorBackgroundSecondary);
   font-weight: 700;
 
