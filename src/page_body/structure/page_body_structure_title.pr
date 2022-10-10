@@ -47,6 +47,7 @@
     {[/]}
 
 {* Background color takes over transparent default if provided *}
+{* todo: now it's hotfixed, but this if/else hell needs to be refactored *}
 {[ elseif exportConfiguration().lookAndFeelHeaderBackgroundColor ]}
     {[ let color = exportConfiguration().lookAndFeelHeaderBackgroundColor /]}
     {[ if color.value ]}
@@ -56,8 +57,12 @@
         {* Background color provided as token *}
         {[ let colorToken = ds.tokenById(color.aliasTo) /]}
         {[ if colorToken ]}
-        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+            <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
+        {[ else ]}
+            <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
         {[/]}
+    {[ else ]}
+        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
     {[/]}
 
 {* Default without any configuration *}
@@ -70,7 +75,7 @@
     <div class="slider">
         {* Show title and description if enabled *}
         {[ if headerConfiguration.showCoverText ]}
-            
+
             {[ let color = "" /]}
             {[ if (headerConfiguration.foregroundColor && headerConfiguration.foregroundColor.value) ]}
                 {* Foreground color provided as raw value *}
