@@ -48,16 +48,27 @@
     {[/]}
   {[ else ]}
     <tr>
-      {[ if (headerRow) ]}
+      {[ if (headerColumn) ]}
         {* Cell scope *}
+        {[ let colIndex = 0 /]}
         {[ for cell in row.children ]}
           {[ let alignment = cell.alignment.lowercased() /]}
-          <td class="{{ alignment }}">
-            {* Cell content *}
-            {[ for cellBlock in cell.children ]}
-              {[ inject "page_body_structure_block" context cellBlock /]}
-            {[/]}
-          </td>
+          {[ if (rowIndex === 0) ]}
+            <th class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </th>
+          {[ else ]}
+            <td class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </td>
+          {[/]}
+          {[ colIndex = (colIndex + 1) /]}
         {[/]}
       {[ else ]}
         {* Cell scope *}
