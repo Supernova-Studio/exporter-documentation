@@ -1,22 +1,31 @@
 .data-table-wrapper {
   margin-bottom: 1.5rem;
   overflow-x: auto;
-
-  p {
-    font-size: 14px;
-    line-height: 20px;
-    margin: 0;
-  }
 }
 
 table.data-table {
   width: 100%;
 
+  thead {
+    tr:first-of-type {
+      background-color: transparent;
+    }
+    th {
+      border-bottom: 2px solid #d7d7d7;
+      border-top: none;
+    }
+  }
+
+  tr {
+    &:nth-of-type(odd) {
+      background-color: #f5f5f5;
+    }
+  }
+
   th, td {
     min-width: 9rem;
     max-width: 765px;
     padding: 1rem 1.5rem;
-    border: 1px solid var(--colorBorderColorProminent);
     vertical-align: top;
     overflow-wrap: break-word;
 
@@ -30,19 +39,7 @@ table.borderless,
 table.borderless td,
 table.borderless th,
 table.borderless tr {
-  border: 0px;
-}
-
-table.header-column th:first-child,
-table.header-column td:first-child,
-table.header-row thead tr:first-child,
-table.header-row thead tr:first-child {
-  background-color: var(--colorBackgroundSecondary);
-  font-weight: 700;
-
-  p {
-    font-weight: 700;
-  }
+  border: none;
 }
 
 table th.left,
@@ -75,16 +72,6 @@ table td.center .sn-text-right {
   }
   table caption {
     font-size: 1.3em;
-  }
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
   }
   table:not(.data-table) tr {
     border-bottom: 3px solid var(--colorBorderColorSubtle);
