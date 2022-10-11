@@ -27,8 +27,7 @@ table.data-table tr td > :last-child {
 }
 
 .data-table-wrapper {
-  margin: 24px 0;
-  width: 752px; /* fixing a bug with horizontal scrolling of full-width table */
+  margin-bottom: 1.5rem;
 
   p {
     font-size: 14px;

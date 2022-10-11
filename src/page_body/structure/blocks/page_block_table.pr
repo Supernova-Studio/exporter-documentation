@@ -12,7 +12,7 @@
 
 {* Scroll wrapper boundary *}
 <div class="data-table-wrapper">
-<table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}" style="width: {{ tableWidth }}px">
+<table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}">
 {* Row scope *}
 {[ let rowIndex = 0 /]}
 {[ for row in block.children ]}
@@ -28,14 +28,20 @@
                 {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
             {[/]}
         {[/]}
-        <td class="{{ alignment }}" style="width: {{ columnSize }}">
+        <th class="{{ alignment }}">
+        {[/]}
+            {* Cell content *}
+            {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+            {[/]}
+        </th>
     {[ else ]}
     <td class="{{ alignment }}">
     {[/]}
       {* Cell content *}
       {[ for cellBlock in cell.children ]}
           {[ inject "page_body_structure_block" context cellBlock /]}
-      {[/]}      
+      {[/]}
     </td>
   {[/]}
   </tr>
