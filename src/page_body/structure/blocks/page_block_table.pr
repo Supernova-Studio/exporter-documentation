@@ -53,7 +53,7 @@
         {[ let colIndex = 0 /]}
         {[ for cell in row.children ]}
           {[ let alignment = cell.alignment.lowercased() /]}
-          {[ if (rowIndex === 0) ]}
+          {[ if (colIndex === 0) ]}
             <th class="{{ alignment }}">
               {* Cell content *}
               {[ for cellBlock in cell.children ]}
