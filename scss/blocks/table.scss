@@ -10,8 +10,7 @@
 }
 
 table.data-table {
-  display: block;
-  border: 1px solid var(--colorBorderColorProminent);
+  width: 100%;
 
   th, td {
     min-width: 9rem;
