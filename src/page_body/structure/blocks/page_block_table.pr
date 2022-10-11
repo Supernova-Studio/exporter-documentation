@@ -46,19 +46,6 @@
         {[/]}
       </tr>
     {[/]}
-  {[ else if (headerColumn) ]}
-    <tr>
-      {* Cell scope *}
-      {[ for cell in row.children ]}
-        {[ let alignment = cell.alignment.lowercased() /]}
-        <td class="{{ alignment }}">
-          {* Cell content *}
-          {[ for cellBlock in cell.children ]}
-            {[ inject "page_body_structure_block" context cellBlock /]}
-          {[/]}
-        </td>
-      {[/]}
-    </tr>
   {[ else ]}
     <tr>
       {* Cell scope *}
