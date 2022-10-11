@@ -1,14 +1,22 @@
+.data-table-wrapper {
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+  }
+}
+
 table.data-table {
-  border-collapse: collapse;
-  max-width: -moz-fit-content;
-  min-width: fit-content;
+  width: 100%;
 }
 
 table.data-table,
 table.data-table th,
 table.data-table td {
   border: 1px solid var(--colorBorderColorProminent);
-  border-collapse: collapse;
 }
 
 table.data-table th,
@@ -24,20 +32,6 @@ table.data-table tr td > :first-child {
 table.data-table tr th > :first-child,
 table.data-table tr td > :last-child {
   margin-bottom: 0 !important;
-}
-
-.data-table-wrapper {
-  margin-bottom: 1.5rem;
-
-  p {
-    font-size: 14px;
-    line-height: 20px;
-    margin: 0;
-  }
-}
-
-div.data-table-wrapper {
-  overflow-x: auto;
 }
 
 table.data-table th,
