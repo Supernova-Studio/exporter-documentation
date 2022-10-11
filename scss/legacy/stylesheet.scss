@@ -150,17 +150,6 @@ blockquote {
     padding: 10px 20px;
 }
 
-dl,
-ol,
-ul {
-    margin: 0px;
-    padding-left: 16px;
-}
-
-ol>li::marker {
-    font-weight: bold;
-}
-
 .text-muted {
     color: var(--colorInkSecondary) !important;
 }
