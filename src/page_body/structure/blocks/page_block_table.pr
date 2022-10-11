@@ -49,7 +49,6 @@
   {[ else if (headerColumn) ]}
     <tr>
       {* Cell scope *}
-      {[ let colIndex = 0 /]}
       {[ for cell in row.children ]}
         {[ let alignment = cell.alignment.lowercased() /]}
         <td class="{{ alignment }}">
@@ -58,7 +57,6 @@
             {[ inject "page_body_structure_block" context cellBlock /]}
           {[/]}
         </td>
-      {[ colIndex = (colIndex + 1) /]}
       {[/]}
     </tr>
   {[ else ]}
@@ -75,7 +73,7 @@
       {[/]}
     </tr>
   {[/]}
-{[ rowIndex = (rowIndex + 1) /]}
+  {[ rowIndex = (rowIndex + 1) /]}
 {[/]}
 </table>
 </div>
