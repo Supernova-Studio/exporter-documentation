@@ -28,13 +28,7 @@
                 {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
             {[/]}
         {[/]}
-        <th class="{{ alignment }}">
-        {[/]}
-            {* Cell content *}
-            {[ for cellBlock in cell.children ]}
-                {[ inject "page_body_structure_block" context cellBlock /]}
-            {[/]}
-        </th>
+        <td class="{{ alignment }}">
     {[ else ]}
     <td class="{{ alignment }}">
     {[/]}
