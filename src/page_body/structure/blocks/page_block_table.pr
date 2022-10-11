@@ -16,9 +16,6 @@
 {* Row scope *}
 {[ let rowIndex = 0 /]}
 {[ for row in block.children ]}
-  {[ if (headerRow) ]}
-    <thead></thead>
-  {[/]}
   <tr>
   {* Cell scope *}
   {[ for cell in row.children ]}
