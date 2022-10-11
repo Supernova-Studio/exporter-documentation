@@ -16,27 +16,50 @@
 {* Row scope *}
 {[ let rowIndex = 0 /]}
 {[ for row in block.children ]}
-  <tr>
-  {* Cell scope *}
-  {[ for cell in row.children ]}
-    {[ let alignment = cell.alignment.lowercased() /]}
+  {[ if (headerRow) ]}
     {[ if (rowIndex === 0) ]}
-      <th class="{{ alignment }}">
-        {* Cell content *}
-        {[ for cellBlock in cell.children ]}
-          {[ inject "page_body_structure_block" context cellBlock /]}
-        {[/]}
-      </th>
+      <thead>
+        <tr>
+          {* Cell scope *}
+          {[ for cell in row.children ]}
+            {[ let alignment = cell.alignment.lowercased() /]}
+            <th class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </th>
+          {[/]}
+        </tr>
+      </thead>
     {[ else ]}
-      <td class="{{ alignment }}">
-        {* Cell content *}
-        {[ for cellBlock in cell.children ]}
-          {[ inject "page_body_structure_block" context cellBlock /]}
+      <tr>
+        {* Cell scope *}
+        {[ for cell in row.children ]}
+          {[ let alignment = cell.alignment.lowercased() /]}
+          <td class="{{ alignment }}">
+            {* Cell content *}
+            {[ for cellBlock in cell.children ]}
+              {[ inject "page_body_structure_block" context cellBlock /]}
+            {[/]}
+          </td>
         {[/]}
-      </td>
+      </tr>
     {[/]}
+  {[ else ]}
+    <tr>
+      {* Cell scope *}
+      {[ for cell in row.children ]}
+        {[ let alignment = cell.alignment.lowercased() /]}
+        <td class="{{ alignment }}">
+          {* Cell content *}
+          {[ for cellBlock in cell.children ]}
+            {[ inject "page_body_structure_block" context cellBlock /]}
+          {[/]}
+        </td>
+      {[/]}
+    </tr>
   {[/]}
-  </tr>
   {[ rowIndex = (rowIndex + 1) /]}
 {[/]}
 </table>
