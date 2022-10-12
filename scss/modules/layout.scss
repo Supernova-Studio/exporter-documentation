@@ -51,6 +51,8 @@
   position: relative;
   transition: var(--transitionDefault);
   padding: 2px;
+  border-radius: var(--borderRadiusDefault);
+  
 
   &.is-tab a {
     color: var(--leftNavInkTab);
@@ -68,15 +70,6 @@
 
 .nav-link {
   padding: 8px;
-}
-
-.docs-navigation .nav .nav-item:hover {
-  background: var(--leftNavItemHoverBackground);
-  border-radius: var(--borderRadiusDefault);
-}
-
-.docs-navigation .nav .nav-item:hover a {
-  color: var(--leftNavInk);
 }
 
 .docs-navigation .nav .nav {
@@ -111,13 +104,10 @@
   color: #ddd;
 }
 
-.nav:not(.nav-pills) .nav-item .nav-link.active,
+.nav:not(.nav-pills) .nav-item .nav-link.active:hover,
 .nav:not(.nav-pills) .nav-item .nav-link:hover {
-  color: var(--leftNavInk);
-}
-
-.nav:not(.nav-pills) .nav-item .nav .nav-item .nav-link:hover {
-  background-color: var(--leftNavItemHoverBackgroundAlt);
+  color: var(--leftNavItemHoverInk);
+  background-color: var(--leftNavItemHoverBackground);
 }
 
 .nav.nav-separator .nav-item .nav-link {
@@ -149,6 +139,11 @@
   background-color: var(--leftNavItemActiveBackground);
   color: var(--leftNavItemActiveInk);
   border-radius: var(--borderRadiusDefault);
+
+  &:hover {
+    color: var(--leftNavItemHoverInk);
+    background-color: var(--leftNavItemHoverBackground);
+  }
 }
 
 /*
@@ -169,7 +164,6 @@
 
 .docs-navigation .nav > .nav-item > .nav-link.active.group {
   color: var(--leftNavInk);
-  background-color: transparent;
 }
 
 .docs-navigation .nav > .nav-item > .nav-link.group:after {

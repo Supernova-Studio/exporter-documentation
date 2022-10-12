@@ -2,6 +2,7 @@
 {[ let rootGroup = [] /]}
 {[ let page = context.page /]}
 {[ let isRootForTab = false /]}
+{[ let showSectionLabel = exportConfiguration().navigationShowSectionLabel /]}
 
 {[ if context.groupId ]}
     {* If we pass id of a group, we can request it directly *}
@@ -14,9 +15,11 @@
 
 {[ if rootGroup ]}
     {[ if isRootForTab ]}
-        <div class="nav-name">
-            <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(rootGroup.title) }}</span>
-        </div>
+        {[ if showSectionLabel ]} 
+            <div class="nav-name">
+                <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(rootGroup.title) }}</span>
+            </div>
+        {[/]}
     {[/]}
     <ul class="nav flex-column ">
         {[ for item in rootGroup.children ]}
@@ -47,9 +50,11 @@
         {[/]}
     </ul>
 {[ else ]}
-    <div class="nav-name">
-        <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(context.page.title.uppercased()) }}</span>
-    </div>
+    {[ if showSectionLabel ]} 
+        <div class="nav-name">
+            <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(context.page.title.uppercased()) }}</span>
+        </div>
+    {[/]}
 {[/]}
 
 <div class="nav-sn">

@@ -83,6 +83,14 @@
         "default": false
       },
       {
+        "key": "navigationShowSectionLabel",
+        "type": "boolean",
+        "label": "Show section label",
+        "description": "When enabled, a section label will appear at the top of the left navigation.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
         "key": "advancedCustomizationShowCTA",
         "type": "boolean",
         "label": "Show CTA in Site Header",
@@ -139,28 +147,28 @@
       {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
-        "label": "Default page header background image",
+        "label": "Default background image",
         "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page.",
         "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderBackgroundColor",
         "type": "color",
-        "label": "Default page header background color",
+        "label": "Default background color",
         "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page.",
         "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderTextColor",
         "type": "color",
-        "label": "Default peader text color",
+        "label": "Default text color",
         "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page.",
         "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderHeight",
         "type": "number",
-        "label": "Default page header height (px)",
+        "label": "Default height (px)",
         "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
         "category": "Page header defaults",
         "default": 0

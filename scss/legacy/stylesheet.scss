@@ -914,7 +914,6 @@ ol>.block-children {
 }
 
 .container-title {
-    width: 100%;
     background-color: var(--pageHeaderBackground);
     border-bottom: 1px solid var(--pageHeaderBorderColor);
     color: var(--pageHeaderInk);
@@ -1304,7 +1303,7 @@ ol>.block-children {
 
 .no-container-tabs {
     width: 100%;
-    height: 20px;
+    height: 0px;
 }
 
 .typographyDocsViewNavigation {
