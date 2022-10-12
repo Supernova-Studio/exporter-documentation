@@ -45,14 +45,10 @@
         "description": "tbd",
         "category": "Look & feel",
         "values": [
-          {
-            "left": "Left value"
-          },
-          {
-            "right": "Right value"
-          }
+          "Left value",
+          "Right value"
         ],
-        "default": "right"
+        "default": "Right value"
       },
       {
         "key": "advancedCustomizationCustomFonts",
