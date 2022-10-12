@@ -21,6 +21,18 @@ img {
   }
 }
 
+.image-container--frame {
+  padding: 1rem;
+  background-color: #d7d7d7;
+  aspect-ratio: 16 / 9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
 .img-caption {
   display: block;
   margin-top: 0.5rem;
