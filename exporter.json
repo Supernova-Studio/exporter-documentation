@@ -59,10 +59,26 @@
         "inputType": "code"
       },
       {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show version dropdown",
+        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
         "label": "Show Next/Previous navigation",
-        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages.",
+        "description": "When enabled, it will show bottom page navigation with quick links to next and previous pages.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "advancedShowHomepageNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show Next/Previous navigation on homepage",
+        "description": "When enabled, it will show bottom page navigation al.",
         "category": "Navigation",
         "default": true
       },
@@ -103,19 +119,11 @@
         "default": true
       },
       {
-        "key": "advancedCustomizationShowVersionDropdown",
-        "type": "boolean",
-        "label": "Show version dropdown",
-        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Navigation",
-        "default": true
-      },
-      {
         "key": "advancedCustomizationShowFooter",
         "type": "boolean",
         "label": "Show custom footer",
         "description": "A custom footer on each page will be displayed.",
-        "category": "Footer",
+        "category": "Navigation",
         "default": false
       },
       {
@@ -123,7 +131,7 @@
         "type": "string",
         "label": "Custom footer HTML code",
         "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Footer",
+        "category": "Navigation",
         "isMultiline": true,
         "inputType": "code",
         "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
