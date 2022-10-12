@@ -24,71 +24,107 @@
   "contributes": {
     "configuration": [
       {
-        "key": "googleAnalyticsAPIKey",
-        "default": "",
-        "type": "string",
-        "label": "Google Analytics Measurement ID",
-        "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
-        "category": "Analytics"
-      },
-      {
-        "key": "intercomAPIKey",
-        "default": "",
-        "type": "string",
-        "label": "Intercom API key",
-        "description": "Add Intercom to your documentation site by providing an API key",
-        "category": "Analytics"
-      },
-      {
-        "key": "hotjarSiteId",
-        "default": "",
-        "type": "string",
-        "label": "Hotjar site ID",
-        "description": "Add Hotjar to your documentation site by providing a Site ID",
-        "category": "Analytics"
-      },
-      {
         "key": "headerLogo",
         "type": "image",
         "label": "Top Menu Logo",
         "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
-        "category": "Appearance"
+        "category": "Look & feel"
       },
       {
         "key": "favicon",
         "type": "image",
         "label": "Site Favicon",
         "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
-        "category": "Appearance"
+        "category": "Look & feel"
       },
       {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
         "label": "Page Header Background Image",
         "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
-        "category": "Appearance"
+        "category": "Page headers"
       },
       {
         "key": "lookAndFeelHeaderBackgroundColor",
         "type": "color",
         "label": "Page Header Background Color",
         "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
-        "category": "Appearance"
+        "category": "Page headers"
       },
       {
         "key": "lookAndFeelHeaderTextColor",
         "type": "color",
         "label": "Page Header Text Color",
         "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
-        "category": "Appearance"
+        "category": "Page headers"
       },
       {
         "key": "lookAndFeelHeaderHeight",
         "type": "number",
         "label": "Page Header Height (px)",
         "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
-        "category": "Appearance",
+        "category": "Page headers",
         "default": 0
+      },
+      {
+        "key": "advancedCustomizationShowNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show Next / Previous navigation",
+        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowFooter",
+        "type": "boolean",
+        "label": "Show Footer",
+        "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowCTA",
+        "type": "boolean",
+        "label": "Show Site CTA",
+        "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
+        "category": "Navigation",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationCTAText",
+        "type": "string",
+        "label": "Site CTA - Text",
+        "description": "Text of the CTA button.",
+        "category": "Navigation",
+        "default": "Open site",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationCTAUrl",
+        "type": "string",
+        "label": "Site CTA - URL to open",
+        "description": "Link which will open when CTA button is clicked by the user.",
+        "category": "Navigation",
+        "default": "",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationOpenInNewTab",
+        "type": "boolean",
+        "label": "Site CTA - Open in new tab",
+        "description": "When enabled, CTA url you provided will open in a new tab.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show Version Dropdown",
+        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+        "category": "Navigation",
+        "default": true
       },
       {
         "key": "seoEnableIndexing",
@@ -121,6 +157,30 @@
         "description": "When provided, page title will be prefixed with this string",
         "category": "Search engines",
         "default": ""
+      },
+      {
+        "key": "googleAnalyticsAPIKey",
+        "default": "",
+        "type": "string",
+        "label": "Google Analytics Measurement ID",
+        "description": "Add Google Analytics tracking to your documentation site by providing a Measurement ID. You must set it up as Google Analytics 4 (recommended).",
+        "category": "Analytics"
+      },
+      {
+        "key": "intercomAPIKey",
+        "default": "",
+        "type": "string",
+        "label": "Intercom API key",
+        "description": "Add Intercom to your documentation site by providing an API key",
+        "category": "Analytics"
+      },
+      {
+        "key": "hotjarSiteId",
+        "default": "",
+        "type": "string",
+        "label": "Hotjar site ID",
+        "description": "Add Hotjar to your documentation site by providing a Site ID",
+        "category": "Analytics"
       },
       {
         "key": "seoTitleSuffix",
@@ -165,8 +225,8 @@
       {
         "key": "seoSiteImage",
         "type": "image",
-        "label": "Site Image Override",
-        "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
+        "label": "Site Thumbnail Image",
+        "description": "When provided, page description will use this string. Otherwise, site thumbnail is empty.",
         "category": "Search engines"
       },
       {
@@ -174,24 +234,8 @@
         "type": "string",
         "label": "Markdown private token",
         "description": "If provided, your markdown will authenticate using this token. Token can contain its type, format: ['basic' | 'Bearer' | 'token'] [token]. If not provided, 'token' is assumed.",
-        "category": "Content",
+        "category": "Advanced",
         "default": ""
-      },
-      {
-        "key": "advancedCustomizationShowNextPreviousNavigation",
-        "type": "boolean",
-        "label": "Show Next / Previous navigation",
-        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-        "category": "Appearance",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowFooter",
-        "type": "boolean",
-        "label": "Show Footer",
-        "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-        "category": "Appearance",
-        "default": true
       },
       {
         "key": "advancedCustomizationCustomFooter",
@@ -207,8 +251,8 @@
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS",
-        "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-        "category": "Appearance",
+        "description": "If customizing look via built-in options, you can always add custom CSS. Custom CSS is injected last, overriding everything before it.",
+        "category": "Look & feel",
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,
         "inputType": "code"
@@ -234,55 +278,11 @@
         "inputType": "code"
       },
       {
-        "key": "advancedCustomizationShowCTA",
-        "type": "boolean",
-        "label": "Show Site CTA",
-        "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-        "category": "Appearance",
-        "default": false
-      },
-      {
-        "key": "advancedCustomizationCTAText",
-        "type": "string",
-        "label": "Site CTA - Text",
-        "description": "Text of the CTA button.",
-        "category": "Appearance",
-        "default": "Open site",
-        "isMultiline": false,
-        "inputType": "plain"
-      },
-      {
-        "key": "advancedCustomizationCTAUrl",
-        "type": "string",
-        "label": "Site CTA - URL to open",
-        "description": "Link which will open when CTA button is clicked by the user.",
-        "category": "Appearance",
-        "default": "",
-        "isMultiline": false,
-        "inputType": "plain"
-      },
-      {
-        "key": "advancedCustomizationOpenInNewTab",
-        "type": "boolean",
-        "label": "Site CTA - Open in new tab",
-        "description": "When enabled, CTA url you provided will open in a new tab.",
-        "category": "Appearance",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowVersionDropdown",
-        "type": "boolean",
-        "label": "Show Version Dropdown",
-        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Advanced",
-        "default": true
-      },
-      {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
         "label": "Editable React Widgets",
         "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
-        "category": "Code",
+        "category": "Code snippets",
         "default": true
       },
       {
@@ -290,7 +290,7 @@
         "type": "boolean",
         "label": "Open in Codesandbox.io",
         "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
-        "category": "Code",
+        "category": "Code snippets",
         "default": true
       },
       {
@@ -298,7 +298,7 @@
         "type": "boolean",
         "label": "Include Lottie player",
         "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
-        "category": "Content",
+        "category": "Advanced",
         "default": false
       }
     ],
