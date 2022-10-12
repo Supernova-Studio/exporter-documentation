@@ -12,7 +12,7 @@ img {
 .image-container {
   margin-bottom: 1.5rem;
 
-  td & > {
+  td > & {
     width: calc(100% + 1rem);
     margin-left: -0.5rem;
     margin-right: -0.5rem;
@@ -27,6 +27,7 @@ img {
   margin-bottom: 0;
   font-size: .875rem;
   line-height: 1.25;
+  font-style: italic;
 }
 
 .caption {
