@@ -1,6 +1,6 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Nebula",
+  "name": "Nebula Documentation",
   "description": "Default exporter for documentation site", 
   "author": "Supernova",
   "organization": "Supernova",
@@ -43,53 +43,26 @@
         "type": "string",
         "label": "Custom font - Header",
         "description": "Fonts you want loaded into your site (e.g. for typography token previews). You can load multiple fonts at the same time.",
-        "category": "Advanced",
+        "category": "Look & feel",
         "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
         "isMultiline": true,
         "inputType": "code"
       },
       {
-        "key": "lookAndFeelHeaderBackgroundImage",
-        "type": "image",
-        "label": "Default page header background image",
-        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page.",
-        "category": "Page header defaults"
-      },
-      {
-        "key": "lookAndFeelHeaderBackgroundColor",
-        "type": "color",
-        "label": "Default page header background color",
-        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page.",
-        "category": "Page header defaults"
-      },
-      {
-        "key": "lookAndFeelHeaderTextColor",
-        "type": "color",
-        "label": "Default peader text color",
-        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page.",
-        "category": "Page header defaults"
-      },
-      {
-        "key": "lookAndFeelHeaderHeight",
-        "type": "number",
-        "label": "Default page header height (px)",
-        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
-        "category": "Page header defaults",
-        "default": 0
+        "key": "advancedCustomizationCustomCSS",
+        "type": "string",
+        "label": "Custom CSS",
+        "description": "If customizing look via built-in options, you can always add custom CSS. Custom CSS is injected last, overriding everything before it. At your own risk.",
+        "category": "Look & feel",
+        "default": "body,\r\nhtml {\r\n\r\n}",
+        "isMultiline": true,
+        "inputType": "code"
       },
       {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
         "label": "Show Next/Previous navigation",
         "description": "When enabled, will show bottom page navigation with quick links to next and previous pages.",
-        "category": "Navigation",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowFooter",
-        "type": "boolean",
-        "label": "Show footer",
-        "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
         "category": "Navigation",
         "default": true
       },
@@ -128,6 +101,61 @@
         "description": "When enabled, CTA url you provided will open in a new tab.",
         "category": "Navigation",
         "default": true
+      },
+      {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show version dropdown",
+        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowFooter",
+        "type": "boolean",
+        "label": "Show custom footer",
+        "description": "A custom footer on each page will be displayed.",
+        "category": "Footer",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationCustomFooter",
+        "type": "string",
+        "label": "Custom footer HTML code",
+        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
+        "category": "Footer",
+        "isMultiline": true,
+        "inputType": "code",
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundImage",
+        "type": "image",
+        "label": "Default page header background image",
+        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page.",
+        "category": "Page header defaults"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundColor",
+        "type": "color",
+        "label": "Default page header background color",
+        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page.",
+        "category": "Page header defaults"
+      },
+      {
+        "key": "lookAndFeelHeaderTextColor",
+        "type": "color",
+        "label": "Default peader text color",
+        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page.",
+        "category": "Page header defaults"
+      },
+      {
+        "key": "lookAndFeelHeaderHeight",
+        "type": "number",
+        "label": "Default page header height (px)",
+        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
+        "category": "Page header defaults",
+        "default": 0
       },
       {
         "key": "seoEnableIndexing",
@@ -233,16 +261,6 @@
         "category": "Search engines"
       },
       {
-        "key": "advancedCustomizationCustomCSS",
-        "type": "string",
-        "label": "Custom CSS",
-        "description": "If customizing look via built-in options, you can always add custom CSS. Custom CSS is injected last, overriding everything before it.",
-        "category": "Look & feel",
-        "default": "body,\r\nhtml {\r\n\r\n}",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
         "label": "Editable React widgets",
@@ -256,14 +274,6 @@
         "label": "Open in Codesandbox.io",
         "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
         "category": "Code snippets",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowVersionDropdown",
-        "type": "boolean",
-        "label": "Show version dropdown",
-        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Navigation",
         "default": true
       },
       {
@@ -281,16 +291,6 @@
         "description": "If provided, your markdown will authenticate using this token. Token can contain its type, format: ['basic' | 'Bearer' | 'token'] [token]. If not provided, 'token' is assumed.",
         "category": "Advanced",
         "default": ""
-      },
-      {
-        "key": "advancedCustomizationCustomFooter",
-        "type": "string",
-        "label": "Custom Footer code",
-        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Advanced",
-        "isMultiline": true,
-        "inputType": "code",
-        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
       },
       {
         "key": "advancedCustomizationCustomHeadInject",
