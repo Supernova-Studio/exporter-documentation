@@ -32,6 +32,7 @@
           {[/]}
         </tr>
       </thead>
+      <tbody>
     {[ else ]}
       <tr>
         {* Cell scope *}
@@ -47,6 +48,9 @@
       </tr>
     {[/]}
   {[ else ]}
+    {[ if (rowIndex === 0) ]}
+      <tbody>
+    {[/]}
     <tr>
       {[ if (headerColumn) ]}
         {* Cell scope *}
@@ -86,5 +90,6 @@
   {[/]}
   {[ rowIndex = (rowIndex + 1) /]}
 {[/]}
+</tbody>
 </table>
 </div>
