@@ -690,6 +690,12 @@
           "name": "Required",
           "key": "required"
         }
+      ],
+      "Image": [
+        {
+          "name": "Frame",
+          "key": "frame"
+        }
       ]
     }
   }
