@@ -39,6 +39,24 @@
         "category": "Look & feel"
       },
       {
+        "key": "leftNavigationPosition",
+        "type": "enum",
+        "label": "Left navigation position",
+        "description": "tbd",
+        "category": "Look & feel",
+        "values": [
+          {
+            "key": "left",
+            "value": "Left value"
+          },
+          {
+            "key": "right",
+            "value": "Right value"
+          }
+        ],
+        "default": "right"
+      },
+      {
         "key": "advancedCustomizationCustomFonts",
         "type": "string",
         "label": "Custom font - Header",
