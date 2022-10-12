@@ -693,6 +693,11 @@
       ],
       "Image": [
         {
+          "name": "Default",
+          "key": "default",
+          "isDefault": true
+        },
+        {
           "name": "Frame",
           "key": "frame"
         }
