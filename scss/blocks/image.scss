@@ -1,26 +1,32 @@
 /* =================================== */
 /*  Image
 /* =================================== */
+img {
+  vertical-align: middle;
+}
+
 .img-fluid.max {
   width: 100%;
 }
 
 .image-container {
-  width: 100%;
-  margin: 24px 0px;
-}
-
-.image-container img {
-  border-radius: var(--borderRadiusDefault);
+  /*width: 100%;
+  margin: 24px 0px;*/
 }
 
 td .image-container {
-  margin: 8px 0px;
+  width: calc(100% + 1rem);
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding: 1rem;
+  background-color: #d7d7d7;
 }
 
-.image-container p {
-  font-size: 14px;
-  color: var(--colorInkSecondary);
+.img-caption {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: .875rem;
+  line-height: 1.25;
 }
 
 .caption {

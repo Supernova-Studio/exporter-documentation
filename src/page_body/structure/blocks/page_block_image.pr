@@ -29,7 +29,7 @@
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p>{{ withHTMLNewlines(block.caption) }}</p>
+    <p class="img-caption">{{ withHTMLNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}
