@@ -5,13 +5,14 @@
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
+{[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
 
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
 {[ const domain = ds.documentationDomain() /]}
 
-<body class="light {{ pageIdentifier(page) }}">
+<body class="light {{ pageIdentifier(page) }}{{ isHomepage ? " is-homepage" : "" }}">
 {* <body class="{{ exportConfiguration().defaultVisualMode }}"> *}
 {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
 {[ if false ]}

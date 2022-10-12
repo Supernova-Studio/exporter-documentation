@@ -78,9 +78,9 @@
         "key": "advancedShowHomepageNextPreviousNavigation",
         "type": "boolean",
         "label": "Show Next/Previous navigation on homepage",
-        "description": "When enabled, it will show bottom page navigation al.",
+        "description": "When enabled, it will show bottom page navigation on the homepage.",
         "category": "Navigation",
-        "default": true
+        "default": false
       },
       {
         "key": "advancedCustomizationShowCTA",

@@ -136,3 +136,30 @@
   --calloutInfoInkSecondary: var(--colorInkSecondary);
   --calloutInfoBackground: var(--colorBackgroundAlt);
 }
+
+/* Maze setup */
+:root {
+  --fontFamily: 'Roobert Pro','Roobert', 'Public Sans', Inter, sans-serif;
+  --colorAccent: #0568FC;
+  --colorAccentDark: #0445a7;
+  --colorAccentSurface: #eaf2ff;
+  --borderRadiusDefault: 8px;
+  --colorInkSecondary: #535A74;
+  --boxShadowLevel1: 0px 1px 2px rgba(107, 113, 142, 0.08), inset 0px 0px 0px 0.5px rgba(107, 113, 142, 0.28);
+  --boxShadowLevel2: 0px 1px 2px rgba(5, 104, 253, 0.08), inset 0px 0px 0px 1px rgba(5, 104, 253, 0.28);
+  --topNavElevation: 0px 1px 2px rgba(107, 113, 142, 0.08), inset 0px 0px 0px 0.5px rgba(107, 113, 142, 0.28);
+  --topNavBackground: var(--colorBackgroundPrimary);
+  --topNavBorderColor: var(--colorBorderColorSubtle);
+  --topNavInk: var(--colorInk);
+  --topNavItemHoverInk: var(--colorAccent);
+  --topNavItemActiveInk: var(--colorAccent);
+  --topNavItemHoverBackground: var(--colorAccentSurface);
+  --topNavItemActiveBackground: var(--colorBackgroundPrimary);
+  --leftNavBackground: var(--colorBackgroundPrimary);
+  --leftNavItemHoverInk: var(--colorAccent);
+  --leftNavItemHoverBackground: var(--colorBackgroundPrimary);
+  --leftNavItemActiveBackground: var(--colorBackgroundPrimary);
+  --topNavHeaderHeight: 64px;
+  --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
+  --pageHeaderBackground: var(--colorBackgroundPrimary);
+}

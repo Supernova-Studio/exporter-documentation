@@ -56,6 +56,17 @@ export function firstPageFromTop(documentationRoot: DocumentationGroup): Documen
   return null
 }
 
+/** Check if the page is a homepage */
+export function isHomepage(page: DocumentationPage, documentationRoot: DocumentationGroup): boolean {
+  
+  let homepagePage = firstPageFromTop(documentationRoot)
+  if (homepagePage !== null && page.id === homepagePage.id) {
+    return true;
+  }
+
+  return false;
+}
+
 /** Create flattened structure of pages */
 export function flattenedPageStructure(root: DocumentationGroup): Array<DocumentationPage> {
 

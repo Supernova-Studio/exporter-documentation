@@ -5,7 +5,7 @@
 
 import { contrastColor } from "./doc_functionality/color"
 import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
-import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage } from "./doc_functionality/lookup"
+import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
@@ -24,6 +24,7 @@ Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
 Pulsar.registerFunction("previousPage", previousPage)
 Pulsar.registerFunction("nextPage", nextPage)
 Pulsar.registerFunction("isExportable", isExportable)
+Pulsar.registerFunction("isHomepage", isHomepage)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
