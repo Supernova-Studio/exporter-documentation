@@ -27,58 +27,68 @@
       {
         "key": "headerLogo",
         "type": "image",
-        "label": "Top Menu Logo",
-        "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
+        "label": "Site logo",
+        "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended.",
         "category": "Look & feel"
       },
       {
         "key": "favicon",
         "type": "image",
-        "label": "Site Favicon",
-        "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
+        "label": "Site favicon",
+        "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged.",
         "category": "Look & feel"
+      },
+      {
+        "key": "advancedCustomizationCustomFonts",
+        "type": "string",
+        "label": "Custom font - Header",
+        "description": "Fonts you want loaded into your site (e.g. for typography token previews). You can load multiple fonts at the same time.",
+        "category": "Advanced",
+        "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
+        "isMultiline": true,
+        "inputType": "code"
       },
       {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
-        "label": "Page Header Background Image",
-        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
-        "category": "Page headers"
+        "label": "Default page header background image",
+        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page.",
+        "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderBackgroundColor",
         "type": "color",
-        "label": "Page Header Background Color",
-        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
-        "category": "Page headers"
+        "label": "Default page header background color",
+        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page.",
+        "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderTextColor",
         "type": "color",
-        "label": "Page Header Text Color",
-        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
-        "category": "Page headers"
+        "label": "Default peader text color",
+        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page.",
+        "category": "Page header defaults"
       },
       {
         "key": "lookAndFeelHeaderHeight",
         "type": "number",
-        "label": "Page Header Height (px)",
-        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
-        "category": "Page headers",
+        "label": "Default page header height (px)",
+        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
+        "category": "Page header defaults",
         "default": 0
       },
       {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
-        "label": "Show Next / Previous navigation",
-        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
+        "label": "Show Next/Previous navigation",
+        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages.",
         "category": "Navigation",
         "default": true
       },
       {
         "key": "advancedCustomizationShowFooter",
         "type": "boolean",
-        "label": "Show Footer",
+        "label": "Show footer",
         "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
         "category": "Navigation",
         "default": true
@@ -86,7 +96,7 @@
       {
         "key": "advancedCustomizationShowCTA",
         "type": "boolean",
-        "label": "Show Site CTA",
+        "label": "Show CTA in Site Header",
         "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
         "category": "Navigation",
         "default": false
@@ -95,7 +105,7 @@
         "key": "advancedCustomizationCTAText",
         "type": "string",
         "label": "Site CTA - Text",
-        "description": "Text of the CTA button.",
+        "description": "Label of the CTA button",
         "category": "Navigation",
         "default": "Open site",
         "isMultiline": false,
@@ -105,7 +115,7 @@
         "key": "advancedCustomizationCTAUrl",
         "type": "string",
         "label": "Site CTA - URL to open",
-        "description": "Link which will open when CTA button is clicked by the user.",
+        "description": "Link which will open when CTA button is clicked by the user",
         "category": "Navigation",
         "default": "",
         "isMultiline": false,
@@ -120,42 +130,34 @@
         "default": true
       },
       {
-        "key": "advancedCustomizationShowVersionDropdown",
-        "type": "boolean",
-        "label": "Show Version Dropdown",
-        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Navigation",
-        "default": true
-      },
-      {
         "key": "seoEnableIndexing",
         "type": "boolean",
-        "label": "Enable Search Engine Indexing",
-        "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
+        "label": "Enable search engine indexing",
+        "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed.",
         "category": "Search engines",
         "default": true
       },
       {
         "key": "seoEnableLinkFollowing",
         "type": "boolean",
-        "label": "Enable Search Engine Link Follow",
-        "description": "When enabled, search robots will follow the links on the indexed pages",
+        "label": "Enable search engine link follow",
+        "description": "When enabled, search robots will follow the links on the indexed pages.",
         "category": "Search engines",
         "default": true
       },
       {
         "key": "seoGenerateSitemap",
         "type": "boolean",
-        "label": "Generate Sitemap",
-        "description": "When enabled, documentation sitemap will be re-generated on every publish",
+        "label": "Generate sitemap.xml",
+        "description": "When enabled, documentation sitemap will be re-generated on every publish.",
         "category": "Search engines",
         "default": true
       },
       {
         "key": "seoTitlePrefix",
         "type": "string",
-        "label": "Site Title Prefix",
-        "description": "When provided, page title will be prefixed with this string",
+        "label": "Site title prefix",
+        "description": "When provided, page title will be prefixed with this string.",
         "category": "Search engines",
         "default": ""
       },
@@ -172,7 +174,7 @@
         "default": "",
         "type": "string",
         "label": "Intercom API key",
-        "description": "Add Intercom to your documentation site by providing an API key",
+        "description": "Add Intercom to your documentation site by providing an API key.",
         "category": "Analytics"
       },
       {
@@ -180,45 +182,45 @@
         "default": "",
         "type": "string",
         "label": "Hotjar site ID",
-        "description": "Add Hotjar to your documentation site by providing a Site ID",
+        "description": "Add Hotjar to your documentation site by providing a Site ID.",
         "category": "Analytics"
       },
       {
         "key": "seoTitleSuffix",
         "type": "string",
-        "label": "Site Title Suffix",
-        "description": "When provided, page title will be suffixed with this string",
+        "label": "Site title suffix",
+        "description": "When provided, page title will be suffixed with this string.",
         "category": "Search engines",
         "default": " | Made with Supernova"
       },
       {
         "key": "seoTitleOverride",
         "type": "string",
-        "label": "Site Title Override",
-        "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
+        "label": "Site title override",
+        "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case.",
         "category": "Search engines",
         "default": ""
       },
       {
         "key": "seoDescriptionPrefix",
         "type": "string",
-        "label": "Site Description Prefix",
-        "description": "When provided, page description will be prefixed with this string",
+        "label": "Site description prefix",
+        "description": "When provided, page description will be prefixed with this string.",
         "category": "Search engines",
         "default": ""
       },
       {
         "key": "seoDescriptionSuffix",
         "type": "string",
-        "label": "Site Description Suffix",
-        "description": "When provided, page description will be suffixed with this string",
+        "label": "Site title suffix",
+        "description": "When provided, page description will be suffixed with this string.",
         "category": "Search engines",
         "default": " | Design system documentation, made with ❤️ using Supernova"
       },
       {
         "key": "seoDescriptionOverride",
         "type": "string",
-        "label": "Site Description Override",
+        "label": "Site description",
         "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
         "category": "Search engines",
         "default": ""
@@ -231,24 +233,6 @@
         "category": "Search engines"
       },
       {
-        "key": "contentMarkdownToken",
-        "type": "string",
-        "label": "Markdown private token",
-        "description": "If provided, your markdown will authenticate using this token. Token can contain its type, format: ['basic' | 'Bearer' | 'token'] [token]. If not provided, 'token' is assumed.",
-        "category": "Advanced",
-        "default": ""
-      },
-      {
-        "key": "advancedCustomizationCustomFooter",
-        "type": "string",
-        "label": "Custom Footer Code",
-        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Advanced",
-        "isMultiline": true,
-        "inputType": "code",
-        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
-      },
-      {
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS",
@@ -259,29 +243,9 @@
         "inputType": "code"
       },
       {
-        "key": "advancedCustomizationCustomHeadInject",
-        "type": "string",
-        "label": "Custom Head Code",
-        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
-        "category": "Advanced",
-        "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
-        "key": "advancedCustomizationCustomFonts",
-        "type": "string",
-        "label": "Custom Font - Header",
-        "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
-        "category": "Advanced",
-        "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
-        "label": "Editable React Widgets",
+        "label": "Editable React widgets",
         "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
         "category": "Code snippets",
         "default": true
@@ -295,12 +259,48 @@
         "default": true
       },
       {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show version dropdown",
+        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
         "key": "contentIncludeLottiePlayer",
         "type": "boolean",
         "label": "Include Lottie player",
         "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
         "category": "Advanced",
         "default": false
+      },
+      {
+        "key": "contentMarkdownToken",
+        "type": "string",
+        "label": "Markdown private token",
+        "description": "If provided, your markdown will authenticate using this token. Token can contain its type, format: ['basic' | 'Bearer' | 'token'] [token]. If not provided, 'token' is assumed.",
+        "category": "Advanced",
+        "default": ""
+      },
+      {
+        "key": "advancedCustomizationCustomFooter",
+        "type": "string",
+        "label": "Custom Footer code",
+        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
+        "category": "Advanced",
+        "isMultiline": true,
+        "inputType": "code",
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
+      },
+      {
+        "key": "advancedCustomizationCustomHeadInject",
+        "type": "string",
+        "label": "Custom Head code",
+        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
+        "category": "Advanced",
+        "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
+        "isMultiline": true,
+        "inputType": "code"
       }
     ],
     "blocks": [
