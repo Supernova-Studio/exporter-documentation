@@ -62,7 +62,8 @@ declare global {
 
   type RichTextSpanAttributeType = "Bold" | "Italic" | "Link" | "Strikethrough" | "Code"
 
-  type CalloutType = "Info" | "Success" | "Warning" | "Error"
+  // type CalloutType = "Info" | "Success" | "Warning" | "Error"
+  type CalloutType = "Do" | "Don't"
 
   type HeadingType = "1" | "2" | "3"
 

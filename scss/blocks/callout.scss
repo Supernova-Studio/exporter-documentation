@@ -27,14 +27,14 @@
     }
   }
 
-  &.callout-success {
+  /*&.callout-success {
     color: var(--calloutSuccessInk);
     background-color: var(--calloutSuccessBackground);
 
     .icon {
       color: var(--calloutSuccessInkSecondary);
     }
-  }
+  }*/
 
   &.callout-warning {
     color: var(--calloutWarningInk);
@@ -52,6 +52,25 @@
     .icon {
       color: var(--calloutDangerInkSecondary);
     }
+  }
+}
+
+.callout-do {
+  padding: 0;
+  border: none;
+  margin: 0;
+  border-radius: 0;
+  display: flex;
+  gap: 12px;
+  background-color: var(--calloutSuccessBackground);
+
+  .icon {
+    display: block;
+    color: var(--calloutSuccessInk);
+  }
+
+  .content {
+
   }
 }
 
