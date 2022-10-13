@@ -55,22 +55,24 @@
   }
 }
 
-.callout-do {
+.callout-success {
+  position: relative;
+  display: block;
   padding: 0;
-  border: none;
-  margin: 0;
+  margin: 0 0 .5rem;
   border-radius: 0;
-  display: flex;
-  gap: 12px;
-  background-color: var(--calloutSuccessBackground);
+  border-bottom: 4px solid var(--calloutSuccessInk);
 
   .icon {
+    position: absolute;
+    left: -22px;
+    top: -14px;
     display: block;
     color: var(--calloutSuccessInk);
   }
 
   .content {
-
+    color: var(--calloutSuccessInk);
   }
 }
 
