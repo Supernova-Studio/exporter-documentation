@@ -1,3 +1,8 @@
+{* Inject theme overrides *}
+.themed {
+{{ exportConfiguration().themeConfiguration }}
+}
+
 {* Inject any custom CSS provided by the user *}
 {{ exportConfiguration().advancedCustomizationCustomCSS }}
 
