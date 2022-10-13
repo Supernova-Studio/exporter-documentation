@@ -3,4 +3,4 @@
 
 {* Generate rich text with quoted context *}
 {[ inject "page_block_anchor" context block /]}
-<p class="lead">{[ inject "page_block_rich_text" context block.text /]}</p>
+<p class="blockquote">{[ inject "page_block_rich_text" context block.text /]}</p>

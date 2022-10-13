@@ -6,7 +6,6 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
-{[ log exportConfiguration().themeConfiguration /]}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +39,6 @@
     {[ if configuration.showSidebar ]}
       <!-- Sidebar Navigation -->
       <div class="docs-navigation bg-sidebar">
-
         {[ let data = { "page" : page } /]}
         {[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
         {[ if ds.documentationConfiguration().settings.tabbedNavigation ]} 

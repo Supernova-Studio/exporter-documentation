@@ -69,7 +69,6 @@ export function isHomepage(page: DocumentationPage, documentationRoot: Documenta
   return false;
 }
 
-
 /** Resolve menu label */
 export function resolveMenuLabel(page: DocumentationPage, documentationRoot: DocumentationGroup, overridenLabel: string): string {
   if (isHomepage(page, documentationRoot) && overridenLabel !== "") { 
@@ -143,4 +142,11 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
   } else {
     return false
   }
+}
+
+/** Get current timestamp, 
+ *  e.g. to version custom.css with the date of publishing
+ */
+export function getCurrentTimestamp(): string {
+  return Math.floor(Date.now()).toString();
 }
