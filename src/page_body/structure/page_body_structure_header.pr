@@ -1,15 +1,14 @@
 {[ let page = context /]}
 {[ let domain = ds.documentationDomain() /]}
 {[ let configuration = exportConfiguration() /]}
-{[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
+{[ let shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
+{[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
     
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
-
-        <!-- Logo -->
 
         <!-- Sidebar Toggler -->
         <button id="sidebarCollapse" class="toggle-navbar" type="button">
@@ -20,13 +19,15 @@
         {[ let rootGroup = ds.rootDocumentationGroup() /]}
         {[ let topPage = firstPageFromTop(rootGroup) /]}
         {[ let url = pageUrl(topPage, ds.documentationDomain()) /]}
+
+        <!-- Logo -->
         <a href="{{ url }}">
             <div class="logo-wrapper">
             {* Use default Supernova logo OR custom uploaded one, if it was provided *}
                 {[ if ((configuration.headerLogo !== null) && (configuration.headerLogo.assetUrl !== null)) ]}
-                    <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" style="content: none" />
+                    <img src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="{{ designSystem.name }}" />
                 {[ else ]}
-                    <img class="default" alt="Our Documentation" />
+                    <img src="{{ assetUrl("logos/logo-default.svg", domain)}}" alt="{{ designSystem.name }}" />
                 {[/]}
             </div>
         </a>
@@ -41,7 +42,9 @@
                         {* Only show if group or page is exportable *}
                         {[ if isExportable(item) ]}
                             {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ htmlSafeString(item.title) }}</a></li>
+                            {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                           
+                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a></li>
                         {[/]}
                     {[/]}
                 {[/]}

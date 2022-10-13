@@ -39,18 +39,6 @@
         "category": "Look & feel"
       },
       {
-        "key": "leftNavigationPosition",
-        "type": "enum",
-        "label": "Left navigation position",
-        "description": "tbd",
-        "category": "Look & feel",
-        "values": [
-          "Left value",
-          "Right value"
-        ],
-        "default": "Right value"
-      },
-      {
         "key": "advancedCustomizationCustomFonts",
         "type": "string",
         "label": "Custom font - Header",
@@ -61,10 +49,20 @@
         "inputType": "code"
       },
       {
+        "key": "themeConfiguration",
+        "type": "string",
+        "label": "Theme configuration",
+        "description": "Overrides of CSS custom properties (variables) for the theme. You can use this to change the look and feel of the published documentation.",
+        "category": "Look & feel",
+        "default": "",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS",
-        "description": "If customizing look via built-in options, you can always add custom CSS. Custom CSS is injected last, overriding everything before it. At your own risk.",
+        "description": "If customizing look via built-in theme options is not enough, you can always add custom CSS. Custom CSS is injected last, overriding everything before it. It's at your own risk though.",
         "category": "Look & feel",
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,
@@ -95,12 +93,52 @@
         "default": false
       },
       {
+        "key": "navigationOverrideHomepageLabel",
+        "type": "string",
+        "label": "Override homepage label in menus",
+        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
+        "category": "Navigation",
+        "default": ""
+      },
+      {
         "key": "navigationShowSectionLabel",
         "type": "boolean",
         "label": "Show section label",
         "description": "When enabled, a section label will appear at the top of the left navigation.",
         "category": "Navigation",
         "default": true
+      },
+      {
+        "key": "tocShow",
+        "type": "boolean",
+        "label": "Show Table of Content",
+        "description": "When enabled, Table of Content will be displayed on each page.",
+        "category": "Navigation",
+        "default": true
+      },
+      {
+        "key": "tocShowOnHomepage",
+        "type": "boolean",
+        "label": "Show Table of Content on homepage",
+        "description": "When enabled, Table of Content will be displayed on homepage.",
+        "category": "Navigation",
+        "default": false
+      },
+      {
+        "key": "tocCustomLabel",
+        "type": "string",
+        "label": "Custom label for Table of Content",
+        "description": "Customize the label of the Table of Content section on each page.",
+        "category": "Navigation",
+        "default": "On this page"
+      },
+      {
+        "key": "tocHideHeading3",
+        "type": "boolean",
+        "label": "Hide H3 in Table of Contents",
+        "description": "When enabled, Heading 3 level will be hidden in Table of Content.",
+        "category": "Navigation",
+        "default": false
       },
       {
         "key": "advancedCustomizationShowCTA",

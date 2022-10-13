@@ -1,7 +1,9 @@
 {* Fetch the page structure *}
 {[ let rootGroup = [] /]}
 {[ let page = context.page /]}
-{[ let showSectionLabel = exportConfiguration().navigationShowSectionLabel /]}
+{[ let configuration = exportConfiguration() /]}
+{[ let showSectionLabel = configuration.navigationShowSectionLabel /]}
+{[ let shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 
 {[ if context.groupId ]}
     {* If we pass id of a group, we can request it directly *}
@@ -10,24 +12,27 @@
     {* If we are not showing tabbar at the top, then we want to generate from true root, and show all categories *}
     {[ rootGroup = ds.rootDocumentationGroup() /]}
 {[/]}
+
 {[ if rootGroup ]}
-    <ul class="nav full flex-column ">
+    <ul class="nav full flex-column{{ !shouldShowTabbar ? " with-root-level" : ""}}">
         {[ for item in rootGroup.children ]}
             {* Only show items that are exportable *}
             {[ if isExportable(item) ]}
                 {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                 {[ let activeClass = (isActive === true ? "active" : "") /]}
                 {[ let itemId = item.id /]}
+                {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+
                 {[ if item.type.equals("Page") ]}
-                    <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a><li>
+                    <li class="nav-item"><a class="nav-link typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}"> {{ itemTitle }}</a><li>
                 {[ else ]}
                     <li class="nav-item">
                     {[ let firstDescendingPage = firstPageFromTop(item) /]}
                     {* Group will either link to the first page, or be fully disabled *}
                     {[ if firstDescendingPage ]}
-                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ htmlSafeString(item.title) }}</a>
+                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}"> {{ itemTitle }}</a>
                     {[ else ]}  
-                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ htmlSafeString(item.title) }}</a>
+                        <a class="nav-link typographyDocsViewNavigation group {{ activeClass }}"> {{ itemTitle }}</a>
                     {[/]}
                     {[ if isActive ]}
                         {[ let data = { "page": page, "groupId": itemId } /]}

@@ -1,6 +1,8 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
+import { htmlSafeString } from "./sandbox"
+
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Support
 
@@ -65,6 +67,16 @@ export function isHomepage(page: DocumentationPage, documentationRoot: Documenta
   }
 
   return false;
+}
+
+
+/** Resolve menu label */
+export function resolveMenuLabel(page: DocumentationPage, documentationRoot: DocumentationGroup, overridenLabel: string): string {
+  if (isHomepage(page, documentationRoot) && overridenLabel !== "") { 
+    return overridenLabel;
+  } else {
+    return htmlSafeString(page.title);
+  }
 }
 
 /** Create flattened structure of pages */

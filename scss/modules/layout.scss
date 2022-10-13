@@ -45,12 +45,19 @@
   margin: 0px 20px 80px 20px;
   padding: 16px 0px;
   color: var(--colorInkPrimary);
+
+  &.with-root-level {
+    // if there is no top nav, we highlight roo-level items with semibold 
+    & > .nav-item > .nav-link {
+      font-weight: var(--topNavFontWeight);
+    }
+  }
 }
 
 .docs-navigation .nav .nav-item {
   position: relative;
   transition: var(--transitionDefault);
-  padding: 2px;
+  padding: 1px 0;
   border-radius: var(--borderRadiusDefault);
   
 
@@ -139,6 +146,11 @@
   background-color: var(--leftNavItemActiveBackground);
   color: var(--leftNavItemActiveInk);
   border-radius: var(--borderRadiusDefault);
+
+  &.group {
+    background-color: transparent;
+    color:  var(--leftNavItemInk);
+  }
 
   &:hover {
     color: var(--leftNavItemHoverInk);

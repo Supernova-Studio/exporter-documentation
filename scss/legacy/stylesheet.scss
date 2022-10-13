@@ -201,6 +201,7 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: var(--headingFontFamily);
     color: var(--headingInk);
     line-height: 1.5;
     margin-top: 32px;
@@ -923,7 +924,6 @@ ol>.block-children {
 .container-tabs {
     width: 100%;
     margin-bottom: 40px;
-    box-shadow: inset 0px -1px 0 0px var(--pageHeaderBorderColor);
     position: relative;
     position: sticky;
     top: var(--topNavHeaderHeight);
@@ -956,6 +956,7 @@ ol>.block-children {
     /* Firefox */
     -ms-overflow-style: none;
     /* Internet Explorer 10+ */
+    box-shadow: inset 0px -1px 0 0px var(--colorBorderColorSubtle);
 }
 
 .container-tabs>.tabbed-navigation::-webkit-scrollbar {
@@ -968,9 +969,10 @@ ol>.block-children {
 .container-footer>.slider h1 {
     padding: 0px;
     margin: 0px;
+    font-family: var(--pageTitleFontFamily);
     color: var(--pageHeaderInk);
-    font-size: 40px;
-    font-weight: 700;
+    font-size: var(--pageTitleFontSize);
+    font-weight: var(--pageTitleFontWeight);
     margin: 0 0 20px 0;
 }
 
@@ -1079,8 +1081,9 @@ ol>.block-children {
     width: 1px;
     height: 100%;
     left: -17px;
-    top: 0px;
-    border-left: 1px solid var(--colorAccent);
+    top: 6px;
+    background: var(--colorAccent);
+    border-radius: 2px;
 }
 
 #content-nav li.sub.active>a::before {
@@ -1104,6 +1107,7 @@ ol>.block-children {
 .docs-content>.container {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 
