@@ -1,0 +1,14 @@
+/*  Typography
+/* =================================== */
+p, blockquote, figure, ul, ol, dl {
+  margin-bottom: 1.5rem;
+}
+
+ul, ol {
+  padding-left: 2rem;
+}
+ul, ol, dl {
+  & > * {
+    margin-bottom: 0.5rem;
+  }
+}

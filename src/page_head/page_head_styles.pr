@@ -1,7 +1,8 @@
 {* Retrieve page object from context *}
 {[ const page = context /]}
 {[ const domain = ds.documentationDomain() /]}
-{[ const version = "2.4.0" /]}
+{[ const exporterInfo = exportPackageConfiguration() /]} 
+{[ const version = exporterInfo.version /]}
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

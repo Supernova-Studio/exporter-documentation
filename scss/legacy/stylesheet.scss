@@ -76,10 +76,6 @@ form {
     display: inline;
 }
 
-img {
-    vertical-align: inherit;
-}
-
 mark,
 .mark {
     font-family: 'Fira Mono', 'Fira Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
@@ -148,17 +144,6 @@ section ul {
 blockquote {
     border-left: 5px solid var(--colorBorderColorSubtle);
     padding: 10px 20px;
-}
-
-dl,
-ol,
-ul {
-    margin: 0px;
-    padding-left: 16px;
-}
-
-ol>li::marker {
-    font-weight: bold;
 }
 
 .text-muted {

@@ -14,12 +14,15 @@
         {[ if (variant === "table" || variant === null) ]}
             {* Default variant – Displaying the list of tokens as a table *}
 
-            <table class="token-wrapper">
-            {* Render all tokens *}
-            {[ for token in tokens ]}
-                {[ inject "page_block_token_variant_table_item" context token /]}
-            {[/]}
-            </table>
+            <div class="token-table">
+                {* Render all tokens *}
+                {[ for token in tokens ]}
+                    {* Check for "virtual" shadow tokens to not display shadow layers layers as separate tokens *}
+                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
+                        {[ inject "page_block_token_variant_table_item" context token /]}
+                     {[/]}    
+                {[/]}
+            </div>
 
         {[ elseif (variant.contains("stack")) ]}
         {* Stack – Displaying the list of tokens as a stack (great for colors) *}
@@ -27,7 +30,9 @@
             <div class="stack {{ variant }}">
                 {* Render all tokens *}
                 {[ for token in tokens ]}
-                    {[ inject "page_block_token_variant_stack_item" context token /]}
+                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
+                        {[ inject "page_block_token_variant_stack_item" context token /]}
+                    {[/]}    
                 {[/]}
             </div>
 
@@ -36,8 +41,10 @@
 
             <div class="grid {{ variant }}">
                 {[ for token in tokens ]}
-                    {[ inject "page_block_token_variant_grid_item" context token /]}
-                {[/]}
+                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
+                        {[ inject "page_block_token_variant_grid_item" context token /]}
+                    {[/]}
+                {[/]}    
             </div>
 
         {[/]} 

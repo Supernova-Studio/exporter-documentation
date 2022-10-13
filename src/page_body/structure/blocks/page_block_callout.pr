@@ -1,6 +1,6 @@
 {* Fetch block from injection context, expected type 'Callout' *}
 {[ const block = context /]}
-{[ let calloutType = "info" /]}
+{[ let calloutType = "do" /]}
 {[ let calloutIcon = "x" /]}
 
 {* Generate different types of heading. Note that even headings can have formatting, so we are using rich text formatter *}
@@ -10,13 +10,13 @@
         {[ calloutIcon = '<svg fill="none" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm.5 7V8h-1v6h1Z" fill="#fff"/></svg>' /]}
     {[ case "Success" ]}
         {[ calloutType = "success" /]}
-        {[ calloutIcon = '<svg fill="none" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z" fill="currentColor"/><path d="m14.65 6.3.7.7L9 13.36 5.65 10l.7-.7L9 11.94l5.65-5.64Z" fill="#fff"/></svg>' /]}
+        {[ calloutIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="16.406" viewBox="0 0 22 16.406"><path fill="#2e8540" d="M9.028,16.083l12.65-12.65a1.1,1.1,0,0,0,0-1.556L20.122.322a1.1,1.1,0,0,0-1.556,0L8.25,10.639,3.433,5.822a1.1,1.1,0,0,0-1.556,0L.322,7.378a1.1,1.1,0,0,0,0,1.556l7.15,7.15A1.1,1.1,0,0,0,9.028,16.083Z"/></svg>' /]}
     {[ case "Warning" ]}
         {[ calloutType = "warning" /]}
         {[ calloutIcon = '<svg fill="none" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z" fill="currentColor"/><path d="M11 5v6h-1V5h1Zm-.5 7c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1Z" fill="#fff"/></svg>' /]}
     {[ case "Error" ]}
         {[ calloutType = "danger" /]}
-        {[ calloutIcon = '<svg fill="none" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z" fill="currentColor"/><path d="m13.15 6.15.7.7-2.64 2.65 2.64 2.65-.7.7-2.65-2.64-2.65 2.64-.7-.7L9.79 9.5 7.15 6.85l.7-.7 2.65 2.64 2.65-2.64Z" fill="#fff"/></svg>' /]}
+        {[ calloutIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path d="M11,0A11,11,0,0,0,22-11,11,11,0,0,0,11-22,11,11,0,0,0,0-11,11,11,0,0,0,11,0Zm6.688-6.319L6.319-17.688a8.162,8.162,0,0,1,10.452.917A8.162,8.162,0,0,1,17.688-6.319ZM5.229-5.229a8.162,8.162,0,0,1-.917-10.452L15.681-4.312A8.162,8.162,0,0,1,5.229-5.229Z" transform="translate(0 22)" fill="#cd2026"/></svg>' /]}
 {[/]}
 
 <div class="callout callout-{{ calloutType }}">

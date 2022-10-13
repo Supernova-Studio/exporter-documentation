@@ -23,13 +23,19 @@
     {[ alignClass = "sn-text-left" /]}
 {[/]}
 
-<div class="image-container {{ alignClass }}">
+{[ let variant = block.variantKey /]}
+{[ let containerClass = "" /]}
+{[ if (variant === "frame") ]}
+  {[ containerClass = "image-container--frame" /]}
+{[/]}
+
+<div class="image-container {{ alignClass }} {{ containerClass }}">
 {* Add <a class="popup-img" href="{{ block.url }}"> <img> </a> if you want to enable lightbox-functionality *}
     <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ block.caption }}" />
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p>{{ withHTMLNewlines(block.caption) }}</p>
+    <p class="img-caption">{{ withHTMLNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}

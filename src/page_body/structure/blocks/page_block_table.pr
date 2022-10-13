@@ -12,34 +12,84 @@
 
 {* Scroll wrapper boundary *}
 <div class="data-table-wrapper">
-<table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}" style="width: {{ tableWidth }}px">
+<table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}">
 {* Row scope *}
 {[ let rowIndex = 0 /]}
 {[ for row in block.children ]}
-  <tr>
-  {* Cell scope *}
-  {[ for cell in row.children ]}
-    {[ let alignment = cell.alignment.lowercased() /]}
+  {[ if (headerRow) ]}
     {[ if (rowIndex === 0) ]}
-        {* provide size for column for the first row *}
-        {[ let columnSize = "auto" /]}
-        {[ for column in block.tableProperties.columns ]}
-            {[ if (column.id === cell.columnId) ]}
-                {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
-            {[/]}
-        {[/]}
-        <td class="{{ alignment }}" style="width: {{ columnSize }}">
+      <thead>
+        <tr>
+          {* Cell scope *}
+          {[ for cell in row.children ]}
+            {[ let alignment = cell.alignment.lowercased() /]}
+            <th class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </th>
+          {[/]}
+        </tr>
+      </thead>
+      <tbody>
     {[ else ]}
-    <td class="{{ alignment }}">
+      <tr>
+        {* Cell scope *}
+        {[ for cell in row.children ]}
+          {[ let alignment = cell.alignment.lowercased() /]}
+          <td class="{{ alignment }}">
+            {* Cell content *}
+            {[ for cellBlock in cell.children ]}
+              {[ inject "page_body_structure_block" context cellBlock /]}
+            {[/]}
+          </td>
+        {[/]}
+      </tr>
     {[/]}
-      {* Cell content *}
-      {[ for cellBlock in cell.children ]}
-          {[ inject "page_body_structure_block" context cellBlock /]}
-      {[/]}      
-    </td>
+  {[ else ]}
+    {[ if (rowIndex === 0) ]}
+      <tbody>
+    {[/]}
+    <tr>
+      {[ if (headerColumn) ]}
+        {* Cell scope *}
+        {[ let colIndex = 0 /]}
+        {[ for cell in row.children ]}
+          {[ let alignment = cell.alignment.lowercased() /]}
+          {[ if (colIndex === 0) ]}
+            <th class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </th>
+          {[ else ]}
+            <td class="{{ alignment }}">
+              {* Cell content *}
+              {[ for cellBlock in cell.children ]}
+                {[ inject "page_body_structure_block" context cellBlock /]}
+              {[/]}
+            </td>
+          {[/]}
+          {[ colIndex = (colIndex + 1) /]}
+        {[/]}
+      {[ else ]}
+        {* Cell scope *}
+        {[ for cell in row.children ]}
+          {[ let alignment = cell.alignment.lowercased() /]}
+          <td class="{{ alignment }}">
+            {* Cell content *}
+            {[ for cellBlock in cell.children ]}
+              {[ inject "page_body_structure_block" context cellBlock /]}
+            {[/]}
+          </td>
+        {[/]}
+      {[/]}
+    </tr>
   {[/]}
-  </tr>
   {[ rowIndex = (rowIndex + 1) /]}
 {[/]}
+</tbody>
 </table>
 </div>

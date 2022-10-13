@@ -8,6 +8,7 @@
 @import './inc/theme';
 @import './inc/body';
 @import './inc/heading';
+@import './inc/typography';
 @import './inc/utilities';
 @import './inc/keyframes';
 
@@ -35,6 +36,7 @@
 /* =================================== */
 
 @import './components/tiles';
+@import './components/tooltip';
 
 /* =================================== */
 
@@ -55,12 +57,14 @@
 @import './blocks/table';
 @import './blocks/tabs';
 @import './blocks/tokens';
+@import './blocks/release-notes.scss';
+/* UIG Custom */
 @import './blocks/badges';
 
 /* =================================== */
 
 
-/*  Code hightlight
+/*  Code highlight
 /* =================================== */
 
 @import './code/highlight.scss';
