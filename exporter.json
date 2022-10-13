@@ -106,7 +106,7 @@
         "label": "Show section label",
         "description": "When enabled, a section label will appear at the top of the left navigation.",
         "category": "Navigation",
-        "default": true
+        "default": false
       },
       {
         "key": "tocShow",

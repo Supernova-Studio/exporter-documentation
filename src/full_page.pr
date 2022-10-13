@@ -6,6 +6,7 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
+{[ log exportConfiguration().themeConfiguration /]}
 
 <!DOCTYPE html>
 <html lang="en">
