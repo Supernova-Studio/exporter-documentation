@@ -130,15 +130,16 @@ export function typographyDescription(typographyToken: TypographyToken) {
   let value = typographyToken.value
   let fontName = `${value.font.family} ${value.font.subfamily}`
   let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
-  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : null;
+  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
   let textDecoration: string = ""
   let textCase: string = ""
-  if (value.textDecoration !== "None") {
+  if (value.textDecoration !== null && value.textDecoration !== "None") {
     textDecoration = `, ${value.textDecoration.toLowerCase()}`
   }
-  if (value.textCase !== "Original") {
+  if (value.textCase !== null && value.textCase !== "Original") {
     textCase = `, ${value.textCase.toLowerCase()}`
   }
+
   return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 

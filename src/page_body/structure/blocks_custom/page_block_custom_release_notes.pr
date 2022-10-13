@@ -6,7 +6,6 @@
     {* Ignore draft version, only show stable versions *}
         {[ if (!version.isSharedDraft) ]}
             {[ let entries = changelogToEntries(version.changeLog) /]}
-            {[ log entries /]}
             <h3 class="rn-heading">
                 {{ version.version }}
                 {[ if (version.name !== null && version.name !== "") ]}

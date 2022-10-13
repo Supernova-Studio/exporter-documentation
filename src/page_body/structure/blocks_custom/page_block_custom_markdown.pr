@@ -7,14 +7,29 @@
 
 {[ if url && url.trim().length > 0 ]}
     {* Fetch the markdown data from the remote URL *}
+    {[ let settings = {} /]}
     {[ let headers = {} /]}
-    {[ if (exportConfiguration().contentMarkdownToken) ]}
-        {[ headers = { "failable": true, "timeout": 5000, "authToken": exportConfiguration().contentMarkdownToken } /]}
-    {[ else ]}
-        {[ headers = { "failable": true, "timeout": 5000 } /]}
+    {[ let token = exportConfiguration().contentMarkdownToken /]}
+    {[ if (token) ]}
+        {[ if (token.contains("token") || token.contains("Bearer")) ]}
+            {[ headers = { "Authorization" : token } /]}
+        {[ else ]}
+            {* Default to token *}
+            {[ headers = { "Authorization" : "token " + token } /]}
+        {[/]}
     {[/]}
-    {[ let markdownData = getNetworkData(url, headers) /]}
 
+    {[ settings = { "failable": true, "timeout": 5000, "headers": headers } /]}
+
+    {* Prepare URL. Handle special cases *}
+    {[ if (url.contains("github.com")) ]}
+        {* Special handling for github - change URL to raw file API, removing blob storage so we have pure path  *}
+        {[ url = url.replacing("github.com", "raw.githubusercontent.com") /]}
+        {[ url = url.replacing("/blob", "") /]}
+    {[/]}
+
+    {* Download markdown data *}
+    {[ let markdownData = getNetworkData(url, settings) /]}
     {[ if markdownData ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
         <div class="markdown-container {{ variant }}">
