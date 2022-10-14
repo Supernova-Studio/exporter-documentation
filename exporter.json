@@ -69,6 +69,30 @@
         "inputType": "code"
       },
       {
+        "key": "advancedShowHomepageNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show Next/Previous navigation on homepage",
+        "description": "When enabled, it will show bottom page navigation on the homepage.",
+        "category": "Homepage",
+        "default": false
+      },
+      {
+        "key": "tocShowOnHomepage",
+        "type": "boolean",
+        "label": "Show Table of Content on homepage",
+        "description": "When enabled, Table of Content will be displayed on homepage.",
+        "category": "Homepage",
+        "default": false
+      },
+      {
+        "key": "navigationOverrideHomepageLabel",
+        "type": "string",
+        "label": "Override homepage label in menus",
+        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
+        "category": "Homepage",
+        "default": ""
+      },
+      {
         "key": "advancedCustomizationShowVersionDropdown",
         "type": "boolean",
         "label": "Show version dropdown",
@@ -85,22 +109,6 @@
         "default": true
       },
       {
-        "key": "advancedShowHomepageNextPreviousNavigation",
-        "type": "boolean",
-        "label": "Show Next/Previous navigation on homepage",
-        "description": "When enabled, it will show bottom page navigation on the homepage.",
-        "category": "Navigation",
-        "default": false
-      },
-      {
-        "key": "navigationOverrideHomepageLabel",
-        "type": "string",
-        "label": "Override homepage label in menus",
-        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
-        "category": "Navigation",
-        "default": ""
-      },
-      {
         "key": "navigationShowSectionLabel",
         "type": "boolean",
         "label": "Show section label",
@@ -115,14 +123,6 @@
         "description": "When enabled, Table of Content will be displayed on each page.",
         "category": "Navigation",
         "default": true
-      },
-      {
-        "key": "tocShowOnHomepage",
-        "type": "boolean",
-        "label": "Show Table of Content on homepage",
-        "description": "When enabled, Table of Content will be displayed on homepage.",
-        "category": "Navigation",
-        "default": false
       },
       {
         "key": "tocCustomLabel",

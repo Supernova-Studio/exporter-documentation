@@ -102,7 +102,7 @@
 
   /* Left Navigation */
   --leftNavWidth: 300px;
-  --leftNavBackground: var(--colorBackgroundSecondary);
+  --leftNavBackground: var(--colorBackgroundPrimary);
   --leftNavBorderColor: var(--colorBorderColorSubtle);
   --leftNavInk: var(--colorInkPrimary);
   --leftNavItemHoverBackground: var(--colorNeutral100);
@@ -138,4 +138,41 @@
   --calloutInfoInk: var(--colorInkPrimary);
   --calloutInfoInkSecondary: var(--colorInkSecondary);
   --calloutInfoBackground: var(--colorBackgroundAlt);
+}
+
+:root {
+  --fontFamily: Inter, sans-serif;
+--colorAccent: #0568FC;
+--colorAccentDark: #0445a7;
+--colorAccentSurface: #eaf2ff;
+--borderRadiusDefault: 8px;
+--colorInkSecondary: #535A74;
+--topNavBackground: var(--colorBackgroundPrimary);
+--topNavBorderColor: var(--colorBorderColorSubtle);
+--topNavInk: var(--colorInkPrimary);
+--topNavItemHoverInk: var(--colorAccent);
+--topNavItemActiveInk: var(--colorAccent);
+--topNavItemHoverBackground: var(--colorAccentSurface);
+--topNavItemActiveBackground: var(--colorBackgroundPrimary);
+--leftNavBackground: var(--colorBackgroundPrimary);
+--leftNavItemHoverInk: var(--colorAccent);
+--leftNavItemActiveBackground: transparent;
+--topNavHeaderHeight: 64px;
+--topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
+--pageHeaderBackground: var(--colorBackgroundPrimary);
+--leftNavBorderColor: transparent;
+--pageHeaderBorderColor: transparent;
+
+// shortcut component-tokens overrides
+--shortcutContentPadding: 16px 0;
+--shortcutBoxShadow: none;
+--shortcutBoxShadowHover: none;
+--shortcutBackground: var(--colorBackgroundPrimary);
+--shortcutTitleFontSize: 17px;
+--shortcutTitleFontWeight: 600;
+--shortcutDescriptionFontSize: 15px;
+--shorcutContentGap: 8px;
+--shorcutGridGap: 24px;
+--shortcutBorderRadius: 8px;
+--shortcutImageBorderRadius: 8px;
 }

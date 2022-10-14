@@ -1,0 +1,14 @@
+/* =================================== */
+/*  Content block
+/* =================================== */
+
+/* Theme */
+:root {
+    --contentBlockGap: var(--verticalRhythm);
+}
+
+/* Content block */
+.content-block {
+    margin-top: 0; // should this be !important?
+    margin-bottom: var(--contentBlockGap);
+}

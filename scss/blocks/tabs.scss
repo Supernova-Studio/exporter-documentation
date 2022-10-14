@@ -267,3 +267,89 @@
   padding-top: 0px;
   margin-top: 0px;
 }
+
+.accordion .card {
+  border: none;
+  margin-bottom: 8px;
+  background-color: transparent;
+}
+
+.accordion .card-header {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.accordion .card-header a {
+  font-size: 16px;
+  font-weight: normal;
+  padding: 1rem 1.25rem 1rem 2.25rem;
+  display: block;
+  border-radius: var(--borderRadiusDefault);
+  position: relative;
+}
+
+.accordion .card-header p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.accordion .card-header a:hover {
+  text-decoration: none;
+}
+
+.accordion .card-header a:hover.collapsed {
+  color: var(--colorAccent) !important;
+}
+.accordion .card-header a:before {
+  position: absolute;
+  content: ' ';
+  left: 20px;
+  top: calc(50% + 2px);
+  width: 9px;
+  height: 9px;
+  border-color: var(--colorBorderColorSubtle);
+  border-top: 2px solid;
+  border-right: 2px solid;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.accordion .card-header a.collapsed:before {
+  top: calc(50% - 2px);
+  -webkit-transform: translate(-50%, -50%) rotate(135deg);
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.accordion .card-body {
+  line-height: 26px;
+}
+
+.accordion.arrow-right .card-header a {
+  padding-left: 1.25rem;
+}
+
+.accordion.arrow-right .card-header a:before {
+  right: 15px;
+  left: auto;
+}
+
+.accordion.toggle .card-header a:before {
+  content: '-';
+  border: none;
+  font-size: 20px;
+  height: auto;
+  top: calc(50% + 2px);
+  width: auto;
+  -webkit-transform: translate(-50%, -50%) rotate(180deg);
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.accordion.toggle .card-header a.collapsed:before {
+  content: '+';
+  top: calc(50% - 1px);
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+}

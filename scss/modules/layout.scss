@@ -254,11 +254,6 @@
   margin-left: 0px;
 }
 
-.docs-content ol li,
-.docs-content ul li {
-  margin-top: 10px;
-}
-
 @media (max-width: 767.98px) {
   .docs-navigation {
     margin-left: -260px;
@@ -270,10 +265,4 @@
     margin-left: 0px;
     padding: 0px;
   }
-}
-
-/*=== Section Divider ===*/
-
-.divider {
-  margin: 32px 0;
 }

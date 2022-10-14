@@ -2,66 +2,91 @@
 /*  Typography
 /* =================================== */
 
-dl,
-ol,
-ul {
-    margin: 0px;
-    padding-left: 24px;
+/* Theme */
+:root {
+    --fontBase: 16px;
+    --headingScaleFactor: 0.28;
+    --verticalRhythm: 24px;
+    --bodyLineHeight: calc(var(--verticalRhythm) + (var(--verticalRhythm) * var(--verticalRhythmAdjustment, 0)));
+    --headingLineHeight: 1.3;
+    --fontWeightRegular: 400;
+    --fontWeightSemibold: 600;
+    --fontWeightBold: 700;
+    --headingFontWeight: var(--fontWeightBold);
 }
 
-ol>li::marker {
-    font-weight: bold;
+body {
+    font-family: var(--fontFamily);
+    font-size: calc( var(--fontBase) + (var(--fontBase) * var(--headingScaleFactor) * var(--fontSizeAdjustment, 0)));
+    line-height: var(--bodyLineHeight);
+    color: var(--colorInkPrimary);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--headingFontFamily);
     color: var(--headingInk);
-    line-height: 1.5;
-    margin-top: 32px;
-    margin-bottom: 12px;
+    font-size: calc( var(--fontBase) + (var(--fontBase) * var(--headingScaleFactor) * var(--fontSizeAdjustment, 0)));
+    line-height: var(--headingLineHeight);
+    margin-top: calc(var(--contentBlockGap) * var(--contentBlockGapAdjustment));
+    margin-bottom: 4px;
+    font-weight: var(--headingFontWeight);
+
+    // global removing margin-top when a heading is the first child in the box
+    &:first-child,
+    &:nth-child(2) {
+        margin-top: 0;
+    }
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: calc(var(--contentBlockGap) / 2);
 }
 
 h1 {
-    margin-top: 48px;
-    margin-bottom: 12px;
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.4;
+    --fontSizeAdjustment: 5.4;
+    --verticalRhythmAdjustment: 1.4;
+    --contentBlockGapAdjustment: 2;
+    margin-bottom: calc(var(--contentBlockGap) / 2);
 }
-
 h2 {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 40px;
-    margin-top: 40px;
+    --fontSizeAdjustment: 3.6;
+    --verticalRhythmAdjustment: 0.8;
+    --contentBlockGapAdjustment: 1.5;
+    margin-bottom: 8px;
 }
-
 h3 {
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 32px;
-    margin-top: 24px;
-    margin-bottom: 8px;
+    --fontSizeAdjustment: 2.7;
+    --verticalRhythmAdjustment: 0.7;
+    --contentBlockGapAdjustment: 1;
 }
 
-h4,
-h5,
-h6 {
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 32px;
-    margin-top: 24px;
-    margin-bottom: 8px;
+h4 {
+    --fontSizeAdjustment: 1.8;
+    --verticalRhythmAdjustment: 0.5;
+    --contentBlockGapAdjustment: 1;
 }
 
+h5 {
+    --fontSizeAdjustment: 1;
+    --verticalRhythmAdjustment: 0.3;
+    --contentBlockGapAdjustment: 1;
+}
+
+// removing margin-top when a heading follow another heading
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+    margin-top: 0;
+}
+
+/* Body text
 section p,
 section blockquote,
 div.alert,
@@ -73,13 +98,110 @@ li {
     line-height: 24px;
 }
 
-/* Blockquote-specific */
-.blockquote {
-    margin: 24px 0 24px 24px;
-    padding-left: 20px;
+
+section p {
+    margin: 4px 0 8px 0;
+}
+
+
+p,
+section ul,
+section li {
+    line-height: 1.8;
+}
+
+
+ */
+
+::selection {
+    background: var(--colorAccent);
+    color: var(--colorAccentInk);
+    text-shadow: none;
+}
+
+
+section ul {
+    list-style-type: disc;
+}
+
+.docs-content {
+    ol,
+    ul {
+        li {
+            margin-top: 0px;
+        }
+    }
+
+    section {
+        ul {
+            li {
+                margin-top: 10px;
+                padding-left: 5px;
+            }
+        } 
+
+        ol {
+            li {
+                margin-top: 10px;
+                padding-left: 8px;
+            }
+        } 
+    }
+}
+
+mark,
+.mark {
+    font-family: 'Fira Mono', 'Fira Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 0.875em;
+    line-height: var(--bodyLineHeight);
+    padding: 4px;
+    background: var(--colorBackgroundSecondary);
+    color: var(--colorCodeMark);
+    border-radius: var(--borderRadiusDefault);
+    border: 1px solid var(--colorBorderColorSubtle);
+}
+
+/* Basic styles for links and interactive elements */
+a,
+a:focus {
+    transition: var(--transitionDefault);
+    color: var(--colorAccent);
+}
+
+a:hover,
+a:active {
+    color: var(--colorAccentDark);
+}
+
+a:focus,
+a:active,
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus,
+button:focus,
+button:active {
+    outline: none;
+}
+
+a:focus-visible,
+.btn:focus-visible,
+button:focus-visible {
+    outline: var(--colorInkPrimary) solid 2px;
+    border-radius: 2px;
+}
+
+/* Blockquote-specific */
+.blockquote,
+blockquote {
+    padding-left: 20px;
+    font-weight: var(--fontWeightRegular);
+    font-size: 1.25rem;
+    line-height: 1.4;
     border-left: 1px solid var(--colorAccent);
 
     &::before {
@@ -91,15 +213,21 @@ li {
     }
 }
 
-blockquote {
-    border-left: 5px solid var(--colorBorderColorSubtle);
-    padding: 10px 20px;
+/* Lists */
+dl,
+ol,
+ul {
+    margin: 0px;
+    padding-left: 24px;
+}
+
+ol>li::marker {
+    font-weight: bold;
 }
 
 
 /* Code blocks */
 pre,
-blockquote,
 .table {
     margin-bottom: 1.8rem;
 }
@@ -109,6 +237,11 @@ pre {
     margin-top: 1.8rem;
     max-height: 400px;
     overflow-y: scroll;
+}
+
+code {
+    padding: 2px 5px;
+    border-radius: var(--borderRadiusDefault);
 }
 
 pre code {

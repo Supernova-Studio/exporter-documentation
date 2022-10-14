@@ -77,42 +77,51 @@ iframe {
     font-size: 12px;
     padding: 0px 16px;
     border-bottom: 1px solid var(--leftNavBorderColor);
+
+    .btn {
+        transition: none;
+    }
+    
+    .btn-light {
+        background: var(--colorBackgroundSecondary);
+        color: var(--colorInkPrimary);
+    }
+
+    a {
+        height: 28px;
+        font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        font-weight: 500;
+        transition: var(--transitionDefault);
+        background: transparent;
+        border: 0px;
+        color: var(--colorInkPrimary);
+        border-radius: var(--borderRadiusDefault);
+        padding-right: 8px;
+    
+        &:hover {
+            background-color: var(--colorBackgroundSecondary);
+        }
+    }
+
+    i {
+        margin: 0px 8px;
+        color: var(--colorBackgroundSecondary);
+        cursor: pointer;
+    }
+
+    span {
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 }
 
 .sandbox-container-buttons>div {
     font-weight: bold;
-}
-
-.sandbox-container-buttons a {
-    height: 28px;
-    font-size: 11px;
-    display: inline-flex;
-    align-items: center;
-    font-weight: 500;
-    transition: var(--transitionDefault);
-    background: transparent;
-    border: 0px;
-    color: var(--colorInkPrimary);
-    border-radius: var(--borderRadiusDefault);
-    padding-right: 8px;
-
-    &:hover {
-        background-color: var(--colorBackgroundSecondary);
-    }
-}
-
-.sandbox-container-buttons i {
-    margin: 0px 8px;
-    color: var(--colorBackgroundSecondary);
-    cursor: pointer;
-}
-
-.sandbox-container-buttons span {
-    opacity: 0.5;
-}
-
-.sandbox-container-buttons span:hover {
-    opacity: 1;
 }
 
 .sandbox-state-wrapper {
