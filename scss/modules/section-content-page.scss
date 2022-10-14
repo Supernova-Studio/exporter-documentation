@@ -1,10 +1,14 @@
 /* =================================== */
 /*  section-content-page
 /* =================================== */
-#section-content-page> :first-child {
-  margin-top: 0 !important;
-}
+#section-content-page {
+  width: 100%;
 
-#section-content-page .nav-tabs {
-  margin-top: 24px !important;
+  & > :first-child {
+    margin-top: 0 !important;
+  }
+
+  .nav-tabs {
+    margin-top: 24px !important;
+  }
 }
