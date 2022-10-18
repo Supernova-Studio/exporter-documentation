@@ -16,7 +16,7 @@
             filter: blur({{ token.value.radius.measure }}px)
     {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
-    {{ token.value.width.measure }}px solid #{{ getFormattedRGB(token.value.color) }}
+    {{ token.value.width.measure }}px solid {{ getFormattedColor(token.value.color) }}
 {[ elseif token.tokenType.equals("Font") ]}
     {{ token.value.family }} {{ token.value.subfamily }}
 {[ elseif token.tokenType.equals("Gradient") ]}

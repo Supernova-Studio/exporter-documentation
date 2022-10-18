@@ -1,9 +1,14 @@
 /* =================================== */
 /*  Markdown
 /* =================================== */
-.markdown-container {
+.content-block--markdown {
   img {
     border-radius: var(--borderRadiusDefault);
+    margin-bottom: var(--contentBlockGap);
+  }
+
+  .code-toolbar {
+    margin-bottom: var(--contentBlockGap);
   }
 
   &.bordered {
@@ -16,5 +21,9 @@
     padding: 16px;
     background: var(--colorBackgroundSecondary);
     border-radius: var(--borderRadiusDefault);
+  }
+
+  ul, ol {
+    margin-bottom: var(--contentBlockGap);
   }
 }

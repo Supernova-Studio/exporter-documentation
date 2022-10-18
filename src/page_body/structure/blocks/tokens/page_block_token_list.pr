@@ -5,7 +5,7 @@
 
 {* Ignore block if it is empty *}
 {[ if block.tokenIds.count() > 0) ]}
-  <div class="token-container">
+  <div class="content-block content-block--token-container">
     {[ if (variant === "table") ]}
     {* Displaying the list of tokens as a table *}
 

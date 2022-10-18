@@ -19,7 +19,7 @@
     {[ let description = (frame.description ? frame.description : asset.description) /]}
 
     {* Render the asset *}
-    <div>      
+    <div class="tile-item asset-item">      
         <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
             <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" />

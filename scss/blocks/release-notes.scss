@@ -1,11 +1,11 @@
 .rn-heading-tag {
-    font-size: 11px;
+    font-size: 0.68em;
     padding: 0 6px;
     height: 20px;
     display: flex;
     margin-left: 10px;
-    border-radius: var(--borderRadiusDefault);
-    font-weight: 500;
+    border-radius: var(--borderRadiusSmall);
+    font-weight: var(--fontWeightSemibold);
     background: var(--colorBackgroundAlt);
     white-space: nowrap;
     align-items: center;

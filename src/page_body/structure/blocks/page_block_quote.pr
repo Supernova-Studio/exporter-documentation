@@ -2,5 +2,4 @@
 {[ const block = context /]}
 
 {* Generate rich text with quoted context *}
-{[ inject "page_block_anchor" context block /]}
-<blockquote class="content-block">{[ inject "page_block_rich_text" context block.text /]}</blockquote>
+<blockquote class="content-block" id="{{ getSearchIDString(block.id) }}">{[ inject "page_block_rich_text" context block.text /]}</blockquote>

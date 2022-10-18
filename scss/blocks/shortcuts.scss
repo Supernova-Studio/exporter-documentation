@@ -16,19 +16,18 @@
   --shortcutBoxShadowHover: var(--boxShadowLevel2);
   --shortcutBackground: var(--colorBackgroundPrimary);
   --shortcutBackgroundHover: var(--colorBackgroundPrimary);
-  --shortcutTitleFontSize: 16px;
-  --shortcutTitleFontWeight: 500;
-  --shortcutDescriptionFontSize: 12px;
+  --shortcutTitleFontSize: 0.875rem;
+  --shortcutTitleFontWeight: var(--fontWeightSemibold);
+  --shortcutDescriptionFontSize: 0.75rem;
   --shortcutImageBorderRadius: 0;
 }
 
 /* Styles */
-.shortcut-container {
-  margin: 24px 0px;
+.content-block--shortcuts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  grid-column-gap: var(--shorcutGridGap);
+  grid-row-gap: var(--shorcutGridGap);
 
   .shortcut-item {
     border-radius: var(--shorcutBorderRadius);
@@ -92,48 +91,57 @@
       padding: 0;
       font-size: var(--shortcutDescriptionFontSize);
       line-height: 1.4;
-      font-weight: 400;
+      font-weight: var(--fontWeightRegular);
       color: var(--colorInkSecondary);
+    }
+
+    p.link {
+      font-size: var(--shortcutDescriptionFontSize);
+      line-height: 1.4;
+      margin: 0;
+      font-weight: var(--fontWeightSemibold);
+      color: var(--colorInkPrimary);
+      margin-top: auto;
     }
   }
 }
 
 /* Shortcut variants */
-.shortcut-container.image-top-3,
-.shortcut-container.icon-top-3,
-.shortcut-container.icon-leading-3 {
+.content-block--shortcuts.variant-image-top-3,
+.content-block--shortcuts.variant-icon-top-3,
+.content-block--shortcuts.variant-icon-leading-3 {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: var(--shorcutGridGap);
   grid-row-gap: var(--shorcutGridGap);
 }
 
-.shortcut-container.image-top-2,
-.shortcut-container.icon-top-2,
-.shortcut-container.icon-leading-2,
-.shortcut-container.image-leading-2 {
+.content-block--shortcuts.variant-image-top-2,
+.content-block--shortcuts.variant-icon-top-2,
+.content-block--shortcuts.variant-icon-leading-2,
+.content-block--shortcuts.variant-image-leading-2 {
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: var(--shorcutGridGap);
   grid-row-gap: var(--shorcutGridGap);
 }
 
-.shortcut-container.icon-leading-1,
-.shortcut-container.image-leading-1,
-.shortcut-container.image-top-1 {
+.content-block--shortcuts.variant-icon-leading-1,
+.content-block--shortcuts.variant-image-leading-1,
+.content-block--shortcuts.variant-image-top-1 {
   grid-template-columns: repeat(1, 1fr);
   grid-row-gap: var(--shorcutGridGap);
 }
 
-.shortcut-container.image-top-3 div.preview {
+.content-block--shortcuts.variant-image-top-3 div.preview {
   height: 128px;
 }
 
-.shortcut-container.image-top-2 div.preview {
+.content-block--shortcuts.variant-image-top-2 div.preview {
   height: 156px;
 }
 
-.shortcut-container.icon-top-4 div.preview,
-.shortcut-container.icon-top-3 div.preview,
-.shortcut-container.icon-top-2 div.preview {
+.content-block--shortcuts.variant-icon-top-4 div.preview,
+.content-block--shortcuts.variant-icon-top-3 div.preview,
+.content-block--shortcuts.variant-icon-top-2 div.preview {
   width: var(--shortcutIconWidth);
   height: var(--shortcutIconHeight);
   margin: var(--shortcutContentPadding);
@@ -141,9 +149,9 @@
   border-radius: var(--shorcutBorderRadius);
 }
 
-.shortcut-container.icon-leading-1 .shortcut-item,
-.shortcut-container.icon-leading-2 .shortcut-item,
-.shortcut-container.icon-leading-3 .shortcut-item {
+.content-block--shortcuts.variant-icon-leading-1 .shortcut-item,
+.content-block--shortcuts.variant-icon-leading-2 .shortcut-item,
+.content-block--shortcuts.variant-icon-leading-3 .shortcut-item {
   display: flex;
   flex-direction: row;
 
@@ -152,9 +160,9 @@
   }
 }
 
-.shortcut-container.icon-leading-1 div.preview,
-.shortcut-container.icon-leading-2 div.preview,
-.shortcut-container.icon-leading-3 div.preview {
+.content-block--shortcuts.variant-icon-leading-1 div.preview,
+.content-block--shortcuts.variant-icon-leading-2 div.preview,
+.content-block--shortcuts.variant-icon-leading-3 div.preview {
   width: var(--shortcutIconWidth);
   height: var(--shortcutIconHeight);
   margin: 8px 4px 8px 8px;
@@ -162,9 +170,9 @@
   flex-shrink: 0;
 }
 
-.shortcut-container.icon-leading-1 .shortcut-item .content,
-.shortcut-container.icon-leading-2 .shortcut-item .content,
-.shortcut-container.icon-leading-3 .shortcut-item .content {
+.content-block--shortcuts.variant-icon-leading-1 .shortcut-item .content,
+.content-block--shortcuts.variant-icon-leading-2 .shortcut-item .content,
+.content-block--shortcuts.variant-icon-leading-3 .shortcut-item .content {
   padding: 8px;
   justify-content: center;
   display: flex;
@@ -172,8 +180,8 @@
   gap: 2px; /* intentionally non-overridable by the theming */
 }
 
-.shortcut-container.image-leading-1 .shortcut-item,
-.shortcut-container.image-leading-2 .shortcut-item {
+.content-block--shortcuts.variant-image-leading-1 .shortcut-item,
+.content-block--shortcuts.variant-image-leading-2 .shortcut-item {
   display: flex;
   flex-direction: row;
   
@@ -182,35 +190,35 @@
   }
 }
 
-.shortcut-container.image-leading-1 .shortcut-item div.preview {
+.content-block--shortcuts.variant-image-leading-1 .shortcut-item div.preview {
   max-width: 28%;
   aspect-ratio: 16 / 9;
   height: 100%;
 }
 
-.shortcut-container.image-leading-2 .shortcut-item div.preview {
+.content-block--shortcuts.variant-image-leading-2 .shortcut-item div.preview {
   aspect-ratio: 16 / 9;
   height: 100%;
   max-width: 32%;
 }
 
 @media (max-width: $breakpoint-mobile) {
-  .shortcut-container {
+  .content-block--shortcuts {
     // applied to all the variants because of !important
     grid-template-columns: repeat(1, 1fr) !important;
   }
 }
 
 @media (max-width: $breakpoint-tablet) {
-  .shortcut-container,
-  .shortcut-container.icon-top-3,
-  .shortcut-container.image-top-3,
-  .shortcut-container.icon-leading-3 {
+  .content-block--shortcuts,
+  .content-block--shortcuts.variant-icon-top-3,
+  .content-block--shortcuts.variant-image-top-3,
+  .content-block--shortcuts.variant-icon-leading-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .shortcut-container.image-leading-1,
-  .shortcut-container.image-leading-2 {
+  .content-block--shortcuts.variant-image-leading-1,
+  .content-block--shortcuts.variant-image-leading-2 {
     grid-template-columns: repeat(1, 1fr);
   }
 }

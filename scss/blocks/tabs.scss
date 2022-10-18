@@ -141,19 +141,8 @@
   margin-left: 24px;
 }
 
-.docs-content .tab-pane > :first-child {
-  padding-top: 16px;
-  margin-top: 0px;
-}
-
 .docs-content .tab-pane > :last-child {
   margin-bottom: 0px;
-}
-
-.docs-content .tab-pane > :nth-child(2) {
-  // 2nd child, because the first one is anchor
-  padding-top: 0px;
-  margin-top: 0px;
 }
 
 /* Variant: Pills */
@@ -264,8 +253,11 @@
 .accordion-body > :nth-child(2),
 .tabs-as-columns .col-sm > :nth-child(2) {
   // 2nd child, because the first one is anchor
-  padding-top: 0px;
   margin-top: 0px;
+}
+
+.tabs-as-columns .col-sm > :last-child {
+  margin-bottom: 0px;
 }
 
 .accordion .card {

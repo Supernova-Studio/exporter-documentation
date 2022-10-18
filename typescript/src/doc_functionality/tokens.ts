@@ -90,7 +90,7 @@ export function shadowTokenValue(shadowToken: ShadowToken): string {
   var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
   var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
 
-  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedRGB(shadowToken.value.color)}`
+  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.value.color, true)}`
 }
 
 
@@ -111,17 +111,26 @@ export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum
       spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
     }
   
-    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedRGB(shadowToken.value.color)}`
+    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedColor(shadowToken.value.color, true)}`
 }
 
-export function getFormattedRGB(colorValue: {r: number, g: number, b: number, a: number}): string {
- 
-  if (colorValue.a === 0) {
-    return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
+export function getFormattedColor(colorValue: {r: number, g: number, b: number, a: number}, forceRgbFormat: boolean = false): string {
+
+  if (colorValue.a === 0 || colorValue.a === 255) {
+    if (forceRgbFormat) {
+      return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
+    } else {
+      // return as hex by default
+      return rgbToHex(colorValue.r, colorValue.g, colorValue.b)
+    }
   } else {
     const opacity = Math.round((colorValue.a/255) * 100) / 100;
     return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
   } 
+}
+
+function rgbToHex(r: number, g: number, b:number) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
 

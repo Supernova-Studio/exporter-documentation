@@ -69,6 +69,10 @@
   /* Inline code mark color */
   --colorCodeMark: var(--colorRed700);
 
+  --fontWeightRegular: 400;
+  --fontWeightSemibold: 500;
+  --fontWeightBold: 700;
+
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
 
@@ -162,6 +166,7 @@
 --pageHeaderBackground: var(--colorBackgroundPrimary);
 --leftNavBorderColor: transparent;
 --pageHeaderBorderColor: transparent;
+
 
 // shortcut component-tokens overrides
 --shortcutContentPadding: 16px 0;

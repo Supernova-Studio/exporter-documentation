@@ -32,7 +32,7 @@
     {[ let markdownData = getNetworkData(url, settings) /]}
     {[ if markdownData ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
-        <div class="markdown-container {{ variant }}">
+        <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
             {{ markdownToHTML(markdownData) }}
         </div>
     {[ else ]}

@@ -634,11 +634,11 @@ $('#sidebarCollapse').on('click', function(e) {
 });
 
 /*------------------------
-   Health status overlay
+   Component health status overlay
 -------------------------- */
 
 $(document).ready(function() {
-    $('.component-health-row').on('click', function(e) {
+    $('.content-block--component-health').on('click', function(e) {
         const blockId = $(this).data('block-id');
         // Toggle the overlay
         $('#overlay-' + blockId).toggleClass('d-none');

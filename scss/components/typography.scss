@@ -4,21 +4,21 @@
 
 /* Theme */
 :root {
-    --fontBase: 16px;
+    /* Body */
+    --contentFontBase: 16px;
+    --contentVerticalRhythm: 24px;
+    --contentBodyLineHeight: calc(var(--contentVerticalRhythm) + (var(--contentVerticalRhythm) * var(--contentVerticalRhythmAdjustment, 0)));
+
+    /* Heading */
     --headingScaleFactor: 0.28;
-    --verticalRhythm: 24px;
-    --bodyLineHeight: calc(var(--verticalRhythm) + (var(--verticalRhythm) * var(--verticalRhythmAdjustment, 0)));
     --headingLineHeight: 1.3;
-    --fontWeightRegular: 400;
-    --fontWeightSemibold: 600;
-    --fontWeightBold: 700;
     --headingFontWeight: var(--fontWeightBold);
 }
 
 body {
     font-family: var(--fontFamily);
-    font-size: calc( var(--fontBase) + (var(--fontBase) * var(--headingScaleFactor) * var(--fontSizeAdjustment, 0)));
-    line-height: var(--bodyLineHeight);
+    font-size: calc( var(--contentFontBase) + (var(--contentFontBase) * var(--headingScaleFactor) * var(--contentFontSizeAdjustment, 0)));
+    line-height: var(--contentBodyLineHeight);
     color: var(--colorInkPrimary);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -29,10 +29,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--headingFontFamily);
     color: var(--headingInk);
-    font-size: calc( var(--fontBase) + (var(--fontBase) * var(--headingScaleFactor) * var(--fontSizeAdjustment, 0)));
+    font-size: calc( var(--contentFontBase) + (var(--contentFontBase) * var(--headingScaleFactor) * var(--contentFontSizeAdjustment, 0)));
     line-height: var(--headingLineHeight);
     margin-top: calc(var(--contentBlockGap) * var(--contentBlockGapAdjustment));
-    margin-bottom: 4px;
+    margin-bottom: calc(var(--contentBlockGap) / 2.5);
     font-weight: var(--headingFontWeight);
 
     // global removing margin-top when a heading is the first child in the box
@@ -48,70 +48,43 @@ p {
 }
 
 h1 {
-    --fontSizeAdjustment: 5.4;
-    --verticalRhythmAdjustment: 1.4;
+    --contentFontSizeAdjustment: 5.4;
+    --contentVerticalRhythmAdjustment: 1.4;
     --contentBlockGapAdjustment: 2;
-    margin-bottom: calc(var(--contentBlockGap) / 2);
 }
+
 h2 {
-    --fontSizeAdjustment: 3.6;
-    --verticalRhythmAdjustment: 0.8;
+    --contentFontSizeAdjustment: 3.6;
+    --contentVerticalRhythmAdjustment: 0.8;
     --contentBlockGapAdjustment: 1.5;
-    margin-bottom: 8px;
 }
+
 h3 {
-    --fontSizeAdjustment: 2.7;
-    --verticalRhythmAdjustment: 0.7;
+    --contentFontSizeAdjustment: 2.7;
+    --contentVerticalRhythmAdjustment: 0.7;
     --contentBlockGapAdjustment: 1;
 }
 
 h4 {
-    --fontSizeAdjustment: 1.8;
-    --verticalRhythmAdjustment: 0.5;
+    --contentFontSizeAdjustment: 1.8;
+    --contentVerticalRhythmAdjustment: 0.5;
     --contentBlockGapAdjustment: 1;
 }
 
 h5 {
-    --fontSizeAdjustment: 1;
-    --verticalRhythmAdjustment: 0.3;
+    --contentFontSizeAdjustment: 1;
+    --contentVerticalRhythmAdjustment: 0.3;
     --contentBlockGapAdjustment: 1;
 }
 
-// removing margin-top when a heading follow another heading
-h1 + h2,
-h2 + h3,
-h3 + h4,
-h4 + h5,
-h5 + h6 {
+/* Removing margin-top when a heading follow another heading */
+h1 + div.anchor + h2,
+h2 + div.anchor + h3,
+h3 + div.anchor + h4,
+h4 + div.anchor + h5,
+h5 + div.anchor + h6 {
     margin-top: 0;
 }
-
-/* Body text
-section p,
-section blockquote,
-div.alert,
-ul,
-li {
-    color: var(--colorInkPrimary);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-}
-
-
-section p {
-    margin: 4px 0 8px 0;
-}
-
-
-p,
-section ul,
-section li {
-    line-height: 1.8;
-}
-
-
- */
 
 ::selection {
     background: var(--colorAccent);
@@ -155,7 +128,7 @@ mark,
     font-style: normal;
     font-weight: 400;
     font-size: 0.875em;
-    line-height: var(--bodyLineHeight);
+    line-height: var(--contentBodyLineHeight);
     padding: 4px;
     background: var(--colorBackgroundSecondary);
     color: var(--colorCodeMark);

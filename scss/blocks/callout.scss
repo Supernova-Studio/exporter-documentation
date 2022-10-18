@@ -1,10 +1,8 @@
 /* =================================== */
 /*  Callout
 /* =================================== */
-.callout {
+.content-block--callout {
   padding: 16px;
-  border: 0px;
-  margin: 24px 0;
   border-radius: var(--borderRadiusDefault);
   display: flex;
   gap: 12px;
@@ -53,9 +51,4 @@
       color: var(--calloutDangerInkSecondary);
     }
   }
-}
-
-.embed-responsive {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }

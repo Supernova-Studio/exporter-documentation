@@ -1,7 +1,7 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-<div class="code-block-container">
+<div class="content-block content-block--code code-block-container">
     {* Generate code which will be automatically highlighted *}
     <pre class="code-block"><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}" data-prismjs-copy="Copy">
 

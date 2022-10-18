@@ -9,8 +9,8 @@ import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExport
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedRGB } from "./doc_functionality/tokens"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -32,6 +32,10 @@ Pulsar.registerFunction("getCurrentTimestamp", getCurrentTimestamp)
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
 Pulsar.registerFunction("withHTMLNewlines", withHTMLNewlines)
 Pulsar.registerFunction("getUrlExtension", getUrlExtension)
+
+/* Class/IDs */
+Pulsar.registerFunction("getSearchIDString", getSearchIDString)
+Pulsar.registerFunction("getVariantClass", getVariantClass)
 
 /* Front-end search support */
 Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)
@@ -55,7 +59,7 @@ Pulsar.registerFunction("scaledShadowTokenValue", scaledShadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)
-Pulsar.registerFunction("getFormattedRGB", getFormattedRGB)
+Pulsar.registerFunction("getFormattedColor", getFormattedColor)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)

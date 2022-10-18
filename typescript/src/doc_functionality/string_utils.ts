@@ -82,3 +82,16 @@ export function changelogToEntries(changeLog: string): Array<string> {
   modifiedLines = modifiedLines.map(l => l.trim()).filter(l => l.trim().length > 0)
   return modifiedLines
 }
+
+
+// Returns string for the block, so we can scroll to the specific result (from the search results)
+export function getSearchIDString(blockId: string): string {
+  return blockId ? "search-" + blockId : ""
+}
+
+
+// Returns class for variants
+export function getVariantClass(variant: string): string {
+  // It needs the space in front, otherwise it will not work
+  return variant ? " variant-" + variant : ""
+}

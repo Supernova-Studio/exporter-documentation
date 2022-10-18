@@ -62,7 +62,7 @@
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS",
-        "description": "If customizing look via built-in theme options is not enough, you can always add custom CSS. Custom CSS is injected last, overriding everything before it. It's at your own risk though.",
+        "description": "If customizing look via built-in theme options is not enough, you can always add custom CSS. Custom CSS is injected last, overriding everything before it. It's at your own risk though since the CSS classes and DOM structure might change in the future.",
         "category": "Look & feel",
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,

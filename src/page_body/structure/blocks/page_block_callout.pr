@@ -19,7 +19,7 @@
         {[ calloutIcon = '<svg fill="none" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z" fill="currentColor"/><path d="m13.15 6.15.7.7-2.64 2.65 2.64 2.65-.7.7-2.65-2.64-2.65 2.64-.7-.7L9.79 9.5 7.15 6.85l.7-.7 2.65 2.64 2.65-2.64Z" fill="#fff"/></svg>' /]}
 {[/]}
 
-<div class="callout callout-{{ calloutType }}">
+<div class="content-block content-block--callout callout-{{ calloutType }}" role="alert" id="{{ getSearchIDString(block.id) }}">
     <div class="icon">{{ calloutIcon }}</div>
     <div class="content">{[ inject "page_block_rich_text" context block.text /]}</div>
 </div>
