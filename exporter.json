@@ -460,7 +460,7 @@
         "key": "uig.video",
         "category": "UIG",
         "title": "Video Embed",
-        "description": "A video to embed from Google Drive.",
+        "description": "A video to embed from any url.",
         "icon": "icons/custom-block-badge.png",
         "mode": "block",
         "properties": [
@@ -469,6 +469,22 @@
             "type": "string",
             "default": "",
             "label": "URL"
+          }
+        ]
+      },
+      {
+        "key": "uig.video.iframe",
+        "category": "UIG",
+        "title": "Video Iframe",
+        "description": "A iframe video to embed from Google Drive.",
+        "icon": "icons/custom-block-badge.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "iframe",
+            "type": "string",
+            "default": "",
+            "label": "Iframe"
           }
         ]
       }

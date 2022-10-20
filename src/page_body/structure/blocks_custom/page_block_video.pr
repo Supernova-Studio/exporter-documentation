@@ -3,7 +3,7 @@
 
 {* Create video embed block *}
 {[ if (url !== "") ]}
-  <div class="video-iframe">
-    {{ url }}
+  <div class="video-embed">
+    <video controls="" autoplay="" loop="" muted="" src="{{ url }}"></video>
   </div>
 {[/]}
