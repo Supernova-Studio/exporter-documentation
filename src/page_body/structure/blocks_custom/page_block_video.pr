@@ -1,6 +1,7 @@
+{[ let block = context /]}
 {[ let url = block.properties.url /]}
 
 {* Create video embed block *}
-{[ if url ]}
+{[ if (url !== "") ]}
   <video controls="" autoplay="" loop="" muted="" src="{{ url }}"></video>
 {[/]}
