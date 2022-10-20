@@ -3,7 +3,7 @@
 
 {* Create video embed block *}
 {[ if (iframe !== "") ]}
-  <div class="video-iframe">
+  <div class="video-container video-container--iframe">
     {{ iframe }}
   </div>
 {[/]}
