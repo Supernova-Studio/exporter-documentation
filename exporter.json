@@ -455,6 +455,22 @@
             "label": "URL"
           }
         ]
+      },
+      {
+        "key": "uig.video",
+        "category": "UIG",
+        "title": "Video Embed",
+        "description": "A video to embed from Google Drive.",
+        "icon": "icons/custom-block-badge.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "url",
+            "type": "string",
+            "default": "",
+            "label": "URL"
+          }
+        ]
       }
     ],
     "blockVariants": {
