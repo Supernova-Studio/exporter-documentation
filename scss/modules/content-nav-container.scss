@@ -9,9 +9,8 @@
 }
 
 #content-nav {
-  padding-left: 16px;
   align-self: flex-start;
-  border-left: 1px solid var(--colorBorderColorProminent);
+
 
   @media (min-width: 1260px) {
     position: sticky;
@@ -24,7 +23,8 @@
 #content-nav ul {
   list-style-type: none;
   margin: 0 0 0 16px;
-  padding: 0;
+  padding: 0 0 0 16px;
+  border-left: 1px solid var(--colorBorderColorProminent);
 }
 
 #content-nav > ul {
@@ -74,15 +74,12 @@
   /* 💡 This small transition makes setting of the active state smooth */
 }
 
-#content-nav .content-nav-header {
-  color: var(--colorInkSecondary);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 16px;
-  display: block;
-  padding-top: 8px;
-  padding-bottom: 8px;
+.content-nav-header {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-right: 15px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 #content-nav a:hover,

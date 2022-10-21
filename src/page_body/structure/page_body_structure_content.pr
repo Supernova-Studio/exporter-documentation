@@ -12,7 +12,7 @@
 <div id="content-nav-container">
     <nav id="content-nav">
         {[ if (hasHeading) ]}
-            <span class="content-nav-header">CONTENTS</span>
+            <h3 class="content-nav-header">Overview</h3>
             <ul>
                 {[ for block in page.blocks ]}
                 {[ if block.type.equals("Heading") ]}
