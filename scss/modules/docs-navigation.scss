@@ -5,7 +5,6 @@
   position: fixed;
   top: var(--topNavHeaderHeight);
   left: 0;
-  overflow: scroll;
   overflow-y: auto;
   width: var(--leftNavWidth);
   height: calc(100vh - 50px);
@@ -30,6 +29,12 @@
 
 .docs-navigation > .nav {
   color: var(--colorInkPrimary);
+}
+
+.nav {
+  & > li {
+    margin-bottom: 0;
+  }
 }
 
 .docs-navigation .nav .nav-item {
