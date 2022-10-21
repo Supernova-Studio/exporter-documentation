@@ -16,4 +16,8 @@
     {[ inject "page_block_custom_release_notes" context block /]}
 {[ case "uig.badge" ]}
     {[ inject "page_block_badge" context block /]}
+{[ case "uig.video" ]}
+    {[ inject "page_block_video" context block /]}
+{[ case "uig.video.iframe" ]}
+    {[ inject "page_block_video_iframe" context block /]}
 {[/]}

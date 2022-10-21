@@ -1,0 +1,9 @@
+{[ let block = context /]}
+{[ let iframe = block.properties.iframe /]}
+
+{* Create video embed block *}
+{[ if (iframe !== "") ]}
+  <div class="video-container video-container--iframe">
+    {{ iframe }}
+  </div>
+{[/]}

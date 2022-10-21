@@ -455,6 +455,38 @@
             "label": "URL"
           }
         ]
+      },
+      {
+        "key": "uig.video",
+        "category": "UIG",
+        "title": "Video Embed",
+        "description": "A video to embed from any url.",
+        "icon": "icons/custom-block-video.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "url",
+            "type": "string",
+            "default": "",
+            "label": "URL"
+          }
+        ]
+      },
+      {
+        "key": "uig.video.iframe",
+        "category": "UIG",
+        "title": "Video Iframe",
+        "description": "A iframe video to embed from Google Drive.",
+        "icon": "icons/custom-block-video-iframe.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "iframe",
+            "type": "string",
+            "default": "",
+            "label": "Iframe"
+          }
+        ]
       }
     ],
     "blockVariants": {
