@@ -4,7 +4,6 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
-
 @mixin component-health-row__title-styles {
   display: flex;
   font-size: 14px;
@@ -12,28 +11,25 @@
   letter-spacing: 1px;
   justify-content: flex-start;
 }
-
 @mixin component-health-row__links-styles {
   display: flex;
   align-items: center;
 }
-
 @mixin component-health-row__col-styles {
   display: flex;
+  font-size: 12px;
 }
-
 @mixin component-health-row__logos-styles {
   display: flex;
   align-items: center;
 }
-
 @mixin component-health-row__right-text-styles {
   text-align: right !important;
   padding-right: 10px;
 }
-
 @mixin component-health-row__select-tag-styles {
   margin-left: 4px;
+  padding: 2px;
 }
 
 @mixin component-health-row(
@@ -51,7 +47,6 @@
     .#{$class}#{$__title} {
       @include component-health-row__title-styles;
     }
-
     .#{$class}#{$__links} {
       @include component-health-row__links-styles;
     }
@@ -59,11 +54,9 @@
     .#{$class}#{$__col} {
       @include component-health-row__col-styles;
     }
-
     .#{$class}#{$__logos} {
       @include component-health-row__logos-styles;
     }
-
     .#{$class}#{$__right-text} {
       @include component-health-row__right-text-styles;
     }
