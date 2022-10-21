@@ -1,70 +1,391 @@
-@mixin component-health-row-styles {
-  padding: 6px 16px 10px 16px;
-  width: max-content;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-@mixin component-health-row__title-styles {
+/* =================================== */
+/*  Component Health + modal
+/* =================================== */
+.component-health-row {
   display: flex;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 12px 16px 12px 12px;
+  border-radius: var(--borderRadiusDefault);
+  transition: var(--transitionDefault);
+
+  &[aria-role='button'] {
+    box-shadow: var(--boxShadowLevel1);
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: var(--boxShadowLevel2);
+    }
+  }
+
+  &.dark {
+    color: var(--colorInkPrimary);
+  }
+
+  &.light {
+    color: var(--colorInkInverted);
+  }
+
+  .date {
+    font-size: 12px;
+    font-weight: normal;
+    position: relative;
+    align-self: center;
+    opacity: 0.8;
+  }
 }
-@mixin component-health-row__links-styles {
+
+.health-tag-title {
   display: flex;
   align-items: center;
-}
-@mixin component-health-row__col-styles {
-  display: flex;
-  font-size: 12px;
-}
-@mixin component-health-row__logos-styles {
-  display: flex;
-  align-items: center;
-}
-@mixin component-health-row__right-text-styles {
-  text-align: right !important;
-  padding-right: 10px;
-}
-@mixin component-health-row__select-tag-styles {
-  margin-left: 4px;
-  padding: 2px;
-}
 
-@mixin component-health-row(
-  $class: component-health-row,
-  $__title: __title,
-  $__links: __links,
-  $__select-tag: __select-tag,
-  $__col: __col,
-  $__logos: __logos,
-  $__right-text: __right-text
-) {
-  .#{$class} {
-    @include component-health-row-styles;
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    margin-left: 8px;
+  }
 
-    .#{$class}#{$__title} {
-      @include component-health-row__title-styles;
-    }
-    .#{$class}#{$__links} {
-      @include component-health-row__links-styles;
-    }
+  .status-icon {
+    width: 20px;
+    height: 20px;
 
-    .#{$class}#{$__col} {
-      @include component-health-row__col-styles;
-    }
-    .#{$class}#{$__logos} {
-      @include component-health-row__logos-styles;
-    }
-    .#{$class}#{$__right-text} {
-      @include component-health-row__right-text-styles;
-    }
-
-    .#{$class}#{$__select-tag} {
-      @include component-health-row__select-tag-styles;
+    svg {
+      width: 20px;
+      height: 20px;
+      display: flex;
     }
   }
 }
 
-@include component-health-row;
+.health-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(20, 22, 24, 0.8);
+  z-index: 999;
+}
+
+.health-overlay-content .component-health-row {
+  margin: 0px;
+  padding: 8px 0px 4px 0px;
+}
+
+.health-overlay-content {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  font-size: 12px;
+  background-color: var(--colorBackgroundPrimary);
+  max-width: 375px;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: var(--borderRadiusDefault);
+  color: var(--colorInkPrimary);
+}
+
+.health-overlay-content .header {
+  padding: 16px;
+  background-color: var(--colorBackgroundSecondary);
+
+  .health-tag-title {
+    margin-bottom: 16px;
+  }
+
+  &.dark {
+    color: var(--colorInkPrimary);
+  }
+
+  &.light {
+    color: var(--colorInkInverted);
+  }
+}
+
+.health-overlay-content .links,
+.health-overlay-content .info {
+  border-top: 1px solid var(--colorBorderColorSubtle);
+  padding: 12px 0px;
+}
+
+.health-overlay-content .info {
+  padding: 12px 12px;
+}
+
+.health-overlay-content .info span {
+  font-weight: bold;
+  padding: 8px 0px;
+  display: block;
+  font-size: 14px;
+}
+
+.health-overlay-content .info p {
+  line-height: 21px;
+  font-size: 12px;
+}
+
+.health-overlay-content .links a {
+  text-decoration: none;
+}
+
+.health-overlay-content .links .lighter {
+  color: var(--colorInkSecondary);
+}
+
+.health-overlay-content .links .row {
+  padding: 6px 16px;
+}
+
+.health-overlay-content .links a .row {
+  height: 32px;
+  transition: var(--transitionDefault);
+}
+
+.health-overlay-content .links a .row:hover {
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.health-overlay-content .links .row > div:nth-child(0) {
+  color: var(--colorInkSecondary);
+  font-size: 12px;
+}
+
+.health-overlay-content .links .row > div:nth-child(1) {
+  color: var(--colorInkPrimary);
+  font-size: 12px;
+}
+
+.health-overlay-content .links .yes {
+  margin-right: 20px;
+  position: relative;
+  color: var(--colorGreen500);
+}
+
+.health-overlay-content .links .yes:after {
+  content: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.5 17C14.6421 17 18 13.6421 18 9.5C18 5.35786 14.6421 2 10.5 2C6.35786 2 3 5.35786 3 9.5C3 13.6421 6.35786 17 10.5 17Z' fill='%2300A454'/%3E%3Cpath d='M14.6504 6.30005L15.3504 7.00005L9.00039 13.36L5.65039 10L6.35039 9.30005L9.00039 11.94L14.6504 6.30005Z' fill='white'/%3E%3C/svg%3E%0A");
+  width: 20px;
+  height: 20px;
+  right: -24px;
+  position: absolute;
+}
+
+.health-overlay-content .links .no {
+  margin-right: 20px;
+  position: relative;
+}
+
+.health-overlay-content .links .no:after {
+  content: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.5 17C14.6421 17 18 13.6421 18 9.5C18 5.35786 14.6421 2 10.5 2C6.35786 2 3 5.35786 3 9.5C3 13.6421 6.35786 17 10.5 17Z' fill='%23141618' fill-opacity='0.5'/%3E%3Cpath d='M13.1504 6.15002L13.8504 6.85002L11.2104 9.50002L13.8504 12.15L13.1504 12.85L10.5004 10.21L7.85039 12.85L7.15039 12.15L9.79039 9.50002L7.15039 6.85002L7.85039 6.15002L10.5004 8.79002L13.1504 6.15002Z' fill='white'/%3E%3C/svg%3E%0A");
+  width: 20px;
+  height: 20px;
+  right: -24px;
+  position: absolute;
+}
+
+.health-overlay-content .header p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.health-overlay-content .header .title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.health-overlay-content .header .subtitle {
+  margin: 10px 0px 20px 0px;
+  display: block;
+}
+
+.health-overlay-content.healthy .header {
+  background-color: #eafeef;
+}
+
+.health-overlay-content.healthy .header .title {
+  color: var(--colorGreen500) !important;
+}
+
+.health-overlay-content.withering .header {
+  background-color: var(--colorOrange100);
+}
+
+.health-overlay-content.withering .header .title {
+  color: var(--colorOrange500) !important;
+}
+
+.health-overlay-content.dormant .header {
+  background-color: var(--colorRed100);
+}
+
+.health-overlay-content.dormant .header .title {
+  color: var(--colorRed500) !important;
+}
+
+.health-overlay-content.unknown .header {
+  background-color: var(--colorBackgroundSecondary);
+}
+
+.health-overlay-content.unknown .header .title {
+  color: var(--colorInkPrimary) !important;
+}
+
+.link-chevron {
+  width: 20px;
+  height: 20px;
+  content: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.65039 7.35002L9.35039 6.65002L12.7104 10L9.35039 13.35L8.65039 12.65L11.2904 10L8.65039 7.35002Z' fill='%23141618' fill-opacity='0.8'/%3E%3C/svg%3E%0A");
+}
+
+.component-health-summary div.large {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.component-health-summary div.healthy {
+  color: var(--colorGreen500);
+}
+
+.component-health-summary div.withering {
+  color: var(--colorOrange100);
+}
+
+.component-health-summary div.dormant {
+  color: var(--colorRed500);
+}
+
+.component-health-summary div.small {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.component-health-list {
+  font-size: 14px;
+  margin: 24px 0px;
+}
+
+.component-health-list a:hover {
+  text-decoration: none;
+}
+
+.component-health-row.inline {
+  padding-bottom: 0px;
+  border-bottom: 0px;
+}
+
+.component-health-row.inline div.tag {
+  padding: 0px 12px;
+}
+
+.checklist {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  margin-bottom: 24px;
+}
+
+.checklist .list-item {
+  display: flex;
+  flex-direction: row;
+}
+.checklist .status {
+  margin-right: 12px;
+}
+
+.checklist .status img {
+  width: 24px;
+}
+
+.checklist .text {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+
+    &.title {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    &.description {
+      font-size: 14px;
+      color: var(--colorInkSecondary);
+    }
+  }
+}
+
+.checklist-header {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
+}
+
+.component-table-wrapper-outer {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.component-table-wrapper-inner {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  /*margin-left: 100px;*/
+}
+
+.component-table-wrapper-inner table {
+  table-layout: fixed;
+  white-space: normal;
+}
+
+.component-table-wrapper-inner table.data-table th,
+.component-table-wrapper-inner table.data-table td {
+  padding: 8px;
+  font-size: 12px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 450px;
+  vertical-align: middle;
+}
+
+.component-table-wrapper-inner table.header-column thead tr:first-child,
+.component-table-wrapper-inner table.header-column thead tr:first-child {
+  font-weight: bold;
+}
+
+.component-table-wrapper-inner td,
+th {
+  vertical-align: center;
+  border-top: 1px solid var(--colorBorderColorSubtle);
+  padding: 10px;
+  width: 100px;
+}
+
+.component-select-tag {
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: var(--borderRadiusDefault);
+  font-weight: 500;
+  background: var(--colorBackgroundAlt);
+  white-space: nowrap;
+}
+
+.component-select-tag.light {
+  color: var(--colorWhite);
+}
+
+.component-select-tag.dark {
+  color: var(--colorNeutral900);
+}
+
+/*
+.component-table-wrapper-inner th {
+    position: absolute;
+    left: 0;
+    width: 150px;
+    height: 100%;
+}*/

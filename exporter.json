@@ -318,6 +318,29 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.component-status",
+        "category": "Components",
+        "title": "R7 Component Status",
+        "description": "Show component health status and additional attributes",
+        "icon": "icons/custom-block-health.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "componentId",
+            "default": "",
+            "type": "component",
+            "label": "Component"
+          },
+          {
+            "key": "propertiesToHighlight",
+            "default": "",
+            "type": "componentProperties",
+            "label": "Properties"
+          }
+         
+        ]
+      }, 
+      {
         "key": "io.supernova.documentation-main.component-health",
         "category": "Components",
         "title": "Component Health (beta)",
