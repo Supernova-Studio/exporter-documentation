@@ -5,12 +5,12 @@
   @media (min-width: 1260px) {
     flex-shrink: 0;
     width: 300px;
+    padding-right: 1rem;
   }
 }
 
 #content-nav {
   align-self: flex-start;
-
 
   @media (min-width: 1260px) {
     position: sticky;
@@ -24,7 +24,7 @@
   list-style-type: none;
   margin: 0 0 0 16px;
   padding: 0 0 0 16px;
-  border-left: 1px solid var(--colorBorderColorProminent);
+  border-left: 3px solid var(--colorBorderColorProminent);
 }
 
 #content-nav > ul {
@@ -40,7 +40,6 @@
 }
 
 #content-nav li.active > a {
-  color: var(--colorAccent);
   font-weight: 500;
   position: relative;
 }
@@ -50,9 +49,9 @@
   position: absolute;
   width: 1px;
   height: 100%;
-  left: -17px;
-  top: 0px;
-  border-left: 1px solid var(--colorAccent);
+  left: -19px;
+  top: 0;
+  border-left: 3px solid #00a1ff;
 }
 
 #content-nav li.sub.active > a::before {
@@ -60,7 +59,7 @@
 }
 
 #content-nav li.sub-2.active > a::before {
-  left: -41px;
+  left: -43px;
 }
 
 #content-nav a {
@@ -68,8 +67,6 @@
   display: block;
   padding: 4px 0px;
   color: var(--colorInkSecondary);
-  font-size: 13px;
-  line-height: 20px;
   transition: all 50ms ease-in-out, color 200ms ease-in-out;
   /* 💡 This small transition makes setting of the active state smooth */
 }
@@ -77,7 +74,6 @@
 .content-nav-header {
   margin-top: 0;
   margin-bottom: 1rem;
-  padding-right: 15px;
   font-size: 1rem;
   font-weight: 600;
 }
