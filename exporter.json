@@ -321,7 +321,7 @@
         "key": "io.supernova.documentation-main.component-status",
         "category": "Components",
         "title": "Component Status (R7)",
-        "description": "Show component status across Figma, Storybook ans Supernova",
+        "description": "Show component status across Figma, Storybook and Supernova",
         "icon": "icons/custom-block-health.png",
         "mode": "block",
         "properties": [
