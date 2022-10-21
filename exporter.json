@@ -461,7 +461,7 @@
         "category": "UIG",
         "title": "Video Embed",
         "description": "A video to embed from any url.",
-        "icon": "icons/custom-block-badge.png",
+        "icon": "icons/custom-block-video.png",
         "mode": "block",
         "properties": [
           {
@@ -477,7 +477,7 @@
         "category": "UIG",
         "title": "Video Iframe",
         "description": "A iframe video to embed from Google Drive.",
-        "icon": "icons/custom-block-badge.png",
+        "icon": "icons/custom-block-video-iframe.png",
         "mode": "block",
         "properties": [
           {
