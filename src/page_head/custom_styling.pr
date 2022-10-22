@@ -1,10 +1,56 @@
-{* Inject theme overrides *}
-.themed {
-    {{ exportConfiguration().themeConfiguration }}
+{[ let configuration = exportConfiguration() /]}
+
+{* Mapping all "native" settings to proper CSS variables *}
+:root {
+    /* =========================== */
+    /* "Native" theme configuration */
+    /* =========================== */
+
+    {* Accent colors *}
+    {[ let accentColorOption = configuration.lookAndFeelAccentColor /]}
+    {[ let accentColor = (accentColorOption ? getColorValueFromSettings(accentColorOption.value, ((accentColorOption.aliasTo !== null) ? ds.tokenById(accentColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentColor ]}
+    --colorAccent: {{ accentColor }};
+    {[/]}
+    {[ let accentAltColorOption = configuration.lookAndFeelAccentAlternativeColor /]}
+    {[ let accentAltColor = (accentAltColorOption ? getColorValueFromSettings(accentAltColorOption.value, ((accentAltColorOption.aliasTo !== null) ? ds.tokenById(accentAltColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentAltColor ]}
+    --colorAccentAlternative: {{ accentAltColor }};
+    {[/]}
+    {[ let accentSurfaceColorOption = configuration.lookAndFeelAccentSurfaceColor /]}
+    {[ let accentSurfaceColor = (accentSurfaceColorOption ? getColorValueFromSettings(accentSurfaceColorOption.value, ((accentSurfaceColorOption.aliasTo !== null) ? ds.tokenById(accentSurfaceColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentSurfaceColor ]}
+    --colorAccentSurface: {{ accentSurfaceColor }};
+    {[/]}
+
+    {* Top navigation *}
+    {[ if (configuration.topNavigationHeight !== 0) ]}
+    --topNavHeight: {{ configuration.topNavigationHeight }}px;
+    {[/]}
+
+    {* Page header *}
+    {[ let textColorOption = configuration.lookAndFeelHeaderTextColor /]}
+    {[ let textColor = (textColorOption ? getColorValueFromSettings(textColorOption.value, ((textColorOption.aliasTo !== null) ? ds.tokenById(textColorOption.aliasTo) : null)) : null) /]}
+    {[ if textColor ]}
+    --pageHeaderInk: {{ textColor }};
+    {[/]}
+    {[ let backgroundColorOption = configuration.lookAndFeelHeaderBackgroundColor /]}
+    {[ let backgroundColor = (backgroundColorOption ? getColorValueFromSettings(backgroundColorOption.value, ((backgroundColorOption.aliasTo !== null) ? ds.tokenById(backgroundColorOption.aliasTo) : null)) : null) /]}
+    {[ if textColor ]}
+    --pageHeaderBackground: {{ backgroundColor }};
+    {[/]}
+    {[ if (configuration.lookAndFeelHeaderHeight !== 0) ]}
+    --pageHeaderHeight: {{ configuration.lookAndFeelHeaderHeight }}px;
+    {[/]}
+
+    /* Advanced theme configuration */
+    {{ configuration.themeConfiguration }}
 }
 
+
 {* Inject any custom CSS provided by the user *}
-{{ exportConfiguration().advancedCustomizationCustomCSS }}
+ /* Custom CSS overrides */
+{{ configuration.advancedCustomizationCustomCSS }}
 
 {* Inject styles *}
 {* TODO *}

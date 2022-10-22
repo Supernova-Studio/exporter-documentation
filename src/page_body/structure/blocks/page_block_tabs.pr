@@ -83,7 +83,7 @@
           {[ let id = tab.id.prefixed("T") /]}
           {[ if (tab.type === "TabItem") ]}
           <li class="nav-item" role="presentation">
-            <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ tab.caption }}</a>
+            <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ tab.caption }}</span></a>
           </li>
           {[/]}
       {[/]}

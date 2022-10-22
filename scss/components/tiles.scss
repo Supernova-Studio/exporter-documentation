@@ -58,9 +58,9 @@
 .layout-tiles .grid > a > div p.title {
   margin: 8px 12px 4px 8px;
   padding: 0;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
+  font-size: var(--fontSizeSmall);
+  line-height: var(--lineHeightSmall);
+  font-weight: var(--fontWeightSemibold);
   color: var(--colorInkPrimary);
 }
 
@@ -68,9 +68,9 @@
 .layout-tiles .grid > a > div p.description {
   margin: 0px 12px 4px 8px;
   padding: 0;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: normal;
+  font-size: var(--fontSizeTiny);
+  line-height: var(--lineHeightTiny);
+  font-weight: var(--fontWeightRegular);
   color: var(--colorInkSecondary);
 }
 

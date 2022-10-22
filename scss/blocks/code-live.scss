@@ -8,11 +8,6 @@
     box-shadow: var(--boxShadowLevel2);
     border-radius: var(--borderRadiusLarge);
     overflow: hidden;
-
-    iframe {
-        display: block;
-        border: 0;
-    }
 }
 
 @media (min-width: 576px) {
@@ -71,7 +66,7 @@
     height: 44px;
     background-color: var(--colorBackgroundPrimary);
     align-content: center;
-    font-size: 0.75rem;
+    font-size: var(--fontSizeTiny);
     padding: 0px 8px 0 16px;
     border-bottom: 1px solid var(--colorBorderColorSubtle);
 
@@ -95,7 +90,7 @@
 
     a {
         height: 28px;
-        font-size: 0.75rem;
+        font-size: var(--fontSizeTiny);
         display: inline-flex;
         align-items: center;
         font-weight: var(--fontWeightSemibold);

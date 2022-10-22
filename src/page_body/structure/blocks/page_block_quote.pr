@@ -1,5 +1,9 @@
 {* Fetch block from injection context, expected type 'Quote' *}
 {[ const block = context /]}
+{[ let configuration = exportConfiguration() /]}
 
 {* Generate rich text with quoted context *}
-<blockquote class="content-block" id="{{ getSearchIDString(block.id) }}">{[ inject "page_block_rich_text" context block.text /]}</blockquote>
+<blockquote class="content-block" id="{{ getSearchIDString(block.id) }}">
+    <span class="icon">{[ inject "icon_quote" context configuration /]}</span>
+    {[ inject "page_block_rich_text" context block.text /]}
+</blockquote>

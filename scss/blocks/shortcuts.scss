@@ -8,18 +8,24 @@
   --shortcutPadding: 0;
   --shorcutBorderRadius: var(--borderRadiusDefault);
   --shortcutContentPadding: 16px;
+  --shortcutHorizontalContentPadding: 12px;
   --shorcutContentGap: 4px;
-  --shortcutHorizontalContentPadding: 16px;
   --shortcutIconHeight: 48px;
   --shortcutIconWidth: 48px;
   --shortcutBoxShadow: var(--boxShadowLevel1);
   --shortcutBoxShadowHover: var(--boxShadowLevel2);
   --shortcutBackground: var(--colorBackgroundPrimary);
   --shortcutBackgroundHover: var(--colorBackgroundPrimary);
-  --shortcutTitleFontSize: 0.875rem;
+  --shortcutTitleFontSize: var(--fontSizeSmall);
   --shortcutTitleFontWeight: var(--fontWeightSemibold);
-  --shortcutDescriptionFontSize: 0.75rem;
+  --shortcutDescriptionFontSize: var(--fontSizeTiny);
   --shortcutImageBorderRadius: 0;
+
+  /* Top image size */
+  --shorcutCol4TopImageSize: 100px;
+  --shorcutCol3TopImageSize: 128px;
+  --shorcutCol2TopImageSize: 156px;
+  --shorcutCol1TopImageSize: 100px;
 }
 
 /* Styles */
@@ -66,7 +72,7 @@
       justify-content: center;
       font-size: 60px;
       width: 100%;
-      height: 100px;
+      height: var(--shorcutCol4TopImageSize);
       border-radius: var(--shortcutImageBorderRadius);
 
       &.empty {
@@ -107,100 +113,113 @@
 }
 
 /* Shortcut variants */
-.content-block--shortcuts.variant-image-top-3,
-.content-block--shortcuts.variant-icon-top-3,
-.content-block--shortcuts.variant-icon-leading-3 {
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: var(--shorcutGridGap);
-  grid-row-gap: var(--shorcutGridGap);
-}
-
-.content-block--shortcuts.variant-image-top-2,
-.content-block--shortcuts.variant-icon-top-2,
-.content-block--shortcuts.variant-icon-leading-2,
-.content-block--shortcuts.variant-image-leading-2 {
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: var(--shorcutGridGap);
-  grid-row-gap: var(--shorcutGridGap);
-}
-
-.content-block--shortcuts.variant-icon-leading-1,
-.content-block--shortcuts.variant-image-leading-1,
-.content-block--shortcuts.variant-image-top-1 {
-  grid-template-columns: repeat(1, 1fr);
-  grid-row-gap: var(--shorcutGridGap);
-}
-
-.content-block--shortcuts.variant-image-top-3 div.preview {
-  height: 128px;
-}
-
-.content-block--shortcuts.variant-image-top-2 div.preview {
-  height: 156px;
-}
-
-.content-block--shortcuts.variant-icon-top-4 div.preview,
-.content-block--shortcuts.variant-icon-top-3 div.preview,
-.content-block--shortcuts.variant-icon-top-2 div.preview {
-  width: var(--shortcutIconWidth);
-  height: var(--shortcutIconHeight);
-  margin: var(--shortcutContentPadding);
-  margin-bottom: 0px !important;
-  border-radius: var(--shorcutBorderRadius);
-}
-
-.content-block--shortcuts.variant-icon-leading-1 .shortcut-item,
-.content-block--shortcuts.variant-icon-leading-2 .shortcut-item,
-.content-block--shortcuts.variant-icon-leading-3 .shortcut-item {
-  display: flex;
-  flex-direction: row;
-
-  .content {
-    padding: var(--shortcutHorizontalContentPadding);
-  }
-}
-
-.content-block--shortcuts.variant-icon-leading-1 div.preview,
-.content-block--shortcuts.variant-icon-leading-2 div.preview,
-.content-block--shortcuts.variant-icon-leading-3 div.preview {
-  width: var(--shortcutIconWidth);
-  height: var(--shortcutIconHeight);
-  margin: 8px 4px 8px 8px;
-  border-radius: var(--borderRadiusDefault);
-  flex-shrink: 0;
-}
-
-.content-block--shortcuts.variant-icon-leading-1 .shortcut-item .content,
-.content-block--shortcuts.variant-icon-leading-2 .shortcut-item .content,
-.content-block--shortcuts.variant-icon-leading-3 .shortcut-item .content {
-  padding: 8px;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2px; /* intentionally non-overridable by the theming */
-}
-
-.content-block--shortcuts.variant-image-leading-1 .shortcut-item,
-.content-block--shortcuts.variant-image-leading-2 .shortcut-item {
-  display: flex;
-  flex-direction: row;
+.content-block--shortcuts {
   
-  .content {
-    padding: var(--shortcutHorizontalContentPadding);
+  // 3 columns
+  &.variant-image-top-3,
+  &.variant-icon-top-3,
+  &.variant-icon-leading-3 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: calc(var(--shorcutGridGap) * 1.5); 
+    grid-row-gap: calc(var(--shorcutGridGap) * 1.5); 
   }
+
+  // 1 column
+  &.variant-icon-leading-1,
+  &.variant-image-leading-1,
+  &.variant-image-top-1 {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: var(--shorcutGridGap);
+  }
+
+  // Image on top – 2 columns
+  &.variant-image-top-2,
+  &.variant-icon-top-2,
+  &.variant-icon-leading-2,
+  &.variant-image-leading-2 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: calc(var(--shorcutGridGap) * 2); 
+    grid-row-gap: calc(var(--shorcutGridGap) * 2); 
+  }
+
+  // Image on top – image sizes
+  &.variant-image-top-3 div.preview {
+    height: var(--shorcutCol3TopImageSize);
+  }
+
+  &.variant-image-top-2 div.preview {
+    height: var(--shorcutCol2TopImageSize);
+  }
+
+  &.variant-image-top-1 div.preview {
+    height: var(--shorcutCol1TopImageSize);
+  }
+
+  // Icon on top
+  &.variant-icon-top-4 div.preview,
+  &.variant-icon-top-3 div.preview,
+  &.variant-icon-top-2 div.preview {
+    width: var(--shortcutIconWidth);
+    height: var(--shortcutIconHeight);
+    margin: var(--shortcutContentPadding);
+    margin-bottom: 0px !important;
+    border-radius: var(--shorcutBorderRadius);
+  }
+
+  // Leading icon
+  &.variant-icon-leading-1 .shortcut-item,
+  &.variant-icon-leading-2 .shortcut-item,
+  &.variant-icon-leading-3 .shortcut-item {
+    display: flex;
+    flex-direction: row;
+
+    .content {
+      padding: var(--shortcutHorizontalContentPadding);
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px; /* intentionally non-overridable by the theming */
+    }
+
+    div.preview,
+    div.preview,
+    div.preview {
+      width: var(--shortcutIconWidth);
+      height: var(--shortcutIconHeight);
+      margin: 8px 4px 8px 8px;
+      border-radius: var(--borderRadiusDefault);
+      flex-shrink: 0;
+    }
+  }
+
+  // Image leading
+  &.variant-image-leading-1 .shortcut-item,
+  &.variant-image-leading-2 .shortcut-item {
+    display: flex;
+    flex-direction: row;
+    
+    .content {
+      padding: var(--shortcutHorizontalContentPadding);
+    }
+
+    div.preview {
+      aspect-ratio: 16 / 9;
+      height: 100%;
+    }
+  }
+
+  &.variant-image-leading-1 .shortcut-item div.preview {
+    max-width: 28%;
+  }
+
+  &.variant-image-leading-2 .shortcut-item div.preview {
+    max-width: 32%;
+  }
+
 }
 
-.content-block--shortcuts.variant-image-leading-1 .shortcut-item div.preview {
-  max-width: 28%;
-  aspect-ratio: 16 / 9;
-  height: 100%;
-}
 
-.content-block--shortcuts.variant-image-leading-2 .shortcut-item div.preview {
-  aspect-ratio: 16 / 9;
-  height: 100%;
-  max-width: 32%;
-}
+
 
 @media (max-width: $breakpoint-mobile) {
   .content-block--shortcuts {

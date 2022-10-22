@@ -9,10 +9,35 @@
     --contentVerticalRhythm: 24px;
     --contentBodyLineHeight: calc(var(--contentVerticalRhythm) + (var(--contentVerticalRhythm) * var(--contentVerticalRhythmAdjustment, 0)));
 
+    /* Supporting sizes */
+    --fontSizeSmall: 0.875rem;
+    --fontSizeTiny: 0.75rem;
+    --lineHeightSmall: 1.3;
+    --lineHeightTiny: 1.3;
+
     /* Heading */
+    --headingInk: var(--colorInkPrimary);
     --headingScaleFactor: 0.28;
     --headingLineHeight: 1.3;
     --headingFontWeight: var(--fontWeightBold);
+    --headingLevel1Size: 2.5rem;
+    --headingLevel2Size: 2rem;
+    --headingLevel3Size: 1.75rem;
+
+    /* Page Title + Description */
+    --pageTitleFontFamily: var(--fontFamily);
+    --pageTitleFontSize: 40px;
+    --pageTitleFontWeight: 700;
+    --pageDescriptionFontSize: 20px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --headingLevel1Size: 2rem;
+        --headingLevel2Size: 1.7rem;
+        --headingLevel3Size: 1.5rem;
+        --pageTitleFontSize: 32px;
+    }
 }
 
 body {
@@ -20,16 +45,17 @@ body {
     font-size: calc( var(--contentFontBase) + (var(--contentFontBase) * var(--headingScaleFactor) * var(--contentFontSizeAdjustment, 0)));
     line-height: var(--contentBodyLineHeight);
     color: var(--colorInkPrimary);
+    font-weight: var(--fontWeightRegular);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5 {
     font-family: var(--headingFontFamily);
     color: var(--headingInk);
-    font-size: calc( var(--contentFontBase) + (var(--contentFontBase) * var(--headingScaleFactor) * var(--contentFontSizeAdjustment, 0)));
+    font-size: var(--headingFontSize);
     line-height: var(--headingLineHeight);
     margin-top: calc(var(--contentBlockGap) * var(--contentBlockGapAdjustment));
     margin-bottom: calc(var(--contentBlockGap) / 2.5);
@@ -47,32 +73,37 @@ p {
     margin-bottom: calc(var(--contentBlockGap) / 2);
 }
 
-h1 {
-    --contentFontSizeAdjustment: 5.4;
+h1,
+.heading--level-1 {
+    --headingFontSize: var(--headingLevel1Size);
     --contentVerticalRhythmAdjustment: 1.4;
     --contentBlockGapAdjustment: 2;
 }
 
-h2 {
-    --contentFontSizeAdjustment: 3.6;
+h2,
+.heading--level-2 {
+    --headingFontSize: var(--headingLevel2Size);
     --contentVerticalRhythmAdjustment: 0.8;
     --contentBlockGapAdjustment: 1.5;
 }
 
-h3 {
-    --contentFontSizeAdjustment: 2.7;
+h3,
+.heading--level-3 {
+    --headingFontSize: var(--headingLevel3Size);
     --contentVerticalRhythmAdjustment: 0.7;
     --contentBlockGapAdjustment: 1;
 }
 
-h4 {
-    --contentFontSizeAdjustment: 1.8;
+h4,
+.heading--level-4 {
+    --headingFontSize: 1.3rem;
     --contentVerticalRhythmAdjustment: 0.5;
     --contentBlockGapAdjustment: 1;
 }
 
-h5 {
-    --contentFontSizeAdjustment: 1;
+h5,
+.heading--level-5 {
+    --headingFontSize: 1.1rem;
     --contentVerticalRhythmAdjustment: 0.3;
     --contentBlockGapAdjustment: 1;
 }
@@ -127,7 +158,7 @@ mark,
     font-family: 'Fira Mono', 'Fira Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
     font-style: normal;
     font-weight: 400;
-    font-size: 0.875em;
+    font-size: 0.825em;
     line-height: var(--contentBodyLineHeight);
     padding: 4px;
     background: var(--colorBackgroundSecondary);
@@ -145,7 +176,7 @@ a:focus {
 
 a:hover,
 a:active {
-    color: var(--colorAccentDark);
+    color: var(--colorAccentAlternative);
 }
 
 a:focus,
@@ -176,13 +207,19 @@ blockquote {
     font-size: 1.25rem;
     line-height: 1.4;
     border-left: 1px solid var(--colorAccent);
+    position: relative;
 
-    &::before {
-        content: url("data:image/svg+xml,%3Csvg width='7' height='7' viewBox='0 0 7 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.628 0C2.772 0.888 2.844 1.812 2.844 2.772C2.844 3.924 2.604 4.752 2.124 5.256C1.644 5.76 0.936 6.012 0 6.012V5.04C0.6 5.04 1.032 4.896 1.296 4.608C1.56 4.32 1.692 3.876 1.692 3.276V2.34H0.144V0H2.628ZM6.336 0C6.504 1.032 6.588 1.956 6.588 2.772C6.588 3.924 6.348 4.752 5.868 5.256C5.388 5.76 4.68 6.012 3.744 6.012V5.04C4.344 5.04 4.764 4.896 5.004 4.608C5.268 4.32 5.4 3.876 5.4 3.276V2.34H3.888V0H6.336Z' fill='%230F62FE'/%3E%3C/svg%3E%0A");
-        position: relative;
-        top: -10px;
-        left: -26px;
-        margin-left: -11px;
+    .icon {
+        position: absolute;
+        left: -24px;
+        top: 0px;
+        color: var(--colorAccent);
+        
+        svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+        }
     }
 }
 

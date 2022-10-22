@@ -1,6 +1,10 @@
 /* =================================== */
 /*  Embed
 /* =================================== */
+iframe {
+  display: block;
+  border: 0;
+}
 
 .content-block--embed {
   width: 100%;

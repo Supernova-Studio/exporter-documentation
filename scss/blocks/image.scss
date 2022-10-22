@@ -15,7 +15,7 @@
 }
 
 .caption {
-  font-size: 0.875rem;
+  font-size: var(--fontSizeSmall);
   line-height: 1.3rem;
   color: var(--colorInkSecondary);
   margin-top: 0.5rem;

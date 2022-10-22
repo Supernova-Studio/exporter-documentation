@@ -21,7 +21,7 @@
   background-color: var(--colorBackgroundSecondary);
   border-radius: var(--borderRadiusDefault);
   visibility: hidden;
-  font-size: 0.875rem;
+  font-size: var(--fontSizeSmall);
   font-weight: var(--fontWeightSemibold);
   padding: 24px;
 }

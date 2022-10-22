@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -20,7 +20,10 @@
   "type": "documentation",
   "tags": [
     "Documentation",
-    "Template"
+    "Template",
+    "Docs",
+    "Reference site",
+    "Styleguide"
   ],
   "contributes": {
     "configuration": [
@@ -36,6 +39,27 @@
         "type": "image",
         "label": "Site favicon",
         "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentColor",
+        "type": "color",
+        "label": "Accent color",
+        "description": "Color for all links, selected, and active states.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentAlternativeColor",
+        "type": "color",
+        "label": "Accent Alt color",
+        "description": "Used for hover states for links, selected, and active states. Usually slightly darker or lighter than Accent color.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentSurfaceColor",
+        "type": "color",
+        "label": "Accent Surface color",
+        "description": "Used for backgrounds of active and selected items. Should meet AA+ contract criteria against Accent color.",
         "category": "Look & feel"
       },
       {
@@ -59,6 +83,14 @@
         "inputType": "code"
       },
       {
+        "key": "iconStrokeWidth",
+        "type": "number",
+        "label": "Icon stroke width",
+        "description": "Default stroke width for icons.",
+        "category": "Look & feel",
+        "default": 2
+      },
+      {
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS",
@@ -69,9 +101,9 @@
         "inputType": "code"
       },
       {
-        "key": "advancedShowHomepageNextPreviousNavigation",
+        "key": "showHomepageNextPreviousNavigation",
         "type": "boolean",
-        "label": "Show Next/Previous navigation on homepage",
+        "label": "Show bottom page navigation on homepage",
         "description": "When enabled, it will show bottom page navigation on the homepage.",
         "category": "Homepage",
         "default": false
@@ -82,7 +114,7 @@
         "label": "Show Table of Content on homepage",
         "description": "When enabled, Table of Content will be displayed on homepage.",
         "category": "Homepage",
-        "default": false
+        "default": true
       },
       {
         "key": "navigationOverrideHomepageLabel",
@@ -93,59 +125,40 @@
         "default": ""
       },
       {
+        "key": "topNavigationStyle",
+        "type": "enum",
+        "label": "Style",
+        "description": "Color style of top navigation",
+        "category": "Top navigation",
+        "values": [
+          "Light",
+          "Dark"
+        ],
+        "default": "Dark"
+      },
+      {
+        "key": "topNavigationHeight",
+        "type": "number",
+        "label": "Top navigation height (px)",
+        "description": "If provided, top navigation will be this tall. Can't be smaller than 44px.",
+        "category": "Top navigation",
+        "default": 56
+      },
+      {
         "key": "advancedCustomizationShowVersionDropdown",
         "type": "boolean",
         "label": "Show version dropdown",
         "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Navigation",
+        "category": "Top navigation",
         "default": true
       },
-      {
-        "key": "advancedCustomizationShowNextPreviousNavigation",
-        "type": "boolean",
-        "label": "Show Next/Previous navigation",
-        "description": "When enabled, it will show bottom page navigation with quick links to next and previous pages.",
-        "category": "Navigation",
-        "default": true
-      },
-      {
-        "key": "navigationShowSectionLabel",
-        "type": "boolean",
-        "label": "Show section label",
-        "description": "When enabled, a section label will appear at the top of the left navigation.",
-        "category": "Navigation",
-        "default": false
-      },
-      {
-        "key": "tocShow",
-        "type": "boolean",
-        "label": "Show Table of Content",
-        "description": "When enabled, Table of Content will be displayed on each page.",
-        "category": "Navigation",
-        "default": true
-      },
-      {
-        "key": "tocCustomLabel",
-        "type": "string",
-        "label": "Custom label for Table of Content",
-        "description": "Customize the label of the Table of Content section on each page.",
-        "category": "Navigation",
-        "default": "On this page"
-      },
-      {
-        "key": "tocHideHeading3",
-        "type": "boolean",
-        "label": "Hide H3 in Table of Contents",
-        "description": "When enabled, Heading 3 level will be hidden in Table of Content.",
-        "category": "Navigation",
-        "default": false
-      },
+
       {
         "key": "advancedCustomizationShowCTA",
         "type": "boolean",
         "label": "Show CTA in Site Header",
         "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-        "category": "Navigation",
+        "category": "Top navigation",
         "default": false
       },
       {
@@ -153,7 +166,7 @@
         "type": "string",
         "label": "Site CTA - Text",
         "description": "Label of the CTA button",
-        "category": "Navigation",
+        "category": "Top navigation",
         "default": "Open site",
         "isMultiline": false,
         "inputType": "plain"
@@ -163,7 +176,7 @@
         "type": "string",
         "label": "Site CTA - URL to open",
         "description": "Link which will open when CTA button is clicked by the user",
-        "category": "Navigation",
+        "category": "Top navigation",
         "default": "",
         "isMultiline": false,
         "inputType": "plain"
@@ -173,55 +186,131 @@
         "type": "boolean",
         "label": "Site CTA - Open in new tab",
         "description": "When enabled, CTA url you provided will open in a new tab.",
-        "category": "Navigation",
+        "category": "Top navigation",
+        "default": true
+      },
+      {
+        "key": "navigationShowSectionLabel",
+        "type": "boolean",
+        "label": "Show section label",
+        "description": "When enabled, a section label will appear at the top of the left navigation.",
+        "category": "Side navigation",
+        "default": false
+      },
+      {
+        "key": "navigationFirstLevelExpanded",
+        "type": "boolean",
+        "label": "Expand the first level of navigation",
+        "description": "When enabled, all first-level groups will be expanded and the group label will be styled as eyebrow heading.",
+        "category": "Side navigation",
+        "default": false
+      },
+      {
+        "key": "tocShow",
+        "type": "boolean",
+        "label": "Show Table of Content",
+        "description": "When enabled, Table of Content will be displayed on each page.",
+        "category": "Side navigation",
+        "default": true
+      },
+      {
+        "key": "footerShow",
+        "type": "boolean",
+        "label": "Show footer",
+        "description": "A small footer on each page will be displayed.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "footerShowLastPublished",
+        "type": "boolean",
+        "label": "Show last published date",
+        "description": "When enabled, last published date will be displayed in the footer.",
+        "category": "Footer",
         "default": true
       },
       {
         "key": "advancedCustomizationShowFooter",
         "type": "boolean",
         "label": "Show custom footer",
-        "description": "A custom footer on each page will be displayed.",
-        "category": "Navigation",
-        "default": false
+        "description": "A custom footer will be added on top of the regular footer. Great for additional links, information, etc.",
+        "category": "Footer",
+        "default": true
       },
       {
         "key": "advancedCustomizationCustomFooter",
         "type": "string",
         "label": "Custom footer HTML code",
         "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Navigation",
+        "category": "Footer",
         "isMultiline": true,
         "inputType": "code",
-        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n</div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
       },
       {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
-        "label": "Default background image",
+        "label": "Page header default background image",
         "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page.",
-        "category": "Page header defaults"
+        "category": "Pages"
       },
       {
         "key": "lookAndFeelHeaderBackgroundColor",
         "type": "color",
-        "label": "Default background color",
+        "label": "Page header default background color",
         "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page.",
-        "category": "Page header defaults"
+        "category": "Pages"
       },
       {
         "key": "lookAndFeelHeaderTextColor",
         "type": "color",
-        "label": "Default text color",
+        "label": "Page header default text color",
         "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page.",
-        "category": "Page header defaults"
+        "category": "Pages"
       },
       {
         "key": "lookAndFeelHeaderHeight",
         "type": "number",
-        "label": "Default height (px)",
+        "label": "Page header default height (px)",
         "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
-        "category": "Page header defaults",
+        "category": "Pages",
         "default": 0
+      },
+      {
+        "key": "lookAndFeelHeaderLayoutStyle",
+        "type": "enum",
+        "label": "Page header style",
+        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
+        "category": "Pages",
+        "values": [
+          "Default",
+          "Boxed"
+        ],
+        "default": "Default"
+      },
+      {
+        "key": "tocCustomLabel",
+        "type": "string",
+        "label": "Custom label for Table of Content",
+        "description": "Customize the label of the Table of Content section on each page.",
+        "category": "Pages",
+        "default": "On this page"
+      },
+      {
+        "key": "tocHideHeading3",
+        "type": "boolean",
+        "label": "Hide H3 in Table of Contents",
+        "description": "When enabled, Heading 3 level will be hidden in Table of Content.",
+        "category": "Pages",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationShowNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show bottom page navigation",
+        "description": "When enabled, it will show bottom page navigation with quick links to next and previous pages.",
+        "category": "Pages",
+        "default": true
       },
       {
         "key": "seoEnableIndexing",

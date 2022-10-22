@@ -7,67 +7,52 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let headerConfiguration = configuration.header /]}
+{[ let globalConfiguration = exportConfiguration() /]}
 
 {* Title *}
 {[ let title = (group.groupBehavior === "Tabs" ? htmlSafeString(group.title) : htmlSafeString(page.title)) /]}
 
 {* Configure appropriate classes based on the configuration *}
-{[ let centeredClass = (headerConfiguration.alignment === "Center" ? "centered" : "") /]}
-{[ let flexedClass = (headerConfiguration.minHeight ? "flexed" : "") /]}
+{[ let centeredClass = (headerConfiguration.alignment === "Center" ? " centered" : "") /]}
+{[ let flexedClass = (headerConfiguration.minHeight ? " flexed" : "") /]}
+{[ let layoutTypeClass = "" /]}
 
 {* Configure height *}
-{[ let height = "auto" /]}
+{[ let heightStyle = "" /]}
 {[ if headerConfiguration.minHeight ]}
-    {[ height = (headerConfiguration.minHeight.toString() + "px") /]}
-    {[ flexedClass = "flexed" /]}
-{[ elseif (exportConfiguration().lookAndFeelHeaderHeight !== 0) ]}
-    {[ height = (exportConfiguration().lookAndFeelHeaderHeight.toString() + "px") /]}
-    {[ flexedClass = "flexed" /]}
+    {[ heightStyle = ("min-height:" + headerConfiguration.minHeight.toString() + "px; ") /]}
+    {[ flexedClass = " flexed" /]}
+{[/]}
+
+{[ if (globalConfiguration.lookAndFeelHeaderLayoutStyle === "Boxed") ]}
+    {[ layoutTypeClass = " style-boxed" /]}
 {[/]}
 
 {* Background image set on the page overrides all settings *}
 {[ if headerConfiguration.backgroundImageAssetUrl ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
+<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 
 {* Background image set on doc export settings level overrides all settings *}
-{[ elseif (exportConfiguration().lookAndFeelHeaderBackgroundImage && exportConfiguration().lookAndFeelHeaderBackgroundImage.assetUrl) ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background: url({{ exportConfiguration().lookAndFeelHeaderBackgroundImage.assetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
+{[ elseif (globalConfiguration.lookAndFeelHeaderBackgroundImage && globalConfiguration.lookAndFeelHeaderBackgroundImage.assetUrl) ]}
+<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background: url({{ globalConfiguration.lookAndFeelHeaderBackgroundImage.assetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 
 {* Background color provided per-page takes over transparent default if provided *}
 {[ elseif headerConfiguration.backgroundColor ]}
     {[ if headerConfiguration.backgroundColor.value ]}
         {* Background color provided as raw value *}
-        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ headerConfiguration.backgroundColor.value }};">
+        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background-color: {{ headerConfiguration.backgroundColor.value }};">
     {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
         {* Background color provided as token *}
         {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
         {[ if colorToken ]}
-        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
-        {[/]}
-    {[/]}
-
-{* Background color takes over transparent default if provided *}
-{* todo: now it's hotfixed, but this if/else hell needs to be refactored *}
-{[ elseif exportConfiguration().lookAndFeelHeaderBackgroundColor ]}
-    {[ let color = exportConfiguration().lookAndFeelHeaderBackgroundColor /]}
-    {[ if color.value ]}
-        {* Background color provided as raw value *}
-        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: {{ color.value }};">
-    {[ elseif color.aliasTo ]}
-        {* Background color provided as token *}
-        {[ let colorToken = ds.tokenById(color.aliasTo) /]}
-        {[ if colorToken ]}
-            <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }}; background-color: #{{ colorToken.value.hex }};">
-        {[ else ]}
-            <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
+        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background-color: #{{ colorToken.value.hex }};">
         {[/]}
     {[ else ]}
-        <div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
+        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}">
     {[/]}
-
 {* Default without any configuration *}
 {[ else ]}
-<div class="container-title {{ centeredClass }} {{ flexedClass }}" style="height: {{ height }};">
+<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}">
 {[/]}
     {[ if headerConfiguration.showBackgroundOverlay ]}
         <div class="container-title-overlay"></div>
@@ -86,20 +71,10 @@
                 {[ if colorToken ]}
                     {[ color = colorToken.value.hex.prefixed("#") /]}
                 {[/]}
-            {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.value) ]}
-                {* Foreground color provided as raw value from global configuration *}
-                {[ color = exportConfiguration().lookAndFeelHeaderTextColor.value /]}
-            {[ elseif (exportConfiguration().lookAndFeelHeaderTextColor && exportConfiguration().lookAndFeelHeaderTextColor.aliasTo) ]}
-                {* Foreground color provided as token from global configuration *}
-                {[ let alias = exportConfiguration().lookAndFeelHeaderTextColor.aliasTo /]}
-                {[ let colorToken = ds.tokenById(alias) /]}
-                {[ if colorToken ]}
-                    {[ color = colorToken.value.hex.prefixed("#") /]}
-                {[/]}
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}
             {* Show title - always *}
-            <h1 style="{{ style }}">{{ withHTMLNewlines(title) }}</h1>
+            <h1 class="page-title" style="{{ style }}">{{ withHTMLNewlines(title) }}</h1>
             {* Show description if provided *}
             {[ if headerConfiguration.description ]}
                 <p class="subtitle" style="{{ style }}">{{ withHTMLNewlines(htmlSafeString(headerConfiguration.description)) }}</p>
@@ -117,7 +92,7 @@
                 {[ if isExportable(tab) ]}
                 <li class="nav-item">
                     {[ let url = pageUrl(tab, ds.documentationDomain()) /]}
-                    <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true">{{ htmlSafeString(tab.title) }}</a>
+                    <a class="nav-link {{ page.id === tab.id ? "active" : "" }}" id="tab-{{ tab.id }}" href="{{ url }}" role="tab" aria-controls="home" aria-selected="true"><span>{{ htmlSafeString(tab.title) }}</span></a>
                 </li>
                 {[/]}
             {[/]}

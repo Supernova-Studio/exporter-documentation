@@ -27,7 +27,7 @@
   }
 
   .date {
-    font-size: 0.875rem;
+    font-size: var(--fontSizeSmall);
     font-weight: normal;
     position: relative;
     align-self: center;
@@ -90,7 +90,7 @@
   width: 100%;
   top: 50%;
   left: 50%;
-  font-size: 0.875rem;;
+  font-size: var(--fontSizeSmall);;
   background-color: var(--colorBackgroundPrimary);
   max-width: 375px;
   transform: translate(-50%, -50%);
@@ -136,7 +136,7 @@
 
 .health-overlay-content .info p {
   line-height: 21px;
-  font-size: 0.875rem;
+  font-size: var(--fontSizeSmall);
 }
 
 .health-overlay-content .links a {
@@ -162,12 +162,12 @@
 
 .health-overlay-content .links .row > div:nth-child(0) {
   color: var(--colorInkSecondary);
-  font-size: 0.875rem;
+  font-size: var(--fontSizeSmall);
 }
 
 .health-overlay-content .links .row > div:nth-child(1) {
   color: var(--colorInkPrimary);
-  font-size: 0.875rem;
+  font-size: var(--fontSizeSmall);
 }
 
 .health-overlay-content .links .yes {
@@ -312,7 +312,7 @@
       }
   
       &.description {
-        font-size: 0.875px;
+        font-size: var(--fontSizeSmall);
         color: var(--colorInkSecondary);
       }
     }
@@ -343,12 +343,16 @@
 .component-table-wrapper-inner table.data-table th,
 .component-table-wrapper-inner table.data-table td {
   padding: 8px;
-  font-size: 0.75rem;
+  font-size: var(--fontSizeSmall);
   line-height: 1.4;
   width: 100%;
   min-width: 150px;
   max-width: 450px;
   vertical-align: middle;
+}
+
+.component-table-wrapper-inner table.data-table th {
+  font-size: var(--fontSizeTiny); 
 }
 
 .component-table-wrapper-inner table.header-column thead tr:first-child,
@@ -365,7 +369,7 @@ th {
 }
 
 .component-select-tag {
-  font-size: 0.75rem;
+  font-size: var(--fontSizeTiny);
   padding: 2px 4px;
   border-radius: var(--borderRadiusSmall);
   font-weight: var(--fontWeightSemibold);

@@ -1,0 +1,90 @@
+
+/* =================================== */
+/*  Buttons
+/* =================================== */
+
+:root {
+    --buttonSlackBackground: #fff;
+    --buttonSlackBackgroundHover: #5A1D5E;
+    --buttonSlackInk: #5A1D5E;
+    --buttonSlackInkHover: #fff;
+    --buttonSlackBorder: var(--colorBorderColorSubtle);
+    --buttonSlackBorderHover: var(--buttonSlackBackgroundHover);
+}
+
+
+/* Button Primary */
+.btn-primary {
+    background-color: var(--ctaButtonBackground);
+    border-color: var(--ctaButtonBackground);
+
+    &:hover {
+        background-color: var(--ctaButtonBackgroundHover);
+        border-color: var(--ctaButtonBackgroundHover);
+    }
+
+    &.focus,
+    &:focus {
+        background-color: var(--ctaButtonBackgroundHover);
+        border-color: var(--ctaButtonBackgroundHover);
+    }
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: var(--ctaButtonBackgroundHover);
+    border-color: var(--ctaButtonBackgroundHover);
+}
+
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* Button Secondary – needs to be reviewed */
+.cta-button {
+    font-weight: var(--fontWeightSemibold);
+    font-size: var(--fontSizeSmall);
+    color: var(--ctaButtonInk);
+    margin-left: 16px;
+    white-space: nowrap;
+    transition: var(--transitionDefault);
+    border-radius: var(--borderRadiusDefault);
+    text-decoration: none;
+
+    * {
+        text-decoration: none;
+    }
+}
+
+
+/* Button Secondary – needs to be reviewed */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Button Slack */
+.btn-slack {
+    background-color: var(--buttonSlackBackground);
+    border-color: var(--buttonSlackBorder);
+    color: var(--buttonSlackInk);
+    display: flex;
+    align-items: center;
+    font-weight: var(--fontWeightSemibold);
+
+    &:hover {
+        background-color: var(--buttonSlackBackgroundHover);
+        border-color: var(--buttonSlackBorderHover);
+        color: var(--buttonSlackInkHover);;
+    }
+
+    svg {
+        height: 16px;
+        width: 16px;
+        margin-right: 8px;
+    }
+}

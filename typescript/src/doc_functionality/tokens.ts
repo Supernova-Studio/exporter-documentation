@@ -240,3 +240,14 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
 
   return `font-family: '${font.family}', Inter, sans-serif; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
 }
+
+/** Get color value from settings option */
+export function getColorValueFromSettings(value: string | null, alias: any): string | null {
+  if (value !== null) {
+    return value;
+  } else if (alias !== null) {
+      return `#${alias.value.hex}`;
+  } else {
+    return null;
+  }
+}

@@ -4,49 +4,48 @@
 
 .container-footer {
   border-top: 1px solid var(--colorBorderColorSubtle);
-}
 
-.container-footer ul li {
-  margin-bottom: 8px;
-}
+  > .slider {
+    max-width: 1000px;
+    margin: 0px auto;
+    padding: 60px 0px 20px 0px;
+    z-index: 1;
+  }
 
-.container-footer p,
-.container-footer a,
-.container-footer p.copy {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--colorInkSecondary);
-}
+  &.small {
+    > .slider {
+      display: flex;
+      align-items: center;
+      height: 59px;
+      padding: 0;
+    }
+  }
 
-.container-footer h4,
-.container-footer h5,
-.container-footer h6 {
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 28px;
-  color: var(--colorInkPrimary);
-  margin-bottom: 16px;
-}
+  ul li {
+    margin-bottom: 8px;
+  }
 
-.container-footer p {
-  line-height: 26px;
-}
+  p,
+  a,
+  p.copy {
+    font-size: var(--fontSizeSmall);
+    line-height: var(--contentBodyLineHeight);
+    color: var(--colorInkSecondary);
+  }
 
-.container-footer p.copy {
-  color: var(--colorInkSecondary);
-  line-height: 26px;
-}
+  p:last-child {
+    margin-bottom: 0;
+  }
 
-.container-footer a {
-  color: var(--colorAccent);
-}
+  p.copy {
+    color: var(--colorInkSecondary);
+  }
 
-.container-footer .nav .nav-item {
-  display: inline-block;
-  line-height: 12px;
-  margin: 0;
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 16px;
+  }
 }
 
 /*=== 6.1 Social Icons ===*/

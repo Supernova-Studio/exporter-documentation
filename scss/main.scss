@@ -17,7 +17,7 @@
 
 @import './modules/search';
 @import './modules/layout';
-@import './modules/header';
+@import './modules/top-navigation';
 @import './modules/page-navigation';
 @import './modules/footer';
 
@@ -27,6 +27,7 @@
 /*  Components
 /* =================================== */
 
+@import './components/button';
 @import './components/content-block';
 @import './components/preloader';
 @import './components/typography';

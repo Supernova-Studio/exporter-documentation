@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'RZA';
+    src: url('https://www.stg.bestegg.com/wp-content/themes/wp-thm-bestegg/dist/sunnyside/RzaSemibold-Desktop.otf');
+  }
+  
+  @font-face {
+    font-family: 'Gordita-Regular';
+    src: url('https://www.stg.bestegg.com/wp-content/themes/wp-thm-bestegg/dist/sunnyside/GorditaRegular.otf');
+  }
+  
+  @font-face {
+    font-family: 'Gordita-Medium';
+    src: url('https://www.stg.bestegg.com/wp-content/themes/wp-thm-bestegg/dist/sunnyside/GorditaMedium.otf');
+  }
+  
+  body {
+     font-family: 'Gordita-Regular', sans-serif;
+  }
+  
+  h1, .typographyDocsViewNavigation {
+  font-family: 'Gordita-Medium', sans-serif;
+  }
+  
+  
+  .container-title>.slider h1, .container-footer>.slider h1 {
+  font-family: 'RZA', sans-serif;
+  }
+  
+  
+  #content-nav-container {
+  display: none;
+  }
+  
+  .shortcut-container.image-leading-1 .shortcut-item div.preview {
+      max-width: 28%;
+      aspect-ratio: 1/1;
+      height: 100%;
+  }
+  
+  .shortcut-container .shortcut-item p.title {
+  font-size: 24px;
+  }
+  
+  .shortcut-container .shortcut-item .content {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .shortcut-container .shortcut-item p.description {
+      font-size: 16px;
+      line-height: 24px;
+  }
+  
+  a.shortcut-item {
+  display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+  }
+  
+  .preview {
+  aspect-ratio: 1/1;
+      height: 100% !important;
+      width: 100% !important;
+  }
+  
+  .shortcut-container .shortcut-item p.title {
+      line-height: inherit;
+  }
+  
+  #section-content-page {
+  max-width: 1000px;
+  }
+  
+  

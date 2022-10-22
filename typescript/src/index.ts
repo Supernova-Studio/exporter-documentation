@@ -10,8 +10,9 @@ import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor } from "./doc_functionality/tokens"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
+import { getCurrentFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -27,6 +28,10 @@ Pulsar.registerFunction("isExportable", isExportable)
 Pulsar.registerFunction("isHomepage", isHomepage)
 Pulsar.registerFunction("resolveMenuLabel", resolveMenuLabel)
 Pulsar.registerFunction("getCurrentTimestamp", getCurrentTimestamp)
+
+/* General utils */
+Pulsar.registerFunction("getFullYear", getFullYear)
+Pulsar.registerFunction("getCurrentFormattedDateTime", getCurrentFormattedDateTime)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
@@ -60,6 +65,7 @@ Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUn
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)
 Pulsar.registerFunction("getFormattedColor", getFormattedColor)
+Pulsar.registerFunction("getColorValueFromSettings", getColorValueFromSettings)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)

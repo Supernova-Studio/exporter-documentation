@@ -45,7 +45,7 @@
   /* secondary text */
   --colorInkSecondary: var(--colorNeutral700);
   /* eyebrow headings */
-  --colorInkTertiary: var(--colorNeutral500);
+  --colorInkTertiary: var(--colorNeutral600);
   /* inverted text, e.g. for us on dark bg */
   --colorInkInverted: var(--colorWhite);
   /* Main bg for components */
@@ -61,7 +61,7 @@
   /* links, active states, ... */
   --colorAccent: #0f62fe;
   /* hovers for primary */
-  --colorAccentDark: #0043ce;
+  --colorAccentAlternative: #0043ce;
   /* Background for active items, e.g. in left nav or tabs */
   --colorAccentSurface: #ecf4ff;
   /* Ink color on accent */
@@ -76,58 +76,14 @@
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
 
-  /* Page Header */
-  --pageHeaderBackground: var(--colorBackgroundSecondary);
-  --pageHeaderInk: var(--colorInkPrimary);
-  --pageHeaderDescription: var(--colorInkSecondary);
-  --pageHeaderBorderColor: var(--colorBorderColorSubtle);
-
-  /* Page Title */
-  --pageTitleFontFamily: var(--fontFamily);
-  --pageTitleFontSize: 40px;
-  --pageTitleFontWeight: 700;
-
-  /* Top Navigation */
-  --topNavBackground: var(--colorInkPrimary);
-  --topNavBorderColor: var(--topNavBackground);
-  /* main header text and icons */
-  --topNavInk: var(--colorInkInverted);
-  /* main header item text on hover  */
-  --topNavItemHoverInk: var(--topNavInk);
-  /* main header item text when active */
-  --topNavItemActiveInk: var(--topNavInk);
-  /* main header item background on hover */
-  --topNavItemHoverBackground: rgba(255, 255, 255, 0.15);
-  /* main header item background when active */
-  --topNavItemActiveBackground: var(--topNavItemHoverBackground);
-  --topNavHeaderHeight: 68px;
-  --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
-  --topNavFontWeight: 500;
-
-  /* Left Navigation */
-  --leftNavWidth: 300px;
-  --leftNavBackground: var(--colorBackgroundPrimary);
-  --leftNavBorderColor: var(--colorBorderColorSubtle);
-  --leftNavInk: var(--colorInkPrimary);
-  --leftNavItemHoverBackground: var(--colorNeutral100);
-  --leftNavItemHoverBackgroundAlt: var(--colorNeutral300);
-  --leftNavItemHoverInk: var(--leftNavInk);
-  --leftNavItemActiveBackground: var(--colorAccentSurface);
-  --leftNavItemActiveInk: var(--colorAccent);
-  --leftNavInkTab: var(--colorInkSecondary);
-  --leftNavInkSection: var(--colorInkSecondary);
-  --leftNavElevation: none;
-
   /* CTA button */
   --ctaButtonBackground: var(--colorAccent);
-  --ctaButtonBackgroundHover: var(--colorAccentDark);
+  --ctaButtonBackgroundHover: var(--colorAccentAlternative);
   --ctaButtonInk: var(--colorWhite);
 
   /* Blocks */
   --spacingBlockAfter: 24px;
-
-  /* Block: Heading */
-  --headingInk: var(--colorInkPrimary);
+  
 
   /* Block: Banner */
   --calloutSuccessInk: var(--colorGreen900);
@@ -142,42 +98,4 @@
   --calloutInfoInk: var(--colorInkPrimary);
   --calloutInfoInkSecondary: var(--colorInkSecondary);
   --calloutInfoBackground: var(--colorBackgroundAlt);
-}
-
-:root {
-  --fontFamily: Inter, sans-serif;
---colorAccent: #0568FC;
---colorAccentDark: #0445a7;
---colorAccentSurface: #eaf2ff;
---borderRadiusDefault: 8px;
---colorInkSecondary: #535A74;
---topNavBackground: var(--colorBackgroundPrimary);
---topNavBorderColor: var(--colorBorderColorSubtle);
---topNavInk: var(--colorInkPrimary);
---topNavItemHoverInk: var(--colorAccent);
---topNavItemActiveInk: var(--colorAccent);
---topNavItemHoverBackground: var(--colorAccentSurface);
---topNavItemActiveBackground: var(--colorBackgroundPrimary);
---leftNavBackground: var(--colorBackgroundPrimary);
---leftNavItemHoverInk: var(--colorAccent);
---leftNavItemActiveBackground: transparent;
---topNavHeaderHeight: 64px;
---topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
---pageHeaderBackground: var(--colorBackgroundPrimary);
---leftNavBorderColor: transparent;
---pageHeaderBorderColor: transparent;
-
-
-// shortcut component-tokens overrides
---shortcutContentPadding: 16px 0;
---shortcutBoxShadow: none;
---shortcutBoxShadowHover: none;
---shortcutBackground: var(--colorBackgroundPrimary);
---shortcutTitleFontSize: 17px;
---shortcutTitleFontWeight: 600;
---shortcutDescriptionFontSize: 15px;
---shorcutContentGap: 8px;
---shorcutGridGap: 24px;
---shortcutBorderRadius: 8px;
---shortcutImageBorderRadius: 8px;
 }

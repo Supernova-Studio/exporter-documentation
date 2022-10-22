@@ -13,7 +13,7 @@ table.data-table td {
 
 table.data-table th,
 table.data-table td {
-  padding: 6px;
+  padding: 4px 8px;
 }
 
 table.data-table tr th > :first-child,
@@ -30,7 +30,7 @@ table.data-table tr td > :last-child {
   width: 752px; /* fixing a bug with horizontal scrolling of full-width table */
 
   p {
-    font-size: 0.875rem;
+    font-size: var(--fontSizeSmall);
     line-height: 1.4;
     margin-bottom: 0;
   }
@@ -93,7 +93,7 @@ table td.center .sn-text-right {
     border: 0;
   }
   table caption {
-    font-size: 0.875rem;
+    font-size: var(--fontSizeSmall);
   }
   table thead {
     border: none;
