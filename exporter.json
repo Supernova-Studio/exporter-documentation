@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "3.0.4",
+  "version": "3.0.6",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -45,21 +45,21 @@
         "key": "lookAndFeelAccentColor",
         "type": "color",
         "label": "Accent color",
-        "description": "Color for all links, selected, and active states.",
+        "description": "Color for all links, selected, and active states. Default: #0f62fe",
         "category": "Look & feel"
       },
       {
         "key": "lookAndFeelAccentAlternativeColor",
         "type": "color",
         "label": "Accent Alt color",
-        "description": "Used for hover states for links, selected, and active states. Usually slightly darker or lighter than Accent color.",
+        "description": "Used for hover states for links, selected, and active states. Usually slightly darker or lighter than Accent color. Default: #0043ce",
         "category": "Look & feel"
       },
       {
         "key": "lookAndFeelAccentSurfaceColor",
         "type": "color",
         "label": "Accent Surface color",
-        "description": "Used for backgrounds of active and selected items. Should meet AA+ contract criteria against Accent color.",
+        "description": "Used for backgrounds of active and selected items. Should meet AA+ contract criteria against Accent color. Default: #ecf4ff",
         "category": "Look & feel"
       },
       {
