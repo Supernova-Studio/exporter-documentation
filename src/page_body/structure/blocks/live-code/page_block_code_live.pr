@@ -8,7 +8,9 @@
 {* Generate sandbox code which will be automatically converted to live sandbox *}
 <div class="content-block content-block--live-sandbox{{getVariantClass(block.variantKey)}}">
     {* Panel is always on top *}
-    {[ inject "page_block_code_live_panel" context { "sandboxId" : sandboxId } /]}
+    {[ if (variant !== "noCodeNoControls") ]}
+        {[ inject "page_block_code_live_panel" context { "sandboxId" : sandboxId } /]}
+    {[/]}
 
     {* Generate different layouts based on the variant of the code block *}
     {[ let sandboxData = { "sandboxId" : sandboxId, "block" : block, "backgroundColor": backgroundColor } /]}
@@ -21,7 +23,7 @@
         {* Code top, component bottom, full width *}
         {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
         {[ inject "page_block_code_live_sandbox" context sandboxData /]}
-    {[ elseif (variant === "noCode") ]}
+    {[ elseif (variant === "noCode" || variant === "noCodeNoControls") ]}
         {* No code, only full width component preview *}
         {[ inject "page_block_code_live_sandbox" context sandboxData /]}
     {[ elseif (variant === "codeLeft") ]}

@@ -793,6 +793,10 @@
         {
           "name": "Only preview, no code",
           "key": "noCode"
+        },
+        {
+          "name": "Preview without controls",
+          "key": "noCodeNoControls"
         }
       ],
       "io.supernova.documentation-main.markdown": [
