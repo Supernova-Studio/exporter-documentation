@@ -35,6 +35,14 @@
         "category": "Look & feel"
       },
       {
+        "key": "headerLogoHeight",
+        "type": "number",
+        "label": "Site logo height",
+        "description": "The height of the logo in top navigation.",
+        "category": "Look & feel",
+        "default": 28
+      },
+      {
         "key": "favicon",
         "type": "image",
         "label": "Site favicon",
@@ -238,7 +246,7 @@
         "key": "lookAndFeelHeaderLayoutStyle",
         "type": "enum",
         "label": "Page header style",
-        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable.",
+        "description": "The visual style of header in published documentation – either Default (edge-to-edges) or Boxed (with a space around).",
         "category": "Pages",
         "values": [
           "Default",

@@ -27,6 +27,9 @@
     {[ if (configuration.topNavigationHeight !== 0) ]}
     --topNavHeight: {{ configuration.topNavigationHeight }}px;
     {[/]}
+    {[ if (configuration.headerLogoHeight !== 0) ]}
+    --logoHeight: {{ configuration.headerLogoHeight }}px;
+    {[/]}
 
     {* Page header *}
     {[ let textColorOption = configuration.lookAndFeelHeaderTextColor /]}
