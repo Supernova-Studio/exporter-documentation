@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.0.0",
+  "version": "3.0.4",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -86,7 +86,7 @@
         "key": "iconStrokeWidth",
         "type": "number",
         "label": "Icon stroke width",
-        "description": "Default stroke width for icons.",
+        "description": "The width of the stroke width for all icons. Default: 2px",
         "category": "Look & feel",
         "default": 2
       },
@@ -127,8 +127,8 @@
       {
         "key": "topNavigationStyle",
         "type": "enum",
-        "label": "Style",
-        "description": "Color style of top navigation",
+        "label": "Overall style",
+        "description": "Overal color style of top navigation in published documentation",
         "category": "Top navigation",
         "values": [
           "Light",
@@ -142,7 +142,7 @@
         "label": "Top navigation height (px)",
         "description": "If provided, top navigation will be this tall. Can't be smaller than 44px.",
         "category": "Top navigation",
-        "default": 56
+        "default": 68
       },
       {
         "key": "advancedCustomizationShowVersionDropdown",
@@ -206,48 +206,6 @@
         "default": false
       },
       {
-        "key": "tocShow",
-        "type": "boolean",
-        "label": "Show Table of Content",
-        "description": "When enabled, Table of Content will be displayed on each page.",
-        "category": "Side navigation",
-        "default": true
-      },
-      {
-        "key": "footerShow",
-        "type": "boolean",
-        "label": "Show footer",
-        "description": "A small footer on each page will be displayed.",
-        "category": "Footer",
-        "default": true
-      },
-      {
-        "key": "footerShowLastPublished",
-        "type": "boolean",
-        "label": "Show last published date",
-        "description": "When enabled, last published date will be displayed in the footer.",
-        "category": "Footer",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowFooter",
-        "type": "boolean",
-        "label": "Show custom footer",
-        "description": "A custom footer will be added on top of the regular footer. Great for additional links, information, etc.",
-        "category": "Footer",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationCustomFooter",
-        "type": "string",
-        "label": "Custom footer HTML code",
-        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Footer",
-        "isMultiline": true,
-        "inputType": "code",
-        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n</div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
-      },
-      {
         "key": "lookAndFeelHeaderBackgroundImage",
         "type": "image",
         "label": "Page header default background image",
@@ -289,6 +247,14 @@
         "default": "Default"
       },
       {
+        "key": "tocShow",
+        "type": "boolean",
+        "label": "Show Table of Content",
+        "description": "When enabled, Table of Content will be displayed on each page.",
+        "category": "Pages",
+        "default": true
+      },
+      {
         "key": "tocCustomLabel",
         "type": "string",
         "label": "Custom label for Table of Content",
@@ -311,6 +277,40 @@
         "description": "When enabled, it will show bottom page navigation with quick links to next and previous pages.",
         "category": "Pages",
         "default": true
+      },
+      {
+        "key": "footerShow",
+        "type": "boolean",
+        "label": "Show footer",
+        "description": "A small footer on each page will be displayed.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "footerShowLastPublished",
+        "type": "boolean",
+        "label": "Show last published date",
+        "description": "When enabled, last published date will be displayed in the footer.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowFooter",
+        "type": "boolean",
+        "label": "Show custom footer",
+        "description": "A custom footer will be added on top of the regular footer. Great for additional links, information, etc.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationCustomFooter",
+        "type": "string",
+        "label": "Custom footer HTML code",
+        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
+        "category": "Footer",
+        "isMultiline": true,
+        "inputType": "code",
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n</div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
       },
       {
         "key": "seoEnableIndexing",
