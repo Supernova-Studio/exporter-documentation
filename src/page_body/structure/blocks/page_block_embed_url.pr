@@ -3,10 +3,10 @@
 
 {* Create generic embed block *}
 {[ if block.url ]}
-  <div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
+  <div class="embed-url">
     <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+    {[ if block.caption ]}
+        <p class="caption">{{ block.caption }}</p>
+    {[/]}
   </div>
-{[ if block.caption ]}
-    <p class="caption">{{ block.caption }}</p>
-{[/]}
 {[/]}
