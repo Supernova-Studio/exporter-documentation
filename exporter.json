@@ -1,9 +1,9 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Documentation",
-  "description": "Base Documentation Exporter",
-  "author": "Supernova",
-  "organization": "Supernova",
+  "name": "Documentation (R7)",
+  "description": "Rapid7 Documentation Exporter",
+  "author": "PXE",
+  "organization": "Rapid7",
   "source_dir": "src",
   "assets_dir": "assets",
   "version": "2.3.1",
