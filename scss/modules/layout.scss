@@ -304,8 +304,8 @@
 
 .nav-name {
   margin: 0 var(--sideNavPadding) 8px;
-  border-bottom: 1px solid var(--colorBorderColorSubtle);
-  padding: 0 0 8px;
+  border-bottom: 1px solid var(--colorBorderColorProminent);
+  padding: 0 var(--sideNavItemPadding) 8px;
 }
 
 .nav-name span {
