@@ -1,4 +1,5 @@
-{[ const block = context /]}
+{[ const block = context.block /]}
+{[ const pageId = context.pageId /]}
 
 {* Generate each block depending on this block's type *}
 {[ switch block.type ]}
@@ -56,20 +57,20 @@
     {[ case "ComponentAssets" ]}
         {[ inject "page_block_assets" context block /]}
     {[ case "Tabs" ]}
-        {[ inject "page_block_tabs" context block /]}
+        {[ inject "page_block_tabs" context {"block": block, "pageId": pageId} /]}
         {* 
            Note we are not generating "TabItem" which is associated with this. 
            This is because TabItem generation is handled within the tab block itself.
         *}
     {[ case "Table" ]}
-        {[ inject "page_block_table" context block /]}
+        {[ inject "page_block_table" context {"block": block, "pageId": pageId} /]}
 {[/]}
 
 {* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}
 {[ if (block.children.count() > 0 && block.type !== "Tabs" && block.type !== "Columns" && block.type !== "Table") ]}
     <div class="block-children">
     {[ for child in block.children ]}
-        {[ inject "page_body_structure_block" context child /]}
+        {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
     {[/]}
     </div>
 {[/]}

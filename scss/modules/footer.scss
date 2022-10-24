@@ -4,9 +4,10 @@
 
 .container-footer {
   border-top: 1px solid var(--colorBorderColorSubtle);
+  padding: 0 var(--contentContainerPadding);
 
   > .slider {
-    max-width: 1000px;
+    max-width: calc(var(--contentMaxWidth) + var(--tocContainerWidth));
     margin: 0px auto;
     padding: 60px 0px 20px 0px;
     z-index: 1;

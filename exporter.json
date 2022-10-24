@@ -81,22 +81,22 @@
         "inputType": "code"
       },
       {
-        "key": "themeConfiguration",
-        "type": "string",
-        "label": "Theme configuration",
-        "description": "Overrides of CSS custom properties (variables) for the theme. You can use this to change the look and feel of the published documentation.",
-        "category": "Look & feel",
-        "default": "",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
         "key": "iconStrokeWidth",
         "type": "number",
         "label": "Icon stroke width",
         "description": "The width of the stroke width for all icons. Default: 2px",
         "category": "Look & feel",
         "default": 2
+      },
+      {
+        "key": "themeConfiguration",
+        "type": "string",
+        "label": "Theme overrides",
+        "description": "Overrides of CSS custom properties (variables) for the theme. You can use this to change the look and feel of the published documentation.",
+        "category": "Look & feel",
+        "default": ":root {\r\n  \r\n}",
+        "isMultiline": true,
+        "inputType": "code"
       },
       {
         "key": "advancedCustomizationCustomCSS",
@@ -109,40 +109,55 @@
         "inputType": "code"
       },
       {
-        "key": "showHomepageNextPreviousNavigation",
+        "key": "limitSiteMaxWidth",
         "type": "boolean",
-        "label": "Show bottom page navigation on homepage",
-        "description": "When enabled, it will show bottom page navigation on the homepage.",
-        "category": "Homepage",
+        "label": "Limit maximum site width",
+        "description": "On big screens, side navigation will be aligned to the left edge of the content.",
+        "category": "Layout",
         "default": false
       },
       {
-        "key": "tocShowOnHomepage",
-        "type": "boolean",
-        "label": "Show Table of Content on homepage",
-        "description": "When enabled, Table of Content will be displayed on homepage.",
-        "category": "Homepage",
-        "default": true
+        "key": "siteMaxWidth",
+        "type": "number",
+        "label": "Maximum site width (px)",
+        "description": "When the width of the site is limited, this will be the maximum width. Minimum: 1400px",
+        "category": "Layout",
+        "default": 1400
       },
       {
-        "key": "navigationOverrideHomepageLabel",
-        "type": "string",
-        "label": "Override homepage label in menus",
-        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
-        "category": "Homepage",
-        "default": ""
+        "key": "contentContainerWidth",
+        "type": "number",
+        "label": "Content container width (px)",
+        "description": "The max width of the content container. Default (and minimum): 756px",
+        "category": "Layout",
+        "default": 756
+      },
+      {
+        "key": "topNavHideCompletely",
+        "type": "boolean",
+        "label": "Hide top navigation completely",
+        "description": "When enabled, only side navigation will be displayed. Logo and search will be placed at the top of the side navigation.",
+        "category": "Layout",
+        "default": false
       },
       {
         "key": "topNavigationStyle",
         "type": "enum",
-        "label": "Overall style",
-        "description": "Overal color style of top navigation in published documentation",
+        "label": "Overall top navigation style",
+        "description": "Overall color style of top navigation in published documentation",
         "category": "Top navigation",
         "values": [
           "Light",
           "Dark"
         ],
         "default": "Dark"
+      },
+      {
+        "key": "topNavigationBackground",
+        "type": "color",
+        "label": "Top navigation background color",
+        "description": "If provided, this color will be used for background of the top navigation. Match it with overall top navigation style to work best.",
+        "category": "Top navigation"
       },
       {
         "key": "topNavigationHeight",
@@ -198,6 +213,25 @@
         "default": true
       },
       {
+        "key": "sideNavigationStyle",
+        "type": "enum",
+        "label": "Overall side navigation style",
+        "description": "Overall color style of side navigation in published documentation",
+        "category": "Side navigation",
+        "values": [
+          "Light",
+          "Dark"
+        ],
+        "default": "Dark"
+      },
+      {
+        "key": "sideNavigationBackground",
+        "type": "color",
+        "label": "Side navigation background color",
+        "description": "If provided, this color will be used for background of the side navigation. Match it with overall side navigation style to work best.",
+        "category": "Side navigation"
+      },
+      {
         "key": "navigationShowSectionLabel",
         "type": "boolean",
         "label": "Show section label",
@@ -209,9 +243,41 @@
         "key": "navigationFirstLevelExpanded",
         "type": "boolean",
         "label": "Expand the first level of navigation",
-        "description": "When enabled, all first-level groups will be expanded and the group label will be styled as eyebrow heading.",
+        "description": "When enabled, all first-level groups will be expanded and the group label will be styled as eyebrow heading. Not applied to pages with tabs.",
         "category": "Side navigation",
+        "default": true
+      },
+      {
+        "key": "showSupernovaBranding",
+        "type": "boolean",
+        "label": "Show Supernova branding",
+        "description": "When enabled, \"Powered by Supernova\" will be displayed at the bottom of the side navigation. Optional, but highly appreciated ♥️",
+        "category": "Side navigation",
+        "default": true
+      },
+      {
+        "key": "showHomepageNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show bottom page navigation on homepage",
+        "description": "When enabled, it will show bottom page navigation on the homepage.",
+        "category": "Homepage",
         "default": false
+      },
+      {
+        "key": "tocShowOnHomepage",
+        "type": "boolean",
+        "label": "Show Table of Content on homepage",
+        "description": "When enabled, Table of Content will be displayed on homepage.",
+        "category": "Homepage",
+        "default": true
+      },
+      {
+        "key": "navigationOverrideHomepageLabel",
+        "type": "string",
+        "label": "Override homepage label in menus",
+        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
+        "category": "Homepage",
+        "default": ""
       },
       {
         "key": "lookAndFeelHeaderBackgroundImage",
@@ -444,7 +510,7 @@
         "type": "boolean",
         "label": "Include Lottie player",
         "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
-        "category": "Advanced",
+        "category": "Other",
         "default": false
       },
       {
@@ -452,16 +518,16 @@
         "type": "string",
         "label": "Markdown private token",
         "description": "If provided, your markdown will authenticate using this token. Token can contain its type, format: ['basic' | 'Bearer' | 'token'] [token]. If not provided, 'token' is assumed.",
-        "category": "Advanced",
+        "category": "Other",
         "default": ""
       },
       {
         "key": "advancedCustomizationCustomHeadInject",
         "type": "string",
-        "label": "Custom Head code",
-        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
-        "category": "Advanced",
-        "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
+        "label": "Custom <head> code",
+        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method. At your own risk.",
+        "category": "Other",
+        "default": "<script>\r\n    \r\n</script>",
         "isMultiline": true,
         "inputType": "code"
       }

@@ -1,4 +1,5 @@
-{[ let block = context /]}  
+{[ let block = context.block /]}  
+{[ let pageId = context.pageId /]}  
 
 {* Calculate table width for scrolling *}
 {[ let tableWidth = 0 /]}
@@ -35,7 +36,7 @@
       {[/]}
         {* Cell content *}
         {[ for cellBlock in cell.children ]}
-            {[ inject "page_body_structure_block" context cellBlock /]}
+            {[ inject "page_body_structure_block" context {"block": cellBlock, "pageId": pageId} /]}
         {[/]}      
       </{{tag}}>
     {[/]}

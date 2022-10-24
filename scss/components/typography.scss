@@ -156,8 +156,7 @@ section ul {
 mark,
 .mark {
     font-family: 'Fira Mono', 'Fira Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 0.825em;
     line-height: var(--contentBodyLineHeight);
     padding: 4px;
@@ -211,14 +210,15 @@ blockquote {
 
     .icon {
         position: absolute;
-        left: -24px;
+        left: -20px;
         top: 0px;
         color: var(--colorAccent);
         
         svg {
             display: block;
-            height: 16px;
-            width: 16px;
+            height: 14px;
+            width: 14px;
+            flex-shrink: 0;
         }
     }
 }

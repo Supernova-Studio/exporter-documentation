@@ -23,6 +23,18 @@
     --colorAccentSurface: {{ accentSurfaceColor }};
     {[/]}
 
+    {* Layout *}
+    {[ if (configuration.limitSiteMaxWidth && (configuration.siteMaxWidth <= 1400)) ]}
+    --siteMaxWidth: 1400px;
+    {[ elseif (configuration.limitSiteMaxWidth && (configuration.siteMaxWidth !== 0)) ]}
+    --siteMaxWidth: {{ configuration.siteMaxWidth }}px;
+    {[/]}
+    {[ if (configuration.contentContainerWidth > 756) ]}
+    --contentMaxWidth: {{ configuration.contentContainerWidth }}px;
+    {[ else ]}
+    --contentMaxWidth: 756px;
+    {[/]}
+
     {* Top navigation *}
     {[ if (configuration.topNavigationHeight !== 0) ]}
     --topNavHeight: {{ configuration.topNavigationHeight }}px;
@@ -45,10 +57,29 @@
     {[ if (configuration.lookAndFeelHeaderHeight !== 0) ]}
     --pageHeaderHeight: {{ configuration.lookAndFeelHeaderHeight }}px;
     {[/]}
-
-    /* Advanced theme configuration */
-    {{ configuration.themeConfiguration }}
 }
+
+ {* Side navigation *}
+.side-navigation-wrapper {
+    {[ let sideNavBackgroundOption = configuration.sideNavigationBackground /]}
+    {[ let sideNavigationBackground = (sideNavBackgroundOption ? getColorValueFromSettings(sideNavBackgroundOption.value, ((sideNavBackgroundOption.aliasTo !== null) ? ds.tokenById(sideNavBackgroundOption.aliasTo) : null)) : null) /]}
+    {[ if sideNavigationBackground ]}
+    --sideNavBackground: {{ sideNavigationBackground }} !important;
+    {[/]}
+}
+
+ {* Top navigation *}
+#header {
+    {[ let topNavBackgroundOption = configuration.topNavigationBackground /]}
+    {[ let topNavigationBackground = (topNavBackgroundOption ? getColorValueFromSettings(topNavBackgroundOption.value, ((topNavBackgroundOption.aliasTo !== null) ? ds.tokenById(topNavBackgroundOption.aliasTo) : null)) : null) /]}
+    {[ if topNavigationBackground ]}
+    --topNavBackground: {{ topNavigationBackground }} !important;
+    --topNavBorderColor: {{ topNavigationBackground }} !important;
+    {[/]}
+}
+
+/* Advanced theme configuration */
+{{ configuration.themeConfiguration }}
 
 
 {* Inject any custom CSS provided by the user *}

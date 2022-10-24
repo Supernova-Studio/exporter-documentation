@@ -1,4 +1,5 @@
-{[ let block = context /]}
+{[ let block = context.block /]}
+{[ let pageId = context.pageId /]}
 {* Note we are prefixing all ids with a letter because by spec ID can't start with number (which it can coming from the SDK) *}
 {[ let blockId = block.id.prefixed("T") /]}
 
@@ -28,7 +29,7 @@
                 {[ if (tab.type === "TabItem") ]}
                 <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
                   {[ for child in tab.children ]}
-                      {[ inject "page_body_structure_block" context child /]}
+                      {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
                   {[/]}
                 </div>
                 {[/]}
@@ -53,7 +54,7 @@
         <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
           <div class="accordion-body">
           {[ for child in tab.children ]}
-              {[ inject "page_body_structure_block" context child /]}
+              {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
           {[/]}
           </div>
         </div>
@@ -69,7 +70,7 @@
           {[ let id = tab.id.prefixed("T") /]}
         <div class="col-sm">
           {[ for child in tab.children ]}
-            {[ inject "page_body_structure_block" context child /]}
+            {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
           {[/]}
         </div>
       {[/]}
@@ -96,7 +97,7 @@
           {[ if (tab.type === "TabItem") ]}
           <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
             {[ for child in tab.children ]}
-                {[ inject "page_body_structure_block" context child /]}
+                {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
             {[/]}
           </div>
           {[/]}

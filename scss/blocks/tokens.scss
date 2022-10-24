@@ -55,6 +55,7 @@
     fill: var(--colorInkSecondary);
     color: var(--colorBackgroundPrimary);
     display: block;
+    flex-shrink: 0;
   }
 }
 
@@ -269,33 +270,33 @@ a.custom-property-link {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 8px;
   grid-row-gap: 8px;
-}
 
-.content-block--token-container .grid.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
+  &.variant-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-.content-block--token-container .grid.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-}
+  &.variant-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+  }
 
-.content-block--token-container .grid.grid-1 {
-  grid-template-columns: repeat(1, 1fr);
+  &.variant-grid-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
   .content-block--token-container .grid,
-  .content-block--token-container .grid.grid-3,
-  .content-block--token-container .grid.grid-2 {
+  .content-block--token-container .grid.variant-grid-3,
+  .content-block--token-container .grid.variant-grid-2 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 576px) {
   .content-block--token-container .grid,
-  .content-block--token-container .grid.grid-3 {
+  .content-block--token-container .grid.variant-grid-3 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -398,6 +399,7 @@ a.custom-property-link {
     svg {
       fill: var(--colorInkPrimary);
       color: rgba(255,255,255,0.3);
+      flex-shrink: 0;
     }
   }
 
@@ -406,6 +408,7 @@ a.custom-property-link {
       svg {
         color: rgba(0,0,0,0.3);
         fill: var(--colorInkInverted);
+        flex-shrink: 0;
       }
     }
   }
