@@ -6,7 +6,7 @@
     --pageHeaderHeight: 0px;
     --pageHeaderPaddingTop: 64px;
     --pageHeaderPaddingBottom: 48px;
-    --pageHeaderMargin: 0;
+    --pageHeaderMargin: 0px;
     --pageHeaderRadius: 0;
     --pageHeaderBackground: var(--colorBackgroundSecondary);
     --pageHeaderInk: var(--colorInkPrimary);
@@ -261,7 +261,7 @@ ol>.block-children {
     border-bottom: 1px solid var(--pageHeaderBorderColor);
     color: var(--pageHeaderInk);
     position: relative;
-    padding: 0 var(--contentContainerPadding);
+    padding: 0px 0 0 calc(var(--contentContainerPadding) - var(--pageHeaderMargin));
 
     &.style-boxed {
         --pageHeaderMargin: 20px;
