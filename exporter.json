@@ -222,7 +222,7 @@
           "Light",
           "Dark"
         ],
-        "default": "Dark"
+        "default": "Light"
       },
       {
         "key": "sideNavigationBackground",
