@@ -51,7 +51,7 @@
     {[/]}
     {[ let backgroundColorOption = configuration.lookAndFeelHeaderBackgroundColor /]}
     {[ let backgroundColor = (backgroundColorOption ? getColorValueFromSettings(backgroundColorOption.value, ((backgroundColorOption.aliasTo !== null) ? ds.tokenById(backgroundColorOption.aliasTo) : null)) : null) /]}
-    {[ if textColor ]}
+    {[ if backgroundColor ]}
     --pageHeaderBackground: {{ backgroundColor }};
     {[/]}
     {[ if (configuration.lookAndFeelHeaderHeight !== 0) ]}
@@ -85,6 +85,3 @@
 {* Inject any custom CSS provided by the user *}
  /* Custom CSS overrides */
 {{ configuration.advancedCustomizationCustomCSS }}
-
-{* Inject styles *}
-{* TODO *}
