@@ -1,0 +1,70 @@
+@mixin component-health-row-styles {
+  padding: 6px 16px 10px 16px;
+  width: max-content;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+@mixin component-health-row__title-styles {
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  justify-content: flex-start;
+}
+@mixin component-health-row__links-styles {
+  display: flex;
+  align-items: center;
+}
+@mixin component-health-row__col-styles {
+  display: flex;
+  font-size: 12px;
+}
+@mixin component-health-row__logos-styles {
+  display: flex;
+  align-items: center;
+}
+@mixin component-health-row__right-text-styles {
+  text-align: right !important;
+  padding-right: 10px;
+}
+@mixin component-health-row__select-tag-styles {
+  margin-left: 4px;
+  padding: 2px;
+}
+
+@mixin component-health-row(
+  $class: component-health-row,
+  $__title: __title,
+  $__links: __links,
+  $__select-tag: __select-tag,
+  $__col: __col,
+  $__logos: __logos,
+  $__right-text: __right-text
+) {
+  .#{$class} {
+    @include component-health-row-styles;
+
+    .#{$class}#{$__title} {
+      @include component-health-row__title-styles;
+    }
+    .#{$class}#{$__links} {
+      @include component-health-row__links-styles;
+    }
+
+    .#{$class}#{$__col} {
+      @include component-health-row__col-styles;
+    }
+    .#{$class}#{$__logos} {
+      @include component-health-row__logos-styles;
+    }
+    .#{$class}#{$__right-text} {
+      @include component-health-row__right-text-styles;
+    }
+
+    .#{$class}#{$__select-tag} {
+      @include component-health-row__select-tag-styles;
+    }
+  }
+}
+
+@include component-health-row;

@@ -318,6 +318,29 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.component-status",
+        "category": "Components",
+        "title": "Component Status (R7)",
+        "description": "Show component status across Figma, Storybook and Supernova",
+        "icon": "icons/custom-block-health.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "componentId",
+            "default": "",
+            "type": "component",
+            "label": "Component"
+          },
+          {
+            "key": "propertiesToHighlight",
+            "default": "",
+            "type": "componentProperties",
+            "label": "Properties"
+          }
+         
+        ]
+      }, 
+      {
         "key": "io.supernova.documentation-main.component-health",
         "category": "Components",
         "title": "Component Health (beta)",
