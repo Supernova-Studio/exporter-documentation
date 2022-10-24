@@ -303,7 +303,9 @@
 }
 
 .nav-name {
-  margin: 24px 0px 0px 28px;
+  margin: 0 var(--sideNavPadding) 8px;
+  border-bottom: 1px solid var(--colorBorderColorSubtle);
+  padding: 0 0 8px;
 }
 
 .nav-name span {
