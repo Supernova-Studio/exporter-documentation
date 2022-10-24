@@ -4,7 +4,7 @@
 {* Create generic embed block *}
 {[ if block.url ]}
   <div class="embed-url">
-    <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+    <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen allow="autoplay" loading="lazy"></iframe>
     {[ if block.caption ]}
         <p class="caption">{{ block.caption }}</p>
     {[/]}
