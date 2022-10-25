@@ -1,12 +1,17 @@
 {* Get figma block payload *}
 {[ const block = context /]}
+{[ let variant = block.variantKey /]}
+{[ let containerClass = "" /]}
+{[ if (variant === "square") ]}
+  {[ containerClass = variant /]}
+{[/]}
 
 {* Create figma embed block *}
 {[ if block.url ]}
-<div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
-  <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
-</div>
-{[ if block.caption ]}
-    <p class="caption">{{ block.caption }}</p>
-{[/]}
+  <div class="embed-url embed-url--figma {{ containerClass }}">
+    <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+    {[ if block.caption ]}
+        <p class="caption">{{ block.caption }}</p>
+    {[/]}
+  </div>
 {[/]}

@@ -739,6 +739,17 @@
           "name": "Frame",
           "key": "frame"
         }
+      ],
+      "FigmaEmbed": [
+        {
+          "name": "16 : 9",
+          "key": "default",
+          "isDefault": true
+        },
+        {
+          "name": "1 : 1",
+          "key": "square"
+        }
       ]
     }
   }
