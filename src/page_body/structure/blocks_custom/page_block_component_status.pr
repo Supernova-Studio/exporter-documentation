@@ -7,8 +7,8 @@
 
 {* Logos *}
 {[ let supernovaImage = assetUrl("logos/supernova_icon.svg", ds.documentationDomain()) /]}
-{[ let figmaImage = assetUrl("logos/Figma.svg", ds.documentationDomain()) /]}
-{[ let storybookImage = assetUrl("logos/Storybook.png", ds.documentationDomain()) /]}
+{[ let figmaImage = assetUrl("logos/figma.svg", ds.documentationDomain()) /]}
+{[ let storybookImage = assetUrl("logos/storybook.svg", ds.documentationDomain()) /]}
 
 
 {* Render content health block *}
