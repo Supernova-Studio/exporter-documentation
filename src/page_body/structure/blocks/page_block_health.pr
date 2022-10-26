@@ -1,6 +1,9 @@
 
 {* Get block *}
 {[ const block = context /]}
+{{ block.properties.componentId }}
+
+
 
 {* Get properties *}
 {[ let componentId = block.properties.componentId /]}

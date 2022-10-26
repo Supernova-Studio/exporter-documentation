@@ -12,7 +12,7 @@ import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedRGB } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
-
+import { debug } from './doc_functionality/doordashCustom'
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
 
@@ -70,3 +70,6 @@ Pulsar.registerFunction("contrastColor", contrastColor)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
+
+/* Custom DoorDash Functions */
+Pulsar.registerFunction("debug", debug)

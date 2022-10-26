@@ -5,7 +5,8 @@
 /* =================================== */
 
 @import './inc/variables';
-@import './inc/theme';
+//@import './inc/theme';
+@import './doorDashOverrides';
 @import './inc/utilities';
 @import './inc/keyframes';
 
@@ -83,3 +84,33 @@
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
+
+@font-face {
+    font-family: 'DD-TTNorms';
+    font-style: normal;
+    font-weight: 400;
+    src:
+      url('https://typography.doordash.com/TTNorms-Regular.woff2') format('woff2'),
+      url('https://typography.doordash.com/TTNorms-Regular.woff') format('woff'),
+      url('https://typography.doordash.com/TTNorms-Regular.ttf') format('truetype'),
+      url('https://typography.doordash.com/TTNorms-Regular.eot?#iefix') format('embedded-opentype');
+  }
+  
+  @font-face {
+    font-family: 'DD-TTNorms';
+    font-style: normal;
+    font-weight: 500;
+    src:
+      url('https://typography.doordash.com/TTNorms-Medium.woff2') format('woff2'),
+      url('https://typography.doordash.com/TTNorms-Medium.woff') format('woff'),
+      url('https://typography.doordash.com/TTNorms-Medium.ttf') format('truetype'),
+      url('https://typography.doordash.com/TTNorms-Medium.eot?#iefix') format('embedded-opentype');
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-ligatures: no-common-ligatures;
+    margin: 0;
+    padding: 0;
+  }

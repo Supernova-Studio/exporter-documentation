@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
  
 <script>
-  window.location.href = "{{ url }}"
+  //window.location.href = "{{ url }}"
 </script>
  
 <title>Redirection to documentation</title>

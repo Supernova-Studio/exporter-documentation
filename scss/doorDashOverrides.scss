@@ -1,0 +1,138 @@
+/*  Design tokens 
+/* =================================== */
+:root {
+    /*  Palette 
+    /* =================================== */
+    --colorWhite: #fff;
+    --colorNeutral100: #f7f7f7;
+    --colorNeutral200: #e7e7e7;
+    --colorNeutral300: #d6d6d6;
+    --colorNeutral400: #c4c4c4;
+    --colorNeutral500: #b2b2b2;
+    --colorNeutral600: #9f9f9f;
+    --colorNeutral700: #767676;
+    --colorNeutral800: #494949;
+    --colorNeutral900: #191919;
+    --colorRed100: #fff7f5;
+    --colorRed500: #eb1700;
+    --colorRed700: #b71000;
+    --colorRed900: #810b00;
+    --colorGreen100: #f6fffa;
+    --colorGreen500: #1fa74f;
+    --colorGreen900: #006a25;
+    --colorOrange100: #ffffeb;
+    --colorOrange500: #f6e61b;
+    --colorOrange900: #d5a600;
+  
+    /*  Core tokens 
+    /* =================================== */
+    --fontFamily: DD-TTNorms, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --borderRadiusSmall: 2px;
+    --borderRadiusDefault: 4px;
+    --borderRadiusLarge: 6px;
+    --transitionDefault: 200ms all ease-in-out;
+    --boxShadowLevel0: 0px 0px 0px 1px var(--colorBackgroundPrimary);
+    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05),
+      0px 0px 0px 1px var(--colorBackgroundSecondary);
+    --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08),
+      0px 0px 0px 1px var(--colorBorderColorSubtle);
+  
+    /*  Semantic 
+    /* =================================== */
+    /* main text */
+    --colorInkPrimary: --colorNeutral900;
+    /* secondary text */
+    --colorInkSecondary: var(--colorNeutral700);
+    /* eyebrow headings */
+    --colorInkTertiary: var(--colorNeutral500);
+    /* inverted text, e.g. for us on dark bg */
+    --colorInkInverted: var(--colorWhite);
+    /* Main bg for components */
+    --colorBackgroundPrimary: var(--colorWhite);
+    /* Secondary background (code, etc) ... */
+    --colorBackgroundSecondary: var(--colorNeutral100);
+    /* For hovers, etc., works on both Primary and Secondary ... */
+    --colorBackgroundAlt: var(--colorNeutral200);
+    /* inputs, s... */
+    --colorBorderColorProminent: var(--colorNeutral400);
+    /* borders, page structure ... */
+    --colorBorderColorSubtle: var(--colorNeutral200);
+    /* links, active states, ... */
+    --colorAccent: var(--colorRed500);
+    /* hovers for primary */
+    --colorAccentDark: var(--colorRed500);
+    /* Background for active items, e.g. in left nav or tabs */
+    --colorAccentSurface: #ecf4ff;
+    /* Ink color on accent */
+    --colorAccentInk: var(--colorWhite);
+    /* Inline code mark color */
+    --colorCodeMark: var(--colorRed700);
+  
+    /* Site */
+    --pageBackground: var(--colorBackgroundPrimary);
+  
+    /* Page Header */
+    --pageHeaderBackground: var(--colorBackgroundPrimary);
+    --pageHeaderInk: var(--colorInkPrimary);
+    --pageHeaderDescription: var(--colorInkSecondary);
+    --pageHeaderBorderColor: transparent;
+  
+    /* Top Navigation */
+    --topNavBackground: var(--colorBackgroundPrimary);
+    --topNavBorderColor: var(--colorBackgroundPrimary);
+    /* main header text and icons */
+    --topNavInk: var(--colorInkPrimary);
+    /* main header item text on hover  */
+    --topNavItemHoverInk: var(--topNavInk);
+    /* main header item text when active */
+    --topNavItemActiveInk: var(--topNavInk);
+    /* main header item background on hover */
+    --topNavItemHoverBackground: rgba(255, 255, 255, 0.15);
+    /* main header item background when active */
+    --topNavItemActiveBackground: var(--topNavItemHoverBackground);
+    --topNavHeaderHeight: 68px;
+    --topNavElevation: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  
+    /* Left Navigation */
+    --leftNavWidth: 300px;
+    --leftNavBackground: var(--colorBackgroundPrimary);
+    --leftNavBorderColor: var(--colorBorderColorSubtle);
+    --leftNavInk: var(--colorInkPrimary);
+    --leftNavItemHoverBackground: var(--colorBackgroundAlt);
+    --leftNavItemHoverBackgroundAlt: var(--colorNeutral300);
+    --leftNavItemHoverInk: var(--leftNavInk);
+    --leftNavItemActiveBackground: var(--colorAccentSurface);
+    --leftNavItemActiveInk: var(--colorAccent);
+    --leftNavInkTab: var(--colorInkSecondary);
+    --leftNavInkSection: var(--colorInkSecondary);
+    --leftNavElevation: none;
+  
+    /* CTA button */
+    --ctaButtonBackground: var(--colorAccent);
+    --ctaButtonBackgroundHover: var(--colorAccentDark);
+    --ctaButtonInk: var(--colorWhite);
+  
+    /* Blocks */
+    --spacingBlockAfter: 24px;
+  
+    /* Block: Shortcuts */
+    --shortcutIconHeight: 48px;
+    --shortcutIconWidth: 48px;
+  
+    /* Block: Heading */
+    --headingInk: var(--colorInkPrimary);
+  
+    /* Block: Banner */
+    --calloutSuccessInk: var(--colorGreen900);
+    --calloutSuccessInkSecondary: var(--colorGreen500);
+    --calloutSuccessBackground: var(--colorGreen100);
+    --calloutWarningInk: var(--colorOrange900);
+    --calloutWarningInkSecondary: var(--colorOrange500);
+    --calloutWarningBackground: var(--colorOrange100);
+    --calloutDangerInk: var(--colorRed900);
+    --calloutDangerInkSecondary: var(--colorRed500);
+    --calloutDangerBackground: var(--colorRed100);
+    --calloutInfoInk: var(--colorInkPrimary);
+    --calloutInfoInkSecondary: var(--colorInkSecondary);
+    --calloutInfoBackground: var(--colorBackgroundAlt);
+  }
