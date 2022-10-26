@@ -321,7 +321,7 @@
       },
       {
         "key": "io.supernova.documentation-main.prism-component-links",
-        "category": "Prism",
+        "category": "Components",
         "title": "Component Quick Links",
         "description": "Places Quick Links at the top of the page.",
         "icon": "icons/custom-block-health.png",
