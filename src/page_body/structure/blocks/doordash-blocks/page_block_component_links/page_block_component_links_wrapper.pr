@@ -1,0 +1,30 @@
+{* Get page from context *}
+{[ let component = context /]}
+
+{[ if component.platform.equals('android') ]}
+    {[ if !component.componentData.propertyValues['hideAndroidQuickLinks'] ]}
+        {[ const links = androidLinks() /]}
+        {[ inject "page_block_component_links_group" context { "links": links, "component": component.componentData }  /]}
+    {[/]}
+{[/]}
+
+{[ if component.platform.equals('i-os') ]}
+    {[ if !component.componentData.propertyValues['hideiOSQuickLinks'] ]}
+        {[ const links = iOSLinks() /]}
+        {[ inject "page_block_component_links_group" context { "links": links, "component": component.componentData }  /]}
+    {[/]}
+{[/]}
+
+{[ if component.platform.equals('web') ]}
+    {[ if !component.componentData.propertyValues['hideWebQuickLinks'] ]}
+        {[ const links = webLinks() /]}
+        {[ inject "page_block_component_links_group" context { "links": links, "component": component.componentData }  /]}
+    {[/]}
+{[/]}
+
+{[ if component.platform.equals('design') ]}
+    {[ if !component.componentData.propertyValues['hideDesignQuickLinks'] ]}
+        {[ const links = designLinks() /]}
+        {[ inject "page_block_component_links_group" context { "links": links, "component": component.componentData }  /]}
+    {[/]}
+{[/]}

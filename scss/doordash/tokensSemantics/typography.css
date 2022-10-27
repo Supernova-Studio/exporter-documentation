@@ -1,0 +1,1522 @@
+/* lineHeight: 300 */
+.typographyBannerLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyBannerBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonSmallTitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyButtonSmallSubtitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyButtonSmallLeading 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyButtonSmallTrailing 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonMediumTitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyButtonMediumSubtitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonMediumLeading 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonMediumTrailing 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyButtonLargeTitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonLargeSubtitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonLargeLeading 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtonLargeTrailing 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtontabSmallUnselected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtontabSmallSelected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtontabMediumUnselected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyButtontabMediumSelected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyButtontabLargeUnselected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyButtontabLargeSelected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldSmallLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldSmallInput 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldSmallButton 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldSmallDescription 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldSmallError 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldSmallHint 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldMediumLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldMediumInput 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldMediumButton 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldMediumDescription 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldMediumError 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldMediumHint 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyFieldLargeLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldLargeInput 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldLargeButton 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldLargeHint 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldLargeDescription 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyFieldLargeError 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyMapuiTextonmapUnselected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyMapuiTextonmapSelected 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyMenuSmallBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyMenuMediumBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyMenuLargeBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyNavbarExpandedTitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing:  
+  -0.02em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyNavbarExpandedSubtitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyNavbarCollapsedTitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyNavbarCollapsedSubtitle 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyNavbarExpandedAction 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyNavbarCollapsedAction 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyNumericSmall 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyNumericMedium 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing:  
+  -0.01em;
+  text-indent: 0px;
+  
+}    
+
+.typographyNumericLarge 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing:  
+  -0.02em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyPaginationNumberedAction 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyPaginationNumberedDescription 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographySliderMediumLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperFloatingSmallValue 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperFloatingSmallUnitCollapsed 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperFormSmallValue 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperFormSmallUnit 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperPageLargeValue 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperPageLargeUnit 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperSmallLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperMediumLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperLargeLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTableMediumHeader 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTableMediumBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTableMediumLink 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTagXsmallLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 8px;
+  line-height: 8px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyTagSmallLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTagMediumLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+.typographyStepperFloatingSmallUnitExpanded 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+.typographyTagLargeLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyToastBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyToastAction 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyTooltipLabel 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyTooltipBody 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobilePageTitle1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing:  
+  -0.02em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobilePageTitle2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing:  
+  -0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobileTitle1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobileTitle2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobileLabel1Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyMobileLabel1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileLabel2Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileLabel2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileBody1Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileBody1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileBody2Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileBody2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyMobileCaption1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 500 */
+.typographyMobileCaption2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 200 */
+.typographyDesktopPageTitle1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing:  
+  -0.02em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyDesktopPageTitle2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing:  
+  -0.02em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyDesktopTitle1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing:  
+  -0.01em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyDesktopTitle2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyDesktopLabel1Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 300 */
+.typographyDesktopLabel1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopLabel2Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopLabel2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopBody1Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopBody1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopBody2Emphasis 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopBody2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopCaption1 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing:  
+  0em;
+  text-indent: 0px;
+  
+}    
+
+/* lineHeight: 400 */
+.typographyDesktopCaption2 
+ {
+  
+  font-family: "DD-TTNorms";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing:  
+  0.01em;
+  text-indent: 0px;
+  
+}    
+

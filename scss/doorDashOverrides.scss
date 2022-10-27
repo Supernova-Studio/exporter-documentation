@@ -1,5 +1,6 @@
 /*  Design tokens 
 /* =================================== */
+
 :root {
     /*  Palette 
     /* =================================== */
@@ -13,7 +14,7 @@
     --colorNeutral700: #767676;
     --colorNeutral800: #494949;
     --colorNeutral900: #191919;
-    --colorRed100: #fff7f5;
+    --colorRed100: #ffe0db;
     --colorRed500: #eb1700;
     --colorRed700: #b71000;
     --colorRed900: #810b00;
@@ -58,9 +59,9 @@
     /* borders, page structure ... */
     --colorBorderColorSubtle: var(--colorNeutral200);
     /* links, active states, ... */
-    --colorAccent: var(--colorRed500);
+    --colorAccent: #FA7463;
     /* hovers for primary */
-    --colorAccentDark: var(--colorRed500);
+    --colorAccentDark: #FA7463;
     /* Background for active items, e.g. in left nav or tabs */
     --colorAccentSurface: #ecf4ff;
     /* Ink color on accent */
@@ -135,4 +136,10 @@
     --calloutInfoInk: var(--colorInkPrimary);
     --calloutInfoInkSecondary: var(--colorInkSecondary);
     --calloutInfoBackground: var(--colorBackgroundAlt);
+  }
+
+
+
+  .container-tabs, .no-container-tabs {
+    border-bottom: 2px solid #E7E7E7;
   }

@@ -5,21 +5,6 @@
 
 <!-- Header --> 
 <header id="header" class="sticky-top"> 
-    {{ pageUrl(page, null) }}
-    <br /><br />
-    {{ page.id }}
-    <br /><br />
-    {{ page.persistentId }}
-    <br /><br />
-    {{ page.title }}
-    <br /><br />
-    {{ page.type }}
-    <br /><br />
-    {{ page.slug }}
-    <br /><br />
-    {{ page.userSlug }}
-
-
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
 

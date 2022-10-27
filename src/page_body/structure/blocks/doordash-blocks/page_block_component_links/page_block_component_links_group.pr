@@ -1,0 +1,39 @@
+{[ const links = context.links /]}
+{[ const component = context.component /]}
+
+{[ if hasActiveQuickLinks(links, component) ]}
+    <div class="dd-button-group">
+        {[ for link in links ]}    
+            {[ if component.propertyValues[link.codeName] ]}
+                {[ let href = '' /]}
+                {[ if link.type.equals('prism') ]}
+                    {[ let page = ds.documentationPageById(component.propertyValues[link.codeName]) /]}
+                    {[ if page.deployedUrl ]}
+                        {[ set href = page.deployedUrl /]}
+                    {[/]}                        
+                {[ elseif link.type.equals('figma') ]}
+                    {[ set href = 'figma issue' /]}
+                {[ else  ]}
+                    {[ set href = component.propertyValues[link.codeName] /]}
+                {[/]} 
+                              
+                {[ const newWindow = !link.type.equals('prism')  /]}
+                {[ const quickLinkType = getQuickLinkTypes()[link.type] /]}
+                <a class="dd-button dd-button-is-tertiary dd-button-has-icon-start" href="{{ href }}"" {{ newWindow ? "target='_blank'" : '' }}>
+                    {[ switch link.type ]}
+                        {[ case "storybook" ]}
+                            {[ inject "icon_storybook" context null /]}     
+                        {[ case "figma" ]}
+                            {[ inject "icon_figma" context null /]} 
+                        {[ case "prism" ]}
+                            {[ inject "icon_prism" context null /]}   
+                        {[ case "github" ]}
+                            {[ inject "icon_github" context null /]}   
+                    {[/]}
+                    {{ link.label }} 
+                </a>
+            {[/]}              
+        {[/]}
+    </div>    
+{[/]}          
+                   

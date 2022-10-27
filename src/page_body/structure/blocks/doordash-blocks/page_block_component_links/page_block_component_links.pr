@@ -1,0 +1,15 @@
+
+{* Get page from context *}
+{[ let page = context /]}
+
+{[ let components = ds.allComponents() /]}
+{[ let component = getComponentByPageSlug(page, components) /]} 
+{[ let permissionsError = null /]}
+  
+{[ if component.error ]}
+    {* Error: {{ component.error }} *}
+{[/]}
+
+{[ if !component.error ]}
+    {[ inject "page_block_component_links_wrapper" context component /]}
+{[/]}

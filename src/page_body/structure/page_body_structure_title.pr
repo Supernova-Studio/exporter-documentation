@@ -105,6 +105,8 @@
                 <p class="subtitle" style="{{ style }}">{{ withHTMLNewlines(htmlSafeString(headerConfiguration.description)) }}</p>
             {[/]}
         {[/]}
+
+        {[ inject "page_block_component_links" context page /]}
     </div>
 </div>
 

@@ -1,0 +1,93 @@
+/* DD-Styles  */
+.dd-button-group {
+    width: 100%;
+    display: flex;
+    align-items: left;
+  }
+  
+  .dd-button-group .dd-button {
+    margin-right: 12px;
+    width: auto;
+    display: inline-flex;
+  }
+  
+  .dd-button {
+    border-radius: 1000px;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    padding: 0px 12px;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out 0s,
+      box-shadow 0.15s ease-in-out 0s;
+    user-select: none;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: transparent 0px 0px 0px 1px inset;
+    color: white;
+    background-color: rgb(235, 23, 0);
+    white-space: nowrap;
+    font-size: 14px;
+    font-family: DD-TTNorms, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
+    line-height: 16px;
+  }
+  
+  .dd-button:hover {
+    background-color: rgb(217, 20, 0);
+    box-shadow: transparent 0px 0px 0px 1px inset;
+    color: rgb(255, 255, 255);
+    text-decoration: none !important;
+  }
+  
+  .dd-button.is-inline {
+    width: auto;
+    display: inline-flex;
+  }
+  
+  .dd-button svg {
+    margin-top: 1px;
+    width: 14px;
+    height: 14px;
+    color:white;
+  }
+  
+  .dd-button.dd-button-has-icon-start svg {
+    margin-right: 4px;
+  }
+  
+  .dd-button.dd-button-has-icon-end svg {
+    margin-left: 4px;
+  }
+  
+  .dd-button.dd-button-is-tertiary {
+    color: rgb(25, 25, 25);
+    background-color: rgb(231, 231, 231);
+    box-shadow: rgb(231, 231, 231) 0px 0px 0px 2px inset;
+  }
+
+  .dd-button.dd-button-is-primary svg {
+    color: white;
+  }
+
+  .dd-button.dd-button-is-tertiary svg {
+    color: rgb(25, 25, 25);
+  }
+  
+  .dd-button.dd-button-is-tertiary:hover {
+    background-color: rgb(214, 214, 214);
+    box-shadow: rgb(214, 214, 214) 0px 0px 0px 1px inset;
+    color: rgb(25, 25, 25);
+  }
+  
+  .dd-button:focus {
+    box-shadow: rgb(73, 105, 245) 0px 0px 0px 3px,
+      rgb(231, 231, 231) 0px 0px 0px 1px inset;
+    outline: none;
+  }
