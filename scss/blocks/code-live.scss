@@ -68,7 +68,7 @@
     align-content: center;
     font-size: var(--fontSizeTiny);
     padding: 0px 8px 0 16px;
-    border-bottom: 1px solid var(--colorBorderColorSubtle);
+    border-bottom: 1px solid var(--colorBorderSubtle);
 
     .btn {
         transition: none;
@@ -164,19 +164,19 @@
 
 .content-block--live-sandbox.variant-codeBottom .sandbox-state-wrapper,
 .content-block--live-sandbox:not(.variant-codeTop):not(.variant-codeLeft):not(.variant-codeRight):not(.variant-noCode) .sandbox-state-wrapper {
-    border-bottom: 1px solid var(--colorBorderColorSubtle);
+    border-bottom: 1px solid var(--colorBorderSubtle);
 }
 
 .content-block--live-sandbox.variant-codeTop .sandbox-state-wrapper {
-    border-top: 1px solid var(--colorBorderColorSubtle);
+    border-top: 1px solid var(--colorBorderSubtle);
 }
 
 .content-block--live-sandbox.variant-codeLeft .sandbox-state-wrapper {
-    border-left: 1px solid var(--colorBorderColorSubtle);
+    border-left: 1px solid var(--colorBorderSubtle);
 }
 
 .content-block--live-sandbox.variant-codeRight .sandbox-state-wrapper {
-    border-right: 1px solid var(--colorBorderColorSubtle);
+    border-right: 1px solid var(--colorBorderSubtle);
 }
 
 .content-block--live-sandbox.variant-codeLeft .sandbox-state-wrapper,

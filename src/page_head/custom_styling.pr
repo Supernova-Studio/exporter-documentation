@@ -15,7 +15,7 @@
     {[ let accentAltColorOption = configuration.lookAndFeelAccentAlternativeColor /]}
     {[ let accentAltColor = (accentAltColorOption ? getColorValueFromSettings(accentAltColorOption.value, ((accentAltColorOption.aliasTo !== null) ? ds.tokenById(accentAltColorOption.aliasTo) : null)) : null) /]}
     {[ if accentAltColor ]}
-    --colorAccentAlternative: {{ accentAltColor }};
+    --colorAccentAlt: {{ accentAltColor }};
     {[/]}
     {[ let accentSurfaceColorOption = configuration.lookAndFeelAccentSurfaceColor /]}
     {[ let accentSurfaceColor = (accentSurfaceColorOption ? getColorValueFromSettings(accentSurfaceColorOption.value, ((accentSurfaceColorOption.aliasTo !== null) ? ds.tokenById(accentSurfaceColorOption.aliasTo) : null)) : null) /]}

@@ -9,10 +9,10 @@
   --contentContainerPadding: 32px;
   --tocContainerWidth: 280px;
 
-  /* Left Navigation */
+  /* Side Navigation */
   --sideNavWidth: 300px;
   --sideNavBackground: var(--colorBackgroundPrimary);
-  --sideNavBorderColor: var(--colorBorderColorSubtle);
+  --sideNavBorderColor: var(--colorBorderStructure);
   --sideNavElevation: none;
   --sideNavInk: var(--colorInkPrimary);
   --sideNavInkTab: var(--colorInkSecondary);
@@ -20,7 +20,7 @@
   --sideNavPadding: 16px; 
   --sideNavGap: 0px;
 
-  /* Left Navigation Item */
+  /* Side Navigation Item */
   --sideNavItemHoverBackground: rgba(0,0,0,0.04);
   --sideNavItemHoverInk: var(--sideNavInk);
   --sideNavItemActiveBackground: var(--colorAccentSurface);
@@ -72,12 +72,13 @@
   max-width: 100vw;
   min-height: calc(100vh - 242px);
 
-  >.content-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 0 var(--contentContainerPadding);
-}
+    >.content-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 0 var(--contentContainerPadding);
+      margin: var(--pageHeaderMargin);
+  }
 }
 
 
@@ -86,21 +87,23 @@
   background: var(--pageBackground);
 }
 
+/*=== Overrides for dark style (of the sidebar or everything) ===*/
+
+.style-dark {
+  --sideNavBackground: var(--colorNeutral900);
+  --sideNavBorderColor: var(--sideNavBackground);
+  --sideNavInk: var(--colorInkInverted);
+  --sideNavInkTab: var(--colorInkSecondary);
+  --sideNavInkSection: var(--colorInkSecondary);
+  --sideNavItemHoverBackground: rgba(255, 255, 255, 0.08);
+  --sideNavItemHoverInk: var(--sideNavInk);
+  --sideNavItemActiveBackground: rgba(255,255,255,0.2);
+  --sideNavItemActiveInk: white;
+}
+
 /*=== Side Navigation ===*/
 
 .side-navigation-wrapper {
-  &.style-dark {
-    --sideNavBackground: var(--colorNeutral900);
-    --sideNavBorderColor: var(--sideNavBackground);
-    --sideNavInk: var(--colorInkInverted);
-    --sideNavInkTab: var(--colorInkSecondary);
-    --sideNavInkSection: var(--colorInkSecondary);
-    --sideNavItemHoverBackground: rgba(255, 255, 255, 0.08);
-    --sideNavItemHoverInk: var(--sideNavInk);
-    --sideNavItemActiveBackground: rgba(255,255,255,0.2);
-    --sideNavItemActiveInk: white;
-  }
-
   background-color: var(--sideNavBackground);
   width: var(--sideNavWidth); // should this be min-width? 
   position: relative;
@@ -304,7 +307,7 @@
 
 .nav-name {
   margin: 0 var(--sideNavPadding) 8px;
-  border-bottom: 1px solid var(--colorBorderColorProminent);
+  border-bottom: 1px solid var(--colorBorderProminent);
   padding: 0 var(--sideNavItemPadding) 8px;
 }
 

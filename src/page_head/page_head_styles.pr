@@ -13,7 +13,7 @@
 <script>
   WebFont.load({
     google: {
-      families: ['Inter:400,500,700', 'Fira Coda:500']
+      families: ['Inter:400,500,700,800', 'Fira Coda:500']
     }
   });
 </script>

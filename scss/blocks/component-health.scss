@@ -120,7 +120,7 @@
 
 .health-overlay-content .links,
 .health-overlay-content .info {
-  border-top: 1px solid var(--colorBorderColorSubtle);
+  border-top: 1px solid var(--colorBorderSubtle);
   padding: 12px 0px;
 }
 
@@ -322,7 +322,7 @@
 
 .component-checklist--header {
   padding-bottom: calc(var(--contentBlockGap) / 2.5);
-  border-bottom: 1px solid var(--colorBorderColorSubtle);
+  border-bottom: 1px solid var(--colorBorderSubtle);
 }
 
 .content-block--component-table {
@@ -364,7 +364,7 @@
 .component-table-wrapper-inner td,
 th {
   vertical-align: center;
-  border-top: 1px solid var(--colorBorderColorSubtle);
+  border-top: 1px solid var(--colorBorderSubtle);
   padding: 10px;
   width: 100px;
 }

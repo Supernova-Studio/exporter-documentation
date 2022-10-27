@@ -94,7 +94,7 @@
 
 .tab-content-block {
   background: var(--colorBackgroundPrimary);
-  border: 1px solid var(--colorBorderColorSubtle);
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   padding: 24px;
   margin-top: -1px;
@@ -103,7 +103,7 @@
 .tab-pills .tab-content-block {
   padding: 0px 24px;
   border: 0;
-  border-left: 1px solid var(--colorBorderColorSubtle);
+  border-left: 1px solid var(--colorBorderSubtle);
   border-radius: 0px;
   margin-bottom: 24px;
   min-height: calc(100% - 24px);
@@ -162,7 +162,7 @@
 /* =================================== */
 
 .accordion {
-  border: 1px solid var(--colorBorderColorSubtle);
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   overflow: hidden;
 }
@@ -182,7 +182,7 @@
 .accordion-section a.collapsed .accordion-header {
   background-color: transparent;
   color: var(--colorInkPrimary);
-  border-top: 1px solid var(--colorBorderColorSubtle);
+  border-top: 1px solid var(--colorBorderSubtle);
   border-bottom: 1px solid transparent;
 }
 
@@ -267,7 +267,7 @@
   top: calc(50% + 2px);
   width: 9px;
   height: 9px;
-  border-color: var(--colorBorderColorSubtle);
+  border-color: var(--colorBorderSubtle);
   border-top: 2px solid;
   border-right: 2px solid;
   -webkit-transform: translate(-50%, -50%) rotate(-45deg);

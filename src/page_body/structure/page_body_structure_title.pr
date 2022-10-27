@@ -85,6 +85,9 @@
 
 {* Generate tabs if parent is group *}
 {[ if groupIsTabContainer ]}
+<style>
+ :root { --tabOffset: 40px; }
+</style>
 <div class="container-tabs">    
     <div class="tabbed-navigation">
         <ul class="nav nav-tabs" id="page-tab" role="tablist">

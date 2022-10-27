@@ -7,7 +7,7 @@ table.data-table {
 table.data-table,
 table.data-table th,
 table.data-table td {
-  border: 1px solid var(--colorBorderColorProminent);
+  border: 1px solid var(--colorBorderProminent);
   border-collapse: collapse;
 }
 
@@ -106,7 +106,7 @@ table td.center .sn-text-right {
     width: 1px;
   }
   table:not(.data-table) tr {
-    border-bottom: 3px solid var(--colorBorderColorSubtle);
+    border-bottom: 3px solid var(--colorBorderSubtle);
     display: block;
     margin-bottom: 0.625em;
   }

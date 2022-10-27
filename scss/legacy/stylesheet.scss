@@ -11,7 +11,7 @@
     --pageHeaderBackground: var(--colorBackgroundSecondary);
     --pageHeaderInk: var(--colorInkPrimary);
     --pageHeaderDescriptionInk: var(--colorInkSecondary);
-    --pageHeaderBorderColor: var(--colorBorderColorSubtle);
+    --pageHeaderBorderColor: var(--colorBorderStructure);
     --pageHeaderGap: 20px;
 }
 
@@ -24,7 +24,7 @@ html {
 }
 
 html {
-    scroll-padding-top: 80px;
+    scroll-padding-top: calc(var(--topNavHeight) + 20px + var(--tabOffset, 0px);
 }
 
 body {
@@ -128,7 +128,7 @@ button.bg-primary:hover {
 }
 
 .page-link:hover {
-    color: var(--colorAccentAlternative);
+    color: var(--colorAccentAlt);
 }
 
 
@@ -248,7 +248,7 @@ ol>.block-children {
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--colorBorderColorSubtle);
+    background: var(--colorNeutral900);
     opacity: 0.4;
     z-index: 0;
 }
@@ -261,7 +261,7 @@ ol>.block-children {
     border-bottom: 1px solid var(--pageHeaderBorderColor);
     color: var(--pageHeaderInk);
     position: relative;
-    padding: 0px 0 0 calc(var(--contentContainerPadding) - var(--pageHeaderMargin));
+    padding: 0px var(--contentContainerPadding);
 
     &.style-boxed {
         --pageHeaderMargin: 20px;
@@ -331,7 +331,7 @@ ol>.block-children {
         /* Firefox */
         -ms-overflow-style: none;
         /* Internet Explorer 10+ */
-        box-shadow: inset 0px -1px 0 0px var(--colorBorderColorSubtle);
+        box-shadow: inset 0px -1px 0 0px var(--colorBorderSubtle);
     }
     
 }    
@@ -392,7 +392,7 @@ ol>.block-children {
 
 #content-nav {
     padding-left: 16px;
-    border-left: 1px solid var(--colorBorderColorProminent);
+    border-left: 1px solid var(--colorBorderProminent);
     width: 200px;
     position: sticky;
     float: right;
@@ -400,6 +400,7 @@ ol>.block-children {
     z-index: 10;
     margin-left: 80px;
     align-self: flex-start;
+    margin-top: 16px;
 }
 
 #content-nav>ul>li.sub {

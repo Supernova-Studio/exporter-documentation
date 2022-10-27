@@ -6,6 +6,8 @@
   border-radius: var(--borderRadiusDefault);
   display: flex;
   gap: 12px;
+  font-size: var(--fontSizeSmall);
+  line-height: var(--lineHeightSmall);
 
   .icon {
     width: 24px;

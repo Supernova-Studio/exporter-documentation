@@ -34,24 +34,26 @@
   }
 }
 
-#header {
-  &.style-light {
-    --topNavBackground: var(--colorBackgroundPrimary);
-    --topNavBorderColor: var(--topNavBackground);
-    --topNavInk: var(--colorInkPrimary);
-    --topNavItemHoverInk: var(--colorAccent);
-    --topNavItemActiveInk: var(--colorWhite);
-    --topNavItemActiveBackground: var(--colorAccent);
-    --topNavItemHoverBackground: var(--colorAccentSurface);
-  
-    --buttonSlackBackground: #5A1D5E;
-    --buttonSlackBackgroundHover: #4d1352;
-    --buttonSlackInk: #fff;
-    --buttonSlackInkHover: #fff;
-    --buttonSlackBorder: var(--colorBorderColorSubtle);
-    --buttonSlackBorderHover: var(--buttonSlackBackgroundHover);
-  }
+/*=== Overrides for light style (of the sidebar or everything) ===*/
+.style-light {
+  --topNavBackground: var(--colorBackgroundPrimary);
+  --topNavBorderColor: var(--topNavBackground);
+  --topNavInk: var(--colorInkPrimary);
+  --topNavItemHoverInk: var(--colorAccent);
+  --topNavItemActiveInk: var(--colorWhite);
+  --topNavItemActiveBackground: var(--colorAccent);
+  --topNavItemHoverBackground: var(--colorAccentSurface);
 
+  --buttonSlackBackground: #5A1D5E;
+  --buttonSlackBackgroundHover: #4d1352;
+  --buttonSlackInk: #fff;
+  --buttonSlackInkHover: #fff;
+  --buttonSlackBorder: var(--colorBorderSubtle);
+  --buttonSlackBorderHover: var(--buttonSlackBackgroundHover);
+}
+
+
+#header {
   box-shadow: var(--topNavElevation);
   background-color: var(--topNavBackground);
   border-bottom: 1px solid var(--topNavBorderColor);
@@ -582,7 +584,7 @@ a.site-logo {
 }
 
 .primary-menu ul.navbar-nav > li:hover > a {
-  color: var(--colorAccentAlternative);
+  color: var(--colorAccentAlt);
 }
 
 .primary-menu a.active {

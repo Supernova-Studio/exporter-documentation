@@ -23,7 +23,7 @@
       position: relative;
 
       div.preview {
-        border-bottom: 1px solid var(--colorBorderColorSubtle);
+        border-bottom: 1px solid var(--colorBorderSubtle);
         background-color: var(--colorBackgroundSecondary);
         display: flex;
         align-items: center;
@@ -76,7 +76,7 @@
 
 .layout-tiles .grid > div,
 .layout-tiles .grid > a > div {
-  border: 1px solid var(--colorBorderColorSubtle);
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   box-sizing: border-box;
   overflow: hidden;
@@ -102,6 +102,11 @@
   color: var(--colorInkSecondary);
 }
 
+.layout-tiles .grid>div div.preview,
+.layout-tiles .grid>a>div div.preview {
+  border-bottom: 0;
+}
+
 /* matching the style of image caption */
 .layout-tiles.variant-plain .grid > div p.title,
 .layout-tiles.variant-plain .grid > a > div p.title {
@@ -109,6 +114,7 @@
   color: var(--colorInkSecondary);
   font-weight: var(--fontWeightRegular);
 }
+
 
 /* Tile grid configurations */
 
