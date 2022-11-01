@@ -275,8 +275,10 @@
 }
 
 .dos,
-.donts ul li {
+.donts,
+ul li {
   line-height: 1.5;
+  list-style: none;
 }
 
 .dos ul li::before {
@@ -320,20 +322,15 @@
   color: #c13329;
   font-weight: bold;
   font-size: 18px;
-  padding-left: 30px;
+  padding-left: 29px;
   font-weight: bold;
 }
 .dos h3 {
   list-style: none;
-  padding-left: 30px;
+  padding-left: 29px;
   color: #509f47;
   font-weight: bold;
   font-size: 18px;
-}
-
-.dos,
-.donts ul {
-  list-style: none;
 }
 
 .donts ul li::before {
