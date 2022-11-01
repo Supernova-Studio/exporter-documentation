@@ -7,7 +7,7 @@
 
 {* Logos *}
 {[ let supernovaImage = assetUrl("logos/supernova_icon.svg", ds.documentationDomain()) /]}
-{[ let figmaImage = assetUrl("logos/figma.svg", ds.documentationDomain()) /]}
+{[ let figmaImage = assetUrl("logos/Figma.svg", ds.documentationDomain()) /]}
 {[ let storybookImage = assetUrl("logos/storybook.svg", ds.documentationDomain()) /]}
 
 
@@ -37,23 +37,23 @@
 
         
 {* Generate inline component health *}
-<div class="component-health-row {{ healthTagSlug }} data-block-id=" {{ block.id }}">
+<div class="component-status">
 {[ if (component && component.updatedAt) ]}
 
 
 
 {[/]}
-  <p class="component-health-row__title">STATUS</p>
+  <p class="component-status__title">STATUS</p>
   {* Generate properties that are of non-link type properties *}
   {[ if (staticPropertiesToHighlight > 0) ]}
-  <div class="component-health-row__links">
+  <div class="component-status__links">
     {[ for property in component.properties ]}
     {[ if (propertiesToHighlight.contains(property.persistentId) && ["Text", "Number", "Generic", "Boolean","Select"].contains(property.propertyType)) ]}
 
     {* Generate content for each property *}
-    <div class="component-health-row__col">
+    <div class="component-status__col">
       {* Property name *}
-      <div class="component-health-row__logos">
+      <div class="component-status__logos">
         {[ switch property.name ]}
         {[ case "Documentation Health" ]}
         <img src="{{ supernovaImage }}" />
@@ -65,7 +65,7 @@
       </div>
 
       {* Property value *}
-      <div class="component-health-row__right-text">
+      <div class="component-status__right-text">
         {[ switch property.propertyType ]}
         {[ case "Text" ]}
         {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}
@@ -87,7 +87,7 @@
         {[ contrastColor = contrastColor(optionColor) /]}
         {[/]}
         {[/]}
-        <span class="component-health-row__select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+        <span class="component-status__select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
           {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
         </span>
         {[/]}
@@ -98,7 +98,7 @@
   </div>
   {[/]}
 {[ if (linkPropertiesToHighlight > 0) ]}
-<div class="component-health-row__links">
+<div class="component-status__links">
     {[ for property in component.properties ]}
         {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL", "Link"].contains(property.propertyType)) ]}
             {* Limiting only to URL now, since the Link doesn't have data in the payload yet *}
@@ -111,11 +111,11 @@
                         <a href="#TODO">
                 {[/]}
                 {* Generate content for each property *}
-                <div class="component-health-row__col">
+                <div class="component-status__col">
                     {* Property name *}
-                    <div class="component-health-row__logos">{{ property.name }}</div>
+                    <div class="component-status__logos">{{ property.name }}</div>
                     {* Property value *}
-                    <div class="component-health-row__right-text">
+                    <div class="component-status__right-text">
                     {[ switch property.propertyType ]}
                         {[ case "Link" ]}
                         <img class="link-chevron" />
