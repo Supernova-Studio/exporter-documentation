@@ -2,6 +2,10 @@ table.data-table {
   border-collapse: collapse;
   max-width: -moz-fit-content;
   min-width: fit-content;
+
+  a.custom-property-link {
+    font-size: var(--fontSizeSmall);
+  }
 }
 
 table.data-table,
@@ -9,24 +13,12 @@ table.data-table th,
 table.data-table td {
   border: 1px solid var(--colorBorderSubtle);
   border-collapse: collapse;
-  border-left: 0;
-}
-
-table.data-table,
-table.data-table th:last-child,
-table.data-table td:last-child {
-  border-right: 0;
 }
 
 
 table.data-table th,
 table.data-table td {
   padding: 8px 12px;
-}
-
-table.data-table tr th > :first-child,
-table.data-table tr td > :first-child {
-  margin-top: 0 !important;
 }
 
 table.data-table tr th > :first-child,
