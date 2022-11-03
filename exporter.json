@@ -543,8 +543,8 @@
         "key": "advancedCustomizationCustomCSS",
         "type": "string",
         "label": "Custom CSS (deprecated, do not use)",
-        "description": "Deprecated custom CSS. The content of this field is not applied to published documentation site.",
-        "category": "Look & feel",
+        "description": "Deprecated custom CSS. The content of this field will not applied to published documentation site.",
+        "category": "Other",
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,
         "inputType": "code"
