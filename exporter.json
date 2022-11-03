@@ -38,7 +38,7 @@
         "key": "headerLogoHeight",
         "type": "number",
         "label": "Site logo height",
-        "description": "The height of your site logo in the top navigation bar.",
+        "description": "The height of your site logo in the top navigation bar, measured in pixels.",
         "category": "Look & feel",
         "default": 28
       },
