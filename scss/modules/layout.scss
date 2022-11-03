@@ -165,29 +165,6 @@
     padding: 0;
     height: auto;
   }
-
-  .btn-search {
-    border: 0;
-    display: flex;
-    padding: 8px 12px;
-    border-radius: var(--navItemBorderRadius);
-    align-items: center;
-    gap: 12px;
-    background: var(--sideNavButtonSearchBackground);
-    color: var(--colorInkSecondary);
-    font-weight: var(--fontWeightSemibold);
-    font-size: var(--fontSizeSmall);
-    transition: var(--transitionDefault);
-
-    svg {
-      display: block;
-    }
-
-    &:hover {
-      background: var(--colorAccentSurface);
-      color: var(--colorAccent);
-    }
-  }
 }
 
 

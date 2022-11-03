@@ -24,6 +24,12 @@
 
   --logoHeight: 28px;
   --logoWrapperWidth: var(--sideNavWidth);
+
+  /* main header item background when active */
+  --buttonSearchBackground: rgba(255, 255, 255, 0.1);
+  --buttonSearchBackgroundHover: rgba(255, 255, 255, 0.2);
+  --buttonSearchInk: var(--colorInkSecondary);
+  --buttonSearchInkHover: var(--colorInkInverted);
 }
 
 .hidden-top-nav {
@@ -51,6 +57,12 @@
   --buttonSlackInkHover: #fff;
   --buttonSlackBorder: var(--colorBorderSubtle);
   --buttonSlackBorderHover: var(--buttonSlackBackgroundHover);
+
+  --buttonSearchBackground: var(--colorBackgroundAlt);
+  --buttonSearchBackgroundHover: var(--colorAccentSurface);
+  --buttonSearchInk: var(--colorInkTertiary);
+  --buttonSearchInkHover: var(--colorAccent);
+
 }
 
 
@@ -92,7 +104,7 @@
   }
 }
 
-#header-nav .btn-search {
+.btn-search {
   color: var(--topNavInk);
   background: none;
   cursor: pointer;
@@ -105,15 +117,39 @@
   border-radius: var(--borderRadiusDefault);
   flex-shrink: 0;
   justify-content: center;
-}
 
-#header-nav .btn-search:hover {
-  color: var(--topNavItemHoverInk);
-  background-color: var(--topNavItemHoverBackground);
-}
+  svg {
+    flex-shrink: 0;
+  }
 
-#header-nav .btn-search svg {
-  flex-shrink: 0;
+  &.expanded {
+    width: auto;
+    gap: 8px;
+    background: var(--buttonSearchBackground);
+    padding: 0 12px 0 12px;
+    min-width: 160px;
+    justify-content: flex-start;
+    font-size: var(--fontSizeSmall);
+    color: var(--buttonSearchInk);
+    font-weight: var(--fontWeightSemibold);
+
+    svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      color: var(--buttonSearchInkHover);
+      background-color: var(--buttonSearchBackgroundHover);
+    }
+  }
+
+  &:hover {
+    color: var(--topNavItemHoverInk);
+    background-color: var(--topNavItemHoverBackground);
+  }
+
 }
 
 a.site-logo {

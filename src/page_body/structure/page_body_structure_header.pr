@@ -70,9 +70,15 @@
                         </div>
                     </div>
                     {[/]}
-                    <button class="btn-search search">
-                        {[ inject "icon_search" context configuration /]}
-                    </button>
+                    {[ if (configuration.searchButtonType === "Icon + label") ]}
+                        <button class="btn-search search expanded">
+                            {[ inject "icon_search" context configuration /]} Search...
+                        </button>
+                    {[ else ]}
+                        <button class="btn-search search">
+                            {[ inject "icon_search" context configuration /]}
+                        </button>
+                    {[/]}
                     {[ if configuration.advancedCustomizationShowCTA ]}
                         {[ let ctaText = (configuration.advancedCustomizationCTAText ? configuration.advancedCustomizationCTAText : "Open site") /]}
                         {[ let ctaUrl = (configuration.advancedCustomizationCTAUrl ? configuration.advancedCustomizationCTAUrl : "") /]}

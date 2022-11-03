@@ -168,6 +168,18 @@
         "default": 68
       },
       {
+        "key": "searchButtonType",
+        "type": "enum",
+        "label": "Search button type",
+        "description": "The type of the search button in top navigation.",
+        "category": "Top navigation",
+        "values": [
+          "Only icon",
+          "Icon + label"
+        ],
+        "default": "Only icon"
+      },
+      {
         "key": "advancedCustomizationShowVersionDropdown",
         "type": "boolean",
         "label": "Show version dropdown",
