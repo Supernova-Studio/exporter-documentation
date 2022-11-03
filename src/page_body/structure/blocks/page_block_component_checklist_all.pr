@@ -33,7 +33,7 @@
                     {[/]}
                     {*
                     {[ if block.properties.showLastUpdatedColumn ]}
-                        <td class="center">Last updated</td>
+                        <th class="center">Last updated</th>
                     {[/]}  
                     *}   
                 </tr>   

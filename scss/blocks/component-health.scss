@@ -353,7 +353,7 @@
 }
 
 .component-table-wrapper-inner table.data-table th {
-  font-size: var(--fontSizeTiny); 
+  font-size: var(--fontSizeSmall); 
 }
 
 .component-table-wrapper-inner table.header-column thead tr:first-child,
@@ -385,11 +385,3 @@ th {
 .component-select-tag.dark {
   color: var(--colorNeutral900);
 }
-
-/*
-.component-table-wrapper-inner th {
-    position: absolute;
-    left: 0;
-    width: 150px;
-    height: 100%;
-}*/

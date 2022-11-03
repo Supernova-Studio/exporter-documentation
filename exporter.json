@@ -81,7 +81,7 @@
       {
         "key": "customFontFamily",
         "type": "string",
-        "description": "Font family used in published documentation.",
+        "description": "Font used in published documentation. If you use a custom font family (e.g. from Google Fonts), you might need to embed it below.",
         "label": "Font family",
         "category": "Look & feel",
         "default": "Inter, Arial, sans-serif"
@@ -107,7 +107,7 @@
         "inputType": "code"
       },
       {
-        "key": "advancedCustomizationCustomCSS",
+        "key": "customCSS",
         "type": "string",
         "label": "Custom CSS",
         "description": "Need even more customization? You can add custom CSS, which will override everything before it. Please note, there is some risk that the CSS classes and DOM structure may change in the future.",
@@ -538,6 +538,16 @@
         "default": "<script>\r\n    \r\n</script>",
         "isMultiline": true,
         "inputType": "code"
+      },
+      {
+        "key": "advancedCustomizationCustomCSS",
+        "type": "string",
+        "label": "Custom CSS (deprecated, do not use)",
+        "description": "Deprecated custom CSS. The content of this field is not applied to published documentation site.",
+        "category": "Look & feel",
+        "default": "body,\r\nhtml {\r\n\r\n}",
+        "isMultiline": true,
+        "inputType": "code"
       }
     ],
     "blocks": [
@@ -567,13 +577,11 @@
         "properties": [
           {
             "key": "componentId",
-            "default": "",
             "type": "component",
             "label": "Component"
           },
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           }
@@ -598,13 +606,11 @@
         "properties": [
           {
             "key": "componentId",
-            "default": "",
             "type": "component",
             "label": "Component"
           },
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           },
@@ -666,7 +672,6 @@
         "properties": [
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           },

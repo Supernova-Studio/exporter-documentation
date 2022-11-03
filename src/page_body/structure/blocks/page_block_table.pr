@@ -7,13 +7,14 @@
     {[ tableWidth = (tableWidth + column.width.value.measure) /]}
 {[/]}
 
-{[ let borderless = (!block.tableProperties.showBorders ? "borderless" : "") /]}
-{[ let headerRow = (block.tableProperties.showHeaderRow ? "header-row" : "") /]}
-{[ let headerColumn = (block.tableProperties.showHeaderColumn ? "header-column" : "") /]}
+{[ let borderless = (!block.tableProperties.showBorders ? " borderless" : "") /]}
+{[ let headerRow = (block.tableProperties.showHeaderRow ? " header-row" : "") /]}
+{[ let headerColumn = (block.tableProperties.showHeaderColumn ? " header-column" : "") /]}
 
 {* Scroll wrapper boundary *}
 <div class="content-block content-block--table data-table-wrapper">
-  <table class="data-table {{ borderless }} {{ headerRow }} {{ headerColumn }}" style="width: {{ tableWidth }}px">
+<div>
+  <table class="data-table{{ borderless }}{{ headerRow }}{{ headerColumn }}" style="width: {{ tableWidth }}px">
   {* Row scope *}
   {[ let rowIndex = 0 /]}
   {[ for row in block.children ]}
@@ -44,4 +45,5 @@
     {[ rowIndex = (rowIndex + 1) /]}
   {[/]}
   </table>
+  </div>
 </div>

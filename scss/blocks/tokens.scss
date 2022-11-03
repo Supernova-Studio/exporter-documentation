@@ -250,6 +250,8 @@
 a.custom-property-link {
   color: var(--colorInkPrimary);
   text-decoration: underline;
+  font-weight: var(--fontWeightSemibold);
+  font-size: var(--fontSizeSmall);
 
   .icon {
     display: inline-block;
