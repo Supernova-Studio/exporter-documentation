@@ -18,6 +18,10 @@
     flex-shrink: 0;
   }
 
+  .content {
+    margin-top: 1px;
+  }
+
   &.callout-info {
     color: var(--calloutInfoInk);
     background-color: var(--calloutInfoBackground);

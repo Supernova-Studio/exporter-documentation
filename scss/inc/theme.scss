@@ -6,7 +6,7 @@
   --colorWhite: #fff;
   --colorNeutral100: #f9f9fa;
   --colorNeutral200: #f2f4f5;
-  --colorNeutral300: #e5e9eb;
+  --colorNeutral300: #e6e9eb;
   --colorNeutral400: #dce0e4;
   --colorNeutral500: #9298a0;
   --colorNeutral600: #6e747e;
@@ -26,7 +26,7 @@
 
   /*  Core tokens 
   /* =================================== */
-  --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
+  --fontFamily: Inter, Arial, sans-serif;
   --headingFontFamily: var(--fontFamily);
   --borderRadiusSmall: 2px;
   --borderRadiusDefault: 4px;
@@ -58,7 +58,7 @@
   /* inputs, s... */
   --colorBorderProminent: var(--colorNeutral400);
   /* soft borders ... */
-  --colorBorderSubtle: var(--colorNeutral200);
+  --colorBorderSubtle: var(--colorNeutral300);
   /* for page structure */
   --colorBorderStructure: var(--colorBorderSubtle);
   /* links, active states, ... */

@@ -79,6 +79,14 @@
         "default": 2
       },
       {
+        "key": "customFontFamily",
+        "type": "string",
+        "description": "Font family used in published documentation.",
+        "label": "Font family",
+        "category": "Look & feel",
+        "default": "Inter, Arial, sans-serif"
+      },
+      {
         "key": "advancedCustomizationCustomFonts",
         "type": "string",
         "label": "Custom font embed",

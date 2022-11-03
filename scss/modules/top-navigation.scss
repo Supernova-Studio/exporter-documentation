@@ -34,10 +34,11 @@
   }
 }
 
-/*=== Overrides for light style (of the sidebar or everything) ===*/
+/*=== Overrides for light style (of the sidebar, topbar or everything) ===*/
 .style-light {
   --topNavBackground: var(--colorBackgroundPrimary);
   --topNavBorderColor: var(--topNavBackground);
+  --topNavBorderWidth: 1px;
   --topNavInk: var(--colorInkPrimary);
   --topNavItemHoverInk: var(--colorAccent);
   --topNavItemActiveInk: var(--colorWhite);
@@ -56,7 +57,7 @@
 #header {
   box-shadow: var(--topNavElevation);
   background-color: var(--topNavBackground);
-  border-bottom: 1px solid var(--topNavBorderColor);
+  border-bottom: var(--topNavBorderWidth) solid var(--topNavBorderColor);
 
   .navbar {
     padding: 0px;
@@ -135,54 +136,6 @@ a.site-logo {
   img {
       height: var(--logoHeight);
       max-height: 44px;
-  }
-}
-
-.site-logo-wrapper {
-  --topNavInk: var(--colorInkPrimary);
-
-  color: var(--sideNavInk);
-  display: flex;
-  flex-direction: column;
-  padding: 28px var(--sideNavPadding) 24px;
-  position: sticky;
-  top: 0;
-  background: var(--sideNavBackground);
-  z-index: 1;
-  gap: 24px;
-  
-  .site-logo {
-    align-self: flex-start;
-    display: flex !important;
-  }
-
-  .logo-wrapper {
-    width: auto;
-    padding: 0;
-    height: auto;
-  }
-
-  .btn-search {
-    border: 0;
-    display: flex;
-    padding: 8px 12px;
-    border-radius: var(--navItemBorderRadius);
-    align-items: center;
-    gap: 12px;
-    background: var(--colorBackgroundSecondary);
-    color: var(--colorInkSecondary);
-    font-weight: var(--fontWeightSemibold);
-    font-size: var(--fontSizeSmall);
-    transition: var(--transitionDefault);
-
-    svg {
-      display: block;
-    }
-
-    &:hover {
-      background: var(--colorAccentSurface);
-      color: var(--colorAccent);
-    }
   }
 }
 

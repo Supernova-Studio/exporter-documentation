@@ -7,13 +7,21 @@ table.data-table {
 table.data-table,
 table.data-table th,
 table.data-table td {
-  border: 1px solid var(--colorBorderProminent);
+  border: 1px solid var(--colorBorderSubtle);
   border-collapse: collapse;
+  border-left: 0;
 }
+
+table.data-table,
+table.data-table th:last-child,
+table.data-table td:last-child {
+  border-right: 0;
+}
+
 
 table.data-table th,
 table.data-table td {
-  padding: 4px 8px;
+  padding: 8px 12px;
 }
 
 table.data-table tr th > :first-child,
@@ -27,8 +35,6 @@ table.data-table tr td > :last-child {
 }
 
 .data-table-wrapper {
-  width: 752px; /* fixing a bug with horizontal scrolling of full-width table */
-
   p {
     font-size: var(--fontSizeSmall);
     line-height: 1.4;
@@ -62,6 +68,21 @@ table.header-row thead tr:first-child {
   p {
     font-weight: var(--fontWeightBold);
   }
+}
+
+table.header-column th:first-child,
+table.header-column td:first-child {
+  border-right-width: 2px;
+}
+
+table.header-row {
+  border-top-width: 0;
+}
+
+table.header-row tr:first-child th,
+table.header-row tr:first-child td {
+  border-bottom-width: 2px;
+  border-top-width: 0;
 }
 
 table th.left,

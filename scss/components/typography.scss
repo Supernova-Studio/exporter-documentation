@@ -20,9 +20,9 @@
     --headingScaleFactor: 0.28;
     --headingLineHeight: 1.3;
     --headingFontWeight: var(--fontWeightBold);
-    --headingLevel1Size: 2.5rem;
-    --headingLevel2Size: 2rem;
-    --headingLevel3Size: 1.75rem;
+    --headingLevel1Size: 2.3rem;
+    --headingLevel2Size: 1.8rem;
+    --headingLevel3Size: 1.5rem;
 
     /* Page Title + Description */
     --pageTitleFontFamily: var(--fontFamily);
@@ -42,7 +42,7 @@
 
 body {
     font-family: var(--fontFamily);
-    font-size: calc( var(--contentFontBase) + (var(--contentFontBase) * var(--headingScaleFactor) * var(--contentFontSizeAdjustment, 0)));
+    font-size: var(--contentFontBase);
     line-height: var(--contentBodyLineHeight);
     color: var(--colorInkPrimary);
     font-weight: var(--fontWeightRegular);
@@ -51,15 +51,15 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 h1, h2, h3, h4, h5 {
     font-family: var(--headingFontFamily);
     color: var(--headingInk);
     font-size: var(--headingFontSize);
     line-height: var(--headingLineHeight);
     margin-top: calc(var(--contentBlockGap) * var(--contentBlockGapAdjustment));
-    margin-bottom: calc(var(--contentBlockGap) / 2.5);
     font-weight: var(--headingFontWeight);
+    margin-bottom: calc(var(--contentBlockGap) / 1.5);
+
 
     // global removing margin-top when a heading is the first child in the box
     &:first-child,
@@ -71,6 +71,10 @@ h1, h2, h3, h4, h5 {
 p {
     margin-top: 0;
     margin-bottom: calc(var(--contentBlockGap) / 2);
+}
+
+p + .content-block {
+    margin-top: var(--contentBlockGap);
 }
 
 h1,

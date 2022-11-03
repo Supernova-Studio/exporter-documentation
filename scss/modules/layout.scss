@@ -35,6 +35,8 @@
   --sideNavSubItemIndentMargin: var(--sideNavPadding);
   --sideNavSubItemIndentPadding: 0px;
 
+  --sideNavButtonSearchBackground: var(--colorBackgroundSecondary);
+
   /* Left Navigation Group */
   --sideNavGroupTextTransform: uppercase;
   --sideNavGroupFontWeight: var(--fontWeightBold);
@@ -136,6 +138,56 @@
     flex-direction: column;
   }
 }
+
+
+.site-logo-wrapper {
+  --topNavInk: var(--colorInkPrimary);
+
+  color: var(--sideNavInk);
+  display: flex;
+  flex-direction: column;
+  padding: 28px var(--sideNavPadding) 24px;
+  position: sticky;
+  top: 0;
+  background: var(--sideNavBackground);
+  z-index: 1;
+  gap: 24px;
+  
+  .site-logo {
+    align-self: flex-start;
+    display: flex !important;
+  }
+
+  .logo-wrapper {
+    width: auto;
+    padding: 0;
+    height: auto;
+  }
+
+  .btn-search {
+    border: 0;
+    display: flex;
+    padding: 8px 12px;
+    border-radius: var(--navItemBorderRadius);
+    align-items: center;
+    gap: 12px;
+    background: var(--sideNavButtonSearchBackground);
+    color: var(--colorInkSecondary);
+    font-weight: var(--fontWeightSemibold);
+    font-size: var(--fontSizeSmall);
+    transition: var(--transitionDefault);
+
+    svg {
+      display: block;
+    }
+
+    &:hover {
+      background: var(--colorAccentSurface);
+      color: var(--colorAccent);
+    }
+  }
+}
+
 
 .group-open + .nav-item {
   margin-top: var(--sideNavGroupMarginTop);
