@@ -5,7 +5,7 @@
 
 {* Ignore block if it is empty *}
 {[ if block.tokenIds.count() > 0) ]}
-  <div class="token-container">
+  <div class="content-block content-block--token-container">
     {[ if (variant === "table") ]}
     {* Displaying the list of tokens as a table *}
 
@@ -20,7 +20,7 @@
       {[ elseif (variant.contains("stack")) ]}
       {* Stack – Displaying the list of tokens as a stack (great for colors) *}
 
-        <div class="stack {{ variant }}">
+        <div class="stack{{ getVariantClass(variant) }}">
         {* Render all tokens *}
           {[ for tokenId in block.tokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
@@ -30,7 +30,7 @@
     {[ else ]}
     {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
 
-      <div class="grid {{ variant }}">
+      <div class="grid{{ getVariantClass(variant) }}">
         {[ for tokenId in block.tokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
           {[ inject "page_block_token_variant_grid_item" context token /]}

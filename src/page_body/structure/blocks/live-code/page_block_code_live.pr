@@ -6,7 +6,7 @@
 {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
 
 {* Generate sandbox code which will be automatically converted to live sandbox *}
-<div class="sandbox-main-wrapper {{ (block.variantKey !== null) ? block.variantKey : "" }}">
+<div class="content-block content-block--live-sandbox{{getVariantClass(block.variantKey)}}">
     {* Panel is always on top *}
     {[ if (variant !== "noCodeNoControls") ]}
         {[ inject "page_block_code_live_panel" context { "sandboxId" : sandboxId } /]}

@@ -17,7 +17,7 @@
 
 @import './modules/search';
 @import './modules/layout';
-@import './modules/header';
+@import './modules/top-navigation';
 @import './modules/page-navigation';
 @import './modules/footer';
 
@@ -27,6 +27,10 @@
 /*  Components
 /* =================================== */
 
+@import './components/button';
+@import './components/content-block';
+@import './components/preloader';
+@import './components/typography';
 @import './components/tiles';
 @import './components/tooltip';
 
@@ -40,6 +44,7 @@
 @import './blocks/code-block';
 @import './blocks/code-live';
 @import './blocks/component-health';
+@import './blocks/divider';
 @import './blocks/embed-storybook';
 @import './blocks/embed';
 @import './blocks/image';

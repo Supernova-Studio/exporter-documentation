@@ -36,7 +36,7 @@
 {[ elseif token.tokenType.equals("Measure")]}
     <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}</div>
 {[ elseif token.tokenType.equals("Radius")]}
-    <div class="token-preview-container" style="border-radius: {{ token.value.radius.measure}}px; border-color: var(--colorBorderColorProminent)">{[ inject "page_block_token_reference_badge" context token /]}</div>
+    <div class="token-preview-container" style="border-radius: {{ token.value.radius.measure}}px; border-color: var(--colorBorderProminent)">{[ inject "page_block_token_reference_badge" context token /]}</div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="token-preview-container overflowing borderless">
         {[ inject "page_block_token_reference_badge" context token /]}

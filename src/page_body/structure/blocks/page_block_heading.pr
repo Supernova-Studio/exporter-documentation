@@ -7,17 +7,17 @@
 {[ const headingSlug = slugifyHeading(block) /]}
 {[ switch block.headingType ]}
     {[ case "1" ]}
-        <h1 class="heading" id="{{ headingSlug }}">
+        <h1 class="heading heading--level-1" id="{{ headingSlug }}">
             {[ inject "page_block_rich_text" context block.text /]}
             {[ inject "page_block_copy_anchor" context headingSlug /]}
         </h1>
     {[ case "2" ]}
-        <h2 class="heading" id="{{ headingSlug }}">
+        <h2 class="heading heading--level-2" id="{{ headingSlug }}">
             {[ inject "page_block_rich_text" context block.text /]}
             {[ inject "page_block_copy_anchor" context headingSlug /]}
         </h2>
     {[ case "3" ]}
-        <h3 class="heading" id="{{ headingSlug }}">
+        <h3 class="heading heading--level-3" id="{{ headingSlug }}">
             {[ inject "page_block_rich_text" context block.text /]}
             {[ inject "page_block_copy_anchor" context headingSlug /]}
         </h3>

@@ -6,7 +6,7 @@
   --colorWhite: #fff;
   --colorNeutral100: #f9f9fa;
   --colorNeutral200: #f2f4f5;
-  --colorNeutral300: #e5e9eb;
+  --colorNeutral300: #e6e9eb;
   --colorNeutral400: #dce0e4;
   --colorNeutral500: #9298a0;
   --colorNeutral600: #6e747e;
@@ -26,16 +26,18 @@
 
   /*  Core tokens 
   /* =================================== */
-  --fontFamily: 'Inter', Arial, Helvetica, sans-serif;
+  --fontFamily: Inter, Arial, sans-serif;
+  --headingFontFamily: var(--fontFamily);
   --borderRadiusSmall: 2px;
   --borderRadiusDefault: 4px;
   --borderRadiusLarge: 6px;
+  --navItemBorderRadius: var(--borderRadiusDefault);
   --transitionDefault: 200ms all ease-in-out;
-  --boxShadowLevel0: 0px 0px 0px 1px var(--colorBackgroundPrimary);
+  --boxShadowLevel0: 0px 0px 0px 1px var(--colorBorderSubtle);
   --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05),
     0px 0px 0px 1px var(--colorBackgroundSecondary);
   --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08),
-    0px 0px 0px 1px var(--colorBorderColorSubtle);
+    0px 0px 0px 1px var(--colorBorderSubtle);
 
   /*  Semantic 
   /* =================================== */
@@ -44,7 +46,7 @@
   /* secondary text */
   --colorInkSecondary: var(--colorNeutral700);
   /* eyebrow headings */
-  --colorInkTertiary: var(--colorNeutral500);
+  --colorInkTertiary: var(--colorNeutral600);
   /* inverted text, e.g. for us on dark bg */
   --colorInkInverted: var(--colorWhite);
   /* Main bg for components */
@@ -54,13 +56,15 @@
   /* For hovers, etc., works on both Primary and Secondary ... */
   --colorBackgroundAlt: var(--colorNeutral200);
   /* inputs, s... */
-  --colorBorderColorProminent: var(--colorNeutral400);
-  /* borders, page structure ... */
-  --colorBorderColorSubtle: var(--colorNeutral200);
+  --colorBorderProminent: var(--colorNeutral400);
+  /* soft borders ... */
+  --colorBorderSubtle: var(--colorNeutral300);
+  /* for page structure */
+  --colorBorderStructure: var(--colorBorderSubtle);
   /* links, active states, ... */
   --colorAccent: #0f62fe;
   /* hovers for primary */
-  --colorAccentDark: #0043ce;
+  --colorAccentAlt: #0043ce;
   /* Background for active items, e.g. in left nav or tabs */
   --colorAccentSurface: #ecf4ff;
   /* Ink color on accent */
@@ -68,59 +72,18 @@
   /* Inline code mark color */
   --colorCodeMark: var(--colorRed700);
 
+  --fontWeightRegular: 400;
+  --fontWeightSemibold: 500;
+  --fontWeightBold: 700;
+
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
 
-  /* Page Header */
-  --pageHeaderBackground: var(--colorBackgroundSecondary);
-  --pageHeaderInk: var(--colorInkPrimary);
-  --pageHeaderDescription: var(--colorInkSecondary);
-  --pageHeaderBorderColor: var(--colorBorderColorSubtle);
-
-  /* Top Navigation */
-  --topNavBackground: var(--colorInkPrimary);
-  --topNavBorderColor: var(--topNavBackground);
-  /* main header text and icons */
-  --topNavInk: var(--colorInkInverted);
-  /* main header item text on hover  */
-  --topNavItemHoverInk: var(--topNavInk);
-  /* main header item text when active */
-  --topNavItemActiveInk: var(--topNavInk);
-  /* main header item background on hover */
-  --topNavItemHoverBackground: rgba(255, 255, 255, 0.15);
-  /* main header item background when active */
-  --topNavItemActiveBackground: var(--topNavItemHoverBackground);
-  --topNavHeaderHeight: 68px;
-  --topNavElevation: 0px 5px 8px rgba(30, 41, 59, 0.05);
-
-  /* Left Navigation */
-  --leftNavWidth: 300px;
-  --leftNavBackground: var(--colorBackgroundSecondary);
-  --leftNavBorderColor: var(--colorBorderColorSubtle);
-  --leftNavInk: var(--colorInkPrimary);
-  --leftNavItemHoverBackground: var(--colorBackgroundAlt);
-  --leftNavItemHoverBackgroundAlt: var(--colorNeutral300);
-  --leftNavItemHoverInk: var(--leftNavInk);
-  --leftNavItemActiveBackground: var(--colorAccentSurface);
-  --leftNavItemActiveInk: var(--colorAccent);
-  --leftNavInkTab: var(--colorInkSecondary);
-  --leftNavInkSection: var(--colorInkSecondary);
-  --leftNavElevation: none;
-
   /* CTA button */
   --ctaButtonBackground: var(--colorAccent);
-  --ctaButtonBackgroundHover: var(--colorAccentDark);
+  --ctaButtonBackgroundHover: var(--colorAccentAlt);
   --ctaButtonInk: var(--colorWhite);
-
-  /* Blocks */
-  --spacingBlockAfter: 24px;
-
-  /* Block: Shortcuts */
-  --shortcutIconHeight: 48px;
-  --shortcutIconWidth: 48px;
-
-  /* Block: Heading */
-  --headingInk: var(--colorInkPrimary);
+  
 
   /* Block: Banner */
   --calloutSuccessInk: var(--colorGreen900);

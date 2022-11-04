@@ -28,7 +28,7 @@
 }
 
 .form-control-sm + .icon-inside {
-  font-size: 0.875rem !important;
+  font-size: var(--fontSizeSmall) !important;
   font-size: 14px;
   top: calc(50% - 13px);
 }

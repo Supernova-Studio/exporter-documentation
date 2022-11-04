@@ -49,10 +49,9 @@
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
 {* Favicon *}
-{[ let siteFaviconUrl = (configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : null /]}
-
+{[ let siteFaviconUrl = ((configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : assetUrl("logos/favicon-default.png", ds.documentationDomain())) /]}
 {* Site image - if provided, overrides all images. Otherwise, we'll try to find first image provided in the content *}
-{[ let siteImageUrl = (configuration.seoSiteImage && configuration.seoSiteImage.assetUrl) ? configuration.seoSiteImage.assetUrl : null /]}
+{[ let siteImageUrl = ((configuration.seoSiteImage && configuration.seoSiteImage.assetUrl) ? configuration.seoSiteImage.assetUrl : null) /]}
 {[ if !siteImageUrl ]}
     {[ let found = false /]}
     {[ for block in page.blocks ]}

@@ -2,10 +2,8 @@
 {[ const block = context /]}
 
 {* Generate rich text *}
-{[ inject "page_block_anchor" context block /]}
 {[ if (textBlockPlainText(block).count() === 0) ]}
     <p>&nbsp;</p>
 {[ else ]}
-    <p>{[ inject "page_block_rich_text" context block.text /]}</p>
+    <p id="{{ getSearchIDString(block.id) }}">{[ inject "page_block_rich_text" context block.text /]}</p>
 {[/]}
-
