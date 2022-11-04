@@ -177,7 +177,7 @@
           "Only icon",
           "Icon + label"
         ],
-        "default": "Only icon"
+        "default": "Icon + label"
       },
       {
         "key": "advancedCustomizationShowVersionDropdown",

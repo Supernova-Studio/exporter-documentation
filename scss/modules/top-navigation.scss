@@ -187,6 +187,7 @@ a.site-logo {
 
 #header-nav {
   justify-content: space-between;
+  gap: 12px;
   
   .typographyDocsViewNavigation {
     font-weight: var(--topNavFontWeight);
