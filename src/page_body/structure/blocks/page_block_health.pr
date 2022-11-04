@@ -8,7 +8,7 @@
 {* Render content health block *}
 {[ if componentId ]}
     {[ let component = ds.componentById(componentId) /]}
-    {[ if component ]}
+    {[ if (component && block.properties.propertiesToHighlight) ]}
             
         {[ let properties = component.properties /]}
         {[ let propertyValues = component.propertyValues /]}
