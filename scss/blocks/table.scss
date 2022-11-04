@@ -67,13 +67,8 @@ table.header-column td:first-child {
   border-right-width: 2px;
 }
 
-table.header-row {
-  border-top-width: 0;
-}
-
 table.header-row tr:first-child th {
   border-bottom-width: 2px;
-  border-top-width: 0;
 }
 
 table th.left,
