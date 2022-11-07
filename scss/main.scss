@@ -43,14 +43,6 @@
 @import './blocks/tabs';
 @import './blocks/tokens';
 
-/* =================================== */
-/*  Custom Blocks
-/* =================================== */
-
-@import './blocks/component-status.scss';
-
-/* =================================== */
-
 /*  Code hightlight
 /* =================================== */
 
@@ -78,3 +70,12 @@
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
+
+/* =================================== */
+/*  Custom Blocks
+/* =================================== */
+
+@import './blocks/component-status.scss';
+@import './blocks/dos-donts.scss';
+
+/* =================================== */

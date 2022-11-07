@@ -65,7 +65,6 @@
     {[/]}
 {[/]}
 </div>
-
 {[ elseif (variant === "columns") ]}
   {* Tab variant where tabs render as columns *}
   <div class="row">
@@ -78,7 +77,7 @@
       </div>
     {[/]}
   </div>
-{[ elseif (variant === "dos-donts") ]}
+  {[ elseif (variant === "dos-donts") ]}
   {* Tab variant where tabs render as columns *}
   <div class="row tabs-as-columns">
     {[ map (block.children.enumerated()) to index tab ]}
@@ -90,8 +89,6 @@
       </div>
     {[/]}
   </div>
-
-
 {[ else ]}
   {* Default variant - tabs with header row and content below it *}
   {* Tab navigation header *}
@@ -105,8 +102,7 @@
         {[/]}
     {[/]}
   </ul>
-
-  {* Tab content, including block content *}
+{* Tab content, including block content *}
   <div class="tab-content tab-content-block" id="{{ blockId }}-content">
     {[ map (block.children.enumerated()) to index tab ]}
         {[ let id = tab.id.prefixed("T") /]}
