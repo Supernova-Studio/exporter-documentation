@@ -1,2 +1,4 @@
 {[ let block = context /]}
 <a id="search-{{ block.id }}"></a>
+
+{* this is a test comment *}
