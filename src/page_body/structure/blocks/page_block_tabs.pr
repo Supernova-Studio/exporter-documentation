@@ -1,4 +1,5 @@
-{[ let block = context /]}
+{[ let block = context.block /]}
+{[ let pageId = context.pageId /]}
 {* Note we are prefixing all ids with a letter because by spec ID can't start with number (which it can coming from the SDK) *}
 {[ let blockId = block.id.prefixed("T") /]}
 
@@ -10,73 +11,77 @@
 
 {* {This block is variant enabled, fetch it} *}
 {[ let variant = block.variantKey /]}
-{[ if (variant === "pills") ]}
-  {* Tab variant where tabs render as sidebar with pills and content is side-by-side *}
-  {* Pills navigation sidebar *}
-    <div class="row no-gutters tab-pills">
-      <div class="col-3">
-        <div class="nav nav-pills flex-sm-column" id="{{ blockId }}" role="tablist" aria-orientation="vertical">
-        {[ map (block.children.enumerated()) to index tab ]}
-            {[ let id = tab.id.prefixed("T") /]}
-            {[ if (tab.type === "TabItem") ]}
-            <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="pill" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ tab.caption }}</a>
-            {[/]}
-        {[/]}
-        </div>
-      </div>
-      {* Tab content, including block content *}
-      <div class="col-9">
-        <div class="tab-content tab-content-block" id="{{ blockId }}-content">
+
+<div class="content-block content-block--tabs">
+  {[ if (variant === "pills") ]}
+    {* Tab variant where tabs render as sidebar with pills and content is side-by-side *}
+    {* Pills navigation sidebar *}
+      <div class="row no-gutters tab-pills">
+        <div class="col-3">
+          <div class="nav nav-pills flex-sm-column" id="{{ blockId }}" role="tablist" aria-orientation="vertical">
           {[ map (block.children.enumerated()) to index tab ]}
               {[ let id = tab.id.prefixed("T") /]}
               {[ if (tab.type === "TabItem") ]}
-              <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
-                {[ for child in tab.children ]}
-                    {[ inject "page_body_structure_block" context child /]}
-                {[/]}
-              </div>
+              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="pill" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ tab.caption }}</a>
               {[/]}
           {[/]}
+          </div>
         </div>
-      </div>
-  </div>
-{[ elseif (variant === "accordion") ]}
-  {* Tab variant where tabs render as collapsible blocks with exactly one block opened *}
-
-<div class="accordion" id="{{ blockId }}">
-{[ map (block.children.enumerated()) to index tab ]}
-    {[ let id = tab.id.prefixed("T") /]}
-    {[ if (tab.type === "TabItem") ]}
-    <div class="accordion-section">
-      <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
-        <div class="accordion-header" id="{{ id }}">
-        {{ tab.caption }}
+        {* Tab content, including block content *}
+        <div class="col-9">
+          <div class="tab-content tab-content-block" id="{{ blockId }}-content">
+            {[ map (block.children.enumerated()) to index tab ]}
+                {[ let id = tab.id.prefixed("T") /]}
+                {[ if (tab.type === "TabItem") ]}
+                <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
+                  {[ for child in tab.children ]}
+                      {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+                  {[/]}
+                </div>
+                {[/]}
+            {[/]}
+          </div>
         </div>
-      </a>
-
-      <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
-        <div class="accordion-body">
-        {[ for child in tab.children ]}
-            {[ inject "page_body_structure_block" context child /]}
-        {[/]}
-        </div>
-      </div>
     </div>
-    {[/]}
-{[/]}
-</div>
-{[ elseif (variant === "columns") ]}
-  {* Tab variant where tabs render as columns *}
-  <div class="row">
-    {[ map (block.children.enumerated()) to index tab ]}
-        {[ let id = tab.id.prefixed("T") /]}
-      <div class="col-sm" >
-        {[ for child in tab.children ]}
-          {[ inject "page_body_structure_block" context child /]}
-        {[/]}
+  {[ elseif (variant === "accordion") ]}
+    {* Tab variant where tabs render as collapsible blocks with exactly one block opened *}
+
+  <div class="accordion" id="{{ blockId }}">
+  {[ map (block.children.enumerated()) to index tab ]}
+      {[ let id = tab.id.prefixed("T") /]}
+      {[ if (tab.type === "TabItem") ]}
+      <div class="accordion-section">
+        <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+          <div class="accordion-header" id="{{ id }}">
+          {{ tab.caption }}
+          </div>
+        </a>
+
+        <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
+          <div class="accordion-body">
+          {[ for child in tab.children ]}
+              {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+          {[/]}
+          </div>
+        </div>
       </div>
-    {[/]}
+      {[/]}
+  {[/]}
   </div>
+
+  {[ elseif (variant === "columns") ]}
+    {* Tab variant where tabs render as columns *}
+    <div class="row tabs-as-columns">
+      {[ map (block.children.enumerated()) to index tab ]}
+          {[ let id = tab.id.prefixed("T") /]}
+        <div class="col-sm">
+          {[ for child in tab.children ]}
+            {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+          {[/]}
+        </div>
+      {[/]}
+    </div>
+
   {[ elseif (variant === "dos-donts") ]}
   {* Tab variant where tabs render as columns *}
   <div class="row tabs-as-columns">
@@ -86,33 +91,33 @@
         {[ for child in tab.children ]}
           {[ inject "page_body_structure_block" context child /]}
         {[/]}
-      </div>
-    {[/]}
-  </div>
-{[ else ]}
-  {* Default variant - tabs with header row and content below it *}
-  {* Tab navigation header *}
-  <ul class="nav nav-tabs nav-tabs-inline" id="{{ blockId }}" role="tablist">
-    {[ map (block.children.enumerated()) to index tab ]}
-        {[ let id = tab.id.prefixed("T") /]}
-        {[ if (tab.type === "TabItem") ]}
-        <li class="nav-item" role="presentation">
-          <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ tab.caption }}</a>
-        </li>
-        {[/]}
-    {[/]}
-  </ul>
-{* Tab content, including block content *}
-  <div class="tab-content tab-content-block" id="{{ blockId }}-content">
-    {[ map (block.children.enumerated()) to index tab ]}
-        {[ let id = tab.id.prefixed("T") /]}
-        {[ if (tab.type === "TabItem") ]}
-        <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
-          {[ for child in tab.children ]}
-              {[ inject "page_body_structure_block" context child /]}
+  {[/]}
+  {[ else ]}
+    {* Default variant - tabs with header row and content below it *}
+    {* Tab navigation header *}
+    <ul class="nav nav-tabs nav-tabs-inline" id="{{ blockId }}" role="tablist">
+      {[ map (block.children.enumerated()) to index tab ]}
+          {[ let id = tab.id.prefixed("T") /]}
+          {[ if (tab.type === "TabItem") ]}
+          <li class="nav-item" role="presentation">
+            <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ tab.caption }}</span></a>
+          </li>
           {[/]}
-        </div>
-        {[/]}
-    {[/]}
-  </div>
-{[/]}
+      {[/]}
+    </ul>
+
+    {* Tab content, including block content *}
+    <div class="tab-content tab-content-block" id="{{ blockId }}-content">
+      {[ map (block.children.enumerated()) to index tab ]}
+          {[ let id = tab.id.prefixed("T") /]}
+          {[ if (tab.type === "TabItem") ]}
+          <div class="tab-pane fade{{ index === "0" ? " active show" : "" }}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
+            {[ for child in tab.children ]}
+                {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+            {[/]}
+          </div>
+          {[/]}
+      {[/]}
+    </div>
+  {[/]}
+</div>

@@ -2,19 +2,18 @@
 {[ const block = context /]}
 {[ const storybookError = ds.documentationConfiguration().settings.storybookError /]}
 
-{* Create storybook embed block *}
 {[ if block.url ]}
-
-<div class="storybook-state-wrapper" style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
-    <div class="storybook-container">
-        <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+  <div class="content-block content-block--embed">
+    <div class="storybook-container" style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
+        <div class="storybook-embed-container">
+            <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="storybook-error">
+            <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
+        </div>
     </div>
-    <div class="storybook-error">
-        <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
-    </div>
-</div>
-{[ if block.caption ]}
-    <p class="caption">{{ block.caption }}</p>
-{[/]}
-
+    {[ if block.caption ]}
+        <p class="caption">{{ block.caption }}</p>
+    {[/]}
+  </div>
 {[/]}

@@ -1,13 +1,15 @@
 {* Fetch block from injection context, expected type 'Code' *}
 {[ const block = context /]}
 
-{* Generate code which will be automatically highlighted *}
-<pre class="code-block"><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}">
+<div class="content-block content-block--code code-block-container">
+    {* Generate code which will be automatically highlighted *}
+    <pre class="code-block"><code class="{{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}" data-prismjs-copy="Copy">
 
 
-{{ highlightSafeString(block) }}
+    {{ highlightSafeString(block) }}
 
-</code></pre>
-{[ if block.caption ]}
-    <p class="caption">{{ block.caption }}</p>
-{[/]}
+    </code></pre>
+    {[ if block.caption ]}
+        <p class="caption">{{ block.caption }}</p>
+    {[/]}
+</div>

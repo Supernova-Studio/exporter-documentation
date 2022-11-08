@@ -9,10 +9,10 @@
     {[ showChecker = false /]}
 {[/]}
 
-<div class="{{ !context.showTitles ? "titleless" : "" }}">      
+<div class="tile-item frame-item{{ !context.showTitles ? "titleless" : "" }}">      
     <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
     {[ if frame.previewUrl ]}
-        <img src="{{ frame.previewUrl }}" />
+        <img src="{{ frame.previewUrl }}" alt="{{ frame.title }}" />
     {[/]}
     
     </div>

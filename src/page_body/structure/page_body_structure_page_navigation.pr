@@ -1,0 +1,56 @@
+
+{[ let page = context /]}
+{[ let docRoot = ds.rootDocumentationGroup() /]}
+{[ let isHomepage = isHomepage(page, docRoot) /]}
+{[ let configuration = exportConfiguration() /]}
+{[ let showNavigationGlobally = configuration.advancedCustomizationShowNextPreviousNavigation /]}
+{[ let showNavigationOnHP = configuration.showHomepageNextPreviousNavigation /]}
+
+{[ if (showNavigationGlobally && (!isHomepage || (isHomepage && showNavigationOnHP))) ]}
+    {* Find next and previous pages of the currently generated page *}
+    {[ let previousPage = previousPage(page, docRoot) /]}
+    {[ let nextPage = nextPage(page, docRoot) /]}
+
+    <div class="page-bottom-navigation row">
+        {[ if previousPage ]}
+        {[ let group = previousPage.parent /]}
+        <div class="{{ nextPage ? "col" : "col-6" }} left">
+            <a class="segment" href="{{ pageUrl(previousPage, ds.documentationDomain()) }}">
+                <div class="arrow">
+                    {[ inject "icon_arrow_left" context configuration /]}
+                </div>
+                <div class="segment-text">
+                    {[ if (group && !group.isRoot) ]}
+                        <div class="section">{{ htmlSafeString(group.title) }}</div>
+                    {[ elseif group ]}
+                        <div class="section">{{ htmlSafeString(ds.currentDesignSystem().name) }}</div>
+                    {[ else ]}
+                        <div class="section">Next</div>
+                    {[/]}
+                    <div class="pagename">{{ htmlSafeString(previousPage.title) }}</div>
+                </div>
+            </a>
+        </div>
+        {[/]}
+        {[ if nextPage ]}
+        {[ let group = nextPage.parent /]}
+        <div class="{{ previousPage ? "col" : "offset-md-6 col-6" }} right">
+            <a href="{{ pageUrl(nextPage, ds.documentationDomain()) }}" class="segment">
+                <div class="segment-text">
+                    {[ if (group && !group.isRoot) ]}
+                        <div class="section">{{ htmlSafeString(group.title) }}</div>
+                    {[ elseif group ]}
+                        <div class="section">{{ htmlSafeString(ds.currentDesignSystem().name) }}</div>
+                    {[ else ]}
+                        <div class="section">Previous</div>
+                    {[/]}
+                    <div class="pagename">{{ htmlSafeString(nextPage.title) }}</div>
+                </div>
+                <div class="arrow">
+                    {[ inject "icon_arrow_right" context configuration /]}
+                </div>
+            </a>
+        </div>
+        {[/]}
+    </div>
+{[/]}

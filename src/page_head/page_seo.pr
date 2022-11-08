@@ -10,11 +10,18 @@
 {* Compute information *}
 {* Title - page title is page name, with optional prefix, unless SEO title override is provided. In that case, only override is taken into account  *}
 {[ let title = page.title /]}
+
 {[ if (configuration.seoTitleOverride && configuration.seoTitleOverride.count() > 0) ]}
     {[ title = configuration.seoTitleOverride /]}
 {[ else ]}
     {[ if (title.count() > 0) ]}
+        {* Add page title to the tab title too *}
+        {[ if (page.parent && (page.parent.groupBehavior === "Tabs") && (page.parent.title.count() > 0)) ]}
+            {[ title = title.extended("", " | " + page.parent.title) /]}
+        {[/]}
+
         {[ title = title.extended(configuration.seoTitlePrefix, configuration.seoTitleSuffix) /]}
+        
     {[/]}
 {[/]}
 
@@ -42,10 +49,9 @@
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
 {* Favicon *}
-{[ let siteFaviconUrl = (configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : null /]}
-
+{[ let siteFaviconUrl = ((configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : assetUrl("logos/favicon-default.png", ds.documentationDomain())) /]}
 {* Site image - if provided, overrides all images. Otherwise, we'll try to find first image provided in the content *}
-{[ let siteImageUrl = (configuration.seoSiteImage && configuration.seoSiteImage.assetUrl) ? configuration.seoSiteImage.assetUrl : null /]}
+{[ let siteImageUrl = ((configuration.seoSiteImage && configuration.seoSiteImage.assetUrl) ? configuration.seoSiteImage.assetUrl : null) /]}
 {[ if !siteImageUrl ]}
     {[ let found = false /]}
     {[ for block in page.blocks ]}

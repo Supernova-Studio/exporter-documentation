@@ -65,12 +65,12 @@
 
 .text-1 {
   font-size: 12px !important;
-  font-size: 0.75rem !important;
+  font-size: var(--fontSizeTiny) !important;
 }
 
 .text-2 {
   font-size: 14px !important;
-  font-size: 0.875rem !important;
+  font-size: var(--fontSizeSmall) !important;
 }
 
 .text-3 {

@@ -1,34 +1,16 @@
+{[ let configuration = exportConfiguration() /]}
 
-{[ if exportConfiguration().advancedCustomizationShowFooter ]}
-{* Note: Footer gets completely injected through configuration. Copy of default footer can be found below *}
-   {{ exportConfiguration().advancedCustomizationCustomFooter }}
+{[ if configuration.advancedCustomizationShowFooter ]}
+    {* Note: Footer gets completely injected through configuration. Copy of default footer can be found below *}
+   {{ configuration.advancedCustomizationCustomFooter }}
 {[/]}
-{*
-<div class="container-footer"">
-    <div class="slider">
-        <div class="row">
-        <div class="col-5">
-            <h5>My Doc Site</h5>
-            <p class="d-block mb-3">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>
-            <p class="d-block mb-3 text-muted">&copy; 2022 My Amazing Company</p>
-        </div>
-        <div class="col-3 offset-1">
-        <h5>Resources</h5>
-        <ul class="list-unstyled">
-            <li><a href="#">Changelog</a></li>
-            <li><a href="#">Storybook</a></li>
-            <li><a href="#">Figma</a></li>
-        </ul>
-        </div>
-        <div class="col-3">
-        <h5>Support</h5>
-        <ul class="list-unstyled">
-            <li><a href="#">Report issue</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-        </ul>
+
+{[ if configuration.footerShow ]}
+    {[ let lastPublished = (configuration.footerShowLastPublished ? ("Documentation last published on " + getCurrentFormattedDateTime() + ".") : "") /]}
+
+    <div class="container-footer small"">
+        <div class="slider">
+            <p class="text-muted">&copy; {{ getFullYear() }} {{ ds.currentDesignSystem().name }}. {{ lastPublished }}</p>
         </div>
     </div>
-    </div>
-</div>
-*}
+{[/]}

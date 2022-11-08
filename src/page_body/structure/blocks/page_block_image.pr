@@ -23,13 +23,13 @@
     {[ alignClass = "sn-text-left" /]}
 {[/]}
 
-<div class="image-container {{ alignClass }}">
+<div class="content-block content-block--image {{ alignClass }}" id="{{ getSearchIDString(block.id) }}">
 {* Add <a class="popup-img" href="{{ block.url }}"> <img> </a> if you want to enable lightbox-functionality *}
-    <img src="{{ block.url }}" class="{{ imgClass }}" alt="" />
+    <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ block.caption }}" />
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p>{{ withHTMLNewlines(block.caption) }}</p>
+    <p class="caption">{{ withHTMLNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}

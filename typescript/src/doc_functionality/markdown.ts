@@ -46,7 +46,18 @@ export function markdownToHTML(markdown: string): string {
             type: "output",
             regex: '<pre><code class="(.+?)">((.|\n)*?)<\/code><\/pre>',
             replace: function (match: string, codeClass: string, content: string) {
-                return `<pre><code class="${codeClass}">\n\n${content}</code></pre>`
+                return `<pre class="code-block"><code class="language-${codeClass}">\n\n${content}</code></pre>`
+            },
+        },
+    ])
+
+    // Mod 3.1: Cover also case where the language is not specified (this could be more elega)
+    converter.addExtension([
+        {
+            type: "output",
+            regex: '<pre><code>',
+            replace: function () {
+                return `<pre class="code-block"><code class="language-typescript">\n\n`
             },
         },
     ])

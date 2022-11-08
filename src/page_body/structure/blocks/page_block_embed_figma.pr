@@ -1,12 +1,4 @@
 {* Get figma block payload *}
 {[ const block = context /]}
 
-{* Create figma embed block *}
-{[ if block.url ]}
-<div style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px" class="embed-url">
-  <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
-</div>
-{[ if block.caption ]}
-    <p class="caption">{{ block.caption }}</p>
-{[/]}
-{[/]}
+{[ inject "page_block_embed_url" context block /]}

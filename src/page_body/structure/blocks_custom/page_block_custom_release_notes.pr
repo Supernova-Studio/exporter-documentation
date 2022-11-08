@@ -1,0 +1,34 @@
+{[ let versions = ds.allDesignSystemVersions() /]}
+
+{[ if (versions.count() > 1) ]}
+    <div class="content-block content-block--release-notes">
+        {* Generate entry per each version *}
+        {[ let index = 0 /]}
+        {[ for version in versions ]}
+        {* Ignore draft version, only show stable versions *}
+            {[ if ((!version.isSharedDraft) && version.changeLog) ]}
+                {[ let entries = changelogToEntries(version.changeLog) /]}
+                <h3 class="rn-heading">
+                    {{ version.version }}{[ if (version.name !== null && version.name !== "") ]} – {{ version.name }} {[/]}
+                    {[ if (index === 0) ]}
+                        <span class="rn-heading-tag">Latest</span>
+                    {[/]}
+                </h3>
+                {[ if (entries.count() > 0) ]}
+                    <ul>
+                    {[ for entry in entries ]}
+                        <li>{{ entry }}</li>
+                    {[/]}
+                    </ul>
+                {[ else ]}
+                    <p>No release notes for this version</p>
+                {[/]}
+                {[ index = (index + 1) /]}
+            {[/]}
+        {[/]}
+    </div>
+{[ else ]}
+{* No published versions just yet *}
+<p>There are no released design system versions just yet.</p>
+{[/]}
+
