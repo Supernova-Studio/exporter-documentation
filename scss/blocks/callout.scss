@@ -1,13 +1,13 @@
 /* =================================== */
 /*  Callout
 /* =================================== */
-.callout {
+.content-block--callout {
   padding: 16px;
-  border: 0px;
-  margin: 24px 0;
   border-radius: var(--borderRadiusDefault);
   display: flex;
   gap: 12px;
+  font-size: var(--fontSizeSmall);
+  line-height: var(--lineHeightSmall);
 
   .icon {
     width: 24px;
@@ -18,44 +18,43 @@
     flex-shrink: 0;
   }
 
+  .content {
+    margin-top: 1px;
+  }
+
   &.callout-info {
-    color: var(--alertInfoInk);
-    background-color: var(--alertInfoBackground);
+    color: var(--calloutInfoInk);
+    background-color: var(--calloutInfoBackground);
 
     .icon {
-      color: var(--alertInfoInkSecondary);
+      color: var(--calloutInfoInkSecondary);
     }
   }
 
   &.callout-success {
-    color: var(--alertSuccessInk);
-    background-color: var(--alertSuccessBackground);
+    color: var(--calloutSuccessInk);
+    background-color: var(--calloutSuccessBackground);
 
     .icon {
-      color: var(--alertSuccessInkSecondary);
+      color: var(--calloutSuccessInkSecondary);
     }
   }
 
   &.callout-warning {
-    color: var(--alertWarningInk);
-    background-color: var(--alertWarningBackground);
+    color: var(--calloutWarningInk);
+    background-color: var(--calloutWarningBackground);
 
     .icon {
-      color: var(--alertWarningInkSecondary);
+      color: var(--calloutWarningInkSecondary);
     }
   }
 
   &.callout-danger {
-    color: var(--alertDangerInk);
-    background-color: var(--alertDangerBackground);
+    color: var(--calloutDangerInk);
+    background-color: var(--calloutDangerBackground);
 
     .icon {
-      color: var(--alertDangerInkSecondary);
+      color: var(--calloutDangerInkSecondary);
     }
   }
-}
-
-.embed-responsive {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }

@@ -1,102 +1,104 @@
 {[ let page = context /]}
+{[ let group = page.parent /]}
+{[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
+{[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let domain = ds.documentationDomain() /]}
 {[ let configuration = exportConfiguration() /]}
-{[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
+{[ let shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
+{[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
+{[ let rootGroup = ds.rootDocumentationGroup() /]}
 
 <!-- Header --> 
-<header id="header" class="sticky-top"> 
+<header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}"> 
     
     <!-- Navbar -->
-    <nav class="primary-menu navbar navbar-expand-lg navbar-text-dark">
-
-        <!-- Logo -->
-
-        <!-- Sidebar Toggler -->
-        <button id="sidebarCollapse" class="toggle-navbar" type="button">
-            <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 6.5h-17v2h17v-2ZM20.5 11.5h-17v2h17v-2ZM20.5 16.5h-17v2h17v-2Z" fill="currentColor"/></svg>        
-        </button>
-
-        <!-- Redirect to the first real page on logo click -->
-        {[ let rootGroup = ds.rootDocumentationGroup() /]}
-        {[ let topPage = firstPageFromTop(rootGroup) /]}
-        {[ let url = pageUrl(topPage, ds.documentationDomain()) /]}
-        <a href="{{ url }}">
-            <div class="logo-wrapper">
-            {* Use default Supernova logo OR custom uploaded one, if it was provided *}
-                {[ if ((configuration.headerLogo !== null) && (configuration.headerLogo.assetUrl !== null)) ]}
-                    <img class="default" src="{{ exportConfiguration().headerLogo.assetUrl }}" alt="Our Documentation" style="content: none" />
-                {[ else ]}
-                    <img class="default" alt="Our Documentation" />
-                {[/]}
-            </div>
-        </a>
-
+    <nav class="primary-menu navbar navbar-expand-lg">
+        {[ inject "component_site_logo" context page /]}
+        
         <div class="container-fluid">
 
-        <!-- Potential Left Link Here -->
-        <div id="header-nav" class="navbar-collapse">
-            <ul class="navbar-nav">
-                {[ if shouldShowTabbar ]}
-                    {[ for item in rootGroup.children ]}
-                        {* Only show if group or page is exportable *}
-                        {[ if isExportable(item) ]}
-                            {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
-                            <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ htmlSafeString(item.title) }}</a></li>
-                        {[/]}
-                    {[/]}
-                {[/]}
-            </ul>
-
-            <div class="utility-nav">
-            
-            {[ if shouldShowTabbar ]}
-            <div id="mobile-menu-container" class="dropdown">
-                <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
-                    
+            {* Potential Left Link Here *}
+            <div id="header-nav" class="navbar-collapse">
+                <ul class="navbar-nav">
+                    {[ if shouldShowTabbar ]}
                         {[ for item in rootGroup.children ]}
-                            {* Re-enable if we only want to show groups *}
-                            {* {[ if item.type.equals("Group") ]} *}
-                                {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
-                                {[ if isActive ]}
-                                    {{ item.title }}
-                                {[/]}
-                            {* {[/]} *}
+                            {* Only show if group or page is exportable *}
+                            {[ if isExportable(item) ]}
+                                {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
+                                {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                            
+                                <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a></li>
+                            {[/]}
                         {[/]}
-                </button>
-                <div class="dropdown-menu pull-right" aria-labelledby="mobile-menu-selector">
-                    {[ for item in rootGroup.children ]}
-                        {* Re-enable if we only want to show groups *}
-                        {* {[ if item.type.equals("Group") ]} *}
-                            {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
-                            <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a>
-                        {* {[/]} *}
                     {[/]}
-                </div>
-            </div>
-            {[/]}
+                </ul>
 
-            {[ if exportConfiguration().advancedCustomizationShowVersionDropdown ]}
-            <div id="version-container" class="dropdown">
-                <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Loading
-                </button>
-                <div class="dropdown-menu pull-right" aria-labelledby="version-selector">
-                </div>
-            </div>
-            {[/]}
-            <button class="btn-search search">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.608 3a7.608 7.608 0 1 0 4.557 13.702L19.463 21 21 19.463l-4.298-4.298A7.608 7.608 0 0 0 10.608 3Zm-5.434 7.608a5.435 5.435 0 1 1 10.869 0 5.435 5.435 0 0 1-10.87 0Z" fill="currentColor"/></svg>
-            </button>
-            {[ if exportConfiguration().advancedCustomizationShowCTA ]}
-                {[ let ctaText = (exportConfiguration().advancedCustomizationCTAText ? exportConfiguration().advancedCustomizationCTAText : "Open site") /]}
-                {[ let ctaUrl = (exportConfiguration().advancedCustomizationCTAUrl ? exportConfiguration().advancedCustomizationCTAUrl : "") /]}
-                <a href="{{ ctaUrl }}" {{ exportConfiguration().advancedCustomizationOpenInNewTab ? "target='blank'" : "" }}>
-                    <button type="button" class="btn btn-primary cta-button" id="cta-button">{{ ctaText }}</button>
-                </a>
-            {[/]}
-            </div>
-            
+                <div class="utility-nav">
+                    
+                    {[ if shouldShowTabbar ]}
+                    <div id="mobile-menu-container" class="dropdown">
+                        <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                            
+                                {[ for item in rootGroup.children ]}
+                                    {* Re-enable if we only want to show groups *}
+                                    {* {[ if item.type.equals("Group") ]} *}
+                                        {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
+                                        {[ if isActive ]}
+                                            {{ item.title }}
+                                        {[/]}
+                                    {* {[/]} *}
+                                {[/]}
+                        </button>
+                        <div class="dropdown-menu pull-right" aria-labelledby="mobile-menu-selector">
+                            {[ for item in rootGroup.children ]}
+                                {* Re-enable if we only want to show groups *}
+                                {* {[ if item.type.equals("Group") ]} *}
+                                    {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
+                                    <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a>
+                                {* {[/]} *}
+                            {[/]}
+                        </div>
+                    </div>
+                    {[/]}
+
+                    {[ if configuration.advancedCustomizationShowVersionDropdown ]}
+                    <div id="version-container" class="dropdown">
+                        <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Loading
+                        </button>
+                        <div class="dropdown-menu pull-right" aria-labelledby="version-selector">
+                        </div>
+                    </div>
+                    {[/]}
+                    {[ if (configuration.searchButtonType === "Icon + label") ]}
+                        <button class="btn-search search expanded">
+                            {[ inject "icon_search" context configuration /]} Search...
+                        </button>
+                    {[ else ]}
+                        <button class="btn-search search">
+                            {[ inject "icon_search" context configuration /]}
+                        </button>
+                    {[/]}
+                    {[ if configuration.advancedCustomizationShowCTA ]}
+                        {[ let ctaText = (configuration.advancedCustomizationCTAText ? configuration.advancedCustomizationCTAText : "Open site") /]}
+                        {[ let ctaUrl = (configuration.advancedCustomizationCTAUrl ? configuration.advancedCustomizationCTAUrl : "") /]}
+                        {[ let buttonClass = (ctaUrl.contains("slack.com/") ? "btn-slack" : "btn-primary") /]}
+                        {[ let icon = (ctaUrl.contains("slack.com/") ? "<svg xmlns='http://www.w3.org/2000/svg' height='16' width='16' viewBox='0 0 122.8 122.8'><path d='M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z' fill='#e01e5a'></path><path d='M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z' fill='#36c5f0'></path><path d='M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z' fill='#2eb67d'></path><path d='M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z' fill='#ecb22e'></path></svg>" : "") /]}
+
+                        <a href="{{ ctaUrl }}" class="btn cta-button {{ buttonClass }}" id="cta-button" {{ configuration.advancedCustomizationOpenInNewTab ? " target='blank'" : "" }}>
+                        {{icon}}{{ ctaText }}
+                        </a>
+                    {[/]}
+                </div>        
+             </div>
         </div>
+
+         <!-- Sidebar Toggler -->
+        {[ if pageConfiguration.showSidebar ]}
+            <button id="sidebarCollapse" class="toggle-navbar" type="button">
+                {[ inject "icon_menu" context configuration /]}
+            </button>
+        {[/]}
     </nav>
 </header>
 <!-- Header End -->

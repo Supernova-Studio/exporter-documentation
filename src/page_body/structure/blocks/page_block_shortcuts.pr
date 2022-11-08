@@ -2,7 +2,7 @@
 
 {[ let variant = block.variantKey /]}
 
-<div class="shortcut-container {{ variant }}">
+<div class="content-block content-block--shortcuts{{ getVariantClass(variant) }}" id="{{ getSearchIDString(block.id) }}">
   {[ for shortcut in block.shortcuts ]}
     {[ inject "page_block_shortcut" context shortcut /]}
   {[/]}

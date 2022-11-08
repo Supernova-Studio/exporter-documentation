@@ -1,0 +1,79 @@
+
+{* Get block *}
+{[ const block = context /]}
+
+{* Get properties *}
+{[ let components = ds.allComponents() /]}
+{[ let header = block.properties.header /]}
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+
+{* Only render if there is at least one component *}
+{[ if (components.count() > 0) ]}
+    {[ let firstComponent = components.first() /]}
+    {[ components = sortComponentsAlphabetically(components) /]}
+ 
+    {* Render header if enabled *}
+    {[ if header ]}
+        <h3 class="checklist-header">{{ header }}</h3>
+    {[/]}
+
+    {* Scroll wrapper boundary *}
+    <div class="content-block content-block--component-table">
+        <div class="component-table-wrapper-inner">
+            <table class="data-table header-row header-column" style="min-width: 100%;">
+
+            {* Create header row *}
+            <thead>
+                <tr>
+                    <th class="left">Component</th>
+                    {[ for property in firstComponent.properties ]}
+                        {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
+                            <th class="center">{{ property.name }}</th>
+                        {[/]}
+                    {[/]}
+                    {*
+                    {[ if block.properties.showLastUpdatedColumn ]}
+                        <th class="center">Last updated</th>
+                    {[/]}  
+                    *}   
+                </tr>   
+            </thead>
+            {* Create data rows *}
+            {* Generate different view based on the type of property *}
+            <tbody>
+            {[ for component in components ]}
+                {[ if !component.name.startsWith("_") ]} 
+                    {[ let propertyValues = component.propertyValues /]}
+                    <tr>
+                        <td>{{ component.name }}</td>
+                        {[ for property in component.properties ]}
+                            {* Only show selected properties in addition to name *}
+                            {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
+                                {[ if ["URL", "Link", "Boolean", "Select"].contains(property.propertyType) ]}
+                                <td class="center">
+                                        {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
+                                    </td>
+                                {[ else ]}
+                                    <td>
+                                    -
+                                        {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
+                                    </td>
+                                {[/]}
+                            {[/]}
+                        {[/]}
+                        {*
+                        {[ if block.properties.showLastUpdatedColumn ]}
+                            <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
+                        {[/]}  
+                        *}
+                    </tr>
+                {[/]} 
+            {[/]}
+            </tbody>
+            </table>
+        </div>
+    </div> 
+{[ else ]}
+{* No component available to be shown just yet *}
+<p>There are no components to render the component list just yet. Please add the first component and republish</p>
+{[/]}

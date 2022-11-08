@@ -1,0 +1,12 @@
+
+.tooltip {
+    font-size: 12px;
+
+    .inner {
+        max-width: 240px;
+    }
+
+    .arrow {
+        display: none !important;
+    }
+}

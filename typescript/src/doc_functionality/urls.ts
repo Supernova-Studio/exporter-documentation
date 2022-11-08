@@ -44,6 +44,45 @@ export function pageUrl(object: DocumentationPage | DocumentationGroup, prefix: 
   return path
 }
 
+
+/** Generate page slug for the generated page */
+export function pageIdentifier(object: DocumentationPage | DocumentationGroup) {
+
+  // Prevent generation of URLs for objects that are not provided
+  if (!object) {
+    return "#"
+  }
+
+  let page: DocumentationPage | null = null
+  if (object.type === "Page") {
+    page = object as DocumentationPage
+  } else {
+    page = firstPageFromTop(object as DocumentationGroup)
+  }
+
+  if (!page) {
+    return ""
+  }
+
+  let pageSlug = page.userSlug ?? page.slug
+  let subpaths: Array<string> = []
+
+  // Construct group path segments
+  let parent: DocumentationGroup | null = page.parent
+  while (parent) {
+    let parentSlug = parent.userSlug ?? parent.slug
+    subpaths.push(parentSlug)
+    parent = parent.parent
+  }
+
+  // Remove last segment added, because we don't care about root group
+  subpaths.pop()
+
+  // Retrieve url-safe path constructed as [host][group-slugs][path-slug][.html]
+  let path = ["page", "body", ...subpaths.reverse(), pageSlug].join("-")
+  return path
+}
+
 /** Create proper url that changes with the folder-depth of the documentation */
 export function rootUrl(asset: string, prefix: string | undefined) {
   let fragments = [prefix, asset]

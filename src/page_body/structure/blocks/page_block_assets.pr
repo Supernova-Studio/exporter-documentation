@@ -4,7 +4,8 @@
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
 
 {* Render tile per rendered frame *}
-<div class="tile-container {{ forceNaturalHeight ? "natural" : "" }}">
+{* Temporary workaround for non-crisp assets: If there are more than 15 assets displayed, if yes, we assume it's icons, so we lock the max size of the image  *}
+<div class="content-block content-block--assets layout-tiles{{ forceNaturalHeight ? " force-natural-height" : "" }}">
   <div class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">
     {[ for asset in block.assets ]}
       {[ inject "page_block_asset" context asset /]}

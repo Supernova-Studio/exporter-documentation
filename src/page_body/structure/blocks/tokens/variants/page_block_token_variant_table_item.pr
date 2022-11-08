@@ -1,14 +1,24 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const token = context /]}
 
-<tr class="color">
-    <td>{[ inject "page_block_token_preview_small" context token /]}</td>
-    <td>{{ token.name }}</td>
-    <td>
-    {[ inject "page_block_token_value" context token /]}       
-    </td>
-    <td>
-        {{ token.description ? token.description : "" }}
-        {[ inject "page_block_token_properties" context token /]}       
-    </td>
-</tr>
+<div class="item">
+    <div class="basic-info">
+        <div class="preview">
+            {[ inject "page_block_token_preview_small" context token /]}
+            {[ inject "page_block_token_value" context token /]}       
+        </div>
+        <div class="info">
+            <div class="name">
+                {[ if (token.origin !== null && token.tokenType.equals("Shadow")) ]}
+                    {{ token.origin.name.replacing("/", " / ") }}
+                {[ else ]}
+                    {{ token.name.replacing("/", " / ") }}
+                {[/]}
+            </div>
+            {[ if token.description ]}
+                <div class="description">{{ token.description }}</div>
+            {[/]}
+        </div>
+    </div>
+    {[ inject "page_block_token_properties" context token /]}       
+</div>

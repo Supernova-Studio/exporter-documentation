@@ -59,11 +59,39 @@ function escapeHtml(string: string) {
   return lastIndex !== index ? html + str.substring(lastIndex, index) : html
 }
 
-
 export function withHTMLNewlines(string: string): string {
   return string.split("\n").join("<br />")
 }
 
 export function getUrlExtension(url: string): string | undefined {
   return url.split('.').pop()
+}
+
+export function changelogToEntries(changeLog: string): Array<string> {
+
+  let lines = changeLog.split("\n").map(c => c.trim())
+  let modifiedLines = new Array<string>()
+  for (let line of lines) {
+    if (line.startsWith("-")) {
+      modifiedLines.push(line.substring(1))
+    } else {
+      modifiedLines.push(line)
+    }
+  }
+
+  modifiedLines = modifiedLines.map(l => l.trim()).filter(l => l.trim().length > 0)
+  return modifiedLines
+}
+
+
+// Returns string for the block, so we can scroll to the specific result (from the search results)
+export function getSearchIDString(blockId: string): string {
+  return blockId ? "search-" + blockId : ""
+}
+
+
+// Returns class for variants
+export function getVariantClass(variant: string): string {
+  // It needs the space in front, otherwise it will not work
+  return variant ? " variant-" + variant : ""
 }

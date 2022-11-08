@@ -7,13 +7,10 @@
     {[ const whiteCheck = (token.value.hex === "ffffffff") /]}
 
     <div class="stack-item is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}">
+        {[ inject "page_block_token_reference_badge" context token /]}
         <div class="preview" style="background-color: #{{ token.value.hex }};">
             <div class="name">
-                {[ if (token.origin !== null) ]}
-                    {{ token.origin.name.replacing("/", " / ") }}
-                {[ else ]}
-                    {{ token.name.replacing("/", " / ") }}
-                {[/]}
+                {{ token.name.replacing("/", " / ") }}
             </div>
             <div class="value">
                 {[ inject "page_block_token_value" context token /]}   
