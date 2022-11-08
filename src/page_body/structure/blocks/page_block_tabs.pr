@@ -81,17 +81,19 @@
         </div>
       {[/]}
     </div>
+ {[ elseif (variant === "dos-donts") ]}
+    {* Tab variant where tabs render as columns *}
+    <div class="row tabs-as-columns">
+      {[ map (block.children.enumerated()) to index tab ]}
+          {[ let id = tab.id.prefixed("T") /]}
+        <div class="col-sm {{ index === "0" ? "dos" : "donts" }} ">
+          {[ for child in tab.children ]}
+            {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+          {[/]}
+        </div>
+      {[/]}
+    </div>
 
-  {[ elseif (variant === "dos-donts") ]}
-  {* Tab variant where tabs render as columns *}
-  <div class="row tabs-as-columns">
-    {[ map (block.children.enumerated()) to index tab ]}
-        {[ let id = tab.id.prefixed("T") /]}
-      <div class="col-sm {{ index === "0" ? "dos" : "donts" }}">
-        {[ for child in tab.children ]}
-          {[ inject "page_body_structure_block" context child /]}
-        {[/]}
-  {[/]}
   {[ else ]}
     {* Default variant - tabs with header row and content below it *}
     {* Tab navigation header *}
