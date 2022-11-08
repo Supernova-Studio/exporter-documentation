@@ -327,13 +327,11 @@
         "properties": [
           {
             "key": "componentId",
-            "default": "",
             "type": "component",
             "label": "Component"
           },
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           }
