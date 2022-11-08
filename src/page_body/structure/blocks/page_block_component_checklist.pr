@@ -14,9 +14,9 @@
     {[ let component = ds.componentById(componentId) /]}
     {[ if component ]}
         {[ if header ]}
-            <h3 class="checklist-header">{{ header }}</h3>
+            <h3 class="component-checklist--header">{{ header }}</h3>
         {[/]}
-        <div class="checklist">
+        <div class="content-block content-block--component-checklist">
             {[ for property in component.properties ]}
                 {[ if (property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId)) ]}
                     {[ let value = component.propertyValues[property.codeName] /]}

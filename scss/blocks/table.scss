@@ -2,23 +2,23 @@ table.data-table {
   border-collapse: collapse;
   max-width: -moz-fit-content;
   min-width: fit-content;
+
+  a.custom-property-link {
+    font-size: var(--fontSizeSmall);
+  }
 }
 
 table.data-table,
 table.data-table th,
 table.data-table td {
-  border: 1px solid var(--colorBorderColorProminent);
+  border: 1px solid var(--colorBorderSubtle);
   border-collapse: collapse;
 }
 
+
 table.data-table th,
 table.data-table td {
-  padding: 6px;
-}
-
-table.data-table tr th > :first-child,
-table.data-table tr td > :first-child {
-  margin-top: 0 !important;
+  padding: 8px 12px;
 }
 
 table.data-table tr th > :first-child,
@@ -27,13 +27,10 @@ table.data-table tr td > :last-child {
 }
 
 .data-table-wrapper {
-  margin: 24px 0;
-  width: 752px; /* fixing a bug with horizontal scrolling of full-width table */
-
   p {
-    font-size: 14px;
-    line-height: 20px;
-    margin: 0;
+    font-size: var(--fontSizeSmall);
+    line-height: 1.4;
+    margin-bottom: 0;
   }
 }
 
@@ -54,13 +51,24 @@ table.borderless tr {
 }
 
 table.header-column th:first-child,
-table.header-column td:first-child {
+table.header-column td:first-child,
+table.header-row tr th,
+table.header-row thead tr:first-child {
   background-color: var(--colorBackgroundSecondary);
+  font-weight: var(--fontWeightBold);
+
+  p {
+    font-weight: var(--fontWeightBold);
+  }
 }
 
-table.header-row tr:first-child,
-table.header-row tr:first-child {
-  background-color: var(--colorBackgroundSecondary);
+table.header-column th:first-child,
+table.header-column td:first-child {
+  border-right-width: 2px;
+}
+
+table.header-row tr:first-child th {
+  border-bottom-width: 2px;
 }
 
 table th.left,
@@ -92,7 +100,7 @@ table td.center .sn-text-right {
     border: 0;
   }
   table caption {
-    font-size: 1.3em;
+    font-size: var(--fontSizeSmall);
   }
   table thead {
     border: none;
@@ -105,19 +113,19 @@ table td.center .sn-text-right {
     width: 1px;
   }
   table:not(.data-table) tr {
-    border-bottom: 3px solid var(--colorBorderColorSubtle);
+    border-bottom: 3px solid var(--colorBorderSubtle);
     display: block;
     margin-bottom: 0.625em;
   }
   table:not(.data-table) td {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.875em;
     text-align: right;
   }
   table:not(.data-table) td::before {
     content: attr(data-label);
     float: left;
-    font-weight: bold;
+    font-weight: var(--fontWeightBold);
     text-transform: uppercase;
   }
   table:not(.data-table) td:last-child {

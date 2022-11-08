@@ -2,123 +2,362 @@
 /*  Layouts
 /* =================================== */
 
+/*=== Theme ===*/
+:root {
+  --siteMaxWidth: none;
+  --contentMaxWidth: 756px;
+  --contentContainerPadding: 32px;
+  --tocContainerWidth: 280px;
+
+  /* Side Navigation */
+  --sideNavWidth: 300px;
+  --sideNavBackground: var(--colorBackgroundPrimary);
+  --sideNavBorderColor: var(--colorBorderStructure);
+  --sideNavElevation: none;
+  --sideNavInk: var(--colorInkPrimary);
+  --sideNavInkTab: var(--colorInkSecondary);
+  --sideNavInkSection: var(--colorInkSecondary);
+  --sideNavPadding: 16px; 
+  --sideNavGap: 0px;
+
+  /* Side Navigation Item */
+  --sideNavItemHoverBackground: rgba(0,0,0,0.04);
+  --sideNavItemHoverInk: var(--sideNavInk);
+  --sideNavItemActiveBackground: var(--colorAccentSurface);
+  --sideNavItemActiveInk: var(--colorAccent);
+  --sideNavItemBorderRadius: var(--navItemBorderRadius);
+  --sideNavItemActiveBorderWidth: 0px;
+  --sideNavItemActiveBorderColor: var(--sideNavItemActiveInk);
+  --sideNavItemPadding: 12px;
+  --sideNavItemHeight: 36px;
+  --sideNavItemFontSize: var(--fontSizeSmall);
+  --sideNavItemFontWeight: var(--fontWeightSemibold);
+  --sideNavSubItemIndentMargin: var(--sideNavPadding);
+  --sideNavSubItemIndentPadding: 0px;
+
+  --sideNavButtonSearchBackground: var(--colorBackgroundSecondary);
+
+  /* Left Navigation Group */
+  --sideNavGroupTextTransform: uppercase;
+  --sideNavGroupFontWeight: var(--fontWeightBold);
+  --sideNavGroupFontSize: var(--fontSizeTiny);
+  --sideNavGroupMarginTop: 32px;
+  --sideNavGroupInk: var(--colorInkTertiary);
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .site {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    .site-content-wrapper {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: var(--siteMaxWidth);
+      
+      .site-content {
+        display: flex;
+        min-height: calc(100vh - 204px); // todo: calculate header height and paddings
+      }
+    }
+  }
+}
+
+.docs-content {
+  flex-grow: 1;
+  background-color: var(--pageBackground);
+  max-width: 100vw;
+  min-height: calc(100vh - 242px);
+  display: flex;
+  flex-direction: column;
+
+    >.content-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 0 var(--contentContainerPadding);
+      margin: var(--pageHeaderMargin);
+  }
+}
+
+
+/*=== Generic ===*/
 #main-wrapper {
   background: var(--pageBackground);
 }
 
-.box {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/*=== Overrides for dark style (of the sidebar or everything) ===*/
 
-.container {
-  padding-bottom: 60px;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1000px !important;
-  }
+.style-dark {
+  --sideNavBackground: var(--colorNeutral900);
+  --sideNavBorderColor: var(--sideNavBackground);
+  --sideNavInk: var(--colorInkInverted);
+  --sideNavInkTab: var(--colorInkSecondary);
+  --sideNavInkSection: var(--colorInkSecondary);
+  --sideNavItemHoverBackground: rgba(255, 255, 255, 0.08);
+  --sideNavItemHoverInk: var(--sideNavInk);
+  --sideNavItemActiveBackground: rgba(255,255,255,0.2);
+  --sideNavItemActiveInk: white;
 }
 
 /*=== Side Navigation ===*/
 
-.docs-navigation {
-  position: fixed;
-  top: 70;
-  left: 0;
-  overflow: scroll;
-  overflow-y: auto;
-  width: var(--leftNavWidth);
-  height: calc(100vh - 50px);
+.side-navigation-wrapper {
+  background-color: var(--sideNavBackground);
+  width: var(--sideNavWidth); // should this be min-width? 
+  position: relative;
   z-index: 1;
-  border-right: 1px solid var(--leftNavBorderColor);
-  box-shadow: var(--leftNavElevation);
+  border-right: 1px solid var(--sideNavBorderColor);
+  box-shadow: var(--sideNavElevation);
+  flex-shrink: 0;
+
+  .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: var(--topNavHeight);
+    height: calc(100vh - var(--topNavHeight));
+    overflow: auto;
+    margin: 0;
+    padding: var(--sideNavGroupMarginTop) 0 0;
+    width: 100%;
+  }
+
+  .bg-sidebar {
+    background-color: var(--sideNavBackground);
+    position: absolute;
+    inset: 0px 0 0px -1600px;
+    z-index: 0;
+  }
+
+  // todo: fix this in the correct place
+  .nav {
+    flex-direction: column;
+  }
 }
 
-.bg-sidebar {
-  background-color: var(--leftNavBackground);
-  z-index: 2;
+
+.site-logo-wrapper {
+  --topNavInk: var(--colorInkPrimary);
+
+  color: var(--sideNavInk);
+  display: flex;
+  flex-direction: column;
+  padding: 28px var(--sideNavPadding) 24px;
+  position: sticky;
+  top: 0;
+  background: var(--sideNavBackground);
+  z-index: 1;
+  gap: 24px;
+  
+  .site-logo {
+    align-self: flex-start;
+    display: flex !important;
+  }
+
+  .logo-wrapper {
+    width: auto;
+    padding: 0;
+    height: auto;
+  }
+}
+
+
+.group-open + .nav-item {
+  margin-top: var(--sideNavGroupMarginTop);
 }
 
 .docs-navigation > .nav {
-  margin: 0px 20px 80px 20px;
-  padding: 16px 0px;
+  --calculatedIndent: 0px;
+
+  padding: 0 var(--sideNavPadding) 32px;
   color: var(--colorInkPrimary);
+  gap: var(--sideNavGap);
+  flex-direction: column;
+
+  .nav-link.group {
+    --sideNavItemActiveBorderWidth: 0px;
+  }
+
+  .nav-item {
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      font-weight: var(--sideNavItemFontWeight);
+      font-size: var(--sideNavItemFontSize);
+      line-height: 1.4;
+      letter-spacing: 0em;
+      text-indent: 0px;
+      color: var(--sideNavInk);
+      padding: 8px var(--sideNavItemPadding);  
+      border-radius: var(--sideNavItemBorderRadius);
+      transition: var(--transitionDefault);
+
+      &:hover {
+        color: var(--sideNavItemHoverInk);
+        background-color: var(--sideNavItemHoverBackground);
+      }
+
+      &.group {
+        .icon {
+          opacity: 0.8;
+          transition: var(--transitionDefault);
+          
+          svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      &.active {
+        padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth));
+        background-color: var(--sideNavItemActiveBackground);
+        color: var(--sideNavItemActiveInk);
+        border-radius: var(--sideNavItemBorderRadius);
+        border-left: var(--sideNavItemActiveBorderWidth) solid var(--sideNavItemActiveBorderColor);
+
+        &.group {
+          background-color: transparent;
+          color:  var(--sideNavInk);
+          border: 0;
+          padding-left: var(--sideNavItemPadding);
+
+          &:hover {
+            color: var(--sideNavItemHoverInk);
+            background-color: var(--sideNavItemHoverBackground);
+          }
+
+          .icon {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+  }
+
+  // for all nav-items that are nested
+
+  // 2nd level
+  > li > .nav {
+    --calculatedIndent: var(--sideNavSubItemIndentPadding);
+
+    // 3rd level
+    > li > .nav {
+      --calculatedIndent: var(--sideNavSubItemIndentPadding) * 2;
+
+      // 4th level
+      > li > .nav {
+        --calculatedIndent: var(--sideNavSubItemIndentPadding) * 3;
+
+        // 5th level
+        > li > .nav {
+          --calculatedIndent: var(--sideNavSubItemIndentPadding) * 4;
+
+          // 6th+ level
+          > li > .nav {
+            --calculatedIndent: var(--sideNavSubItemIndentPadding) * 5;
+          }
+        }
+      }
+    }
+  }
+
+  .nav .nav-item {
+    .nav-link {
+      padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent));  
+
+      &.active {
+        padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth));  
+      }
+    }
+  }
+
+  &.with-root-level {
+    // if there is no top nav, we highlight roo-level items with the same style as we would have in topNav
+    & > .nav-item > .nav-link {
+      font-weight: var(--topNavFontWeight);
+    }
+  }
+
+  &.first-level-flat {    
+    .group-open {
+      margin-top: var(--sideNavGroupMarginTop);
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      > .nav-link.group {
+        font-weight: var(--sideNavGroupFontWeight);
+        text-transform: var(--sideNavGroupTextTransform);
+        font-size: var(--sideNavGroupFontSize);
+        line-height: 1.3;
+        color: var(--sideNavGroupInk);
+        pointer-events: none;
+        padding-top: 0;
+
+        .icon {
+          display: none;
+        }
+
+        &:after {
+          content: none;
+        }
+      }
+
+      > ul.nav {
+        margin: 0;
+      }
+    }
+  }
 }
 
 .docs-navigation .nav .nav-item {
   position: relative;
   transition: var(--transitionDefault);
-  padding: 2px;
+  padding: 0;
+  border-radius: var(--sideNavItemBorderRadius);
+  
 
   &.is-tab a {
-    color: var(--leftNavInkTab);
+    color: var(--sideNavInkTab);
   }
 }
 
 .nav-name {
-  margin: 24px 0px 0px 28px;
+  margin: 0 var(--sideNavPadding) 8px;
+  border-bottom: 1px solid var(--colorBorderProminent);
+  padding: 0 var(--sideNavItemPadding) 8px;
 }
 
 .nav-name span {
   text-transform: uppercase;
-  color: var(--leftNavInkSection);
-}
-
-.nav-link {
-  padding: 8px;
-}
-
-.docs-navigation .nav .nav-item:hover {
-  background: var(--leftNavItemHoverBackground);
-  border-radius: var(--borderRadiusDefault);
-}
-
-.docs-navigation .nav .nav-item:hover a {
-  color: var(--leftNavInk);
+  color: var(--sideNavInkSection);
 }
 
 .docs-navigation .nav .nav {
-  margin: 0 0 0 16px;
+  margin: 0 0 0 var(--sideNavSubItemIndentMargin);
 }
 
-.docs-navigation .nav .nav-link {
-  position: relative;
-}
 
 .docs-navigation .nav .nav-item .nav-link.active + .nav {
   display: block;
 }
 
-.docs-navigation .nav .nav-item .nav-link {
-  height: 36px;
-  border-radius: var(--borderRadiusDefault);
-}
 /* 5.4 Nav + Page Tabs */
 /* Todo: split this */
-
-.nav .nav-item .nav-link {
-  display: flex;
-  align-items: center;
-  color: var(--leftNavInk);
-  height: 40px;
-  border-top-left-radius: var(--borderRadiusDefault);
-  border-top-right-radius: var(--borderRadiusDefault);
-}
-
-.nav.nav-light .nav-item .nav-link {
-  color: #ddd;
-}
-
-.nav:not(.nav-pills) .nav-item .nav-link.active,
-.nav:not(.nav-pills) .nav-item .nav-link:hover {
-  color: var(--leftNavInk);
-}
-
-.nav:not(.nav-pills) .nav-item .nav .nav-item .nav-link:hover {
-  background-color: var(--leftNavItemHoverBackgroundAlt);
-}
 
 .nav.nav-separator .nav-item .nav-link {
   position: relative;
@@ -141,77 +380,20 @@
   background-color: rgba(250, 250, 250, 0.2);
 }
 
-.nav.nav-sm .nav-item .nav-link {
-  font-size: 14px;
-}
-
-.docs-navigation .nav > .nav-item > .nav-link.active {
-  background-color: var(--leftNavItemActiveBackground);
-  color: var(--leftNavItemActiveInk);
-  border-radius: var(--borderRadiusDefault);
-}
-
-/*
-.docs-navigation .nav > .nav-item > .nav-link.active:after {
-  position: absolute;
-  content: " ";
-  top: 50%;
-  right: 10px;
-  border-color: var(--colorBorderColorSubtle);
-  border-top: 1px solid;
-  border-right: 1px solid;
-  width: 5px;
-  height: 5px;
-  -webkit-transform: translate(-50%, -50%) rotate(45deg);
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-*/
-
-.docs-navigation .nav > .nav-item > .nav-link.active.group {
-  color: var(--leftNavInk);
-  background-color: transparent;
-}
-
-.docs-navigation .nav > .nav-item > .nav-link.group:after {
-  position: absolute;
-  content: ' ';
-  top: 50%;
-  right: 10px;
-  border-color: var(--leftNavBorderColor);
-  border-top: 2px solid;
-  border-right: 2px solid;
-  width: 6px;
-  height: 6px;
-  transition: var(--transitionDefault);
-  opacity: 0.6;
-}
-
-.docs-navigation .nav > .nav-item > .nav-link.group::after {
-  -webkit-transform: translate(-50%, -50%) rotate(45deg);
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.docs-navigation .nav > .nav-item > .nav-link.group.active::after {
-  -webkit-transform: rotate(135deg);
-  transform: rotate(135deg);
-  top: 14px;
-}
 
 .nav-sn {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  overflow: hidden;
-  overflow-y: hidden;
-  width: calc(var(--leftNavWidth) - 1px);
   height: 60px;
   z-index: 1;
-  border-top: 1px solid var(--leftNavBorderColor);
+  border-top: 1px solid var(--sideNavBorderColor);
   display: flex;
   align-content: center;
   justify-content: center;
   align-items: center;
-  background-color: var(--leftNavBackground);
+  background-color: var(--sideNavBackground);
+  margin-top: auto;
+  flex-shrink: 0;
 
   a {
     display: flex;
@@ -221,53 +403,19 @@
     align-items: center;
 
     svg {
-      color: var(--leftNavInk);
+      color: var(--sideNavInk);
       opacity: 0.4;
+      flex-shrink: 0;
     }
 
     &:hover {
-      color: var(--leftNavItemHoverInk);
-      background-color: var(--leftNavItemHoverBackground);
+      color: var(--sideNavItemHoverInk);
+      background-color: var(--sideNavItemHoverBackground);
 
       svg {
-        color: var(--leftNavItemHoverInk);
+        color: var(--sideNavItemHoverInk);
+        flex-shrink: 0;
       }
     }
   }
-}
-/*=== Docs Content ===*/
-
-.docs-content {
-  position: relative;
-  margin-left: var(--leftNavWidth);
-  padding: 0px;
-  min-height: calc(100vh - 242px);
-}
-
-.docs-content.fullscreen {
-  margin-left: 0px;
-}
-
-.docs-content ol li,
-.docs-content ul li {
-  margin-top: 10px;
-}
-
-@media (max-width: 767.98px) {
-  .docs-navigation {
-    margin-left: -260px;
-  }
-  .docs-navigation.active {
-    margin-left: 0;
-  }
-  .docs-content {
-    margin-left: 0px;
-    padding: 0px;
-  }
-}
-
-/*=== Section Divider ===*/
-
-.divider {
-  margin: 32px 0;
 }

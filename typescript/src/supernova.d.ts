@@ -98,6 +98,8 @@ declare global {
 
   type ShadowToken = Token & {
     value: ShadowTokenValue
+    shadowLayers: Array<ShadowToken> | null
+    isVirtual: boolean
   }
 
   type MeasureToken = Token & {
