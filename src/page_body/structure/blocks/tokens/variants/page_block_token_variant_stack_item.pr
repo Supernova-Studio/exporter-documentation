@@ -1,5 +1,5 @@
 {* Fetch block from injection context, expected type 'Token' *}
-{[ const token = context /]}
+{[ const token = context.token /]}
 
 {[ if token.tokenType.equals("Color") ]}
 
@@ -22,7 +22,7 @@
     <div class="stack-item fallback">
         <div class="preview">
             <div class="name">
-                {[ inject "page_block_token_preview_small" context token /]}
+                {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
                 {[ if (token.origin !== null) ]}
                     {{ token.origin.name.replacing("/", " / ") }}
                 {[ else ]}

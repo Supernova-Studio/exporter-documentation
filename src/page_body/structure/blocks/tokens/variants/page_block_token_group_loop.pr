@@ -19,7 +19,7 @@
                 {[ for token in tokens ]}
                     {* Check for "virtual" shadow tokens to not display shadow layers layers as separate tokens *}
                     {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_table_item" context token /]}
+                        {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
                      {[/]}    
                 {[/]}
             </div>
@@ -31,7 +31,7 @@
                 {* Render all tokens *}
                 {[ for token in tokens ]}
                     {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_stack_item" context token /]}
+                        {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
                     {[/]}    
                 {[/]}
             </div>
@@ -42,7 +42,7 @@
             <div class="grid{{ getVariantClass(variant) }}">
                 {[ for token in tokens ]}
                     {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_grid_item" context token /]}
+                        {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
                     {[/]}
                 {[/]}    
             </div>

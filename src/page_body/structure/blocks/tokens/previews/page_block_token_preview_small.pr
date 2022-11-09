@@ -1,7 +1,13 @@
-{[ const token = context /]}
+{[ const token = context.token /]}
+{[ const theme = context.theme /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    <div class="token-preview-container{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}" style="background-color: #{{ token.value.hex }};">{[ inject "page_block_token_reference_badge" context token /]}</div>
+    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
+
+    <div class="token-preview-container{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}{{ colorLightnessCheck ? " is-dark" : "" }}" style="background-color: #{{ token.value.hex }};">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        {[ inject "page_block_token_theme_badge" context theme /]}
+    </div>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="token-preview-container borderless">
         <div class="token-preview-container-border" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};">{[ inject "page_block_token_reference_badge" context token /]}</div>
