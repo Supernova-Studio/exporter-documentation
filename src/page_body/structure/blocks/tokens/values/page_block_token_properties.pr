@@ -1,7 +1,7 @@
 {[ let token = context.token /]}
 {[ let block = context.block /]}
 {[ let propertiesCount = token.properties.count() /]}
-{[ let blacklistedElementPropertiesCount = (block.blacklistedElementProperties !== null ? block.blacklistedElementProperties.length : 0) /]}
+{[ let blacklistedElementPropertiesCount = (block.blacklistedElementProperties ? block.blacklistedElementProperties.length : 0) /]}
 
 {* If some properties are set as to be displayed *}
 {[ if (propertiesCount !== blacklistedElementPropertiesCount) ]}
