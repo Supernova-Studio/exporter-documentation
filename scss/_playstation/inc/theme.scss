@@ -1,0 +1,49 @@
+/*  Design tokens 
+/* =================================== */
+:root {
+  /*  Palette
+  /* =================================== */
+  --color-valid: #2E8540;
+  --color-invalid: #CD2026;
+  --color-link: #003fb3;
+
+  /*  Core tokens
+  /* =================================== */
+  --borderRadiusSmall: 0;
+  --borderRadiusDefault: 0;
+  --borderRadiusLarge: 0;
+  --transitionDefault: none;
+
+  /*  Semantic
+  /* =================================== */
+  --colorAccent: #00a1ff;
+  /* main text */
+  --colorInkPrimary: #000;
+
+  /* Content */
+  --contentContainerPadding: 40px;
+
+  /* Side Navigation */
+  --sideNavWidth: 300px;
+  --sideNavBorderColor: rgba(0,0,0,.07);
+  --sideNavInk: var(--colorInkPrimary);
+  --sideNavPadding: 0;
+  --sideNavGap: 0;
+
+  /* Side Navigation Item */
+  --sideNavItemHoverBackground: #e8e8e8;
+  --sideNavItemHoverInk: var(--sideNavInk);
+  --sideNavItemActiveBackground: var(--colorAccent);
+  --sideNavItemActiveInk: var(--colorInkPrimary);
+  --sideNavItemPadding: 12px;
+  --sideNavItemFontSize: inherit;
+  --sideNavItemFontWeight: inherit;
+  --sideNavSubItemIndentMargin: 1.5rem;
+
+  /* Left Navigation Group */
+  --sideNavGroupMarginTop: 0;
+
+  /* Spacing
+  /* =================================== */
+  --grid-gap: 1.5rem;
+}

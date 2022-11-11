@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:dev": "npx webpack --mode=development --watch",
     "watch": "npx webpack --mode=production --watch",
-    "build": "npx webpack --config webpack.config.js --mode='production'"
+    "build": "npx webpack --config webpack.config.js --mode=production"
   },
   "author": "Supernova.io",
   "license": "MIT",
