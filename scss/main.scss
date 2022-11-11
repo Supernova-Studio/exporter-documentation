@@ -1,3 +1,9 @@
+/* Tailwind CSS */
+/* =================================== */
+//@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* =================================== */
 
 
@@ -88,3 +94,18 @@
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
+
+
+/*  PlayStation Custom
+/* =================================== */
+/* Foundation */
+@import "_playstation/inc/theme";
+@import "_playstation/components/typography";
+
+/*  Modules */
+@import "scss/_playstation/modules/content";
+@import "_playstation/modules/side-navigation";
+@import "_playstation/modules/content-nav";
+
+/* Block */
+//@import "_playstation/blocks/table";
