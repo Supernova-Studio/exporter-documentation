@@ -13,8 +13,7 @@
 }
 
 .docs-content {
-  @apply lg:w-[calc(100%-300px)] max-w-full;
-  min-height: calc(100vh - 242px);
+  @apply lg:w-[calc(100%-var(--sideNavWidth))] max-w-full;
 
   >.content-container {
     @apply flex-col-reverse xl:flex-row;
@@ -22,10 +21,10 @@
 }
 
 #section-content-page {
-  @apply max-w-[1160px] mb-[80px];
-  @apply xl:w-[calc(100%-300px)];
+  @apply mb-[80px];
+  @apply xl:w-[calc(100%-var(--contentNavWidth))];
 }
 
 .container-title > .slider {
-  @apply max-w-[1460px];
+  @apply max-w-[calc(var(--contentMaxWidth)+var(--contentNavWidth))];
 }

@@ -1,12 +1,6 @@
 /*  Design tokens 
 /* =================================== */
 :root {
-  /*  Palette
-  /* =================================== */
-  --color-valid: #2E8540;
-  --color-invalid: #CD2026;
-  --color-link: #003fb3;
-
   /*  Core tokens
   /* =================================== */
   --borderRadiusSmall: 0;
@@ -22,6 +16,7 @@
 
   /* Content */
   --contentContainerPadding: 40px;
+  --contentMaxWidth: 1160px;
 
   /* Side Navigation */
   --sideNavWidth: 300px;
@@ -43,7 +38,16 @@
   /* Left Navigation Group */
   --sideNavGroupMarginTop: 0;
 
-  /* Spacing
+  /* PlayStation
   /* =================================== */
+  /*  Palette */
+  --color-valid: #2E8540;
+  --color-invalid: #CD2026;
+  --color-link: #003fb3;
+
+  /* Spacing */
   --grid-gap: 1.5rem;
+
+  /* Content Navigation */
+  --contentNavWidth: 300px;
 }
