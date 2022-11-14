@@ -1,9 +1,9 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Nebula Documentation",
-  "description": "Default exporter for documentation site", 
-  "author": "Supernova",
-  "organization": "Supernova",
+  "name": "PlayStation UI Guidelines",
+  "description": "Default exporter for UIG",
+  "author": "PlayStation",
+  "organization": "PlayStation",
   "source_dir": "src",
   "assets_dir": "assets",
   "version": "4.0.1",
@@ -40,7 +40,7 @@
         "label": "Site logo height",
         "description": "The height of your site logo in the top navigation bar, measured in pixels.",
         "category": "Look & feel",
-        "default": 28
+        "default": 33
       },
       {
         "key": "favicon",
@@ -53,7 +53,7 @@
         "key": "lookAndFeelAccentColor",
         "type": "color",
         "label": "Accent color",
-        "description": "This is your main accent color, used for all links, selected states, and active items. Default color: #0f62fe.",
+        "description": "This is your main accent color, used for all links, selected states, and active items. Default color: #00a1ff.",
         "category": "Look & feel"
       },
       {
@@ -84,7 +84,7 @@
         "description": "Font used in published documentation. If you use a custom font family (e.g. from Google Fonts), you might need to embed it below.",
         "label": "Font family",
         "category": "Look & feel",
-        "default": "Inter, Arial, sans-serif"
+        "default": "\"Helvetica Neue\",Arial,\"Hiragino Kaku Gothic ProN\",\"Hiragino Sans\",Meiryo,sans-serif"
       },
       {
         "key": "advancedCustomizationCustomFonts",
@@ -138,7 +138,7 @@
         "label": "Content container width",
         "description": "The maximum width of the content container, measured in pixels. Default (and minimum) width: 756px.",
         "category": "Layout",
-        "default": 756
+        "default": 1160
       },
       {
         "key": "topNavigationStyle",
@@ -165,7 +165,7 @@
         "label": "Height",
         "description": "Used to set the height of your top navigation bar, measured in pixels. Minimum height: 44px.",
         "category": "Top navigation",
-        "default": 68
+        "default": 50
       },
       {
         "key": "searchButtonType",
