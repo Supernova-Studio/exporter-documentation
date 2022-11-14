@@ -62,6 +62,7 @@
   line-height: var(--lineHeightSmall);
   font-weight: var(--fontWeightSemibold);
   color: var(--colorInkPrimary);
+  overflow-wrap: break-word;
 }
 
 .layout-tiles .grid > div p.description,

@@ -47,6 +47,10 @@
     background-color: var(--colorBackgroundPrimary);
     z-index: 2;
   }
+
+  .color-preview {
+    border: 0 !important;
+  }
 }
 
 .reference-badge {
@@ -415,6 +419,14 @@ a.custom-property-link {
   border-top: 1px solid var(--colorBorderSubtle);
   border-radius: 0;
   padding: 12px 0 0;
+
+  .label {
+    max-width: 50%;
+  }
+
+  .value {
+    overflow-wrap: anywhere;
+  }
 }
 
 .content-block--token-container .grid .custom-properties .custom-property-item {
@@ -503,14 +515,20 @@ a.custom-property-link {
   font-weight: var(--fontWeightSemibold);
   padding: 12px;
   color: var(--colorNeutral900);
+  position: relative;
 }
 
 .content-block--token-container .stack .stack-item .value {
   text-align: right;
   font-size: 13px;
+  align-self: center;
+
+  .token-value {
+    display: block;
+  }
 }
 
-.content-block--token-container .stack .stack-item.inverted-text .preview {
+.content-block--token-container .stack .stack-item .preview.inverted-text {
   color: var(--colorWhite);
 
   .token-value {
@@ -524,10 +542,27 @@ a.custom-property-link {
   border-top-right-radius: var(--borderRadiusLarge);
 }
 
+.content-block--token-container .stack .stack-item .previews-side-by-side .preview:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.content-block--token-container .stack .stack-item .previews-side-by-side .preview:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 35%;
+}
+
 .content-block--token-container .stack .stack-item:last-child,
 .content-block--token-container .stack .stack-item:last-child .preview {
   border-bottom-left-radius: var(--borderRadiusLarge);
   border-bottom-right-radius: var(--borderRadiusLarge);
+}
+
+.content-block--token-container .stack .stack-item .previews-side-by-side {
+  display: flex;
+  width: 100%;
+  gap: 1px;
 }
 
 /* fallback support for non-color tokens in Color stack type */

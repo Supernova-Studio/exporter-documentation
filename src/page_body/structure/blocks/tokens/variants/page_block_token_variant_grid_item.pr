@@ -4,7 +4,7 @@
 
 <div class="token-grid--item">
   {* Render large tile preview *}
-    {[ if (block.theme && (block.theme.themeIds.length > 0) && (token.tokenType === "Color")) ]}
+    {[ if (block.theme && (block.theme.themeIds.length > 0)) ]}
       {* Intentionally selecting only one theme as it's supported by the Editor like this *}
       {[ let themeId = block.theme.themeIds[0] /]}
       {[ let themedToken = ds.tokensByApplyingThemes([token.id], [themeId]) /]}
