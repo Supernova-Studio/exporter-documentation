@@ -14,4 +14,6 @@
     {[ inject "page_block_custom_lottie_preview" context block /]}
 {[ case "io.supernova.documentation-main.release-notes" ]}
     {[ inject "page_block_custom_release_notes" context block /]}
+{[ case "uig.badge" ]}
+    {[ inject "ps_uig_badge" context block /]}
 {[/]}

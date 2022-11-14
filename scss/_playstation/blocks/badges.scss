@@ -1,0 +1,48 @@
+/* =================================== */
+/*  Badges
+/* =================================== */
+.uig-badge {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: .625rem 1rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 6px;
+  color: #fff;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
+}
+
+.uig-badge--pending {
+  background-color: #777;
+}
+.uig-badge--design {
+  background-color: #00a1ff;
+}
+.uig-badge--jira {
+  background-color: #4A6785;
+
+  &:hover,
+  &:focus {
+    background-color: #3B526A;
+    text-decoration: none;
+  }
+}
+.uig-badge--available {
+  background-color: #009E87;
+}
+.uig-badge--implemented {
+  background-color: #003791;
+}
+.uig-badge--standard {
+  background-color: #363636;
+}
+.uig-badge--required {
+  background-color: #D99C34;
+}
