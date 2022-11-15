@@ -3,6 +3,7 @@
 {[ let variant = block.variantKey /]}
 
 {* Generate unique ID for the sandbox, and retrieve its configuration *}
+{* This side effect makes button/code.html different on each publish *}
 {[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
 
 {* Generate sandbox code which will be automatically converted to live sandbox *}
