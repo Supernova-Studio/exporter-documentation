@@ -270,7 +270,7 @@
       {
         "key": "navigationShowTabs",
         "type": "boolean",
-        "label": "Show page tabs from navigation",
+        "label": "Show page tabs in navigation",
         "description": "When enabled, page tabs will be displayed in the side navigation.",
         "category": "Side navigation",
         "default": true
