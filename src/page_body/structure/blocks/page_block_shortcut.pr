@@ -1,43 +1,45 @@
 {[ const shortcut = context /]}
 
-{[ if shortcut.externalUrl ]}
-    <a href="{{ shortcut.externalUrl }}" class="shortcut-item" target="_blank">
+{[ if !shortcut.title.startsWith("_") ]} 
+    {[ if shortcut.externalUrl ]}
+        <a href="{{ shortcut.externalUrl }}" class="shortcut-item" target="_blank">
     {[ elseif shortcut.internalId ]}
-        {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
-        {[ let page = ds.documentationPageById(shortcut.internalId) /]}
-        {[ if page ]}
-            {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-            <a href="{{ url }}" class="shortcut-item">
-        {[ else ]}
-        {* Links to group instead, find that and if exists, link to the first page in that group *}
-            {[ let group = ds.documentationGroupById(shortcut.internalId) /]}
-            {[ if group ]}
-                {[ page = firstPageFromTop(group) /]}
-                {[ if page ]}
-                    {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                    <a href="{{ url }}" class="shortcut-item">
+            {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
+            {[ let page = ds.documentationPageById(shortcut.internalId) /]}
+            {[ if page ]}
+                {[ let url = pageUrl(page, ds.documentationDomain()) /]}
+                <a href="{{ url }}" class="shortcut-item">
+            {[ else ]}
+            {* Links to group instead, find that and if exists, link to the first page in that group *}
+                {[ let group = ds.documentationGroupById(shortcut.internalId) /]}
+                {[ if group ]}
+                    {[ page = firstPageFromTop(group) /]}
+                    {[ if page ]}
+                        {[ let url = pageUrl(page, ds.documentationDomain()) /]}
+                        <a href="{{ url }}" class="shortcut-item">
+                    {[ else ]}
+                    {* Doesn't link to anything *}
+                        <a class="shortcut-item">
+                    {[/]}
                 {[ else ]}
                 {* Doesn't link to anything *}
-                    <a class="shortcut-item">
+                <a class="shortcut-item">
                 {[/]}
-            {[ else ]}
-            {* Doesn't link to anything *}
-            <a class="shortcut-item">
             {[/]}
-        {[/]}
     {[ else ]}
-    <a class="shortcut-item"> 
+        <a class="shortcut-item"> 
     {[/]}
 
-    {[ if shortcut.previewUrl ]}
-    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
-    {[ else ]}
-    <div class="preview empty"></div>
-    {[/]}
-    <div class="content">
-        <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
-        {[ if (shortcut.description && shortcut.description != "-") ]}
-            <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
+        {[ if shortcut.previewUrl ]}
+        <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+        {[ else ]}
+        <div class="preview empty"></div>
         {[/]}
-    </div>
-</a>
+        <div class="content">
+            <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
+            {[ if (shortcut.description && shortcut.description != "-") ]}
+                <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
+            {[/]}
+        </div>
+    </a>
+{[/]}

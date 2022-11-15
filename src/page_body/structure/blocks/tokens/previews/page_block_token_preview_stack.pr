@@ -1,0 +1,36 @@
+{[ const token = context.token /]}
+{[ const theme = context.theme /]}
+
+{[ if token.tokenType.equals("Color") ]}
+
+    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
+    {[ const whiteCheck = (token.value.hex === "ffffffff") /]}
+    
+    <div class="preview is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}" style="background-color: #{{ token.value.hex }};">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        {[ inject "page_block_token_theme_badge" context theme /]}
+
+        {[ if (theme === null) ]}
+            <div class="name">
+                {{ token.name.replacing("/", " / ") }} 
+            </div>
+        {[/]}
+        <div class="value">
+            {[ inject "page_block_token_value" context token /]}
+        </div>
+    </div>
+
+{[ else ]}
+    <div class="preview fallback">
+        {[ inject "page_block_token_theme_badge" context theme /]}
+        <div class="name">
+            {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
+            {[ if (token.origin !== null) ]}
+                {{ token.origin.name.replacing("/", " / ") }}
+            {[ else ]}
+                {{ token.name.replacing("/", " / ") }}
+            {[/]}
+        </div>
+        <div class="value">{[ inject "page_block_token_value" context token /]}</div>
+    </div>
+{[/]}

@@ -2,11 +2,9 @@
 <span class="token-value">
 {[ if token.tokenType.equals("Color") ]}
     {[ if (token.value.a === 255) ]}
-    #{{ token.value.hex.substring(0, 6) }}<br />
-    rgb({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }})
+    #{{ token.value.hex.substring(0, 6) }}
     {[ else ]}
-    #{{ token.value.hex }}<br />
-    rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ (token.value.a / 255).rounded(3) }})
+    #{{ token.value.hex }}
     {[/]}
 {[ elseif token.tokenType.equals("Blur") ]}
     {[ switch token.value.type ]}

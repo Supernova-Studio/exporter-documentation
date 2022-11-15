@@ -150,3 +150,18 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
 export function getCurrentTimestamp(): string {
   return Math.floor(Date.now()).toString();
 }
+
+
+/** Check if the key is in the array of keys
+ */
+ export function checkKeyInArray(array, key: string): boolean {
+  if (array) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === key) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}

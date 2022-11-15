@@ -1,35 +1,31 @@
 {* Fetch block from injection context, expected type 'Token' *}
-{[ const token = context /]}
+{[ const token = context.token /]}
+{[ const block = context.block /]}
 
 {[ if token.tokenType.equals("Color") ]}
+    <div class="stack-item is-color">
 
-    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
-    {[ const whiteCheck = (token.value.hex === "ffffffff") /]}
+        {[ if (block.theme && (block.theme.themeIds.length > 0)) ]}
+            {* Intentionally selecting only one theme as it's supported by the Editor like this *}
+            {[ let themeId = block.theme.themeIds[0] /]}
+            {[ let themedToken = ds.tokensByApplyingThemes([token.id], [themeId]) /]}
+            {[ let theme = ds.themeById(themeId) /]}
 
-    <div class="stack-item is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}">
-        {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="preview" style="background-color: #{{ token.value.hex }};">
-            <div class="name">
-                {{ token.name.replacing("/", " / ") }}
-            </div>
-            <div class="value">
-                {[ inject "page_block_token_value" context token /]}   
-            </div>
-        </div>
+            {[ if (block.theme.type === "Comparison") ]}
+                <div class="previews-side-by-side">
+                {[ inject "page_block_token_preview_stack" context ({"token": token, "theme": null})  /]}  
+                {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "theme": theme})  /]}
+                </div>
+            {[ else ]}
+                {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "theme": theme})  /]}
+            {[/]}
+        {[ else ]}
+            {[ inject "page_block_token_preview_stack" context ({"token": token, "theme": null})  /]} 
+        {[/]}   
     </div>
 
 {[ else ]}
     <div class="stack-item fallback">
-        <div class="preview">
-            <div class="name">
-                {[ inject "page_block_token_preview_small" context token /]}
-                {[ if (token.origin !== null) ]}
-                    {{ token.origin.name.replacing("/", " / ") }}
-                {[ else ]}
-                    {{ token.name.replacing("/", " / ") }}
-                {[/]}
-            </div>
-            <div class="value">{[ inject "page_block_token_value" context token /]}</div>
-        </div>
+        {[ inject "page_block_token_preview_stack" context ({"token": token, "theme": null})  /]}
     </div>
 {[/]}

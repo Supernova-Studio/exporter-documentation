@@ -1,0 +1,14 @@
+{[ const theme = context /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ if theme ]}
+    <div class="theme-badge" data-toggle="tooltip" title="Applied theme: {{ theme.name }}">
+        {[ if theme.name.lowercased().contains("dark") ]}
+            {[ inject "icon_theme_dark" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("light") ]}
+            {[ inject "icon_theme_light" context configuration /]}
+        {[ else ]}
+            {[ inject "icon_theme" context configuration /]}
+        {[/]}
+    </div>
+{[/]}

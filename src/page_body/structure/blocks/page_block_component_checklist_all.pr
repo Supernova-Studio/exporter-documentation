@@ -55,7 +55,6 @@
                                     </td>
                                 {[ else ]}
                                     <td>
-                                    -
                                         {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
                                     </td>
                                 {[/]}
@@ -75,5 +74,5 @@
     </div> 
 {[ else ]}
 {* No component available to be shown just yet *}
-<p>There are no components to render the component list just yet. Please add the first component and republish</p>
+<p>There are no components to render the component list just yet. Please add some in Components section and republish the documentation.</p>
 {[/]}
