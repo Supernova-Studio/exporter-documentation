@@ -386,7 +386,7 @@
         "label": "Show last published date",
         "description": "When enabled, the date on which the page was last published will be displayed in the footer.",
         "category": "Footer",
-        "default": true
+        "default": false
       },
       {
         "key": "advancedCustomizationShowFooter",
