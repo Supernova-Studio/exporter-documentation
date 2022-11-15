@@ -273,7 +273,7 @@
         "label": "Show page tabs from navigation",
         "description": "When enabled, page tabs will be displayed in the side navigation.",
         "category": "Side navigation",
-        "default": false
+        "default": true
       },
       {
         "key": "showSupernovaBranding",
