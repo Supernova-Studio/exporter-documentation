@@ -103,7 +103,8 @@
 @import "_playstation/components/typography";
 
 /*  Modules */
-@import "scss/_playstation/modules/content";
+@import "_playstation/modules/top-navigation";
+@import "_playstation/modules/content";
 @import "_playstation/modules/side-navigation";
 @import "_playstation/modules/content-nav";
 

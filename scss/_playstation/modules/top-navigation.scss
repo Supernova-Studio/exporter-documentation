@@ -1,0 +1,29 @@
+/* =================================== */
+/*  Top navigation
+/* =================================== */
+#header {
+  .navbar {
+    @apply px-[20px];
+  }
+}
+
+/* Logo */
+.site-logo {
+  @apply block order-[-1];
+}
+.logo-wrapper {
+  @apply px-[10px] pb-[3px];
+}
+
+/* Hamburger Menu Button */
+#sidebarCollapse {
+  @apply flex;
+}
+.toggle-navbar {
+  @apply order-[-2] mr-0;
+}
+
+/* Search */
+.utility-nav {
+  @apply pr-0;
+}
