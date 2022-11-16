@@ -6,7 +6,7 @@
   "organization": "PlayStation",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -266,6 +266,14 @@
         "description": "When enabled, all first-level groups will be expanded, and the group label will be styled as an eyebrow heading. This won't be applied to pages with tabs.",
         "category": "Side navigation",
         "default": false
+      },
+      {
+        "key": "navigationShowTabs",
+        "type": "boolean",
+        "label": "Show page tabs in navigation",
+        "description": "When enabled, page tabs will be displayed in the side navigation.",
+        "category": "Side navigation",
+        "default": true
       },
       {
         "key": "showSupernovaBranding",
@@ -755,7 +763,7 @@
           "key": "grid-1"
         },
         {
-          "name": "Stack",
+          "name": "Color stack",
           "key": "stack"
         }
       ],
@@ -786,7 +794,7 @@
           "key": "stack"
         },
         {
-          "name": "Stack (2 columns)",
+          "name": "Color stack (2 columns)",
           "key": "stack-2"
         }
       ],
@@ -813,7 +821,7 @@
           "key": "grid-1"
         },
         {
-          "name": "Stack",
+          "name": "Color stack",
           "key": "stack"
         }
       ],

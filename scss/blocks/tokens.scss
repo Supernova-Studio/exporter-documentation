@@ -10,13 +10,19 @@
   border-radius: var(--borderRadiusDefault);
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--colorBorderSubtle);
+  justify-content: center;
+  align-items: center;
+  color: var(--colorInkPrimary);
   
   &.borderless {
     border: 0;
+  }
+
+  &.is-dark {
+    color: var(--colorInkInverted);
   }
 
   &.overflowing {
@@ -41,6 +47,10 @@
     background-color: var(--colorBackgroundPrimary);
     z-index: 2;
   }
+
+  .color-preview {
+    border: 0 !important;
+  }
 }
 
 .reference-badge {
@@ -56,6 +66,18 @@
     color: var(--colorBackgroundPrimary);
     display: block;
     flex-shrink: 0;
+  }
+}
+
+.theme-badge {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: block;
   }
 }
 
@@ -124,7 +146,6 @@
   background: transparent;
   border-radius: var(--borderRadiusSmall);
   display: inline-flex;
-  color: var(--colorInkPrimary);
   max-height: 38px;
   max-width: 300px;
   position: relative;
@@ -150,19 +171,24 @@
     padding: 0 0 20px 0;
     border-bottom: 1px solid var(--colorBorderSubtle);
 
-    &:last-child {
-      border-bottom: 0;
-    }
-
     .basic-info {
       display: flex;
-      gap: 24px;
+      gap: 16px;
       width: 100%;
     }
 
     .preview {
       width: 148px;
       flex-shrink: 0;
+    }
+
+    .previews-side-by-side {
+      gap: 8px;
+      display: flex;
+
+      .preview {
+        width: 120px;
+      }
     }
 
     .info {
@@ -191,6 +217,7 @@
       border-left: 1px solid var(--colorBorderSubtle);
       background: var(--colorBackgroundPrimary);
       padding: 0 0 0 16px;
+      border-radius: 0;
     }
   }
 }
@@ -270,17 +297,27 @@ a.custom-property-link {
 .content-block--token-container .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  grid-column-gap: 12px;
+  grid-row-gap: 24px;
+
+  .token-previews {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .preview {
+      height: 68px;
+    }
+  }
 
   &.variant-grid-3 {
     grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 24px;
   }
 
   &.variant-grid-2 {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
+    grid-column-gap: 24px;
   }
 
   &.variant-grid-1 {
@@ -304,34 +341,51 @@ a.custom-property-link {
 }
 
 
-.content-block--token-container .grid > div > div.preview {
+.content-block--token-container .grid > div div.preview {
   width: 100%;
   height: 120px;
-  border-bottom: 1px solid var(--colorBorderSubtle);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   overflow: hidden;
   position: relative;
-}
+  border-radius: var(--borderRadiusDefault);
 
-.content-block--token-container .grid > div > div.preview .color-preview {
-  border-radius: 0;
-  border: 0;
+  &.bordered {
+    border: 1px solid var(--colorBorderSubtle);
+  }
 }
 
 .content-block--token-container .color-preview {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--colorInkPrimary);
+  border: 1px solid var(--colorBorderSubtle);
+  border-radius: var(--borderRadiusDefault);
+
+  &.is-dark {
+    color: var(--colorInkInverted);
+  }
+
+  &.borderless {
+    border: 0;
+  }
+
+  .token-value {
+    background: none;
+  }
 }
 
-.content-block--token-container .grid > div > div.preview.small-text {
+.content-block--token-container .grid > div div.preview.small-text {
   font-size: 11px;
 }
 
 .content-block--token-container .grid > div > p.title {
-  margin: 8px 12px 4px 8px;
+  margin: 8px 0 4px 0;
   padding: 0;
   font-size: var(--fontSizeSmall);
   font-weight: var(--fontWeightSemibold);
@@ -340,7 +394,7 @@ a.custom-property-link {
 }
 
 .content-block--token-container .grid > div > p.description {
-  margin: 0px 12px 4px 8px;
+  margin: 0px 0 4px 0;
   padding: 0;
   font-size: var(--fontSizeTiny);
   font-weight: var(--fontWeightRegular);
@@ -348,8 +402,7 @@ a.custom-property-link {
   color: var(--colorInkSecondary);
 }
 
-.content-block--token-container .grid > div {
-  border: 1px solid var(--colorBorderSubtle);
+.content-block--token-container .grid > div.token-grid--item {
   border-radius: var(--borderRadiusDefault);
   box-sizing: border-box;
   overflow: hidden;
@@ -366,7 +419,15 @@ a.custom-property-link {
   background: transparent;
   border-top: 1px solid var(--colorBorderSubtle);
   border-radius: 0;
-  padding-bottom: 8px;
+  padding: 12px 0 0;
+
+  .label {
+    max-width: 50%;
+  }
+
+  .value {
+    overflow-wrap: anywhere;
+  }
 }
 
 .content-block--token-container .grid .custom-properties .custom-property-item {
@@ -455,14 +516,20 @@ a.custom-property-link {
   font-weight: var(--fontWeightSemibold);
   padding: 12px;
   color: var(--colorNeutral900);
+  position: relative;
 }
 
 .content-block--token-container .stack .stack-item .value {
   text-align: right;
   font-size: 13px;
+  align-self: center;
+
+  .token-value {
+    display: block;
+  }
 }
 
-.content-block--token-container .stack .stack-item.inverted-text .preview {
+.content-block--token-container .stack .stack-item .preview.inverted-text {
   color: var(--colorWhite);
 
   .token-value {
@@ -476,10 +543,27 @@ a.custom-property-link {
   border-top-right-radius: var(--borderRadiusLarge);
 }
 
+.content-block--token-container .stack .stack-item .previews-side-by-side .preview:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.content-block--token-container .stack .stack-item .previews-side-by-side .preview:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 35%;
+}
+
 .content-block--token-container .stack .stack-item:last-child,
 .content-block--token-container .stack .stack-item:last-child .preview {
   border-bottom-left-radius: var(--borderRadiusLarge);
   border-bottom-right-radius: var(--borderRadiusLarge);
+}
+
+.content-block--token-container .stack .stack-item .previews-side-by-side {
+  display: flex;
+  width: 100%;
+  gap: 1px;
 }
 
 /* fallback support for non-color tokens in Color stack type */
