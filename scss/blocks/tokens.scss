@@ -188,6 +188,7 @@
 
       .preview {
         width: 120px;
+        flex-grow: 1;
       }
     }
 
@@ -228,12 +229,27 @@
     .item {
       flex-direction: column;
       border-bottom: 1px solid var(--colorBorderProminent);
+      gap: 12px;
+
+      .basic-info {
+        flex-direction: column;
+      }
 
       .custom-properties {
-        border-top: 1px solid var(--colorBorderSubtle);
         border-left: 0;
-        padding: 16px 0 0 0;
+        padding: 12px 0 0 0;
         width: 100%;
+      }
+
+      .single-preview {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+
+        .token-preview-container {
+          max-width: 148px;
+        }
       }
     }
   }

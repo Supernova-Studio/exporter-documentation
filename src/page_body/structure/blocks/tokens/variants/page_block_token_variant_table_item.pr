@@ -21,13 +21,13 @@
                     </div>
                 </div>
             {[ else ]}
-                <div class="preview">
+                <div class="preview single-preview">
                     {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "theme": theme})  /]}
                     {[ inject "page_block_token_value" context themedToken[0] /]}       
                 </div>
             {[/]}
         {[ else ]}
-            <div class="preview">
+            <div class="preview single-preview">
                 {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
                 {[ inject "page_block_token_value" context token /]}       
             </div>
