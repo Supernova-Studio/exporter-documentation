@@ -1,0 +1,2 @@
+{* Custom JavaScript *}
+<script src="{{ assetUrl("js/uig.js", domain)}}"></script>

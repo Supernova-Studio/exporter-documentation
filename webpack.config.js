@@ -1,9 +1,11 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FixStyleOnlyEntries = require("webpack-fix-style-only-entries");
 
 module.exports = (env, argv) => ({
   plugins: [
+    new FixStyleOnlyEntries(),
     new MiniCssExtractPlugin({
       filename: './assets/css/[name].min.css'
     })
@@ -11,10 +13,20 @@ module.exports = (env, argv) => ({
   mode: argv.mode === 'production' ? 'production' : 'development',
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
 
-  entry: ['./typescript/src/index.ts', './scss/main.scss'],
+  // entry: ['./typescript/src/index.ts', './scss/main.scss'],
+  entry: {
+    'assets/js/uig': './src/_playstation/js/uig',
+    'src/js_helpers': './typescript/src/index.ts',
+    'main': './scss/main.scss'
+  },
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -46,7 +58,7 @@ module.exports = (env, argv) => ({
 
   output: {
     publicPath: '',
-    filename: 'src/js_helpers.js',
+    filename: '[name].js',
     // path: path.resolve(__dirname, './')
     path: argv.mode === 'production' ? path.resolve(__dirname, './') : path.join(__dirname, '/.build')
   }

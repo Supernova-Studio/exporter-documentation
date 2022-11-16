@@ -39,6 +39,9 @@
     </script>
     {[/]}
 
+    {* Injection point - Custom JavaScript *}
+    {[ inject "ps_uig_custom_js" context data /]}
+
     {* Injection point - inject head *}
     {{ exportConfiguration().advancedCustomizationCustomHeadInject }}
 </head>
