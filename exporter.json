@@ -273,7 +273,7 @@
         "label": "Show Supernova branding",
         "description": "When enabled, \"Powered by Supernova\" will be displayed at the bottom of the side navigation. Optional, but highly appreciated ♥️",
         "category": "Side navigation",
-        "default": true
+        "default": false
       },
       {
         "key": "showHomepageNextPreviousNavigation",
@@ -297,7 +297,7 @@
         "label": "Override homepage label in menus",
         "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
         "category": "Homepage",
-        "default": ""
+        "default": "Home"
       },
       {
         "key": "lookAndFeelHeaderLayoutStyle",
@@ -354,7 +354,7 @@
         "label": "Custom label for table of contents",
         "description": "Customize the label for the table of contents section on each page.",
         "category": "Pages",
-        "default": "On this page"
+        "default": "Overview"
       },
       {
         "key": "tocHideHeading3",
@@ -362,7 +362,7 @@
         "label": "Hide Heading 3 from table of contents",
         "description": "When enabled, all Heading 3 levels will be hidden in table of contents.",
         "category": "Pages",
-        "default": false
+        "default": true
       },
       {
         "key": "advancedCustomizationShowNextPreviousNavigation",
@@ -378,7 +378,7 @@
         "label": "Show footer",
         "description": "A small footer on each page will be displayed.",
         "category": "Footer",
-        "default": true
+        "default": false
       },
       {
         "key": "footerShowLastPublished",
@@ -386,7 +386,7 @@
         "label": "Show last published date",
         "description": "When enabled, the date on which the page was last published will be displayed in the footer.",
         "category": "Footer",
-        "default": true
+        "default": false
       },
       {
         "key": "advancedCustomizationShowFooter",
@@ -394,7 +394,7 @@
         "label": "Show custom footer",
         "description": "A custom footer will be added on top of the regular footer. Great for additional links, information, etc.",
         "category": "Footer",
-        "default": false
+        "default": true
       },
       {
         "key": "advancedCustomizationCustomFooter",
