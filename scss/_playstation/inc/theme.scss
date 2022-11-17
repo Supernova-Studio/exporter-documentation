@@ -23,6 +23,7 @@
 
   /* Side Navigation */
   --sideNavWidth: 300px;
+  --sideNavBackground: #fff;
   --sideNavBorderColor: rgba(0,0,0,.07);
   --sideNavInk: var(--colorInkPrimary);
   --sideNavPadding: 0;
@@ -43,13 +44,22 @@
 
   /* PlayStation
   /* =================================== */
+  /*  Tailwind CSS */
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+
   /*  Palette */
   --color-valid: #2E8540;
   --color-invalid: #CD2026;
   --color-link: #003fb3;
 
   /* Spacing */
-  --grid-gap: 1.5rem;
+  --grid-gap: 1.75rem;
 
   /* Content Navigation */
   --contentNavWidth: 300px;

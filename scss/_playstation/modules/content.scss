@@ -1,19 +1,8 @@
 /* =================================== */
 /*  Content
 /* =================================== */
-.site-wrapper {
-  .site {
-    .site-content-wrapper {
-      .site-content {
-        display: flex;
-        min-height: calc(100vh - 204px); // todo: calculate header height and paddings
-      }
-    }
-  }
-}
-
 .docs-content {
-  @apply lg:w-[calc(100%-var(--sideNavWidth))] max-w-full;
+  @apply w-[calc(100%-var(--sideNavWidth))] max-w-full;
 
   >.content-container {
     @apply flex-col-reverse xl:flex-row;
@@ -23,6 +12,10 @@
 #section-content-page {
   @apply mb-[80px];
   @apply xl:w-[calc(100%-var(--contentNavWidth))];
+
+  .js-navbar-close & {
+    @apply max-w-full;
+  }
 }
 
 .container-title > .slider {

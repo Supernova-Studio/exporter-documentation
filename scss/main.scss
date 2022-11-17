@@ -107,9 +107,9 @@
 @import "_playstation/modules/content";
 @import "_playstation/modules/side-navigation";
 @import "_playstation/modules/content-nav";
+@import "_playstation/modules/footer";
 
 /*  Blocks */
+@import "_playstation/blocks/grid";
 @import "_playstation/blocks/badges";
-
-/* Block */
-//@import "_playstation/blocks/table";
+@import "_playstation/blocks/table";
