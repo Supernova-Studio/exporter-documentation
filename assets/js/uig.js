@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("navbar")})();
+(()=>{"use strict";!function(){const e=e=>{e?document.body.classList.remove("js-navbar-open"):document.body.classList.remove("js-navbar-close")},s=window.matchMedia("(min-width: 960px)");s.addEventListener("change",(s=>{e(s.matches)})),e(s.matches),document.querySelector(".toggle-navbar").addEventListener("click",(()=>{s.matches?document.body.classList.toggle("js-navbar-close"):document.body.classList.toggle("js-navbar-open")}))}()})();
