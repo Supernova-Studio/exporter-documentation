@@ -22,11 +22,19 @@ table {
   }
 
   &.header-row {
-    tr {
+    tr:first-child {
       th {
         background-color: transparent;
         border-bottom: 2px solid #d7d7d7;
       }
+    }
+  }
+
+  &.header-column {
+    td:first-child,
+    td:first-child {
+      background-color: transparent;
+      border-right: 2px solid #d7d7d7;
     }
   }
 }
