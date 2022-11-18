@@ -1,0 +1,23 @@
+/* =================================== */
+/*  Image
+/* =================================== */
+img {
+  vertical-align: middle;
+}
+
+.content-block--image {
+  td & {
+    @apply w-[calc(100%+1rem)] my-0 mx-[-.5rem] p-s bg-[#d7d7d7];
+  }
+}
+
+.caption {
+  @apply text-[var(--colorInkPrimary)] italic;
+}
+
+.content-block--image-frame {
+  @apply block p-s bg-[#d7d7d7] aspect-video;
+}
+.img-frame {
+  @apply w-full h-full object-contain;
+}

@@ -1,7 +1,7 @@
 /* Tailwind CSS */
 /* =================================== */
 //@tailwind base;
-@tailwind components;
+//@tailwind components;
 @tailwind utilities;
 
 /* =================================== */
@@ -113,3 +113,4 @@
 @import "_playstation/blocks/grid";
 @import "_playstation/blocks/badges";
 @import "_playstation/blocks/table";
+@import "_playstation/blocks/image";
