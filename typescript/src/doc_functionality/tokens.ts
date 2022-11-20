@@ -251,3 +251,35 @@ export function getColorValueFromSettings(value: string | null, alias: any): str
     return null;
   }
 }
+
+/** Filter tokens */
+export function filterTokensByIds(allTokens: Array<Token>, tokenIds: Array<string>): Array<Token> {
+  
+  // filter tokens by ids of tokens that are in the current selection
+  let filteredTokens: Array<Token> = [];
+  for (let token of allTokens) {
+    if (tokenIds.includes(token.id)) {
+      filteredTokens.push(token)
+    }
+  }
+
+  // sort tokens by their position in the current selection
+  filteredTokens.sort(function (a, b) {
+    return tokenIds.indexOf(a.id) - tokenIds.indexOf(b.id);
+  });
+
+  return filteredTokens;
+}
+
+/** Check if there are tokens only of the selected type */
+export function checkRequiredTokenType(allTokens: Array<Token>, type: TokenType): boolean {
+  
+  // if the token is not of the required type, return false
+  for (let token of allTokens) {
+    if (token.tokenType !== type) {
+      return false;
+    }
+  }
+
+  return true;
+}

@@ -7,16 +7,12 @@
 
 <div class="content-block content-block--lottie">
     {[ if !configuration.contentIncludeLottiePlayer ]}
-        <div class="callout callout-warning">
-            <div class="content"><strong>Lottie Player isn't enabled in documentation</strong><br />To fix this, go to Settings / Advanced section, enable "Include Lottie player" option, and re-publish documentation.</div>
-        </div>
+        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Lottie Player isn't enabled in documentation</strong><br />To fix this, go to <em>Settings / Other</em> section, enable <em>Include Lottie player</em> option, and re-publish documentation.", "blockId": block.id }) /]}  
     {[ elseif (url && extension == 'json') ]}
     <lottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ block.properties.width }}px; height: {{ block.properties.height }}px;" loop {{ block.properties.playerControls ? " controls" : "" }} {{ block.properties.autoplay ? " autoplay" : "" }} ></lottie-player>
     {[ elseif (url && extension == 'lottie') ]}
     <dotlottie-player src="{{ url }}" background="transparent" speed="1" style="width: {{ block.properties.width }}px; height: {{ block.properties.height }}px;" loop {{ block.properties.playerControls ? " controls" : "" }} {{ block.properties.autoplay ? " autoplay" : "" }} ></dotlottie-player>
     {[ else ]}
-        <div class="callout callout-warning">
-            <div class="content"><strong>Unable to render Lottie Preview</strong><br />Please provide valid <code>.json</code> URL with your Lottie animation.</div>
-        </div>
+        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to render Lottie Preview</strong><br />Please provide valid <code>.json</code> URL with your Lottie animation.", "blockId": block.id }) /]}  
     {[/]}
 </div>

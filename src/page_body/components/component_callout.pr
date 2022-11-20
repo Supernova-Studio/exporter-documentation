@@ -1,0 +1,25 @@
+{[ let type = context.type /]}
+{[ let text = context.text /]}
+{[ let blockId = context.blockId /]}
+{[ let configuration = exportConfiguration() /]}
+
+<div class="content-block content-block--callout callout-{{ type }}" role="alert">
+    <div class="icon">
+    {[ if (type === "info")]}
+        {[ inject "icon_circle_info" context configuration /]}
+    {[ elseif (type === "success")]}
+        {[ inject "icon_circle_check" context configuration /]}
+    {[ elseif (type === "warning")]}
+        {[ inject "icon_circle_warning" context configuration /]}
+    {[ elseif (type === "danger")]}
+        {[ inject "icon_circle_error" context configuration /]}
+    {[/]}
+    </div>
+    <div class="content">
+        {[ if text.isString() ]}
+            {{ text }}
+        {[ else ]}
+            {[ inject "page_block_rich_text" context text /]}   
+        {[/]}      
+    </div>
+</div>

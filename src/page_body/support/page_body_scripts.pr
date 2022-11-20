@@ -24,6 +24,7 @@
 
 <!-- General scripts -->
 <script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
+<script src="{{ assetUrl("js/syncscroll.js", domain)}}"></script>
 <script src="{{ assetUrl("js/toast.js", domain)}}"></script> 
 
 <!-- After loading -->

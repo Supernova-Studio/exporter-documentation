@@ -3,14 +3,14 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { contrastColor } from "./doc_functionality/color"
+import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames } from "./doc_functionality/color"
 import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, filterTokensByIds, checkRequiredTokenType } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 import { getCurrentFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
@@ -67,6 +67,8 @@ Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)
 Pulsar.registerFunction("getFormattedColor", getFormattedColor)
 Pulsar.registerFunction("getColorValueFromSettings", getColorValueFromSettings)
+Pulsar.registerFunction("filterTokensByIds", filterTokensByIds)
+Pulsar.registerFunction("checkRequiredTokenType", checkRequiredTokenType)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)
@@ -81,6 +83,9 @@ Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
 
 /* Colors */
 Pulsar.registerFunction("contrastColor", contrastColor)
+Pulsar.registerFunction("returnSwatchClassnames", returnSwatchClassnames)
+Pulsar.registerFunction("getColorContrast", getColorContrast)
+Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
