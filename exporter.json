@@ -749,6 +749,10 @@
         {
           "name": "Color stack",
           "key": "stack"
+        },
+        {
+          "name": "Contrast grid",
+          "key": "contrast-grid"
         }
       ],
       "TokenGroup": [
@@ -780,6 +784,10 @@
         {
           "name": "Color stack (2 columns)",
           "key": "stack-2"
+        },
+        {
+          "name": "Contrast grid",
+          "key": "contrast-grid"
         }
       ],
       "Token": [
