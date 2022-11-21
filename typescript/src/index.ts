@@ -10,7 +10,7 @@ import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, filterTokensByIds, checkRequiredTokenType } from "./doc_functionality/tokens"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 import { getCurrentFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
@@ -67,8 +67,6 @@ Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)
 Pulsar.registerFunction("getFormattedColor", getFormattedColor)
 Pulsar.registerFunction("getColorValueFromSettings", getColorValueFromSettings)
-Pulsar.registerFunction("filterTokensByIds", filterTokensByIds)
-Pulsar.registerFunction("checkRequiredTokenType", checkRequiredTokenType)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)

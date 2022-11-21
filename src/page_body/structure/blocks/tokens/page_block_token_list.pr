@@ -16,7 +16,6 @@
       </div>
 
     {[ elseif variant.contains("contrast-grid") ]}
-
       {* Displaying the list of tokens as a contrast grid (if it's a color) *}
       {[ inject "page_block_token_variant_contrast_grid" context ({"tokenIds": block.tokenIds, "blockId": block.id}) /]}
     {[ elseif (variant.contains("stack")) ]}
