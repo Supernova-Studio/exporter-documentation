@@ -1,0 +1,85 @@
+/* =================================== */
+/*  Shortcut
+/* =================================== */
+
+/* Default theming */
+:root {
+  --shortcutContentPadding: var(--contentFontBase);
+  --shortcutHorizontalContentPadding: var(--contentFontBase);
+  --shortcutTitleFontSize: var(--contentFontBase);
+  --shortcutTitleFontWeight: var(--fontWeightBold);
+  --shortcutDescriptionFontSize: var(--fontSizeSmall);
+}
+
+/* Styles */
+.content-block--shortcuts {
+  grid-column-gap: var(--grid-gap);
+  grid-row-gap: var(--grid-gap);
+
+  .shortcut-item {
+    &:hover {
+      p.title {
+        @apply text-link underline;
+      }
+    }
+  }
+}
+
+/* Shortcut variants */
+.content-block--shortcuts {
+  
+  // 3 columns
+  &.variant-image-top-3,
+  &.variant-icon-top-3,
+  &.variant-icon-leading-3 {
+    grid-column-gap: var(--grid-gap);
+    grid-row-gap: var(--grid-gap);
+  }
+
+  // 1 column
+  &.variant-icon-leading-1,
+  &.variant-image-leading-1,
+  &.variant-image-top-1 {
+    grid-row-gap: var(--grid-gap);
+  }
+
+  // Image on top – 2 columns
+  &.variant-image-top-2,
+  &.variant-icon-top-2,
+  &.variant-icon-leading-2,
+  &.variant-image-leading-2 {
+    grid-column-gap: var(--grid-gap);
+    grid-row-gap: var(--grid-gap);
+  }
+
+  // Image on top – image sizes
+  &.variant-image-top-3 div.preview,
+  &.variant-image-top-2 div.preview,
+  &.variant-image-top-1 div.preview {
+    @apply h-auto aspect-video;
+  }
+
+  // Leading icon
+  &.variant-icon-leading-1 .shortcut-item,
+  &.variant-icon-leading-2 .shortcut-item,
+  &.variant-icon-leading-3 .shortcut-item {
+    .content {
+      justify-content: flex-start;
+    }
+
+    div.preview,
+    div.preview,
+    div.preview {
+      margin-right: 0;
+    }
+  }
+
+  // Image leading
+  &.variant-image-leading-1 .shortcut-item,
+  &.variant-image-leading-2 .shortcut-item {
+    div.preview {
+      flex-shrink: 0;
+      min-height: 100px;
+    }
+  }
+}

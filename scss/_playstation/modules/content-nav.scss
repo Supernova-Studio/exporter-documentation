@@ -36,7 +36,7 @@
 }
 
 #content-nav a {
-  @apply py-[8px] transition-none text-base;
+  @apply inline-block py-[8px] transition-none text-base;
   color: var(--colorInkSecondary);
 }
 
