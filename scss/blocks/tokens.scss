@@ -665,7 +665,7 @@ a.custom-property-link {
     .contrast-grid--header {
       display: flex;
       position: sticky;
-      top: calc(6px + var(--topNavHeight) + var(--tabOffset, 0));
+      top: calc(6px + var(--topNavHeight, 0px) + var(--tabOffset, -6px));
       padding-top: 6px;
       background: var(--colorBackgroundPrimary);
     }
