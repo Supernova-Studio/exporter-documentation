@@ -729,8 +729,14 @@ a.custom-property-link {
   }
 
   .grid--header-row {
-    overflow: hidden;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     font-weight: var(--fontWeightBold);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .cell {
       height: auto;
