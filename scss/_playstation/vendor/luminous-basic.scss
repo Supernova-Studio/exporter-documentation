@@ -190,15 +190,19 @@
   max-height: 100%;
   width: 60px;
   cursor: pointer;
+  filter: drop-shadow(0 0 4px #00000066);
 }
 
 .lum-close-button {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 30px;
+  top: 30px;
   width: 32px;
   height: 32px;
   opacity: 0.8;
+  border: none;
+  background-color: transparent;
+  filter: drop-shadow(0 0 3px #000000cc);
 }
 .lum-close-button:hover {
   opacity: 1;
@@ -206,6 +210,7 @@
 .lum-close-button:before,
 .lum-close-button:after {
   position: absolute;
+  top: 0;
   left: 15px;
   content: " ";
   height: 33px;

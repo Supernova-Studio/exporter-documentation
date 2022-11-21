@@ -154,7 +154,8 @@ export default class Lightbox {
     positionHelperEl.appendChild(this.captionEl);
 
     if (this.settings.closeButtonEnabled) {
-      this.closeButtonEl = document.createElement("div");
+      this.closeButtonEl = document.createElement("button");
+      this.closeButtonEl.type = "button";
       addClasses(this.closeButtonEl, this._buildClasses("close-button"));
       this.el.appendChild(this.closeButtonEl);
     }
