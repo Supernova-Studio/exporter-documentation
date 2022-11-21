@@ -4,7 +4,7 @@ navbar();
 
 // Luminous(Lightbox) plugin
 import LuminousGallery from "./bundle/luminous/LuminousGallery";
-const luminousTrigger = document.querySelectorAll('.content-block--image-frame');
+const luminousTrigger = document.querySelectorAll('.popup-img');
 const luminousOptions = {
   caption: function (trigger) {
     return trigger.querySelector('img').getAttribute('alt');

@@ -13,7 +13,7 @@ table {
     th, td {
       width: auto !important;
       min-width: 9rem;
-      max-width: 765px;
+      max-width: 27rem;
       padding: 1rem 1.5rem;
       vertical-align: top;
       overflow-wrap: break-word;
@@ -37,35 +37,4 @@ table {
       border-right: 2px solid #d7d7d7;
     }
   }
-}
-
-table.borderless,
-table.borderless td,
-table.borderless th,
-table.borderless tr {
-  border: none;
-}
-
-table th.left,
-table td.left,
-table td.left .sn-text-left,
-table td.left .sn-text-center,
-table td.left .sn-text-right {
-  text-align: left;
-}
-
-table th.right,
-table td.right,
-table td.right .sn-text-left,
-table td.right .sn-text-center,
-table td.right .sn-text-right {
-  text-align: right;
-}
-
-table th.center,
-table td.center,
-table td.center .sn-text-left,
-table td.center .sn-text-center,
-table td.center .sn-text-right {
-  text-align: center;
 }

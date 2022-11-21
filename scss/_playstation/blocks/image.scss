@@ -7,7 +7,7 @@ img {
 
 .content-block--image {
   td & {
-    @apply w-[calc(100%+1rem)] my-0 mx-[-.5rem] p-s bg-[#d7d7d7];
+    @apply w-[calc(100%+1rem)] my-0 mx-[-.5rem];
   }
 }
 
@@ -15,6 +15,16 @@ img {
   @apply text-[var(--colorInkPrimary)] italic;
 }
 
+/* popup-img */
+.popup-img {
+  @apply block;
+
+  td & {
+    @apply p-s bg-[#d7d7d7];
+  }
+}
+
+/* Frame Image */
 .content-block--image-frame {
   @apply block p-s bg-[#d7d7d7] aspect-video;
 }
