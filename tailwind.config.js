@@ -22,8 +22,8 @@ module.exports = {
     extend: {
       colors: {
         primary: "var(--colorAccent)",
-        valid: "var(--color-valid)",
-        invalid: "var(--color-invalid)",
+        valid: "var(--calloutSuccessInk)",
+        invalid: "var(--calloutDangerInk)",
         link: "var(--color-link)"
       },
       spacing: {
