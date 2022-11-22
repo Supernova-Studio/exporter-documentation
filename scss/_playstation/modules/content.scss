@@ -12,7 +12,7 @@
 #section-content-page {
   @apply mb-[80px];
   @apply xl:w-[calc(100%-var(--contentNavWidth))];
-  transition: max-width .25s ease, transform .25s ease;
+  transition: max-width .25s ease;
 
   .js-navbar-close & {
     @apply max-w-full;
@@ -21,4 +21,9 @@
 
 .container-title > .slider {
   @apply max-w-[calc(var(--contentMaxWidth)+var(--contentNavWidth))];
+  transition: max-width .25s ease;
+
+  .js-navbar-close & {
+    @apply max-w-full;
+  }
 }
