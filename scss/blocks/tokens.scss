@@ -188,6 +188,7 @@
 
       .preview {
         width: 120px;
+        flex-grow: 1;
       }
     }
 
@@ -214,7 +215,7 @@
     .custom-properties {
       width: 260px;
       flex-shrink: 0;
-      border-left: 1px solid var(--colorBorderSubtle);
+      border-left: 1px dashed var(--colorBorderSubtle);
       background: var(--colorBackgroundPrimary);
       padding: 0 0 0 16px;
       border-radius: 0;
@@ -228,12 +229,29 @@
     .item {
       flex-direction: column;
       border-bottom: 1px solid var(--colorBorderProminent);
+      gap: 12px;
+
+      .basic-info {
+        flex-direction: column;
+      }
 
       .custom-properties {
-        border-top: 1px solid var(--colorBorderSubtle);
         border-left: 0;
-        padding: 16px 0 0 0;
+        padding: 12px 0 0 0;
         width: 100%;
+        border-top: 1px dashed var(--colorBorderSubtle);
+      }
+
+      .single-preview {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        align-items: center;
+
+        .token-preview-container {
+          max-width: 148px;
+        }
       }
     }
   }
@@ -504,7 +522,6 @@ a.custom-property-link {
   .token-value {
     background: transparent;
     display: block;
-
   }
 }
 
@@ -517,6 +534,10 @@ a.custom-property-link {
   padding: 12px;
   color: var(--colorNeutral900);
   position: relative;
+
+  &.bordered {
+    box-shadow: inset 0px 0px 0px 1px var(--colorBorderSubtle);
+  }
 }
 
 .content-block--token-container .stack .stack-item .value {

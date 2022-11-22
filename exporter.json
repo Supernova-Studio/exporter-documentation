@@ -1,7 +1,7 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Nebula Documentation",
-  "description": "Default exporter for documentation site", 
+  "name": "Default Documentation",
+  "description": "Default customizable exporter for design system documentation", 
   "author": "Supernova",
   "organization": "Supernova",
   "source_dir": "src",
