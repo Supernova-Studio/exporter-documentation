@@ -3,7 +3,8 @@
 {[ let variant = block.variantKey /]}
 
 {* Generate unique ID for the sandbox, and retrieve its configuration *}
-{[ const sandboxId = randomInt(0, 99999999).toString().prefixed("sandbox-") /]}
+{* Having a randomInt as id (side effect) makes button/code.html different on each publish *}
+{[ const sandboxId = block.id.prefixed("sandbox-") /]}
 
 {* Generate sandbox code which will be automatically converted to live sandbox *}
 <div class="content-block content-block--live-sandbox{{getVariantClass(block.variantKey)}}">
