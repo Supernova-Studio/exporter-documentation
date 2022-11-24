@@ -18,7 +18,6 @@ module.exports = (env, argv) => ({
       './assets/js/toast.js',
       './assets/js/syncscroll.js',
       './assets/js/search.js',
-      './assets/js/functionality.js',
       './scss/main.scss'
     ]
   },
@@ -45,11 +44,6 @@ module.exports = (env, argv) => ({
           format: {
             comments: false,
           },
-          compress: {
-            unused: false      
-           },
-          keep_classnames: true,
-          keep_fnames: true,
         },
         
         extractComments: false,
