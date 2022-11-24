@@ -14,6 +14,10 @@ export function highlightSafeString(block: DocumentationPageBlockCode) {
 }
 
 function escapeHtml(string: string) {
+  if (!string) {
+    return
+  }
+  
   var matchHtmlRegExp = /["'&<>]/
   var str = "" + string
   var match = matchHtmlRegExp.exec(str)
@@ -60,14 +64,24 @@ function escapeHtml(string: string) {
 }
 
 export function withHTMLNewlines(string: string): string {
-  return string.split("\n").join("<br />")
+  if (string) {
+    return string.split("\n").join("<br />")
+  }
+  return ""
 }
 
 export function getUrlExtension(url: string): string | undefined {
-  return url.split('.').pop()
+  if (url) {
+    return url.split('.').pop()
+  }
+  return undefined
 }
 
 export function changelogToEntries(changeLog: string): Array<string> {
+
+  if (!changeLog) {
+    return []
+  }
 
   let lines = changeLog.split("\n").map(c => c.trim())
   let modifiedLines = new Array<string>()
