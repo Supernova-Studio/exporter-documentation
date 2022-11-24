@@ -7,16 +7,24 @@
             {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
             {[ let page = ds.documentationPageById(shortcut.internalId) /]}
             {[ if page ]}
-                {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                <a href="{{ url }}" class="shortcut-item">
+                {[ if isExportable(page) ]}
+                    {[ let url = pageUrl(page, ds.documentationDomain()) /]}
+                    <a href="{{ url }}" class="shortcut-item">
+                {[ else ]}      
+                    <a class="shortcut-item">            
+                {[/]}
             {[ else ]}
             {* Links to group instead, find that and if exists, link to the first page in that group *}
                 {[ let group = ds.documentationGroupById(shortcut.internalId) /]}
                 {[ if group ]}
                     {[ page = firstPageFromTop(group) /]}
                     {[ if page ]}
-                        {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                        <a href="{{ url }}" class="shortcut-item">
+                        {[ if isExportable(page) ]}
+                            {[ let url = pageUrl(page, ds.documentationDomain()) /]}
+                            <a href="{{ url }}" class="shortcut-item">
+                        {[ else ]}
+                            <a class="shortcut-item">
+                        {[/]}
                     {[ else ]}
                     {* Doesn't link to anything *}
                         <a class="shortcut-item">
