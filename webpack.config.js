@@ -43,10 +43,16 @@ module.exports = (env, argv) => ({
       new TerserPlugin({
         terserOptions: {
           format: {
-            comments: false
-          }
+            comments: false,
+          },
+          compress: {
+            unused: false      
+           },
+          keep_classnames: true,
+          keep_fnames: true,
         },
-        extractComments: false
+        
+        extractComments: false,
       })
     ]
   },
