@@ -116,13 +116,30 @@ button:focus-visible {
   outline: var(--color-link) solid 2px;
 }
 
-a[href^=https] {
+a[href^=https]:not(.popup-img) {
   &:after {
     font-family: FontAwesome;
     content: "\f08e";
     position: relative;
     top: 1px;
-    padding-left: 5px;
+    padding-left: 4px;
+  }
+}
+
+/* Slack Link */
+a[href*="sie.slack.com"] {
+  &:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    width: .85em;
+    height: .85em;
+    margin-right: 3px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iX+ODrOOCpOODpOODvF8yIiBkYXRhLW5hbWU9IuODrOOCpOODpOODvCAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjIuOCAxMjIuOCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogI2VjYjIyZTsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjMmViNjdkOwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICNlMDFlNWE7CiAgICAgIH0KCiAgICAgIC5jbHMtNCB7CiAgICAgICAgZmlsbDogIzM2YzVmMDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGcgaWQ9IkxheWVyXzEiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+CiAgICA8Zz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMjUuOCw3Ny42YzAsNy4xLTUuOCwxMi45LTEyLjksMTIuOVMwLDg0LjcsMCw3Ny42czUuOC0xMi45LDEyLjktMTIuOWgxMi45djEyLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzIuMyw3Ny42YzAtNy4xLDUuOC0xMi45LDEyLjktMTIuOXMxMi45LDUuOCwxMi45LDEyLjl2MzIuM2MwLDcuMS01LjgsMTIuOS0xMi45LDEyLjlzLTEyLjktNS44LTEyLjktMTIuOWMwLDAsMC0zMi4zLDAtMzIuM1oiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik00NS4yLDI1LjhjLTcuMSwwLTEyLjktNS44LTEyLjktMTIuOVMzOC4xLDAsNDUuMiwwczEyLjksNS44LDEyLjksMTIuOXYxMi45aC0xMi45WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTQ1LjIsMzIuM2M3LjEsMCwxMi45LDUuOCwxMi45LDEyLjlzLTUuOCwxMi45LTEyLjksMTIuOUgxMi45Yy03LjEsMC0xMi45LTUuOC0xMi45LTEyLjlzNS44LTEyLjksMTIuOS0xMi45YzAsMCwzMi4zLDAsMzIuMywwWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTk3LDQ1LjJjMC03LjEsNS44LTEyLjksMTIuOS0xMi45czEyLjksNS44LDEyLjksMTIuOS01LjgsMTIuOS0xMi45LDEyLjloLTEyLjl2LTEyLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNOTAuNSw0NS4yYzAsNy4xLTUuOCwxMi45LTEyLjksMTIuOXMtMTIuOS01LjgtMTIuOS0xMi45VjEyLjljMC03LjEsNS44LTEyLjksMTIuOS0xMi45czEyLjksNS44LDEyLjksMTIuOVY0NS4yWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTc3LjYsOTdjNy4xLDAsMTIuOSw1LjgsMTIuOSwxMi45cy01LjgsMTIuOS0xMi45LDEyLjktMTIuOS01LjgtMTIuOS0xMi45di0xMi45aDEyLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNzcuNiw5MC41Yy03LjEsMC0xMi45LTUuOC0xMi45LTEyLjlzNS44LTEyLjksMTIuOS0xMi45aDMyLjNjNy4xLDAsMTIuOSw1LjgsMTIuOSwxMi45cy01LjgsMTIuOS0xMi45LDEyLjloLTMyLjNaIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==');
   }
 }
 
