@@ -1,6 +1,17 @@
 /* =================================== */
 /*  Typography
 /* =================================== */
+/* Web font */
+/*!
+ *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+@font-face {
+  font-family: FontAwesome;
+  src: url('../fonts/fontawesome/fontawesome-webfont.woff2?v=4.6.3') format('woff2');
+  font-weight: 400;
+  font-style: normal
+}
 
 /* Theme */
 :root {
@@ -108,7 +119,7 @@ button:focus-visible {
 a[href^=https] {
   &:after {
     font-family: FontAwesome;
-    content: "f08e";
+    content: "\f08e";
     position: relative;
     top: 1px;
     padding-left: 5px;
