@@ -1,0 +1,68 @@
+{* Fetch block from injection context, expected type 'Token' *}
+{[ const tokenIds = context.tokenIds /]}
+{[ const blockId = context.blockId /]}
+{[ const configuration = exportConfiguration() /]}
+{[ const firstToken = ds.tokenById(tokenIds[0]) /]}
+
+{* Let's check if the color type are colors (all tokens are the same type always, so checking it on the first token is enough) *}
+{[ if (firstToken.tokenType === "Color") ]}
+  <div class="token-block-variant--contrast-grid">
+    <div class="contrast-grid">
+      <div class="contrast-grid--header">
+        
+          <div class="corner-tile cell">
+            <div class="swatch">
+              <span class="title">Colors</span>
+            </div>
+          </div>
+          <div class="grid--row grid--header-row syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.versionedId ? "-"+firstToken.parent.versionedId : "" }}">
+          {[ for tokenId in tokenIds ]}
+            {[ const token = ds.tokenById(tokenId) /]}
+            {[ let classnames = returnSwatchClassnames(token.value.hex) /]}
+
+            <div class="cell header-row--cell"><div class="swatch checkered-background swatch-header"><div class="color-fill {{ returnSwatchClassnames(token.value.hex) }}" style="background:{{getFormattedColor(token.value)}};">{{getFormattedColor(token.value)}}</div></div></div>
+          {[/]} 
+        </div>
+
+      </div>
+      <div class="contrast-grid--content">
+        <div class="grid-content--labels">
+
+          {[ for tokenId in tokenIds ]}
+          {[ const token = ds.tokenById(tokenId) /]}
+            <div class="grid--row">
+              <div class="header-column--cell cell"><div class="swatch checkered-background"><div class="color-fill {{ returnSwatchClassnames(token.value.hex) }}" style="background:{{getFormattedColor(token.value)}};">{{token.name}} <br> {{getFormattedColor(token.value)}}</div></div></div>
+            </div>
+          {[/]}
+        </div>
+        <div class="grid-content--table syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.versionedId ? "-"+firstToken.parent.versionedId : "" }}">
+
+          {[ for tokenId in tokenIds ]}
+            {[ const token = ds.tokenById(tokenId) /]}
+            <div class="grid--row">
+              {[ for tokenInnerId in tokenIds ]}
+                  {[ const tokenInner = ds.tokenById(tokenInnerId) /]}
+                  {[ if (token.name === tokenInner.name) ]}
+                    <div class="cell"><div class="swatch swatch-empty">{[ inject "icon_close" context configuration /]}</div></div>
+                  {[ else ]}
+                    <div class="cell">
+                      <div class="swatch checkered-background">
+                        <div class="color-fill {{ returnSwatchClassnames(token.value.hex) }}" style="background:{{getFormattedColor(token.value)}};color:{{getFormattedColor(tokenInner.value)}};">
+                          <div class="label">Text</div>
+
+                          <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(token.value.hex, tokenInner.value.hex) /]}</div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  {[/]}
+              {[/]} 
+            </div>
+          {[/]}
+        </div>
+      </div>
+    </div>
+  </div>
+{[ else ]}
+  {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Contrast grid variant is supported only for color tokens.</strong><br />Either pick a different variant or select only color tokens.", "blockId": blockId }) /]}  
+{[/]}

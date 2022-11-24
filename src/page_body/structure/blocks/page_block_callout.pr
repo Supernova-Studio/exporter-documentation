@@ -15,17 +15,4 @@
         {[ calloutType = "danger" /]}
 {[/]}
 
-<div class="content-block content-block--callout callout-{{ calloutType }}" role="alert" id="{{ getSearchIDString(block.id) }}">
-    <div class="icon">
-    {[ if (block.calloutType === "Info")]}
-        {[ inject "icon_circle_info" context configuration /]}
-    {[ elseif (block.calloutType === "Success")]}
-        {[ inject "icon_circle_check" context configuration /]}
-    {[ elseif (block.calloutType === "Warning")]}
-        {[ inject "icon_circle_warning" context configuration /]}
-    {[ elseif (block.calloutType === "Error")]}
-        {[ inject "icon_circle_error" context configuration /]}
-    {[/]}
-    </div>
-    <div class="content">{[ inject "page_block_rich_text" context block.text /]}</div>
-</div>
+{[ inject "component_callout" context ({"type": calloutType, "text": block.text, "blockId": block.id }) /]}  

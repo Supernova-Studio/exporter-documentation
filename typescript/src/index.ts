@@ -3,7 +3,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { contrastColor } from "./doc_functionality/color"
+import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames } from "./doc_functionality/color"
 import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
@@ -81,6 +81,9 @@ Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
 
 /* Colors */
 Pulsar.registerFunction("contrastColor", contrastColor)
+Pulsar.registerFunction("returnSwatchClassnames", returnSwatchClassnames)
+Pulsar.registerFunction("getColorContrast", getColorContrast)
+Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
