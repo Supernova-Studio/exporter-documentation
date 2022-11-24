@@ -9,21 +9,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 */
 
 module.exports = (env, argv) => ({
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: './assets/css/[name]'
-    })
-  ],
   mode: argv.mode === 'production' ? 'production' : 'development',
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
 
   entry: {
     'src/js_helpers': './typescript/src/index.ts',
-    'assets/js/dist/docs.min': [
+    'assets/dist/docs.min': [
       './assets/js/toast.js',
       './assets/js/syncscroll.js',
       './assets/js/search.js',
-      './assets/js/functionality.js',
+      './scss/main.scss'
     ]
   },
 
@@ -47,10 +42,11 @@ module.exports = (env, argv) => ({
       new TerserPlugin({
         terserOptions: {
           format: {
-            comments: false
-          }
+            comments: false,
+          },
         },
-        extractComments: false
+        
+        extractComments: false,
       })
     ]
   },
@@ -62,5 +58,10 @@ module.exports = (env, argv) => ({
     publicPath: '',
     filename: '[name].js',
     path: path.resolve(__dirname, './')
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
+  ],
 });
