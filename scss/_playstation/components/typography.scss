@@ -105,6 +105,16 @@ button:focus-visible {
   outline: var(--color-link) solid 2px;
 }
 
+a[href^=https] {
+  &:after {
+    font-family: FontAwesome;
+    content: "f08e";
+    position: relative;
+    top: 1px;
+    padding-left: 5px;
+  }
+}
+
 /* Blockquote-specific */
 .blockquote,
 blockquote {
