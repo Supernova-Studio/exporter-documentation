@@ -1,13 +1,31 @@
 {* Fetch block from injection context, expected type 'Token' *}
-{[ const token = context /]}
+{[ const token = context.token /]}
+{[ const block = context.block /]}
 
-<div>
+<div class="token-grid--item">
   {* Render large tile preview *}
-  {[ inject "page_block_token_preview_large" context token /]}
+    {[ if (block.theme && (block.theme.themeIds.length > 0)) ]}
+      {* Intentionally selecting only one theme as it's supported by the Editor like this *}
+      {[ let themeId = block.theme.themeIds[0] /]}
+      {[ let themedToken = ds.tokensByApplyingThemes([token.id], [themeId]) /]}
+      {[ let theme = ds.themeById(themeId) /]}
+
+      {[ if (block.theme.type === "Comparison") ]}
+        <div class="token-previews">
+          {[ inject "page_block_token_preview_large" context ({"token": token, "theme": null})  /]}  
+          {[ inject "page_block_token_preview_large" context ({"token": themedToken[0], "theme": theme})  /]}  
+        </div>
+      {[ else ]}
+        {[ inject "page_block_token_preview_large" context ({"token": themedToken[0], "theme": theme})  /]}     
+      {[/]}
+    {[ else ]}
+      {[ inject "page_block_token_preview_large" context ({"token": token, "theme": null}) /]}
+    {[/]}
   <p class="title">{{ token.name }}</p>
   {* Render description if this is not text and generic token, which are rendering values into the tile itself *}
-  {[ if !token.tokenType.equals("Text") && !token.tokenType.equals("GenericToken") ]}
+  {[ if (!token.tokenType.equals("Text") && !token.tokenType.equals("GenericToken") && !token.tokenType.equals("Color")) ]}
     <p class="description">{[ inject "page_block_token_value" context token /]}</p>
-    {[ inject "page_block_token_properties" context token /]}       
   {[/]}
+  {[ inject "page_block_token_properties" context ({"token": token, "block": block})  /]}
+
 </div>

@@ -15,11 +15,7 @@ export enum DocSearchResultDataType {
 }
 
 export type DocSearchResultData = {
-  id: number
   pageName: string
-  pageId: string | undefined
-  groupId: string | undefined
-  blockId: string | undefined
   text: string,
   category: string,
   type: DocSearchResultDataType
@@ -33,7 +29,6 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
   // Construct search index for Fuse.js
   // Note that by changing the data, or including more data here, you can improve behaviors of the search quite drastically
   // Example: You can pre-download data from different source and include it in your doc search index as well
-  let id: number = 0
   let data: Array<DocSearchResultData> = []
   // Process every page for data
   for (let page of pages) {
@@ -71,12 +66,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
       if (block.hasOwnProperty("text")) {
         let textBlock = block as DocumentationPageBlockText
         data.push({
-          id: id++,
           text: textBlock.text.spans.map((s) => s.text).join(""),
           type: block.type === "Heading" ? DocSearchResultDataType.sectionHeader : DocSearchResultDataType.contentBlock,
-          blockId: block.id,
-          pageId: page.id,
-          groupId: undefined,
           pageName: pageName,
           category: category,
           url: url + "#search-" + block.id,
@@ -86,12 +77,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
 
     // Push page information
     data.push({
-      id: id++,
       text: page.title,
       type: DocSearchResultDataType.pageTitle,
-      blockId: undefined,
-      pageId: page.id,
-      groupId: undefined,
       pageName: pageName,
       category: category,
       url: url,
@@ -119,12 +106,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
 
     // Push page information
     data.push({
-      id: id++,
       text: group.title,
       type: DocSearchResultDataType.groupTitle,
-      blockId: undefined,
-      pageId: undefined,
-      groupId: group.id,
       pageName: group.title,
       category: category,
       url: groupUrl,

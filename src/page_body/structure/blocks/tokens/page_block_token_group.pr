@@ -5,5 +5,9 @@
 {[ let variant = block.variantKey /]}
 
 <div class="content-block content-block--token-group-container{{ getVariantClass(variant) }}">
-  {[ inject "page_block_token_group_loop" context ({"block": block, "group": group }) /]}
+  {[ if (variant.contains("contrast-grid") && group.tokenType !== "Color") ]}
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Contrast grid variant is supported only for color tokens.</strong><br />Either pick a different block variant or change the token type.", "blockId": block.id }) /]}  
+  {[ else ]}
+    {[ inject "page_block_token_group_loop" context ({"block": block, "group": group }) /]}
+  {[/]}
 </div>

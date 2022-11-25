@@ -7,8 +7,6 @@ export function getFullYear(): string {
 }
 
 /* Get current formatted datetime */
-export function getCurrentFormattedDateTime(): string {
-    const date = new Date();
-
+export function getFormattedDateTime(date = new Date()): string {
     return date.toLocaleString('en-us',{day:'numeric', month:'short', year:'numeric', hour12: false, hour: '2-digit', minute:'2-digit'});
 }

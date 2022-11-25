@@ -19,7 +19,7 @@
         {[/]}
     {[/]}
 
-    {[ settings = { "failable": true, "timeout": 5000, "headers": headers } /]}
+    {[ settings = { "failable": true, "timeout": 15000, "headers": headers } /]}
 
     {* Prepare URL. Handle special cases *}
     {[ if (url.contains("github.com")) ]}

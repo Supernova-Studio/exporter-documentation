@@ -1,12 +1,18 @@
-{[ const token = context /]}
+{[ const token = context.token /]}
+{[ const theme = context.theme /]}
 
 {[ if token.tokenType.equals("Color") ]}
+    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
+
     <div class="preview checkered-background-light">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="color-preview" style="background-color: #{{ token.value.hex }};"></div>
+        <div class="color-preview{{ colorLightnessCheck ? " is-dark" : "" }}{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}" style="background-color: #{{ token.value.hex }};">
+            {[ inject "page_block_token_value" context token /]}
+            {[ inject "page_block_token_theme_badge" context theme /]}
+        </div>
     </div>
 {[ elseif token.tokenType.equals("Border")]}
-    <div class="preview">
+    <div class="preview bordered">
         <div class="token-preview-container large checkered-background-light">
             <div class="token-preview-container-border large" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
         </div>
@@ -15,45 +21,45 @@
     {[ let measure = token.value.radius.measure /]}
         {[ switch token.value.type ]}
             {[ case "Background" ]}
-                <div class="preview">
+                <div class="preview bordered">
                     <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: transparent; border: 1px solid #ccc; backdrop-filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
-                        {{ measure }}
+                        {{ measure }}px
                         </div>
                     </div>
                 </div>
             {[ case "Layer" ]}
-                <div class="preview">
+                <div class="preview bordered">
                     <div class="token-preview-container large checkered-background-light">
                         <div class="token-preview-container-blur large" style="background-color: #363a3e; filter: blur({{ measure }}px);"></div>
                         <div class="token-preview-container-blur-text-unblurred">
-                        {{ measure }}
+                        {{ measure }}px
                         </div>
                     </div>
                 </div>
         {[/]}
 {[ elseif token.tokenType.equals("Font")]}
-    <div class="preview">Ag</div>
+    <div class="preview bordered">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
     <div class="preview checkered-background-light">
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    <div class="preview">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}</div>
+    <div class="preview bordered">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}</div>
 {[ elseif token.tokenType.equals("Radius")]}
-    <div class="preview token-preview-container large checkered-background-light">
+    <div class="preview token-preview-container large checkered-background-light bordered">
         <div class="token-preview-container-radius large" style="border-radius: {{ token.value.radius.measure}}px"></div>
     </div>
 {[ elseif token.tokenType.equals("Shadow")]}
-    <div class="preview token-preview-container large">
+    <div class="preview token-preview-container large bordered">
         <div class="token-type-shadow" style="box-shadow: {{ shadowDescription(token) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("Text")]}
-    <div class="preview small-text">{{ token.value.text }}</div>
+    <div class="preview small-text bordered">{{ token.value.text }}</div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
-    <div class="preview" style="{{ typographyCSS }}">Ag</div>
+    <div class="preview bordered" style="{{ typographyCSS }}">Ag</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
-    <div class="preview small-text">{{ token.value.text }}</div>
+    <div class="preview small-text bordered">{{ token.value.text }}</div>
 {[/]}

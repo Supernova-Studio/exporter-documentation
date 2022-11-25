@@ -4,6 +4,7 @@
 {[ let configuration = exportConfiguration() /]}
 {[ let isRootForTab = false /]}
 {[ let hasFirstLevelFlat = configuration.navigationFirstLevelExpanded /]}
+{[ let showTabs = configuration.navigationShowTabs /]}
 {[ let showSectionLabel = configuration.navigationShowSectionLabel /]}
 {[ let shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 {[ let documentationRoot = ds.rootDocumentationGroup() /]}
@@ -20,6 +21,8 @@
     {[ rootGroup = firstSubgroupOfPage(page) /]}
     {[ isRootForTab = true /]}
 {[/]}
+
+
 
 {[ if rootGroup ]}
     {* If we pass page object, it means we are generating from root. However, our root is actually not the main root, but rather one object below it - and we want to show its name as header of the category as well as all its children *}
@@ -38,7 +41,8 @@
         <div class="nav-name">
             <span class="typographyDocsViewLabelCaps">{{ htmlSafeString(rootGroup.title) }}</span>
         </div>
-    {[/]}
+    {[/]} 
+
     <ul class="nav{{ !shouldShowTabbar ? " with-root-level" : ""}}{{ hasFirstLevelFlat ? " first-level-flat" : ""}}">
         {[ for item in rootGroup.children ]}
             {* Only show items that are exportable *}
@@ -47,6 +51,7 @@
                 {[ let activeClass = (isActive === true ? " active" : "") /]}
                 {[ let isTab = (item.parent.groupBehavior === "Tabs" ? true : false) /]}
                 {[ let itemId = item.id /]}
+                {[ let showTabsInNavigation = ((item.groupBehavior !== "Tabs") || (showTabs && item.groupBehavior === "Tabs")) /]}
                 {[ let itemTitle = resolveMenuLabel(item, documentationRoot, configuration.navigationOverrideHomepageLabel) /]}
                 {[ let isGroupOpen = (isRootForTab && hasFirstLevelFlat && (item.groupBehavior !== "Tabs")) /]}
                 
@@ -57,14 +62,14 @@
                     {[ let firstDescendingPage = firstPageFromTop(item) /]}
                     {* Group will either link to the first page, or be fully disabled *}
                     {[ if firstDescendingPage ]}
-                        <a class="nav-link group {{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}">
+                        <a class="nav-link{{ (showTabsInNavigation ? " group"  : "") }}{{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}">
                             {{ itemTitle }}
-                            <span class="icon">{[ inject "icon_chevron_right" context configuration /]}</span>
+                            {[ if showTabsInNavigation ]}<span class="icon">{[ inject "icon_chevron_right" context configuration /]}</span>{[/]}
                         </a>
                     {[ else ]}  
                         <a class="nav-link group {{ activeClass }}">{{ itemTitle }}</a>
                     {[/]}
-                    {[ if (isGroupOpen || isActive) ]}
+                    {[ if ((isGroupOpen || isActive) && showTabsInNavigation) ]}
                         {[ let data = { "page": page, "groupId": itemId } /]}
                         {[ inject "page_body_structure_sidebar" context data /]}
                     {[/]}
