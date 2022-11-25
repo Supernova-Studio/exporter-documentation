@@ -1,7 +1,6 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntries = require("webpack-fix-style-only-entries");
 
 /* generate a webpack configuration that:
 - converts all scss files into assets/css/main.min.css file and minifies it
@@ -76,7 +75,6 @@ module.exports = (env, argv) => ({
     path: argv.mode === 'production' ? path.resolve(__dirname, './') : path.join(__dirname, '/.build')
   },
   plugins: [
-    new FixStyleOnlyEntries(),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     })
