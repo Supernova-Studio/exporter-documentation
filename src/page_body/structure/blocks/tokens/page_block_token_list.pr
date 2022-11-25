@@ -1,30 +1,31 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const block = context /]}
-
+{[ const configuration = exportConfiguration() /]}
 {[ let variant = block.variantKey /]}
-
 {* Ignore block if it is empty *}
 {[ if block.tokenIds.count() > 0) ]}
   <div class="content-block content-block--token-container">
     {[ if (variant === "table") ]}
     {* Displaying the list of tokens as a table *}
-
       <div class="token-table">
         {* Render all tokens *}
         {[ for tokenId in block.tokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
-          {[ inject "page_block_token_variant_table_item" context token /]}
+          {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
         {[/]}
       </div>
 
-      {[ elseif (variant.contains("stack")) ]}
+    {[ elseif variant.contains("contrast-grid") ]}
+      {* Displaying the list of tokens as a contrast grid (if it's a color) *}
+      {[ inject "page_block_token_variant_contrast_grid" context ({"tokenIds": block.tokenIds, "blockId": block.id}) /]}
+    {[ elseif (variant.contains("stack")) ]}
       {* Stack – Displaying the list of tokens as a stack (great for colors) *}
 
         <div class="stack{{ getVariantClass(variant) }}">
         {* Render all tokens *}
           {[ for tokenId in block.tokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
-            {[ inject "page_block_token_variant_stack_item" context token /]}
+            {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
           {[/]}
         </div>
     {[ else ]}
@@ -33,7 +34,7 @@
       <div class="grid{{ getVariantClass(variant) }}">
         {[ for tokenId in block.tokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
-          {[ inject "page_block_token_variant_grid_item" context token /]}
+          {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
         {[/]}
       </div>
 

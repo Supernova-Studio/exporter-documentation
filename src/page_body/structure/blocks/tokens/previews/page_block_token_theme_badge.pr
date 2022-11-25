@@ -1,0 +1,26 @@
+{[ const theme = context /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ if theme ]}
+    <div class="theme-badge" data-toggle="tooltip" title="Applied theme: {{ theme.name }}">
+        {[ if theme.name.lowercased().contains("dark") ]}
+            {[ inject "icon_theme_dark" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("light") ]}
+            {[ inject "icon_theme_light" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("contrast") ]}
+            {[ inject "icon_theme_contrast" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("mobile") ]}
+            {[ inject "icon_theme_mobile" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("tablet") ]}
+            {[ inject "icon_theme_tablet" context configuration /]}
+        {[ elseif (theme.name.lowercased().contains("desktop") || theme.name.lowercased().contains("web")) ]}
+            {[ inject "icon_theme_desktop" context configuration /]}
+        {[ elseif (theme.name.lowercased().contains("ios") || theme.name.lowercased().contains("apple")) ]}
+            {[ inject "icon_theme_ios" context configuration /]}
+        {[ elseif theme.name.lowercased().contains("android") ]}
+            {[ inject "icon_theme_android" context configuration /]}
+        {[ else ]}
+            {[ inject "icon_theme" context configuration /]}
+        {[/]}
+    </div>
+{[/]}

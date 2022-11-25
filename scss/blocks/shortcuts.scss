@@ -4,12 +4,12 @@
 
 /* Default theming */
 :root {
-  --shorcutGridGap: 12px;
+  --shortcutGridGap: 12px;
   --shortcutPadding: 0;
-  --shorcutBorderRadius: var(--borderRadiusDefault);
+  --shortcutBorderRadius: var(--borderRadiusDefault);
   --shortcutContentPadding: 16px;
   --shortcutHorizontalContentPadding: 12px;
-  --shorcutContentGap: 4px;
+  --shortcutContentGap: 4px;
   --shortcutIconHeight: 48px;
   --shortcutIconWidth: 48px;
   --shortcutBoxShadow: var(--boxShadowLevel1);
@@ -22,21 +22,21 @@
   --shortcutImageBorderRadius: 0;
 
   /* Top image size */
-  --shorcutCol4TopImageSize: 100px;
-  --shorcutCol3TopImageSize: 128px;
-  --shorcutCol2TopImageSize: 156px;
-  --shorcutCol1TopImageSize: 100px;
+  --shortcutCol4TopImageSize: 100px;
+  --shortcutCol3TopImageSize: 128px;
+  --shortcutCol2TopImageSize: 156px;
+  --shortcutCol1TopImageSize: 100px;
 }
 
 /* Styles */
 .content-block--shortcuts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: var(--shorcutGridGap);
-  grid-row-gap: var(--shorcutGridGap);
+  grid-column-gap: var(--shortcutGridGap);
+  grid-row-gap: var(--shortcutGridGap);
 
   .shortcut-item {
-    border-radius: var(--shorcutBorderRadius);
+    border-radius: var(--shortcutBorderRadius);
     box-shadow: var(--shortcutBoxShadow);
     box-sizing: border-box;
     overflow: hidden;
@@ -62,7 +62,7 @@
       padding: var(--shortcutContentPadding);
       display: flex;
       flex-direction: column;
-      gap: var(--shorcutContentGap);
+      gap: var(--shortcutContentGap);
     }
 
     div.preview {
@@ -72,7 +72,7 @@
       justify-content: center;
       font-size: 60px;
       width: 100%;
-      height: var(--shorcutCol4TopImageSize);
+      height: var(--shortcutCol4TopImageSize);
       border-radius: var(--shortcutImageBorderRadius);
 
       &.empty {
@@ -120,8 +120,8 @@
   &.variant-icon-top-3,
   &.variant-icon-leading-3 {
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: calc(var(--shorcutGridGap) * 1.5); 
-    grid-row-gap: calc(var(--shorcutGridGap) * 1.5); 
+    grid-column-gap: calc(var(--shortcutGridGap) * 1.5); 
+    grid-row-gap: calc(var(--shortcutGridGap) * 1.5); 
   }
 
   // 1 column
@@ -129,7 +129,7 @@
   &.variant-image-leading-1,
   &.variant-image-top-1 {
     grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: var(--shorcutGridGap);
+    grid-row-gap: var(--shortcutGridGap);
   }
 
   // Image on top – 2 columns
@@ -138,21 +138,21 @@
   &.variant-icon-leading-2,
   &.variant-image-leading-2 {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: calc(var(--shorcutGridGap) * 2); 
-    grid-row-gap: calc(var(--shorcutGridGap) * 2); 
+    grid-column-gap: calc(var(--shortcutGridGap) * 2); 
+    grid-row-gap: calc(var(--shortcutGridGap) * 2); 
   }
 
   // Image on top – image sizes
   &.variant-image-top-3 div.preview {
-    height: var(--shorcutCol3TopImageSize);
+    height: var(--shortcutCol3TopImageSize);
   }
 
   &.variant-image-top-2 div.preview {
-    height: var(--shorcutCol2TopImageSize);
+    height: var(--shortcutCol2TopImageSize);
   }
 
   &.variant-image-top-1 div.preview {
-    height: var(--shorcutCol1TopImageSize);
+    height: var(--shortcutCol1TopImageSize);
   }
 
   // Icon on top
@@ -163,7 +163,7 @@
     height: var(--shortcutIconHeight);
     margin: var(--shortcutContentPadding);
     margin-bottom: 0px !important;
-    border-radius: var(--shorcutBorderRadius);
+    border-radius: var(--shortcutBorderRadius);
   }
 
   // Leading icon

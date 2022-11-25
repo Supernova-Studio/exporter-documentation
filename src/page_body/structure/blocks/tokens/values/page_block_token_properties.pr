@@ -1,18 +1,21 @@
-{[ const token = context /]}
-{[ const propertyValueCount = token.propertyValues.count() /]}
+{[ let token = context.token /]}
+{[ let block = context.block /]}
+{[ let propertiesCount = token.properties.count() /]}
+{[ let blacklistedElementPropertiesCount = (block.blacklistedElementProperties ? block.blacklistedElementProperties.length : 0) /]}
 
-{[ if propertyValueCount > 0 ]}
+{* If some properties are set as to be displayed *}
+{[ if (propertiesCount !== blacklistedElementPropertiesCount) ]}
     <div class="custom-properties">
-    {[ for property in token.properties ]}
-        {[ const propertyValue = token.propertyValues[property.codeName] /]}
+        {[ for property in token.properties ]}
+            {[ const propertyValue = token.propertyValues[property.codeName] /]}
 
-        {* We display only the ones that have some value chosen *}
-        {[ if (propertyValue || property.propertyType.equals("Boolean")) ]}
-            <div class="property">
-                <div class="label">{{ property.name }}</div>
-                <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property } /]} </div>
-            </div>
+            {* We display only the ones that are selected in the Block Settings UI *}
+            {[ if !checkKeyInArray(block.blacklistedElementProperties, property.persistentId)  ]}
+                <div class="property">
+                    <div class="label">{{ property.name }}</div>
+                    <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property, "mustReturnValue": true } /]} </div>
+                </div>
+            {[/]}
         {[/]}
-    {[/]}
     </div>
 {[/]}

@@ -1,12 +1,37 @@
-{* Fetch block from injection context, expected type 'Token' *}
-{[ const token = context /]}
+{[ const token = context.token /]}
+{[ const block = context.block /]}
 
 <div class="item">
     <div class="basic-info">
-        <div class="preview">
-            {[ inject "page_block_token_preview_small" context token /]}
-            {[ inject "page_block_token_value" context token /]}       
-        </div>
+        {[ if (block.theme && (block.theme.themeIds.length > 0)) ]}
+            {* Intentionally selecting only one theme as it's supported by the Editor like this *}
+            {[ let themeId = block.theme.themeIds[0] /]}
+            {[ let themedToken = ds.tokensByApplyingThemes([token.id], [themeId]) /]}
+            {[ let theme = ds.themeById(themeId) /]}
+
+            {[ if (block.theme.type === "Comparison") ]}
+                <div class="previews-side-by-side">
+                    <div class="preview">
+                        {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null})  /]}
+                        {[ inject "page_block_token_value" context token /]}       
+                    </div>
+                    <div class="preview">
+                        {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "theme": theme})  /]}
+                        {[ inject "page_block_token_value" context themedToken[0] /]}       
+                    </div>
+                </div>
+            {[ else ]}
+                <div class="preview single-preview">
+                    {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "theme": theme})  /]}
+                    {[ inject "page_block_token_value" context themedToken[0] /]}       
+                </div>
+            {[/]}
+        {[ else ]}
+            <div class="preview single-preview">
+                {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
+                {[ inject "page_block_token_value" context token /]}       
+            </div>
+        {[/]}
         <div class="info">
             <div class="name">
                 {[ if (token.origin !== null && token.tokenType.equals("Shadow")) ]}
@@ -20,5 +45,5 @@
             {[/]}
         </div>
     </div>
-    {[ inject "page_block_token_properties" context token /]}       
+    {[ inject "page_block_token_properties" context ({"token": token, "block": block})  /]}
 </div>

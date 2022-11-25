@@ -3,16 +3,16 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { contrastColor } from "./doc_functionality/color"
+import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames } from "./doc_functionality/color"
 import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
-import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp } from "./doc_functionality/lookup"
+import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
-import { getCurrentFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
+import { getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -28,10 +28,11 @@ Pulsar.registerFunction("isExportable", isExportable)
 Pulsar.registerFunction("isHomepage", isHomepage)
 Pulsar.registerFunction("resolveMenuLabel", resolveMenuLabel)
 Pulsar.registerFunction("getCurrentTimestamp", getCurrentTimestamp)
+Pulsar.registerFunction("checkKeyInArray", checkKeyInArray)
 
 /* General utils */
 Pulsar.registerFunction("getFullYear", getFullYear)
-Pulsar.registerFunction("getCurrentFormattedDateTime", getCurrentFormattedDateTime)
+Pulsar.registerFunction("getFormattedDateTime", getFormattedDateTime)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
@@ -80,6 +81,9 @@ Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
 
 /* Colors */
 Pulsar.registerFunction("contrastColor", contrastColor)
+Pulsar.registerFunction("returnSwatchClassnames", returnSwatchClassnames)
+Pulsar.registerFunction("getColorContrast", getColorContrast)
+Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
