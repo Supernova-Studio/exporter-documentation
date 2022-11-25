@@ -24,7 +24,8 @@
     {[ case "Divider" ]}
         {[ inject "page_block_divider" context block /]}
     {[ case "Image" ]}
-        {[ inject "page_block_image" context block /]}
+        {* [ inject "page_block_image" context block /] *}
+        {[ inject "ps_uig_page_block_image" context block /]}
     {[ case "Link" ]}
         {[ inject "page_block_link" context block /]}
     {[ case "Token" ]}

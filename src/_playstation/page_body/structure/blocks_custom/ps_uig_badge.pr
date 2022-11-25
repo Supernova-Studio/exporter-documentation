@@ -1,0 +1,39 @@
+{[ let block = context /]}
+
+{* This block is variant enabled, fetch it *}
+{[ let variant = block.variantKey /]}
+{[ let url = block.properties.url /]}
+{[ let badgeClass = "" /]}
+{[ let badgeText = "" /]}
+
+{[ if (variant === "pending") ]}
+    {[ badgeClass = "uig-badge--pending" /]}
+    {[ badgeText = "Pending" /]}
+{[ elseif (variant === "design") ]}
+    {[ badgeClass = "uig-badge--design" /]}
+    {[ badgeText = "Design Only" /]}
+{[ elseif (variant === "jira") ]}
+    {[ badgeClass = "uig-badge--jira" /]}
+    {[ badgeText = "See JIRA" /]}
+{[ elseif (variant === "available") ]}
+    {[ badgeClass = "uig-badge--available" /]}
+    {[ badgeText = "Now Available" /]}
+{[ elseif (variant === "implemented") ]}
+    {[ badgeClass = "uig-badge--implemented" /]}
+    {[ badgeText = "Implemented" /]}
+{[ elseif (variant === "standard") ]}
+    {[ badgeClass = "uig-badge--standard" /]}
+    {[ badgeText = "Standard" /]}
+{[ elseif (variant === "required") ]}
+    {[ badgeClass = "uig-badge--required" /]}
+    {[ badgeText = "Required" /]}
+{[ else ]}
+    {[ badgeClass = "uig-badge--pending" /]}
+    {[ badgeText = "Pending" /]}
+{[/]}
+
+{[ if (url !== "") ]}
+    <a href="{{ url }}" class="uig-badge {{ badgeClass }}" target="_blank">{{ badgeText }}</a>
+{[ else ]}
+    <span class="uig-badge {{ badgeClass }}">{{ badgeText }}</span>
+{[/]}

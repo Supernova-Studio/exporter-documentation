@@ -1,0 +1,3 @@
+{* Custom JavaScript *}
+{[ let domain = ds.documentationDomain() /]}
+<script defer src="{{ assetUrl("js/uig.js", domain)}}"></script>

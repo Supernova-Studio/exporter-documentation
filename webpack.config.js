@@ -19,11 +19,17 @@ module.exports = (env, argv) => ({
       './assets/js/syncscroll.js',
       './assets/js/search.js',
       './scss/main.scss'
-    ]
+    ],
+    'assets/js/uig': './src/_playstation/js/uig',
   },
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -31,7 +37,16 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              url: false,
+              importLoaders: 2
+            }
+          },
+          'postcss-loader', 'sass-loader']
       }
     ]
   },
@@ -45,7 +60,7 @@ module.exports = (env, argv) => ({
             comments: false,
           },
         },
-        
+
         extractComments: false,
       })
     ]
@@ -57,7 +72,7 @@ module.exports = (env, argv) => ({
   output: {
     publicPath: '',
     filename: '[name].js',
-    path: path.resolve(__dirname, './')
+    path: argv.mode === 'production' ? path.resolve(__dirname, './') : path.join(__dirname, '/.build')
   },
   plugins: [
     new MiniCssExtractPlugin({

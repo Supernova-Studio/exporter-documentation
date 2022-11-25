@@ -1,3 +1,9 @@
+/* Tailwind CSS */
+/* =================================== */
+//@tailwind base;
+//@tailwind components;
+@tailwind utilities;
+
 /* =================================== */
 
 
@@ -89,3 +95,29 @@
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
+
+
+/*  PlayStation Custom
+/* =================================== */
+/* Foundation */
+@import "_playstation/inc/theme";
+@import "_playstation/components/typography";
+
+/*  Modules */
+@import "_playstation/modules/top-navigation";
+@import "_playstation/modules/content";
+@import "_playstation/modules/side-navigation";
+@import "_playstation/modules/content-nav";
+@import "_playstation/modules/footer";
+
+/*  Blocks */
+@import "_playstation/blocks/grid";
+@import "_playstation/blocks/badges";
+@import "_playstation/blocks/table";
+@import "_playstation/blocks/image";
+@import "_playstation/blocks/shortcuts";
+@import "_playstation/blocks/callout";
+@import "_playstation/blocks/embed";
+
+/* Vendor */
+@import "_playstation/vendor/luminous-basic";

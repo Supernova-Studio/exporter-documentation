@@ -1,0 +1,9 @@
+/* =================================== */
+/*  Embed
+/* =================================== */
+.content-block--embed {
+  .embed-container {
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+}

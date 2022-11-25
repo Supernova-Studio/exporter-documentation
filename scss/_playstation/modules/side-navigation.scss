@@ -1,0 +1,31 @@
+/* =================================== */
+/*  side-navigation
+/* =================================== */
+.side-navigation-wrapper {
+  @apply block relative border-none -ml-[var(--sideNavWidth)];
+  @apply lg:ml-0;
+  transition: margin-left .25s ease, transform .25s ease;
+
+  &.nav-open {
+    @apply block;
+  }
+
+  .js-navbar-close & {
+    @apply lg:-ml-[var(--sideNavWidth)];
+  }
+
+  .js-navbar-open & {
+    @apply translate-x-[var(--sideNavWidth)];
+  }
+
+  .sidebar-navigation {
+    --topNavHeight: 50px;
+
+    @apply bg-[var(--sideNavBackground)] shadow-none;
+    box-shadow: -3px 1px 8px #82adbd;
+  }
+
+  .bg-sidebar {
+    @apply hidden;
+  }
+}

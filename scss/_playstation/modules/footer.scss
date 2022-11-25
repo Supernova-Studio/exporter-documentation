@@ -1,0 +1,23 @@
+/* =================================== */
+/*  Footer
+/* =================================== */
+
+.container-footer {
+  @apply border-none bg-[#f8f8f8];
+
+  > .slider {
+    @apply max-w-[calc(var(--contentMaxWidth)+var(--contentNavWidth))];
+  }
+
+  a {
+    @apply text-link;
+  }
+
+  ul {
+    @apply mb-s pl-0 list-none;
+
+    li {
+      @apply mb-0;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{* Fetch block from injection context, expected type 'Heading' *}
+{[ const block = context /]}
+{[ let imgClass = "" /]}
+{[ let alignClass = "" /]}
+{[ let variant = block.variantKey /]}
+
+{* Create image with lightbox interaction, or ignore it if url is not set *}
+{[ if block.url ]}
+{* Align image based on the configuration *}
+{[ if block.alignment ]}
+    {[ switch block.alignment ]}
+        {[ case "Left" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-left" /]}
+        {[ case "Center" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-center" /]}
+        {[ case "Stretch" ]}
+            {[ imgClass = "img-fluid max" /]}
+            {[ alignClass = "sn-text-center" /]}
+    {[/]}
+{[ else ]}
+    {[ imgClass = "img-fluid" /]}
+    {[ alignClass = "sn-text-left" /]}
+{[/]}
+
+<div class="content-block content-block--image {{ alignClass }}" id="{{ getSearchIDString(block.id) }}">
+    {[ if (variant === "frame") ]}
+        <a class="popup-img content-block--image-frame" href="{{ block.url }}">
+            <img src="{{ block.url }}" class="img-frame" alt="{{ block.caption }}" />
+        </a>
+    {[ else ]}
+        <a class="popup-img" href="{{ block.url }}">
+            <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ block.caption }}" />
+        </a>
+    {[/]}
+
+    {* Add caption if set *}
+    {[ if block.caption ]}
+        <p class="caption">{{ withHTMLNewlines(block.caption) }}</p>
+    {[/]}
+</div>
+{[/]}
