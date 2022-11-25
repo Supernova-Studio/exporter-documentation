@@ -1,0 +1,29 @@
+/* =================================== */
+/*  Badge
+/* =================================== */
+
+.badge {
+    font-size: 0.625rem;
+    font-weight: var(--fontWeightBold);
+    border-radius: var(--borderRadiusSmall);
+
+    &.badge-contrast-aaa {
+        background: var(--colorGreen100);
+        color: var(--colorGreen900);
+    }
+
+    &.badge-contrast-aa {
+        background: var(--colorGreen100);
+        color: var(--colorGreen900);
+    }
+
+    &.badge-contrast-aa18 {
+        background: var(--colorOrange100);
+        color: var(--colorOrange900);
+    }
+
+    &.badge-contrast-dnp {
+        background: var(--colorRed100);
+        color: var(--colorRed900);
+    }
+}

@@ -6,7 +6,7 @@
   "organization": "PlayStation",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.1.1",
+  "version": "4.2.2",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -765,6 +765,10 @@
         {
           "name": "Color stack",
           "key": "stack"
+        },
+        {
+          "name": "Contrast grid",
+          "key": "contrast-grid"
         }
       ],
       "TokenGroup": [
@@ -796,6 +800,10 @@
         {
           "name": "Color stack (2 columns)",
           "key": "stack-2"
+        },
+        {
+          "name": "Contrast grid",
+          "key": "contrast-grid"
         }
       ],
       "Token": [

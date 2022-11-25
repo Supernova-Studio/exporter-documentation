@@ -1,4 +1,5 @@
 {[ let configuration = exportConfiguration() /]}
+{[ let page = context /]}
 
 {[ if configuration.advancedCustomizationShowFooter ]}
     {* Note: Footer gets completely injected through configuration. Copy of default footer can be found below *}
@@ -6,7 +7,7 @@
 {[/]}
 
 {[ if configuration.footerShow ]}
-    {[ let lastPublished = (configuration.footerShowLastPublished ? ("Documentation last published on " + getCurrentFormattedDateTime() + ".") : "") /]}
+   {[ let lastPublished = (configuration.footerShowLastPublished ? ("Page last updated on " + getFormattedDateTime(page.updatedAt)) : "") /]}
 
     <div class="container-footer small"">
         <div class="slider">

@@ -1,8 +1,7 @@
 {* Fetch block from injection context, expected type 'Token' *}
 {[ const block = context /]}
-
+{[ const configuration = exportConfiguration() /]}
 {[ let variant = block.variantKey /]}
-
 {* Ignore block if it is empty *}
 {[ if block.tokenIds.count() > 0) ]}
   <div class="content-block content-block--token-container">
@@ -16,7 +15,10 @@
         {[/]}
       </div>
 
-      {[ elseif (variant.contains("stack")) ]}
+    {[ elseif variant.contains("contrast-grid") ]}
+      {* Displaying the list of tokens as a contrast grid (if it's a color) *}
+      {[ inject "page_block_token_variant_contrast_grid" context ({"tokenIds": block.tokenIds, "blockId": block.id}) /]}
+    {[ elseif (variant.contains("stack")) ]}
       {* Stack – Displaying the list of tokens as a stack (great for colors) *}
 
         <div class="stack{{ getVariantClass(variant) }}">

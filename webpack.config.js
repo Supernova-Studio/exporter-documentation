@@ -3,21 +3,25 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntries = require("webpack-fix-style-only-entries");
 
+/* generate a webpack configuration that:
+- converts all scss files into assets/css/main.min.css file and minifies it
+- converts selected js files from assets/js/ into assets/js/dist/docs.min.js file and minifies it
+- converts all ts files into a js_helpers.js file and minifies it
+*/
+
 module.exports = (env, argv) => ({
-  plugins: [
-    new FixStyleOnlyEntries(),
-    new MiniCssExtractPlugin({
-      filename: './assets/css/[name].min.css'
-    })
-  ],
   mode: argv.mode === 'production' ? 'production' : 'development',
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
 
-  // entry: ['./typescript/src/index.ts', './scss/main.scss'],
   entry: {
-    'assets/js/uig': './src/_playstation/js/uig',
     'src/js_helpers': './typescript/src/index.ts',
-    'main': './scss/main.scss'
+    'assets/dist/docs.min': [
+      './assets/js/toast.js',
+      './assets/js/syncscroll.js',
+      './assets/js/search.js',
+      './scss/main.scss'
+    ],
+    'assets/js/uig': './src/_playstation/js/uig',
   },
 
   module: {
@@ -30,12 +34,11 @@ module.exports = (env, argv) => ({
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [MiniCssExtractPlugin.loader,
-          /*'css-loader',*/
           {
             loader: "css-loader",
             options: {
@@ -55,10 +58,11 @@ module.exports = (env, argv) => ({
       new TerserPlugin({
         terserOptions: {
           format: {
-            comments: false
-          }
+            comments: false,
+          },
         },
-        extractComments: false
+
+        extractComments: false,
       })
     ]
   },
@@ -69,7 +73,12 @@ module.exports = (env, argv) => ({
   output: {
     publicPath: '',
     filename: '[name].js',
-    // path: path.resolve(__dirname, './')
     path: argv.mode === 'production' ? path.resolve(__dirname, './') : path.join(__dirname, '/.build')
-  }
+  },
+  plugins: [
+    new FixStyleOnlyEntries(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
+  ],
 });
