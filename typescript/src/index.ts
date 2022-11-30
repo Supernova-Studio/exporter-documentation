@@ -13,6 +13,7 @@ import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntr
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 import { getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
+import { richTextToHTML } from "./doc_functionality/rich_text"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -87,3 +88,6 @@ Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
+
+/* String utilities */
+Pulsar.registerFunction("richTextToHTML", richTextToHTML)
