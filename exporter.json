@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -751,7 +751,7 @@
           "key": "stack"
         },
         {
-          "name": "Contrast grid",
+          "name": "Color contrast grid",
           "key": "contrast-grid"
         }
       ],
@@ -786,7 +786,7 @@
           "key": "stack-2"
         },
         {
-          "name": "Contrast grid",
+          "name": "Color contrast grid",
           "key": "contrast-grid"
         }
       ],
