@@ -43,16 +43,16 @@ $(document).ready(function() {
     loadSandboxes(sandboxConfigUrl)
 
     {[ if configuration.enableCookiesBanner ]}
-        const cookieConsent = new CookieConsent({
-            content: {
-                "title": "{{ configuration.cookiesBannerTitle }}",
-                "body": "{{ configuration.cookiesBannerDescription }}",
+    const cookieConsent = new CookieConsent({
+        content: {
+            "title": "{{ configuration.cookiesBannerTitle }}",
+            "body": "{{ configuration.cookiesBannerDescription }}",
+        },
+        postSelectionCallback: () => { 
+            {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
+            {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]} initHotjar(); {[/]}
             },
-            postSelectionCallback: () => { 
-                {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
-                {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]} initHotjar(); {[/]}
-                },
-        });
+    });
     {[/]}
 })
 </script>
@@ -69,7 +69,6 @@ $(document).ready(function() {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '{{ GoogleAnalyticsKey }}');
-        console.log("Google Analytics initialized")
     }
 
     {[ if configuration.enableCookiesBanner ]}

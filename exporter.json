@@ -751,28 +751,40 @@
       "TokenList": [
         {
           "name": "Table",
-          "key": "table"
+          "key": "table",
+          "description": "Great for longer list of tokens, with a small side preview.",
+          "thumbnail": "thumbnails/TokenList_Table.png"
         },
         {
           "name": "Grid (4 columns)",
           "key": "grid-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Grid with 4 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-4.png"
         },
         {
           "name": "Grid (3 columns)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "Grid with 3 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-3.png"
         },
         {
           "name": "Grid (2 columns)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Grid with 2 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-2.png"
         },
         {
           "name": "Grid (1 column)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Grid with 1 full-width column, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-1.png"
         },
         {
           "name": "Color stack",
-          "key": "stack"
+          "key": "stack",
+          "description": "Full-width horizontal stack, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenList_Stack.png"
         },
         {
           "name": "Color contrast grid",
