@@ -518,6 +518,30 @@
         "category": "Analytics"
       },
       {
+        "key": "enableCookiesBanner",
+        "type": "boolean",
+        "label": "Show cookies banner",
+        "description": "If enabled, a cookies banner will be displayed on your documentation site. This banner will give users option to allow tracking cookies.",
+        "category": "Analytics",
+        "default": false
+      },
+      {
+        "key": "cookiesBannerTitle",
+        "type": "string",
+        "label": "Cookies banner: Title",
+        "description": "",
+        "category": "Analytics",
+        "default": "🍪 Cookie settings"
+      },
+      {
+        "key": "cookiesBannerDescription",
+        "type": "string",
+        "label": "Cookies banner: Description",
+        "description": "",
+        "category": "Analytics",
+        "default": "We use cookies to personalize content and analyze traffic to our documentation."
+      },
+      {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
         "label": "Editable React widgets",

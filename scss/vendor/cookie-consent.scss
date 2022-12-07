@@ -1,0 +1,132 @@
+.cookie-consent-modal {
+  padding-top: 0;
+  position: fixed;
+  width: auto;
+  height: auto;
+  z-index: 1000;
+
+  .modal-content-wrap {
+    position: fixed;
+    bottom: 0;
+    margin: 1rem;
+
+    &.right {
+      right: 0;
+    }
+
+    &.left {
+      left: 0;
+    }
+
+    .modal-content {
+      background-color: var(--colorBackgroundPrimary); 
+      color: var(--colorInkPrimary);
+      box-shadow: var(--boxShadowLevel2); 
+      padding: 0;
+      max-width: 420px;
+      border-radius: var(--borderRadiusLarge);
+      border: 0;
+
+      .modal-header {
+        border: 0;
+        padding: 1rem 1rem 0;
+
+        h3 {
+          margin: 0;
+          font-size: 1rem;
+          font-weight: var(--fontWeightBold);
+          position: relative;
+        }
+      }
+
+      .modal-body {
+        padding: 0.5rem 1rem 1rem;
+        line-height: var(--lineHeightSmall);
+        font-size: var(--fontSizeSmall);
+
+        a {
+          color: var(--colorInkPrimary);
+
+          &:hover {
+            color: var(--colorAccent);
+          }
+        }
+      }
+
+      .modal-footer {
+        padding: 0rem 0.5rem 0.5rem 0.5rem;
+        border: 0;
+
+        .buttons {
+          display: flex;
+          justify-content: flex-end;
+          flex-wrap: wrap;
+          gap: 12px;
+
+          .btn {
+            padding: .375rem .75rem;
+            border: 0;
+            border-radius: var(--borderRadiusDefault);
+            font-size: var(--fontSizeSmall);
+            line-height: var(--lineHeightSmall);
+            font-weight: var(--fontWeightSemibold);
+
+            // "accept all" button
+            &.btn-primary {
+              background-color: var(--colorAccent);
+              color: var(--colorAccentInk);
+
+              &:hover {
+                background-color: var(--colorAccentAlt);
+              }
+            }
+
+            // "accept necessary" button
+            &.btn-secondary {
+              background: var(--colorBackgroundSecondary);
+              color: var(--colorInkPrimary);
+
+              &:hover {
+                background-color: var(--colorAccentSurface);
+                color: var(--colorAccent);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 620px) {
+    .btn {
+      width: 100%;
+    }
+  }
+
+  &.block-access {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5); // the fullscreen background layer
+    padding-top: 20vh; // modals vertical position in desktop mode
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    @media screen and (max-width: 620px) {
+      padding-top: 0;
+    }
+
+    .modal-content-wrap {
+      position: relative;
+      margin: 2.5% auto;
+
+      .modal-content {
+        margin: 0 auto;
+      }
+
+      bottom: auto;
+      width: 95%;
+    }
+  }
+}
