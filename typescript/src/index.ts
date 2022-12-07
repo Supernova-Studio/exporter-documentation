@@ -12,7 +12,7 @@ import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
-import { getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
+import { generateCustomCSSHash, getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -33,6 +33,7 @@ Pulsar.registerFunction("checkKeyInArray", checkKeyInArray)
 /* General utils */
 Pulsar.registerFunction("getFullYear", getFullYear)
 Pulsar.registerFunction("getFormattedDateTime", getFormattedDateTime)
+Pulsar.registerFunction("generateCustomCSSHash", generateCustomCSSHash)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
