@@ -2,11 +2,9 @@
 {[ const theme = context.theme /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
-
     <div class="preview checkered-background-light">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="color-preview{{ colorLightnessCheck ? " is-dark" : "" }}{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}" style="background-color: #{{ token.value.hex }};">
+        <div class="color-preview {{ returnSwatchClassnames(token.value) }}" style="background-color: #{{ token.value.hex }};">
             {[ inject "page_block_token_value" context token /]}
             {[ inject "page_block_token_theme_badge" context theme /]}
         </div>

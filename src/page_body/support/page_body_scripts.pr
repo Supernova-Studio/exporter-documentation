@@ -1,6 +1,10 @@
 {* Retrieve page object from context *}
 {[ let page = context /]}
 {[ let domain = ds.documentationDomain() /]}
+{[ const configuration = exportConfiguration() /]}
+{[ const GoogleAnalyticsKey = configuration.googleAnalyticsAPIKey /]}
+{[ const HotjarSiteId = configuration.hotjarSiteId /]}
+
 {* Generate page scripts *}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.7.3/dist/hotkeys.min.js"></script>
@@ -25,6 +29,7 @@
 <!-- General scripts -->
 <script src="{{ assetUrl("dist/docs.min.js", domain)}}"></script>
 <script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
+<script src="{{ assetUrl("js/cookie-consent.js", domain)}}"></script>
 
 <!-- After loading -->
 <script>
@@ -36,18 +41,84 @@ $(document).ready(function() {
     // Load sandboxes, if any
     const sandboxConfigUrl = "{{ domain }}/../sandbox.json"
     loadSandboxes(sandboxConfigUrl)
-});
+
+    {[ if configuration.enableCookiesBanner ]}
+    const cookieConsent = new CookieConsent({
+        content: {
+            "title": "{{ configuration.cookiesBannerTitle }}",
+            "body": "{{ configuration.cookiesBannerDescription }}",
+        },
+        postSelectionCallback: () => { 
+            {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
+            {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]} initHotjar(); {[/]}
+            },
+    });
+    {[/]}
+})
 </script>
+
+{* Add google analytics if key was provided *}
+{[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]}
+<!-- Google Analytics -->
+<script>
+    function initGoogleAnalytics() {
+        let gtagScript = document.createElement("script");
+        gtagScript.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id={{ GoogleAnalyticsKey }}");
+        document.body.appendChild(gtagScript);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ GoogleAnalyticsKey }}');
+    }
+
+    {[ if configuration.enableCookiesBanner ]}
+    if (getCookieValue("cookie-consent-tracking-allowed") === "true") {
+        initGoogleAnalytics()
+    }
+    {[ else ]}
+    initGoogleAnalytics()
+    {[/]}
+</script>
+<!-- End Google Analytics -->
+{[/]}
+
+{* Hotjar integration *}
+{[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]}
+<!-- Hotjar Tracking Code-->
+<script>
+    function initHotjar() {
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:{{ HotjarSiteId }},hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    }
+
+    {[ if configuration.enableCookiesBanner ]}
+    if (getCookieValue("cookie-consent-tracking-allowed") === "true") {
+        initHotjar()
+    }
+    {[ else ]}
+    initHotjar()
+    {[/]}
+
+    
+</script>
+{[/]}
+
 
 
 {* Add intercom if key was provided *}
 {[ if (exportConfiguration().intercomAPIKey && exportConfiguration().intercomAPIKey.count() > 0) ]}
 <!-- Intercom tracker -->
 <script>
-var APP_ID = "{{  exportConfiguration().intercomAPIKey }}"; 
-window.intercomSettings = {
-    app_id: APP_ID
-};
+    var APP_ID = "{{  exportConfiguration().intercomAPIKey }}"; 
+    window.intercomSettings = {
+        app_id: APP_ID
+    };
 </script>
 <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);} } } )();</script>
 

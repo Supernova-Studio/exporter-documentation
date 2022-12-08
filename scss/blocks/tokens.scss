@@ -17,11 +17,11 @@
   align-items: center;
   color: var(--colorInkPrimary);
   
-  &.borderless {
+  &.is-color {
     border: 0;
   }
 
-  &.is-dark {
+  &.inverted-text {
     color: var(--colorInkInverted);
   }
 
@@ -382,15 +382,14 @@ a.custom-property-link {
   justify-content: center;
   align-items: center;
   color: var(--colorInkPrimary);
-  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusDefault);
 
-  &.is-dark {
+  &.inverted-text {
     color: var(--colorInkInverted);
   }
 
-  &.borderless {
-    border: 0;
+  &.bordered {
+    border: 1px solid var(--colorBorderSubtle);
   }
 
   .token-value {
@@ -775,6 +774,13 @@ a.custom-property-link {
       align-content: space-between;
       flex-direction: column;
       border-radius: var(--borderRadiusSmall);
+
+      .labels {
+        .value {
+          font-weight: var(--fontWeightSemibold);
+          font-size: var(--fontSizeTiny);
+        }
+      }
     }
 
     &.swatch-empty { 
