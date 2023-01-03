@@ -60,7 +60,9 @@
     width: 177px;
     height: 48px;
     text-decoration: none;
-
+    &:hover {
+        color: var(--colorInkPrimary);
+    }
     * {
         text-decoration: none;
     }
