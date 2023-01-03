@@ -46,8 +46,9 @@
 
 /* Button Secondary – needs to be reviewed */
 .cta-button {
-    font-weight: var(--fontWeightSemibold);
-    font-size: var(--fontSizeSmall);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
     color: var(--colorWhite);
     background-color: transparent;
     margin-left: 12px;
