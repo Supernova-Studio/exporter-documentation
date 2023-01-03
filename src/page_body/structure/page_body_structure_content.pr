@@ -1,6 +1,10 @@
 {[ let page = context /]}
+{[ let rootGroup = ds.rootDocumentationGroup() /]}
 {[ let hasHeading = false /]}
 {[ let hasTopLevelHeading = false /]}
+{[ let configuration = exportConfiguration() /]}
+{[ let isHomepage = isHomepage(page, rootGroup) /]}
+
 {[ for block in page.blocks ]}
     {[ if block.type.equals("Heading") ]}
         {[ hasHeading = true /]}
@@ -11,11 +15,11 @@
 {[/]}
 <div id="content-nav-container">
     <nav id="content-nav">
-        {[ if (hasHeading) ]}
-            <span class="content-nav-header">CONTENTS</span>
+        {[ if ((hasHeading && configuration.tocShow) && (!isHomepage || (isHomepage && configuration.tocShowOnHomepage))) ]}
+            <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
             <ul>
                 {[ for block in page.blocks ]}
-                {[ if block.type.equals("Heading") ]}
+                {[ if (block.type.equals("Heading") && (!configuration.tocHideHeading3 || (configuration.tocHideHeading3 && block.headingType !== 3))) ]}
                     {[ let menuClass = "" /]}
                     {[ switch block.headingType ]}
                         {[ case 2 ]}

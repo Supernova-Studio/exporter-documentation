@@ -5,25 +5,22 @@
   width: 100%;
 }
 
-.image-container {
+.content-block--image {
   width: 100%;
-  margin: 24px 0px;
+
+  img {
+    border-radius: var(--borderRadiusDefault);
+    display: inline-block;
+  }
 }
 
-.image-container img {
-  border-radius: var(--borderRadiusDefault);
+.caption {
+  font-size: var(--fontSizeSmall);
+  line-height: 1.3rem;
+  color: var(--colorInkSecondary);
+  margin-top: 0.5rem;
 }
 
 td .image-container {
   margin: 8px 0px;
-}
-
-.image-container p {
-  font-size: 14px;
-  color: var(--colorInkSecondary);
-}
-
-.caption {
-  font-size: 14px;
-  color: var(--colorInkSecondary);
 }

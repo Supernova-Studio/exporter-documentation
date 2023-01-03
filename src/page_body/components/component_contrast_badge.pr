@@ -1,0 +1,13 @@
+{[ let contrastRatio = context /]}
+
+{[ if (contrastRatio > 7) ]}
+    <div class="badge badge-contrast-aaa" data-toggle="tooltip" title="Pass, AAA (7+)">AAA</div>
+{[ elseif (contrastRatio > 4.5) ]}
+    <div class="badge badge-contrast-aa" data-toggle="tooltip" title="Pass, AA (4.5+)">AA</div>
+{[ elseif (contrastRatio > 3) ]}
+    <div class="badge badge-contrast-aa18" data-toggle="tooltip" title="Pass, Large text only (3+)">AA18</div>
+{[ else ]}
+    <div class="badge badge-contrast-dnp" data-toggle="tooltip" title="Does not pass">DNP</div>
+{[/]}
+
+{{ contrastRatio }}

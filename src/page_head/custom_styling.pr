@@ -1,5 +1,88 @@
-{* Inject any custom CSS provided by the user *}
-{{ exportConfiguration().advancedCustomizationCustomCSS }}
+{[ let configuration = exportConfiguration() /]}
 
-{* Inject styles *}
-{* TODO *}
+{* Mapping all "native" settings to proper CSS variables *}
+:root {
+    /* =========================== */
+    /* "Native" theme configuration */
+    /* =========================== */
+
+    {* Typography *}
+    {[ if (configuration.customFontFamily !== "") ]}
+    --fontFamily: {{ configuration.customFontFamily }};
+    {[/]}
+    {* Accent colors *}
+    {[ let accentColorOption = configuration.lookAndFeelAccentColor /]}
+    {[ let accentColor = (accentColorOption ? getColorValueFromSettings(accentColorOption.value, ((accentColorOption.aliasTo !== null) ? ds.tokenById(accentColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentColor ]}
+    --colorAccent: {{ accentColor }};
+    {[/]}
+    {[ let accentAltColorOption = configuration.lookAndFeelAccentAlternativeColor /]}
+    {[ let accentAltColor = (accentAltColorOption ? getColorValueFromSettings(accentAltColorOption.value, ((accentAltColorOption.aliasTo !== null) ? ds.tokenById(accentAltColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentAltColor ]}
+    --colorAccentAlt: {{ accentAltColor }};
+    {[/]}
+    {[ let accentSurfaceColorOption = configuration.lookAndFeelAccentSurfaceColor /]}
+    {[ let accentSurfaceColor = (accentSurfaceColorOption ? getColorValueFromSettings(accentSurfaceColorOption.value, ((accentSurfaceColorOption.aliasTo !== null) ? ds.tokenById(accentSurfaceColorOption.aliasTo) : null)) : null) /]}
+    {[ if accentSurfaceColor ]}
+    --colorAccentSurface: {{ accentSurfaceColor }};
+    {[/]}
+    {* Layout *}
+    {[ if (configuration.limitSiteMaxWidth && (configuration.siteMaxWidth <= 1400)) ]}
+    --siteMaxWidth: 1400px;
+    {[ elseif (configuration.limitSiteMaxWidth && (configuration.siteMaxWidth !== 0)) ]}
+    --siteMaxWidth: {{ configuration.siteMaxWidth }}px;
+    {[/]}
+    {[ if (configuration.contentContainerWidth > 756) ]}
+    --contentMaxWidth: {{ configuration.contentContainerWidth }}px;
+    {[ else ]}
+    --contentMaxWidth: 756px;
+    {[/]}
+    {* Top navigation *}
+    {[ if (configuration.topNavigationHeight !== 0) ]}
+    --topNavHeight: {{ configuration.topNavigationHeight }}px;
+    {[/]}
+    {[ if (configuration.headerLogoHeight !== 0) ]}
+    --logoHeight: {{ configuration.headerLogoHeight }}px;
+    {[/]}
+    {* Page header *}
+    {[ let textColorOption = configuration.lookAndFeelHeaderTextColor /]}
+    {[ let textColor = (textColorOption ? getColorValueFromSettings(textColorOption.value, ((textColorOption.aliasTo !== null) ? ds.tokenById(textColorOption.aliasTo) : null)) : null) /]}
+    {[ if textColor ]}
+    --pageHeaderInk: {{ textColor }};
+    {[/]}
+    {[ let backgroundColorOption = configuration.lookAndFeelHeaderBackgroundColor /]}
+    {[ let backgroundColor = (backgroundColorOption ? getColorValueFromSettings(backgroundColorOption.value, ((backgroundColorOption.aliasTo !== null) ? ds.tokenById(backgroundColorOption.aliasTo) : null)) : null) /]}
+    {[ if backgroundColor ]}
+    --pageHeaderBackground: {{ backgroundColor }};
+    {[/]}
+    {[ if (configuration.lookAndFeelHeaderHeight !== 0) ]}
+    --pageHeaderHeight: {{ configuration.lookAndFeelHeaderHeight }}px;
+    {[/]}
+}
+
+ {* Side navigation *}
+.side-navigation-wrapper {
+    {[ let sideNavBackgroundOption = configuration.sideNavigationBackground /]}
+    {[ let sideNavigationBackground = (sideNavBackgroundOption ? getColorValueFromSettings(sideNavBackgroundOption.value, ((sideNavBackgroundOption.aliasTo !== null) ? ds.tokenById(sideNavBackgroundOption.aliasTo) : null)) : null) /]}
+    {[ if sideNavigationBackground ]}
+    --sideNavBackground: {{ sideNavigationBackground }} !important;
+    {[/]}
+}
+
+ {* Top navigation *}
+#header {
+    {[ let topNavBackgroundOption = configuration.topNavigationBackground /]}
+    {[ let topNavigationBackground = (topNavBackgroundOption ? getColorValueFromSettings(topNavBackgroundOption.value, ((topNavBackgroundOption.aliasTo !== null) ? ds.tokenById(topNavBackgroundOption.aliasTo) : null)) : null) /]}
+    {[ if topNavigationBackground ]}
+    --topNavBackground: {{ topNavigationBackground }} !important;
+    --topNavBorderColor: {{ topNavigationBackground }} !important;
+    {[/]}
+}
+
+/* Advanced theme configuration */
+{{ configuration.themeConfiguration }}
+
+
+{* Inject any custom CSS provided by the user *}
+ /* Custom CSS overrides */
+{{ configuration.customCSS }}

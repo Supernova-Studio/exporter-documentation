@@ -1,12 +1,13 @@
 {[ let customPropertyValue = context.value /]}
 {[ let customProperty = context.info /]}
 {[ let mustReturnValue = context.mustReturnValue /]}
+{[ let configuration = exportConfiguration() /]}
 
 {[ if customProperty.propertyType.equals("Boolean") ]}
         {[ if (customPropertyValue === true) ]}
-            {[ inject "icon_boolean_true" context null /]}
+            {[ inject "icon_boolean_true" context configuration /]}
         {[ else ]}
-            {[ inject "icon_boolean_false" context null /]}
+            {[ inject "icon_boolean_false" context configuration /]}
         {[/]}
 {[ elseif customPropertyValue ]}
     {[ if customProperty.propertyType.equals("Select") ]}
@@ -27,9 +28,9 @@
 
     {[ elseif customProperty.propertyType.equals("Boolean") ]}
         {[ if (customPropertyValue === true) ]}
-            {[ inject "icon_boolean_true" context null /]}
+            {[ inject "icon_boolean_true" context configuration /]}
         {[ else ]}
-            {[ inject "icon_boolean_false" context null /]}
+            {[ inject "icon_boolean_false" context configuration /]}
         {[/]}
 
     {[ elseif customProperty.propertyType.equals("URL") ]}

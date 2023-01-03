@@ -1,13 +1,7 @@
 {[ let token = context /]}
 <span class="token-value">
 {[ if token.tokenType.equals("Color") ]}
-    {[ if (token.value.a === 255) ]}
-    #{{ token.value.hex.substring(0, 6) }}<br />
-    rgb({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }})
-    {[ else ]}
-    #{{ token.value.hex }}<br />
-    rgba({{ token.value.r }}, {{ token.value.g }}, {{ token.value.b }}, {{ (token.value.a / 255).rounded(3) }})
-    {[/]}
+    {{getFormattedColor(token.value)}}
 {[ elseif token.tokenType.equals("Blur") ]}
     {[ switch token.value.type ]}
         {[ case "Background" ]}
@@ -16,7 +10,7 @@
             filter: blur({{ token.value.radius.measure }}px)
     {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
-    {{ token.value.width.measure }}px solid #{{ getFormattedRGB(token.value.color) }}
+    {{ token.value.width.measure }}px solid {{ getFormattedColor(token.value.color) }}
 {[ elseif token.tokenType.equals("Font") ]}
     {{ token.value.family }} {{ token.value.subfamily }}
 {[ elseif token.tokenType.equals("Gradient") ]}

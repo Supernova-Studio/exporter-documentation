@@ -7,17 +7,32 @@
 
 {[ if url && url.trim().length > 0 ]}
     {* Fetch the markdown data from the remote URL *}
+    {[ let settings = {} /]}
     {[ let headers = {} /]}
-    {[ if (exportConfiguration().contentMarkdownToken) ]}
-        {[ headers = { "failable": true, "timeout": 5000, "authToken": exportConfiguration().contentMarkdownToken } /]}
-    {[ else ]}
-        {[ headers = { "failable": true, "timeout": 5000 } /]}
+    {[ let token = exportConfiguration().contentMarkdownToken /]}
+    {[ if (token) ]}
+        {[ if (token.contains("token") || token.contains("Bearer")) ]}
+            {[ headers = { "Authorization" : token } /]}
+        {[ else ]}
+            {* Default to token *}
+            {[ headers = { "Authorization" : "token " + token } /]}
+        {[/]}
     {[/]}
-    {[ let markdownData = getNetworkData(url, headers) /]}
 
+    {[ settings = { "failable": true, "timeout": 15000, "headers": headers } /]}
+
+    {* Prepare URL. Handle special cases *}
+    {[ if (url.contains("github.com")) ]}
+        {* Special handling for github - change URL to raw file API, removing blob storage so we have pure path  *}
+        {[ url = url.replacing("github.com", "raw.githubusercontent.com") /]}
+        {[ url = url.replacing("/blob", "") /]}
+    {[/]}
+
+    {* Download markdown data *}
+    {[ let markdownData = getNetworkData(url, settings) /]}
     {[ if markdownData ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
-        <div class="markdown-container {{ variant }}">
+        <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
             {{ markdownToHTML(markdownData) }}
         </div>
     {[ else ]}
@@ -25,5 +40,5 @@
         <p>Unable to render Markdown block with url {{ url }}, might not be Markdown definition or is unreachable. If Markdown is private, please provide authentication token in the documentation settings first.</p>
     {[/]}
 {[ else ]}
-<p>Unable to render Markdown block, please provide valid <code>.md</code> URL.</p>
+<p>Unable to render Markdown block, please provide valid <mark>.md</mark> URL.</p>
 {[/]}

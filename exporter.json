@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "3.0.1",
+  "version": "4.2.4",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -18,9 +18,481 @@
     "supernova": "1.0.0"
   },
   "type": "documentation",
-  "tags": ["Documentation"],
+  "tags": [
+    "Documentation",
+    "Template",
+    "Docs",
+    "Reference site",
+    "Styleguide"
+  ],
   "contributes": {
     "configuration": [
+      {
+        "key": "headerLogo",
+        "type": "image",
+        "label": "Site logo",
+        "description": "A company logo that will be displayed on all pages on your documentation site. We recommend using a 200 x 30px .svg or .png file.        ",
+        "category": "Look & feel"
+      },
+      {
+        "key": "headerLogoHeight",
+        "type": "number",
+        "label": "Site logo height",
+        "description": "The height of your site logo in the top navigation bar, measured in pixels.",
+        "category": "Look & feel",
+        "default": 28
+      },
+      {
+        "key": "favicon",
+        "type": "image",
+        "label": "Site favicon",
+        "description": "The favicon that will be used for your documentation site. We recommend using a 32 x 32px .png file. Using legacy .ico is not recommended.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentColor",
+        "type": "color",
+        "label": "Accent color",
+        "description": "This is your main accent color, used for all links, selected states, and active items. Default color: #0f62fe.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentAlternativeColor",
+        "type": "color",
+        "label": "Alternative accent color",
+        "description": "Used in hover states for links, selected items, and active states. Usually darker or lighter than the main accent color. Default color: #0043ce.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "lookAndFeelAccentSurfaceColor",
+        "type": "color",
+        "label": "Surface accent color",
+        "description": "Used for backgrounds of active and selected items. This color should meet AA+ contract criteria against the main accent color. Default color: #ecf4ff.",
+        "category": "Look & feel"
+      },
+      {
+        "key": "iconStrokeWidth",
+        "type": "number",
+        "label": "Icon stroke width",
+        "description": "The stroke width for all icons, measured in pixels. Default width: 2px.",
+        "category": "Look & feel",
+        "default": 2
+      },
+      {
+        "key": "customFontFamily",
+        "type": "string",
+        "description": "Font used in published documentation. If you use a custom font family (e.g. from Google Fonts), you might need to embed it below.",
+        "label": "Font family",
+        "category": "Look & feel",
+        "default": "Inter, Arial, sans-serif"
+      },
+      {
+        "key": "advancedCustomizationCustomFonts",
+        "type": "string",
+        "label": "Custom font embed",
+        "description": "Fonts that will be added to your site <head> (e.g. for typography token previews). You can load multiple fonts if needed.",
+        "category": "Look & feel",
+        "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap\" rel=\"stylesheet\">",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "themeConfiguration",
+        "type": "string",
+        "label": "Theme overrides",
+        "description": "Overrides of CSS custom properties (variables) for the theme. You can use this to change the look and feel of the published documentation.",
+        "category": "Look & feel",
+        "default": ":root {\r\n  \r\n}",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "customCSS",
+        "type": "string",
+        "label": "Custom CSS",
+        "description": "Need even more customization? You can add custom CSS, which will override everything before it. Please note, there is some risk that the CSS classes and DOM structure may change in the future.",
+        "category": "Look & feel",
+        "default": "body,\r\nhtml {\r\n\r\n}",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "limitSiteMaxWidth",
+        "type": "boolean",
+        "label": "Limit maximum site width",
+        "description": "On big screens, the side navigation will be aligned to the left of the content.",
+        "category": "Layout",
+        "default": false
+      },
+      {
+        "key": "siteMaxWidth",
+        "type": "number",
+        "label": "Maximum site width",
+        "description": "The maximum site width, measured in pixels. This applies if you have chosen to limit the maximum site width. Minimum width: 1400px.",
+        "category": "Layout",
+        "default": 1400
+      },
+      {
+        "key": "contentContainerWidth",
+        "type": "number",
+        "label": "Content container width",
+        "description": "The maximum width of the content container, measured in pixels. Default (and minimum) width: 756px.",
+        "category": "Layout",
+        "default": 756
+      },
+      {
+        "key": "topNavigationStyle",
+        "type": "enum",
+        "label": "Color style",
+        "description": "The overall color style used for the top navigation throughout your published documentation.",
+        "category": "Top navigation",
+        "values": [
+          "Light",
+          "Dark"
+        ],
+        "default": "Dark"
+      },
+      {
+        "key": "topNavigationBackground",
+        "type": "color",
+        "label": "Background color",
+        "description": "Used for the background of the top navigation bar. Should be complementary to your selected color style.",
+        "category": "Top navigation"
+      },
+      {
+        "key": "topNavigationHeight",
+        "type": "number",
+        "label": "Height",
+        "description": "Used to set the height of your top navigation bar, measured in pixels. Minimum height: 44px.",
+        "category": "Top navigation",
+        "default": 68
+      },
+      {
+        "key": "searchButtonType",
+        "type": "enum",
+        "label": "Search button type",
+        "description": "The type of the search button in top navigation.",
+        "category": "Top navigation",
+        "values": [
+          "Only icon",
+          "Icon + label"
+        ],
+        "default": "Only icon"
+      },
+      {
+        "key": "advancedCustomizationShowVersionDropdown",
+        "type": "boolean",
+        "label": "Show version dropdown",
+        "description": "When enabled, the version dropdown will be shown in your documentation, allowing visitors to select which version they'd like to see.",
+        "category": "Top navigation",
+        "default": false
+      },
+
+      {
+        "key": "advancedCustomizationShowCTA",
+        "type": "boolean",
+        "label": "Show CTA in site header",
+        "description": "When enabled, a CTA button will be added to the top navigation bar in your documentation. You can then  add the link and CTA text of your choice.",
+        "category": "Top navigation",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationCTAText",
+        "type": "string",
+        "label": "Site CTA: Label",
+        "description": "The text for the CTA button in your top navigation bar.",
+        "category": "Top navigation",
+        "default": "Open site",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationCTAUrl",
+        "type": "string",
+        "label": "Site CTA: Link",
+        "description": "The URL you want the CTA button in your top navigation bar to link to.",
+        "category": "Top navigation",
+        "default": "",
+        "isMultiline": false,
+        "inputType": "plain"
+      },
+      {
+        "key": "advancedCustomizationOpenInNewTab",
+        "type": "boolean",
+        "label": "Site CTA: Open in new tab",
+        "description": "When enabled, the link will open in a new tab once the user clicks on the CTA button.",
+        "category": "Top navigation",
+        "default": true
+      },
+      {
+        "key": "topNavHideCompletely",
+        "type": "boolean",
+        "label": "Hide top navigation",
+        "description": "When enabled, the top navigation bar will be completely hidden, and only the side navigation will be shown, with logo and search icon at the top of it.",
+        "category": "Top navigation",
+        "default": false
+      },
+      {
+        "key": "sideNavigationStyle",
+        "type": "enum",
+        "label": "Color style",
+        "description": "The overall color style used for the side navigation throughout your published documentation.",
+        "category": "Side navigation",
+        "values": [
+          "Light",
+          "Dark"
+        ],
+        "default": "Light"
+      },
+      {
+        "key": "sideNavigationBackground",
+        "type": "color",
+        "label": "Background color",
+        "description": "Used for the background of the side navigation. Should be complementary to your selected color style.",
+        "category": "Side navigation"
+      },
+      {
+        "key": "navigationShowSectionLabel",
+        "type": "boolean",
+        "label": "Show section label",
+        "description": "When enabled, a section label will be displayed at the top of the side navigation.",
+        "category": "Side navigation",
+        "default": false
+      },
+      {
+        "key": "navigationFirstLevelExpanded",
+        "type": "boolean",
+        "label": "Expand the first level of navigation",
+        "description": "When enabled, all first-level groups will be expanded, and the group label will be styled as an eyebrow heading. This won't be applied to pages with tabs.",
+        "category": "Side navigation",
+        "default": false
+      },
+      {
+        "key": "navigationShowTabs",
+        "type": "boolean",
+        "label": "Show page tabs in navigation",
+        "description": "When enabled, page tabs will be displayed in the side navigation.",
+        "category": "Side navigation",
+        "default": true
+      },
+      {
+        "key": "showSupernovaBranding",
+        "type": "boolean",
+        "label": "Show Supernova branding",
+        "description": "When enabled, \"Powered by Supernova\" will be displayed at the bottom of the side navigation. Optional, but highly appreciated ♥️",
+        "category": "Side navigation",
+        "default": true
+      },
+      {
+        "key": "showHomepageNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show navigation at bottom of page",
+        "description": "When enabled, navigation will be displayed at the bottom of the homepage allowing visitors to navigate to the next documentation page.",
+        "category": "Homepage",
+        "default": true
+      },
+      {
+        "key": "tocShowOnHomepage",
+        "type": "boolean",
+        "label": "Show table of contents",
+        "description": "When enabled, a table of contents will be displayed on the homepage.",
+        "category": "Homepage",
+        "default": true
+      },
+      {
+        "key": "navigationOverrideHomepageLabel",
+        "type": "string",
+        "label": "Override homepage label in menus",
+        "description": "E.g. Home. When defined, it'll be used as a menu label for homepage in published documentation. This will allow you to have e.g. 'Welcome to our design system' as your page title for the homepage without displaying it in menus.",
+        "category": "Homepage",
+        "default": ""
+      },
+      {
+        "key": "lookAndFeelHeaderLayoutStyle",
+        "type": "enum",
+        "label": "Page header style",
+        "description": "The visual style of the header in your documentation. Choose between Default (edge to edge) and Boxed (with space surrounding the header).",
+        "category": "Pages",
+        "values": [
+          "Default",
+          "Boxed"
+        ],
+        "default": "Default"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundImage",
+        "type": "image",
+        "label": "Default page header image",
+        "description": "The default background image used in the page header throughout your documentation. You can still choose a different image for individual pages. If none is uploaded, no image will be used.",
+        "category": "Pages"
+      },
+      {
+        "key": "lookAndFeelHeaderBackgroundColor",
+        "type": "color",
+        "label": "Main background color in page header",
+        "description": "The background color used in the page header throughout your documentation. You can still choose a different color for individual pages.",
+        "category": "Pages"
+      },
+      {
+        "key": "lookAndFeelHeaderTextColor",
+        "type": "color",
+        "label": "Default page title color",
+        "description": "The page title color throughout your documentation. You can still choose a different page title color for individual pages.",
+        "category": "Pages"
+      },
+      {
+        "key": "lookAndFeelHeaderHeight",
+        "type": "number",
+        "label": "Default page header height",
+        "description": "The height of the page header throughout your documentation, measured in pixels. You can still choose a different height for individual pages. To enable automatic height adjustment based on the page header content, enter a value of 0px.",
+        "category": "Pages",
+        "default": 0
+      },
+      {
+        "key": "tocShow",
+        "type": "boolean",
+        "label": "Show table of contents",
+        "description": "When enabled, a table of contents will be displayed on each page.",
+        "category": "Pages",
+        "default": true
+      },
+      {
+        "key": "tocCustomLabel",
+        "type": "string",
+        "label": "Custom label for table of contents",
+        "description": "Customize the label for the table of contents section on each page.",
+        "category": "Pages",
+        "default": "On this page"
+      },
+      {
+        "key": "tocHideHeading3",
+        "type": "boolean",
+        "label": "Hide Heading 3 from table of contents",
+        "description": "When enabled, all Heading 3 levels will be hidden in table of contents.",
+        "category": "Pages",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationShowNextPreviousNavigation",
+        "type": "boolean",
+        "label": "Show navigation at bottom of page",
+        "description": "When enabled, navigation will be displayed at the bottom of each page allowing visitors to navigate to the previous, and next, documentation page.",
+        "category": "Pages",
+        "default": true
+      },
+      {
+        "key": "footerShow",
+        "type": "boolean",
+        "label": "Show footer",
+        "description": "A small footer on each page will be displayed.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "footerShowLastPublished",
+        "type": "boolean",
+        "label": "Show last published date",
+        "description": "When enabled, the date on which the page was last published will be displayed in the footer.",
+        "category": "Footer",
+        "default": true
+      },
+      {
+        "key": "advancedCustomizationShowFooter",
+        "type": "boolean",
+        "label": "Show custom footer",
+        "description": "A custom footer will be added on top of the regular footer. Great for additional links, information, etc.",
+        "category": "Footer",
+        "default": false
+      },
+      {
+        "key": "advancedCustomizationCustomFooter",
+        "type": "string",
+        "label": "Edit custom footer using HTML code",
+        "description": "If a custom footer is enabled, you can edit the custom footer by changing its HTML representation. Any HTML will work.",
+        "category": "Footer",
+        "isMultiline": true,
+        "inputType": "code",
+        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n</div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
+      },
+      {
+        "key": "seoEnableIndexing",
+        "type": "boolean",
+        "label": "Allow search engine indexing",
+        "description": "If enabled, your documentation site will be indexable by search engines. Note that only public documentation sites can be indexed.",
+        "category": "Search engines",
+        "default": true
+      },
+      {
+        "key": "seoEnableLinkFollowing",
+        "type": "boolean",
+        "label": "Allow search engines to follow links",
+        "description": "If enabled, search engine robots will 'follow' the links on your indexed documentation pages.",
+        "category": "Search engines",
+        "default": true
+      },
+      {
+        "key": "seoGenerateSitemap",
+        "type": "boolean",
+        "label": "Generate sitemap.xml",
+        "description": "If enabled, your documentation sitemap will be automatically regenerated every time you publish.",
+        "category": "Search engines",
+        "default": true
+      },
+      {
+        "key": "seoSiteImage",
+        "type": "image",
+        "label": "Site thumbnail image",
+        "description": "The site thumbnail will use this image. If no image is uploaded, the thumbnail will be empty.",
+        "category": "Search engines"
+      },
+      {
+        "key": "seoTitlePrefix",
+        "type": "string",
+        "label": "Site title prefix",
+        "description": "If provided, page title will be prepended with this text.",
+        "category": "Search engines",
+        "default": ""
+      },
+      {
+        "key": "seoTitleSuffix",
+        "type": "string",
+        "label": "Site title suffix",
+        "description": "When provided, page title will be appended with this text.",
+        "category": "Search engines",
+        "default": " | Made with Supernova"
+      },
+      {
+        "key": "seoTitleOverride",
+        "type": "string",
+        "label": "Site title override",
+        "description": "This string of text will completely override the site title on all documentation pages.",
+        "category": "Search engines",
+        "default": ""
+      },
+      {
+        "key": "seoDescriptionPrefix",
+        "type": "string",
+        "label": "Site description prefix",
+        "description": "When provided, page description will be prepended with this string.",
+        "category": "Search engines",
+        "default": ""
+      },
+      {
+        "key": "seoDescriptionSuffix",
+        "type": "string",
+        "label": "Site description suffix",
+        "description": "When provided, page description will be appended with this string.",
+        "category": "Search engines",
+        "default": " | Design system documentation, made with ❤️ using Supernova"
+      },
+      {
+        "key": "seoDescriptionOverride",
+        "type": "string",
+        "label": "Site description",
+        "description": "This string of text will be used as the main page description for all documentation pages. If empty, the page description will be dynamically generated from the page subheader (if any) or its content.",
+        "category": "Search engines",
+        "default": ""
+      },
       {
         "key": "googleAnalyticsAPIKey",
         "default": "",
@@ -34,7 +506,7 @@
         "default": "",
         "type": "string",
         "label": "Intercom API key",
-        "description": "Add Intercom to your documentation site by providing an API key",
+        "description": "Add Intercom to your documentation site by providing an API key.",
         "category": "Analytics"
       },
       {
@@ -42,262 +514,84 @@
         "default": "",
         "type": "string",
         "label": "Hotjar site ID",
-        "description": "Add Hotjar to your documentation site by providing a Site ID",
+        "description": "Add Hotjar to your documentation site by providing a Site ID.",
         "category": "Analytics"
       },
       {
-        "key": "headerLogo",
-        "type": "image",
-        "label": "Top Menu Logo",
-        "description": "Company logo to be shown on all pages inside the documentation site. 200x30px .svg or .png is recommended",
-        "category": "Appearance"
-      },
-      {
-        "key": "favicon",
-        "type": "image",
-        "label": "Site Favicon",
-        "description": "Documentation site favicon. 32x32px .png is recommended, using legacy .ico is discouraged",
-        "category": "Appearance"
-      },
-      {
-        "key": "lookAndFeelHeaderBackgroundImage",
-        "type": "image",
-        "label": "Page Header Background Image",
-        "description": "If provided, the header background image for each page will use this image. You can still change the setting per-page",
-        "category": "Appearance"
-      },
-      {
-        "key": "lookAndFeelHeaderBackgroundColor",
-        "type": "color",
-        "label": "Page Header Background Color",
-        "description": "If provided, the header background color for each page will use this color. You can still change the setting per-page",
-        "category": "Appearance"
-      },
-      {
-        "key": "lookAndFeelHeaderTextColor",
-        "type": "color",
-        "label": "Page Header Text Color",
-        "description": "If provided, the header text color for each page will use this color. You can still change the setting per-page",
-        "category": "Appearance"
-      },
-      {
-        "key": "lookAndFeelHeaderHeight",
-        "type": "number",
-        "label": "Page Header Height (px)",
-        "description": "If provided, the header for each page will be this tall (px). You can still change the setting per-page. Use 0 to disable",
-        "category": "Appearance",
-        "default": 0
-      },
-      {
-        "key": "seoEnableIndexing",
+        "key": "enableCookiesBanner",
         "type": "boolean",
-        "label": "Enable Search Engine Indexing",
-        "description": "When enabled, documentation site will be indexed by search engines. Note that only public documentation sites can be indexed",
-        "category": "Search engines",
-        "default": true
-      },
-      {
-        "key": "seoEnableLinkFollowing",
-        "type": "boolean",
-        "label": "Enable Search Engine Link Follow",
-        "description": "When enabled, search robots will follow the links on the indexed pages",
-        "category": "Search engines",
-        "default": true
-      },
-      {
-        "key": "seoGenerateSitemap",
-        "type": "boolean",
-        "label": "Generate Sitemap",
-        "description": "When enabled, documentation sitemap will be re-generated on every publish",
-        "category": "Search engines",
-        "default": true
-      },
-      {
-        "key": "seoTitlePrefix",
-        "type": "string",
-        "label": "Site Title Prefix",
-        "description": "When provided, page title will be prefixed with this string",
-        "category": "Search engines",
-        "default": ""
-      },
-      {
-        "key": "seoTitleSuffix",
-        "type": "string",
-        "label": "Site Title Suffix",
-        "description": "When provided, page title will be suffixed with this string",
-        "category": "Search engines",
-        "default": " | Made with Supernova"
-      },
-      {
-        "key": "seoTitleOverride",
-        "type": "string",
-        "label": "Site Title Override",
-        "description": "When provided, title will be completely overriden by this string for all site pages. Prefix is ignored in this case",
-        "category": "Search engines",
-        "default": ""
-      },
-      {
-        "key": "seoDescriptionPrefix",
-        "type": "string",
-        "label": "Site Description Prefix",
-        "description": "When provided, page description will be prefixed with this string",
-        "category": "Search engines",
-        "default": ""
-      },
-      {
-        "key": "seoDescriptionSuffix",
-        "type": "string",
-        "label": "Site Description Suffix",
-        "description": "When provided, page description will be suffixed with this string",
-        "category": "Search engines",
-        "default": " | Design system documentation, made with ❤️ using Supernova"
-      },
-      {
-        "key": "seoDescriptionOverride",
-        "type": "string",
-        "label": "Site Description Override",
-        "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-        "category": "Search engines",
-        "default": ""
-      },
-      {
-        "key": "seoSiteImage",
-        "type": "image",
-        "label": "Site Image Override",
-        "description": "When provided, page description will use this string. Otherwise, page description is generated dynamically from page subheading (if any) or its content.",
-        "category": "Search engines"
-      },
-      {
-        "key": "contentMarkdownToken",
-        "type": "string",
-        "label": "Markdown private token",
-        "description": "If provided, your markdown will authenticate using this token. Token must contain its type, format: ['basic' | 'Bearer' | 'token'] [token].",
-        "category": "Content",
-        "default": ""
-      },
-      {
-        "key": "advancedCustomizationShowNextPreviousNavigation",
-        "type": "boolean",
-        "label": "Show Next / Previous navigation",
-        "description": "When enabled, will show bottom page navigation with quick links to next and previous pages",
-        "category": "Appearance",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowFooter",
-        "type": "boolean",
-        "label": "Show Footer",
-        "description": "Any custom javascript to change the documentation behavior. Custom JS will be injected last after DOM is loaded.",
-        "category": "Appearance",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationCustomFooter",
-        "type": "string",
-        "label": "Custom Footer Code",
-        "description": "When footer is shown, the footer can be fully customized by changing its HTML representation. Add links, lines or even images, any html will work.",
-        "category": "Advanced",
-        "isMultiline": true,
-        "inputType": "code",
-        "default": "<div class=\"container-footer\">\r\n    <div class=\"slider\">\r\n        <div class=\"row\">\r\n        <div class=\"col-sm-5 mb-3\">\r\n            <h5>My Doc Site</h5>\r\n            <p class=\"d-block mb-3\">This footer can be completely changed through Supernova customization options. Head to site advanced customization to learn more!</p>\r\n            <p class=\"d-block mb-3 text-muted\">&copy; 2022 My Amazing Company</p>\r\n        </div>\r\n        <div class=\"col-sm-3 offset-sm-1 mb-3\">\r\n        <h5>Resources</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Changelog</a></li>\r\n            <li><a href=\"#\">Storybook</a></li>\r\n            <li><a href=\"#\">Figma</a></li>\r\n        </ul>\r\n        </div>\r\n        <div class=\"col-sm-3 mb-3\">\r\n        <h5>Support</h5>\r\n        <ul class=\"list-unstyled\">\r\n            <li><a href=\"#\">Report issue</a></li>\r\n            <li><a href=\"#\">Terms & Conditions</a></li>\r\n            <li><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        </div>\r\n    </div>\r\n    </div>\r\n</div>"
-      },
-      {
-        "key": "advancedCustomizationCustomCSS",
-        "type": "string",
-        "label": "Custom CSS",
-        "description": "Any custom styles to change the documentation look & feel. Custom CSS is injected last, overriding everything before it.",
-        "category": "Appearance",
-        "default": "body,\r\nhtml {\r\n\r\n}",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
-        "key": "advancedCustomizationCustomHeadInject",
-        "type": "string",
-        "label": "Custom Head Code",
-        "description": "Any custom head code you want to inject into the head. You can inject new metatags, css or js using this method.",
-        "category": "Advanced",
-        "default": "<style>\r\nbody {\r\n\r\n}\r\n</style>\r\n\r\n<script>\r\n    \r\n</script>",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
-        "key": "advancedCustomizationCustomFonts",
-        "type": "string",
-        "label": "Custom Font - Header",
-        "description": "Fonts you want loaded into your site. You can load multiple fonts at the same time. Icon fonts are also supported.",
-        "category": "Advanced",
-        "default": "<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap\" rel=\"stylesheet\">",
-        "isMultiline": true,
-        "inputType": "code"
-      },
-      {
-        "key": "advancedCustomizationShowCTA",
-        "type": "boolean",
-        "label": "Show Site CTA",
-        "description": "When enabled, documentation will add CTA button into the top bar. CTA can lead to any link you provide.",
-        "category": "Appearance",
+        "label": "Show cookies banner",
+        "description": "If enabled, a cookies banner will be displayed on your documentation site. This banner will give users option to allow tracking cookies.",
+        "category": "Analytics",
         "default": false
       },
       {
-        "key": "advancedCustomizationCTAText",
+        "key": "cookiesBannerTitle",
         "type": "string",
-        "label": "Site CTA - Text",
-        "description": "Text of the CTA button.",
-        "category": "Appearance",
-        "default": "Open site",
-        "isMultiline": false,
-        "inputType": "plain"
+        "label": "Cookies banner: Title",
+        "description": "",
+        "category": "Analytics",
+        "default": "🍪 Cookie settings"
       },
       {
-        "key": "advancedCustomizationCTAUrl",
+        "key": "cookiesBannerDescription",
         "type": "string",
-        "label": "Site CTA - URL to open",
-        "description": "Link which will open when CTA button is clicked by the user.",
-        "category": "Appearance",
-        "default": "",
-        "isMultiline": false,
-        "inputType": "plain"
-      },
-      {
-        "key": "advancedCustomizationOpenInNewTab",
-        "type": "boolean",
-        "label": "Site CTA - Open in new tab",
-        "description": "When enabled, CTA url you provided will open in a new tab.",
-        "category": "Appearance",
-        "default": true
-      },
-      {
-        "key": "advancedCustomizationShowVersionDropdown",
-        "type": "boolean",
-        "label": "Show Version Dropdown",
-        "description": "When enabled, version dropdown will be shown that allows readers to select which version of docs to read.",
-        "category": "Advanced",
-        "default": true
+        "label": "Cookies banner: Description",
+        "description": "",
+        "category": "Analytics",
+        "default": "We use cookies to personalize content and analyze traffic to our documentation."
       },
       {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
-        "label": "Editable React Widgets",
-        "description": "When React code widget is used, users can edit the code to see the components change in real-time.",
-        "category": "Code",
+        "label": "Editable React widgets",
+        "description": "When a React code block is used, viewers of the documentation can edit the code to see the components change in real-time.",
+        "category": "Code snippets",
         "default": true
       },
       {
         "key": "codeOpenInCodesandbox",
         "type": "boolean",
         "label": "Open in Codesandbox.io",
-        "description": "When React code widget is used, users can open its code and play around with it in Codesandbox.io.",
-        "category": "Code",
+        "description": "When a React code block is used,  viewers of the documentation can open its code and play around with it in codesandbox.io.",
+        "category": "Code snippets",
         "default": true
       },
       {
         "key": "contentIncludeLottiePlayer",
         "type": "boolean",
-        "label": "Include Lottie player",
-        "description": "When enabled, Lottie Player will get enabled in your documentation. Notice: It'll add 250 Kb to your documentation initial page load.",
-        "category": "Content",
+        "label": "Enable Lottie player",
+        "description": "The Lottie Player will be enabled in your documentation, and allow Lottie videos to play. Please note: this will add around 250 Kb to the initial page load of your documentation.",
+        "category": "Other",
         "default": false
+      },
+      {
+        "key": "contentMarkdownToken",
+        "type": "string",
+        "label": "Private Markdown token",
+        "description": "If provided, your markdown will be authenticated using this token. The token can contain its type , format: ['basic' | 'Bearer' | 'token'] [token]. If no type of format is provided, 'token' is assumed.",
+        "category": "Other",
+        "default": ""
+      },
+      {
+        "key": "advancedCustomizationCustomHeadInject",
+        "type": "string",
+        "label": "Custom <head> code",
+        "description": "Any custom <head> code you want to inject into the head. You can add new meta tags, CSS or JS using this method. Please note, this is at your own risk!",
+        "category": "Other",
+        "default": "<script>\r\n    \r\n</script>",
+        "isMultiline": true,
+        "inputType": "code"
+      },
+      {
+        "key": "advancedCustomizationCustomCSS",
+        "type": "string",
+        "label": "Custom CSS (deprecated, do not use)",
+        "description": "Deprecated custom CSS. The content of this field will not applied to published documentation site.",
+        "category": "Other",
+        "default": "body,\r\nhtml {\r\n\r\n}",
+        "isMultiline": true,
+        "inputType": "code"
       }
     ],
     "blocks": [
@@ -327,13 +621,11 @@
         "properties": [
           {
             "key": "componentId",
-            "default": "",
             "type": "component",
             "label": "Component"
           },
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           }
@@ -358,13 +650,11 @@
         "properties": [
           {
             "key": "componentId",
-            "default": "",
             "type": "component",
             "label": "Component"
           },
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           },
@@ -426,7 +716,6 @@
         "properties": [
           {
             "key": "propertiesToHighlight",
-            "default": "",
             "type": "componentProperties",
             "label": "Properties"
           },
@@ -515,204 +804,313 @@
         {
           "name": "Tabs",
           "key": "tabs",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Tabs displayed at the top of the container.",
+          "thumbnail": "thumbnails/Tabs_Tabs.png"
         },
         {
           "name": "Pills",
-          "key": "pills"
+          "key": "pills",
+          "description": "Tabs displayed vertically at the left side of the container.",
+          "thumbnail": "thumbnails/Tabs_Pills.png"
         },
         {
           "name": "Columns",
-          "key": "columns"
+          "key": "columns",
+          "description": "Tab content displayed as vertical columns of the same width. Experimental.",
+          "thumbnail": "thumbnails/Tabs_Columns.png"
         },
         {
           "name": "Accordion",
-          "key": "accordion"
+          "key": "accordion",
+          "description": "Tabs displayed as an accordion.",
+          "thumbnail": "thumbnails/Tabs_Accordion.png"
         }
+
       ],
       "TokenList": [
         {
           "name": "Table",
-          "key": "table"
+          "key": "table",
+          "description": "Great for longer list of tokens, with a small side preview.",
+          "thumbnail": "thumbnails/TokenList_Table.png"
         },
         {
           "name": "Grid (4 columns)",
           "key": "grid-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Grid with 4 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-4.png"
         },
         {
           "name": "Grid (3 columns)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "Grid with 3 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-3.png"
         },
         {
           "name": "Grid (2 columns)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Grid with 2 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-2.png"
         },
         {
           "name": "Grid (1 column)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Grid with 1 full-width column, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-1.png"
         },
         {
-          "name": "Stack",
-          "key": "stack"
+          "name": "Color stack",
+          "key": "stack",
+          "description": "Full-width horizontal stack, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenList_Stack.png"
+        },
+        {
+          "name": "Color contrast grid",
+          "key": "contrast-grid",
+          "description": "Grid of color contrast ratios, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenList_ContrastGrid.png"
         }
       ],
       "TokenGroup": [
         {
           "name": "Table",
           "key": "table",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Great for longer list of tokens, with a small side preview.",
+          "thumbnail": "thumbnails/TokenGroup_Table.png"
         },
         {
           "name": "Grid (4 columns)",
-          "key": "grid-4"
+          "key": "grid-4",
+          "description": "Grid with 4 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-4.png"
         },
         {
           "name": "Grid (3 columns)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "Grid with 3 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-3.png"
         },
         {
           "name": "Grid (2 column)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Grid with 2 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-2.png"
         },
         {
           "name": "Grid (1 columns)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Grid with 1 full-width column, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-1.png"
         },
         {
-          "name": "Stack",
-          "key": "stack"
+          "name": "Color stack",
+          "key": "stack",
+          "description": "Full-width horizontal stack, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_Stack.png"
         },
         {
-          "name": "Stack (2 columns)",
-          "key": "stack-2"
+          "name": "Color stack (2 columns)",
+          "key": "stack-2",
+          "description": "Two columns of token stacks, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_Stack-2.png"
+        },
+        {
+          "name": "Color contrast grid",
+          "key": "contrast-grid",
+          "description": "Grid of color contrast ratios, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_ContrastGrid.png"
         }
       ],
       "Token": [
         {
           "name": "Table Row",
-          "key": "table"
+          "key": "table",
+          "description": "With a small side preview.",
+          "thumbnail": "thumbnails/Token_TableRow.png"
         },
         {
           "name": "Grid Item (1/4 width)",
           "key": "grid-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "One quarter of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-4.png" 
         },
         {
           "name": "Grid Item (1/3 width)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "One third of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-3.png"
         },
         {
           "name": "Grid Item (1/2 width)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Half of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-2.png"
         },
         {
           "name": "Grid Item (Full width)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Full page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-1.png"
         },
         {
-          "name": "Stack",
-          "key": "stack"
+          "name": "Color stack item",
+          "key": "stack",
+          "description": "Full width of the page, great for color tokens.",
+          "thumbnail": "thumbnails/Token_StackItem.png"
         }
       ],
       "Shortcuts": [
         {
           "name": "Image on top (4 columns)",
           "key": "image-top-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Four items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-4.png"
         },
         {
           "name": "Image on top (3 columns)",
-          "key": "image-top-3"
+          "key": "image-top-3",
+          "description": "Three items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-3.png"
         },
         {
           "name": "Image on top (2 columns)",
-          "key": "image-top-2"
+          "key": "image-top-2",
+          "description": "Two items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-2.png"
         },
         {
           "name": "Image on top (Full width)",
-          "key": "image-top-1"
+          "key": "image-top-1",
+          "description": "One full-width item, with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-1.png"
         },
         {
           "name": "Leading image (2 columns)",
-          "key": "image-leading-2"
+          "key": "image-leading-2",
+          "description": "Two items in a row, each with a large image on the left.",
+          "thumbnail": "thumbnails/Shortcuts_ImageLeading-2.png"
         },
         {
           "name": "Leading image (Full width)",
-          "key": "image-leading-1"
+          "key": "image-leading-1",
+          "description": "One full-width item, with a large image on the left.",
+          "thumbnail": "thumbnails/Shortcuts_ImageLeading-1.png"
         },
         {
           "name": "Icon on top (4 columns)",
-          "key": "icon-top-4"
+          "key": "icon-top-4",
+          "description": "Four items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-4.png"
         },
         {
           "name": "Icon on top (3 columns)",
-          "key": "icon-top-3"
+          "key": "icon-top-3",
+          "description": "Three items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-3.png"
         },
         {
           "name": "Icon on top (2 columns)",
-          "key": "icon-top-2"
+          "key": "icon-top-2",
+          "description": "Two items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-2.png"
         },
         {
           "name": "Leading icon (3 columns)",
-          "key": "icon-leading-3"
+          "key": "icon-leading-3",
+          "description": "Three items in a row, each with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-3.png"
         },
         {
           "name": "Leading icon (2 columns)",
-          "key": "icon-leading-2"
+          "key": "icon-leading-2",
+          "description": "Two items in a row, each with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-2.png"
         },
         {
           "name": "Leading icon (Full width)",
-          "key": "icon-leading-1"
+          "key": "icon-leading-1",
+          "description": "One full-width item, with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-1.png"
         }
       ],
       "FigmaFrames": [
         {
-          "name": "Bordered",
+          "name": "Boxed",
           "key": "bordered",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Tiles with background and border, great for larger sets of frames.",
+          "thumbnail": "thumbnails/FigmaFrames_Boxed.png"
         },
         {
           "name": "Plain",
-          "key": "plain"
+          "key": "plain",
+          "description": "Frame as it is in Figma with no extra formatting, great for single images.",
+          "thumbnail": "thumbnails/FigmaFrames_Plain.png"
         }
       ],
       "RenderCode": [
         {
           "name": "Full width, code bottom",
           "key": "codeBottom",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Full-width block of code, with a preview on top.",
+          "thumbnail": "thumbnails/RenderCode_CodeBottom.png"
         },
         {
           "name": "Full width, code top",
-          "key": "codeTop"
+          "key": "codeTop",
+          "description": "Full-width block of code, with a preview on bottom.",
+          "thumbnail": "thumbnails/RenderCode_CodeTop.png"
         },
         {
           "name": "Side by side, code left",
-          "key": "codeLeft"
+          "key": "codeLeft",
+          "description": "Side-by-side preview and code, with code on the left.",
+          "thumbnail": "thumbnails/RenderCode_CodeLeft.png"
         },
         {
           "name": "Side by side, code right",
-          "key": "codeRight"
+          "key": "codeRight",
+          "description": "Side-by-side preview and code, with code on the right.",
+          "thumbnail": "thumbnails/RenderCode_CodeRight.png"
         },
         {
           "name": "Only preview, no code",
-          "key": "noCode"
+          "key": "noCode",
+          "description": "Full-width preview only, with no code displayed.",
+          "thumbnail": "thumbnails/RenderCode_NoCode.png"
+        },
+        {
+          "name": "Preview without controls",
+          "key": "noCodeNoControls",
+          "description": "Full-width preview only, with no code and no controls.",
+          "thumbnail": "thumbnails/RenderCode_NoCodeNoControls.png"
         }
       ],
       "io.supernova.documentation-main.markdown": [
         {
-          "name": "Default",
-          "key": "default",
-          "isDefault": true
+          "name": "Plain",
+          "key": "Plain",
+          "isDefault": true,
+          "description": "Markdown displayed in natural page flow.",
+          "thumbnail": "thumbnails/CustomMarkdown_Plain.png"
         },
         {
           "name": "Bordered",
-          "key": "bordered"
+          "key": "bordered",
+          "description": "Markdown wrapped in the container with subtle border.",
+          "thumbnail": "thumbnails/CustomMarkdown_Bordered.png"
         },
         {
           "name": "Boxed",
-          "key": "boxed"
+          "key": "boxed",
+          "description": "Markdown content wrapped in the container with secondary background.",
+          "thumbnail": "thumbnails/CustomMarkdown_Boxed.png"
         }
       ]
     }

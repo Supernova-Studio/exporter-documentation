@@ -1,13 +1,17 @@
 /* =================================== */
 /*  Callout
 /* =================================== */
-.callout {
-  padding: 18px 16px;
+.content-block--callout {
+
   border: 0px;
   margin: 24px 0;
   background-color: var(--rdcBackgroundTertiary);
+  padding: 18px 16px;
+  border-radius: var(--borderRadiusDefault);
   display: flex;
   gap: 12px;
+  font-size: var(--fontSizeSmall);
+  line-height: var(--lineHeightSmall);
 
   .icon {
     width: 48px;
@@ -28,6 +32,11 @@
     font-size: 14px;
     color: var(--colorInkPrimary)
   }
+
+  .content {
+    margin-top: 1px;
+  }
+
   &.callout-info {
     strong {
       font-weight: 800;
@@ -72,9 +81,4 @@
       color: var(--calloutDangerInkSecondary);
     }
   }
-}
-
-.embed-responsive {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }

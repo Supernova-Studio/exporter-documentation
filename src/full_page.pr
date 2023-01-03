@@ -5,13 +5,16 @@
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
+{[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
+{[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
+{[ let globalConfiguration = exportConfiguration() /]}
 
 <!DOCTYPE html>
 <html lang="en">
 {[ inject "page_head" context page /]}
 {[ const domain = ds.documentationDomain() /]}
 
-<body class="light {{ pageIdentifier(page) }}">
+<body class="{{ pageIdentifier(page) }}{{ isHomepage ? " is-homepage" : "" }}">
 {* <body class="{{ exportConfiguration().defaultVisualMode }}"> *}
 {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
 {[ if false ]}
@@ -30,54 +33,69 @@
 <div id="main-wrapper"> 
   
   <!-- Content -->
-  <div id="content" role="main" class="">
+  <div id="content" role="main" class="site-wrapper{{ (globalConfiguration.topNavHideCompletely ? " hidden-top-nav" : "") }}">
   
-    {* Add content header - always enabled *}
-    {[ inject "page_body_structure_header" context page /]}
-
-    {[ if configuration.showSidebar ]}
-      <!-- Sidebar Navigation -->
-      <div class="docs-navigation bg-sidebar">
-
-        {[ let data = { "page" : page } /]}
-        {[ const shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
-        {[ if ds.documentationConfiguration().settings.tabbedNavigation ]} 
-          {[ inject "page_body_structure_sidebar_tabbed" context data /]}
-        {[ else ]}
-          {[ inject "page_body_structure_sidebar_full" context data /]}
-        {[/]}
-      </div>
+    {* Add content header - if not disabled *}
+    {[ if (!globalConfiguration.topNavHideCompletely) ]}
+      {[ inject "page_body_structure_header" context page /]}
+    {[ else ]}
+      {* We need this for mobile view, hidden on desktop *}
+      <header id="header" class="mobile-header sticky-top {{ ((globalConfiguration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">    
+          <!-- Navbar -->
+          <nav class="primary-menu navbar navbar-expand-lg">
+                  <button id="sidebarCollapse" class="toggle-navbar" type="button">
+                      {[ inject "icon_menu" context globalConfiguration /]}
+                  </button>
+              {[/]}
+          </nav>
+      </header>
     {[/]}
-    
-    <!-- Docs Content -->
-    <div class="docs-content {{ !configuration.showSidebar ? "fullscreen" : "" }}">
 
-      {* Generate page header that is present on each page *}
-      {[ inject "page_body_structure_title" context page /]}
+    <div class="site">
+      <div class="site-content-wrapper">
+        <div class="site-content">
+          {[ if configuration.showSidebar ]}
+            <!-- Sidebar Navigation -->
+            <div class="side-navigation-wrapper {{ ((globalConfiguration.sideNavigationStyle === "Dark") ? "style-dark" : "style-light")}}" id="side-navigation">
+              <div class="bg-sidebar"></div>
+              {[ let data = { "page" : page } /]}
+              <div class="sidebar-navigation docs-navigation">
+                {[ inject "page_body_structure_sidebar" context data /]}
+              </div>
+            </div>
+          {[/]}
+          
+          <!-- Docs Content -->
+          <div class="docs-content">
 
-      {* Generate content for the page *}
-      <div class="container">
-        <section id="section-content-page">
-        <div class="tab-content" id="page-tab-content">
+            {* Generate page header that is present on each page *}
+            {[ inject "page_body_structure_title" context page /]}
 
-        {[ for block in page.blocks ]}
-            {[ inject "page_body_structure_block" context block /]}
-        {[/]}
+            {* Generate content for the page *}
+            <div class="content-container">
+              <section id="section-content-page">
+                <main class="tab-content" id="page-tab-content">
 
-        {[ inject "page_body_structure_next_previous" context page /]}
-        </div>
-        </section>
-        {[ inject "page_body_structure_content" context page /]}
-      </div>
+                {[ for block in page.blocks ]}
+                    {[ inject "page_body_structure_block" context ({"block": block, "pageId": page.id}) /]}
+                {[/]}
 
-      {* Generate footer, if enabled *}
-      {[ inject "page_body_structure_footer" context page /]}
-    </div>
+                {[ inject "page_body_structure_page_navigation" context page /]}
+                </main>
+              </section>
+              {[ inject "page_body_structure_content" context page /]}
+            </div>
+
+            {* Generate footer, if enabled *}
+            {[ inject "page_body_structure_footer" context page /]}
+          </div>
+        </div> {* .site-content end *}
+      </div> {* .site-content-wrapper end *}
+    </div> {* .site-wrapper end *}
   </div>
-  <!-- Content end --> 
   
 </div>
-<!-- Document Wrapper end --> 
+<!-- .site end --> 
 
 <!-- JavaScript -->
 {[ inject "page_body_scripts" context page /]}

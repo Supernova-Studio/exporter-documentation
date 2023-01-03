@@ -1,118 +1,91 @@
 /* =================================== */
 /*  Tabs (block & page tabs too)
 /* =================================== */
+
+/* Theme */
+:root {
+  --tabsItemHeight: 32px;
+  --tabsGap: 0;
+  --tabsActiveIndicatorHeight: 2px;
+}
+
+/* Styling */
 .nav-tabs {
+  display: flex;
+  margin-top: 8px !important;
+  border-bottom: 0px;
+  gap: var(--tabsGap);
   overflow-x: auto;
   overflow-y: hidden;
-  display: -webkit-box;
-  display: -moz-box;
+}
+
+#section-content-page .nav-tabs {
+  margin-top: 24px !important;
 }
 
 .nav-tabs > li {
   float: none;
 }
 
+.nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
 .nav-tabs .nav-item .nav-link {
   display: flex;
-  flex-direction: column;
   border: 0;
+  align-items: center;
   background: transparent;
   position: relative;
-  border-radius: 0;
-  padding: 6px 16px;
-  color: var(--colorInkSecondary);
+  border-radius: var(--borderRadiusDefault);
+  padding: 0;
   white-space: nowrap !important;
   transition: var(--transitionDefault);
-}
-
-.nav-tabs .nav-item .nav-link.active {
-  // color: var(--colorAccent) !important;
-  font-weight: bold;
-}
-
-.nav-tabs .nav-item .nav-link.active:after {
-  height: 1px;
-  width: 100%;
-  content: ' ';
-  background-color: var(--colorAccent);
-  display: block;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  border-radius: var(--borderRadiusDefault);
-}
-
-.nav-tabs .nav-item .nav-link:not(.active):hover {
+  font-weight: var(--fontWeightSemibold);
+  font-size: 0.875rem;
+  line-height: 1.4;
   color: var(--colorInkPrimary);
-  box-shadow: inset 0px -1px 0 0px var(--colorBorderColorSubtle);
+  min-height: 40px;
+  height: auto;
+
+  span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    width: 100%;
+    padding: 0 16px;
+    height: var(--tabsItemHeight);
+    border-radius: var(--borderRadiusDefault);
+    transition: var(--transitionDefault);
+  }
+
+  &:hover {
+    span {
+      background-color: var(--colorBackgroundSecondary);
+    }  
+  }
+
+  &.active {
+    color: var(--colorAccent) !important;
+
+    &:after {
+      height: var(--tabsActiveIndicatorHeight);
+      width: 100%;
+      content: ' ';
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      border-radius: var(--borderRadiusDefault);
+      background-color: var(--colorAccent) !important;
+    }
+  }
+
+  &:not(.active):hover {
+    color: var(--colorInkPrimary);
+  }
 }
 
-.nav-tabs.flex-column {
-  border-right: 1px solid var(--colorBorderColorSubtle);
-  border-bottom: 0px;
-  padding: 1.5rem 0;
-}
-
-.nav-tabs.flex-column .nav-item .nav-link {
-  border: 1px solid var(--colorBorderColorSubtle);
-  border-right: 0px;
-  background-color: var(--pageBackground);
-  font-size: 12px;
-  padding: 0.75rem 1rem;
-  color: var(--colorInkSecondary);
-}
-
-.nav-tabs.flex-column .nav-item:first-of-type .nav-link {
-  border-top-left-radius: var(--borderRadiusDefault);
-}
-
-.nav-tabs.flex-column .nav-item:last-of-type .nav-link {
-  border-bottom-left-radius: var(--borderRadiusDefault);
-}
-
-.nav-tabs.flex-column .nav-item .nav-link.active {
-  background-color: transparent;
-  color: #0366d6;
-}
-
-.nav-tabs.flex-column .nav-item .nav-link.active:after {
-  height: 100%;
-  width: 2px;
-  background: var(--colorBackgroundPrimary);
-  right: -1px;
-  left: auto;
-}
-
-.nav-tabs:not(.flex-column) {
-  flex-wrap: nowrap;
-  overflow: hidden;
-  overflow-x: auto;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-overflow-scrolling: touch;
-  margin: 0;
-}
-
-.nav-tabs:not(.flex-column) .nav-item {
-  margin-bottom: 0px;
-}
-
-.nav-tabs .nav-item .nav-link {
-  padding: 8px 16px;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--colorInkPrimary);
-}
-
-.nav-tabs .nav-item .nav-link:hover {
-  border-radius: var(--borderRadiusDefault) var(--borderRadiusDefault) 0px 0px;
-  background-color: var(--colorBackgroundSecondary);
-}
-
-.nav-tabs .nav-item .nav-link.active:after {
-  background-color: black;
-  height: 2px;
-}
 
 .tab-pills {
   margin-top: 24px !important;
@@ -121,7 +94,7 @@
 
 .tab-content-block {
   background: var(--colorBackgroundPrimary);
-  border: 1px solid var(--colorBorderColorSubtle);
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   padding: 24px;
   margin-top: -1px;
@@ -130,7 +103,7 @@
 .tab-pills .tab-content-block {
   padding: 0px 24px;
   border: 0;
-  border-left: 1px solid var(--colorBorderColorSubtle);
+  border-left: 1px solid var(--colorBorderSubtle);
   border-radius: 0px;
   margin-bottom: 24px;
   min-height: calc(100% - 24px);
@@ -140,23 +113,8 @@
   margin-left: 24px;
 }
 
-.nav-tabs.nav-tabs-inline:not(.flex-column) {
-  margin-left: 24px;
-}
-
-.docs-content .tab-pane > :first-child {
-  padding-top: 16px;
-  margin-top: 0px;
-}
-
 .docs-content .tab-pane > :last-child {
   margin-bottom: 0px;
-}
-
-.docs-content .tab-pane > :nth-child(2) {
-  // 2nd child, because the first one is anchor
-  padding-top: 0px;
-  margin-top: 0px;
 }
 
 /* Variant: Pills */
@@ -166,9 +124,8 @@
 }
 
 .nav-pills .nav-link {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+  font-weight: var(--fontWeightSemibold);
+  font-size: var(--fontSizeSmall);
   color: var(--colorInkPrimary);
   margin-bottom: 2px;
   border-radius: var(--borderRadiusDefault) 0px 0px var(--borderRadiusDefault);
@@ -187,9 +144,6 @@
   border-right: 1px solid var(--colorInkPrimary);
   margin-right: -1px;
   z-index: 2;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
 }
 
 /* Responsive behavior */
@@ -199,7 +153,7 @@
     padding-left: 0px;
     padding-right: 0px;
     margin-right: 10px;
-    font-size: 0.875rem;
+    font-size: var(--fontSizeSmall);
   }
 }
 
@@ -208,7 +162,7 @@
 /* =================================== */
 
 .accordion {
-  border: 1px solid var(--colorBorderColorSubtle);
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   overflow: hidden;
 }
@@ -219,9 +173,8 @@
 
 .accordion-header {
   z-index: 2;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-weight: var(--fontWeightSemibold);
+  font-size: var(--fontSizeSmall);
   padding: 12px 20px;
   cursor: pointer;
 }
@@ -229,7 +182,7 @@
 .accordion-section a.collapsed .accordion-header {
   background-color: transparent;
   color: var(--colorInkPrimary);
-  border-top: 1px solid var(--colorBorderColorSubtle);
+  border-top: 1px solid var(--colorBorderSubtle);
   border-bottom: 1px solid transparent;
 }
 
@@ -267,6 +220,95 @@
 .accordion-body > :nth-child(2),
 .tabs-as-columns .col-sm > :nth-child(2) {
   // 2nd child, because the first one is anchor
-  padding-top: 0px;
   margin-top: 0px;
+}
+
+.tabs-as-columns .col-sm > :last-child {
+  margin-bottom: 0px;
+}
+
+.accordion .card {
+  border: none;
+  margin-bottom: 8px;
+  background-color: transparent;
+}
+
+.accordion .card-header {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.accordion .card-header a {
+  font-size: 16px;
+  font-weight: normal;
+  padding: 1rem 1.25rem 1rem 2.25rem;
+  display: block;
+  border-radius: var(--borderRadiusDefault);
+  position: relative;
+}
+
+.accordion .card-header p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.accordion .card-header a:hover {
+  text-decoration: none;
+}
+
+.accordion .card-header a:hover.collapsed {
+  color: var(--colorAccent) !important;
+}
+.accordion .card-header a:before {
+  position: absolute;
+  content: ' ';
+  left: 20px;
+  top: calc(50% + 2px);
+  width: 9px;
+  height: 9px;
+  border-color: var(--colorBorderSubtle);
+  border-top: 2px solid;
+  border-right: 2px solid;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.accordion .card-header a.collapsed:before {
+  top: calc(50% - 2px);
+  -webkit-transform: translate(-50%, -50%) rotate(135deg);
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.accordion .card-body {
+  line-height: 26px;
+}
+
+.accordion.arrow-right .card-header a {
+  padding-left: 1.25rem;
+}
+
+.accordion.arrow-right .card-header a:before {
+  right: 15px;
+  left: auto;
+}
+
+.accordion.toggle .card-header a:before {
+  content: '-';
+  border: none;
+  font-size: 20px;
+  height: auto;
+  top: calc(50% + 2px);
+  width: auto;
+  -webkit-transform: translate(-50%, -50%) rotate(180deg);
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.accordion.toggle .card-header a.collapsed:before {
+  content: '+';
+  top: calc(50% - 1px);
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%, -50%) rotate(0deg);
 }

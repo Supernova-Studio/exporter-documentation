@@ -16,7 +16,7 @@
         },
         {
             "invoke": "custom_styling.pr",
-            "write_to": "assets/css/custom.css",
+            "write_to": "assets/dist/custom.css",
             "comment": "Create file containing custom styling information"
         },
         {

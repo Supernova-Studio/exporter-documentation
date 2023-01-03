@@ -2,82 +2,82 @@
 /*  Tiles
 /*  - used for: Assets, Frames, token grids
 /* =================================== */
-.tile-container {
-  margin: 24px 0px;
+.layout-tiles {
 
+  // workarounds for missing option for setting the size of the asset 
   &.icons-size-adjustment {
     img {
       max-width: 28px;
       max-height: 28px;
     }
   }
-}
 
-.tile-container .grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
 
-.tile-container .grid > div,
-.tile-container .grid > a > div {
-  position: relative;
-}
+    > div,
+    > a > div {
+      position: relative;
 
-.tile-container .grid > div div.preview,
-.tile-container .grid > a > div div.preview {
-  border-bottom: 1px solid var(--colorBorderColorSubtle);
-  background-color: var(--colorBackgroundSecondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 60px;
-}
+      div.preview {
+        border-bottom: 1px solid var(--colorBorderSubtle);
+        background-color: var(--colorBackgroundSecondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+      }
+    }
 
-.tile-container .grid > div.titleless div.preview {
-  background-image: none;
-  border-bottom: none;
-  padding-bottom: 0px;
-}
+    > div.titleless {
+      padding-bottom: 0px;
+      border: 0;
 
-.tile-container .grid > div.titleless {
-  padding-bottom: 0px;
-  border: 0;
+      div.preview {
+        background-image: none;
+        border-bottom: none;
+        padding-bottom: 0px;
+      }
+    }
+  }
 }
 
 /*
-  .tile-container .grid>div div.preview.frame {
+  .layout-tiles .grid>div div.preview.frame {
       background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='28' height='28' fill='white'/%3E%3Crect width='14' height='14' fill='black' fill-opacity='0.04'/%3E%3Crect x='14' y='14' width='14' height='14' fill='black' fill-opacity='0.04'/%3E%3C/svg%3E%0A");
   }*/
 
-.tile-container .grid > div div.preview.small-text {
+.layout-tiles .grid > div div.preview.small-text {
   font-size: 11px;
 }
 
-.tile-container .grid > div p.title,
-.tile-container .grid > a > div p.title {
+.layout-tiles .grid > div p.title,
+.layout-tiles .grid > a > div p.title {
   margin: 8px 12px 4px 8px;
   padding: 0;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
+  font-size: var(--fontSizeSmall);
+  line-height: var(--lineHeightSmall);
+  font-weight: var(--fontWeightSemibold);
   color: var(--colorInkPrimary);
+  overflow-wrap: break-word;
 }
 
-.tile-container .grid > div p.description,
-.tile-container .grid > a > div p.description {
+.layout-tiles .grid > div p.description,
+.layout-tiles .grid > a > div p.description {
   margin: 0px 12px 4px 8px;
   padding: 0;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: normal;
+  font-size: var(--fontSizeTiny);
+  line-height: var(--lineHeightTiny);
+  font-weight: var(--fontWeightRegular);
   color: var(--colorInkSecondary);
 }
 
-.tile-container .grid > div,
-.tile-container .grid > a > div {
-  border: 1px solid var(--colorBorderColorSubtle);
+.layout-tiles .grid > div,
+.layout-tiles .grid > a > div {
+  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   box-sizing: border-box;
   overflow: hidden;
@@ -85,155 +85,161 @@
   background: var(--colorBackgroundPrimary);
 }
 
-.tile-container.plain .grid > div,
-.tile-container.plain .grid > a > div {
+.layout-tiles.variant-plain .grid > div,
+.layout-tiles.variant-plain .grid > a > div {
   border: 0;
   border-radius: var(--borderRadiusLarge);
   background: var(--pageBackground);
 }
 
-.tile-container.plain .grid > div img,
-.tile-container.plain .grid > a > div img {
+.layout-tiles.variant-plain .grid > div img,
+.layout-tiles.variant-plain .grid > a > div img {
   border-radius: var(--borderRadiusLarge);
 }
 
-.tile-container.plain .grid > div p.description,
-.tile-container.plain .grid > a > div p.description {
-  margin: 0px 0px 4px 0px;
+.layout-tiles.variant-plain .grid > div p.description,
+.layout-tiles.variant-plain .grid > a > div p.description {
+  margin: 4px 0px 0px;
   color: var(--colorInkSecondary);
+}
+
+.layout-tiles .grid>div div.preview,
+.layout-tiles .grid>a>div div.preview {
+  border-bottom: 0;
 }
 
 /* matching the style of image caption */
-.tile-container.plain .grid > div p.title,
-.tile-container.plain .grid > a > div p.title {
-  margin: 8px 0px 4px 0px;
+.layout-tiles.variant-plain .grid > div p.title,
+.layout-tiles.variant-plain .grid > a > div p.title {
+  margin: 8px 0px 0px;
   color: var(--colorInkSecondary);
-  font-weight: 400;
+  font-weight: var(--fontWeightRegular);
 }
+
 
 /* Tile grid configurations */
 
-.tile-container img {
+.layout-tiles img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.tile-container .grid.c8 {
+.layout-tiles .grid.c8 {
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 4px;
   grid-row-gap: 4px;
 }
 
-.tile-container .grid.c8 div.preview {
+.layout-tiles .grid.c8 div.preview {
   width: 100%;
   height: 90px;
 }
 
-.tile-container .grid.c7 {
+.layout-tiles .grid.c7 {
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: 4px;
   grid-row-gap: 4px;
 }
 
-.tile-container .grid.c7 div.preview {
+.layout-tiles .grid.c7 div.preview {
   width: 100%;
   height: 105px;
 }
 
-.tile-container .grid.c6 {
+.layout-tiles .grid.c6 {
   grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 }
 
-.tile-container .grid.c6 div.preview {
+.layout-tiles .grid.c6 div.preview {
   width: 100%;
   height: 120px;
 }
 
-.tile-container .grid.c5 {
+.layout-tiles .grid.c5 {
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 }
 
-.tile-container .grid.c5 div.preview {
+.layout-tiles .grid.c5 div.preview {
   width: 100%;
   height: 140px;
 }
 
-.tile-container .grid.c4 {
+.layout-tiles .grid.c4 {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 }
 
-.tile-container .grid.c4 div.preview {
+.layout-tiles .grid.c4 div.preview {
   width: 100%;
   height: 178px;
 }
 
-.tile-container .grid.c4.shortcuts div.preview {
+.layout-tiles .grid.c4.shortcuts div.preview {
   height: 100px;
 }
 
-.tile-container .grid.c3 {
+.layout-tiles .grid.c3 {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
 }
 
-.tile-container .grid.c3 div.preview {
+.layout-tiles .grid.c3 div.preview {
   width: 100%;
   height: 240px;
 }
 
-.tile-container .grid.c2,
-.tile-container .grid.c2 {
+.layout-tiles .grid.c2,
+.layout-tiles .grid.c2 {
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
 }
 
-.tile-container .grid.c2 div.preview {
+.layout-tiles .grid.c2 div.preview {
   width: 100%;
   height: 350px;
 }
 
-.tile-container .grid.c1 {
+.layout-tiles .grid.c1 {
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
 }
 
-.tile-container .grid.c1 div.preview {
+.layout-tiles .grid.c1 div.preview {
   width: 100%;
   height: 750px;
 }
 
-.tile-container .grid.c1_75 {
+.layout-tiles .grid.c1_75 {
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
   justify-items: center;
 }
 
-.tile-container .grid.c1_75 > div {
+.layout-tiles .grid.c1_75 > div {
   width: 75%;
 }
 
-.tile-container .grid.c1_75 div.preview {
+.layout-tiles .grid.c1_75 div.preview {
   width: 100%;
   height: 560px;
 }
 
-.tile-container div.preview.empty {
+.layout-tiles div.preview.empty {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4 4H8V5H5V16H16V13H17V17H4V4ZM15.2929 5H11V4H17V10H16V5.70709L8.85353 12.8536L8.14642 12.1465L15.2929 5Z' fill='black' fill-opacity='0.3'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.tile-container.natural .grid div.preview {
+.layout-tiles.force-natural-height .grid div.preview {
   width: 100%;
   height: auto;
 }
