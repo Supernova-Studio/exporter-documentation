@@ -793,7 +793,6 @@
             },
             {
                 "key": "image",
-                "default": "",
                 "type": "image",
                 "label": "image"
             }]
