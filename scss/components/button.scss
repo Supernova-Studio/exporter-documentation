@@ -48,11 +48,16 @@
 .cta-button {
     font-weight: var(--fontWeightSemibold);
     font-size: var(--fontSizeSmall);
-    color: var(--ctaButtonInk);
+    color: var(--colorWhite);
+    background-color: transparent;
     margin-left: 12px;
     white-space: nowrap;
     transition: var(--transitionDefault);
-    border-radius: var(--borderRadiusDefault);
+    border: 1px solid var(--colorWhite);
+    border-radius: 32px;
+    padding: 12px 24px;
+    width: 177px;
+    height: 48px;
     text-decoration: none;
 
     * {

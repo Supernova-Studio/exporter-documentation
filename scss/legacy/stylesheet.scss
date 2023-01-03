@@ -24,7 +24,7 @@ html {
 }
 
 html {
-    scroll-padding-top: calc(var(--topNavHeight) + 20px + var(--tabOffset, 0px);
+    scroll-padding-top: calc(var(--topNavHeight) + 20px + var(--tabOffset, 0px))s;
 }
 
 body {
@@ -423,7 +423,7 @@ ol>.block-children {
     height: 100%;
     left: -17px;
     top: 2px;
-    background: var(--colorAccent);
+    background: var(--colorInkPrimary);
     border-radius: 2px;
 }
 
