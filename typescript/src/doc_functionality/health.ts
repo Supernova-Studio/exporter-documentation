@@ -76,3 +76,9 @@ export function sortComponentsAlphabetically(components: any[])
 
     return components;
 }
+
+// Sort components alphabetically
+export function getFigmaFileUrl(designComponent: DesignComponent)
+{
+    return "https://www.figma.com/file/" + designComponent.origin.fileId + "?node-id=" + designComponent.origin.nodeId;
+}

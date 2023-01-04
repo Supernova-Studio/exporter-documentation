@@ -1,0 +1,15 @@
+/* =================================== */
+/*  Icon Boolean
+/* =================================== */
+
+.icon-boolean {
+    svg {
+        color: var(--colorInkTertiary);
+    }
+
+    &.is-true {
+        svg {
+            color: var(--colorGreen500);
+        }
+    }
+}
