@@ -17,7 +17,8 @@
   align-items: center;
   color: var(--colorInkPrimary);
   
-  &.is-color {
+  &.is-color,
+  &.borderless {
     border: 0;
   }
 
@@ -288,25 +289,16 @@
         padding: 0 4px;
         line-height: 16px;
       }
+
+      svg {
+        height: 16px;
+        width: 16px;
+      }
+
+      a.property-link {
+        display: flex;
+      }
     }
-  }
-}
-
-a.custom-property-link {
-  color: var(--colorInkPrimary);
-  text-decoration: underline;
-  font-weight: var(--fontWeightSemibold);
-  font-size: var(--fontSizeTiny);
-
-  .icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-  }
-
-  &:hover {
-    color: var(--colorAccent);
   }
 }
 

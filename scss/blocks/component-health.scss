@@ -169,6 +169,7 @@
 .health-overlay-content .links .row > div:nth-child(1) {
   color: var(--colorInkPrimary);
   font-size: var(--fontSizeSmall);
+  font-weight: var(--fontWeightSemibold);
 }
 
 .health-overlay-content .links .yes {
@@ -283,33 +284,66 @@
 }
 
 .content-block--component-checklist {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 24px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+
+  .component-checklist--grid {  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
 
   .list-item {
     display: flex;
     flex-direction: row;
   }
 
-  .status {
-    margin-right: 12px;
+  .component-checklist--list {  
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 12px;
+    padding: 24px;
+    background: var(--colorBackgroundSecondary);
+    border-radius: var(--borderRadiusDefault);
 
-    img {
-      width: 24px;
+    .list-item {
+      padding-top: 12px;
+      border-top: 1px solid var(--colorBorderSubtle);
+      justify-content: space-between;
+
+      &:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .value {
+        font-size: var(--fontSizeSmall);
+      }
+    }
+  }
+
+  .status {
+    margin-right: 8px;
+
+    svg {
+      width: 20px;
+      display: block;
+      margin-top: 2px;
     }
   }
 
   .text {
     display: flex;
     flex-direction: column;
+    gap: 2px;
   
     p {
       margin: 0;
   
       &.title {
+        font-size: var(--fontSizeSmall);
         font-weight: var(--fontWeightBold);
-        margin-bottom: 4px;
       }
   
       &.description {
@@ -327,6 +361,18 @@
 
 .content-block--component-table {
   position: relative;
+
+  .name {
+    a {
+      text-decoration: underline;
+      color: var(--colorInkPrimary);
+
+      &:hover {
+        text-decoration: none;
+        color: var(--colorAccent);
+      }
+    }
+  }
 
   .component-table-wrapper-inner {
     overflow-x: auto;
@@ -367,21 +413,4 @@ th {
   border-top: 1px solid var(--colorBorderSubtle);
   padding: 10px;
   width: 100px;
-}
-
-.component-select-tag {
-  font-size: var(--fontSizeTiny);
-  padding: 2px 4px;
-  border-radius: var(--borderRadiusSmall);
-  font-weight: var(--fontWeightSemibold);
-  background: var(--colorBackgroundAlt);
-  white-space: nowrap;
-}
-
-.component-select-tag.light {
-  color: var(--colorWhite);
-}
-
-.component-select-tag.dark {
-  color: var(--colorNeutral900);
 }

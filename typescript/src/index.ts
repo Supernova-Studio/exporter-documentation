@@ -4,7 +4,7 @@
 // MARK: - Imports
 
 import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames } from "./doc_functionality/color"
-import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
+import { convertHealthTagIfAny, getFigmaFileUrl, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
@@ -75,6 +75,7 @@ Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 /* Component Health */
 Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
 Pulsar.registerFunction("sortComponentsAlphabetically", sortComponentsAlphabetically)
+Pulsar.registerFunction("getFigmaFileUrl", getFigmaFileUrl)
 
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)

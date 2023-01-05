@@ -1,14 +1,11 @@
 {[ let customPropertyValue = context.value /]}
 {[ let customProperty = context.info /]}
 {[ let mustReturnValue = context.mustReturnValue /]}
+{[ let sizeClass = (context.size ? context.size : "") /]}
 {[ let configuration = exportConfiguration() /]}
 
 {[ if customProperty.propertyType.equals("Boolean") ]}
-        {[ if (customPropertyValue === true) ]}
-            {[ inject "icon_boolean_true" context configuration /]}
-        {[ else ]}
-            {[ inject "icon_boolean_false" context configuration /]}
-        {[/]}
+        {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
 {[ elseif customPropertyValue ]}
     {[ if customProperty.propertyType.equals("Select") ]}
         
@@ -22,31 +19,26 @@
                 {[ contrastColor = contrastColor(optionColor) /]}
             {[/]}
         {[/]}  
-        <span class="component-select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+        <span class="{{ ["property-select-tag", contrastColor, sizeClass].join(" ") }}" style="background-color: {{ optionColor }}">
             {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
         </span>
 
     {[ elseif customProperty.propertyType.equals("Boolean") ]}
-        {[ if (customPropertyValue === true) ]}
-            {[ inject "icon_boolean_true" context configuration /]}
-        {[ else ]}
-            {[ inject "icon_boolean_false" context configuration /]}
-        {[/]}
-
+        {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
     {[ elseif customProperty.propertyType.equals("URL") ]}
-        <a class="custom-property-link" href="{{ customPropertyValue }}" target="_blank"><svg width="16" height="16" fill="currentColor" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.4 2.4h4v.8H3.2v9.6h9.6V9.6h.8v4H2.4V2.4Zm9.835.8H8.8v-.8h4.8v4.8h-.8V3.766L7.083 9.483l-.565-.566L12.235 3.2Z"/></svg>Open link</a>
+        <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ customPropertyValue }}" target="_blank">{[ inject "icon_new_window" context configuration /]} Open link</a>
     {[ elseif customProperty.propertyType.equals("Link") ]}
-
         {[ if customProperty.linkElementType.equals("DocumentationPage") ]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
 
             {[ if page.deployedUrl ]}
-                <a class="custom-property-link" href="{{ page.deployedUrl }}">Open page</a>
+                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ page.deployedUrl }}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
                 -
             {[/]}
         {[ elseif customProperty.linkElementType.equals("FigmaComponent") ]}
-            Available
+            {[ let designComponent = ds.designComponentById(customPropertyValue) /]}
+            <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent) }}" target="_blank">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
         {[/]}
         
     {[ elseif customProperty.propertyType.equals("Generic") ]}
