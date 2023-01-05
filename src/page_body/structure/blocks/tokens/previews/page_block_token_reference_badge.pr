@@ -5,7 +5,6 @@
 
     {* Check if the name is not super short (e.g. 50, 900, L1, etc.) and if yes, add also the name of the parent for better clarity *}
     {[ if ((referencedToken.count() < 4) && (token.value.referencedToken.parent !== null)) ]}
-        {[ log token.value.referencedToken.parent.name /]}
         {[ referencedToken = [token.value.referencedToken.parent.name,referencedToken].join(" ") /]}
     {[/]}
 

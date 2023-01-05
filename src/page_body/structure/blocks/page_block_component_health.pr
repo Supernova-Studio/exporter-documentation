@@ -9,6 +9,8 @@
 {* Render content health block *}
 {[ if componentId ]}
     {[ let component = ds.componentById(componentId) /]}
+    {[ let statusPropertyIsDefined = false /]}
+
     {[ if (component && block.properties.propertiesToHighlight) ]}
             
         {[ let properties = component.properties /]}
@@ -20,6 +22,9 @@
             {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL"].contains(property.propertyType)) ]}
                 {[ linkPropertiesToHighlight = (linkPropertiesToHighlight + 1) /]}
             {[/]}
+            {[ if (property.codeName === "status") ]}
+                {[ statusPropertyIsDefined = true /]}
+            {[/]}
         {[/]}
         {[ let staticPropertiesToHighlight = (propertiesToHighlight.count() - linkPropertiesToHighlight) /]}
 
@@ -29,7 +34,7 @@
         {[ let healthTagSlug = "status-"+healthTag.slug /]}
         {[ let healthTagContrastColor = contrastColor(healthTag.backgroundColor) /]}
 
-        {[ if (healthTagReadable == "Unknown") ]}
+        {[ if !statusPropertyIsDefined ]}
             {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Status property doesn't exist for components</strong><br />Please create <em>Status</em> custom property in Components section in administration first. Without this custom property, this block has no data to display.", "blockId": block.id }) /]}  
         {[ else ]}
             {* Generate inline component health *}

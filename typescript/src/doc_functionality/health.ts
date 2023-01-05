@@ -34,7 +34,7 @@ export function convertHealthTagIfAny(component: any): { id?: string, name: stri
         return healthStatus;
     } else {
         return {
-            name: "Unknown",
+            name: "Unknown status",
             slug: "unknown",
             backgroundColor: "#FFFFFF",
         }
