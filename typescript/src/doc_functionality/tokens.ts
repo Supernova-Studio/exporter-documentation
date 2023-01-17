@@ -221,7 +221,7 @@ export function convertSubfamilyToFontWeight(subfamily: string): string {
     case "black":
       return "900"
     default:
-      return "400"
+      return subfamily
   }
 }
 
