@@ -9,7 +9,7 @@ import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExport
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
@@ -39,6 +39,7 @@ Pulsar.registerFunction("generateCustomCSSHash", generateCustomCSSHash)
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
 Pulsar.registerFunction("withHTMLNewlines", withHTMLNewlines)
 Pulsar.registerFunction("getUrlExtension", getUrlExtension)
+Pulsar.registerFunction("escapeHtml", escapeHtml)
 
 /* Class/IDs */
 Pulsar.registerFunction("getSearchIDString", getSearchIDString)
