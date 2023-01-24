@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "get-contrast": "^3.0.0",
+    "short-hash": "^1.0.0",
     "showdown": "^2.1.0"
   },
   "devDependencies": {

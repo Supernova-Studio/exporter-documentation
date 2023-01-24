@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5 {
 
 p {
     margin-top: 0;
-    margin-bottom: calc(var(--contentBlockGap) / 2);
+    margin-bottom: var(--paragraphSpacingAfter, calc(var(--contentBlockGap) / 2));
 }
 
 p + .content-block {
@@ -120,13 +120,6 @@ h4 + div.anchor + h5,
 h5 + div.anchor + h6 {
     margin-top: 0;
 }
-
-::selection {
-    background: var(--colorAccent);
-    color: var(--colorAccentInk);
-    text-shadow: none;
-}
-
 
 section ul {
     list-style-type: disc;

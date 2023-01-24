@@ -6,7 +6,7 @@
   "organization": "Rapid7",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.2.2",
+  "version": "4.3.2",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -518,6 +518,30 @@
         "category": "Analytics"
       },
       {
+        "key": "enableCookiesBanner",
+        "type": "boolean",
+        "label": "Show cookies banner",
+        "description": "If enabled, a cookies banner will be displayed on your documentation site. This banner will give users option to allow tracking cookies.",
+        "category": "Analytics",
+        "default": false
+      },
+      {
+        "key": "cookiesBannerTitle",
+        "type": "string",
+        "label": "Cookies banner: Title",
+        "description": "",
+        "category": "Analytics",
+        "default": "🍪 Cookie settings"
+      },
+      {
+        "key": "cookiesBannerDescription",
+        "type": "string",
+        "label": "Cookies banner: Description",
+        "description": "",
+        "category": "Analytics",
+        "default": "We use cookies to personalize content and analyze traffic to our documentation."
+      },
+      {
         "key": "codeEditableReactWidgets",
         "type": "boolean",
         "label": "Editable React widgets",
@@ -656,10 +680,16 @@
             "label": "Properties"
           },
           {
+            "key": "showPropertyDescription",
+            "type": "boolean",
+            "default": true,
+            "label": "Show descriptions"
+          },
+          {
             "key": "header",
             "type": "string",
             "default": "",
-            "label": "Header"
+            "label": "Title"
           }
         ]
       },
@@ -730,221 +760,317 @@
         {
           "name": "Tabs",
           "key": "tabs",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Tabs displayed at the top of the container.",
+          "thumbnail": "thumbnails/Tabs_Tabs.png"
         },
         {
           "name": "Pills",
-          "key": "pills"
+          "key": "pills",
+          "description": "Tabs displayed vertically at the left side of the container.",
+          "thumbnail": "thumbnails/Tabs_Pills.png"
         },
         {
           "name": "Columns",
-          "key": "columns"
+          "key": "columns",
+          "description": "Tab content displayed as vertical columns of the same width. Experimental.",
+          "thumbnail": "thumbnails/Tabs_Columns.png"
         },
         {
-          "name": "Accordion",
-          "key": "accordion"
+          "name": "Accordion",       
+          "key": "accordion",
+          "description": "Tabs displayed as an accordion.",
+          "thumbnail": "thumbnails/Tabs_Accordion.png"
         },
         {
           "name": "Dos & Don'ts",
           "key": "dos-donts"
         }
-        
+
       ],
       "TokenList": [
         {
           "name": "Table",
-          "key": "table"
+          "key": "table",
+          "description": "Great for longer list of tokens, with a small side preview.",
+          "thumbnail": "thumbnails/TokenList_Table.png"
         },
         {
           "name": "Grid (4 columns)",
           "key": "grid-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Grid with 4 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-4.png"
         },
         {
           "name": "Grid (3 columns)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "Grid with 3 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-3.png"
         },
         {
           "name": "Grid (2 columns)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Grid with 2 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-2.png"
         },
         {
           "name": "Grid (1 column)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Grid with 1 full-width column, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenList_Grid-1.png"
         },
         {
           "name": "Color stack",
-          "key": "stack"
+          "key": "stack",
+          "description": "Full-width horizontal stack, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenList_Stack.png"
         },
         {
-          "name": "Contrast grid",
-          "key": "contrast-grid"
+          "name": "Color contrast grid",
+          "key": "contrast-grid",
+          "description": "Grid of color contrast ratios, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenList_ContrastGrid.png"
         }
       ],
       "TokenGroup": [
         {
           "name": "Table",
           "key": "table",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Great for longer list of tokens, with a small side preview.",
+          "thumbnail": "thumbnails/TokenGroup_Table.png"
         },
         {
           "name": "Grid (4 columns)",
-          "key": "grid-4"
+          "key": "grid-4",
+          "description": "Grid with 4 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-4.png"
         },
         {
           "name": "Grid (3 columns)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "Grid with 3 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-3.png"
         },
         {
           "name": "Grid (2 column)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Grid with 2 columns, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-2.png"
         },
         {
           "name": "Grid (1 columns)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Grid with 1 full-width column, and a large preview on top.",
+          "thumbnail": "thumbnails/TokenGroup_Grid-1.png"
         },
         {
-          "name": "Stack",
-          "key": "stack"
+          "name": "Color stack",
+          "key": "stack",
+          "description": "Full-width horizontal stack, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_Stack.png"
         },
         {
           "name": "Color stack (2 columns)",
-          "key": "stack-2"
+          "key": "stack-2",
+          "description": "Two columns of token stacks, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_Stack-2.png"
         },
         {
-          "name": "Contrast grid",
-          "key": "contrast-grid"
+          "name": "Color contrast grid",
+          "key": "contrast-grid",
+          "description": "Grid of color contrast ratios, perfect for color palettes.",
+          "thumbnail": "thumbnails/TokenGroup_ContrastGrid.png"
         }
       ],
       "Token": [
         {
           "name": "Table Row",
-          "key": "table"
+          "key": "table",
+          "description": "With a small side preview.",
+          "thumbnail": "thumbnails/Token_TableRow.png"
         },
         {
           "name": "Grid Item (1/4 width)",
           "key": "grid-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "One quarter of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-4.png" 
         },
         {
           "name": "Grid Item (1/3 width)",
-          "key": "grid-3"
+          "key": "grid-3",
+          "description": "One third of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-3.png"
         },
         {
           "name": "Grid Item (1/2 width)",
-          "key": "grid-2"
+          "key": "grid-2",
+          "description": "Half of the page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-2.png"
         },
         {
           "name": "Grid Item (Full width)",
-          "key": "grid-1"
+          "key": "grid-1",
+          "description": "Full page width, with a large preview.",
+          "thumbnail": "thumbnails/Token_GridItem-1.png"
         },
         {
-          "name": "Color stack",
-          "key": "stack"
+          "name": "Color stack item",
+          "key": "stack",
+          "description": "Full width of the page, great for color tokens.",
+          "thumbnail": "thumbnails/Token_StackItem.png"
         }
       ],
       "Shortcuts": [
         {
           "name": "Image on top (4 columns)",
           "key": "image-top-4",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Four items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-4.png"
         },
         {
           "name": "Image on top (3 columns)",
-          "key": "image-top-3"
+          "key": "image-top-3",
+          "description": "Three items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-3.png"
         },
         {
           "name": "Image on top (2 columns)",
-          "key": "image-top-2"
+          "key": "image-top-2",
+          "description": "Two items in a row, each with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-2.png"
         },
         {
           "name": "Image on top (Full width)",
-          "key": "image-top-1"
+          "key": "image-top-1",
+          "description": "One full-width item, with a large image on top.",
+          "thumbnail": "thumbnails/Shortcuts_ImageTop-1.png"
         },
         {
           "name": "Leading image (2 columns)",
-          "key": "image-leading-2"
+          "key": "image-leading-2",
+          "description": "Two items in a row, each with a large image on the left.",
+          "thumbnail": "thumbnails/Shortcuts_ImageLeading-2.png"
         },
         {
           "name": "Leading image (Full width)",
-          "key": "image-leading-1"
+          "key": "image-leading-1",
+          "description": "One full-width item, with a large image on the left.",
+          "thumbnail": "thumbnails/Shortcuts_ImageLeading-1.png"
         },
         {
           "name": "Icon on top (4 columns)",
-          "key": "icon-top-4"
+          "key": "icon-top-4",
+          "description": "Four items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-4.png"
         },
         {
           "name": "Icon on top (3 columns)",
-          "key": "icon-top-3"
+          "key": "icon-top-3",
+          "description": "Three items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-3.png"
         },
         {
           "name": "Icon on top (2 columns)",
-          "key": "icon-top-2"
+          "key": "icon-top-2",
+          "description": "Two items in a row, each with a large icon on top.",
+          "thumbnail": "thumbnails/Shortcuts_IconTop-2.png"
         },
         {
           "name": "Leading icon (3 columns)",
-          "key": "icon-leading-3"
+          "key": "icon-leading-3",
+          "description": "Three items in a row, each with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-3.png"
         },
         {
           "name": "Leading icon (2 columns)",
-          "key": "icon-leading-2"
+          "key": "icon-leading-2",
+          "description": "Two items in a row, each with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-2.png"
         },
         {
           "name": "Leading icon (Full width)",
-          "key": "icon-leading-1"
+          "key": "icon-leading-1",
+          "description": "One full-width item, with a large icon on the left.",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-1.png"
         }
       ],
       "FigmaFrames": [
         {
-          "name": "Bordered",
+          "name": "Boxed",
           "key": "bordered",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Tiles with background and border, great for larger sets of frames.",
+          "thumbnail": "thumbnails/FigmaFrames_Boxed.png"
         },
         {
           "name": "Plain",
-          "key": "plain"
+          "key": "plain",
+          "description": "Frame as it is in Figma with no extra formatting, great for single images.",
+          "thumbnail": "thumbnails/FigmaFrames_Plain.png"
         }
       ],
       "RenderCode": [
         {
           "name": "Full width, code bottom",
           "key": "codeBottom",
-          "isDefault": true
+          "isDefault": true,
+          "description": "Full-width block of code, with a preview on top.",
+          "thumbnail": "thumbnails/RenderCode_CodeBottom.png"
         },
         {
           "name": "Full width, code top",
-          "key": "codeTop"
+          "key": "codeTop",
+          "description": "Full-width block of code, with a preview on bottom.",
+          "thumbnail": "thumbnails/RenderCode_CodeTop.png"
         },
         {
           "name": "Side by side, code left",
-          "key": "codeLeft"
+          "key": "codeLeft",
+          "description": "Side-by-side preview and code, with code on the left.",
+          "thumbnail": "thumbnails/RenderCode_CodeLeft.png"
         },
         {
           "name": "Side by side, code right",
-          "key": "codeRight"
+          "key": "codeRight",
+          "description": "Side-by-side preview and code, with code on the right.",
+          "thumbnail": "thumbnails/RenderCode_CodeRight.png"
         },
         {
           "name": "Only preview, no code",
-          "key": "noCode"
+          "key": "noCode",
+          "description": "Full-width preview only, with no code displayed.",
+          "thumbnail": "thumbnails/RenderCode_NoCode.png"
         },
         {
           "name": "Preview without controls",
-          "key": "noCodeNoControls"
+          "key": "noCodeNoControls",
+          "description": "Full-width preview only, with no code and no controls.",
+          "thumbnail": "thumbnails/RenderCode_NoCodeNoControls.png"
         }
       ],
       "io.supernova.documentation-main.markdown": [
         {
-          "name": "Default",
-          "key": "default",
-          "isDefault": true
+          "name": "Plain",
+          "key": "Plain",
+          "isDefault": true,
+          "description": "Markdown displayed in natural page flow.",
+          "thumbnail": "thumbnails/CustomMarkdown_Plain.png"
         },
         {
           "name": "Bordered",
-          "key": "bordered"
+          "key": "bordered",
+          "description": "Markdown wrapped in the container with subtle border.",
+          "thumbnail": "thumbnails/CustomMarkdown_Bordered.png"
         },
         {
           "name": "Boxed",
-          "key": "boxed"
+          "key": "boxed",
+          "description": "Markdown content wrapped in the container with secondary background.",
+          "thumbnail": "thumbnails/CustomMarkdown_Boxed.png"
         }
       ]
     }

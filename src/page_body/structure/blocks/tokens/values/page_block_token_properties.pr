@@ -13,7 +13,7 @@
             {[ if !checkKeyInArray(block.blacklistedElementProperties, property.persistentId)  ]}
                 <div class="property">
                     <div class="label">{{ property.name }}</div>
-                    <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property, "mustReturnValue": true } /]} </div>
+                    <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property, "mustReturnValue": true, "size": "small"} /]} </div>
                 </div>
             {[/]}
         {[/]}

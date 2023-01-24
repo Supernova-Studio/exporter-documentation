@@ -7,6 +7,15 @@
     {[ tableWidth = (tableWidth + column.width.value.measure) /]}
 {[/]}
 
+{[ let tableWidthStyle = "" /]}
+
+{* This is hardcoded value on backend when the user sets "Fit to page width" *}
+{[ if (tableWidth === 751 || tableWidth === 752) ]}
+    {[ tableWidthStyle = ["width: 100%; min-width:", tableWidth, "px"].join("") /]}
+{[ else ]}
+    {[ tableWidthStyle = ["width:", tableWidth, "px"].join("") /]}
+{[/]}
+
 {[ let borderless = (!block.tableProperties.showBorders ? " borderless" : "") /]}
 {[ let headerRow = (block.tableProperties.showHeaderRow ? " header-row" : "") /]}
 {[ let headerColumn = (block.tableProperties.showHeaderColumn ? " header-column" : "") /]}
@@ -14,7 +23,7 @@
 {* Scroll wrapper boundary *}
 <div class="content-block content-block--table data-table-wrapper">
 <div>
-  <table class="data-table{{ borderless }}{{ headerRow }}{{ headerColumn }}" style="width: {{ tableWidth }}px">
+  <table class="data-table{{ borderless }}{{ headerRow }}{{ headerColumn }}" style="{{ tableWidthStyle }}">
   {* Row scope *}
   {[ let rowIndex = 0 /]}
   {[ for row in block.children ]}

@@ -1,0 +1,109 @@
+
+{* Get block *}
+{[ const block = context /]}
+{[ let configuration = exportConfiguration() /]}
+
+{* Get properties *}
+{[ let componentId = block.properties.componentId /]}
+
+{* Render content health block *}
+{[ if componentId ]}
+    {[ let component = ds.componentById(componentId) /]}
+    {[ let statusPropertyIsDefined = false /]}
+
+    {[ if (component && block.properties.propertiesToHighlight) ]}
+            
+        {[ let properties = component.properties /]}
+        {[ let propertyValues = component.propertyValues /]}
+
+        {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+        {[ let linkPropertiesToHighlight = 0 /]}
+        {[ for property in component.properties ]}
+            {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL"].contains(property.propertyType)) ]}
+                {[ linkPropertiesToHighlight = (linkPropertiesToHighlight + 1) /]}
+            {[/]}
+            {[ if (property.codeName === "status") ]}
+                {[ statusPropertyIsDefined = true /]}
+            {[/]}
+        {[/]}
+        {[ let staticPropertiesToHighlight = (propertiesToHighlight.count() - linkPropertiesToHighlight) /]}
+
+        {* Get health tag *}
+        {[ let healthTag = convertHealthTagIfAny(component) /]}
+        {[ let healthTagReadable = healthTag.name /]}
+        {[ let healthTagSlug = "status-"+healthTag.slug /]}
+        {[ let healthTagContrastColor = contrastColor(healthTag.backgroundColor) /]}
+
+        {[ if !statusPropertyIsDefined ]}
+            {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Status property doesn't exist for components</strong><br />Please create <em>Status</em> custom property in Components section in administration first. Without this custom property, this block has no data to display.", "blockId": block.id }) /]}  
+        {[ else ]}
+            {* Generate inline component health *}
+            <div class="content-block content-block--component-health {{ healthTagSlug }} {{ healthTagContrastColor }}" style="background-color: {{ healthTag.backgroundColor }}" aria-role="button" data-block-id="{{ block.id }}">
+                <div class="health-tag-title">
+                    <div class="status-icon">
+                        {[ inject "icon_component_status" context configuration /]}
+                    </div>
+                    <div class="name">
+                        {{ healthTagReadable }}
+                    </div>
+                </div>
+                <div class="date">
+                    Show details
+                </div>
+                {*
+                {[ if (component && component.updatedAt) ]}
+                <div class="date">
+                    Last updated: {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}
+                </div>
+                {[/]}
+                *}
+            </div>
+
+            {* Generate component health popup *}
+            <div class="health-overlay d-none" id="overlay-{{ block.id }}">
+                <div class="health-overlay-content {{ healthTagSlug }}">
+                    <div class="header {{ healthTagContrastColor }}" style="background-color: {{ healthTag.backgroundColor }}">
+                        <div class="health-tag-title">
+                            <div class="status-icon">
+                            {[ inject "icon_component_status" context configuration /]}
+                            </div>
+                            <div class="name">
+                                {{ healthTagReadable }}
+                            </div>
+                        </div>
+                        {*
+                        <div>
+                            <div><strong>Published:</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
+                            <div><strong>Updated:</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
+                        </div>  
+                        *}
+                    </div>
+
+                    {* Generate properties that are of non-link type properties *}
+                    {[ if (staticPropertiesToHighlight > 0) ]}
+                        <div class="links">
+                            {[ for property in component.properties ]}
+                                {[ if propertiesToHighlight.contains(property.persistentId) ]}
+                                    {* Generate content for each property *}
+                                    <div class="row">
+                                        {* Property name *}
+                                        <div class="col-6 lighter">{{ property.name }}</div>
+                                        {* Property value *}
+                                        <div class="col-6 text-right">
+                                            {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
+                                        </div>
+                                    </div>
+                                {[/]}
+                            {[/]}
+                        </div>
+                    {[/]}
+                </div>
+            </div>
+        {[/]}
+    {[ else ]}
+        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component health block</strong><br />Reason: Unknown component. Please contact the support.", "blockId": block.id }) /]}  
+    {[/]}
+{[ else ]}
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component health block</strong><br />Please select a component in the block.", "blockId": block.id }) /]}  
+{[/]}
+

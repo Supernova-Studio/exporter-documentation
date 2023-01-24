@@ -4,15 +4,15 @@
 // MARK: - Imports
 
 import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames } from "./doc_functionality/color"
-import { convertHealthTagIfAny, sortComponentsAlphabetically } from "./doc_functionality/health"
+import { convertHealthTagIfAny, getFigmaFileUrl, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass } from "./doc_functionality/string_utils"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier } from "./doc_functionality/urls"
-import { getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
+import { generateCustomCSSHash, getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -33,11 +33,13 @@ Pulsar.registerFunction("checkKeyInArray", checkKeyInArray)
 /* General utils */
 Pulsar.registerFunction("getFullYear", getFullYear)
 Pulsar.registerFunction("getFormattedDateTime", getFormattedDateTime)
+Pulsar.registerFunction("generateCustomCSSHash", generateCustomCSSHash)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
 Pulsar.registerFunction("withHTMLNewlines", withHTMLNewlines)
 Pulsar.registerFunction("getUrlExtension", getUrlExtension)
+Pulsar.registerFunction("escapeHtml", escapeHtml)
 
 /* Class/IDs */
 Pulsar.registerFunction("getSearchIDString", getSearchIDString)
@@ -74,6 +76,7 @@ Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 /* Component Health */
 Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
 Pulsar.registerFunction("sortComponentsAlphabetically", sortComponentsAlphabetically)
+Pulsar.registerFunction("getFigmaFileUrl", getFigmaFileUrl)
 
 /* Sandbox */
 Pulsar.registerFunction("htmlSafeString", htmlSafeString)

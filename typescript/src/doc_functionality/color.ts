@@ -42,18 +42,18 @@ export function contrastColor(color: string): "dark" | "light" {
     return getColorContrast(color) > 0.5 ? "dark" : "light";
 }
 
-export function returnSwatchClassnames(color: string): string {
+export function returnSwatchClassnames(color: ColorTokenValue): string {
     if (!color) {
         return ""
     }
 
     let classNames = new Array();
 
-    if (color === "ffffffff") {
+    if (color.hex === "ffffffff") {
         classNames.push("bordered")
     }
 
-    if (getColorContrast(color) < 0.5) {
+    if ((getColorContrast(color.hex) < 0.5 && color.a > 180)) {
         classNames.push("inverted-text")
     }
 

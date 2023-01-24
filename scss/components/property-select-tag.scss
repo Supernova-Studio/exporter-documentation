@@ -1,0 +1,29 @@
+/* =================================== */
+/*  Property Select Tag
+/* =================================== */
+
+.property-select-tag {
+    font-size: var(--fontSizeSmall);
+    padding: 0px 6px;
+    border-radius: var(--borderRadiusSmall);
+    font-weight: var(--fontWeightSemibold);
+    background: var(--colorBackgroundAlt);
+    white-space: nowrap;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+
+    &.small {
+        height: 16px;
+        font-size: var(--fontSizeTiny);
+        padding: 0px 4px;
+    }
+  
+    &.light {
+      color: var(--colorWhite);
+    }
+    
+    &.dark {
+      color: var(--colorNeutral900);
+    }
+}

@@ -1,11 +1,7 @@
 {[ let token = context /]}
 <span class="token-value">
 {[ if token.tokenType.equals("Color") ]}
-    {[ if (token.value.a === 255) ]}
-    #{{ token.value.hex.substring(0, 6) }}
-    {[ else ]}
-    #{{ token.value.hex }}
-    {[/]}
+    {{getFormattedColor(token.value)}}
 {[ elseif token.tokenType.equals("Blur") ]}
     {[ switch token.value.type ]}
         {[ case "Background" ]}

@@ -3,10 +3,7 @@
 
 {[ if token.tokenType.equals("Color") ]}
 
-    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
-    {[ const whiteCheck = (token.value.hex === "ffffffff") /]}
-    
-    <div class="preview is-color{[ if colorLightnessCheck ]} inverted-text{[/]}{[ if whiteCheck ]} bordered{[/]}" style="background-color: #{{ token.value.hex }};">
+    <div class="preview is-color {{ returnSwatchClassnames(token.value) }}" style="background-color: #{{ token.value.hex }};">
         {[ inject "page_block_token_reference_badge" context token /]}
         {[ inject "page_block_token_theme_badge" context theme /]}
 
