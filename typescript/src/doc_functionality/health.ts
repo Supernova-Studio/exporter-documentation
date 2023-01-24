@@ -34,7 +34,7 @@ export function convertHealthTagIfAny(component: any): { id?: string, name: stri
         return healthStatus;
     } else {
         return {
-            name: "Unknown",
+            name: "Unknown status",
             slug: "unknown",
             backgroundColor: "#FFFFFF",
         }
@@ -75,4 +75,10 @@ export function sortComponentsAlphabetically(components: any[])
     });
 
     return components;
+}
+
+// Sort components alphabetically
+export function getFigmaFileUrl(designComponent: DesignComponent)
+{
+    return "https://www.figma.com/file/" + designComponent.origin.fileId + "?node-id=" + designComponent.origin.nodeId;
 }

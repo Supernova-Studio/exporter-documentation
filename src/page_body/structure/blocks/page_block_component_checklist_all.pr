@@ -3,7 +3,11 @@
 {[ const block = context /]}
 
 {* Get properties *}
-{[ let components = ds.allComponents() /]}
+{[ let components = [] /]}
+{[ for brand in ds.allBrands() ]}
+   {[ components = components.concat(ds.allComponents(brand.id)) /]}
+{[/]}
+
 {[ let header = block.properties.header /]}
 {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
 
@@ -45,18 +49,25 @@
                 {[ if !component.name.startsWith("_") ]} 
                     {[ let propertyValues = component.propertyValues /]}
                     <tr>
-                        <td>{{ component.name }}</td>
+                        <td class="name">
+                            {[ if component.propertyValues["documentationLink"] ]}
+                                {[ let page = ds.documentationPageById(component.propertyValues["documentationLink"]) /]}
+                                <a href="{{ page.deployedUrl }}">{{ component.name }}</a>
+                            {[ else ]}
+                                {{ component.name }}
+                            {[/]}
+                        </td>
                         {[ for property in component.properties ]}
                             {* Only show selected properties in addition to name *}
                             {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
                                 {[ if ["URL", "Link", "Boolean", "Select"].contains(property.propertyType) ]}
                                 <td class="center">
-                                        {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
-                                    </td>
+                                    {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
+                                </td>
                                 {[ else ]}
-                                    <td>
-                                        {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
-                                    </td>
+                                <td>
+                                    {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
+                                </td>
                                 {[/]}
                             {[/]}
                         {[/]}
@@ -73,6 +84,6 @@
         </div>
     </div> 
 {[ else ]}
-{* No component available to be shown just yet *}
-<p>There are no components to render the component list just yet. Please add some in Components section and republish the documentation.</p>
+    {* No component available to be shown just yet *}
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>No components are yet tracked</strong><br />Please add some in Components section and republish the documentation.", "blockId": block.id }) /]}  
 {[/]}

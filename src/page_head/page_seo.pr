@@ -1,16 +1,13 @@
 {* We are generating different SEO context for each page, and it must also work well with tabs *}
 {[ let page = context /]}
 {[ let configuration = exportConfiguration() /]}
-
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let headerConfiguration = (groupIsTabContainer ? group.configuration : page.configuration).header /]}
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
-
 {* Compute information *}
 {* Title - page title is page name, with optional prefix, unless SEO title override is provided. In that case, only override is taken into account  *}
 {[ let title = page.title /]}
-
 {[ if (configuration.seoTitleOverride && configuration.seoTitleOverride.count() > 0) ]}
     {[ title = configuration.seoTitleOverride /]}
 {[ else ]}
@@ -19,12 +16,9 @@
         {[ if (page.parent && (page.parent.groupBehavior === "Tabs") && (page.parent.title.count() > 0)) ]}
             {[ title = title.extended("", " | " + page.parent.title) /]}
         {[/]}
-
         {[ title = title.extended(configuration.seoTitlePrefix, configuration.seoTitleSuffix) /]}
-        
     {[/]}
 {[/]}
-
 {* Description - page description is taken from page header description, unless SEO description override is provided. If not subtitle is provided, then first text block is used for context. In that case, only override is taken into account *}
 {[ let description = headerConfiguration.description /]}
 {[ if (configuration.seoDescriptionOverride && configuration.seoDescriptionOverride.count() > 0) ]}
@@ -44,10 +38,8 @@
         {[ description = description.extended(configuration.seoDescriptionPrefix, configuration.seoDescriptionSuffix) /]}
     {[/]}
 {[/]}
-
 {* URL *}
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-
 {* Favicon *}
 {[ let siteFaviconUrl = ((configuration.favicon && configuration.favicon.assetUrl) ? configuration.favicon.assetUrl : assetUrl("logos/favicon-default.png", ds.documentationDomain())) /]}
 {* Site image - if provided, overrides all images. Otherwise, we'll try to find first image provided in the content *}
@@ -61,7 +53,6 @@
         {[/]}
     {[/]}
 {[/]}
-
 <!-- Meta information -->
 {* Robot config *}
 {[ let index = configuration.seoEnableIndexing /]}
@@ -75,7 +66,6 @@
 {[ elseif (!index && !follow) ]}
 <meta name="robots" content="noindex, nofollow" />
 {[/]}
-
 {* Main settings *}
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,7 +73,6 @@
 {[ if siteFaviconUrl ]}
 <link href="{{ siteFaviconUrl }}" rel="icon" />
 {[/]}
-
 {* All SEO tags *}
 <!-- Primary Meta Tags -->
 <title>{{ title }}</title>
@@ -93,7 +82,6 @@
 {[ if (description.count() > 0) ]}
 <meta name="description" content="{{ description }}" />
 {[/]}
-
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ url }}" />
@@ -106,8 +94,6 @@
 {[ if siteImageUrl ]}
 <meta property="og:image" content="{{ siteImageUrl }}" />
 {[/]}
-
-
 <!-- Twitter -->
 <meta property="twitter:card" content="summary" />
 <meta property="twitter:url" content="{{ url }}" />

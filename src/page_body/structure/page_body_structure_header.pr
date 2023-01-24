@@ -22,7 +22,7 @@
                 <ul class="navbar-nav">
                     {[ if shouldShowTabbar ]}
                         {[ for item in rootGroup.children ]}
-                            {* Only show if group or page is exportable *}
+                            {* Only show if group or page is not hidden *}
                             {[ if isExportable(item) ]}
                                 {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
                                 {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
@@ -51,11 +51,11 @@
                         </button>
                         <div class="dropdown-menu pull-right" aria-labelledby="mobile-menu-selector">
                             {[ for item in rootGroup.children ]}
-                                {* Re-enable if we only want to show groups *}
-                                {* {[ if item.type.equals("Group") ]} *}
+                                {* Only show if group or page is not hidden *}
+                                {[ if isExportable(item) ]}
                                     {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
                                     <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a>
-                                {* {[/]} *}
+                                {[/]}
                             {[/]}
                         </div>
                     </div>
