@@ -12,6 +12,10 @@ export function markdownToHTML(markdown: string): string {
     // Handle github markdown propertly in addition to general syntax
     Showdown.setFlavor("github")
 
+    // Handle github line break inconsistencies
+    // https://github.com/showdownjs/showdown/issues/602#issuecomment-429547738
+    Showdown.setOption('simpleLineBreaks', false)
+
     // Create converter and register custom modifications
     let converter = new Showdown.Converter()
 
