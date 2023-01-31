@@ -732,6 +732,28 @@
             "label": "Date of update"
           }
         ]
+      },
+      {
+        "key": "io.supernova.documentation-main.guidelines",
+        "category": "Guidelines",
+        "title": "Do/Don't",
+        "description": "",
+        "icon": "icons/custom-block-checklist-all.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "description",
+            "type": "string",
+            "label": "Description",
+            "default": "",
+            "isMultiline": true
+          },
+          {
+            "key": "image",
+            "type": "image",
+            "label": "Image"
+          }
+        ]
       }
     ],
     "blockVariants": {
