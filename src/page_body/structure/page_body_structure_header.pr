@@ -24,7 +24,7 @@
                     <div class="dropdown-menu" aria-labelledby="design-systems-switcher">
                         {[ for designSystemId in designSystem.designSystemSwitcher.designSystemIds ]}
                             {[ let dsInfo = ds.designSystemById(designSystemId) /]}
-                            <a class="dropdown-item" href="{{ domain }}/ds-switch/{{ dsInfo.id }}?page_path=/{{ page.relativeUrl }}">{{ dsInfo.name }}</a>
+                            <a class="dropdown-item" href="{{ removeVersionFromDomainUrl(domain) }}/ds-switch/{{ dsInfo.id }}?page_path=/{{ page.relativeUrl }}">{{ dsInfo.name }}</a>
                     {[/]}
                     </div>
                 </div>
