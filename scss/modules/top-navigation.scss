@@ -217,6 +217,21 @@ a.site-logo {
   flex-grow: 1;
   height: var(--topNavHeight);
   align-items: center;
+  scrollbar-color: var(--topNavInk) var(--topNavItemActiveBackground);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 4px; 
+    display: none; /* hotfix: disable scrollbars before we resolve vertical aligmnent */
+  }
+  &::-webkit-scrollbar-thumb { 
+    background: var(--topNavInk);
+    border-radius: var(--borderRadiusDefault);
+  }
+  &::-webkit-scrollbar-track { 
+    background: var(--topNavItemActiveBackground);
+    border-radius: var(--borderRadiusDefault);
+  }
   /* disabling scroll shadows for now
   background-image: 
       
