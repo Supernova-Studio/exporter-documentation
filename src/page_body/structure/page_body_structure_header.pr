@@ -20,9 +20,9 @@
                 {[ let dsSwitcher = ds.currentDesignSystemSwitcher() /]}
 
                 <div id="design-systems-switcher" class="dropdown">
-                        <button class="btn-icon-button" id="design-systems-switcher" data-tooltip="tooltip" data-placement="right" title="Switch a design system" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                            {[ inject "icon_selector" context configuration /]}
-                        </button>
+                    <button class="btn-icon-button" id="design-systems-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                        {[ inject "icon_selector" context configuration /]}
+                    </button>
                     <div class="dropdown-menu pull-left" aria-labelledby="design-systems-switcher">
                         {[ for dsInfo in dsSwitcher.designSystems ]}
                             {[ let isCurrent = dsInfo.isCurrent /]}
