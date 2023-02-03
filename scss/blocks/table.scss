@@ -2,10 +2,6 @@ table.data-table {
   border-collapse: collapse;
   max-width: -moz-fit-content;
   min-width: fit-content;
-
-  a.custom-property-link {
-    font-size: var(--fontSizeSmall);
-  }
 }
 
 table.data-table,

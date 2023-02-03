@@ -1,7 +1,14 @@
 {[ const token = context /]}
 
 {[ if (token.value.referencedToken !== null) ]}
-    <div class="reference-badge" data-toggle="tooltip" title="Referenced token: {{ (token.value.referencedToken.origin !== null) ? token.value.referencedToken.origin.name : token.value.referencedToken.name }}">
+    {[ let referencedToken = token.value.referencedToken.name /]}
+
+    {* Check if the name is not super short (e.g. 50, 900, L1, etc.) and if yes, add also the name of the parent for better clarity *}
+    {[ if ((referencedToken.count() < 4) && (token.value.referencedToken.parent !== null)) ]}
+        {[ referencedToken = [token.value.referencedToken.parent.name,referencedToken].join(" ") /]}
+    {[/]}
+
+    <div class="reference-badge" data-toggle="tooltip" title="Referenced token: {{ referencedToken }}">
         <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 16 16 0H0v16Z" fill="currentColor"/><path d="M7.829 2.172a1.5 1.5 0 0 0-2.122 0l-1.06 1.06-.707-.707L5 1.465A2.5 2.5 0 1 1 8.536 5l-1.06 1.06-.708-.706 1.06-1.061a1.5 1.5 0 0 0 0-2.121ZM4.293 7.828l1.06-1.06.708.707L5 8.535A2.5 2.5 0 0 1 1.464 5l1.06-1.06.707.706-1.06 1.061a1.5 1.5 0 0 0 2.121 2.121Z" /><path d="M6.06 3.232 3.233 6.061l.708.707 2.828-2.829-.707-.707Z" /></svg>
     </div>
 {[/]}

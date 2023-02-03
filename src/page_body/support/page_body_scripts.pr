@@ -45,8 +45,8 @@ $(document).ready(function() {
     {[ if configuration.enableCookiesBanner ]}
     const cookieConsent = new CookieConsent({
         content: {
-            "title": "{{ configuration.cookiesBannerTitle }}",
-            "body": "{{ configuration.cookiesBannerDescription }}",
+            "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
+            "body": "{{ escapeHtml(configuration.cookiesBannerDescription) }}",
         },
         postSelectionCallback: () => { 
             {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}

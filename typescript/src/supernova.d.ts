@@ -480,6 +480,30 @@ declare global {
     id: string | null
     name: string | null
   }
+
+  //
+  // Data Types
+  // Subcategory: Components
+  //
+
+  type DesignComponent = {
+    id: string | null
+    brandId: string | null
+    name: string | null
+    description: string | null
+    origin: {
+      sourceId: string
+      id: string
+      nodeId: string
+      name: string
+      fileId: string
+      fileName: string
+      sourceType: "string"
+    }
+    createdAt: string | null
+    updateAt: string | null
+  }
+
 } // declare global
 
 export {}

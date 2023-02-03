@@ -1,38 +1,80 @@
 
 {* Get block *}
 {[ const block = context /]}
+{[ let configuration = exportConfiguration() /]}
 
 {* Get properties *}
-{[ let checkedImage = assetUrl("icons/component-checklist-yes.svg", ds.documentationDomain()) /]}
-{[ let uncheckedImage = assetUrl("icons/component-checklist-no.svg", ds.documentationDomain()) /]}
 {[ let componentId = block.properties.componentId /]}
 {[ let header = block.properties.header /]}
 {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+{[ let showPropertyDescription = (block.properties.showPropertyDescription || block.properties.showPropertyDescription === undefined) ? true : false /]}
+
+{[ let hasBooleanPropertiesToShow = false /]}
+{[ let hasNonBooleanPropertiesToShow = false /]}
 
 {* Render content health block *}
-{[ if componentId ]}
+{[ if componentId && (hasBooleanPropertiesToShow || hasNonBooleanPropertiesToShow) ]}
     {[ let component = ds.componentById(componentId) /]}
+
+    {[ for property in component.properties ]}
+        {[ if ((property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
+            {[ hasBooleanPropertiesToShow = true /]}
+        {[/]}
+    {[/]}
+
+    {[ for property in component.properties ]}
+        {[ if ((property.propertyType !== "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
+            {[ hasNonBooleanPropertiesToShow = true /]}
+        {[/]}
+    {[/]}
+
     {[ if component ]}
         {[ if header ]}
-            <h3 class="component-checklist--header">{{ header }}</h3>
+            <h4 class="component-checklist--header">{{ header }}</h4>
         {[/]}
         <div class="content-block content-block--component-checklist">
+            {[ if hasBooleanPropertiesToShow ]}
+            <div class="component-checklist--grid">
             {[ for property in component.properties ]}
-                {[ if (property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId)) ]}
+                {[ if ((property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
                     {[ let value = component.propertyValues[property.codeName] /]}
                     <div class="list-item">
-                        <div class="status"><img src="{{ value ? checkedImage : uncheckedImage }}"></div>
+                        <div class="status">
+                            {[ inject "component_icon_boolean" context { "value": value, "label": (value ? "True" : "False") } /]}
+                        </div>
+                        
                         <div class="text">
                             <p class="title">{{ property.name }}</p>
-                            <p class="description">{{ property.description }}</p>
+                            {[ if showPropertyDescription ]}<p class="description">{{ property.description }}</p>{[/]}
                         </div>
                     </div>
                 {[/]}
             {[/]}
+            </div>
+            {[/]}
+            {[ if hasNonBooleanPropertiesToShow ]}
+            <div class="component-checklist--list">
+            {[ for property in component.properties ]}
+                {[ if ((property.propertyType !== "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
+                    {[ let value = component.propertyValues[property.codeName] /]}
+                    <div class="list-item">
+                        <div class="text">
+                            <p class="title">{{ property.name }}</p>
+                            {[ if showPropertyDescription ]}<p class="description">{{ property.description }}</p>{[/]}
+                        </div>
+
+                        <div class="value">
+                            {[ inject "custom_properties_value" context { "value": value, "info": property, "mustReturnValue": true } /]}
+                        </div>
+                    </div>
+                {[/]}
+            {[/]}
+            </div>
+            {[/]}
         </div>
     {[ else ]}
-    <p>Unable to show component health - unknown component</p>
+        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component health block</strong><br />Reason: Unknown component. Please contact the support.", "blockId": block.id }) /]}  
     {[/]}
 {[ else ]}
-<p>Unable to show component health - please select a component in the block.</p>
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component health block</strong><br />Please select a component in the block.", "blockId": block.id }) /]}  
 {[/]}

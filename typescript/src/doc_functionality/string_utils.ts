@@ -13,7 +13,7 @@ export function highlightSafeString(block: DocumentationPageBlockCode) {
   return escapeHtml(string)
 }
 
-function escapeHtml(string: string) {
+export function escapeHtml(string: string) {
   if (!string) {
     return
   }

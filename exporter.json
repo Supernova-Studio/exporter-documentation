@@ -6,7 +6,7 @@
   "organization": "Moveinc",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.2.4",
+  "version": "4.4.2",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -659,10 +659,16 @@
             "label": "Properties"
           },
           {
+            "key": "showPropertyDescription",
+            "type": "boolean",
+            "default": true,
+            "label": "Show descriptions"
+          },
+          {
             "key": "header",
             "type": "string",
             "default": "",
-            "label": "Header"
+            "label": "Title"
           }
         ]
       },

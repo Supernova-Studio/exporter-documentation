@@ -1,0 +1,28 @@
+/* =================================== */
+/*  Custom Property Link
+/* =================================== */
+
+a.property-link {
+    color: var(--colorInkPrimary);
+    text-decoration: underline;
+    font-weight: var(--fontWeightSemibold);
+    font-size: var(--fontSizeSmall);
+    text-decoration: none;
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+
+    svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        color: var(--colorAccent);
+    }
+
+    &.small {
+        font-size: var(--fontSizeTiny);
+    }
+}
