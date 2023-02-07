@@ -42,7 +42,7 @@
             <div class="grid--row">
               {[ for tokenInnerId in tokenIds ]}
                   {[ const tokenInner = ds.tokenById(tokenInnerId) /]}
-                  {[ if (token.name === tokenInner.name) ]}
+                  {[ if (token.id === tokenInner.id) ]}
                     <div class="cell"><div class="swatch swatch-empty">{[ inject "icon_close" context configuration /]}</div></div>
                   {[ else ]}
                     <div class="cell">
