@@ -529,7 +529,7 @@
         "key": "cookiesBannerTitle",
         "type": "string",
         "label": "Cookies banner: Title",
-        "description": "",
+        "description": "Override the title on your cookie banner. Emojis supported.",
         "category": "Analytics",
         "default": "🍪 Cookie settings"
       },
@@ -537,7 +537,7 @@
         "key": "cookiesBannerDescription",
         "type": "string",
         "label": "Cookies banner: Description",
-        "description": "",
+        "description": "Override the description on your cookie banner. Basic HTML tags (e.g. links) are supported.",
         "category": "Analytics",
         "isMultiline": true,
         "default": "We use cookies to personalize content and analyze traffic to our documentation."

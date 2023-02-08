@@ -63,6 +63,10 @@ export function escapeHtml(string: string) {
   return lastIndex !== index ? html + str.substring(lastIndex, index) : html
 }
 
+export function addSlashes( str ) {
+  return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+}
+
 export function withHTMLNewlines(string: string): string {
   if (string) {
     return string.split("\n").join("<br />")
