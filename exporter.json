@@ -539,6 +539,7 @@
         "label": "Cookies banner: Description",
         "description": "",
         "category": "Analytics",
+        "isMultiline": true,
         "default": "We use cookies to personalize content and analyze traffic to our documentation."
       },
       {
