@@ -15,8 +15,8 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
+    grid-column-gap: 12px;
+    grid-row-gap: 20px;
 
     > div,
     > a > div {
@@ -29,6 +29,9 @@
         align-items: center;
         justify-content: center;
         font-size: 60px;
+        border-radius: var(--borderRadiusDefault);
+        overflow: hidden;
+        border: 1px solid var(--colorBorderSubtle);
       }
     }
 
@@ -56,7 +59,7 @@
 
 .layout-tiles .grid > div p.title,
 .layout-tiles .grid > a > div p.title {
-  margin: 8px 12px 4px 8px;
+  margin: 8px 0px 4px 0px;
   padding: 0;
   font-size: var(--fontSizeSmall);
   line-height: var(--lineHeightSmall);
@@ -67,7 +70,7 @@
 
 .layout-tiles .grid > div p.description,
 .layout-tiles .grid > a > div p.description {
-  margin: 0px 12px 4px 8px;
+  margin: 0px 0px 4px 0px;
   padding: 0;
   font-size: var(--fontSizeTiny);
   line-height: var(--lineHeightTiny);
@@ -77,10 +80,8 @@
 
 .layout-tiles .grid > div,
 .layout-tiles .grid > a > div {
-  border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusLarge);
   box-sizing: border-box;
-  overflow: hidden;
   padding-bottom: 4px;
   background: var(--colorBackgroundPrimary);
 }
@@ -103,11 +104,6 @@
   color: var(--colorInkSecondary);
 }
 
-.layout-tiles .grid>div div.preview,
-.layout-tiles .grid>a>div div.preview {
-  border-bottom: 0;
-}
-
 /* matching the style of image caption */
 .layout-tiles.variant-plain .grid > div p.title,
 .layout-tiles.variant-plain .grid > a > div p.title {
@@ -127,7 +123,7 @@
 .layout-tiles .grid.c8 {
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 4px;
-  grid-row-gap: 4px;
+  grid-row-gap: 12px;
 }
 
 .layout-tiles .grid.c8 div.preview {
@@ -138,7 +134,7 @@
 .layout-tiles .grid.c7 {
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: 4px;
-  grid-row-gap: 4px;
+  grid-row-gap: 12px;
 }
 
 .layout-tiles .grid.c7 div.preview {
@@ -148,8 +144,6 @@
 
 .layout-tiles .grid.c6 {
   grid-template-columns: repeat(6, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
 }
 
 .layout-tiles .grid.c6 div.preview {
@@ -159,8 +153,6 @@
 
 .layout-tiles .grid.c5 {
   grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
 }
 
 .layout-tiles .grid.c5 div.preview {
@@ -170,8 +162,6 @@
 
 .layout-tiles .grid.c4 {
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
 }
 
 .layout-tiles .grid.c4 div.preview {
@@ -185,8 +175,6 @@
 
 .layout-tiles .grid.c3 {
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
 }
 
 .layout-tiles .grid.c3 div.preview {
@@ -197,8 +185,6 @@
 .layout-tiles .grid.c2,
 .layout-tiles .grid.c2 {
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
 }
 
 .layout-tiles .grid.c2 div.preview {
