@@ -12,7 +12,7 @@
 <div class="tile-item frame-item{{ !context.showTitles ? "titleless" : "" }}">      
     <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
     {[ if frame.previewUrl ]}
-        <img src="{{ frame.previewUrl }}" alt="{{ frame.title }}" />
+        <img src="{{ frame.previewUrl }}" alt="{{ frame.title }}" height="{{ frame.origin.height }}" width="{{ frame.origin.width }}" />
     {[/]}
     
     </div>
