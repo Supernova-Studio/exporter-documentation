@@ -6,7 +6,14 @@
 {* Render tile per rendered frame *}
 {* Temporary workaround for non-crisp assets: If there are more than 15 assets displayed, if yes, we assume it's icons, so we lock the max size of the image  *}
 <div class="content-block content-block--assets layout-tiles{{ forceNaturalHeight ? " force-natural-height" : "" }}">
-  <div class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">
+
+  {[ if (block.assets.length > 15) ]}
+    <div class="input-search-container">
+        <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}"/>
+    </div>
+  {[/]}
+  
+  <div id="list-{{ block.id }}" class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">
     {[ for asset in block.assets ]}
       {[ inject "page_block_asset" context asset /]}
     {[/]}

@@ -494,6 +494,14 @@
         "default": ""
       },
       {
+        "key": "blockConfigurationAssetOpenInFigma",
+        "type": "boolean",
+        "label": "Asset block: Open in Figma",
+        "description": "Allow documentation viewers to open Figma source file for an asset. Visible only in published documentation.",
+        "category": "Blocks",
+        "default": false
+      },
+      {
         "key": "googleAnalyticsAPIKey",
         "default": "",
         "type": "string",

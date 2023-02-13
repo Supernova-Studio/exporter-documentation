@@ -190,6 +190,24 @@ $(function() {
 });
 
 /*-----------------------------
+    Search in lists
+------------------------------- */
+function searchInList(target, list) {
+    
+    var value = $(target).val().toLowerCase().split(" ");
+    // search for for multi-words search
+    $("#"+ list + " > .tile-item").each(function () {
+        $(this).toggle(matchWords($(this).attr("data-keywords").toLowerCase(), value))
+    });
+}
+
+function matchWords(subject, words) {
+    const hasText = words.every((word) => subject.includes(word));
+
+    return hasText;
+}
+
+/*-----------------------------
     Sandbox helpers
 ------------------------------- */
 

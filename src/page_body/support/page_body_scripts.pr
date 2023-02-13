@@ -54,6 +54,10 @@ $(document).ready(function() {
             },
     });
     {[/]}
+
+    $("input[data-toggle='list-search']").on("keyup", function() {
+        searchInList($(this),$(this).attr("data-list-id"));
+    });
 })
 </script>
 
