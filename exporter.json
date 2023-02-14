@@ -373,6 +373,14 @@
         "default": false
       },
       {
+        "key": "blockConfigAssetOpenInFigma",
+        "type": "boolean",
+        "label": "Asset block: Open in Figma",
+        "description": "Allow documentation viewers to open Figma source file for an asset. Visible only in published documentation.",
+        "category": "Blocks",
+        "default": false
+      },
+      {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
         "label": "Show navigation at bottom of page",
@@ -492,14 +500,6 @@
         "description": "This string of text will be used as the main page description for all documentation pages. If empty, the page description will be dynamically generated from the page subheader (if any) or its content.",
         "category": "Search engines",
         "default": ""
-      },
-      {
-        "key": "blockConfigAssetOpenInFigma",
-        "type": "boolean",
-        "label": "Asset block: Open in Figma",
-        "description": "Allow documentation viewers to open Figma source file for an asset. Visible only in published documentation.",
-        "category": "Blocks",
-        "default": false
       },
       {
         "key": "googleAnalyticsAPIKey",
@@ -995,6 +995,19 @@
           "key": "plain",
           "description": "Frame as it is in Figma with no extra formatting, great for single images.",
           "thumbnail": "thumbnails/FigmaFrames_Plain.png"
+        }
+      ],
+      "Asset": [
+        {
+          "name": "Default",
+          "key": "default",
+          "isDefault": true,
+          "description": ""
+        },
+        {
+          "name": "Bordered grid",
+          "key": "bordered-grid",
+          "description": ""
         }
       ],
       "RenderCode": [

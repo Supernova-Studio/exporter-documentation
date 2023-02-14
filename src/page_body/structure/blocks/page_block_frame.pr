@@ -16,12 +16,14 @@
     {[/]}
     
     </div>
-    {[ if context.showTitles ]}
+    {[ if (context.showTitles && frame.title) ]}
+        <div class="meta">
         {[ if frame.title ]}
             <p class="title">{{ withHTMLNewlines(frame.title) }}</p>
         {[/]}
         {[ if frame.description ]}
             <p class="description">{{ withHTMLNewlines(frame.description) }}</p>    
         {[/]}
+        </div>
     {[/]}
 </div>
