@@ -1013,7 +1013,7 @@
           "thumbnail": "thumbnails/FigmaFrames_Plain.png"
         }
       ],
-      "Assets": [
+      "componentAssets": [
         {
           "name": "Default",
           "key": "default",
