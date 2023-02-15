@@ -196,9 +196,19 @@ function searchInList(target, list) {
     
     var value = $(target).val().toLowerCase().split(" ");
     // search for for multi-words search
-    $("#"+ list + " > .tile-item").each(function () {
-        $(this).toggle(matchWords($(this).attr("data-keywords").toLowerCase(), value))
+    $("#"+ list + " .grid > .tile-item").each(function () {
+        matchWords($(this).attr("data-keywords").toLowerCase(), value) ? $(this).removeClass("hidden") : $(this).addClass("hidden")
     });
+
+    console.log($("#"+ list + " .grid > .tile-item:not(.hidden)").length);
+
+    if ( $("#"+ list + " .grid > .tile-item:not(.hidden)").length === 0 )  {
+        $("#"+ list + " .grid").hide();
+        $("#"+ list + " .empty-state").show();
+    } else {
+        $("#"+ list + " .grid").show();
+        $("#"+ list + " .empty-state").hide();
+    }
 }
 
 function matchWords(subject, words) {

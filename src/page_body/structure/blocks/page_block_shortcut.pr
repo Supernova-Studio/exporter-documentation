@@ -1,6 +1,6 @@
 {[ const shortcut = context /]}
 
-{[ if !shortcut.title.startsWith("_") ]} 
+{[ if (shortcut.title && !shortcut.title.startsWith("_")) ]} 
     {[ if shortcut.externalUrl ]}
         <a href="{{ shortcut.externalUrl }}" class="shortcut-item" target="_blank">
     {[ elseif shortcut.internalId ]}

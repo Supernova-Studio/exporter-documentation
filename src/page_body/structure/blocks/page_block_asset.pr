@@ -1,5 +1,6 @@
 {[ const frame = context /]}
 {[ let configuration = exportConfiguration() /]}
+{[ let defaultBackground = configuration.blockConfigAssetsDefaultBackground /]}
 
 {* Get the asset *}
 {[ let asset = ds.assetById(frame.assetId) /]}
@@ -7,7 +8,7 @@
 {* Only render asset if it actually exists *}
 {[ if asset ]}
     {* Decide on properties *}
-    {[ let backgroundColor = "transparent" /]}
+     {[ let backgroundColor = "transparent" /]}
     {[ let showChecker = true /]}
     {[ let showBorder = true /]}
     {[ if (frame.backgroundColor && frame.backgroundColor.value) ]}
@@ -24,12 +25,12 @@
 
     {* Render the asset *}
     <div class="tile-item asset-item" data-keywords="{{ normalizeStringForSearch(title) }} {{ normalizeStringForSearch(description) }}">      
-        <div class="preview frame{{ showChecker ? " checkered-background-light" : ""}}{{ !showBorder ? " borderless" : ""}}" style="background-color: {{ backgroundColor }}">
+        <div class="preview frame{{ (showChecker && defaultBackground === "Checkered background") ? " checkered-background-light" : ""}}{{ !showBorder ? " borderless" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
             <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" height="{{ asset.origin.height }}" width="{{ asset.origin.width }}" />
         {[/]}
         
-        {[ if (asset.origin && configuration.blockConfigAssetOpenInFigma) ]}
+        {[ if (asset.origin && (configuration.blockConfigAssetsItemActions === "Open in Figma")) ]}
             <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" class="btn btn-white btn-floating btn-small btn-with-icon">
                 {[ inject "icon_figma" context configuration /]}
                 <span class="label">Open in Figma</span>

@@ -117,9 +117,18 @@
 				font-weight: var(--fontWeightRegular);
 				color: var(--colorInkSecondary);
 			}
-			
+
+      &.hidden {
+        display: none;
+      }			
 		}
 	}
+
+  .empty-state {
+    font-size: var(--fontSizeSmall);
+    color: var(--colorInkSecondary);
+    display: none; // it's displayed conditionally
+  }
 }
 
 
@@ -161,7 +170,7 @@
   Variant: Bordered grid
   - matching the style of image caption
 */
-.layout-tiles.variant-bordered-grid {
+.layout-tiles.variant-square-grid {
   .input-search {
       margin-bottom: 12px;
   }
@@ -178,19 +187,71 @@
           padding-bottom: 0;
 
           .preview {
-              border-radius: 0;
-              border: 0;
+            border-radius: 0;
+            border: 0;
+            aspect-ratio: 1/1;
+            height: auto;
           }
 
           .meta {
-              padding: 8px;
+            position: absolute;
+            padding: 8px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            .title {
+              color: var(--colorInkSecondary);
+              font-size: var(--fontSizeTiny);
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            }
+
+            .description { display: none; }
+          }
+      }
+  }
+
+  &.force-natural-height {
+      .grid {
+          .tile-item {
+            .preview {
+                aspect-ratio: auto;
+                padding-bottom: 36px;
+            }
+          }
+      }
+  }
+}
+
+/* 
+  Variant: Icon grid
+  - matching the style of image caption
+*/
+.layout-tiles.variant-borderless-grid {
+  .grid {
+      .tile-item {
+        padding-bottom: 12px;
+        padding: 12px 0 24px;
+        justify-items: center; 
+
+          .preview {
+            height: auto;
+            border: 0;
           }
 
-          &:first-child {
-            border-top-left-radius: var(--borderRadiusDefault);
-          }
-          &:last-child {
-            border-bottom-right-radius: var(--borderRadiusDefault);
+          .meta {
+            align-items: center;
+            padding-top: 8px;
+
+            .title {
+              color: var(--colorInkSecondary);
+              font-size: var(--fontSizeTiny);
+              text-align: center;
+            }
+
+            .description { display: none; }
           }
       }
   }
@@ -204,6 +265,7 @@
   max-height: 100%;
   object-fit: contain;
   transform: translateZ(0);
+  height: auto;
 }
 
 .layout-tiles .grid.c8 {
