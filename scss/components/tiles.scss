@@ -210,6 +210,14 @@
 
             .description { display: none; }
           }
+
+          &.inverted-text {
+            .meta {
+              .title {
+                color: var(--colorInkInverted);
+              }
+            }
+          }
       }
   }
 

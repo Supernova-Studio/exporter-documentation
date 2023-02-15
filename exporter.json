@@ -392,7 +392,8 @@
         "category": "Blocks",
         "values": [
           "Plain background",
-          "Checkered background"
+          "Subtle checkered background",
+          "Prominent checkered background"
         ],
         "default": "Plain background"
       },
@@ -1015,7 +1016,7 @@
       ],
       "ComponentAssets": [
         {
-          "name": "Default",
+          "name": "Simple grid",
           "key": "default",
           "isDefault": true,
           "description": "A simple grid of assets. Both the title and description are displayed below the preview.",
