@@ -26,7 +26,7 @@
 
 .input-search-container {
     position: sticky;
-    top: calc(var(--topNavHeight) + var(--tabOffset) + 8px);
+    top: calc(var(--topNavHeight) + var(--tabOffset, -8px) + 8px);
     z-index: 1;
     background: rgba(255, 255, 255, 0.96);
     padding-top: 12px;
