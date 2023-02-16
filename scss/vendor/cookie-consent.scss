@@ -46,9 +46,11 @@
 
         a {
           color: var(--colorInkPrimary);
+          text-decoration: underline;
+          font-weight: var(--fontWeightSemibold);
 
           &:hover {
-            color: var(--colorAccent);
+            color: var(--colorAccentAlt);
           }
         }
       }

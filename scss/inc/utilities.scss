@@ -473,63 +473,74 @@
   padding: 8px;
 }
 
+:root {
+  --checkeredSquareColorDarkA: var(--colorNeutral300);
+  --checkeredSquareColorDarkB: transparent;
+  --checkeredSquareColorLightA: var(--colorBackgroundSecondary);
+  --checkeredSquareColorLightB: transparent;
+}
+
 /* Checkered background */
 .checkered-background {
-  background-image: linear-gradient(45deg, #dfdfdf 25%, transparent 25%),
-    linear-gradient(-45deg, #dfdfdf 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #dfdfdf 75%),
-    linear-gradient(-45deg, transparent 75%, #dfdfdf 75%);
+  background-image: linear-gradient(45deg, var(--checkeredSquareColorDarkA) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checkeredSquareColorDarkA) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checkeredSquareColorDarkA) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checkeredSquareColorDarkA) 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  background-color: var(--checkeredSquareColorDarkB);
 }
 
 .checkered-background-small {
-  background-image: linear-gradient(45deg, #dfdfdf 25%, transparent 25%),
-    linear-gradient(-45deg, #dfdfdf 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #dfdfdf 75%),
-    linear-gradient(-45deg, transparent 75%, #dfdfdf 75%);
+  background-image: linear-gradient(45deg, var(--checkeredSquareColorDarkA) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--checkeredSquareColorDarkA) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--checkeredSquareColorDarkA) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--checkeredSquareColorDarkA) 75%);
   background-size: 8px 8px;
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-color: var(--checkeredSquareColorDarkB);
 }
 
 .checkered-background-light {
   background-image: linear-gradient(
       45deg,
-      var(--colorBackgroundSecondary) 25%,
+      var(--checkeredSquareColorLightA) 25%,
       transparent 25%
     ),
     linear-gradient(
       -45deg,
-      var(--colorBackgroundSecondary) 25%,
+      var(--checkeredSquareColorLightA) 25%,
       transparent 25%
     ),
-    linear-gradient(45deg, transparent 75%, var(--colorBackgroundSecondary) 75%),
+    linear-gradient(45deg, transparent 75%, var(--checkeredSquareColorLightA) 75%),
     linear-gradient(
       -45deg,
       transparent 75%,
-      var(--colorBackgroundSecondary) 75%
+      var(--checkeredSquareColorLightA) 75%
     );
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  background-color: var(--checkeredSquareColorLightB);
 }
 
 .checkered-background-light-small {
   background-image: linear-gradient(
       45deg,
-      var(--colorBackgroundSecondary) 25%,
+      var(--checkeredSquareColorLightA) 25%,
       transparent 25%
     ),
     linear-gradient(
       -45deg,
-      var(--colorBackgroundSecondary) 25%,
+      var(--checkeredSquareColorLightA) 25%,
       transparent 25%
     ),
-    linear-gradient(45deg, transparent 75%, var(--colorBackgroundSecondary) 75%),
+    linear-gradient(45deg, transparent 75%, var(--checkeredSquareColorLightA) 75%),
     linear-gradient(
       -45deg,
       transparent 75%,
-      var(--colorBackgroundSecondary) 75%
+      var(--checkeredSquareColorLightA) 75%
     );
   background-size: 8px 8px;
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-color: var(--checkeredSquareColorLightB);
 }

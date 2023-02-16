@@ -59,3 +59,15 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
 
     return classNames.join(" ");
 }
+
+export function getClassForInvertedText(color: string): string {
+    if (!color) {
+        return ""
+    }
+
+    if ((getColorContrast(color) < 0.5)) {
+        return "inverted-text"
+    } else {
+        return ""
+    }
+}

@@ -83,7 +83,6 @@
                         </div>
                     </div>
                     {[/]}
-
                     {[ if configuration.advancedCustomizationShowVersionDropdown ]}
                     <div id="version-container" class="dropdown">
                         <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

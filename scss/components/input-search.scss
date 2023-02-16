@@ -1,0 +1,34 @@
+/* =================================== */
+/*  Input Search
+/* =================================== */
+
+.input-search {
+    margin: 0 0 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    border: 2px solid var(--colorBackgroundSecondary);
+    background: var(--colorBackgroundSecondary);
+    border-radius: var(--borderRadiusDefault);
+    color: var(--colorInkPrimary);
+    transition: var(--transitionDefault);
+    
+    &:hover {
+        border-color: var(--colorBackgroundAlt);
+    }
+
+    &:focus {
+        outline: none;
+        border: 2px solid var(--colorInkTertiary);
+    }
+      
+}
+
+.input-search-container {
+    position: sticky;
+    top: calc(var(--topNavHeight) + var(--tabOffset, -8px) + 8px);
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.96);
+    padding-top: 12px;
+    backdrop-filter: blur(10px);
+}

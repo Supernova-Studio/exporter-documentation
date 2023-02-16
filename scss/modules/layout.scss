@@ -71,7 +71,7 @@
 .docs-content {
   flex-grow: 1;
   background-color: var(--pageBackground);
-  max-width: 100vw;
+  max-width: calc(100vw - var(--sideNavWidth, 0px));
   min-height: calc(100vh - 242px);
   display: flex;
   flex-direction: column;

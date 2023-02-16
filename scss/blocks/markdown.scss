@@ -11,13 +11,13 @@
     margin-bottom: var(--contentBlockGap);
   }
 
-  &.bordered {
+  &.variant-bordered {
     padding: 16px;
     border: 1px solid var(--colorBorderSubtle);
     border-radius: var(--borderRadiusDefault);
   }
 
-  &.boxed {
+  &.variant-boxed {
     padding: 16px;
     background: var(--colorBackgroundSecondary);
     border-radius: var(--borderRadiusDefault);

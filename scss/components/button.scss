@@ -89,3 +89,42 @@
         flex-shrink: 0;
     }
 }
+
+.btn-light {
+    background: var(--colorBackgroundSecondary);
+    color: var(--colorInkPrimary);
+}
+
+.btn-small {
+    font-size: var(--fontSizeTiny);
+    padding: 4px 8px;
+    font-weight: var(--fontWeightSemibold);
+    border-radius: var(--borderRadiusSmall);
+
+    &.btn-with-icon {
+        padding: 4px 8px 4px 4px;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+            flex-shrink: 0;
+        }
+    }
+}
+
+.btn-white {
+    background: var(--colorBackgroundPrimary);
+    color: var(--colorInkPrimary);
+
+    &:hover {
+        background: var(--colorAccentSurface);
+        color: var(--colorAccent);
+    }
+}
+
+.btn-floating {
+    box-shadow: var(--boxShadowLevel1);
+}

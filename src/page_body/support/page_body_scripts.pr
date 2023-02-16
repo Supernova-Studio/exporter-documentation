@@ -46,7 +46,7 @@ $(document).ready(function() {
     const cookieConsent = new CookieConsent({
         content: {
             "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
-            "body": "{{ escapeHtml(configuration.cookiesBannerDescription) }}",
+            "body": "{{ addSlashes(configuration.cookiesBannerDescription) }}",
         },
         postSelectionCallback: () => { 
             {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
@@ -54,6 +54,10 @@ $(document).ready(function() {
             },
     });
     {[/]}
+
+    $("input[data-toggle='list-search']").on("keyup", function() {
+        searchInList($(this),$(this).attr("data-list-id"));
+    });
 })
 </script>
 
