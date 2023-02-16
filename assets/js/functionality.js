@@ -200,8 +200,6 @@ function searchInList(target, list) {
         matchWords($(this).attr("data-keywords").toLowerCase(), value) ? $(this).removeClass("hidden") : $(this).addClass("hidden")
     });
 
-    console.log($("#"+ list + " .grid > .tile-item:not(.hidden)").length);
-
     if ( $("#"+ list + " .grid > .tile-item:not(.hidden)").length === 0 )  {
         $("#"+ list + " .grid").hide();
         $("#"+ list + " .empty-state").show();
