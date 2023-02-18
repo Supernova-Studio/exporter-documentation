@@ -5,7 +5,7 @@
 {[ if block.url ]}
   <div class="content-block content-block--embed">
     <div class="embed-container embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+      <iframe class="embed-responsive-item" src="{{ block.url }}" allowfullscreen loading="lazy" aria-label="Embedded Youtube video"></iframe>
     </div>
 
     {[ if block.caption ]}
