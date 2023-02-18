@@ -117,7 +117,7 @@
 
          <!-- Sidebar Toggler -->
         {[ if pageConfiguration.showSidebar ]}
-            <button id="sidebarCollapse" class="toggle-navbar" type="button">
+            <button id="sidebarCollapse" class="toggle-navbar" type="button" aria-label="Open navigation">
                 {[ inject "icon_menu" context configuration /]}
             </button>
         {[/]}
