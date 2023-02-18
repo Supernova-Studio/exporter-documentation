@@ -39,7 +39,7 @@ export function contrastColor(color: string): "dark" | "light" {
     }
 
     // Return black for bright colors, white for dark colors
-    return getColorContrast(color) > 0.5 ? "dark" : "light";
+    return getColorContrast(color) > 0.4 ? "dark" : "light";
 }
 
 export function returnSwatchClassnames(color: ColorTokenValue): string {
@@ -53,7 +53,7 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
         classNames.push("bordered")
     }
 
-    if ((getColorContrast(color.hex) < 0.45 && color.a > 180)) {
+    if ((getColorContrast(color.hex) < 0.4 && color.a > 180)) {
         classNames.push("inverted-text")
     }
 
@@ -65,7 +65,7 @@ export function getClassForInvertedText(color: string): string {
         return ""
     }
 
-    if ((getColorContrast(color) < 0.5)) {
+    if ((getColorContrast(color) < 0.4)) {
         return "inverted-text"
     } else {
         return ""
