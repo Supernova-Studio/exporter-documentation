@@ -226,7 +226,8 @@ ol>.block-children {
     flex-shrink: 0;
 }
 
-.heading:hover a.copy-anchor {
+.heading:hover a.copy-anchor,
+.heading:focus-within a.copy-anchor {
     opacity: 1;
     transition-duration: 0.1s;
     transform: none;
