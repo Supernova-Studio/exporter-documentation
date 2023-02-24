@@ -6,7 +6,7 @@
   <div class="content-block content-block--embed">
     <div class="storybook-container" style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
         <div class="storybook-embed-container">
-            <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy"></iframe>
+            <iframe class="embed-responsive-item storybook" src="{{ block.url }}" allowfullscreen loading="lazy" aria-label="Embedded Storybook"></iframe>
         </div>
         <div class="storybook-error">
             <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>

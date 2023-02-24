@@ -43,7 +43,7 @@
       <header id="header" class="mobile-header sticky-top {{ ((globalConfiguration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">    
           <!-- Navbar -->
           <nav class="primary-menu navbar navbar-expand-lg">
-                  <button id="sidebarCollapse" class="toggle-navbar" type="button">
+                  <button id="sidebarCollapse" class="toggle-navbar" type="button" aria-label="Open navigation">
                       {[ inject "icon_menu" context globalConfiguration /]}
                   </button>
               {[/]}

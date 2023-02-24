@@ -4,7 +4,7 @@
 {[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
 
 <!-- Logo -->
-<a href="{{ url }}" class="site-logo">
+<a href="{{ url }}" class="site-logo" aria-label="{{ designSystem.name }}">
     {* Use default Supernova logo OR custom uploaded one, if it was provided *}
     {[ if ((configuration.headerLogo !== null) && (configuration.headerLogo.assetUrl !== null)) ]}
         <img src="{{ configuration.headerLogo.assetUrl }}" alt="{{ designSystem.name }}" />
