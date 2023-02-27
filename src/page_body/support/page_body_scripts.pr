@@ -63,6 +63,11 @@ $(document).ready(function() {
     $("input[data-toggle='list-search']").on("keyup", function() {
         searchInList($(this),$(this).attr("data-list-id"));
     });
+
+
+    $("button[data-toggle='download-assets']").click(function() {
+        downloadAssets($(this),$(this).attr("data-asset-ids"));
+    });
 })
 </script>
 

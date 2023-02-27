@@ -1,16 +1,23 @@
 {[ let block = context /]}
 {[ let variant = block.variantKey /]}
 {[ let displaySearch = (block.assets.length > 20) /]}
+{[ let assetIds = [] /]}
+{[ for asset in block.assets ]}
+    {[ assetIds = assetIds.append(asset.assetId) /]}
+{[/]}
+{[ log assetIds /]}
 
 {* Configure tile to show natural height if needed *}
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
 
 {* Render tile per rendered frame *}
+{[ log statement /]}
 <div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}">
 
   {[ if displaySearch ]}
     <div class="input-search-container">
         <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}"/>
+        <button data-toggle="download-assets" data-asset-ids="{{ assetIds.join("|") }}">Download</button>
     </div>
   {[/]}
   <div id="list-{{ block.id }}">

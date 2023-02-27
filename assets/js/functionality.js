@@ -216,6 +216,40 @@ function matchWords(subject, words) {
 }
 
 /*-----------------------------
+    Download assets
+------------------------------- */
+function downloadAssets(target, list) {
+    
+    const url = "YOUR_URL";
+    const data = {
+        "settings": [{
+            "prefix": "",
+            "suffix": "@2x",
+            "scale": "x2",
+            "format": "png"
+        }],
+        "persistentIds": list.split("|")
+    }
+
+    console.log("Download with settings:")
+    console.log(data)
+    console.log("Download target:")
+    console.log(url)
+    fetch(url, {
+        method: "POST", 
+        mode: "cors",
+        cache: "no-cache", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      }).then(r => console.log(r))
+
+}
+
+/*-----------------------------
     Sandbox helpers
 ------------------------------- */
 
