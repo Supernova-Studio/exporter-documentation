@@ -2,6 +2,7 @@
 {[ let pageId = context.pageId /]}
 {* Note we are prefixing all ids with a letter because by spec ID can't start with number (which it can coming from the SDK) *}
 {[ let blockId = block.id.prefixed("T") /]}
+{[ let configuration = exportConfiguration() /]}
 
 {* Logos *}
 {[ let checkBordered = assetUrl("logos/check-bordered.svg", ds.documentationDomain()) /]}
@@ -51,9 +52,9 @@
       {[ let id = tab.id.prefixed("T") /]}
       {[ if (tab.type === "TabItem") ]}
       <div class="accordion-section">
-        <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}" aria-expanded="true" aria-controls="collapseOne">
+        <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}">
           <div class="accordion-header" id="{{ id }}">
-          {{ tab.caption }}
+          <div class="icon">{[ inject "icon_chevron_right" context configuration /]}</div>{{ tab.caption }}
           </div>
         </a>
 

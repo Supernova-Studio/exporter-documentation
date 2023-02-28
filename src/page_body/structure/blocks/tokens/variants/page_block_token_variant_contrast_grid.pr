@@ -20,7 +20,7 @@
             {[ const token = ds.tokenById(tokenId) /]}
             {[ let classnames = returnSwatchClassnames(token.value) /]}
 
-            <div class="cell header-row--cell"><div class="swatch checkered-background swatch-header"><div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};">{{getFormattedColor(token.value)}}</div></div></div>
+            <div class="cell header-row--cell"><div class="swatch checkered-background swatch-header" title="{[ if token.parent.name ]}{{token.parent.name}} / {[/]}{{token.name}}"><div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};">{{getFormattedColor(token.value)}}</div></div></div>
           {[/]} 
         </div>
 
@@ -31,7 +31,17 @@
           {[ for tokenId in tokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
             <div class="grid--row">
-              <div class="header-column--cell cell"><div class="swatch checkered-background"><div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};"><div class="labels"><div class="name">{{token.name}}</div><div class="value">{{getFormattedColor(token.value)}}</div></div></div></div></div>
+              <div class="header-column--cell cell">
+                <div class="swatch checkered-background">
+                  <div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};">
+                    <div class="labels">
+                    
+                      <div class="name">{[ if token.parent.name ]}{{token.parent.name}} / {[/]}{{token.name}}</div>
+                      <div class="value">{{getFormattedColor(token.value)}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           {[/]}
         </div>
@@ -42,7 +52,7 @@
             <div class="grid--row">
               {[ for tokenInnerId in tokenIds ]}
                   {[ const tokenInner = ds.tokenById(tokenInnerId) /]}
-                  {[ if (token.name === tokenInner.name) ]}
+                  {[ if (token.id === tokenInner.id) ]}
                     <div class="cell"><div class="swatch swatch-empty">{[ inject "icon_close" context configuration /]}</div></div>
                   {[ else ]}
                     <div class="cell">

@@ -10,7 +10,7 @@
 {[ let tableWidthStyle = "" /]}
 
 {* This is hardcoded value on backend when the user sets "Fit to page width" *}
-{[ if (tableWidth === 751 || tableWidth === 752) ]}
+{[ if (tableWidth === 751 || tableWidth === 752 || tableWidth === 753) ]}
     {[ tableWidthStyle = ["width: 100%; min-width:", tableWidth, "px"].join("") /]}
 {[ else ]}
     {[ tableWidthStyle = ["width:", tableWidth, "px"].join("") /]}

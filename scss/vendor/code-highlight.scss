@@ -122,13 +122,13 @@ pre[class*='language-'] {
 .token.regex,
 .token.attr-value,
 .token.attr-value > .token.punctuation {
-  color: hsl(119, 34%, 47%);
+  color: #1F821D;
 }
 
 .token.variable,
 .token.operator,
 .token.function {
-  color: hsl(221, 87%, 60%);
+  color: #356CE2;
 }
 
 .token.url {

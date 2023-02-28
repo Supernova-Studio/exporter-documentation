@@ -38,7 +38,7 @@
             {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Status property doesn't exist for components</strong><br />Please create <em>Status</em> custom property in Components section in administration first. Without this custom property, this block has no data to display.", "blockId": block.id }) /]}  
         {[ else ]}
             {* Generate inline component health *}
-            <div class="content-block content-block--component-health {{ healthTagSlug }} {{ healthTagContrastColor }}" style="background-color: {{ healthTag.backgroundColor }}" aria-role="button" data-block-id="{{ block.id }}">
+            <div class="content-block content-block--component-health {{ healthTagSlug }} {{ healthTagContrastColor }}" style="background-color: {{ healthTag.backgroundColor }}" role="button" tabindex="0" data-block-id="{{ block.id }}">
                 <div class="health-tag-title">
                     <div class="status-icon">
                         {[ inject "icon_component_status" context configuration /]}

@@ -13,7 +13,30 @@
     
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg">
-        {[ inject "component_site_logo" context page /]}
+        <div class="logo-wrapper">
+            {[ inject "component_site_logo" context page /]}
+
+            {[ if designSystem.designSystemSwitcher.isEnabled ]}
+                {[ let dsSwitcher = ds.currentDesignSystemSwitcher() /]}
+
+                <div class="dropdown">
+                    <button class="btn-icon-button" id="design-systems-switcher" aria-label="Switch design system" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                        {[ inject "icon_selector" context configuration /]}
+                    </button>
+                    <div class="dropdown-menu pull-left" aria-labelledby="design-systems-switcher">
+                        {[ for dsInfo in dsSwitcher.designSystems ]}
+                            {[ let isCurrent = dsInfo.isCurrent /]}
+                            <a class="dropdown-item{{isCurrent ? " is-active": ""}}" href="{{ removeVersionFromDomainUrl(domain) }}/ds-switch/{{ dsInfo.id }}?page_path=/{{ page.relativeUrl }}">
+                                {{ dsInfo.name }}
+                                {[ if isCurrent ]}
+                                    {[ inject "icon_check" context configuration /]}
+                                {[/]}
+                            </a>
+                        {[/]}
+                    </div>
+                </div>
+            {[/]}
+        </div>
         
         <div class="container-fluid">
 
@@ -60,7 +83,6 @@
                         </div>
                     </div>
                     {[/]}
-
                     {[ if configuration.advancedCustomizationShowVersionDropdown ]}
                     <div id="version-container" class="dropdown">
                         <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,11 +93,11 @@
                     </div>
                     {[/]}
                     {[ if (configuration.searchButtonType === "Icon + label") ]}
-                        <button class="btn-search search expanded">
+                        <button class="btn-icon-button btn-search search expanded" aria-label="Search in documentation">
                             {[ inject "icon_search" context configuration /]} Search...
                         </button>
                     {[ else ]}
-                        <button class="btn-search search">
+                        <button class="btn-icon-button btn-search search" aria-label="Search in documentation">
                             {[ inject "icon_search" context configuration /]}
                         </button>
                     {[/]}
@@ -95,7 +117,7 @@
 
          <!-- Sidebar Toggler -->
         {[ if pageConfiguration.showSidebar ]}
-            <button id="sidebarCollapse" class="toggle-navbar" type="button">
+            <button id="sidebarCollapse" class="toggle-navbar" type="button" aria-label="Open navigation">
                 {[ inject "icon_menu" context configuration /]}
             </button>
         {[/]}

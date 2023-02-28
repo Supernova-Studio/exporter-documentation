@@ -6,7 +6,7 @@
   "organization": "Rapid7",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.3.2",
+  "version": "4.5.1",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -373,6 +373,31 @@
         "default": false
       },
       {
+        "key": "blockConfigAssetsItemActions",
+        "type": "enum",
+        "label": "Asset block: Asset actions",
+        "description": "Select which actions should be available for each asset in the list. Visible only in published documentation.",
+        "category": "Blocks",
+        "values": [
+          "None",
+          "Open in Figma"
+        ],
+        "default": "None"
+      },
+      {
+        "key": "blockConfigAssetsDefaultBackground",
+        "type": "enum",
+        "label": "Asset block: Default background style",
+        "description": "Choose default background style for all assets. Can be changed per block if needed. Visible only in published documentation.",
+        "category": "Blocks",
+        "values": [
+          "Plain background",
+          "Subtle checkered background",
+          "Prominent checkered background"
+        ],
+        "default": "Plain background"
+      },
+      {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
         "label": "Show navigation at bottom of page",
@@ -529,7 +554,7 @@
         "key": "cookiesBannerTitle",
         "type": "string",
         "label": "Cookies banner: Title",
-        "description": "",
+        "description": "Override the title in your cookies banner. Emojis supported.",
         "category": "Analytics",
         "default": "🍪 Cookie settings"
       },
@@ -537,8 +562,9 @@
         "key": "cookiesBannerDescription",
         "type": "string",
         "label": "Cookies banner: Description",
-        "description": "",
+        "description": "Override the description in your cookies banner. Basic HTML tags (eg. links) are supported.",
         "category": "Analytics",
+        "isMultiline": true,
         "default": "We use cookies to personalize content and analyze traffic to our documentation."
       },
       {
@@ -1011,6 +1037,27 @@
           "key": "plain",
           "description": "Frame as it is in Figma with no extra formatting, great for single images.",
           "thumbnail": "thumbnails/FigmaFrames_Plain.png"
+        }
+      ],
+      "ComponentAssets": [
+        {
+          "name": "Simple grid",
+          "key": "default",
+          "isDefault": true,
+          "description": "A simple grid of assets. Both the title and description are displayed below the preview.",
+          "thumbnail": "thumbnails/Asset_Default.png"
+        },
+        {
+          "name": "Square grid",
+          "key": "square-grid",
+          "description": "Bordered square grid tailored for displaying icon assets. Only the title is displayed.",
+          "thumbnail": "thumbnails/Asset_SquareGrid.png"
+        },
+        {
+          "name": "Borderless grid",
+          "key": "borderless-grid",
+          "description": "Borderless grid, perfect for displaying assets of the same height. Only the title is visible.",
+          "thumbnail": "thumbnails/Asset_BorderlessGrid.png"
         }
       ],
       "RenderCode": [

@@ -104,7 +104,7 @@
   }
 }
 
-.btn-search {
+.btn-icon-button {
   color: var(--topNavInk);
   background: none;
   cursor: pointer;
@@ -122,6 +122,18 @@
     flex-shrink: 0;
   }
 
+  &:hover {
+    color: var(--topNavItemHoverInk);
+    background-color: var(--topNavItemHoverBackground);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--colorAccent);
+  }
+}
+
+.btn-search {
   &.expanded {
     width: auto;
     gap: 8px;
@@ -144,12 +156,6 @@
       background-color: var(--buttonSearchBackgroundHover);
     }
   }
-
-  &:hover {
-    color: var(--topNavItemHoverInk);
-    background-color: var(--topNavItemHoverBackground);
-  }
-
 }
 
 a.site-logo {
@@ -168,6 +174,8 @@ a.site-logo {
   align-items: center;
   padding: 0px 28px;
   max-width: 300px;
+  flex-shrink: 0;
+  gap: 4px;
 
   img {
       height: var(--logoHeight);
@@ -209,6 +217,21 @@ a.site-logo {
   flex-grow: 1;
   height: var(--topNavHeight);
   align-items: center;
+  scrollbar-color: var(--topNavInk) var(--topNavItemActiveBackground);
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 4px; 
+    display: none; /* hotfix: disable scrollbars before we resolve vertical aligmnent */
+  }
+  &::-webkit-scrollbar-thumb { 
+    background: var(--topNavInk);
+    border-radius: var(--borderRadiusDefault);
+  }
+  &::-webkit-scrollbar-track { 
+    background: var(--topNavItemActiveBackground);
+    border-radius: var(--borderRadiusDefault);
+  }
   /* disabling scroll shadows for now
   background-image: 
       
@@ -847,15 +870,6 @@ a.site-logo {
   color: #fff;
 }
 
-#version-container .dropdown-menu,
-#mobile-menu-container .dropdown-menu {
-  max-height: 360px;
-  min-width: 120px;
-  max-width: 360px;
-  overflow-y: scroll;
-  margin-top: 8px;
-}
-
 #mobile-menu-container .dropdown-menu {
   font-weight: var(--fontWeightSemibold);
 }
@@ -905,32 +919,7 @@ a.site-logo {
   transform: rotate(135deg);
 }
 
-#version-container .dropdown-item,
-#mobile-menu-container .dropdown-item {
-  font-weight: var(--fontWeightSemibold);
-  font-size: var(--fontSizeSmall);
-  color: var(--colorInkPrimary);
-  padding: 0.25rem 2.5rem 0.25rem 1rem;
-  text-transform: capitalize;
-}
-
-#version-container .dropdown-item.checked,
-#mobile-menu-container .dropdown-item.checked {
-  background-color: rgba(15, 98, 254, 0.04);
-  color: var(--colorAccent);
-}
-
-#version-container .dropdown-item.checked::after,
-#mobile-menu-container .dropdown-item.checked::after {
-  position: absolute;
-  right: 12px;
-  display: inline-block;
-  content: url("data:image/svg+xml,%3Csvg width='11' height='8' viewBox='0 0 11 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.6499 0.649994L10.3499 1.34999L3.9999 7.70999L0.649902 4.34999L1.3499 3.64999L3.9999 6.28999L9.6499 0.649994Z' fill='%230F62FE'/%3E%3C/svg%3E%0A");
-  color: var(--colorAccent);
-}
-
-#version-container .dropdown-menu,
-#mobile-menu-container .dropdown-menu {
+.dropdown-menu {
   right: 0;
   left: auto;
   box-shadow: var(--boxShadowLevel2);
@@ -938,6 +927,49 @@ a.site-logo {
   background-color: var(--colorBackgroundPrimary);
   color: var(--colorInkPrimary);
   border-radius: var(--borderRadiusDefault);
+  max-height: 360px;
+  min-width: 160px;
+  max-width: 360px;
+  overflow-y: scroll;
+  margin-top: 8px;
+
+  &.pull-left {
+    right: auto;
+    left: 0;
+  }
+
+  .dropdown-item {
+    font-weight: var(--fontWeightSemibold);
+    font-size: var(--fontSizeSmall);
+    color: var(--colorInkPrimary);
+    padding: 0.25rem 1rem;
+    text-transform: capitalize;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+
+    &.is-active, 
+    &.checked {
+      background-color: rgba(15, 98, 254, 0.04);
+      color: var(--colorAccent);
+    }
+  }
+}
+
+#version-container
+#mobile-menu-container {
+
+  .dropdown-item {
+    padding-right: 2.5rem;
+
+    &.checked::after {
+      position: absolute;
+      right: 12px;
+      display: inline-block;
+      content: url("data:image/svg+xml,%3Csvg width='11' height='8' viewBox='0 0 11 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.6499 0.649994L10.3499 1.34999L3.9999 7.70999L0.649902 4.34999L1.3499 3.64999L3.9999 6.28999L9.6499 0.649994Z' fill='%230F62FE'/%3E%3C/svg%3E%0A");
+      color: var(--colorAccent);
+    }
+  }
 }
 
 @media (max-width: 650px) {

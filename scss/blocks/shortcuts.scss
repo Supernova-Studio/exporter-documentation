@@ -175,10 +175,10 @@
 
     .content {
       padding: var(--shortcutHorizontalContentPadding);
-      justify-content: center;
       display: flex;
       flex-direction: column;
       gap: 2px; /* intentionally non-overridable by the theming */
+      margin-top: 2px; /* compensating vertical alignment for multi-line text */
     }
 
     div.preview,

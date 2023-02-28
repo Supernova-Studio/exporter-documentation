@@ -174,8 +174,19 @@
   z-index: 2;
   font-weight: var(--fontWeightSemibold);
   font-size: var(--fontSizeSmall);
-  padding: 12px 20px;
+  padding: 12px;
   cursor: pointer;
+  display: flex;
+
+  .icon {
+    margin-right: 4px;
+    transition: var(--transitionDefault);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
 }
 
 .accordion-section a.collapsed .accordion-header {
@@ -193,16 +204,24 @@
   border-bottom: 0px;
 }
 
+.accordion-section:first-of-type a.collapsed .accordion-header {
+  border-top: 0px;
+}
+
 .accordion-section a:not(.collapsed) .accordion-header {
   background-color: var(--colorAccentSurface);
   color: var(--colorAccent);
   border-bottom: 1px solid var(--colorAccent);
   margin-bottom: 1px;
+
+  .icon {
+    transform: rotate(90deg);
+  }
 }
 
 .accordion-body {
   background: var(--colorBackgroundPrimary);
-  padding: 16px 24px;
+  padding: 16px 32px;
   margin-top: -1px;
 }
 

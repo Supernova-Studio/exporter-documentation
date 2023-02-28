@@ -6,8 +6,8 @@
          <label class="SNSearch-input-label">
             <span class="icon">{[ inject "icon_search" context configuration /]}</span>
          </label>
-         <form action="" novalidate="" class="SNSearch-form">
-            <input class="SNSearch-input" id="SNSearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search documentation..." maxlength="64" enterkeyhint="go">
+         <form class="SNSearch-form">
+            <input class="SNSearch-input" id="SNSearch-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Search documentation..." maxlength="64" enterkeyhint="go">
          </form>
          <button class="SNSearch-close search">
             <span class="icon">{[ inject "icon_close" context configuration /]}</span>

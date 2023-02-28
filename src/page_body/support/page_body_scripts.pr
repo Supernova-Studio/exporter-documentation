@@ -31,6 +31,11 @@
 <script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
 <script src="{{ assetUrl("js/cookie-consent.js", domain)}}"></script>
 
+{[ if exportConfiguration().contentIncludeLottiePlayer ]}
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" async></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js" async></script>
+{[/]}
+
 <!-- After loading -->
 <script>
 $(document).ready(function() {
@@ -46,7 +51,7 @@ $(document).ready(function() {
     const cookieConsent = new CookieConsent({
         content: {
             "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
-            "body": "{{ escapeHtml(configuration.cookiesBannerDescription) }}",
+            "body": "{{ addSlashes(configuration.cookiesBannerDescription) }}",
         },
         postSelectionCallback: () => { 
             {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
@@ -54,6 +59,10 @@ $(document).ready(function() {
             },
     });
     {[/]}
+
+    $("input[data-toggle='list-search']").on("keyup", function() {
+        searchInList($(this),$(this).attr("data-list-id"));
+    });
 })
 </script>
 
