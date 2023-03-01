@@ -220,7 +220,7 @@ function matchWords(subject, words) {
 ------------------------------- */
 function downloadAssets(target, list) {
     
-    const url = "YOUR_URL";
+    const url = "https://jiris-zen.docs.dev.supernova.io/figma-tokens/latest/download-assets";
     const data = {
         "settings": [{
             "prefix": "",
@@ -242,11 +242,20 @@ function downloadAssets(target, list) {
         headers: {
           "Content-Type": "application/json",
         },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-      }).then(r => console.log(r))
-
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data),
+    })
+    .then(response => response.blob())
+    .then(blob => {
+          var url = window.URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = "icons.zip";
+          document.body.appendChild(a); 
+          a.click();    
+          a.remove(); 
+    });
 }
 
 /*-----------------------------
