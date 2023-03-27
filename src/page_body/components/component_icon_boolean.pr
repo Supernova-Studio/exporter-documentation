@@ -3,11 +3,11 @@
 {[ let configuration = exportConfiguration() /]}
 
 {[ if (value === true) ]}
-    <div class="icon-boolean is-true" aria-label="{{ label }}">
+    <div class="icon-boolean is-true" role="img" aria-label="{{ label }}">
         {[ inject "icon_circle_check_filled" context configuration /]}
     </div>
 {[ else ]}
-    <div class="icon-boolean" aria-label="{{ label }}">
+    <div class="icon-boolean" role="img" aria-label="{{ label }}">
         {[ inject "icon_circle_error_filled" context configuration /]}
     </div>
 {[/]}

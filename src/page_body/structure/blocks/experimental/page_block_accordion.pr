@@ -6,7 +6,7 @@
 {[ for header in block.tabs.headers ]}
   <div class="card">
     <div class="card-header" id="accordion-{{ #index }}">
-      <p><a href="#" data-toggle="collapse" data-target="#accordion-collapse{{ #index }}" aria-expanded="false" aria-controls="accordion-collapse{{ #index }}" class="collapsed">{{ header }}</a></p>
+      <p><a href="#" data-toggle="collapse" data-target="#accordion-collapse{{ #index }}" aria-expanded="false" class="collapsed">{{ header }}</a></p>
     </div>
     <div id="accordion-collapse{{ #index }}" class="collapse" aria-labelledby="accordion-{{ #index }}" data-parent="#accordionDefault">
       <div class="card-body">{{ block.tabs.content.at(#index) }}</div>

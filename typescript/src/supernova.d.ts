@@ -491,17 +491,19 @@ declare global {
     brandId: string | null
     name: string | null
     description: string | null
-    origin: {
-      sourceId: string
-      id: string
-      nodeId: string
-      name: string
-      fileId: string
-      fileName: string
-      sourceType: "string"
-    }
+    origin: DesignComponentOrigin
     createdAt: string | null
     updateAt: string | null
+  }
+
+  type DesignComponentOrigin = {
+    sourceId: string
+    id: string
+    nodeId: string
+    name: string
+    fileId: string
+    fileName: string
+    sourceType: "string"
   }
 
 } // declare global

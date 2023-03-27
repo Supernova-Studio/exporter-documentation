@@ -1,36 +1,62 @@
 {[ const frame = context /]}
+{[ let configuration = exportConfiguration() /]}
+{[ let defaultBackgroundStyle = configuration.blockConfigAssetsDefaultBackground /]}
 
 {* Get the asset *}
 {[ let asset = ds.assetById(frame.assetId) /]}
 
 {* Only render asset if it actually exists *}
 {[ if asset ]}
-
     {* Decide on properties *}
+    {* todo: this needs proper refactoring and background resolution *}
     {[ let backgroundColor = "transparent" /]}
     {[ let showChecker = true /]}
+    {[ let showBorder = true /]}
+    {[ let invertedTextClass = false /]}
     {[ if (frame.backgroundColor && frame.backgroundColor.value) ]}
         {* Only raw values are currently supported, tokens soon *}
         {[ backgroundColor = frame.backgroundColor.value /]}
         {[ showChecker = false /]}
+        {[ if (backgroundColor !== "#ffffffff") ]}
+             {[ showBorder = false /]}
+        {[/]}
+        {[ invertedTextClass = getClassForInvertedText(backgroundColor) /]}
     {[/]}
 
     {[ let title = (frame.title ? frame.title : asset.name) /]}
     {[ let description = (frame.description ? frame.description : asset.description) /]}
 
+    {[ let checkeredClass = "" /]}
+    {[ if (defaultBackgroundStyle === "Subtle checkered background") ]}
+        {[ checkeredClass = "  checkered-background-light" /]}
+    {[/]}
+    {[ if (defaultBackgroundStyle === "Prominent checkered background") ]}
+        {[ checkeredClass = " checkered-background" /]}
+    {[/]}
+
     {* Render the asset *}
-    <div class="tile-item asset-item">      
-        <div class="preview frame {{ showChecker ? "checkered-background-light" : ""}}" style="background-color: {{ backgroundColor }}">
+    <div class="tile-item asset-item{{ invertedTextClass ? (" " + invertedTextClass) : "" }}" data-keywords="{{ normalizeStringForSearch(title) }} {{ normalizeStringForSearch(description) }}">      
+        <div class="preview frame{{ showChecker ? checkeredClass : ""}}{{ !showBorder ? " borderless" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
-            <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" />
+            <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" height="{{ asset.origin.height }}" width="{{ asset.origin.width }}" />
         {[/]}
         
+        {[ if (asset.origin && (configuration.blockConfigAssetsItemActions === "Open in Figma")) ]}
+            <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" class="btn btn-white btn-floating btn-small btn-with-icon">
+                {[ inject "icon_figma" context configuration /]}
+                <span class="label">Open in Figma</span>
+            </a>
+        {[/]}
         </div>
         {[ if title ]}
-            <p class="title">{{ withHTMLNewlines(title) }}</p>
-        {[/]}
-        {[ if description ]}
-            <p class="description">{{ withHTMLNewlines(description) }}</p>    
+            <div class="meta">
+            {[ if title ]}
+                <p class="title">{{ withHTMLNewlines(title) }}</p>
+            {[/]}
+            {[ if description ]}
+                <p class="description">{{ withHTMLNewlines(description) }}</p>    
+            {[/]}
+            </div>
         {[/]}
     </div>
 {[/]}

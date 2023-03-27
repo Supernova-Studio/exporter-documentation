@@ -38,7 +38,9 @@
             {[/]}
         {[ elseif customProperty.linkElementType.equals("FigmaComponent") ]}
             {[ let designComponent = ds.designComponentById(customPropertyValue) /]}
-            <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent) }}" target="_blank">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
+            {[ if designComponent ]}
+                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent.origin) }}" target="_blank">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
+            {[/]}
         {[/]}
         
     {[ elseif customProperty.propertyType.equals("Generic") ]}
