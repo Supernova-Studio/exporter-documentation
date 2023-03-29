@@ -1,8 +1,8 @@
 {
-  "id": "io.supernova.documentation-main",
-  "name": "Default Documentation",
-  "description": "Default customizable exporter for design system documentation", 
-  "author": "Supernova",
+  "id": "com.moodysanalytics",
+  "name": "XD documentation theme",
+  "description": "XD exporter code set for design system documentation", 
+  "author": "Steve Lim",
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
