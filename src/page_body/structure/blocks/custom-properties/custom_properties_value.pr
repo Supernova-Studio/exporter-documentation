@@ -8,7 +8,6 @@
         {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
 {[ elseif customPropertyValue ]}
     {[ if customProperty.propertyType.equals("Select") ]}
-        
         {[ let optionValue = "" /]}
         {[ let optionColor = "" /]}
         {[ let contrastColor = "" /]}
@@ -24,13 +23,16 @@
         </span>
 
     {[ elseif customProperty.propertyType.equals("Boolean") ]}
+        
         {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
     {[ elseif customProperty.propertyType.equals("URL") ]}
+        
         <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ customPropertyValue }}" target="_blank">{[ inject "icon_new_window" context configuration /]} Open link</a>
     {[ elseif customProperty.propertyType.equals("Link") ]}
         {[ if customProperty.linkElementType.equals("DocumentationPage") ]}
+            {[ log "Doc page" /]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
-
+            {[ log page.deployedUrl /]}
             {[ if page.deployedUrl ]}
                 <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ page.deployedUrl }}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
@@ -42,7 +44,6 @@
                 <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent.origin) }}" target="_blank">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
             {[/]}
         {[/]}
-        
     {[ elseif customProperty.propertyType.equals("Generic") ]}
         <mark>{{ customPropertyValue }}</mark>
     {[ else ]}
