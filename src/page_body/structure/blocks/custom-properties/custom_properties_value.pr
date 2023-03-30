@@ -33,6 +33,7 @@
             {[ log "Doc page" /]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
             {[ log page.deployedUrl /]}
+            {[ log page /]}
             {[ if page.deployedUrl ]}
                 <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ page.deployedUrl }}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
