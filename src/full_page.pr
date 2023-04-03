@@ -53,7 +53,7 @@
 
     <div class="site">
       <div class="site-content-wrapper">
-        <div class="site-content">
+        <div class="site-content{[ if !configuration.showSidebar ]} no-sidebar{[/]}">
           {[ if configuration.showSidebar ]}
             <!-- Sidebar Navigation -->
             <div class="side-navigation-wrapper {{ ((globalConfiguration.sideNavigationStyle === "Dark") ? "style-dark" : "style-light")}}" id="side-navigation">
