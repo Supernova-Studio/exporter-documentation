@@ -2,11 +2,13 @@
 {* Get block *}
 {[ const block = context /]}
 
-{* Get properties *}
+{* Get component from the the main brand *}
 {[ let components = [] /]}
-{[ for brand in ds.allBrands() ]}
-   {[ components = components.concat(ds.allComponents(brand.id)) /]}
-{[/]}
+{[ let brands = ds.allBrands() /]}
+
+{[ components = components.concat(ds.allComponents(brands[0].id)) /]}
+
+{* Get component properties *}
 
 {[ let header = block.properties.header /]}
 {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
