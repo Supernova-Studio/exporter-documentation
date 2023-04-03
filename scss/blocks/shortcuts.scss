@@ -90,6 +90,7 @@
       line-height: 1.3;
       font-weight:  var(--shortcutTitleFontWeight);
       color: var(--colorInkPrimary);
+      overflow-wrap: anywhere;
     }
 
     p.description {
@@ -99,6 +100,7 @@
       line-height: 1.4;
       font-weight: var(--fontWeightRegular);
       color: var(--colorInkSecondary);
+      overflow-wrap: anywhere;
     }
 
     p.link {
