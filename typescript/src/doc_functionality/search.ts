@@ -65,18 +65,9 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
     for (let block of allBlocks) {
       if (block.hasOwnProperty("text")) {
         let textBlock = block as DocumentationPageBlockText
-        let text;
-
-        // encode html when block.type=Code
-        if (block.type === "Code") {
-          text = textBlock.text.spans.map((s) => s.text).join("").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-
-        } else {
-          text = textBlock.text.spans.map((s) => s.text).join("")
-        }
 
         data.push({
-          text: text,
+          text: textBlock.text.spans.map((s) => s.text).join("").replace(/</g, "&lt;").replace(/>/g, "&gt;"),
           type: block.type === "Heading" ? DocSearchResultDataType.sectionHeader : DocSearchResultDataType.contentBlock,
           pageName: pageName,
           category: category,
