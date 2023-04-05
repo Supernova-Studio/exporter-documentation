@@ -31,7 +31,7 @@
         <div class="site-logo-wrapper">
             {[ inject "component_site_logo" context page /]}
 
-            <button class="btn-search search expanded">
+            <button class="btn-icon-button btn-search search expanded">
                 <div class="icon">{[ inject "icon_search" context configuration /]}</div>
                 <div class="label">Search</div>
             </button>
