@@ -1,0 +1,5 @@
+{[ const block = context /]}
+
+<div class="content-block content-block--page-section">
+ Hi there!
+</div>

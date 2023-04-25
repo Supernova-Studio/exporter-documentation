@@ -622,6 +622,15 @@
     ],
     "blocks": [
       {
+        "key": "co.stevelim.documentation.page-section",
+        "category": "Content",
+        "title": "Page Section",
+        "description": "Show content as a full-width page section",
+        "icon": "icons/custom-block-page-section.png",
+        "mode": "block",
+        "properties": []
+      },
+      {
         "key": "io.supernova.documentation-main.markdown",
         "category": "Remote Data Blocks",
         "title": "Markdown",
