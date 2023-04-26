@@ -2,6 +2,8 @@
 
 {* Generate each block depending on this custom block identifier *}
 {[ switch block.key ]}
+{[ case "co.stevelim.documentation.page-section" ]}
+    {[ inject "page_block_custom_page_section" context block /]}
 {[ case "io.supernova.documentation-main.markdown" ]}
     {[ inject "page_block_custom_markdown" context block /]}
 {[ case "io.supernova.documentation-main.component-health" ]}
