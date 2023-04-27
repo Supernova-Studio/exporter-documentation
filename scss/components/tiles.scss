@@ -107,7 +107,7 @@
 				line-height: var(--lineHeightSmall);
 				font-weight: var(--fontWeightSemibold);
 				color: var(--colorInkPrimary);
-				overflow-wrap: break-word;
+				overflow-wrap: anywhere;
 			}
 			p.description {
 				margin: 0;
@@ -116,6 +116,7 @@
 				line-height: var(--lineHeightTiny);
 				font-weight: var(--fontWeightRegular);
 				color: var(--colorInkSecondary);
+        overflow-wrap: anywhere;
 			}
 
       &.hidden {
