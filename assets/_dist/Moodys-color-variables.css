@@ -1,0 +1,155 @@
+:root {
+    /* PRIMARY > Moody's Blue */
+    --blue: #0028A0;
+
+    /* SECONDARY */
+    /* Cyan */
+    --cyan: #009fdf;
+    --gray-200: #ddddde;
+
+    /* SUPPORTING Colors */
+    --green: #009775;
+    --light-blue: #41b6e6;
+    --dark-blue: #002e5d;
+    --light-green: #78be20;
+    --teal: #008c95;
+    --yellow: #fdd824;
+    --purple: #5c068c;
+    --magenta: #d9017a;
+    --red: #ba0c2f;
+    --orange: #e35205;
+    --black: #000000;
+    --white: #ffffff;
+
+    /* TINTS */
+    /* Tints > Moody's Blue */
+    --blue-100: #e6eaf6;
+    --blue-200: #bfc9e7;
+    --blue-300: #8094d0;
+    --blue-400: #405eb8;
+    /* --blue: #0028a0;  */
+    --blue-600: #001e78;
+    --blue-700: #001450;
+    --blue-800: #000a28;
+    
+    /* Tints > Cyan */
+    --cyan-100: #e6f5fc;
+    --cyan-200: #bfe7f7;
+    --cyan-300: #80cfef;
+    --cyan-400: #40b7e7;
+    /* --cyan: #009fdf; */
+    --cyan-600: #0077a7;
+    --cyan-700: #005070;
+    --cyan-800: #002838;
+
+    /* TINTS of Supporting Colors */
+    /* Tints > Green */
+    --green-100: #e6f5f1;
+    --green-200: #bfe5dd;
+    --green-300: #80cbba;
+    --green-400: #40b198;
+    /* --green: #009775; */
+    --green-600: #007158;
+    --green-700: #004c3b;
+    --green-800: #00261d;
+
+    /* Tints > Light Green */
+    --light-green-100: #f2f9e9;
+    --light-green-200: #ddefc7;
+    --light-green-300: #bcdf90;
+    --light-green-400: #9ace58;
+    /* --light-green: #78be20; */
+    --light-green-600: #5a8f18;
+    --light-green-700: #3c5f10;
+    --light-green-800: #1e3008;
+
+    /* Tints > Light Blue */
+    --light-blue-100: #ecf8fd;
+    --light-blue-200: #d0edf9;
+    --light-blue-300: #a0dbf3;
+    --light-blue-400: #71c8ec;
+    /* --light-blue: #41b6e6; */
+    --light-blue-600: #3189ad;
+    --light-blue-700: #215b73;
+    --light-blue-800: #102e3a;
+
+    /* Tints > Dark Blue */
+    --dark-blue-100: #e6eaef;
+    --dark-blue-200: #bfcbd7;
+    --dark-blue-300: #8097ae;
+    --dark-blue-400: #406286;
+    /* --dark-blue: #002e5d; */
+    --dark-blue-600: #002346;
+    --dark-blue-700: #00172f;
+    --dark-blue-800: #000c17;
+
+    /* Tints > Teal */
+    --teal-100: #e6f4f4;
+    --teal-200: #bfe2e5;
+    --teal-300: #80c6ca;
+    --teal-400: #40a9b0;
+    /* --teal: #008c95; */
+    --teal-600: #006970;
+    --teal-700: #00464b;
+    --teal-800: #002325;
+
+    /* Tints > Yellow */
+    --yellow-100: #fffbe9;
+    --yellow-200: #fff6c8;
+    --yellow-300: #feed92;
+    --yellow-400: #fee35b;
+    /* --yellow: #fdda24; */
+    --yellow-600: #bea41b;
+    --yellow-700: #7f6d12;
+    --yellow-800: #3f3709;
+
+    /* Tints > Purple */
+    --purple-100: #efe6f4;
+    --purple-200: #d6c1e2;
+    --purple-300: #ae83c6;
+    --purple-400: #8544a9;
+    /* --purple: #5c068c; */
+    --purple-600: #450569;
+    --purple-700: #2e0346;
+    --purple-800: #170223;
+
+    /* Tints > Magenta */
+    --magenta-100: #fbe6f2;
+    --magenta-200: #f6c0de;
+    --magenta-300: #ec80bd;
+    --magenta-400: #e3419b;
+    /* --magenta: #d9017a; */
+    --magenta-600: #a3015c;
+    --magenta-700: #6d013d;
+    --magenta-800: #36001f;
+
+    /* Tints > Red */
+    --red-100: #f8e7ea;
+    --red-200: #eec2cb;
+    --red-300: #dd8697;
+    --red-400: #cb4963;
+    /* --red: #ba0c2f; */
+    --red-600: #8c0923;
+    --red-700: #5d0618;
+    --red-800: #2f030c;
+
+    /* Tints > Orange */
+    --orange-100: #fceee6;
+    --orange-200: #f8d4c1;
+    --orange-300: #f1a982;
+    --orange-400: #ea7d44;
+    /* --orange: #e35205; */
+    --orange-600: #aa3e04;
+    --orange-700: #722903;
+    --orange-800: #391501;
+
+    /* Tints > Gray */
+    --gray-100: #f1f2f2;
+    /* --gray-200: #ddddde; */
+    --gray-300: #babcbd;
+    --gray-400: #989a9c;
+    --gray-500: #75787b;
+    --gray-600: #585a5c;
+    --gray-700: #3b3c3e;
+    --gray-800: #1d1e1f;
+}
