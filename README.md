@@ -5,6 +5,8 @@
 # Custom Supernova Documetation Templates
 This is my customization to the main _Documentation Exporter_ from Supernova. It includes the following changes:
 - add static file assets (`assets/_dist` & `assets/_img`)
+- remove "table of contents" & simplify main content column
+  - (right-side nav: `#content-nav-container`)
 
 # Documentation Exporter
 

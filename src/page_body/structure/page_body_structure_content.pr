@@ -13,24 +13,3 @@
         {[ hasTopLevelHeading = true /]}
     {[/]}
 {[/]}
-<div id="content-nav-container">
-    <nav id="content-nav">
-        {[ if ((hasHeading && configuration.tocShow) && (!isHomepage || (isHomepage && configuration.tocShowOnHomepage))) ]}
-            <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
-            <ul>
-                {[ for block in page.blocks ]}
-                {[ if (block.type.equals("Heading") && (!configuration.tocHideHeading3 || (configuration.tocHideHeading3 && block.headingType !== 3))) ]}
-                    {[ let menuClass = "" /]}
-                    {[ switch block.headingType ]}
-                        {[ case 2 ]}
-                            {[ set menuClass = (hasTopLevelHeading ? "sub" : "") /]}
-                        {[ case 3 ]}
-                            {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
-                    {[/]}
-                    <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
-                    {[/]}
-                {[/]}
-            </ul>
-        {[/]}
-    </nav>
-</div>

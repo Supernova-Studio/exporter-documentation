@@ -46,22 +46,6 @@ body.dark .docs-navigation .nav > .nav-item > .nav-link.active.group {
   color: rgba(255, 255, 255, 0.8);
 }
 
-body.dark #content-nav .content-nav-header {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-body.dark #content-nav a {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-body.dark #content-nav {
-  border-left: 1px solid #181921;
-}
-
-body.dark #content-nav li.active > a {
-  color: #4589ff;
-}
-
 body.dark pre[class*='language-'] {
   background-color: #161b22;
 }

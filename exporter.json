@@ -1,6 +1,6 @@
 {
   "id": "co.stevelim.dev",
-  "name": "XD documentation theme",
+  "name": "XD documentation theme *xprmntl",
   "description": "Customized Design Docs for XD", 
   "author": "Steve Lim",
   "organization": "Supernova",
@@ -296,7 +296,7 @@
         "label": "Show table of contents",
         "description": "When enabled, a table of contents will be displayed on the homepage.",
         "category": "Homepage",
-        "default": true
+        "default": false
       },
       {
         "key": "navigationOverrideHomepageLabel",
@@ -353,7 +353,7 @@
         "label": "Show table of contents",
         "description": "When enabled, a table of contents will be displayed on each page.",
         "category": "Pages",
-        "default": true
+        "default": false
       },
       {
         "key": "tocCustomLabel",
