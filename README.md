@@ -2,6 +2,10 @@
 
 [Supernova](https://supernova.io) is a design system platform that allows you to seamlessly translate your design system data to production-ready code, document your decisions, and build design system tools on top of a thriving ecosystem. Supernova works with any platform or tech stack, is used by many developers and organizations around the world, and can help you save time by replacing manual and repetitive tasks that all developers hate. To learn everything Supernova, please check out our [developer documentation](https://developers.supernova.io/).
 
+# Custom Supernova Documetation Templates
+This is my customization to the main _Documentation Exporter_ from Supernova. It includes the following changes:
+- add static file assets (`assets/_dist` & `assets/_img`)
+
 # Documentation Exporter
 
 The documentation exporter allows you to export static documentation build inside Supernova editor. This exporter and description is currently work in progress.
