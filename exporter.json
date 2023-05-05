@@ -1,12 +1,12 @@
 {
   "id": "co.stevelim.dev",
   "name": "XD documentation theme",
-  "description": "XD exporter code set for design system documentation", 
+  "description": "Customized Design Docs for XD", 
   "author": "Steve Lim",
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.5.2",
+  "version": "4.5.3",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -187,7 +187,6 @@
         "category": "Top navigation",
         "default": false
       },
-
       {
         "key": "advancedCustomizationShowCTA",
         "type": "boolean",
@@ -796,7 +795,6 @@
           "description": "Tabs displayed as an accordion.",
           "thumbnail": "thumbnails/Tabs_Accordion.png"
         }
-
       ],
       "TokenList": [
         {
@@ -906,7 +904,7 @@
           "key": "grid-4",
           "isDefault": true,
           "description": "One quarter of the page width, with a large preview.",
-          "thumbnail": "thumbnails/Token_GridItem-4.png" 
+          "thumbnail": "thumbnails/Token_GridItem-4.png"
         },
         {
           "name": "Grid Item (1/3 width)",
