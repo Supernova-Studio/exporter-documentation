@@ -17,6 +17,7 @@
     "pulsar": "1.0.0",
     "supernova": "1.0.0"
   },
+  "routing": "2",
   "type": "documentation",
   "tags": [
     "Documentation",
