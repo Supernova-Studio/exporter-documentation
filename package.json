@@ -23,7 +23,7 @@
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^7.0.1",
     "prettier-stylelint": "^0.4.2",
-    "sass-loader": "^13.0.2",
+    "sass-loader": "^13.3.0",
     "stylelint": "^14.9.1",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "terser-webpack-plugin": "^5.3.3",
