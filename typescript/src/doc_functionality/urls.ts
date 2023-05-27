@@ -27,7 +27,8 @@ export function pageUrl(
     return '';
   }
 
-  return [prefix, page.relativeUrl].filter(Boolean).join('/');
+  const pagePathSegments = page.relativeUrl.split('/').filter(Boolean);
+  return [prefix ?? '', ...pagePathSegments].join('/');
 }
 
 /** Generate page slug for the generated page */
