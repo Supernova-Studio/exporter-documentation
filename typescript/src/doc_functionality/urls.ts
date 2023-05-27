@@ -27,7 +27,7 @@ export function pageUrl(
     return '';
   }
 
-  return [prefix, page.relativeUrl].join('/');
+  return [prefix, page.relativeUrl].filter(Boolean).join('/');
 }
 
 /** Generate page slug for the generated page */
