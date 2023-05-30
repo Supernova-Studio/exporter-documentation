@@ -28,7 +28,7 @@ export function pageUrl(
   }
 
   const pagePathSegments = page.relativeUrl.split('/').filter(Boolean);
-  return [prefix ?? '', ...pagePathSegments].join('/');
+  return [prefix, ...pagePathSegments].join('/');
 }
 
 /** Generate page slug for the generated page */
