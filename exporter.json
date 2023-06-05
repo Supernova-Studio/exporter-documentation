@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.5.3",
+  "version": "4.6.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -19,13 +19,7 @@
   },
   "routing": "2",
   "type": "documentation",
-  "tags": [
-    "Documentation",
-    "Template",
-    "Docs",
-    "Reference site",
-    "Styleguide"
-  ],
+  "tags": ["Documentation", "Template", "Docs", "Reference site", "Styleguide"],
   "contributes": {
     "configuration": [
       {
@@ -147,10 +141,7 @@
         "label": "Color style",
         "description": "The overall color style used for the top navigation throughout your published documentation.",
         "category": "Top navigation",
-        "values": [
-          "Light",
-          "Dark"
-        ],
+        "values": ["Light", "Dark"],
         "default": "Dark"
       },
       {
@@ -174,10 +165,7 @@
         "label": "Search button type",
         "description": "The type of the search button in top navigation.",
         "category": "Top navigation",
-        "values": [
-          "Only icon",
-          "Icon + label"
-        ],
+        "values": ["Only icon", "Icon + label"],
         "default": "Only icon"
       },
       {
@@ -238,10 +226,7 @@
         "label": "Color style",
         "description": "The overall color style used for the side navigation throughout your published documentation.",
         "category": "Side navigation",
-        "values": [
-          "Light",
-          "Dark"
-        ],
+        "values": ["Light", "Dark"],
         "default": "Light"
       },
       {
@@ -313,10 +298,7 @@
         "label": "Page header style",
         "description": "The visual style of the header in your documentation. Choose between Default (edge to edge) and Boxed (with space surrounding the header).",
         "category": "Pages",
-        "values": [
-          "Default",
-          "Boxed"
-        ],
+        "values": ["Default", "Boxed"],
         "default": "Default"
       },
       {
@@ -378,10 +360,7 @@
         "label": "Asset block: Asset actions",
         "description": "Select which actions should be available for each asset in the list. Visible only in published documentation.",
         "category": "Blocks",
-        "values": [
-          "None",
-          "Open in Figma"
-        ],
+        "values": ["None", "Open in Figma"],
         "default": "None"
       },
       {
