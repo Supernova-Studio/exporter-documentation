@@ -298,6 +298,7 @@ declare global {
   type DocumentationPage = DocumentationItem & {
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
+    relativeUrl: string
   }
 
   type DocumentationPageStyle = {
