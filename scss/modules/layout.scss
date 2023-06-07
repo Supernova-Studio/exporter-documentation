@@ -85,6 +85,9 @@
   }
 }
 
+.site-content.no-sidebar {
+  --sideNavWidth: 0px;
+}
 
 /*=== Generic ===*/
 #main-wrapper {

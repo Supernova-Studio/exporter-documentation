@@ -1,2 +1,2 @@
 {[ const page = ds.documentationPageById(pageId) /]}
-{{ pageUrl(page, null) }}
+{{ pageUrl(page, null) }}.html
