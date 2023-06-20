@@ -739,75 +739,88 @@
         ]
       },
       {
-            "key": "io.rdc.documentation-main.contact",
-            "category": "Component Blocks",
-            "title": "Contact",
-            "description": "Picture and information of a person",
-            "icon": "icons/contact.png",
-            "mode": "block",
-            "properties": [{
-                "key": "name",
-                "default": "Full name",
-                "type": "string",
-                "label": "Full name"
-            },
-            {
-                "key": "team",
-                "default": "",
-                "type": "string",
-                "label": "Team"
-            },
-            {
-                "key": "email",
-                "default": "example@move.com",
-                "type": "string",
-                "label": "Email"
-            },
-            {
-                "key": "photo",
-                "default": "https://media.github.move.com/user/213/files/a567cc00-5e27-11ea-8986-f01f501a367c",
-                "type": "string",
-                "label": "Photo"
-            }]
-        },
-        {
-            "key": "io.rdc.documentation-main.example",
-            "category": "DO NOT USE",
-            "title": "[WIP] Example block",
-            "description": "for testing",
-            "icon": "icons/contact.png",
-            "mode": "block",
-            "properties": [{
-                "key": "string",
-                "default": "",
-                "type": "string",
-                "label": "string"
-            },
-            {
-                "key": "number",
-                "default": 0,
-                "type": "number",
-                "label": "number"
-            },
-            {
-                "key": "boolean",
-                "default": false,
-                "type": "boolean",
-                "label": "boolean"
-            },
-            {
-                "key": "enum",
-                "default": "first",
-                "values": ["first", "second", "third"],
-                "type": "enum",
-                "label": "enum"
-            },
-            {
-                "key": "image",
-                "type": "image",
-                "label": "image"
-            }]
-        }
+        "key": "io.rdc.documentation-main.contact",
+        "category": "Component Blocks",
+        "title": "Contact",
+        "description": "Picture and information of a person",
+        "icon": "icons/contact.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "name",
+            "default": "Full name",
+            "type": "string",
+            "label": "Full name"
+          },
+          {
+            "key": "team",
+            "default": "",
+            "type": "string",
+            "label": "Team"
+          },
+          {
+            "key": "email",
+            "default": "example@move.com",
+            "type": "string",
+            "label": "Email"
+          },
+          {
+            "key": "photo",
+            "default": "https://media.github.move.com/user/213/files/a567cc00-5e27-11ea-8986-f01f501a367c",
+            "type": "string",
+            "label": "Photo"
+          }
+        ]
+      },
+      {
+        "key": "io.rdc.documentation-main.example",
+        "category": "DO NOT USE",
+        "title": "[WIP] Example block",
+        "description": "for testing",
+        "icon": "icons/contact.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "string",
+            "default": "",
+            "type": "string",
+            "label": "string"
+          },
+          {
+            "key": "number",
+            "default": 0,
+            "type": "number",
+            "label": "number"
+          },
+          {
+            "key": "boolean",
+            "default": false,
+            "type": "boolean",
+            "label": "boolean"
+          },
+          {
+            "key": "enum",
+            "default": "first",
+            "values": ["first", "second", "third"],
+            "type": "enum",
+            "label": "enum"
+          },
+          {
+            "key": "image",
+            "type": "image",
+            "label": "image"
+          }
+        ]
+      },
+      {
+        "key": "io.rdc.documentation-main.questions-section",
+        "category": "Component Blocks",
+        "title": "Questions section",
+        "description": "Add the questions section",
+        "icon": "icons/icon-circle-question.png",
+        "mode": "block",
+        "properties": []
+      }
     ],
     "blockVariants": {
       "Tabs": [

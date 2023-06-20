@@ -1,0 +1,17 @@
+{[ const block = context /]}
+
+<div class="questions-section-container">
+    <h2 class="heading heading--level-2">Questions?</h2>
+    <ul class="content-block">
+        <li>
+            Join us for <a href="https://moveinc.atlassian.net/l/cp/4XJVmsXg" target="_blank">Office hours</a> 3 days a week.
+        </li>
+        <li>
+            Start a discussion in our <a href="https://moveinc.slack.com/archives/C01LAGS1013" target="_blank">#design-systems</a> Slack channel.
+        </li>
+        <li>
+            Log issues, defects, or submit contributions through our <a href="https://forms.gle/uwXE9ojGKADUss2V6" target="_blank">Contribution form</a>.
+        </li>
+   </ul>
+   <p>Thank you for contributing to make the system better for everyone!</p>
+</div>
