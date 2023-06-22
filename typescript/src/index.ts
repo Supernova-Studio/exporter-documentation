@@ -11,7 +11,7 @@ import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
-import { assetUrl, textBlockPlainText, pageUrl, rootUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
+import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -52,6 +52,7 @@ Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)
 
 /* URL manipulation and support */
 Pulsar.registerFunction("pageUrl", pageUrl)
+Pulsar.registerFunction("pageUrlForFilepath", pageUrlForFilepath);
 Pulsar.registerFunction("pageIdentifier", pageIdentifier)
 Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)

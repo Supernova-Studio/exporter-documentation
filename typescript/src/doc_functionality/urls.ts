@@ -28,7 +28,27 @@ export function pageUrl(
   }
 
   const pagePathSegments = page.relativeUrl.split('/').filter(Boolean);
-  return [prefix, ...pagePathSegments].join('/');
+  const url = [prefix, ...pagePathSegments].join('/');
+  const systemData = Pulsar.systemData?.() as any;
+  if (systemData && systemData.environment === 'extension') {
+    // For VSCode, retrieve the URL containing .html so local FS can read it
+    return url + '.html';
+  } else {
+    // For web, keep server-obtained URL
+    return url;
+  }
+}
+
+export function pageUrlForFilepath(
+  object: DocumentationPage | DocumentationGroup,
+  prefix: string | undefined
+) {
+  let url = pageUrl(object, prefix);
+  if (!url.endsWith('.html')) {
+    // Make sure file writing URL always ends with .html
+    return url + '.html';
+  }
+  return url;
 }
 
 /** Generate page slug for the generated page */
