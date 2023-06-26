@@ -791,12 +791,6 @@
             "key": "image",
             "type": "image",
             "label": "image"
-          },
-          {
-            "key": "string",
-            "default": "",
-            "type": "figma",
-            "label": "Figma"
           }
         ]
       },
