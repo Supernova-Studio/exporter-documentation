@@ -773,42 +773,30 @@
         ]
       },
       {
-        "key": "io.rdc.documentation-main.example",
-        "category": "DO NOT USE",
-        "title": "[WIP] Example block",
-        "description": "for testing",
-        "icon": "icons/contact.png",
+        "key": "io.rdc.documentation-main.do-dont",
+        "category": "Component Blocks",
+        "title": "Do/Don't",
+        "description": "Advice for how and how not to use a components",
+        "icon": "icons/icon-circle-check.png",
         "mode": "block",
         "properties": [
           {
-            "key": "string",
-            "default": "",
-            "type": "string",
-            "label": "string"
-          },
-          {
-            "key": "number",
-            "default": 0,
-            "type": "number",
-            "label": "number"
-          },
-          {
-            "key": "boolean",
-            "default": false,
-            "type": "boolean",
-            "label": "boolean"
-          },
-          {
             "key": "enum",
-            "default": "first",
-            "values": ["first", "second", "third"],
+            "default": "do",
+            "values": ["do", "don't", "caution"],
             "type": "enum",
-            "label": "enum"
+            "label": "Type"
           },
           {
             "key": "image",
             "type": "image",
             "label": "image"
+          },
+          {
+            "key": "string",
+            "default": "",
+            "type": "figma",
+            "label": "Figma"
           }
         ]
       },
