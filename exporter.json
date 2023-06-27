@@ -781,11 +781,17 @@
         "mode": "block",
         "properties": [
           {
-            "key": "enum",
+            "key": "blockType",
             "default": "do",
-            "values": ["do", "don't", "caution"],
+            "values": ["Do", "Don't", "Caution"],
             "type": "enum",
             "label": "Type"
+          },
+          {
+            "key": "description",
+            "default": "",
+            "type": "string",
+            "label": "Description"
           },
           {
             "key": "image",

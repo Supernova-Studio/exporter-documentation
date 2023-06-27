@@ -1,13 +1,19 @@
 {[ const block = context /]}
-{[ let type = block.properties.enum /]}
+{[ let type = block.properties.blockType /]}
+{[ let classType = block.properties.blockType /]}
+{[ if (type === "Don't")]}
+    {[ type = "Dont" /]}
+{[/]}
+{[ let description = block.properties.description /]}
 {[ let configuration = exportConfiguration() /]}
+
 <div class="do-dont-block">
-    <img class="block-image-content" src="{{ block.properties}}"  />
-    <div class="block-caption {{ type }}">
+    <img class="block-image-content" src="{{ block.properties.image }}"  />
+    <div class="block-caption {{ classType }}">
         <div class="icon">
         {[ if (type === "do")]}
             {[ inject "icon_warning_color_filled" context configuration /]}
-        {[ elseif (type === "don't")]}
+        {[ elseif (type === "dont")]}
             {[ inject "icon_warning_color_filled" context configuration /]}
         {[ elseif (type === "warning")]}
             {[ inject "icon_warning_color_filled" context configuration /]}
@@ -15,11 +21,11 @@
         </div>
         <span class="info">
             <h3>{{ type }}</h3>
-            <p>{{ block.properties }}</p>
-            <p>{{ block.properties.src }}</p>
-            <p>{{ block.properties.blob }}</p>
-            <p>{{ block.properties.link }}</p>
-            <p>{{ block.properties.url }}</p>
-        </span>
+            <p>{{ description }}</p>
+            {[ if (block.properties.image)]}
+              <p>{{ block.properties.image.src }}</p>
+              <p>{{ block.properties.image.url }}</p>
+              <p>{{ block.properties.image.image }}</p>
+            {[/]}
     </div>
 </div>
