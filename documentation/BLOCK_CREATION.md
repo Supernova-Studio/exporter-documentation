@@ -2,7 +2,7 @@
 A step by step guide on creating custom blocks and any "gotchas" you may need to worry about.
 
 ## Editing exporter.json
-To get started writing a custom block, add in the block declaration to `"blocks"` in	`exporter.json` . It contains all the data shown to the user and used in the Pulsar code:
+To get started writing a custom block, add in the block declaration to `"blocks"` in `exporter.json` . It contains all the data shown to the user and used in the Pulsar code:
 
 ```jsx       
 "blocks": [{
@@ -16,12 +16,12 @@ To get started writing a custom block, add in the block declaration to `"blocks"
 }],
 ```
 
-Block declarations require:
+Block declarations contain:
 - `key` - Unique key used in code. Use the format  `io.rdc.documentation-main.{block name}` to identify the block as ours
 - `category` - Category name shown in Supernova's editor. Stick to the existing categories unless they don't make sense for your block
 - `title` - Name of block shown in editor
 - `description` - Short description of block shown in editor. Keep this as short as possible
-- `icon` - Icon used for block
+- `icon` - Icon used for block (optional)
 - `mode` - keep this as `"block"`
 - `properties` - see next section
 
@@ -120,46 +120,13 @@ As an example, the contact block has the three properties with the keys: photo, 
 The Pulsar language documentation isn't fully complete, but what exists should be the majority of what is needed to develop most custom blocks: https://developers.supernova.io/pulsar-language/language-features
 
 ## Handling CSS
-Since almost all the exporter styles are located in `assets/css/stylesheet.css`, it's imperative that the stylesheet is kept as clean and organized as possible. First, add your block to the table of contents at the beginning of the stylesheet under "11. Custom Blocks":
 
-```css
-/*
-=================================================
-  Table of Contents
-=================================================
+In the latest versions of the exporter, CSS for custom blocks is contained in their own file within `scss/blocks`. The file will need to be imported into `scss/main.scss` e.x.: `@import './blocks/questions-section';`.
 
-    1. Basic
-    2. Helpers Classes
-    3. Layouts
-	    3.1 Side Navigation
-	    3.2 Docs Content
-	    3.3 Section Divider
-    4. Header
-	    4.1 Main Navigation
-	5. Elements
-	    5.1 List Style
-	    5.2 Changelog
-	    5.3 Accordion & Toggle
-	    5.4 Nav
-	    5.5 Tabs
-	    5.6 Popup Img
-	    5.7 Featured Box
-	6. Footer
-	    6.1 Social Icons
-	    6.2 Back to Top
-    7. Blocks
-	8. Extra
-    9. Token previews
-    10. Responsive
-    11. Custom Blocks
-        11.1 Contact 
-        11.2 Component Health 
-	    11.3 YOUR NEW BLOCK
+## Workflow
 
-=======================================================*/
-```
+The first step should be declaring the block in `exporter.json`. This can be commited directly in `master`. From that point, the `exporter.json` changes should be pulled in on Supernova and hard refresh. Create the block in the [_custom blocks page](https://haven.preview.supernova-docs.io/latest/resources/custom-blocks-vv1BNHL1) and hit publish.
 
-From there, you can find the blocks section in the document and add the separator:
-`/*=== 11.3 YOUR NEW BLOCK ===*/`
+From this point, the custom block can be developed in a new branch using the [Supernova VSCode extension](https://marketplace.visualstudio.com/items?itemName=SupernovaIO.pulsar-vsc-extension). Once your account is logged in and your workspace is set to haven, a local build can be made by pressing the "run exporter" button (alternatively found in the command palette). For CSS changes, `npm run build` will need to be ran before the local build. 
 
-As all of the styles use classes, they should be prefixed with the block title (provided they do not conflict with existing classes). For example, if your new block is called card and you have a wrapper that needs a class, name it `card-wrapper`. 
+Once the block's HTML and CSS has been created, a PR can be made and should be reviewed by the Web Platform team.

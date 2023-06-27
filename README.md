@@ -7,7 +7,6 @@ The RDC documentation exporter is a fork for Supernova's own [exporter](https://
 ## Table of contents 
 - [Exporter Overview](./documentation/EXPORTER_OVERVIEW.md) - An overview of the exporter and how to make changes to it 
 - [Block Creation](./documentation/BLOCK_CREATION.md) - Full step by step guide on creating custom blocks
-- [Documentation Guide](./documentation/DOCUMENTATION_GUIDE.md) - Learn how to write about your changes and custom blocks
 
 ## File Structure
 ```
@@ -66,3 +65,6 @@ Additionally, we are also developing and maintaining exporters for specific use 
 - [HTML Preview Exporter](https://github.com/Supernova-Studio/exporter-html-preview)
 
 To browse all exporters created by our amazing community, please visit the [Supernova](https://supernova.io) Exporter Store.
+
+### Support
+For support on block creation, configuration and other questions, reach out to [#rdc-ui](https://moveinc.slack.com/archives/CHCH9CZQW) or the Supernova slack directly (See #rdc-ui for access).
