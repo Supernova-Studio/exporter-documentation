@@ -782,7 +782,7 @@
         "properties": [
           {
             "key": "blockType",
-            "default": "do",
+            "default": "Do",
             "values": ["Do", "Don't", "Caution"],
             "type": "enum",
             "label": "Type"
@@ -797,8 +797,21 @@
             "key": "image",
             "type": "image",
             "label": "image"
+          },
+          {
+            "key": "useSeperateTop",
+            "default": false,
+            "type": "boolean",
+            "label": "Use seperate top (Must have Do/Don't Top above)"
           }
         ]
+      },
+      {
+        "key": "io.rdc.documentation-main.do-dont-top",
+        "category": "Component Blocks",
+        "title": "Do/Don't Top",
+        "description": "For use with Do/Don't block components that have Use Seperate Top enabled",
+        "mode": "block"
       },
       {
         "key": "io.rdc.documentation-main.questions-section",

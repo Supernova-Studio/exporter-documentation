@@ -1,0 +1,3 @@
+{[ let configuration = context /]}
+
+<svg data-testid="icon-error" viewBox="0 0 24 24"><path d="m11.207 13.547-.656-7A.5.5 0 0 1 11.05 6h1.902a.5.5 0 0 1 .498.547l-.656 7a.5.5 0 0 1-.498.453h-.59a.5.5 0 0 1-.498-.453ZM13.5 16.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" clip-rule="evenodd"/></svg>

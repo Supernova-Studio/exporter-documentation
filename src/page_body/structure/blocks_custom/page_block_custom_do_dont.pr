@@ -2,30 +2,31 @@
 {[ let type = block.properties.blockType /]}
 {[ let classType = block.properties.blockType /]}
 {[ if (type === "Don't")]}
-    {[ type = "Dont" /]}
+    {[ classType = "Dont" /]}
 {[/]}
 {[ let description = block.properties.description /]}
 {[ let configuration = exportConfiguration() /]}
 
-<div class="do-dont-block">
-    <img class="block-image-content" src="{{ block.properties.image }}"  />
+{[ if (block.properties.useSeperateTop)]}
+    </div>
+{[ else ]}
+    <div class="do-dont-block">
+{[/]}
+    {[ if (block.properties.image)]}
+        <div class="block-image-content"><img src="{{ block.properties.image.asset.url }}"  /></>
+    {[/]}
     <div class="block-caption {{ classType }}">
         <div class="icon">
-        {[ if (type === "do")]}
-            {[ inject "icon_warning_color_filled" context configuration /]}
-        {[ elseif (type === "dont")]}
-            {[ inject "icon_warning_color_filled" context configuration /]}
-        {[ elseif (type === "warning")]}
-            {[ inject "icon_warning_color_filled" context configuration /]}
+        {[ if (type === "Do")]}
+            {[ inject "icon_rdc_circle_check" context configuration /]}
+        {[ elseif (type === "Don't")]}
+            {[ inject "icon_rdc_error" context configuration /]}
+        {[ elseif (type === "Caution")]}
+            {[ inject "icon_rdc_warning_color_filled" context configuration /]}
         {[/]}
         </div>
         <span class="info">
             <h3>{{ type }}</h3>
             <p>{{ description }}</p>
-            {[ if (block.properties.image)]}
-              <p>{{ block.properties.image.src }}</p>
-              <p>{{ block.properties.image.url }}</p>
-              <p>{{ block.properties.image.image }}</p>
-            {[/]}
     </div>
 </div>
