@@ -1,0 +1,39 @@
+/* =================================== */
+/*  Do/Don't block
+/* =================================== */
+.do-dont-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 0;
+    width: 700px;
+    .block-image-content {
+        border-radius: 2px;
+    }
+    .block-caption {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;   
+        padding: 20px 16px ;
+        border-radius: 0 0 24px 24px;
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 16px;
+            h3 {
+                margin-bottom: 8px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            p {
+                font-size: 16px;  
+            }
+        }
+    }
+    .do {
+        background-color: #E7F5E9;
+        border-top: 4px solid #0A801F;
+    }
+}

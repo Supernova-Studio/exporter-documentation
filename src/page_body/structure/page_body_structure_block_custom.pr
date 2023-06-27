@@ -18,4 +18,6 @@
     {[ inject "page_block_custom_release_notes" context block /]}
 {[ case "io.rdc.documentation-main.questions-section" ]}
     {[ inject "page_block_custom_questions_section" context block /]}
+{[ case "io.rdc.documentation-main.do-dont" ]}
+    {[ inject "page_block_custom_do_dont" context block /]}
 {[/]}

@@ -1,0 +1,3 @@
+{[ let configuration = context /]}
+
+<svg fill="currentColor" data-testid="icon-warning-filled-color" viewBox="0 0 24 24"><path fill="#F4B630" fill-rule="evenodd" d="M15.464 5c-1.54-2.667-5.389-2.667-6.928 0L2.474 15.5c-1.54 2.667.385 6 3.464 6h12.124c3.08 0 5.004-3.333 3.464-6L15.464 5ZM12 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-1.76-7.804.6 3a1 1 0 0 0 .98.804h.36a1 1 0 0 0 .98-.804l.6-3A1 1 0 0 0 12.78 9h-1.56a1 1 0 0 0-.98 1.196Z" clip-rule="evenodd"/><path fill="#2B2B2B" d="m10.84 13.196-.6-3A1 1 0 0 1 11.22 9h1.56a1 1 0 0 1 .98 1.196l-.6 3a1 1 0 0 1-.98.804h-.36a1 1 0 0 1-.98-.804ZM12 18a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>

@@ -1,0 +1,25 @@
+{[ const block = context /]}
+{[ let type = block.properties.enum /]}
+{[ let configuration = exportConfiguration() /]}
+<div class="do-dont-block">
+    <img class="block-image-content" src="{{ block.properties}}"  />
+    <div class="block-caption {{ type }}">
+        <div class="icon">
+        {[ if (type === "do")]}
+            {[ inject "icon_warning_color_filled" context configuration /]}
+        {[ elseif (type === "don't")]}
+            {[ inject "icon_warning_color_filled" context configuration /]}
+        {[ elseif (type === "warning")]}
+            {[ inject "icon_warning_color_filled" context configuration /]}
+        {[/]}
+        </div>
+        <span class="info">
+            <h3>{{ type }}</h3>
+            <p>{{ block.properties }}</p>
+            <p>{{ block.properties.src }}</p>
+            <p>{{ block.properties.blob }}</p>
+            <p>{{ block.properties.link }}</p>
+            <p>{{ block.properties.url }}</p>
+        </span>
+    </div>
+</div>
