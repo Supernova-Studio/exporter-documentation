@@ -8,6 +8,8 @@
 {[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
 {[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
 {[ let globalConfiguration = exportConfiguration() /]}
+{[ let headerConfiguration = configuration.header /]}
+{[ let centeredClass = (headerConfiguration.alignment === "Center" ? " centered" : "") /]}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +76,7 @@
             {* Generate content for the page *}
             <div class="content-container">
               <section id="section-content-page">
-                <main class="tab-content" id="page-tab-content">
+                <main class="tab-content{{ centeredClass }}" id="page-tab-content">
 
                 {[ for block in page.blocks ]}
                     {[ inject "page_body_structure_block" context ({"block": block, "pageId": page.id}) /]}
