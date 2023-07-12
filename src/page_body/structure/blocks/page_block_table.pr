@@ -27,11 +27,24 @@
   {* Row scope *}
   {[ let rowIndex = 0 /]}
   {[ for row in block.children ]}
-    {[ let tag = (((rowIndex === 0) && block.tableProperties.showHeaderRow) ? "th" : "td") /]}
+    {[ if (rowIndex === 0 && headerRow) ]}
+    <thead>
+    {[/]}
+    {[ if (rowIndex === 1 && headerRow) ]}
+    </thead>
+    <tbody>
+    {[/]}
+    {[ if (rowIndex === 0 && !headerRow) ]}
+    <tbody>
+    {[/]}
     <tr>
+    {[ let cellTag = (((rowIndex === 0) && block.tableProperties.showHeaderRow) ? "th" : "td") /]}
     {* Cell scope *}
+    {[ let cellIndex = 0 /]}
     {[ for cell in row.children ]}
       {[ let alignment = cell.alignment.lowercased() /]}
+      {[ let resolvedCellTag = (((cellIndex === 0) && block.tableProperties.showHeaderColumn) ? "th" : cellTag) /]}
+
       {[ if (rowIndex === 0) ]}
           {* provide size for column for the first row *}
           {[ let columnSize = "auto" /]}
@@ -40,19 +53,21 @@
                   {[ columnSize = (column.width.value.measure.toString().suffixed("px")) /]}
               {[/]}
           {[/]}
-          <{{tag}} class="{{ alignment }}" style="width: {{ columnSize }}">
+          <{{resolvedCellTag}} class="{{ alignment }}" style="width: {{ columnSize }}">
       {[ else ]}
-      <{{tag}} class="{{ alignment }}">
+      <{{resolvedCellTag}} class="{{ alignment }}">
       {[/]}
         {* Cell content *}
         {[ for cellBlock in cell.children ]}
             {[ inject "page_body_structure_block" context {"block": cellBlock, "pageId": pageId} /]}
-        {[/]}      
-      </{{tag}}>
+        {[/]}
+      </{{resolvedCellTag}}>
+      {[ cellIndex = (cellIndex + 1) /]}
     {[/]}
     </tr>
     {[ rowIndex = (rowIndex + 1) /]}
   {[/]}
+  </tbody>
   </table>
   </div>
 </div>
