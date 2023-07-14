@@ -244,6 +244,12 @@ ol>.block-children {
 
 #page-tab-content {
     padding-top: var(--contentBlockGap);
+    max-width: var(--contentMaxWidth);
+
+    &.centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 
@@ -303,7 +309,7 @@ ol>.block-children {
         font-weight: var(--fontWeightRegular);
         font-size: var(--pageDescriptionFontSize);
         line-height: var(--pageDescriptionLineHeight, 1.4);
-        max-width: 768px;
+        max-width: var(--contentMaxWidth);
     }
 }
 

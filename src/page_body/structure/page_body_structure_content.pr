@@ -13,9 +13,15 @@
         {[ hasTopLevelHeading = true /]}
     {[/]}
 {[/]}
-<div id="content-nav-container">
-    <nav id="content-nav">
-        {[ if ((hasHeading && configuration.tocShow) && (!isHomepage || (isHomepage && configuration.tocShowOnHomepage))) ]}
+
+{[ let showTOC = (hasHeading && configuration.tocShow) /]}
+{[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
+
+{* Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container  *}
+{[ if showTOCOnHomepage ]}
+    <div id="content-nav-container">
+        <nav id="content-nav">
+        {[ if showTOC ]}
             <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
             <ul>
                 {[ for block in page.blocks ]}
@@ -32,5 +38,8 @@
                 {[/]}
             </ul>
         {[/]}
-    </nav>
-</div>
+        </nav>
+    </div>
+{[ else ]}
+    <style>:root { --tocContainerWidth: 0px; }</style>
+{[/]}
