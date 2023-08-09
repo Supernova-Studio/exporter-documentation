@@ -57,7 +57,7 @@
                 </ul>
 
                 <div class="utility-nav">
-                    
+
                     {[ if shouldShowTabbar ]}
                     <div id="mobile-menu-container" class="dropdown">
                         <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
@@ -67,7 +67,8 @@
                                     {* {[ if item.type.equals("Group") ]} *}
                                         {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                                         {[ if isActive ]}
-                                            {{ item.title }}
+                                            {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                                            {{ itemTitle }}
                                         {[/]}
                                     {* {[/]} *}
                                 {[/]}
@@ -77,7 +78,8 @@
                                 {* Only show if group or page is not hidden *}
                                 {[ if isExportable(item) ]}
                                     {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
-                                    <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ item.title }}</a>
+                                    {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                                    <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a>
                                 {[/]}
                             {[/]}
                         </div>
