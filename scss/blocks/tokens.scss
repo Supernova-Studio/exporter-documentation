@@ -38,6 +38,7 @@
     .token-type-shadow {
       width: 64px;
       height: 64px;
+      max-height: 60%;
     }
   }
 
@@ -72,7 +73,7 @@
 
 .theme-badge {
   position: absolute;
-  bottom: 6px;
+  top: 6px;
   right: 6px;
 
   svg {
@@ -104,6 +105,7 @@
 .token-preview-container-blur.large {
   width: 64px;
   height: 64px;
+  max-height: 60%;
 }
 
 .token-preview-container-blur {
@@ -320,6 +322,11 @@
     }
   }
 
+  .token-value {
+    font-size: 12px;
+    font-family: var(--fontFamily);
+  }
+
   &.variant-grid-3 {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 24px;
@@ -355,6 +362,7 @@
   width: 100%;
   height: 120px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 24px;
@@ -364,6 +372,47 @@
 
   &.bordered {
     border: 1px solid var(--colorBorderSubtle);
+  }
+
+  .value-preview { 
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .value-footer {
+    flex-shrink: 0;
+    height: 20px;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    border-top: 1px solid var(--colorBorderSubtle);
+    display: flex;
+    align-items: center;
+    padding: 1px 4px 0 4px;
+    min-width: 0;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    border-bottom-left-radius: var(--borderRadiusDefault);
+    border-bottom-right-radius: var(--borderRadiusDefault);
+
+    .token-value {
+      text-transform: none;
+      text-decoration: none;
+      font-weight: 400;
+      display: flex;
+      color: var(--colorInkSecondary);
+      overflow: auto;
+      white-space: nowrap;
+      background: transparent;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
   }
 }
 
@@ -394,7 +443,7 @@
 }
 
 .content-block--token-container .grid > div > p.title {
-  margin: 8px 0 4px 0;
+  margin: 8px 0 0 0;
   padding: 0;
   font-size: var(--fontSizeSmall);
   font-weight: var(--fontWeightSemibold);
@@ -424,7 +473,7 @@
 }
 
 .content-block--token-container .grid .custom-properties {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   background: transparent;
   border-top: 1px solid var(--colorBorderSubtle);
   border-radius: 0;
