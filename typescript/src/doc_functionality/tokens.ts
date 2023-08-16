@@ -180,6 +180,12 @@ export function measureTypeIntoReadableUnit(type: Unit): string {
       return "%"
     case "Ems":
       return "em"
+    case "Rem":
+      return "rem"
+    case "Ms":
+      return "ms"
+    case "Raw":
+      return ""
   }
 }
 
