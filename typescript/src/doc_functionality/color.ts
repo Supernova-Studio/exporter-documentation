@@ -53,7 +53,7 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
         classNames.push("bordered")
     }
 
-    if ((getColorContrast(color.hex) < 0.4 && color.a > 180)) {
+    if ((getColorContrast(color.hex) < 0.5 && color.a > 180)) {
         classNames.push("inverted-text")
     }
 
