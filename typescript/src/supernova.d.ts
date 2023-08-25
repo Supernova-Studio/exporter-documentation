@@ -32,7 +32,7 @@ declare global {
 
   type TextDecoration = "None" | "Underline" | "Strikethrough"
 
-  type Unit = "Pixels" | "Points" | "Percent" | "Ems"
+  type Unit = "Pixels" | "Points" | "Percent" | "Ems" | "Rem" | "Ms" | "Raw"
 
   type BorderPosition = "Inside" | "Center" | "Outside"
 
