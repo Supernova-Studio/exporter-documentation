@@ -299,6 +299,11 @@ $(document).ready(function() {
     // otherwise show formatted error message
     document.querySelectorAll('iframe.storybook').forEach(iframe => {
         let src = iframe.getAttribute('src');
+
+        if (!src.startsWith('https://')) {
+            return;
+        }
+
         fetch(src, {
                 method: 'GET',
                 cache: 'no-cache',
