@@ -54,7 +54,10 @@
                         <td class="name">
                             {[ if component.propertyValues["documentationLink"] ]}
                                 {[ let page = ds.documentationPageById(component.propertyValues["documentationLink"]) /]}
-                                <a href="{{ page.deployedUrl }}">{{ component.name }}</a>
+                                {[ let version = ds.currentDesignSystemVersion() /]}
+                                {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
+
+                                <a href="/{{versionPath}}/{{ page.relativeUrl }}">{{ component.name }}</a>
                             {[ else ]}
                                 {{ component.name }}
                             {[/]}

@@ -31,8 +31,11 @@
         {[ if customProperty.linkElementType.equals("DocumentationPage") ]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
 
-            {[ if page.deployedUrl ]}
-                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ page.deployedUrl }}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
+            {[ if page.relativeUrl ]}
+                {[ let version = ds.currentDesignSystemVersion() /]}
+                {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
+
+                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="/{{versionPath}}/{{ page.relativeUrl }}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
                 -
             {[/]}
