@@ -31,7 +31,7 @@
         {[ if customProperty.linkElementType.equals("DocumentationPage") ]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
 
-            {[ if page.relativeUrl ]}
+            {[ if ( page && page.relativeUrl) ]}
                 {[ let version = ds.currentDesignSystemVersion() /]}
                 {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
 
