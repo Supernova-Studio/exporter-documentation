@@ -52,7 +52,7 @@
                     {[ let propertyValues = component.propertyValues /]}
                     <tr>
                         <td class="name">
-                            {[ if component.propertyValues["documentationLink"] ]}
+                            {[ if (component.propertyValues["documentationLink"] && ds.documentationPageById(component.propertyValues["documentationLink"])) ]}
                                 {[ let page = ds.documentationPageById(component.propertyValues["documentationLink"]) /]}
                                 {[ let version = ds.currentDesignSystemVersion() /]}
                                 {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
