@@ -5,7 +5,7 @@
 
 import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames, getClassForInvertedText } from "./doc_functionality/color"
 import { convertHealthTagIfAny, getFigmaFileUrl, sortComponentsAlphabetically } from "./doc_functionality/health"
-import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray } from "./doc_functionality/lookup"
+import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray, firstTabGroupFromTop } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
@@ -29,6 +29,7 @@ Pulsar.registerFunction("isHomepage", isHomepage)
 Pulsar.registerFunction("resolveMenuLabel", resolveMenuLabel)
 Pulsar.registerFunction("getCurrentTimestamp", getCurrentTimestamp)
 Pulsar.registerFunction("checkKeyInArray", checkKeyInArray)
+Pulsar.registerFunction("firstTabGroupFromTop", firstTabGroupFromTop)
 
 /* General utils */
 Pulsar.registerFunction("getFullYear", getFullYear)
