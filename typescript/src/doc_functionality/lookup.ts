@@ -43,6 +43,7 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
 
 /** Find first showable page from the top of the provided root */
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
+
   for (let child of documentationRoot.children) {
     if (isExportable(child as DocumentationPage | DocumentationGroup)) {
       if (child.type === "Page") {
@@ -58,11 +59,27 @@ export function firstPageFromTop(documentationRoot: DocumentationGroup): Documen
   return null
 }
 
+
+/** Find first showable page from the top of the provided root */
+export function firstTabGroupFromTop(documentationRoot: DocumentationGroup): string[] | undefined {
+
+  for (let child of documentationRoot.children) {
+    if (isExportable(child as DocumentationPage | DocumentationGroup)) {
+      if (child.type === "Group" && (child as DocumentationGroup).groupBehavior === "Tabs") {
+        
+        return (child as DocumentationGroup).childrenIds
+      }
+    }
+  }
+  return undefined;
+}
+
 /** Check if the page is a homepage */
 export function isHomepage(page: DocumentationPage, documentationRoot: DocumentationGroup): boolean {
   
   let homepagePage = firstPageFromTop(documentationRoot)
-  if (homepagePage !== null && page.id === homepagePage.id) {
+  const homepageTabs = firstTabGroupFromTop(documentationRoot);
+  if ((homepagePage !== null && page.id === homepagePage.id) || homepageTabs?.includes(page.persistentId)) {
     return true;
   }
 

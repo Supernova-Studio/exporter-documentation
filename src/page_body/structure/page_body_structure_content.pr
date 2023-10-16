@@ -13,7 +13,6 @@
         {[ hasTopLevelHeading = true /]}
     {[/]}
 {[/]}
-
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 
