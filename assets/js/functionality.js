@@ -72,6 +72,12 @@ $(window).on('load', function() {
         observer.observe(section);
         sections.push(section);
     });
+
+    $('[data-action="copy-asset-content"]').on('click', function() {
+        // Extract the SVG URL from the src attribute of the sibling <img> element
+        const svgUrl = $(this).closest('.asset-item').find('img.asset-source').attr('src');
+        copySVGTextToClipboard(svgUrl);
+    });
 });
 
 function isElementInViewport(el) {
@@ -179,6 +185,157 @@ function loadSandboxes(url) {
         }
     });
 }
+
+/*-----------------------------
+    Download assets as ZIP
+------------------------------- */
+async function downloadAssets(assets, blockId) {
+    const zip = new JSZip();
+    const block = $(`[data-block-id="${blockId}"]`);
+    const button = $(block).find('[data-action="download-assets"]');
+
+    // Display the loading state
+    $(button).prop('disabled', true);
+    $(button).find('.label').addClass('hide');
+    $(button).find(' .loading').removeClass('hide').find(".text").text('Downloading... 0%');
+
+    let processedFiles = 0;
+    const totalFiles = Object.keys(assets).length;
+
+    const addFileToZip = async (fileName, url) => {
+        try {
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}. Status: ${response.status}`);
+            }
+            
+            const blob = await response.blob();
+
+            // Extract the file extension from the URL
+            const fileExtension = url.split('.').pop();
+
+            zip.file(`${fileName}.${fileExtension}`, blob);
+
+            processedFiles++;
+            
+            if (processedFiles === Object.keys(assets).length) {
+                $(button).find('.loading .text').text('Almost ready, zipping...');
+            } else {
+                let percentage = Math.round((processedFiles / totalFiles) * 100);
+                $(button).find('.loading .text').text('Downloading... ' + percentage + '%');
+            }
+
+        } catch (error) {
+            console.error(`Error adding file ${fileName} to zip.`, error);
+        }
+    };
+
+
+    const allFiles = Object.entries(assets).map(([name, url]) => addFileToZip(name, url));
+    await Promise.all(allFiles);
+
+    // Ensure zip generation
+    zip.generateAsync({ type: "blob" }).then(blob => {
+        
+        saveAs(blob, "assets.zip");
+
+        // Hide the loading state after the download starts
+        $(button).find('.loading').addClass('hide');
+        $(button).find('.label').removeClass('hide');
+        $(button).prop('disabled', false);
+
+        $.toast({
+            title: 'Download was successful',
+            position: 'bottom'
+        });
+    }).catch(error => { // Handle errors in zip generation
+        console.error("Error generating zip file.", error);
+
+        $.toast({
+            title: 'There was an error creating the zip file. Please try again.',
+            position: 'bottom'
+        });
+
+        $(button).find('.loading').addClass('hide');
+        $(button).find('.label').removeClass('hide');
+        $(button).prop('disabled', false);
+
+        $.toast({
+            title: 'Download failed',
+            position: 'bottom'
+        });
+    });;
+}
+
+// Initialize Download button
+/*-----------------------------
+   Initialize Download button
+------------------------------- */
+$('[data-action="download-assets"]').on('click', function() {
+    // Fetch the `data-id` attribute from the clicked button
+    const blockId = $(this).attr('data-from-block');
+    // Fetch all `.asset-item` elements with a matching `data-block-id` and extract their image URLs
+    const block = $(`[data-block-id="${blockId}"]`);
+    const assets = {};
+
+    block.find('.asset-item img').each(function() {
+        const imgElement = $(this);
+        const nameFromAlt = imgElement.attr('alt');
+        const url = imgElement.attr('src');
+        assets[nameFromAlt] = url;
+    });
+
+
+    // Call the `downloadAssets` function with the extracted URLs
+    if (Object.keys(assets).length > 0) {
+        downloadAssets(assets, blockId)
+    } else {
+        $.toast({
+            title: 'Download failed',
+            position: 'bottom'
+        });
+    }
+});
+
+
+/*-----------------------------
+    Copy SVG assset to clipboard
+------------------------------- */
+async function copySVGTextToClipboard(svgURL) {
+    try {
+        // Fetch the SVG content from the URL
+        let response = await fetch(svgURL);
+        if (!response.ok) {
+            $.toast({
+                title: 'An error occured while copying SVG (this one)',
+                position: 'bottom'
+            });
+            throw new Error('Network response was not ok');
+        }
+
+        let svgData = await response.text();
+        
+        // Copy the SVG content to the clipboard using navigator.clipboard API
+
+        await navigator.clipboard.writeText(svgData);
+    
+        // Notify user
+        $.toast({
+            title: 'SVG copied to clipboard',
+            position: 'bottom'
+        });
+    
+    } catch(err) {
+        console.error("Error:", err);
+        $.toast({
+            title: 'An error occured while copying SVG',
+            position: 'bottom'
+        });
+    }
+}
+
+
 
 /*-----------------------------
     Tooltips

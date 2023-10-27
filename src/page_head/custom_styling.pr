@@ -37,6 +37,10 @@
     {[ else ]}
     --contentMaxWidth: 756px;
     {[/]}
+    {* Icons *}
+    {[ if (configuration.iconStrokeWidth !== "") ]}
+    --iconStrokeWidth: {{ configuration.iconStrokeWidth }};
+    {[/]}
     {* Top navigation *}
     {[ if (configuration.topNavigationHeight !== 0) ]}
     --topNavHeight: {{ configuration.topNavigationHeight }}px;
