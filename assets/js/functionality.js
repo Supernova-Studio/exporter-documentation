@@ -265,12 +265,11 @@ async function downloadAssets(assets, blockId) {
             title: 'Download failed',
             position: 'bottom'
         });
-    });;
+    });
 }
 
-// Initialize Download button
 /*-----------------------------
-   Initialize Download button
+   Initialize Download button for all assets download
 ------------------------------- */
 $('[data-action="download-assets"]').on('click', function() {
     // Fetch the `data-id` attribute from the clicked button
@@ -296,6 +295,48 @@ $('[data-action="download-assets"]').on('click', function() {
             position: 'bottom'
         });
     }
+});
+
+
+/**
+ * Downlaod and rename a file
+ */
+async function downloadAndRenameFile(url, newName) {
+    try {
+        // Extract the file extension from the URL
+        const fileExtension = url.split('.').pop();
+
+        // Combine the new filename with the extracted extension
+        const newFilename = `${newName}.${fileExtension}`;
+
+        // Fetch the content of the file
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        // Trigger the download with the new filename using saveAs function
+        saveAs(blob, newFilename);
+
+        $.toast({
+            title: 'Download was successful',
+            position: 'bottom'
+        });
+    } catch (error) {
+        $.toast({
+            title: 'Download failed',
+            position: 'bottom'
+        });
+    }
+}
+
+/*-----------------------------
+   Initialize Download button for a single asset download
+------------------------------- */
+$('[data-action="download-asset"]').on('click', function() {
+    const asset = $(this).closest('.asset-item').find('img.asset-source')
+    const url = $(asset).attr('src');
+    const name = (asset).attr('alt');
+    
+    downloadAndRenameFile(url, name);
 });
 
 

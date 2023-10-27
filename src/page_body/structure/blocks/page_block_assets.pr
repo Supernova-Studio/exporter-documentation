@@ -8,9 +8,7 @@
 
 {* Render tile per rendered frame *}
 <div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}" data-block-id="{{block.id}}">
-    
-    <div class="loading-state" style="display: none;">Downloading... Please wait...</div>
-  {[ if displaySearch ]}
+    {[ if displaySearch ]}
     <div class="input-search-container">
         <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}"/>
         <button class="btn btn-light btn-with-icon" data-action="download-assets" data-from-block="{{block.id}}">
