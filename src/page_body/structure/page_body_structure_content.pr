@@ -18,7 +18,7 @@
 {[/]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
-{*  *}
+
 {*
      Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
      With one exception — if there is a sidebar, we need to render TOC container to make sure the page layout doesn't jump when navigating across pages
