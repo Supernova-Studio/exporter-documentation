@@ -6,6 +6,7 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let configuration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 {[ let isHomepage = isHomepage(page, ds.rootDocumentationGroup()) /]}
+{[ let isHomepageTab = isHomepageTab(page, ds.rootDocumentationGroup()) /]}
 {[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
 {[ let globalConfiguration = exportConfiguration() /]}
 {[ let headerConfiguration = configuration.header /]}
@@ -16,7 +17,7 @@
 {[ inject "page_head" context page /]}
 {[ const domain = ds.documentationDomain() /]}
 
-<body class="{{ pageIdentifier(page) }}{{ isHomepage ? " is-homepage" : "" }}">
+<body class="{{ pageIdentifier(page) }}{{ (isHomepage || isHomepageTab) ? " is-homepage" : "" }}">
 {* <body class="{{ exportConfiguration().defaultVisualMode }}"> *}
 {* {[ if exportConfiguration().showVisualModeSwitch ]} - hard-disabled for now, until full customization is in place *}
 {[ if false ]}

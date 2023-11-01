@@ -60,26 +60,37 @@ export function firstPageFromTop(documentationRoot: DocumentationGroup): Documen
 }
 
 
-/** Find first showable page from the top of the provided root */
+/** Get all children of the page if the homepage is tabs */
 export function firstTabGroupFromTop(documentationRoot: DocumentationGroup): string[] | undefined {
 
+  let pageCount = 0;
   for (let child of documentationRoot.children) {
     if (isExportable(child as DocumentationPage | DocumentationGroup)) {
-      if (child.type === "Group" && (child as DocumentationGroup).groupBehavior === "Tabs") {
-        
+      if (pageCount === 0 && child.type === "Group" && (child as DocumentationGroup).groupBehavior === "Tabs") {
         return (child as DocumentationGroup).childrenIds
       }
+      pageCount++;
     }
   }
   return undefined;
+}
+
+/** Check if the page is part of the homepage (if homepage is tabs) */
+export function isHomepageTab(page: DocumentationPage, documentationRoot: DocumentationGroup): boolean {
+  
+  const homepageTabs = firstTabGroupFromTop(documentationRoot);
+  if (homepageTabs?.includes(page.persistentId)) {
+    return true;
+  }
+
+  return false;
 }
 
 /** Check if the page is a homepage */
 export function isHomepage(page: DocumentationPage, documentationRoot: DocumentationGroup): boolean {
   
   let homepagePage = firstPageFromTop(documentationRoot)
-  const homepageTabs = firstTabGroupFromTop(documentationRoot);
-  if ((homepagePage !== null && page.id === homepagePage.id) || homepageTabs?.includes(page.persistentId)) {
+  if ((homepagePage !== null && page.id === homepagePage.id)) {
     return true;
   }
 
