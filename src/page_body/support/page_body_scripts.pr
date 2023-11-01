@@ -51,7 +51,7 @@ $(document).ready(function() {
     const cookieConsent = new CookieConsent({
         content: {
             "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
-            "body": "{{ addSlashes(configuration.cookiesBannerDescription) }}",
+            "body": "{{ withHTMLNewlines(addSlashes(configuration.cookiesBannerDescription)) }}",
         },
         postSelectionCallback: () => { 
             {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}

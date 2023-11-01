@@ -232,7 +232,6 @@
 }
 
 .accordion-body > :last-child {
-  padding-bottom: 0px; // originally 16px, but it was breaking the last block
   margin-bottom: 0px;
 }
 
