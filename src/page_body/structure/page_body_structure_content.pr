@@ -3,7 +3,7 @@
 {[ let hasHeading = false /]}
 {[ let hasTopLevelHeading = false /]}
 {[ let configuration = exportConfiguration() /]}
-{[ let isHomepage = isHomepage(page, rootGroup) /]}
+{[ let isHomepage = (isHomepage(page, rootGroup) || isHomepageTab(page, rootGroup)) /]}
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
