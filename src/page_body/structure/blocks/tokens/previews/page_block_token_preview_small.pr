@@ -48,7 +48,7 @@
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    {[ if token.parent.name.equals("Border Radius") ]}
+    {[ if includes(token.parent.path, "Border Radius") ]}
         <div class="token-preview-container small-text" style="border-radius: {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}; border-color: var(--colorBorderProminent)">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
     {[ else ]}
         <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
