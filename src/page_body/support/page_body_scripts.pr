@@ -47,22 +47,27 @@ $(document).ready(function() {
     const sandboxConfigUrl = "{{ domain }}/../sandbox.json"
     loadSandboxes(sandboxConfigUrl)
 
-    {[ if configuration.enableCookiesBanner ]}
-    const cookieConsent = new CookieConsent({
-        content: {
-            "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
-            "body": "{{ withHTMLNewlines(addSlashes(configuration.cookiesBannerDescription)) }}",
-        },
-        postSelectionCallback: () => { 
-            {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
-            {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]} initHotjar(); {[/]}
-            },
-    });
-    {[/]}
 
     $("input[data-toggle='list-search']").on("keyup", function() {
         searchInList($(this),$(this).attr("data-list-id"));
     });
+
+    {[ if configuration.enableCookiesBanner ]}
+        if (window.CookieConsent !== undefined && typeof window.CookieConsent === "function") {
+            const cookieConsent = new CookieConsent({
+                content: {
+                    "title": "{{ escapeHtml(configuration.cookiesBannerTitle) }}",
+                    "body": "{{ withHTMLNewlines(addSlashes(configuration.cookiesBannerDescription)) }}",
+                },
+                postSelectionCallback: () => {
+                    {[ if (GoogleAnalyticsKey && GoogleAnalyticsKey.count() > 0) ]} initGoogleAnalytics(); {[/]}
+                    {[ if (HotjarSiteId && HotjarSiteId.count() > 0) ]} initHotjar(); {[/]}
+                    },
+            });
+        } else {
+            console.log('Showing Cookie Consent was blocked by browser')
+        }
+    {[/]}
 })
 </script>
 
@@ -107,11 +112,11 @@ $(document).ready(function() {
     }
 
     {[ if configuration.enableCookiesBanner ]}
-    if (getCookieValue("cookie-consent-tracking-allowed") === "true") {
-        initHotjar()
-    }
+        if (getCookieValue("cookie-consent-tracking-allowed") === "true") {
+            initHotjar()
+        }
     {[ else ]}
-    initHotjar()
+        initHotjar()
     {[/]}
 
     
