@@ -13,7 +13,7 @@
 {[ let hasNonBooleanPropertiesToShow = false /]}
 
 {* Render content health block *}
-{[ if componentId && (hasBooleanPropertiesToShow || hasNonBooleanPropertiesToShow) ]}
+{[ if (componentId && (hasBooleanPropertiesToShow || hasNonBooleanPropertiesToShow)) ]}
     {[ let component = ds.componentById(componentId) /]}
 
     {[ for property in component.properties ]}
