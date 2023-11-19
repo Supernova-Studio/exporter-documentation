@@ -21,21 +21,75 @@ $(window).on('load', function() {
         );
     });
 
+    // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
+    if (window.location.hash) {
+        setTimeout(() => {
+            const foundElement = document.querySelector(window.location.hash);
+            if (foundElement && !isElementInViewport(foundElement) && window.getComputedStyle) {
+                let style = window.getComputedStyle(foundElement);
+                let height = ["height", "margin-top", "margin-bottom"]
+                    .map((key) => parseInt(style.getPropertyValue(key), 10))
+                    .reduce((prev, cur) => prev + cur);
+
+                $(document).scrollTop(foundElement.offsetTop - height);
+            }
+        }, 250)
+    }
+
     // Create intersection observer for all sections
     const observer = new IntersectionObserver(_entries => {
         // Highlight headers in viewport
         let isAnythingSelected = false;
-        for (let section of sections) {
+
+        const findExistingSectionInOverview = (section) => {
             let id = section.getAttribute('id');
+            let sectionElementInOverview = document
+                .querySelector(`nav li a[href="#${id}"]`);
+
+            if (sectionElementInOverview && sectionElementInOverview.parentElement) {
+                return sectionElementInOverview.parentElement;
+            }
+
+            if (!['h3', 'h2'].includes(section.tagName.toLowerCase())) {
+                return null;
+            }
+            const desiredHeadingLevels = section.tagName.toLowerCase() === 'h3' ? ['h2', 'h1']: ['h1'];
+
+            // when h3 headers are skipped, we need to highlight the parent h2 header
+            let prevSection = null;
+            let prevElement = section.previousElementSibling;
+            let safetyIterationCounter = 0;
+            while (prevElement && safetyIterationCounter < 250) {
+                if (
+                  (desiredHeadingLevels.includes(prevElement.tagName.toLowerCase()) && sections.includes(prevElement))
+                ) {
+                    prevSection = prevElement;
+
+                    break;
+                }
+
+                safetyIterationCounter++;
+                prevElement = prevElement.previousElementSibling;
+            }
+
+            return prevSection && findExistingSectionInOverview(prevSection);
+        }
+
+        const overviewItemsToKeepActiveEvenIfNotInView = new Set();
+        for (let section of sections) {
             if (isElementInViewport(section)) {
-                document
-                    .querySelector(`nav li a[href="#${id}"]`)
-                    .parentElement.classList.add('active');
                 isAnythingSelected = true;
-            } else {
-                document
-                    .querySelector(`nav li a[href="#${id}"]`)
-                    .parentElement.classList.remove('active');
+
+                const overviewItem = findExistingSectionInOverview(section)
+                overviewItemsToKeepActiveEvenIfNotInView.add(overviewItem);
+                overviewItem && overviewItem.classList.add('active');
+            }
+        }
+
+        for (const section of sections) {
+            const overviewItem = findExistingSectionInOverview(section);
+            if (!overviewItemsToKeepActiveEvenIfNotInView.has(overviewItem)) {
+                overviewItem && overviewItem.classList.remove('active');
             }
         }
 
@@ -51,10 +105,8 @@ $(window).on('load', function() {
                 }
             }
             if (currentSection) {
-                let id = currentSection.getAttribute('id');
-                document
-                    .querySelector(`nav li a[href="#${id}"]`)
-                    .parentElement.classList.add('active');
+                const overviewItem = findExistingSectionInOverview(currentSection);
+                overviewItem && overviewItem.classList.add('active');
             }
         }
     });
