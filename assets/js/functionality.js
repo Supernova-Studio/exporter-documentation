@@ -197,7 +197,7 @@ async function downloadAssets(assets, blockId) {
     // Display the loading state
     $(button).prop('disabled', true);
     $(button).find('.label').addClass('hide');
-    $(button).find(' .loading').removeClass('hide').find(".text").text('Downloading... 0%');
+    $(button).find('.loading').removeClass('hide').find(".text").text('Downloading... 0%');
 
     let processedFiles = 0;
     const totalFiles = Object.keys(assets).length;
@@ -205,68 +205,73 @@ async function downloadAssets(assets, blockId) {
     const addFileToZip = async (fileName, url) => {
         try {
             const response = await fetch(url);
-            
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${url}. Status: ${response.status}`);
             }
-            
             const blob = await response.blob();
-
-            // Extract the file extension from the URL
             const fileExtension = url.split('.').pop();
-
             zip.file(`${fileName}.${fileExtension}`, blob);
-
             processedFiles++;
-            
             if (processedFiles === Object.keys(assets).length) {
                 $(button).find('.loading .text').text('Almost ready, zipping...');
             } else {
                 let percentage = Math.round((processedFiles / totalFiles) * 100);
                 $(button).find('.loading .text').text('Downloading... ' + percentage + '%');
             }
-
         } catch (error) {
             console.error(`Error adding file ${fileName} to zip.`, error);
         }
     };
 
+    const downloadBatch = async (batch) => {
+        for (const [fileName, url] of batch) {
+            await addFileToZip(fileName, url);
+        }
+    };
 
-    const allFiles = Object.entries(assets).map(([name, url]) => addFileToZip(name, url));
-    await Promise.all(allFiles);
+    const chunkArray = (array, size) => {
+        const chunks = [];
+        for (let i = 0; i < array.length; i += size) {
+            chunks.push(array.slice(i, i + size));
+        }
+        return chunks;
+    };
 
-    // Ensure zip generation
+    const processDownloads = async () => {
+        const allFiles = Object.entries(assets);
+        const batches = chunkArray(allFiles, 50); // Batch size set to 50
+        for (const batch of batches) {
+            await downloadBatch(batch);
+        }
+    };
+
+    await processDownloads();
+
     zip.generateAsync({ type: "blob" }).then(blob => {
-        
         saveAs(blob, "assets.zip");
-
-        // Hide the loading state after the download starts
         $(button).find('.loading').addClass('hide');
         $(button).find('.label').removeClass('hide');
         $(button).prop('disabled', false);
-
         $.toast({
             title: 'Download was successful',
             position: 'bottom'
         });
-    }).catch(error => { // Handle errors in zip generation
+    }).catch(error => {
         console.error("Error generating zip file.", error);
-
         $.toast({
             title: 'There was an error creating the zip file. Please try again.',
             position: 'bottom'
         });
-
         $(button).find('.loading').addClass('hide');
         $(button).find('.label').removeClass('hide');
         $(button).prop('disabled', false);
-
         $.toast({
             title: 'Download failed',
             position: 'bottom'
         });
     });
 }
+
 
 /*-----------------------------
    Initialize Download button for all assets download
