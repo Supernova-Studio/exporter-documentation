@@ -16,19 +16,19 @@
 {[ if componentId ]}
     {[ let component = ds.componentById(componentId) /]}
 
-    {[ for property in component.properties ]}
-        {[ if ((property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
-            {[ hasBooleanPropertiesToShow = true /]}
-        {[/]}
-    {[/]}
-
-    {[ for property in component.properties ]}
-        {[ if ((property.propertyType !== "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
-            {[ hasNonBooleanPropertiesToShow = true /]}
-        {[/]}
-    {[/]}
-
     {[ if component ]}
+        {[ for property in component.properties ]}
+            {[ if ((property.propertyType === "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
+                {[ hasBooleanPropertiesToShow = true /]}
+            {[/]}
+        {[/]}
+
+        {[ for property in component.properties ]}
+            {[ if ((property.propertyType !== "Boolean") && (propertiesToHighlight.contains(property.persistentId))) ]}
+                {[ hasNonBooleanPropertiesToShow = true /]}
+            {[/]}
+        {[/]}
+
         {[ if header ]}
             <h4 class="component-checklist--header">{{ header }}</h4>
         {[/]}
