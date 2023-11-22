@@ -3,7 +3,10 @@
 {[ let hasHeading = false /]}
 {[ let hasTopLevelHeading = false /]}
 {[ let configuration = exportConfiguration() /]}
-{[ let isHomepage = isHomepage(page, rootGroup) /]}
+{[ let isHomepage = (isHomepage(page, rootGroup) || isHomepageTab(page, rootGroup)) /]}
+{[ let group = page.parent /]}
+{[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
+{[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
 {[ for block in page.blocks ]}
     {[ if block.type.equals("Heading") ]}
@@ -16,26 +19,31 @@
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 
-{* Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container  *}
-{[ if showTOCOnHomepage ]}
+{*
+     Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
+     With one exception — if there is a sidebar, we need to render TOC container to make sure the page layout doesn't jump when navigating across pages
+ *}
+{[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
     <div id="content-nav-container">
         <nav id="content-nav">
         {[ if showTOC ]}
-            <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
-            <ul>
-                {[ for block in page.blocks ]}
-                {[ if (block.type.equals("Heading") && (!configuration.tocHideHeading3 || (configuration.tocHideHeading3 && block.headingType !== 3))) ]}
-                    {[ let menuClass = "" /]}
-                    {[ switch block.headingType ]}
-                        {[ case 2 ]}
-                            {[ set menuClass = (hasTopLevelHeading ? "sub" : "") /]}
-                        {[ case 3 ]}
-                            {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
+            {[ if showTOCOnHomepage ]}
+                <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
+                <ul>
+                    {[ for block in page.blocks ]}
+                    {[ if (block.type.equals("Heading") && (!configuration.tocHideHeading3 || (configuration.tocHideHeading3 && block.headingType !== 3))) ]}
+                        {[ let menuClass = "" /]}
+                        {[ switch block.headingType ]}
+                            {[ case 2 ]}
+                                {[ set menuClass = (hasTopLevelHeading ? "sub" : "") /]}
+                            {[ case 3 ]}
+                                {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
+                        {[/]}
+                        <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
+                        {[/]}
                     {[/]}
-                    <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
-                    {[/]}
-                {[/]}
-            </ul>
+                </ul>
+            {[/]} 
         {[/]}
         </nav>
     </div>

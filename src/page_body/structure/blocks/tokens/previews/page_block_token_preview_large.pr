@@ -60,7 +60,7 @@
         {[ inject "page_block_token_theme_badge" context theme /]}
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
-    {[ if token.parent.name.equals("Border Radius") ]}
+     {[ if includes(token.parent.path, "Border Radius") ]}
         <div class="preview token-preview-container large checkered-background-light bordered">
             {[ inject "page_block_token_reference_badge" context token /]}
             <div class="token-preview-container-radius large" style="border-radius: {{ token.value.measure}}px"></div>
