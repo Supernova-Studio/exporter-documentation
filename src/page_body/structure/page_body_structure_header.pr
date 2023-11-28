@@ -9,18 +9,7 @@
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
 
 <!-- Header --> 
-<header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}"> 
-    {[ if domain.contains("preview.supernova-docs.io") ]}
-        <div class="banner-preview">
-            <div class="content">
-            <div class="message">{[ inject "icon_circle_info" context configuration /]} <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div>
-            {[ if page.editorUrl ]}
-                <a href="{{page.editorUrl}}" target="_blank" class="btn btn-white btn-small">{[ inject "icon_edit" context configuration /]} Edit in Supernova {[ inject "icon_new_window" context configuration /]}</a>
-            {[/]}
-            </div>
-        </div>
-    {[/]}
-    
+<header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">     
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg">
         <div class="logo-wrapper">

@@ -36,6 +36,12 @@ $(window).on('load', function() {
         }, 250)
     }
 
+    // Add preview banner in case the page is loaded in preview mode
+    const isPreviewSite = window.location.host.indexOf('preview.supernova-docs.io') !== -1;
+    if (isPreviewSite) {
+         $('#header').prepend('<div class="banner-preview"><div class="content"><div class="message"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>');
+    }
+
     // Create intersection observer for all sections
     const observer = new IntersectionObserver(_entries => {
         // Highlight headers in viewport
