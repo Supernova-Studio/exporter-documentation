@@ -129,6 +129,10 @@
         height: 16px;
         width: 16px;
         flex-shrink: 0;
+
+        &.icon-tiny {
+            width: auto;
+        }
     }
 
     &.btn-icon-only {
