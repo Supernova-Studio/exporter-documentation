@@ -9,8 +9,7 @@
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
 
 <!-- Header --> 
-<header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}"> 
-    
+<header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">     
     <!-- Navbar -->
     <nav class="primary-menu navbar navbar-expand-lg">
         <div class="logo-wrapper">

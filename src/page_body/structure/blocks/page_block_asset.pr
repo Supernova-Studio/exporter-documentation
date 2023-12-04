@@ -34,20 +34,40 @@
         {[ checkeredClass = " checkered-background" /]}
     {[/]}
 
+    {[ let assetImagePath = asset.svgUrl /]}
+    {[ let svgAvailable = true /]}
+    {[ let formatDownload = "SVG" /]}
+
+    {[ if !asset.svgUrl ]}
+        {[ assetImagePath = asset.thumbnailUrl /]}
+        {[ svgAvailable = false /]}
+        {[ formatDownload = "PNG" /]}
+    {[/]}
+
     {* Render the asset *}
     <div class="tile-item asset-item{{ invertedTextClass ? (" " + invertedTextClass) : "" }}" data-keywords="{{ normalizeStringForSearch(title) }} {{ normalizeStringForSearch(description) }}">      
         <div class="preview frame{{ showChecker ? checkeredClass : ""}}{{ !showBorder ? " borderless" : ""}}" style="background-color: {{ backgroundColor }}">
         {[ if asset.thumbnailUrl ]}
-            <img src="{{ asset.thumbnailUrl }}" alt="{{ title }}" height="{{ asset.origin.height }}" width="{{ asset.origin.width }}" />
+            <img src="{{ assetImagePath }}" alt="{{ title }}" height="{{ asset.origin.height }}" class="asset-source" width="{{ asset.origin.width }}" loading="lazy" crossorigin="anonymous" />
+        {[/]}            
+        </div>
+        <div class="actions">
+        {[ if svgAvailable ]}
+            <button data-action="copy-asset-content" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Copy SVG">
+                {[ inject "icon_copy" context configuration /]}
+            </button>
         {[/]}
-        
-        {[ if (asset.origin && (configuration.blockConfigAssetsItemActions === "Open in Figma")) ]}
-            <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" class="btn btn-white btn-floating btn-small btn-with-icon">
+            <button data-action="download-asset" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download {{ formatDownload }}">
+                {[ inject "icon_download" context configuration /]}
+            </button>
+
+            {[ if (asset.origin && (configuration.blockConfigAssetsItemActions === "Open in Figma")) ]}
+            <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" data-toggle="tooltip" title="Open source in Figma" class="btn btn-white btn-floating btn-small btn-icon-only">
                 {[ inject "icon_figma" context configuration /]}
-                <span class="label">Open in Figma</span>
             </a>
         {[/]}
         </div>
+
         {[ if title ]}
             <div class="meta">
             {[ if title ]}

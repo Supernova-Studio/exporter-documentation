@@ -3,7 +3,7 @@
 /* =================================== */
 
 .input-search {
-    margin: 0 0 12px;
+    margin: 0;
     width: 100%;
     height: 44px;
     padding: 0 16px;
@@ -12,6 +12,7 @@
     border-radius: var(--borderRadiusDefault);
     color: var(--colorInkPrimary);
     transition: var(--transitionDefault);
+    font-size: var(--fontSizeSmall);
     
     &:hover {
         border-color: var(--colorBackgroundAlt);
@@ -30,5 +31,29 @@
     z-index: 1;
     background: rgba(255, 255, 255, 0.96);
     padding-top: 12px;
+    padding-bottom: 12px;
     backdrop-filter: blur(10px);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+
+    .btn {
+        flex-shrink: 0;
+        font-size: var(--fontSizeSmall);
+        font-weight: var(--fontWeightSemibold);
+
+        span {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .loading {
+            width: 220px;
+        }
+
+        .hide {
+            display: none;
+        }
+    }
 }

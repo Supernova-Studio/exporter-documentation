@@ -1,0 +1,33 @@
+/* =================================== */
+/*  Banner preview
+/* =================================== */
+
+.banner-preview {
+    font-size: var(--fontSizeSmall);
+    background-color: #D0E2FF;
+    color: #0043CE;
+    padding: 8px;
+
+    .content {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: var(--siteMaxWidth);
+        padding: 0 16px 0 32px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        
+        .message {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+}

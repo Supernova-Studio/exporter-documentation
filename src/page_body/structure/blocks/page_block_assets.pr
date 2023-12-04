@@ -1,16 +1,20 @@
 {[ let block = context /]}
 {[ let variant = block.variantKey /]}
-{[ let displaySearch = (block.assets.length > 20) /]}
+{[ let displaySearch = (block.assets.length > 15) /]}
+{[ let configuration = exportConfiguration() /]}
 
 {* Configure tile to show natural height if needed *}
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
 
 {* Render tile per rendered frame *}
-<div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}">
-
-  {[ if displaySearch ]}
+<div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}" data-block-id="{{block.id}}">
+    {[ if displaySearch ]}
     <div class="input-search-container">
         <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}"/>
+        <button class="btn btn-light btn-with-icon" data-action="download-assets" data-from-block="{{block.id}}">
+          <span class="label">{[ inject "icon_download" context configuration /]} Download all</span>
+          <span class="loading hide"><span class="spinner"></span><span class="text"></span></span>
+        </button>
     </div>
   {[/]}
   <div id="list-{{ block.id }}">

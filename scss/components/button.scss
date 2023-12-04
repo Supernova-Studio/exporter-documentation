@@ -93,6 +93,23 @@
 .btn-light {
     background: var(--colorBackgroundSecondary);
     color: var(--colorInkPrimary);
+
+    &:focus-visible {
+        box-shadow: 0 0 0 2px var(--colorInkTertiary) !important;
+    }
+
+    &.btn-with-icon {
+        padding: 4px 12px 4px 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        svg {
+            height: 16px;
+            width: 16px;
+            flex-shrink: 0;
+        }
+    }
 }
 
 .btn-small {
@@ -106,12 +123,25 @@
         display: flex;
         gap: 4px;
         align-items: center;
+    }
 
-        svg {
-            height: 16px;
-            width: 16px;
-            flex-shrink: 0;
+    svg {
+        height: 16px;
+        width: 16px;
+        flex-shrink: 0;
+
+        &.icon-tiny {
+            width: auto;
         }
+    }
+
+    &.btn-icon-only {
+        padding: 0;
+        height: 24px;
+        width: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -127,4 +157,13 @@
 
 .btn-floating {
     box-shadow: var(--boxShadowLevel1);
+
+    &:hover {
+        background: var(--colorBackgroundPrimary);
+        box-shadow: var(--boxShadowLevel2);
+    }
+
+    &:focus {
+        box-shadow: var(--boxShadowLevel1) !important;
+    }
 }

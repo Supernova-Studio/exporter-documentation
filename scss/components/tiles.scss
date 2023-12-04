@@ -29,23 +29,6 @@
         &.borderless {
           border: 0;
         }
-
-        .btn {
-          position: absolute;
-          top: 8px;
-          right: 8px;
-          visibility: hidden;
-          opacity: 0;
-          transition: var(--transitionDefault);
-        }
-
-        &:hover {
-          .btn {
-            visibility: visible;
-            opacity: 1;
-          }
-        }
-      }
     }
 
     > div.titleless {
@@ -71,6 +54,7 @@
       }
     }
   }
+  }
 }
 
 .content-block--frames {
@@ -87,6 +71,7 @@
       border-radius: var(--borderRadiusLarge);
 			box-sizing: border-box;
 			padding-bottom: 4px;
+      position: relative;
 			background: var(--colorBackgroundPrimary);
 
 			div.preview.small-text {
@@ -119,9 +104,37 @@
         overflow-wrap: anywhere;
 			}
 
+      .actions,
+      .actions-bottom {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        visibility: hidden;
+        opacity: 0;
+        transition: var(--transitionDefault);
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+        background: #ffffffa8;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      .actions-bottom {
+        top: 40px;
+        right: 8px;
+      }
+
       &.hidden {
         display: none;
       }			
+
+      &:hover {
+        .actions, .actions-bottom {
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+      }
 		}
 	}
 
@@ -139,7 +152,7 @@
 */
 .layout-tiles.variant-plain {
 	.grid {
-		>div {
+		>div, .tile-item {
 			border: 0;
 			border-radius: var(--borderRadiusLarge);
 			background: var(--pageBackground);
@@ -172,9 +185,6 @@
   - matching the style of image caption
 */
 .layout-tiles.variant-square-grid {
-  .input-search {
-      margin-bottom: 12px;
-  }
 
   .grid {
       grid-column-gap: 0;
@@ -186,6 +196,10 @@
           outline: 1px solid var(--colorBorderSubtle);
           border-radius: 0;
           padding-bottom: 0;
+
+          &.asset-item:hover {
+            background: var(--colorBackgroundSecondary);
+          }
 
           .preview {
             border-radius: 0;
@@ -242,8 +256,12 @@
   .grid {
       .tile-item {
         padding-bottom: 12px;
-        padding: 12px 0 24px;
+        padding: 12px 4px 24px;
         justify-items: center; 
+
+          &.asset-item:hover {
+            background: var(--colorBackgroundSecondary);
+          }
 
           .preview {
             height: auto;

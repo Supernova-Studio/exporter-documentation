@@ -1,0 +1,3 @@
+{[ let configuration = context /]}
+{[ let domain = ds.documentationDomain() /]}
+<svg width="20" height="20"><use href="{{ assetUrl("icons/icon-download.svg#glyph", domain) }}" /></svg>
