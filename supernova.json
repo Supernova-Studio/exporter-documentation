@@ -1,0 +1,12 @@
+{
+  "workspaceId": "8952",
+  "designSystemId": "10310",
+  "designSystemVersionId": "10500",
+  "exporterId": "228",
+  "workspaceName": "Rapid7 X",
+  "designSystemName": "Platform Experience Hub",
+  "designSystemVersionName": "Shared draft",
+  "exporterName": "Documentation (R7)",
+  "write_to": ".build",
+  "description": "Note to our fellow developers: Install Supernova integration from the VSCode marketplace and then our  Documentation (R7) exporter will synchronize design data and generate appropriate code from the  Shared draft design system every time you request it through the extension interface, fully automatically."
+}

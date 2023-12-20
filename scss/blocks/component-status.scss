@@ -1,0 +1,47 @@
+@mixin component-status(
+  $class: component-status,
+  $__title: __title,
+  $__links: __links,
+  $__select-tag: __select-tag,
+  $__col: __col,
+  $__logos: __logos,
+  $__right-text: __right-text
+) {
+  .#{$class} {
+    padding: 6px 16px 10px 16px;
+    width: max-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    &#{$__title} {
+      display: flex;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      justify-content: flex-start;
+    }
+    &#{$__links} {
+      display: flex;
+      align-items: center;
+    }
+
+    &#{$__col} {
+      display: flex;
+      font-size: 12px;
+    }
+    &#{$__logos} {
+      display: flex;
+      align-items: center;
+    }
+    &#{$__right-text} {
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    &#{$__select-tag} {
+      margin-left: 4px;
+      padding: 2px;
+    }
+  }
+}
+
+@include component-status;

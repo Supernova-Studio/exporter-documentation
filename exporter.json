@@ -1,9 +1,9 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Default Documentation",
-  "description": "Default customizable exporter for design system documentation",
-  "author": "Supernova",
-  "organization": "Supernova",
+  "name": "Documentation (R7, updated)",
+  "description": "Rapid7 Documentation Exporter",
+  "author": "Martina Smichova",
+  "organization": "Rapid7",
   "source_dir": "src",
   "assets_dir": "assets",
   "version": "4.9.1",
@@ -617,6 +617,27 @@
         ]
       },
       {
+        "key": "io.supernova.documentation-main.component-status",
+        "category": "Components",
+        "title": "Component Status (R7)",
+        "description": "Show component status across Figma, Storybook and Supernova",
+        "icon": "icons/custom-block-health.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "componentId",
+            "type": "component",
+            "label": "Component"
+          },
+          {
+            "key": "propertiesToHighlight",
+            "type": "componentProperties",
+            "label": "Properties"
+          }
+
+        ]
+      }, 
+      {
         "key": "io.supernova.documentation-main.component-health",
         "category": "Components",
         "title": "Component Health",
@@ -765,6 +786,10 @@
           "key": "accordion",
           "description": "Tabs displayed as an accordion.",
           "thumbnail": "thumbnails/Tabs_Accordion.png"
+        },
+        {
+          "name": "Dos & Don'ts",
+          "key": "dos-donts"
         }
       ],
       "TokenList": [

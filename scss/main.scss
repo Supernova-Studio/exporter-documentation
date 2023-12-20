@@ -92,7 +92,16 @@
 
 /*  Deprecated (doesn't seem to be used in exporter anywhere)
 /* =================================== */
-
+ 
 @import './deprecated/featured-box';
 @import './deprecated/style-switcher';
 @import './deprecated/bootstrap-specific';
+
+/* =================================== */
+/*  Custom Blocks
+/* =================================== */
+
+@import './blocks/component-status.scss';
+@import './blocks/dos-donts.scss';
+
+/* =================================== */

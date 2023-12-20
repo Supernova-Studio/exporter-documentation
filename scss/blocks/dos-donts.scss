@@ -1,0 +1,71 @@
+@import 'base64';
+
+section .dos ul li,
+section .donts ul li {
+  line-height: 1.5;
+  list-style: none;
+}
+.dos {
+  padding-right: 50px;
+}
+
+.dos ul li::before,
+.donts ul li::before {
+  content: '';
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+  height: 28px;
+  width: 28px;
+  position: absolute;
+  left: 0;
+}
+.dos ul li::before {
+  background-image: $check-mark;
+}
+.donts ul li::before {
+  background-image: $cross;
+}
+.dos h3::before,
+.donts h3::before {
+  content: '';
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  left: 0;
+}
+.donts h3::before {
+  background-image: $cross-bordered;
+}
+.dos h3::before {
+  background-image: $check-bordered;
+}
+
+.donts h3,
+.dos h3 {
+  list-style: none;
+  font-weight: bold;
+  font-size: 18px;
+  padding-left: 29px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.dos h3 {
+  color: #509f47;
+}
+.donts h3 {
+  color: #c13329;
+}
+
+.dos,
+.donts {
+  .heading {
+    position: unset;
+  }
+}

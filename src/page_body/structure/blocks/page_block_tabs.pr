@@ -4,6 +4,12 @@
 {[ let blockId = block.id.prefixed("T") /]}
 {[ let configuration = exportConfiguration() /]}
 
+{* Logos *}
+{[ let checkBordered = assetUrl("logos/check-bordered.svg", ds.documentationDomain()) /]}
+{[ let check = assetUrl("logos/check.svg", ds.documentationDomain()) /]}
+{[ let crossBordered = assetUrl("logos/cross-bordered.svg", ds.documentationDomain()) /]}
+{[ let cross = assetUrl("logos/cross.svg", ds.documentationDomain()) /]}
+
 {* This block is variant enabled, fetch it *}
 {[ let variant = block.variantKey /]}
 
@@ -70,6 +76,19 @@
       {[ map (block.children.enumerated()) to index tab ]}
           {[ let id = tab.id.prefixed("T") /]}
         <div class="col-sm">
+          {[ for child in tab.children ]}
+            {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
+          {[/]}
+        </div>
+      {[/]}
+    </div>
+
+    {[ elseif (variant === "dos-donts") ]}
+      {* Tab variant where tabs render as columns *}
+      <div class="row tabs-as-columns">
+        {[ map (block.children.enumerated()) to index tab ]}
+          {[ let id = tab.id.prefixed("T") /]}
+        <div class="col-sm {{ index === "0" ? "dos" : "donts" }} ">
           {[ for child in tab.children ]}
             {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
           {[/]}

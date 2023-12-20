@@ -1,0 +1,141 @@
+{* Get block *}
+{[ const block = context /]}
+
+{* Get properties *}
+{[ let componentId = block.properties.componentId /]}
+
+
+{* Logos *}
+{[ let supernovaImage = assetUrl("logos/supernova_icon.svg", ds.documentationDomain()) /]}
+{[ let figmaImage = assetUrl("logos/Figma.svg", ds.documentationDomain()) /]}
+{[ let storybookImage = assetUrl("logos/storybook.svg", ds.documentationDomain()) /]}
+
+
+{* Render content health block *}
+{[ if componentId ]}
+{[ let component = ds.componentById(componentId) /]}
+{[ if component ]}{* Logos *}
+
+{[ let properties = component.properties /]}
+{[ let propertyValues = component.propertyValues /]}
+
+{[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+{[ let linkPropertiesToHighlight = 0 /]}
+{[ for property in component.properties ]}
+{[ if (propertiesToHighlight.contains(property.persistentId) && ["URL"].contains(property.propertyType)) ]}
+{[ linkPropertiesToHighlight = (linkPropertiesToHighlight + 1) /]}
+{[/]}
+{[/]}
+{[ let staticPropertiesToHighlight = (propertiesToHighlight.count() - linkPropertiesToHighlight) /]}
+
+{* Get health tag *}
+{[ let healthTag = convertHealthTagIfAny(component) /]}
+{* {[ let healthTagReadable = healthTag.name /]} *}
+{[ let healthTagSlug = "status-"+healthTag.slug /]}
+{[ let healthTagContrastColor = contrastColor(healthTag.backgroundColor) /]}
+
+
+
+{* Generate inline component health *}
+<div class="component-status">
+{[ if (component && component.updatedAt) ]}
+
+
+
+{[/]}
+  <p class="component-status__title">STATUS</p>
+  {* Generate properties that are of non-link type properties *}
+  {[ if (staticPropertiesToHighlight > 0) ]}
+  <div class="component-status__links">
+    {[ for property in component.properties ]}
+    {[ if (propertiesToHighlight.contains(property.persistentId) && ["Text", "Number", "Generic", "Boolean","Select"].contains(property.propertyType)) ]}
+
+    {* Generate content for each property *}
+    <div class="component-status__col">
+      {* Property name *}
+      <div class="component-status__logos">
+        {[ switch property.name ]}
+        {[ case "Documentation Health" ]}
+        <img src="{{ supernovaImage }}" />
+        {[ case "Figma Health" ]}
+        <img src="{{ figmaImage }}" />
+        {[ case "Storybook Health" ]}
+        <img src="{{ storybookImage }}" />
+        {[/]}
+      </div>
+
+      {* Property value *}
+      <div class="component-status__right-text">
+        {[ switch property.propertyType ]}
+        {[ case "Text" ]}
+        {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}
+        {[ case "Number" ]}
+        {{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}
+        {[ case "Generic" ]}
+        <mark>{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "-" }}</mark>
+        {[ case "Boolean" ]}
+        <span
+          class="{{ propertyValues[property.codeName] ? "yes" : "no"}}">{{ propertyValues[property.codeName] ? "Yes" : "No"}}</span>
+        {[ case "Select" ]}
+        {[ let optionValue = "" /]}
+        {[ let optionColor = "" /]}
+        {[ let contrastColor = "" /]}
+        {[ for option in property.options ]}
+        {[ if (option.id === propertyValues[property.codeName]) ]}
+        {[ optionValue = option.name /]}
+        {[ optionColor = option.backgroundColor /]}
+        {[ contrastColor = contrastColor(optionColor) /]}
+        {[/]}
+        {[/]}
+        <span class="component-status__select-tag {{ contrastColor }}" style="background-color: {{ optionColor }}">
+          {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
+        </span>
+        {[/]}
+      </div>
+    </div>
+    {[/]}
+    {[/]}
+  </div>
+  {[/]}
+{[ if (linkPropertiesToHighlight > 0) ]}
+<div class="component-status__links">
+    {[ for property in component.properties ]}
+        {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL", "Link"].contains(property.propertyType)) ]}
+            {* Limiting only to URL now, since the Link doesn't have data in the payload yet *}
+            {[ if (["URL"].contains(property.propertyType) && propertyValues[property.codeName]) ]}
+                {* Generate link container, if needed *}
+                {[ switch property.propertyType ]}
+                    {[ case "URL" ]}
+                        <a href="{{ propertyValues[property.codeName] ? propertyValues[property.codeName] : "#" }}">
+                    {[ case "Link" ]}
+                        <a href="#TODO">
+                {[/]}
+                {* Generate content for each property *}
+                <div class="component-status__col">
+                    {* Property name *}
+                    <div class="component-status__logos">{{ property.name }}</div>
+                    {* Property value *}
+                    <div class="component-status__right-text">
+                    {[ switch property.propertyType ]}
+                        {[ case "Link" ]}
+                        <img class="link-chevron" />
+                        {[ case "URL" ]}
+                        <img class="link-chevron" />
+                    {[/]}
+                    </div>
+                </div>
+                </a>
+            {[/]}
+        {[/]}
+    {[/]}
+    </div>
+    {[/]}
+
+            </div>
+
+    {[ else ]}
+    <p>Unable to show component health - unknown component</p>
+    {[/]}
+{[ else ]}
+<p>Unable to show component health - please specify component first</p>
+{[/]}
