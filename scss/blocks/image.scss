@@ -10,7 +10,13 @@
 
   img {
     border-radius: var(--borderRadiusDefault);
-    display: inline-block;
+    display: block;
+  }
+
+  &.sn-text-center {
+    img {
+      margin: 0 auto;
+    }
   }
 }
 
@@ -18,7 +24,7 @@
   font-size: var(--fontSizeSmall);
   line-height: 1.3rem;
   color: var(--colorInkSecondary);
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 td .image-container {

@@ -199,7 +199,7 @@ code {
 
 ul>.block-children,
 ol>.block-children {
-    margin-left: 11px;
+    margin-left: 4px;
 }
 
 .heading {
@@ -285,7 +285,7 @@ ol>.block-children {
     margin: 0px auto;
     padding: var(--pageHeaderPaddingTop) 0 var(--pageHeaderPaddingBottom);
     z-index: 1;
-    gap: 14px;
+    gap: 12px;
     display: flex;
     flex-direction: column;
     min-height: var(--pageHeaderHeight);
