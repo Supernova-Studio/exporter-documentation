@@ -29,11 +29,6 @@
     .icon {
       color: var(--calloutInfoInkSecondary);
     }
-
-    code {
-      color: var(--calloutInfoInk);
-      font-weight: 600;
-    }
   }
 
   &.callout-success {
@@ -42,11 +37,6 @@
 
     .icon {
       color: var(--calloutSuccessInkSecondary);
-    }
-
-    code {
-      color: var(--calloutSuccessInk);
-      font-weight: 600;
     }
   }
 
@@ -57,11 +47,6 @@
     .icon {
       color: var(--calloutWarningInkSecondary);
     }
-
-    code {
-      color: var(--calloutWarningInk);
-      font-weight: 600;
-    }
   }
 
   &.callout-danger {
@@ -71,10 +56,14 @@
     .icon {
       color: var(--calloutDangerInkSecondary);
     }
+  }
 
-    code {
-      color: var(--calloutDangerInk);
-      font-weight: 600;
+  &.callout-primary {
+    color: var(--calloutPrimaryInk);
+    background-color: var(--calloutPrimaryBackground);
+
+    .icon {
+      color: var(--calloutPrimaryInkSecondary);
     }
   }
 }

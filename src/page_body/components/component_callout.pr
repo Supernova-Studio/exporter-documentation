@@ -5,7 +5,7 @@
 
 <div class="content-block content-block--callout callout-{{ type }}" role="alert">
     <div class="icon">
-    {[ if (type === "info")]}
+    {[ if ((type === "info") || (type === "primary"))]}
         {[ inject "icon_circle_info" context configuration /]}
     {[ elseif (type === "success")]}
         {[ inject "icon_circle_check" context configuration /]}

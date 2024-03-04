@@ -7,6 +7,8 @@
 {[ switch block.calloutType ]}
     {[ case "Info" ]}
         {[ calloutType = "info" /]}
+    {[ case "Primary" ]}
+        {[ calloutType = "primary" /]}
     {[ case "Success" ]}
         {[ calloutType = "success" /]}
     {[ case "Warning" ]}
