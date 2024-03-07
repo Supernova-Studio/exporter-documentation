@@ -3,7 +3,7 @@
 
 {[ if block.url ]}
     <div class="content-block content-block--shortcuts variant-image-leading-1">
-        <a href="{{ block.url }}" class="shortcut-item" target="_blank">
+        <a href="{{ block.url }}" class="shortcut-item" {{ (block.openInNewTab || block.openInNewTab === undefined) ? "target=\"_blank\"" : ""}}>
             {[ if block.thumbnailUrl ]}
                 <div class="preview" style="background: url({{ block.thumbnailUrl }});background-size: cover;background-position: center;"></div>
             {[ else ]}
@@ -22,4 +22,4 @@
             </div>
         </a>
     </div>
- {[/]}
+{[/]}
