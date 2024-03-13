@@ -35,14 +35,14 @@
 
                     {* Only extend link if actually present *}
                     {[ if (url.count() > 0) ]}
-                        {[ let anchorTag = url.extended("<a href=\"", (attribute.openInNewWindow ? "\" target=\"_blank\">" : "\">")) /]}
+                        {[ let anchorTag = url.extended("<a href=\"", ((attribute.openInNewTab || attribute.openInNewWindow) ? "\" target=\"_blank\">" : "\">")) /]}
                         {[ text = text.extended(anchorTag, "</a>") /]}
                     {[/]}
                 {[ else ]}
                     {* For statically defined link, extend the text with it *}
                     {[ if attribute.link ]}
                         {[ let uri = htmlSafeUrl(attribute.link) /]}
-                        {[ let anchorTag = uri.extended("<a href=\"", (attribute.openInNewWindow ? "\" target=\"_blank\">" : "\">")) /]}
+                        {[ let anchorTag = uri.extended("<a href=\"", ((attribute.openInNewTab || attribute.openInNewWindow) ? "\" target=\"_blank\">" : "\">")) /]}
                         {[ text = text.extended(anchorTag, "</a>") /]}
                     {[/]}
                 {[/]}

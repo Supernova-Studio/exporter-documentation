@@ -2,14 +2,14 @@
 
 {[ if (shortcut.title && !shortcut.title.startsWith("_")) ]} 
     {[ if shortcut.externalUrl ]}
-        <a href="{{ shortcut.externalUrl }}" class="shortcut-item" target="_blank">
+        <a href="{{ htmlSafeUrl(shortcut.externalUrl) }}" class="shortcut-item" {{ (shortcut.openInNewTab || shortcut.openInNewTab === undefined) ? "target=\"_blank\"" : ""}}>
     {[ elseif shortcut.internalId ]}
             {* Note that internal id can link to both group and page. Test if this links to page first and if so, make link to it *}
             {[ let page = ds.documentationPageById(shortcut.internalId) /]}
             {[ if page ]}
                 {[ if isExportable(page) ]}
                     {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                    <a href="{{ url }}" class="shortcut-item">
+                    <a href="{{ url }}" class="shortcut-item" {{ shortcut.openInNewTab ? "target=\"_blank\"" : ""}}>
                 {[ else ]}      
                     <a class="shortcut-item">            
                 {[/]}
@@ -21,7 +21,7 @@
                     {[ if page ]}
                         {[ if isExportable(page) ]}
                             {[ let url = pageUrl(page, ds.documentationDomain()) /]}
-                            <a href="{{ url }}" class="shortcut-item">
+                            <a href="{{ url }}" class="shortcut-item" {{ shortcut.openInNewTab ? "target=\"_blank\"" : ""}}>
                         {[ else ]}
                             <a class="shortcut-item">
                         {[/]}
@@ -38,16 +38,16 @@
         <a class="shortcut-item"> 
     {[/]}
 
-        {[ if shortcut.previewUrl ]}
-        <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
-        {[ else ]}
-        <div class="preview empty"></div>
+    {[ if shortcut.previewUrl ]}
+    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+    {[ else ]}
+    <div class="preview empty"></div>
+    {[/]}
+    <div class="content">
+        <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
+        {[ if (shortcut.description && shortcut.description != "-") ]}
+            <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>
         {[/]}
-        <div class="content">
-            <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
-            {[ if (shortcut.description && shortcut.description != "-") ]}
-                <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>    
-            {[/]}
-        </div>
+    </div>
     </a>
 {[/]}
