@@ -6,21 +6,26 @@
         {[ let index = 0 /]}
         {[ for version in versions ]}
         {* Ignore draft version, only show stable versions *}
-            {[ if ((!version.isSharedDraft) && version.changeLog) ]}
+            {[ if (!version.isSharedDraft) ]}
                 {[ let entries = changelogToEntries(version.changeLog) /]}
+                {[ let hasSomeEntries = (entries.count() > 0 || version.description) /]}
                 <h3 class="rn-heading">
                     {{ version.version }}{[ if (version.name !== null && version.name !== "") ]} – {{ version.name }} {[/]}
                     {[ if (index === 0) ]}
                         <span class="rn-heading-tag">Latest</span>
                     {[/]}
                 </h3>
+                {[ if version.description ]}
+                  <p>{{ withHTMLNewlines(version.description) }}</p>
+                {[/]}
                 {[ if (entries.count() > 0) ]}
                     <ul>
                     {[ for entry in entries ]}
                         <li>{{ entry }}</li>
                     {[/]}
                     </ul>
-                {[ else ]}
+                {[/]}
+                {[ if !hasSomeEntries ]}
                     <p>No release notes for this version</p>
                 {[/]}
                 {[ index = (index + 1) /]}
