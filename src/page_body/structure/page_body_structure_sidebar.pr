@@ -50,24 +50,40 @@
                 {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                 {[ let activeClass = (isActive === true ? " active" : "") /]}
                 {[ let isTab = (item.parent.groupBehavior === "Tabs" ? true : false) /]}
+                {[ let isPrivate = (item.configuration && item.configuration.isPrivate ? true : false) /]}
                 {[ let itemId = item.id /]}
                 {[ let showTabsInNavigation = ((item.groupBehavior !== "Tabs") || (showTabs && item.groupBehavior === "Tabs")) /]}
                 {[ let itemTitle = resolveMenuLabel(item, documentationRoot, configuration.navigationOverrideHomepageLabel) /]}
                 {[ let isGroupOpen = (isRootForTab && hasFirstLevelFlat && (item.groupBehavior !== "Tabs")) /]}
                 
                 {[ if item.type.equals("Page") ]}
-                    <li class="nav-item{{ isTab === true ? " is-tab" : "" }}"><a class="nav-link{{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a></li>
+                    <li class="nav-item{{ isTab === true ? " is-tab" : "" }}">
+                        <a class="nav-link{{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">
+                            <span>
+                                {{ itemTitle }}
+                                {[ if isPrivate ]}<span class="icon-lock">{[ inject "icon_lock" context configuration /]}</span>{[/]}
+                            </span>
+                        </a>
+                    </li>
                 {[ else ]}
                     <li class="nav-item{{ (isGroupOpen ? " group-open"  : "") }}">
                     {[ let firstDescendingPage = firstPageFromTop(item) /]}
                     {* Group will either link to the first page, or be fully disabled *}
                     {[ if firstDescendingPage ]}
                         <a class="nav-link{{ (showTabsInNavigation ? " group"  : "") }}{{ activeClass }}" href="{{ pageUrl(firstDescendingPage, ds.documentationDomain()) }}">
-                            {{ itemTitle }}
+                            <span>
+                                {{ itemTitle }}
+                                {[ if isPrivate ]}<span class="icon-lock">{[ inject "icon_lock" context configuration /]}</span>{[/]}
+                            </span>
                             {[ if showTabsInNavigation ]}<span class="icon">{[ inject "icon_chevron_right" context configuration /]}</span>{[/]}
                         </a>
                     {[ else ]}  
-                        <a class="nav-link group {{ activeClass }}">{{ itemTitle }}</a>
+                        <a class="nav-link group {{ activeClass }}">
+                            <span>
+                                {{ itemTitle }}
+                                {[ if isPrivate ]}<span class="icon-lock">{[ inject "icon_lock" context configuration /]}</span>{[/]}
+                            </span>
+                        </a>
                     {[/]}
                     {[ if ((isGroupOpen || isActive) && showTabsInNavigation) ]}
                         {[ let data = { "page": page, "groupId": itemId } /]}
