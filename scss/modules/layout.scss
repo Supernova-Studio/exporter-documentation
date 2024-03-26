@@ -226,6 +226,17 @@ b, strong {
             flex-shrink: 0;
           }
         }
+
+        .icon-lock {
+          opacity: 0.8;
+          transition: var(--transitionDefault);
+
+          svg {
+            display: inline;
+            height: 16px;
+            width: 16px;
+          }
+        }
       }
 
       &.active {
