@@ -8,7 +8,7 @@
             {[ let page = ds.documentationPageById(shortcut.internalId) /]}
             {[ if page ]}
                 {[ if isExportable(page) ]}
-                    {[ let url = pageUrl(page, ds.documentationDomain()) /]}
+                    {[ let url = pageAnchorUrl(page, shortcut.documentationAnchorId, ds.documentationDomain()) /]}
                     <a href="{{ url }}" class="shortcut-item" {{ shortcut.openInNewTab ? "target=\"_blank\"" : ""}}>
                 {[ else ]}      
                     <a class="shortcut-item">            

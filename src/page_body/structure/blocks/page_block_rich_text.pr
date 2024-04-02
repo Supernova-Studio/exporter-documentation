@@ -21,7 +21,7 @@
                     {[ let page = ds.documentationPageById(itemId) /]}
                     {[ if page ]}
                         {[ if isExportable(page) ]}
-                            {[ url = pageUrl(page, ds.documentationDomain()) /]}
+                            {[ url = pageAnchorUrl(page, attribute.documentationAnchorId, ds.documentationDomain()) /]}
                         {[/]}
                     {[ else ]}
                         {[ let group = ds.documentationGroupById(itemId) /]}

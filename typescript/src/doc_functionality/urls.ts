@@ -51,6 +51,27 @@ export function pageUrlForFilepath(
   return url;
 }
 
+export function pageAnchorUrl(
+  page: DocumentationPage,
+  anchorId: string,
+  prefix: string | undefined
+): string {
+  const url = pageUrl(page, prefix);
+
+  const blocks = page.blocks || [];
+  const topLevelChildren = blocks.reduce((acc, b) => [...acc, ...(b.children || [])], [] as DocumentationPageBlock[]);
+
+  const header = [...blocks, ...topLevelChildren].filter(Boolean).find(
+    block => (
+      block.id === anchorId &&
+      (block as DocumentationPageBlockText).text &&
+      (block as DocumentationPageBlockHeading).headingType
+    )
+  ) as DocumentationPageBlockHeading;
+
+  return header ? url + '#' + slugifyHeading(header) : url;
+}
+
 /** Generate page slug for the generated page */
 export function pageIdentifier(object: DocumentationPage | DocumentationGroup) {
   // Prevent generation of URLs for objects that are not provided
