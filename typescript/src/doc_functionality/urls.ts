@@ -53,23 +53,13 @@ export function pageUrlForFilepath(
 
 export function pageAnchorUrl(
   page: DocumentationPage,
-  anchorId: string,
+  anchorId: string | undefined,
+  anchorTitle: string | undefined,
   prefix: string | undefined
 ): string {
   const url = pageUrl(page, prefix);
 
-  const blocks = page.blocks || [];
-  const topLevelChildren = blocks.reduce((acc, b) => [...acc, ...(b.children || [])], [] as DocumentationPageBlock[]);
-
-  const header = [...blocks, ...topLevelChildren].filter(Boolean).find(
-    block => (
-      block.id === anchorId &&
-      (block as DocumentationPageBlockText).text &&
-      (block as DocumentationPageBlockHeading).headingType
-    )
-  ) as DocumentationPageBlockHeading;
-
-  return header ? url + '#' + slugifyHeading(header) : url;
+  return anchorId ? url + '#' + slugifyHeadingText(anchorId, anchorTitle) : url;
 }
 
 /** Generate page slug for the generated page */
@@ -127,15 +117,14 @@ export function textBlockPlainText(
 }
 
 export function slugifyHeading(header: DocumentationPageBlockHeading): string {
-  let fullText = textBlockPlainText(header);
-  return 'section-' + slugify(fullText) + '-' + header.id.substring(0, 2);
+  return slugifyHeadingText(header.id, textBlockPlainText(header));
 }
 
-function slugify(str: string): string {
-  if (!str) {
-    return '';
-  }
+function slugifyHeadingText(headerId: string, headerFullText: string = ''): string {
+  return 'section-' + slugify(headerFullText) + '-' + headerId.substring(0, 2);
+}
 
+function slugify(str: string = ''): string {
   // Thanks to https://gist.github.com/codeguy/6684588
   str = str.replace(/^\s+|\s+$/g, '');
   str = str.toLowerCase();
