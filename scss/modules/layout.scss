@@ -235,6 +235,7 @@ b, strong {
             display: inline;
             height: 16px;
             width: 16px;
+            flex-shrink: 0;
           }
         }
       }
