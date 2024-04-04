@@ -59,7 +59,7 @@ export function pageAnchorUrl(
 ): string {
   const url = pageUrl(page, prefix);
 
-  return anchorId ? url + '#' + slugifyHeadingText(anchorId, anchorTitle) : url;
+  return anchorId && anchorTitle ? url + '#' + slugifyHeadingText(anchorId, anchorTitle) : url;
 }
 
 /** Generate page slug for the generated page */
@@ -125,6 +125,10 @@ function slugifyHeadingText(headerId: string, headerFullText: string = ''): stri
 }
 
 function slugify(str: string = ''): string {
+  if (!str) {
+    return '';
+  }
+
   // Thanks to https://gist.github.com/codeguy/6684588
   str = str.replace(/^\s+|\s+$/g, '');
   str = str.toLowerCase();
