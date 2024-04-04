@@ -51,6 +51,17 @@ export function pageUrlForFilepath(
   return url;
 }
 
+export function pageAnchorUrl(
+  page: DocumentationPage,
+  anchorId: string | undefined,
+  anchorTitle: string | undefined,
+  prefix: string | undefined
+): string {
+  const url = pageUrl(page, prefix);
+
+  return anchorId && anchorTitle ? url + '#' + slugifyHeadingText(anchorId, anchorTitle) : url;
+}
+
 /** Generate page slug for the generated page */
 export function pageIdentifier(object: DocumentationPage | DocumentationGroup) {
   // Prevent generation of URLs for objects that are not provided
@@ -106,11 +117,14 @@ export function textBlockPlainText(
 }
 
 export function slugifyHeading(header: DocumentationPageBlockHeading): string {
-  let fullText = textBlockPlainText(header);
-  return 'section-' + slugify(fullText) + '-' + header.id.substring(0, 2);
+  return slugifyHeadingText(header.id, textBlockPlainText(header));
 }
 
-function slugify(str: string): string {
+function slugifyHeadingText(headerId: string, headerFullText: string = ''): string {
+  return 'section-' + slugify(headerFullText) + '-' + headerId.substring(0, 2);
+}
+
+function slugify(str: string = ''): string {
   if (!str) {
     return '';
   }
