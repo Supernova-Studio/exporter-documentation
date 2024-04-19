@@ -14,5 +14,10 @@ export function htmlSafeString(string: string): string {
 }
 
 export function htmlSafeUrl(uri: string) {
+  // Assume that the URI is already encoded if it contains a % character
+  if (uri?.includes('%')) {
+    return uri
+  }
+  // Encode otherwise
   return encodeURI(uri ?? '')
 }
