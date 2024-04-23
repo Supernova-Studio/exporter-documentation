@@ -21,7 +21,7 @@
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "node-sass": "9.0.0",
+    "sass": "1.75.0",
     "prettier-stylelint": "^0.4.2",
     "sass-loader": "^13.3.0",
     "stylelint": "^14.9.1",
