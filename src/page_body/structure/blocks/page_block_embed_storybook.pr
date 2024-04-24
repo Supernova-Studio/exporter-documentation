@@ -6,15 +6,24 @@
   <div class="content-block content-block--embed">
     <div class="storybook-container" style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
         <div class="storybook-embed-container">
+            {* Iframe in iframe was used to prevent controlling scroll of parent window from iframe. *}
+            {* This is a hack bacause it's a Chrome bug exploit and can become broken in some time *}
+            {* More info: https://stackoverflow.com/a/71434176 *}
             <iframe
-                class="embed-responsive-item storybook"
-                src="{{ block.url }}"
-                allowfullscreen
-                loading="lazy"
-                aria-label="Embedded Storybook"
-                referrerpolicy="origin"
+                class="embed-responsive-item"
                 style="height: {{ (block.size && block.size.height && block.size.height < 150) ? block.size.height + "px" : "100%" }}"
-            ></iframe>
+                srcdoc="
+                    <iframe
+                        class='embed-responsive-item storybook'
+                        src='{{ block.url }}'
+                        allowfullscreen
+                        loading='lazy'
+                        aria-label='Embedded Storybook'
+                        referrerpolicy='origin'
+                        style='position: fixed; top: 0; width: 100vw; height: 100vh; border: none; padding: 0; margin: 0; '
+                    ></iframe>
+                ">
+            </iframe>
         </div>
         <div class="storybook-error">
             <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
