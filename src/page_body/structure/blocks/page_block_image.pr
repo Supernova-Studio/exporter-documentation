@@ -25,7 +25,16 @@
 
 <div class="content-block content-block--image {{ alignClass }}" id="{{ getSearchIDString(block.id) }}">
 {* Add <a class="popup-img" href="{{ block.url }}"> <img> </a> if you want to enable lightbox-functionality *}
+{[ if (block.asset && block.asset.type === "figmaFrame" && block.asset.frame && block.asset.frame.origin && block.asset.frame.origin.height) ]}
+    {[ let altText = (block.caption ? block.caption : block.asset.frame.title) /]}
+    <img src="{{ block.url }}"
+        class="{{ imgClass }}"
+        alt="{{ altText }}"
+        height="{{ block.asset.frame.origin.height }}"
+        width="{{ block.asset.frame.origin.width }}" />
+{[ else ]}
     <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ block.caption }}" />
+{[/]}
     
 {* Add caption if set *}
 {[ if block.caption ]}
