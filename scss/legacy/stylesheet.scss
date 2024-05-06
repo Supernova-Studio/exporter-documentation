@@ -402,18 +402,23 @@ ol>.block-children {
 
 
 /* Sidebar Navigation */
-
+#content-nav-container {
+    padding-bottom: 16px;
+}
 #content-nav {
     padding-left: 16px;
-    border-left: 1px solid var(--colorBorderProminent);
+    box-shadow: inset 1px 0 0px 0px var(--colorBorderProminent);
     width: 200px;
     position: sticky;
     float: right;
-    top: 120px;
+    top: calc(var(--topNavHeight) + 20px + var(--tabOffset, 12px));
     z-index: 10;
     margin-left: 60px;
     align-self: flex-start;
     margin-top: 16px;
+    /* protection for long pages with many titles) */
+    max-height: calc(100vh - (var(--topNavHeight) + 20px + var(--tabOffset, 12px)) - 16px);
+    overflow: auto;
 }
 
 #content-nav>ul>li.sub {
@@ -434,18 +439,22 @@ ol>.block-children {
     position: absolute;
     width: 1px;
     height: 100%;
-    left: -17px;
+    left: -16px;
     top: 2px;
     background: var(--colorAccent);
     border-radius: 2px;
 }
 
+#content-nav li.active:last-of-type>a::before {
+    height: 94%;
+}
+
 #content-nav li.sub.active>a::before {
-    left: -29px;
+    left: -28px;
 }
 
 #content-nav li.sub-2.active>a::before {
-    left: -41px;
+    left: -49px;
 }
 
 #content-nav ul {
@@ -457,7 +466,6 @@ ol>.block-children {
 #content-nav>ul {
     margin: 0;
 }
-
 
 #content-nav a {
     text-decoration: none;
@@ -479,6 +487,10 @@ ol>.block-children {
     display: block;
     padding-top: 8px;
     padding-bottom: 8px;
+    position: sticky;
+    top: 0;
+    background: var(--colorBackgroundPrimary);
+    z-index: 1;
 }
 
 #content-nav a:hover,
