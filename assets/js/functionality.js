@@ -91,9 +91,12 @@ $(window).on('load', function() {
                 const overviewItem = findExistingSectionInOverview(section)
                 overviewItemsToKeepActiveEvenIfNotInView.add(overviewItem);
                 overviewItem && overviewItem.classList.add('active')
-                contentNavContainer.scrollTo({
+
+                // scrolling toc, not the whole page
+                overviewItem && contentNavContainer.scrollTo({
                     top: overviewItem.offsetTop - 100, 
                 });
+               
             }
         }
 
@@ -122,16 +125,16 @@ $(window).on('load', function() {
         }
     });
 
-    // Track all headers that have an `id` applied
-    document.querySelectorAll('h1[id]').forEach(section => {
+    // Track all headers that have an `id` applied (only from the main content area, so we don't track headers from e.g. Tabs block. It breaks the ToC active items otherwise)
+    document.querySelectorAll('#page-tab-content > h1[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });
-    document.querySelectorAll('h2[id]').forEach(section => {
+    document.querySelectorAll('#page-tab-content > h2[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });
-    document.querySelectorAll('h3[id]').forEach(section => {
+    document.querySelectorAll('#page-tab-content > h3[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });

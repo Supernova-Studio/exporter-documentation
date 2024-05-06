@@ -446,7 +446,7 @@ ol>.block-children {
 }
 
 #content-nav li.active:last-of-type>a::before {
-    height: 94%;
+    height: 90%; // small UI hack to avoid overflowing the last element
 }
 
 #content-nav li.sub.active>a::before {
