@@ -9,6 +9,14 @@
   font-size: var(--fontSizeSmall);
   line-height: var(--lineHeightSmall);
 
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .icon {
     width: 24px;
     height: 24px;
