@@ -368,6 +368,7 @@ declare global {
     alignment: ContentAlignment
     backgroundColor: string | null
     showCode: boolean
+    showControls: boolean
     code: string
     sandboxData: string
     sandboxType: DocumentationPageBlockCodeLiveSandboxType

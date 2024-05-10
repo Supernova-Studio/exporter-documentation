@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.11.2",
+  "version": "4.11.3",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -1038,18 +1038,6 @@
           "key": "codeRight",
           "description": "Side-by-side preview and code, with code on the right.",
           "thumbnail": "thumbnails/RenderCode_CodeRight.png"
-        },
-        {
-          "name": "Only preview, no code",
-          "key": "noCode",
-          "description": "Full-width preview only, with no code displayed.",
-          "thumbnail": "thumbnails/RenderCode_NoCode.png"
-        },
-        {
-          "name": "Preview without controls",
-          "key": "noCodeNoControls",
-          "description": "Full-width preview only, with no code and no controls.",
-          "thumbnail": "thumbnails/RenderCode_NoCodeNoControls.png"
         }
       ],
       "io.supernova.documentation-main.markdown": [

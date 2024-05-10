@@ -9,23 +9,19 @@
 {* Generate sandbox code which will be automatically converted to live sandbox *}
 <div class="content-block content-block--live-sandbox{{getVariantClass(block.variantKey)}}">
     {* Panel is always on top *}
-    {[ if (variant !== "noCodeNoControls") ]}
+    {[ if (block.showControls || block.showControls === undefined) ]}
         {[ inject "page_block_code_live_panel" context { "sandboxId" : sandboxId } /]}
     {[/]}
 
     {* Generate different layouts based on the variant of the code block *}
     {[ let sandboxData = { "sandboxId" : sandboxId, "block" : block, "backgroundColor": backgroundColor } /]}
 
-    {[ if (variant === "codeBottom" || variant === null) ]}
-        {* Code bottom, component top, full width *}
+    {[ if (!block.showCode || variant === "noCode" || variant === "noCodeNoControls") ]}
+        {* No code, only full width component preview *}
         {[ inject "page_block_code_live_sandbox" context sandboxData /]}
-        {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
     {[ elseif (variant === "codeTop") ]}
         {* Code top, component bottom, full width *}
         {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
-        {[ inject "page_block_code_live_sandbox" context sandboxData /]}
-    {[ elseif (variant === "noCode" || variant === "noCodeNoControls") ]}
-        {* No code, only full width component preview *}
         {[ inject "page_block_code_live_sandbox" context sandboxData /]}
     {[ elseif (variant === "codeLeft") ]}
         {* Code left, component right, split screen *}
@@ -47,5 +43,9 @@
             {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
             </div>
         </div>
+    {[ else ]}
+        {* Code bottom, component top, full width *}
+        {[ inject "page_block_code_live_sandbox" context sandboxData /]}
+        {[ inject "page_block_code_live_textarea" context { "sandboxId" : sandboxId } /]}
     {[/]}
 </div>
