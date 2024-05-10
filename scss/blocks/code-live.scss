@@ -158,7 +158,7 @@
 }
 
 .content-block--live-sandbox.variant-codeBottom .sandbox-state-wrapper,
-.content-block--live-sandbox:not(.variant-codeTop):not(.variant-codeLeft):not(.variant-codeRight):not(.variant-noCode) .sandbox-state-wrapper {
+.content-block--live-sandbox:not(.variant-codeTop):not(.variant-codeLeft):not(.variant-codeRight) .sandbox-state-wrapper {
     border-bottom: 1px solid var(--colorBorderSubtle);
 }
 
