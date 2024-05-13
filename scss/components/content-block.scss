@@ -12,3 +12,15 @@
     margin-top: 0; // should this be !important?
     margin-bottom: var(--contentBlockGap);
 }
+
+.content-block p, 
+ul.content-block li,
+.heading {
+    a {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

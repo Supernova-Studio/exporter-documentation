@@ -42,6 +42,8 @@ $(window).on('load', function() {
          $('#header').prepend('<div class="banner-preview"><div class="content"><div class="message"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>');
     }
 
+    const contentNavContainer = document.querySelector('#content-nav');
+
     // Create intersection observer for all sections
     const observer = new IntersectionObserver(_entries => {
         // Highlight headers in viewport
@@ -88,7 +90,13 @@ $(window).on('load', function() {
 
                 const overviewItem = findExistingSectionInOverview(section)
                 overviewItemsToKeepActiveEvenIfNotInView.add(overviewItem);
-                overviewItem && overviewItem.classList.add('active');
+                overviewItem && overviewItem.classList.add('active')
+
+                // scrolling toc, not the whole page
+                overviewItem && contentNavContainer.scrollTo({
+                    top: overviewItem.offsetTop - 100, 
+                });
+               
             }
         }
 
@@ -112,21 +120,21 @@ $(window).on('load', function() {
             }
             if (currentSection) {
                 const overviewItem = findExistingSectionInOverview(currentSection);
-                overviewItem && overviewItem.classList.add('active');
+                overviewItem && overviewItem.classList.add('active')
             }
         }
     });
 
-    // Track all headers that have an `id` applied
-    document.querySelectorAll('h1[id]').forEach(section => {
+    // Track all headers that have an `id` applied (only from the main content area, so we don't track headers from e.g. Tabs block. It breaks the ToC active items otherwise)
+    document.querySelectorAll('#page-tab-content > h1[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });
-    document.querySelectorAll('h2[id]').forEach(section => {
+    document.querySelectorAll('#page-tab-content > h2[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });
-    document.querySelectorAll('h3[id]').forEach(section => {
+    document.querySelectorAll('#page-tab-content > h3[id]').forEach(section => {
         observer.observe(section);
         sections.push(section);
     });
