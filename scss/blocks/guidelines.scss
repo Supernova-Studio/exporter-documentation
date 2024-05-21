@@ -1,0 +1,361 @@
+/* =================================== */
+/*  Guidelines
+/* =================================== */
+
+/* Default theming */
+:root {
+  --guidelinesGridGap: 12px;
+  --guidelinesBorderRadius: var(--borderRadiusDefault);
+  --guidelinesContentPadding: 16px;
+  --guidelinesBackground: var(--colorBackgroundPrimary);
+  --guidelinesBackgroundHover: var(--colorBackgroundPrimary);
+  --guidelinesBadgeFontSize: var(--fontSizeSmall);
+  --guidelinesDescriptionFontSize: var(--fontSizeDefault);
+  --guidelinesImageBorderRadius: var(--borderRadiusDefault);
+
+  /* Guidelines: Colors */
+  --guidelinesDoInk: var(--colorGreen900);
+  --guidelinesDoInkSecondary: var(--colorGreen500);
+  --guidelinesDoBackground: var(--colorGreen100);
+  --guidelinesDoBorder: var(--colorGreen300);
+  --guidelinesCautionInk: var(--colorOrange900);
+  --guidelinesCautionInkSecondary: var(--colorOrange500);
+  --guidelinesCautionBorder: var(--colorOrange300);
+  --guidelinesCautionBackground: var(--colorOrange100);
+  --guidelinesDontInk: var(--colorRed900);
+  --guidelinesDontInkSecondary: var(--colorRed500);
+  --guidelinesDontBackground: var(--colorRed100);
+  --guidelinesDontBorder: var(--colorRed300);
+}
+
+/* Styles */
+.content-block--guidelines {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: var(--guidelinesGridGap);
+  grid-row-gap: calc(var(--guidelinesGridGap)*2);
+
+  &.layout-columns-1 {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: calc(var(--guidelinesGridGap)*2);
+  }
+
+  &.layout-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.layout-columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .guideline-item {
+    border-radius: var(--guidelinesBorderRadius);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: var(--transitionDefault);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .content {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--guidelinesContentGap, 4px);
+      font-size: var(--guidelinesDescriptionFontSize);
+      line-height: 140%;
+    }
+
+    .image {
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      img {
+        display: block;
+        border-radius: var(--guidelinesImageBorderRadius);
+        max-width: 100%;
+      }
+
+      .caption {
+        font-size: var(--fontSizeTiny);
+        margin-top: 0;
+      }
+    }
+
+    .type-badge {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: var(--fontWeightBold);
+      font-size: var(--guidelinesBadgeFontSize);
+      display: inline-flex;
+      align-self: flex-start;
+
+      &.type-badge__full {
+        padding: 2px 6px;
+        background: var(--colorBackgroundSecondary);
+        border-radius: var(--borderRadiusSmall);
+      }
+    }
+
+    &.guideline-item__type-caution {
+      .type-badge {
+        color: var(--guidelinesCautionInkSecondary);
+      }
+
+      .type-badge__full {
+        background: var(--guidelinesCautionBackground);
+        color: var(--guidelinesCautionInk);
+      }
+    }
+
+    &.guideline-item__type-dont {
+      .type-badge {
+        color: var(--guidelinesDontInkSecondary);
+      }
+
+      .type-badge__full {
+        background: var(--guidelinesDontBackground);
+        color: var(--guidelinesDontInk);
+      }
+    }
+
+    &.guideline-item__type-do {
+      .type-badge {
+        color: var(--guidelinesDoInkSecondary);
+      }
+
+      .type-badge__full {
+        background: var(--guidelinesDoBackground);
+        color: var(--guidelinesDoInk);
+      }
+    }
+
+    .icon {
+      svg {
+        display: block;
+      }
+    }
+
+    p.description {
+      margin: 0;
+      padding: 0;
+      font-size: var(--guidelinesDescriptionFontSize);
+      line-height: 1.4;
+      font-weight: var(--fontWeightRegular);
+      color: var(--colorInkSecondary);
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+/* Shortcut variants */
+.content-block--guidelines {
+  
+  // Variant: Simple
+  &.variant-simple {
+      .guideline-item {
+        gap: 8px;
+
+        .content {
+          padding: 0;
+        }
+
+        .type-badge {
+          border-radius: var(--borderRadiusDefault);
+        }
+      }
+  }
+
+  // Variant: Prominent
+  &.variant-prominent {
+    gap: var(--guidelinesGridGap);
+
+    .guideline-item {
+      gap: 0;
+
+      .image {
+        position: relative;
+
+        img {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .caption-container {
+          position: absolute;
+          bottom: 8px;
+          left: 8px;
+
+          .caption {
+            display: inline-flex;
+            background: rgba(255,255,255, 0.5);
+            padding: 2px 6px;
+            border-radius: var(--borderRadiusSmall);
+          }
+        }
+
+      }
+
+      .content {
+        padding: var(--guidelinesContentPadding);
+        border-top: 2px solid var(--colorBackgroundSecondary);
+      }
+
+      &.guideline-item__type-caution {
+        background: var(--guidelinesCautionBackground);
+        color: var(--guidelinesCautionInk);
+
+        .content {
+          border-top-color: var(--guidelinesCautionInkSecondary);
+        }
+      }
+
+      &.guideline-item__type-dont {
+        background: var(--guidelinesDontBackground);
+        color: var(--guidelinesDontInk);
+
+        .content {
+          border-top-color: var(--guidelinesDontInkSecondary);
+        }
+      }
+
+      &.guideline-item__type-do {
+        background: var(--guidelinesDoBackground);
+        color: var(--guidelinesDoInk);
+
+         .content {
+          border-top-color: var(--guidelinesDoInkSecondary);
+        }
+      }
+
+    }
+  }
+
+  &.variant-side-border {
+    .guideline-item {
+      gap: 8px;
+      border-radius: 0;
+
+      .item-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+
+        .side-border {
+          width: var(--guidelinesBorderWidth, 3px);
+          height: 100%;
+          background: black;
+          flex-shrink: 0;
+          border-radius: 100px;
+        }
+
+        .content-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      .type-badge {
+        border-radius: var(--borderRadiusDefault);
+      }
+
+      &.guideline-item__type-caution {
+
+        .side-border {
+          background-color: var(--guidelinesCautionBorder);
+        }
+
+        .type-badge__full {
+          background: var(--guidelinesCautionBackgroundAlternative, var(--colorOrange400));
+          color: #FFF;
+        }
+      }
+
+      &.guideline-item__type-dont {
+
+        .side-border {
+          background-color: var(--guidelinesDontBorder);
+        }
+
+        .type-badge__full {
+          background: var(--guidelinesDontBackgroundAlternative, var(--colorRed400));
+          color: #FFF;
+        }
+      }
+
+      &.guideline-item__type-do {
+
+        .side-border {
+          background-color: var(--guidelinesDoBorder);
+        }
+
+        .type-badge__full {
+          background: var(--guidelinesDoBackgroundAlternative, var(--colorGreen400));
+          color: #FFF;
+        }
+      }
+    }
+  }
+
+  &.variant-contained {
+    .guideline-item {
+      .image {
+        min-height: 38px;
+        position: relative;
+        border-top: var(--guidelinesBorderWidth, 3px) solid black;
+
+        .image-asset {
+          border-top-left-radius: 0px;
+          border-top-right-radius: 0px;
+        }
+
+        .type-badge {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          z-index: 1;
+        }
+      }
+
+      &.guideline-item__type-dont {
+        .image {
+          border-top-color: var(--guidelinesDontBorder);
+        }
+      }
+
+      &.guideline-item__type-caution {
+        .image {
+          border-top-color: var(--guidelinesCautionBorder);
+        }
+      }
+      
+      &.guideline-item__type-do {
+        .image {
+          border-top-color: var(--guidelinesDoBorder);
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: $breakpoint-mobile) {
+  .content-block--guideliness {
+    // applied to all the variants because of !important
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .content-block--guideliness {
+
+    &.layout-columns-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

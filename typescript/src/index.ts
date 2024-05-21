@@ -13,9 +13,13 @@ import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntr
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes } from "./doc_functionality/general-utils"
+// import { getMockedGuidelinesBlock } from "./mocked-block-definitions"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
+
+/* Mocked block definitions */
+// Pulsar.registerFunction("getMockedGuidelinesBlock", getMockedGuidelinesBlock)
 
 /* Local lookup */
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
