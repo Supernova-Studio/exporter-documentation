@@ -1,0 +1,9 @@
+{[ let block = context /]}
+
+{[ let variant = block.variantKey /]}
+
+<div class="content-block content-block--guidelines layout-columns-{{block.columns}} {{ getVariantClass(variant) }}" id="{{ getSearchIDString(block.id) }}">
+  {[ for item in block.items ]}
+    {[ inject "page_block_guideline" context ({"variant": block.variantKey, "item": item}) /]}
+  {[/]}
+</div>

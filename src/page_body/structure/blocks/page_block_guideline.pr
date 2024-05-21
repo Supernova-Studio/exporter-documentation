@@ -1,0 +1,113 @@
+{[ const item = context.item /]}
+{[ const variant = context.variant /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ let typeClassname = "" /]}
+{[ let icon = "icon_circle_check" /]}
+{[ let imageAlt = "" /]}
+
+{[ switch item.type.value ]}
+    {[ case "do" ]}
+        {[ typeClassname = "guideline-item__type-do" /]}
+    {[ case "dont" ]}
+        {[ typeClassname = "guideline-item__type-dont" /]}
+        {[ icon = "icon_circle_error" /]}
+    {[ case "caution" ]}
+        {[ typeClassname = "guideline-item__type-caution" /]}
+        {[ icon = "icon_circle_warning" /]}
+{[/]}
+{[ if (item.image && (item.image.alt !== "")) ]}
+   {[ imageAlt = item.image.alt /]}
+{[/]}
+
+{[ if (item.image && (item.image.alt === "") && (item.image.caption !== "")) ]}
+   {[ imageAlt = item.image.caption /]}
+{[/]}
+
+{[ if (variant === "prominent") ]}
+    <div class="guideline-item {{typeClassname}}">
+        {[ if (item.image && (item.image.url !== "")) ]}
+        <div class="image">
+            <img src="{{item.image.url}}" alt="{{item.image.alt}}" class="image-asset" />
+            {[ if ((item.image.caption !== "") && (item.image.caption !== null)) ]}
+            <div class="caption-container"><div class="caption">{{item.image.caption}}</div></div>
+            {[/]}
+        </div>
+        {[/]}
+
+        <div class="content">
+            <div class="type-badge">
+                <span class="icon">{[ inject icon context configuration /]}</span>
+                <span class="label">{{ item.type.name}}</span>
+            </div>
+            {{ withHTMLNewlines(item.description) }}
+        </div>
+    </div>
+   
+{[ elseif (variant === "side-border") ]}
+    <div class="guideline-item {{typeClassname}}">
+        <div class="type-badge type-badge__full">
+            <span class="icon">{[ inject icon context configuration /]}</span>
+            <span class="label">{{ item.type.name}}</span>
+        </div>
+        <div class="item-wrapper">
+            <div class="side-border"></div>
+            <div class="content-wrapper">
+                {[ if (item.image && (item.image.url !== "")) ]}
+                <div class="image">
+                    <img src="{{item.image.url}}" alt="{{item.image.alt}}" class="image-asset" />                    
+                    {[ if ((item.image.caption !== "") && (item.image.caption !== null)) ]}
+                    <div class="caption-container"><div class="caption">{{item.image.caption}}</div></div>
+                    {[/]}
+                </div>
+                {[/]}
+
+                <div class="content">
+                    {{ withHTMLNewlines(item.description) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{[ elseif (variant === "contained") ]}
+    <div class="guideline-item {{typeClassname}}">
+        <div class="image">
+            <div class="type-badge">
+                <span class="icon">{[ inject icon context configuration /]}</span>
+                <span class="label">{{ item.type.name}}</span>
+            </div>
+            {[ if (item.image && (item.image.url !== "")) ]}
+            <img src="{{item.image.url}}" alt="{{item.image.alt}}" class="image-asset" />
+            
+            {[ if ((item.image.caption !== "") && (item.image.caption !== null)) ]}
+                <div class="caption-container"><div class="caption">{{item.image.caption}}</div></div>
+            {[/]}
+
+            {[/]}
+        </div>
+
+        <div class="content">
+            {{ withHTMLNewlines(item.description) }}
+        </div>
+    </div>
+{[ else ]}
+     <div class="guideline-item {{typeClassname}}">
+        <div class="type-badge type-badge__full">
+            <span class="icon">{[ inject icon context configuration /]}</span>
+            <span class="label">{{ item.type.name}}</span>
+        </div>
+        {[ if (item.image && (item.image.url !== "")) ]}
+        <div class="image">
+            <img src="{{item.image.url}}" alt="{{item.image.alt}}" class="image-asset" />
+            {[ if ((item.image.caption !== "") && (item.image.caption !== null)) ]}
+            <div class="caption-container"><div class="caption">{{item.image.caption}}</div></div>
+            {[/]}
+        </div>
+        {[/]}
+
+        <div class="content">
+            {{ withHTMLNewlines(item.description) }}
+        </div>
+    </div>
+{[/]}
+   
+   
