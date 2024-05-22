@@ -154,7 +154,7 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     return false
   }
   if (object.type === "Group") {
-    if (object.title.startsWith("_")) {
+    if (object.configuration.isHidden) {
       return false
     } else {
       let parent = (object as DocumentationGroup).parent
@@ -166,7 +166,7 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
       }
     }
   } else if (object.type === "Page") {
-    return !object.title.startsWith("_")
+    return !object.configuration.isHidden
   } else {
     return false
   }

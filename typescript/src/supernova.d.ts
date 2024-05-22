@@ -287,6 +287,10 @@ declare global {
     type: DocumentationItemType
     slug: string
     userSlug: string | null
+    configuration: {
+      isHidden: boolean
+      isPrivate: boolean
+    }
   }
 
   type DocumentationGroup = DocumentationItem & {
