@@ -62,14 +62,14 @@ function CookieConsent(props) {
         }
         
         self.modalContent = '<!-- cookie banner => https://github.com/shaack/cookie-consent-js -->' +
-            '<div class="' + modalClass + '">' +
+            '<section class="' + modalClass + '" aria-labelledby="cookie-consent-heading">' +
             '<div class="modal-content-wrap ' + self.props.position + '">' +
             '<div class="modal-content">' +
             '<div class="modal-header">--header--</div>' +
             '<div class="modal-body">--body--</div>' +
             '<div class="modal-footer">--footer--</div>' +
             '</div></div><!-- end cookie-consent.js -->'
-        self.modalContent = self.modalContent.replace(/--header--/, "<h3 class=\"modal-title\">" + _t.title + "</h3>")
+        self.modalContent = self.modalContent.replace(/--header--/, "<h3 class=\"modal-title\" id=\"cookie-consent-heading\">" + _t.title + "</h3>")
         self.modalContent = self.modalContent.replace(/--body--/,
             _t.body.replace(/--privacy-policy--/, linkPrivacyPolicy)
         )
@@ -77,7 +77,7 @@ function CookieConsent(props) {
             "<div class='buttons'>" +
             "<button class='btn-accept-necessary " + self.props.buttonSecondaryClass + "'>" + _t.buttonAcceptTechnical + "</button>" +
             "<button class='btn-accept-all " + self.props.buttonPrimaryClass + "'>" + _t.buttonAcceptAll + "</button>" +
-            "</div>"
+            "</section>"
         )
         if (getCookie(self.props.cookieName) === undefined && self.props.autoShowModal) {
             showDialog()
