@@ -57,6 +57,7 @@
                 {[ let isGroupOpen = (isRootForTab && hasFirstLevelFlat && (item.groupBehavior !== "Tabs")) /]}
                 
                 {[ if item.type.equals("Page") ]}
+                    {{ jsonDebug(item.configuration, {"title": item.title}) }}
                     <li class="nav-item{{ isTab === true ? " is-tab" : "" }}">
                         <a class="nav-link{{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">
                             <span>

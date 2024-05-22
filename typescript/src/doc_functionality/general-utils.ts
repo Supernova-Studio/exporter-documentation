@@ -1,4 +1,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+import { htmlSafeString } from "./sandbox";
+
 // MARK: - General utils
 var hash = require('short-hash');
 
@@ -53,3 +56,15 @@ export function generateCustomCSSHash(configuration: any): string {
 
     return hash(JSON.stringify(filteredConfiguration));
 }
+
+export function jsonDebug(data: any, options: { title?: string } = {}): string {
+    const stringData = JSON.stringify(data)
+    return `<div style='font-size: 8px'>
+          ${options?.title ? `<div>${options.title}</div>` : ''}
+          <div style='max-width: 1200px'>
+            <code style='font-family: monospace; margin: 0'>${htmlSafeString(
+              stringData
+            )}</code>
+          </div>
+        </div>`
+  }
