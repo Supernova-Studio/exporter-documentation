@@ -36,6 +36,10 @@
     color: var(--colorInkSecondary);
   }
 
+  a {
+    text-decoration: underline;
+  }
+
   p:last-child {
     margin-bottom: 0;
   }
