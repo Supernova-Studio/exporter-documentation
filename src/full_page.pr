@@ -59,17 +59,17 @@
         <div class="site-content{[ if !configuration.showSidebar ]} no-sidebar{[/]}">
           {[ if configuration.showSidebar ]}
             <!-- Sidebar Navigation -->
-            <div class="side-navigation-wrapper {{ ((globalConfiguration.sideNavigationStyle === "Dark") ? "style-dark" : "style-light")}}" id="side-navigation">
+            <nav class="side-navigation-wrapper {{ ((globalConfiguration.sideNavigationStyle === "Dark") ? "style-dark" : "style-light")}}" id="side-navigation">
               <div class="bg-sidebar"></div>
               {[ let data = { "page" : page } /]}
               <div class="sidebar-navigation docs-navigation">
                 {[ inject "page_body_structure_sidebar" context data /]}
               </div>
-            </div>
+            </nav>
           {[/]}
           
           <!-- Docs Content -->
-          <div class="docs-content">
+          <main class="docs-content">
 
             {* Generate page header that is present on each page *}
             {[ inject "page_body_structure_title" context page /]}
@@ -77,21 +77,21 @@
             {* Generate content for the page *}
             <div class="content-container">
               <section id="section-content-page">
-                <main class="tab-content{{ centeredClass }}" id="page-tab-content">
+                <div class="tab-content{{ centeredClass }}" id="page-tab-content">
 
                 {[ for block in page.blocks ]}
                     {[ inject "page_body_structure_block" context ({"block": block, "pageId": page.id}) /]}
                 {[/]}
 
                 {[ inject "page_body_structure_page_navigation" context page /]}
-                </main>
+                </div>
               </section>
               {[ inject "page_body_structure_content" context page /]}
             </div>
 
             {* Generate footer, if enabled *}
             {[ inject "page_body_structure_footer" context page /]}
-          </div>
+          </main>
         </div> {* .site-content end *}
       </div> {* .site-content-wrapper end *}
     </div> {* .site-wrapper end *}
