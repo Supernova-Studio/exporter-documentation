@@ -157,17 +157,17 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     if (
       object.configuration.isHidden ||
       object.children.length === 0 ||
-      object.children.every(child => child.configuration.isHidden)
+      !object.children.some(child => isExportable(child))
     ) {
       return false
+    }
+      
+    let parent = (object as DocumentationGroup).parent
+    if (parent) {
+      return isExportable(parent)
     } else {
-      let parent = (object as DocumentationGroup).parent
-      if (parent) {
-        return isExportable(parent)
-      } else {
-        // Reached root structure without any group being non-exportable, so the entire structure is exportable
-        return true
-      }
+      // Reached root structure without any group being non-exportable, so the entire structure is exportable
+      return true
     }
   } else if (object.type === "Page") {
     return !object.configuration.isHidden
