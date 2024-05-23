@@ -294,14 +294,16 @@ declare global {
   }
 
   type DocumentationGroup = DocumentationItem & {
+    type: "Group"
     isRoot: boolean
     childrenIds: Array<string>
-    children: Array<DocumentationItem>
+    children: Array<DocumentationGroup | DocumentationPage>
     parent: DocumentationGroup | null
     groupBehavior: DocumentationGroupBehavior
   }
 
   type DocumentationPage = DocumentationItem & {
+    type: "Page"
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
     relativeUrl: string

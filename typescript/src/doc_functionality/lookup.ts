@@ -45,7 +45,7 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
 
   for (let child of documentationRoot.children) {
-    if (isExportable(child as DocumentationPage | DocumentationGroup)) {
+    if (isExportable(child)) {
       if (child.type === "Page") {
         return child as DocumentationPage
       } else {
@@ -154,7 +154,11 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     return false
   }
   if (object.type === "Group") {
-    if (object.configuration.isHidden) {
+    if (
+      object.configuration.isHidden ||
+      object.children.length === 0 ||
+      object.children.every(child => child.configuration.isHidden)
+    ) {
       return false
     } else {
       let parent = (object as DocumentationGroup).parent
