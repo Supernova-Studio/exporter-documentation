@@ -166,7 +166,7 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     if (
       object.configuration.isHidden ||
       object.children.length === 0 ||
-      containsVisiblePage(object)
+      !containsVisiblePage(object)
     ) {
       return false
     }
