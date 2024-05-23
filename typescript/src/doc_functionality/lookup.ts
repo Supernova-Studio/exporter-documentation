@@ -147,6 +147,15 @@ export function previousPage(page: DocumentationPage, documentationRoot: Documen
   return null
 }
 
+/** Recursively checks if any visible page is contained inside the structure */ 
+function containsVisiblePage(object: DocumentationPage | DocumentationGroup) {
+  if(object.type === "Group") {
+    return object.children.some((child) => containsVisiblePage(child))
+  }
+
+  return !object.configuration.isHidden
+}
+
 /** Check whether page or group is exportable. Currently page is considered exportable if it doesn't start with underscore */
 export function isExportable(object: DocumentationPage | DocumentationGroup): boolean {
 
@@ -157,7 +166,7 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     if (
       object.configuration.isHidden ||
       object.children.length === 0 ||
-      !object.children.some(child => isExportable(child))
+      containsVisiblePage(object)
     ) {
       return false
     }
@@ -165,10 +174,11 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     let parent = (object as DocumentationGroup).parent
     if (parent) {
       return isExportable(parent)
-    } else {
-      // Reached root structure without any group being non-exportable, so the entire structure is exportable
-      return true
-    }
+    } 
+      
+    // Reached root structure without any group being non-exportable, so the entire structure is exportable
+    return true
+    
   } else if (object.type === "Page") {
     return !object.configuration.isHidden
   } else {
