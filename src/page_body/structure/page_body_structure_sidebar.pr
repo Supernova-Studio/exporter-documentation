@@ -57,7 +57,6 @@
                 {[ let isGroupOpen = (isRootForTab && hasFirstLevelFlat && (item.groupBehavior !== "Tabs")) /]}
                 
                 {[ if item.type.equals("Page") ]}
-                    <code>{{ item.configuration.isHidden }}</code>
                     <li class="nav-item{{ isTab === true ? " is-tab" : "" }}">
                         <a class="nav-link{{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">
                             <span>
