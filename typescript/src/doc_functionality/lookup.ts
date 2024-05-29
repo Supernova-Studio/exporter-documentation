@@ -45,7 +45,7 @@ export function pageOrGroupActiveInContext(pageOrGroup: DocumentationPage | Docu
 export function firstPageFromTop(documentationRoot: DocumentationGroup): DocumentationPage | null {
 
   for (let child of documentationRoot.children) {
-    if (isExportable(child as DocumentationPage | DocumentationGroup)) {
+    if (isExportable(child)) {
       if (child.type === "Page") {
         return child as DocumentationPage
       } else {
@@ -147,6 +147,15 @@ export function previousPage(page: DocumentationPage, documentationRoot: Documen
   return null
 }
 
+/** Recursively checks if any visible page is contained inside the structure */ 
+function containsVisiblePage(object: DocumentationPage | DocumentationGroup) {
+  if(object.type === "Group") {
+    return object.children.some((child) => containsVisiblePage(child))
+  }
+
+  return !object.configuration.isHidden
+}
+
 /** Check whether page or group is exportable. Currently page is considered exportable if it doesn't start with underscore */
 export function isExportable(object: DocumentationPage | DocumentationGroup): boolean {
 
@@ -154,19 +163,24 @@ export function isExportable(object: DocumentationPage | DocumentationGroup): bo
     return false
   }
   if (object.type === "Group") {
-    if (object.title.startsWith("_")) {
+    if (
+      object.configuration.isHidden ||
+      object.children.length === 0 ||
+      !containsVisiblePage(object)
+    ) {
       return false
-    } else {
-      let parent = (object as DocumentationGroup).parent
-      if (parent) {
-        return isExportable(parent)
-      } else {
-        // Reached root structure without any group being non-exportable, so the entire structure is exportable
-        return true
-      }
     }
+      
+    let parent = (object as DocumentationGroup).parent
+    if (parent) {
+      return isExportable(parent)
+    } 
+      
+    // Reached root structure without any group being non-exportable, so the entire structure is exportable
+    return true
+    
   } else if (object.type === "Page") {
-    return !object.title.startsWith("_")
+    return !object.configuration.isHidden
   } else {
     return false
   }

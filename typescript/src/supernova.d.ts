@@ -287,17 +287,23 @@ declare global {
     type: DocumentationItemType
     slug: string
     userSlug: string | null
+    configuration: {
+      isHidden: boolean
+      isPrivate: boolean
+    }
   }
 
   type DocumentationGroup = DocumentationItem & {
+    type: "Group"
     isRoot: boolean
     childrenIds: Array<string>
-    children: Array<DocumentationItem>
+    children: Array<DocumentationGroup | DocumentationPage>
     parent: DocumentationGroup | null
     groupBehavior: DocumentationGroupBehavior
   }
 
   type DocumentationPage = DocumentationItem & {
+    type: "Page"
     blocks: Array<DocumentationPageBlock>
     parent: DocumentationGroup
     relativeUrl: string
