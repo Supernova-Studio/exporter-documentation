@@ -62,7 +62,7 @@
         "key": "lookAndFeelAccentSurfaceColor",
         "type": "color",
         "label": "Surface accent color",
-        "description": "Used for backgrounds of active and selected items. This color should meet AA+ contract criteria against the main accent color. Default color: #ecf4ff.",
+        "description": "Used for backgrounds of active and selected items. This color should meet AA+ contrast criteria against the main accent color. Default color: #ecf4ff.",
         "category": "Look & feel"
       },
       {
