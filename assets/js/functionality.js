@@ -2,9 +2,7 @@
    Content menu tracking
 -------------------------- */
 
-$(window).on('load', function() {
-    let sections = [];
-
+$(document).ready(function () {
     // Store and restore menu scroll offset
     const scroll = localStorage.getItem('menu.scroll.position.top');
     if (scroll) {
@@ -20,6 +18,10 @@ $(window).on('load', function() {
             false
         );
     });
+})
+
+$(window).on('load', function() {
+    let sections = [];
 
     // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
     if (window.location.hash) {
