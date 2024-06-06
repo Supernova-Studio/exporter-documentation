@@ -3,12 +3,8 @@
 -------------------------- */
 
 $(document).ready(function () {
-    // Store and restore menu scroll offset
-    const scroll = localStorage.getItem('menu.scroll.position.top');
-    if (scroll) {
-        $('.sidebar-navigation').scrollTop(scroll);
-    }
-
+    // Setting the observer to set the scroll state of main navigation on the left
+    // It is used in full_page.pr, so there is no visible scrollbar jumping
     document.querySelectorAll('.sidebar-navigation').forEach(section => {
         section.addEventListener(
             'scroll',
