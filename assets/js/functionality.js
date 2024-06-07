@@ -2,15 +2,9 @@
    Content menu tracking
 -------------------------- */
 
-$(window).on('load', function() {
-    let sections = [];
-
-    // Store and restore menu scroll offset
-    const scroll = localStorage.getItem('menu.scroll.position.top');
-    if (scroll) {
-        $('.sidebar-navigation').scrollTop(scroll);
-    }
-
+$(document).ready(function () {
+    // Setting the observer to set the scroll state of main navigation on the left
+    // It is used in full_page.pr, so there is no visible scrollbar jumping
     document.querySelectorAll('.sidebar-navigation').forEach(section => {
         section.addEventListener(
             'scroll',
@@ -20,6 +14,10 @@ $(window).on('load', function() {
             false
         );
     });
+})
+
+$(window).on('load', function() {
+    let sections = [];
 
     // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
     if (window.location.hash) {

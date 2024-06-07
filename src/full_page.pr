@@ -62,9 +62,16 @@
             <nav class="side-navigation-wrapper {{ ((globalConfiguration.sideNavigationStyle === "Dark") ? "style-dark" : "style-light")}}" id="side-navigation">
               <div class="bg-sidebar"></div>
               {[ let data = { "page" : page } /]}
-              <div class="sidebar-navigation docs-navigation">
+              <div class="sidebar-navigation docs-navigation">            
                 {[ inject "page_body_structure_sidebar" context data /]}
               </div>
+              <script>
+                // Restore scroll position, `menu.scroll.position.top` is set in in functionality.js
+                const scrollPosition = localStorage.getItem('menu.scroll.position.top');
+                if (scrollPosition) {
+                   document.querySelector('.sidebar-navigation').scrollTop = scrollPosition;
+                }
+              </script>
             </nav>
           {[/]}
           
