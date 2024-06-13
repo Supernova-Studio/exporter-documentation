@@ -1,4 +1,4 @@
-{[ let versions = ds.allDesignSystemVersions() /]}
+{[ let versions = sortVersionsBySemver(ds.allDesignSystemVersions()) /]}
 
 {[ if (versions.count() > 1) ]}
     <div class="content-block content-block--release-notes">

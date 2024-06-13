@@ -1,6 +1,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - General utils
 var hash = require('short-hash');
+import semverSort from "semver-sort";
 
 export function getFullYear(): string {
     return new Date().getFullYear().toString();
@@ -53,3 +54,41 @@ export function generateCustomCSSHash(configuration: any): string {
 
     return hash(JSON.stringify(filteredConfiguration));
 }
+
+
+interface VersionObject {
+  id: string;
+  name: string;
+  description: string;
+  version: string;
+  changeLog: string | null;
+  isReadOnly: boolean;
+  isSharedDraft: boolean;
+}
+
+interface VersionWithKey {
+  original: VersionObject;
+  key: string | null;
+}
+
+export const sortVersionsBySemver = (versions: VersionObject[]): VersionObject[] => {
+  const versionsWithKeys: VersionWithKey[] = versions.map((version) => ({
+    original: version,
+    key: version.version.match(/\d+\.\d+\.\d+(-[a-zA-Z0-9_]+)?/)?.[0] || null,
+  }));
+
+  const validVersions = versionsWithKeys.filter((item) => item.key);
+
+  const sortedValidVersions = semverSort
+    .desc(validVersions.map((item) => item.key!))
+    .map(
+      (sortedKey) =>
+        validVersions.find((item) => item.key === sortedKey)!.original
+    );
+
+  const nonSemverEntries = versionsWithKeys
+    .filter((item) => !item.key)
+    .map((item) => item.original);
+
+  return sortedValidVersions.concat(nonSemverEntries);
+};
