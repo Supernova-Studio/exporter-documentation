@@ -1,10 +1,10 @@
 
 {* Get block *}
 {[ const block = context /]}
-
 {* Get component from the the main brand *}
 {[ let components = [] /]}
 {[ let brands = ds.allBrands() /]}
+{[ let documentationDomain = ds.documentationDomain() /]}
 
 {[ components = components.concat(ds.allComponents(brands[0].id)) /]}
 
@@ -54,10 +54,11 @@
                         <td class="name">
                             {[ if (component.propertyValues["documentationLink"] && ds.documentationPageById(component.propertyValues["documentationLink"])) ]}
                                 {[ let page = ds.documentationPageById(component.propertyValues["documentationLink"]) /]}
-                                {[ let version = ds.currentDesignSystemVersion() /]}
-                                {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
 
-                                <a href="/{{versionPath}}/{{ page.relativeUrl }}">{{ component.name }}</a>
+                                <a href="{{pageUrl(page, documentationDomain)}}">{{ component.name }}</a>
+                            {[ elseif (component.propertyValues["documentationLink"] && ds.documentationGroupById(component.propertyValues["documentationLink"])) ]}
+                                {[ let group = ds.documentationGroupById(component.propertyValues["documentationLink"]) /]}
+                                <a href="{{pageUrl(group, documentationDomain)}}">{{ component.name }}</a>
                             {[ else ]}
                                 {{ component.name }}
                             {[/]}
