@@ -1,6 +1,7 @@
 {[ let type = context.type /]}
 {[ let text = context.text /]}
 {[ let blockId = context.blockId /]}
+{[ let margin = context.margin /]}
 {[ let configuration = exportConfiguration() /]}
 
 <div class="content-block content-block--callout callout-{{ type }}" role="alert">
