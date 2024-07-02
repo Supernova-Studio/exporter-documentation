@@ -16,7 +16,7 @@
         {[ let properties = component.properties /]}
         {[ let propertyValues = component.propertyValues /]}    
 
-        {[ let propertiesToHighlight = checkArray(block.properties.propertiesToHighlight) /]}
+        {[ let propertiesToHighlight = safeArray(block.properties.propertiesToHighlight) /]}
         {[ let linkPropertiesToHighlight = 0 /]}
         {[ for property in component.properties ]}
             {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL"].contains(property.propertyType)) ]}
