@@ -92,3 +92,8 @@ export const sortVersionsBySemver = (versions: VersionObject[]): VersionObject[]
 
   return sortedValidVersions.concat(nonSemverEntries);
 };
+
+// check if the array is non empty or non null, otherwise return []
+export const safeArray = (array: any[] | null | undefined): any[] => {
+  return array && array.length > 0 ? array : [];
+}
