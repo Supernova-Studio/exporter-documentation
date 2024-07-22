@@ -3,6 +3,8 @@
 {[ const domain = ds.documentationDomain() /]}
 {[ const exporterInfo = exportPackageConfiguration() /]} 
 {[ const version = exporterInfo.version /]}
+{[ let docsConfiguration = ds.documentationConfiguration() /]}
+{[ let configuration = exportConfiguration() /]}
 
 <!-- Fonts -->
 {* Fallback + optimization for customer fonts *}
@@ -29,3 +31,27 @@
 <!-- Asset download -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<!-- Supernova meta -->
+<script>
+    if (!window.supernova) {
+        window.supernova = {};
+    }
+
+    window.supernova.designSystem = {
+        id: '{{ docsConfiguration.designSystem.id }}',
+        name: '{{ docsConfiguration.designSystem.name }}',
+        description: '{{ docsConfiguration.designSystem.description }}',
+    };
+    window.supernova.version = {
+        version: '{{ docsConfiguration.version.version }}',
+        description: '{{ docsConfiguration.version.description }}',
+        versionName: '{{ docsConfiguration.version.name }}',
+    };
+    window.supernova.page = {
+        title: '{{ page.title }}',
+        persistendId: '{{ page.persistentId }}',
+        shortPersistendId: '{{ page.shortPersistentId }}',
+        lastPublished: '{{ page.updatedAt }}'
+    };
+</script>
