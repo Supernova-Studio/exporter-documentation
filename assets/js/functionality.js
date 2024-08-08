@@ -14,6 +14,48 @@ $(document).ready(function () {
             false
         );
     });
+
+    $('.nav-tabs-container').each(function() {
+        var $container = $(this);
+        var $tabsWrapper = $container.find('.nav-tabs-inline');
+        var $leftArrow = $container.find('.scroll-arrow-left');
+        var $rightArrow = $container.find('.scroll-arrow-right');
+
+        function checkForScroll() {
+            var scrollLeft = Math.floor($tabsWrapper.scrollLeft());
+            var scrollWidth = Math.floor($tabsWrapper[0].scrollWidth);
+            var clientWidth = Math.floor($tabsWrapper[0].clientWidth);
+
+          if (scrollLeft > 0) {
+            $leftArrow.css('display', 'flex');
+          } else {
+            $leftArrow.css('display', 'none');
+          }
+
+          if (scrollLeft < scrollWidth - clientWidth - 1) { // -1 because there is some issue with the scrollWidth
+            $rightArrow.css('display', 'flex');
+          } else {
+            $rightArrow.css('display', 'none');
+          }
+        }
+
+        function scrollTabs(direction) {
+          var scrollAmount = direction === 'left' ? -$tabsWrapper.width() : $tabsWrapper.width();
+          $tabsWrapper.animate({ scrollLeft: $tabsWrapper.scrollLeft() + scrollAmount }, 'smooth');
+        }
+
+        $tabsWrapper.on('scroll', checkForScroll);
+
+        $leftArrow.on('click', function() {
+          scrollTabs('left');
+        });
+
+        $rightArrow.on('click', function() {
+          scrollTabs('right');
+        });
+
+        checkForScroll(); // Initial check
+      });
 })
 
 $(window).on('load', function() {

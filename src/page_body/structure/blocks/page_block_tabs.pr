@@ -80,16 +80,24 @@
   {[ else ]}
     {* Default variant - tabs with header row and content below it *}
     {* Tab navigation header *}
-    <ul class="nav nav-tabs nav-tabs-inline" id="{{ blockId }}" role="tablist">
-      {[ map (block.children.enumerated()) to index tab ]}
-          {[ let id = tab.id.prefixed("T") /]}
-          {[ if (tab.type === "TabItem") ]}
-          <li class="nav-item" role="presentation">
-            <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ tab.caption }}</span></a>
-          </li>
-          {[/]}
-      {[/]}
-    </ul>
+    <div class="nav-tabs-container">
+      <div class="scroll-arrow scroll-arrow-left">
+        {[ inject "icon_arrow_left" context configuration /]}
+      </div>
+      <ul class="nav nav-tabs nav-tabs-inline" id="{{ blockId }}" role="tablist">
+        {[ map (block.children.enumerated()) to index tab ]}
+            {[ let id = tab.id.prefixed("T") /]}
+            {[ if (tab.type === "TabItem") ]}
+            <li class="nav-item" role="presentation">
+              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ tab.caption }}</span></a>
+            </li>
+            {[/]}
+        {[/]}
+      </ul>
+      <div class="scroll-arrow scroll-arrow-right">
+        {[ inject "icon_arrow_right" context configuration /]}
+      </div>
+    </div>
 
     {* Tab content, including block content *}
     <div class="tab-content tab-content-block" id="{{ blockId }}-content">
