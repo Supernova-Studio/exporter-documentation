@@ -6,7 +6,11 @@
 {[ let brands = ds.allBrands() /]}
 {[ let documentationDomain = ds.documentationDomain() /]}
 
-{[ components = components.concat(ds.allComponents(brands[0].id)) /]}
+{[ if block.brandId ]}
+    {[ components = components.concat(ds.allComponents(block.brandId)) /]}
+{[ else ]}
+    {[ components = components.concat(ds.allComponents(brands[0].id)) /]}
+{[/]}
 
 {* Get component properties *}
 
