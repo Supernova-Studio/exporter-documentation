@@ -138,6 +138,22 @@
 		}
 	}
 
+  /* For layout: centered */
+  &.with-subgrid {
+    .grid {
+      .tile-item {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+        gap: 0;
+
+        div.preview {
+          height: auto;
+        }
+      }
+    }
+  }
+
   .empty-state {
     font-size: var(--fontSizeSmall);
     color: var(--colorInkSecondary);
