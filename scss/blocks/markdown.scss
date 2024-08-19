@@ -26,4 +26,8 @@
   ul, ol {
     margin-bottom: var(--contentBlockGap);
   }
+
+  table {
+    width: -webkit-fill-available;
+  }
 }
