@@ -60,7 +60,7 @@
 .content-block--frames {
   &.layout-tiles {
     .preview {
-      padding: 0 !important;
+      padding: 0;
     }
   }
 }
@@ -194,6 +194,15 @@
 			}
 		}
 	}
+  &.force-natural-height {
+    .grid {
+      .tile-item {
+        .preview {
+          padding: 0;
+        }
+      }
+    }
+  }
 }
 
 /* 
