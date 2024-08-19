@@ -29,5 +29,9 @@
 
   table {
     width: -webkit-fill-available;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
