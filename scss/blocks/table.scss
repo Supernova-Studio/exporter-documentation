@@ -23,6 +23,9 @@ table.data-table tr td > :last-child {
 }
 
 .data-table-wrapper {
+  font-size: var(--fontSizeSmall);
+  line-height: 1.4;
+    
   p {
     font-size: var(--fontSizeSmall);
     line-height: 1.4;
@@ -92,13 +95,13 @@ table td.center .sn-text-right {
 }
 
 @media screen and (max-width: 768px) {
-  table {
+  table:not(.data-table) {
     border: 0;
   }
-  table caption {
+  table:not(.data-table) caption {
     font-size: var(--fontSizeSmall);
   }
-  table thead {
+  table:not(.data-table) thead {
     border: none;
     clip: rect(0 0 0 0);
     height: 1px;
