@@ -19,6 +19,7 @@ export type DocSearchResultData = {
   text: string,
   category: string,
   type: DocSearchResultDataType
+  keywords?: string
   url: string
 }
 
@@ -82,6 +83,7 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
       type: DocSearchResultDataType.pageTitle,
       pageName: pageName,
       category: category,
+      keywords: category,
       url: url,
     })
   }
