@@ -234,6 +234,10 @@
       background: var(--colorBackgroundPrimary);
       padding: 0 0 0 16px;
       border-radius: 0;
+
+      .value {
+        overflow-wrap: anywhere;
+      }
     }
   }
 }
@@ -493,10 +497,6 @@
 
   .label {
     max-width: 50%;
-  }
-
-  .value {
-    overflow-wrap: anywhere;
   }
 }
 
