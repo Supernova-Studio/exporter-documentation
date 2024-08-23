@@ -64,8 +64,8 @@
 {[ elseif token.tokenType.equals("Text")]}
     <div class="token-preview-container">T{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    {[ const typographyCSS = convertTypographyTokenToCSS(token, true) /]}
-    <div class="token-preview-container" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
+    {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
+    <div class="token-preview-container token-type-typography" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_theme_badge" context theme /]}</div>
 {[/]}

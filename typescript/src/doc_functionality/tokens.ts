@@ -239,12 +239,15 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
   let textDecoration = typographyToken.value.textDecoration;
   let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase);
   let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.font.subfamily);
+  let fontFamily = font.family.includes(" ")
+    ? `'${font.family}', '${font.family.replace(" ", "")}', Inter, sans-serif`
+    : `'${font.family}', Inter, sans-serif`;
 
   if (maxFontSize === true && fontSize.measure > 24) {
     fontSizeMeasure = 24;
   }
 
-  return `font-family: '${font.family}', Inter, sans-serif; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
+  return `font-family: ${fontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
 }
 
 /** Get color value from settings option */
