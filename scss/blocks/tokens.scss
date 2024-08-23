@@ -222,10 +222,6 @@
       background: var(--colorBackgroundPrimary);
       padding: 0 0 0 16px;
       border-radius: 0;
-
-      .value {
-        overflow-wrap: anywhere;
-      }
     }
   }
 }
@@ -289,6 +285,7 @@
     .value { 
       color: var(--colorInkPrimary);
       text-align: right;
+      overflow-wrap: anywhere;
 
       mark {
         font-size: 11px;
@@ -442,54 +439,70 @@
   }
 }
 
-.content-block--token-container .grid > div div.preview.small-text {
-  font-size: 11px;
-}
+.content-block--token-container {
+  .grid {
+    > div {
+      div.preview.small-text {
+        font-size: 11px;
+      }
 
-.content-block--token-container .grid > div > p.title {
-  margin: 8px 0 0 0;
-  padding: 0;
-  font-size: var(--fontSizeSmall);
-  font-weight: var(--fontWeightSemibold);
-  line-height: var(--lineHeightSmall);
-  color: var(--colorInkPrimary);
-}
+      > p.title {
+        margin: 8px 0 0 0;
+        padding: 0;
+        font-size: var(--fontSizeSmall);
+        font-weight: var(--fontWeightSemibold);
+        line-height: var(--lineHeightSmall);
+        color: var(--colorInkPrimary);
+      }
 
-.content-block--token-container .grid > div > p.description {
-  margin: 0px 0 4px 0;
-  padding: 0;
-  font-size: var(--fontSizeTiny);
-  font-weight: var(--fontWeightRegular);
-  line-height: var(--lineHeightTiny);
-  color: var(--colorInkSecondary);
-}
+      > p.description {
+        margin: 0px 0 4px 0;
+        padding: 0;
+        font-size: var(--fontSizeTiny);
+        font-weight: var(--fontWeightRegular);
+        line-height: var(--lineHeightTiny);
+        color: var(--colorInkSecondary);
+      }
 
-.content-block--token-container .grid > div.token-grid--item {
-  border-radius: var(--borderRadiusDefault);
-  box-sizing: border-box;
-  overflow: hidden;
-  background: var(--colorBackgroundPrimary);
-  padding-bottom: 4px;
-}
+      &.token-grid--item {
+        border-radius: var(--borderRadiusDefault);
+        box-sizing: border-box;
+        overflow: hidden;
+        background: var(--colorBackgroundPrimary);
+        padding-bottom: 4px;
+        gap: 8px;
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3;
 
-.content-block--token-container .grid > div.spacer {
-  border: 0px;
-}
+        .description {
+          font-size: var(--fontSizeTiny);
+          line-height: var(--lineHeightTiny);
+          color: var(--colorInkSecondary);
+        }
+      }
 
-.content-block--token-container .grid .custom-properties {
-  margin: 8px 0 0;
-  background: transparent;
-  border-top: 1px solid var(--colorBorderSubtle);
-  border-radius: 0;
-  padding: 12px 0 0;
+      &.spacer {
+        border: 0px;
+      }
+    }
 
-  .label {
-    max-width: 50%;
+    .custom-properties {
+      margin: 0;
+      background: transparent;
+      border-top: 1px solid var(--colorBorderSubtle);
+      border-radius: 0;
+      padding: 12px 0 0;
+
+      .label {
+        max-width: 50%;
+      }
+
+      .custom-property-item {
+        overflow-wrap: break-word;
+      }
+    }
   }
-}
-
-.content-block--token-container .grid .custom-properties .custom-property-item {
-  overflow-wrap: break-word;
 }
 
 /* Token stack */
