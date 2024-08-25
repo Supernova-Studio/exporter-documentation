@@ -104,7 +104,7 @@
     </div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
-    <div class="preview bordered">
+    <div class="preview bordered preview-typography">
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="value-preview" style="{{ typographyCSS }}">Ag</div>
         <div class="value-footer">
