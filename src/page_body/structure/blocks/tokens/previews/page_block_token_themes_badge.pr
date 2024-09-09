@@ -3,7 +3,7 @@
 
 {[ log themes /]}
 {[ if (themes.length > 1) ]}
-    <div class="theme-badge" data-toggle="tooltip" title="Applied themes: {{ getThemesTooltip(themes) }} ">
+    <div class="theme-badge" data-toggle="tooltip" data-html="true" title="Applied themes:<br /> {{ getThemesTooltip(themes) }} ">
         {[ inject "icon_theme" context configuration /]}
     </div>
 {[ elseif (themes.length === 1) ]}
