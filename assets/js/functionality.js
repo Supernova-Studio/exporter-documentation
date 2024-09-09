@@ -2,15 +2,9 @@
    Content menu tracking
 -------------------------- */
 
-$(window).on('load', function() {
-    let sections = [];
-
-    // Store and restore menu scroll offset
-    const scroll = localStorage.getItem('menu.scroll.position.top');
-    if (scroll) {
-        $('.sidebar-navigation').scrollTop(scroll);
-    }
-
+$(document).ready(function () {
+    // Setting the observer to set the scroll state of main navigation on the left
+    // It is used in full_page.pr, so there is no visible scrollbar jumping
     document.querySelectorAll('.sidebar-navigation').forEach(section => {
         section.addEventListener(
             'scroll',
@@ -20,6 +14,52 @@ $(window).on('load', function() {
             false
         );
     });
+
+    $('.nav-tabs-container').each(function() {
+        var $container = $(this);
+        var $tabsWrapper = $container.find('.nav-tabs-inline');
+        var $leftArrow = $container.find('.scroll-arrow-left');
+        var $rightArrow = $container.find('.scroll-arrow-right');
+
+        function checkForScroll() {
+            var scrollLeft = Math.floor($tabsWrapper.scrollLeft());
+            var scrollWidth = Math.floor($tabsWrapper[0].scrollWidth);
+            var clientWidth = Math.floor($tabsWrapper[0].clientWidth);
+
+          if (scrollLeft > 0) {
+            $leftArrow.css('display', 'flex');
+          } else {
+            $leftArrow.css('display', 'none');
+          }
+
+          if (scrollLeft < scrollWidth - clientWidth - 1) { // -1 because there is some issue with the scrollWidth
+            $rightArrow.css('display', 'flex');
+          } else {
+            $rightArrow.css('display', 'none');
+          }
+        }
+
+        function scrollTabs(direction) {
+          var scrollAmount = direction === 'left' ? -$tabsWrapper.width() : $tabsWrapper.width();
+          $tabsWrapper.animate({ scrollLeft: $tabsWrapper.scrollLeft() + scrollAmount }, 'smooth');
+        }
+
+        $tabsWrapper.on('scroll', checkForScroll);
+
+        $leftArrow.on('click', function() {
+          scrollTabs('left');
+        });
+
+        $rightArrow.on('click', function() {
+          scrollTabs('right');
+        });
+
+        checkForScroll(); // Initial check
+      });
+})
+
+$(window).on('load', function() {
+    let sections = [];
 
     // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
     if (window.location.hash) {

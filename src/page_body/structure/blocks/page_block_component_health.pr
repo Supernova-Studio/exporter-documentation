@@ -11,12 +11,12 @@
     {[ let component = ds.componentById(componentId) /]}
     {[ let statusPropertyIsDefined = false /]}
 
-    {[ if (component && block.properties.propertiesToHighlight) ]}
+    {[ if component ]}
             
         {[ let properties = component.properties /]}
-        {[ let propertyValues = component.propertyValues /]}
+        {[ let propertyValues = component.propertyValues /]}    
 
-        {[ let propertiesToHighlight = block.properties.propertiesToHighlight ? block.properties.propertiesToHighlight : [] /]}
+        {[ let propertiesToHighlight = safeArray(block.properties.propertiesToHighlight) /]}
         {[ let linkPropertiesToHighlight = 0 /]}
         {[ for property in component.properties ]}
             {[ if (propertiesToHighlight.contains(property.persistentId) && ["URL"].contains(property.propertyType)) ]}
@@ -71,12 +71,13 @@
                                 {{ healthTagReadable }}
                             </div>
                         </div>
-                        {*
+                        
+                        {[ if (component && component.updatedAt && component.createdAt) ]}
                         <div>
                             <div><strong>Published:</strong> {{ component.createdAt.formatDate("MMMM DD, YYYY") }}</div>
                             <div><strong>Updated:</strong> {{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</div>
                         </div>  
-                        *}
+                        {[/]}
                     </div>
 
                     {* Generate properties that are of non-link type properties *}
@@ -96,6 +97,10 @@
                                 {[/]}
                             {[/]}
                         </div>
+                    {[ else ]}
+                    <div class="links" style="padding: 12px 12px 0">
+                       {[ inject "component_callout" context ({"type": "warning", "text": "<strong>No properties selected</strong><br />Please select some properties in the editor. Without properties, there is nothing to display.", "blockId": block.id, "margin": false }) /]}  
+                    </div>
                     {[/]}
                 </div>
             </div>

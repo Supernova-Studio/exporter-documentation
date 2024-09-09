@@ -60,7 +60,7 @@
 .content-block--frames {
   &.layout-tiles {
     .preview {
-      padding: 0 !important;
+      padding: 0;
     }
   }
 }
@@ -138,6 +138,22 @@
 		}
 	}
 
+  /* For layout: centered */
+  &.with-subgrid {
+    .grid {
+      .tile-item {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+        gap: 0;
+
+        div.preview {
+          height: auto;
+        }
+      }
+    }
+  }
+
   .empty-state {
     font-size: var(--fontSizeSmall);
     color: var(--colorInkSecondary);
@@ -178,6 +194,15 @@
 			}
 		}
 	}
+  &.force-natural-height {
+    .grid {
+      .tile-item {
+        .preview {
+          padding: 0;
+        }
+      }
+    }
+  }
 }
 
 /* 

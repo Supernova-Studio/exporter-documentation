@@ -217,40 +217,23 @@ a.site-logo {
   flex-grow: 1;
   height: var(--topNavHeight);
   align-items: center;
-  scrollbar-color: var(--topNavInk) var(--topNavItemActiveBackground);
+  scrollbar-color: var(--topNavInk) transparent;
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 4px; 
-    display: none; /* hotfix: disable scrollbars before we resolve vertical aligmnent */
+    width: 4px;
+    height: 4px;
   }
-  &::-webkit-scrollbar-thumb { 
+
+  &::-webkit-scrollbar-thumb {
     background: var(--topNavInk);
     border-radius: var(--borderRadiusDefault);
   }
-  &::-webkit-scrollbar-track { 
-    background: var(--topNavItemActiveBackground);
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
     border-radius: var(--borderRadiusDefault);
   }
-  /* disabling scroll shadows for now
-  background-image: 
-      
-      linear-gradient(
-      to right,
-      var(--topNavBackground),
-      var(--topNavBackground)
-    ),
-    linear-gradient(to right, var(--topNavBackground), var(--topNavBackground)),
-      linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0)),
-    linear-gradient(to left, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0));
-
-  background-position: left center, right center, left center, right center;
-  background-repeat: no-repeat;
-  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
-
-  // Opera doesn't support this in the shorthand
-  background-attachment: local, local, scroll, scroll;
-  */
 }
 
 .primary-menu ul.navbar-nav > li {

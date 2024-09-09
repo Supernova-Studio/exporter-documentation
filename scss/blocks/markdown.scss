@@ -26,4 +26,13 @@
   ul, ol {
     margin-bottom: var(--contentBlockGap);
   }
+
+  table {
+    width: -webkit-fill-available;
+    min-width: 560px !important;
+
+    img {
+      max-width: 100%;
+    }
+  }
 }

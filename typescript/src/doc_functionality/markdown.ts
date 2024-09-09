@@ -1,25 +1,12 @@
-// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-// MARK: - Imports
-
 import * as Showdown from "showdown"
 
-// --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-// MARK: - Markdown
-
-/** Convert markdown to HTML */
 export function markdownToHTML(markdown: string): string {
-
-    // Handle github markdown propertly in addition to general syntax
     Showdown.setFlavor("github")
-
-    // Handle github line break inconsistencies
-    // https://github.com/showdownjs/showdown/issues/602#issuecomment-429547738
     Showdown.setOption('simpleLineBreaks', false)
 
-    // Create converter and register custom modifications
     let converter = new Showdown.Converter()
 
-    // Mod 1: All <code> tags that are only used for inline code highlight should be changed to <mark>
+    // Mod 1: Change inline <code> to <mark>
     converter.addExtension([
         {
             type: "output",
@@ -30,9 +17,9 @@ export function markdownToHTML(markdown: string): string {
         },
     ])
 
-    // Mod 2: Add default classes to specific tags, when exported
+    // Mod 2: Add default classes to specific tags
     const classMap = {
-        table: 'table table-bordered'
+        table: 'data-table header-row table-bordered'
     }
 
     const bindings = Object.keys(classMap)
@@ -44,7 +31,7 @@ export function markdownToHTML(markdown: string): string {
 
     converter.addExtension([...bindings])
 
-    // Mod 3: Add newlines to code, so the newline plugin for prism will properly align the generated code
+    // Mod 3: Add newlines to code blocks
     converter.addExtension([
         {
             type: "output",
@@ -55,7 +42,7 @@ export function markdownToHTML(markdown: string): string {
         },
     ])
 
-    // Mod 3.1: Cover also case where the language is not specified (this could be more elega)
+    // Mod 3.1: Handle code blocks without specified language
     converter.addExtension([
         {
             type: "output",
@@ -66,8 +53,17 @@ export function markdownToHTML(markdown: string): string {
         },
     ])
 
+    // New Mod 4: Wrap tables in a div
+    converter.addExtension([
+        {
+            type: 'output',
+            filter: function(text) {
+                return text.replace(/<table/g, '<div class="content-block content-block--table data-table-wrapper"><table')
+                           .replace(/<\/table>/g, '</table></div>');
+            }
+        }
+    ])
 
-    // Convert to html including modifications
     let html = converter.makeHtml(markdown)
     return `<div class="markdown">${html}</div>`
 }

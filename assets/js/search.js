@@ -86,8 +86,9 @@ $('.SNSearch-input').on('input', function(e) {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
+        useExtendedSearch: true,
         ignoreLocation: true,
-        keys: ['text']
+        keys: ['text','keywords']
     };
 
     // Note: FuseSearchData is index created by the exporter, loaded from si.js

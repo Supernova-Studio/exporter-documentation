@@ -20,7 +20,7 @@
 }
 
 #section-content-page .nav-tabs {
-  margin-top: 24px !important;
+  margin-top: 24px;
 }
 
 .nav-tabs > li {
@@ -110,7 +110,50 @@
 }
 
 .nav-tabs-inline {
-  margin-left: 24px;
+  margin-top: 0px !important;
+  margin-left: 12px;
+  padding-right: 12px;
+  flex-wrap: nowrap;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.nav-tabs-inline::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.nav-tabs-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 12px;
+    display: none;
+    cursor: pointer;
+    z-index: 2;
+    height: 24px;
+    width: 24px;
+    background-color: var(--colorBackgroundPrimary);
+    border: 1px solid var(--colorBorderSubtle);
+    border-radius: var(--borderRadiusDefault);  
+    justify-content: center;
+    align-items: center;
+    color: var(--colorInkSecondary);
+  }
+  .scroll-arrow:hover {
+    color: var(--colorInkPrimary);
+  }
+  .scroll-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+  .scroll-arrow-left {
+    left: 0;
+  }
+  .scroll-arrow-right {
+    right: 0;
+  }
 }
 
 .docs-content .tab-pane > :last-child {
