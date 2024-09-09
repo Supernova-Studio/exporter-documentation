@@ -21,7 +21,12 @@
     {[ else ]}
       {[ inject "page_block_token_preview_large" context ({"token": token, "theme": null}) /]}
     {[/]}
-  <p class="title">{{ token.name }}</p>
+  <div class="info">
+    <div class="title">{{ token.name }}</div>
+    {[ if token.description ]}
+      <div class="description">{{ token.description }}</div>
+    {[/]}
+  </div>
   {[ inject "page_block_token_properties" context ({"token": token, "block": block})  /]}
 
 </div>
