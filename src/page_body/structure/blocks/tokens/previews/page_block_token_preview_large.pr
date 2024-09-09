@@ -1,5 +1,5 @@
 {[ const token = context.token /]}
-{[ const theme = context.theme /]}
+{[ const themes = context.themes /]}
 
 {* todo: this needs some refactoring *}
 
@@ -9,7 +9,7 @@
                 {[ inject "page_block_token_reference_badge" context token /]}
 
         {[ inject "page_block_token_value" context token /]}
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
         </div>
     </div>
 {[ elseif token.tokenType.equals("Border")]}
@@ -21,7 +21,7 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Blur")]}
     {[ let measure = token.value.radius.measure /]}
@@ -46,7 +46,7 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview bordered">Ag</div>
@@ -57,7 +57,7 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
      {[ if includes(token.parent.path, "Border Radius") ]}
@@ -67,7 +67,7 @@
             <div class="value-footer">
                 {[ inject "page_block_token_value" context token /]}
             </div>
-            {[ inject "page_block_token_theme_badge" context theme /]}
+            {[ inject "page_block_token_themes_badge" context themes /]}
         </div>
     {[ else ]}
         <div class="preview bordered">
@@ -83,7 +83,7 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="preview bordered">
@@ -94,13 +94,13 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Text")]}
     <div class="preview small-text bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="value-preview">{{ token.value.text }}</div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
@@ -110,7 +110,7 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="preview small-text bordered">{{ token.value.text }}</div>

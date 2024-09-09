@@ -2,6 +2,7 @@
 {[ const block = context /]}
 {[ const configuration = exportConfiguration() /]}
 {[ let variant = block.variantKey /]}
+{[ log block /]}
 {* Ignore block if it is empty *}
 {[ if block.tokenIds.count() > 0) ]}
   <div class="content-block content-block--token-container">

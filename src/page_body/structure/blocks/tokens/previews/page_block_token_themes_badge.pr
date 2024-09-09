@@ -1,0 +1,11 @@
+{[ const themes = context /]}
+{[ const configuration = exportConfiguration() /]}
+
+{[ log themes /]}
+{[ if (themes.length > 1) ]}
+    <div class="theme-badge" data-toggle="tooltip" title="Applied themes: {{ getThemesTooltip(themes) }} ">
+        {[ inject "icon_theme" context configuration /]}
+    </div>
+{[ elseif (themes.length === 1) ]}
+    {[ inject "page_block_token_theme_badge" context themes[0] /]}
+{[/]}
