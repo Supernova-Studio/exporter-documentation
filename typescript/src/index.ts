@@ -12,7 +12,7 @@ import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
-import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray } from "./doc_functionality/general-utils"
+import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString } from "./doc_functionality/general-utils"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -42,6 +42,7 @@ Pulsar.registerFunction("generateCustomCSSHash", generateCustomCSSHash)
 Pulsar.registerFunction("includes", includes)
 Pulsar.registerFunction("sortVersionsBySemver", sortVersionsBySemver)
 Pulsar.registerFunction("safeArray", safeArray)
+Pulsar.registerFunction("isNonEmptyString", isNonEmptyString)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
