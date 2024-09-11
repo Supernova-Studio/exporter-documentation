@@ -5,34 +5,36 @@
 {[ let typeClassname = "" /]}
 {[ let icon = "icon_circle_check" /]}
 {[ let imageAlt = "" /]}
+{[ let label = "Do" /]}
 
-{[ log item /]}
-
-{[ switch item.type ]}
+{[ switch item.guideline.type ]}
     {[ case "do" ]}
         {[ typeClassname = "guideline-item__type-do" /]}
     {[ case "dont" ]}
         {[ typeClassname = "guideline-item__type-dont" /]}
+        {[ label = "Don't" /]}
         {[ icon = "icon_circle_error" /]}
     {[ case "caution" ]}
         {[ typeClassname = "guideline-item__type-caution" /]}
+        {[ label = "Caution" /]}
         {[ icon = "icon_circle_warning" /]}
 {[/]}
-{[ if (item.asset && (item.imageAlt !== "")) ]}
-   {[ imageAlt = item.imageAlt /]}
+{[ if (item.guideline.asset && (item.guideline.imageAlt !== "")) ]}
+   {[ imageAlt = item.guideline.imageAlt /]}
 {[/]}
 
-{[ if (item.asset && (item.imageAlt === "") && (item.imageCaption !== "")) ]}
-   {[ imageAlt = item.imageCaption /]}
+{[ if (item.guideline.asset && (item.guideline.imageAlt === "") && (item.guideline.imageCaption !== "")) ]}
+   {[ imageAlt = item.guideline.imageCaption /]}
 {[/]}
 
 {[ if (variant === "prominent") ]}
+{[ log item.guideline /]}
     <div class="guideline-item {{typeClassname}}">
-        {[ if (item.asset && (item.asset.url !== "")) ]}
+        {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
         <div class="image">
-            <img src="{{item.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
-            {[ if ((item.imageCaption !== "") && (item.imageCaption !== null)) ]}
-            <div class="caption-container"><div class="caption">{{item.imageCaption}}</div></div>
+            <img src="{{item.guideline.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
+            {[ if ((item.guideline.imageCaption !== "") && (item.guideline.imageCaption !== null)) ]}
+            <div class="caption-container"><div class="caption">{{item.guideline.imageCaption}}</div></div>
             {[/]}
         </div>
         {[/]}
@@ -40,9 +42,11 @@
         <div class="content">
             <div class="type-badge">
                 <span class="icon">{[ inject icon context configuration /]}</span>
-                <span class="label">{{ item.type}}</span>
+                <span class="label">{{ label }}</span>
             </div>
-            {{ withHTMLNewlines(item.description) }}
+            {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child } /]}
+            {[/]}
         </div>
     </div>
    
@@ -50,22 +54,24 @@
     <div class="guideline-item {{typeClassname}}">
         <div class="type-badge type-badge__full">
             <span class="icon">{[ inject icon context configuration /]}</span>
-            <span class="label">{{ item.type}}</span>
+            <span class="label">{{ label }}</span>
         </div>
         <div class="item-wrapper">
             <div class="side-border"></div>
             <div class="content-wrapper">
-                {[ if (item.asset && (item.asset.url !== "")) ]}
+                {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
                 <div class="image">
-                    <img src="{{item.asset.url}}" alt="{{imageAlt}}" class="image-asset" />                    
-                    {[ if ((item.imageCaption !== "") && (item.imageCaption !== null)) ]}
-                    <div class="caption-container"><div class="caption">{{item.imageCaption}}</div></div>
+                    <img src="{{item.guideline.asset.url}}" alt="{{imageAlt}}" class="image-asset" />                    
+                    {[ if ((item.guideline.imageCaption !== "") && (item.guideline.imageCaption !== null)) ]}
+                    <div class="caption-container"><div class="caption">{{item.guideline.imageCaption}}</div></div>
                     {[/]}
                 </div>
                 {[/]}
 
                 <div class="content">
-                    {{ withHTMLNewlines(item.description) }}
+                    {[ for child in item.children ]}
+                        {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+                    {[/]}
                 </div>
             </div>
         </div>
@@ -75,41 +81,44 @@
         <div class="image">
             <div class="type-badge">
                 <span class="icon">{[ inject icon context configuration /]}</span>
-                <span class="label">{{ item.type}}</span>
+                <span class="label">{{ label }}</span>
             </div>
-            {[ if (item.asset && (item.asset.url !== "")) ]}
-            <img src="{{item.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
+            {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
+            <img src="{{item.guideline.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
             
-            {[ if ((item.imageCaption !== "") && (item.imageCaption !== null)) ]}
-                <div class="caption-container"><div class="caption">{{item.imageCaption}}</div></div>
+            {[ if ((item.guideline.imageCaption !== "") && (item.guideline.imageCaption !== null)) ]}
+                <div class="caption-container"><div class="caption">{{item.guideline.imageCaption}}</div></div>
             {[/]}
 
             {[/]}
         </div>
 
         <div class="content">
-            {{ withHTMLNewlines(item.description) }}
+            {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+            {[/]}
         </div>
     </div>
 {[ else ]}
      <div class="guideline-item {{typeClassname}}">
         <div class="type-badge type-badge__full">
             <span class="icon">{[ inject icon context configuration /]}</span>
-            <span class="label">{{ item.type}}</span>
+            <span class="label">{{ label }}</span>
         </div>
-        {[ if (item.asset && (item.asset.url !== "")) ]}
+        {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
         <div class="image">
-            <img src="{{item.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
-            {[ if ((item.imageCaption !== "") && (item.imageCaption !== null)) ]}
-            <div class="caption-container"><div class="caption">{{item.imageCaption}}</div></div>
+            <img src="{{item.guideline.asset.url}}" alt="{{imageAlt}}" class="image-asset" />
+            {[ if ((item.guideline.imageCaption !== "") && (item.guideline.imageCaption !== null)) ]}
+            <div class="caption-container"><div class="caption">{{item.guideline.imageCaption}}</div></div>
             {[/]}
         </div>
         {[/]}
 
         <div class="content">
-            {{ withHTMLNewlines(item.description) }}
+           {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+            {[/]}
         </div>
     </div>
-{[/]}
-   
+{[/]}   
    

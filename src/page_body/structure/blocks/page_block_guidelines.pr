@@ -2,9 +2,8 @@
 
 {[ let variant = block.variantKey /]}
 
-{[ log block /]}
 <div class="content-block content-block--guidelines layout-columns-{{block.numberOfColumns}} {{ getVariantClass(variant) }}" id="{{ getSearchIDString(block.id) }}">
-  {[ for item in block.guidelines ]}
+  {[ for item in block.children ]}
     {[ inject "page_block_guideline" context ({"variant": block.variantKey, "item": item}) /]}
   {[/]}
 </div>
