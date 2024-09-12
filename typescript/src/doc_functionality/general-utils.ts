@@ -100,5 +100,5 @@ export const safeArray = (array: any[] | null | undefined): any[] => {
 
 // check if the variable is non empty or non null, otherwise return false
 export const isNonEmptyString = (value: string | null | undefined): boolean => {
-  return value !== '' && value != null;
+  return !!value;
 }
