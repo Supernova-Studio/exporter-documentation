@@ -1,6 +1,0 @@
-
-export function getMockedGuidelinesBlock(): any {
-
-    const guidelinesBlock = {"id":"unique-block-id","type":"io.supernova.block.do-dont-guidelines","variantKey":"contained","beginsTypeChain":true,"endsTypeChain":true,"columns":2,"items":[{"type":{"value":"do","name":"Do","color":"Green","icon":"CheckmarkCircle","customIconURL":"https://.../icon.png"},"description":"Do something\nAnd something on a new line","image":{"url":"https://tailwindcss.com/_next/static/media/social-card-large.a6e71726.jpg","alignment":"","alt":"","caption":null}},{"type":{"value":"dont","name":"Don't","color":"Red","icon":"CrossCircle","customIconURL":"https://.../icon.png"},"description":"Do not do something\naaaa","image":{"url":"https://tailwindcss.com/_next/static/media/social-card-large.a6e71726.jpg","alignment":"","alt":"","caption":"caption"}},{"type":{"value":"caution","name":"Caution","color":"Yellow","icon":"CrossCircle","customIconURL":"https://.../icon.png"},"description":"Do not do something"}]}
-    return guidelinesBlock;
-}

@@ -17,9 +17,6 @@ import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sor
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
 
-/* Mocked block definitions */
-// Pulsar.registerFunction("getMockedGuidelinesBlock", getMockedGuidelinesBlock)
-
 /* Local lookup */
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
 Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
