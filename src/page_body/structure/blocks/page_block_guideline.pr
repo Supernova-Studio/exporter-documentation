@@ -1,0 +1,122 @@
+{[ const item = context.item /]}
+{[ const variant = context.variant /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ let typeClassname = "" /]}
+{[ let icon = "icon_circle_check" /]}
+{[ let label = "Do" /]}
+
+{[ switch item.guideline.type ]}
+    {[ case "do" ]}
+        {[ typeClassname = "guideline-item__type-do" /]}
+    {[ case "dont" ]}
+        {[ typeClassname = "guideline-item__type-dont" /]}
+        {[ label = "Don't" /]}
+        {[ icon = "icon_circle_error" /]}
+    {[ case "caution" ]}
+        {[ typeClassname = "guideline-item__type-caution" /]}
+        {[ label = "Caution" /]}
+        {[ icon = "icon_circle_warning" /]}
+{[/]}
+
+
+    {[ let imageCaption = item.guideline.imageCaption /]}
+    {[ let imageAlt = item.guideline.imageAlt /]}
+
+{[ if (variant === "prominent") ]}
+    <div class="guideline-item {{typeClassname}}">
+        {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
+        <div class="image">
+            {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
+            {[ inject "component_image" context image /]}
+
+            {[ if (isNonEmptyString(item.guideline.imageCaption)) ]}
+            <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
+
+            {[/]}
+        </div>
+        {[/]}
+
+        <div class="content">
+            <div class="type-badge">
+                <span class="icon">{[ inject icon context configuration /]}</span>
+                <span class="label">{{ label }}</span>
+            </div>
+            {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child } /]}
+            {[/]}
+        </div>
+    </div>
+   
+{[ elseif (variant === "side-border") ]}
+    <div class="guideline-item {{typeClassname}}">
+        <div class="type-badge type-badge__full">
+            <span class="icon">{[ inject icon context configuration /]}</span>
+            <span class="label">{{ label }}</span>
+        </div>
+        <div class="item-wrapper">
+            <div class="side-border"></div>
+            <div class="content-wrapper">
+                {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
+                <div class="image">
+                    {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
+                    {[ inject "component_image" context image /]}                    {[ if (isNonEmptyString(imageCaption)) ]}
+                    <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
+                    {[/]}
+                </div>
+                {[/]}
+
+                <div class="content">
+                    {[ for child in item.children ]}
+                        {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+                    {[/]}
+                </div>
+            </div>
+        </div>
+    </div>
+{[ elseif (variant === "contained") ]}
+    <div class="guideline-item {{typeClassname}}">
+        <div class="image{[ if ((!item.guideline.asset || item.guideline.asset.url === "")) ]} empty-image{[/]}">
+            <div class="type-badge">
+                <span class="icon">{[ inject icon context configuration /]}</span>
+                <span class="label">{{ label }}</span>
+            </div>
+            {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
+            {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
+            {[ inject "component_image" context image /]}
+            {[ if (isNonEmptyString(imageCaption)) ]}
+                <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
+            {[/]}
+
+            {[/]}
+        </div>
+
+        <div class="content">
+            {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+            {[/]}
+        </div>
+    </div>
+{[ else ]}
+     <div class="guideline-item {{typeClassname}}">
+        <div class="type-badge type-badge__full">
+            <span class="icon">{[ inject icon context configuration /]}</span>
+            <span class="label">{{ label }}</span>
+        </div>
+        {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
+        <div class="image">
+            {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
+            {[ inject "component_image" context image /]}            {[ if (isNonEmptyString(imageCaption)) ]}
+            <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
+            {[/]}
+        </div>
+        {[/]}
+
+        <div class="content">
+           {[ for child in item.children ]}
+                {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
+            {[/]}
+        </div>
+    </div>
+{[/]}   
+   

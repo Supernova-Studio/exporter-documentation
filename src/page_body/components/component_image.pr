@@ -1,0 +1,23 @@
+{[ const url = context.url /]}
+{[ const alt = context.alt /]}
+{[ const caption = context.caption /]}
+{[ const width = context.width /]}
+{[ const height = context.height /]}
+{[ const className = context.className || "img-fluid" /]}
+
+{[ let altText = "" /]}
+
+{* Determine alt text *}
+{[ if (isNonEmptyString(alt)) ]}
+    {[ altText = alt /]}
+{[ elseif (isNonEmptyString(caption)) ]}
+    {[ altText = caption /]}
+{[/]}
+
+{* Render the img tag *}
+{[ if (isNonEmptyString(url)) ]}
+    <img src="{{ url }}" class="{{ className }}"
+    {[ if (isNonEmptyString(height)) ]} height="{{ height }}"{[/]}
+    {[ if (isNonEmptyString(width)) ]} width="{{ width }}"{[/]}
+    {[ if (isNonEmptyString(altText)) ]} alt="{{ altText }}"{[/]} />
+{[/]}
