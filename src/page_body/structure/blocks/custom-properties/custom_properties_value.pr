@@ -16,7 +16,7 @@
             {[ if (option.id === customPropertyValue) ]}
                 {[ optionValue = option.name /]}
                 {[ optionColor = option.backgroundColor /]}
-                {[ contrastColor = contrastColor(optionColor) /]}
+                {[ contrastColor = contrastColorAPCA(optionColor) /]}
             {[/]}
         {[/]}  
         <span class="{{ ["property-select-tag", contrastColor, sizeClass].join(" ") }}" style="background-color: {{ optionColor }}">
