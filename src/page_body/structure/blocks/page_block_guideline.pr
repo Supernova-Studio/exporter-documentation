@@ -3,8 +3,11 @@
 {[ let configuration = exportConfiguration() /]}
 
 {[ let typeClassname = "" /]}
+{[ let alignClass = "img-align-left" /]}
 {[ let icon = "icon_circle_check" /]}
 {[ let label = "Do" /]}
+{[ let imageCaption = item.guideline.imageCaption /]}
+{[ let imageAlt = item.guideline.imageAlt /]}
 
 {[ switch item.guideline.type ]}
     {[ case "do" ]}
@@ -19,14 +22,22 @@
         {[ icon = "icon_circle_warning" /]}
 {[/]}
 
+{[ if (item.guideline.imageAlignment) ]}
+    {[ switch item.guideline.imageAlignment ]}
+        {[ case "Left" ]}
+            {[ alignClass = "img-align-left" /]}
+        {[ case "Center" ]}
+            {[ alignClass = "img-align-center" /]}
+        {[ case "Stretch" ]}
+            {[ alignClass = "img-align-stretch" /]}
+    {[/]}
+{[/]}
 
-    {[ let imageCaption = item.guideline.imageCaption /]}
-    {[ let imageAlt = item.guideline.imageAlt /]}
 
 {[ if (variant === "prominent") ]}
     <div class="guideline-item {{typeClassname}}">
         {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
-        <div class="image">
+        <div class="image {{alignClass}}">
             {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
             {[ inject "component_image" context image /]}
 
@@ -58,9 +69,10 @@
             <div class="side-border"></div>
             <div class="content-wrapper">
                 {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
-                <div class="image">
+                <div class="image {{alignClass}}">
                     {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
-                    {[ inject "component_image" context image /]}                    {[ if (isNonEmptyString(imageCaption)) ]}
+                    {[ inject "component_image" context image /]}  
+                    {[ if (isNonEmptyString(imageCaption)) ]}
                     <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
                     {[/]}
                 </div>
@@ -76,7 +88,7 @@
     </div>
 {[ elseif (variant === "contained") ]}
     <div class="guideline-item {{typeClassname}}">
-        <div class="image{[ if ((!item.guideline.asset || item.guideline.asset.url === "")) ]} empty-image{[/]}">
+        <div class="image {{alignClass}}{[ if ((!item.guideline.asset || item.guideline.asset.url === "")) ]} empty-image{[/]}">
             <div class="type-badge">
                 <span class="icon">{[ inject icon context configuration /]}</span>
                 <span class="label">{{ label }}</span>
@@ -84,8 +96,9 @@
             {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
             {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
             {[ inject "component_image" context image /]}
+
             {[ if (isNonEmptyString(imageCaption)) ]}
-                <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
+            <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
             {[/]}
 
             {[/]}
@@ -104,9 +117,10 @@
             <span class="label">{{ label }}</span>
         </div>
         {[ if (item.guideline.asset && (item.guideline.asset.url !== "")) ]}
-        <div class="image">
+        <div class="image {{alignClass}}">
             {[ let image = {"url": item.guideline.asset.url, "alt": imageAlt, "caption": imageCaption, "className": "image-asset"} /]}
-            {[ inject "component_image" context image /]}            {[ if (isNonEmptyString(imageCaption)) ]}
+            {[ inject "component_image" context image /]}           
+            {[ if (isNonEmptyString(imageCaption)) ]}
             <div class="caption-container"><div class="caption">{{imageCaption}}</div></div>
             {[/]}
         </div>

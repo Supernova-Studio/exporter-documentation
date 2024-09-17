@@ -28,6 +28,10 @@
 
   .content {
     margin-top: 1px;
+
+    a {
+      font-weight: var(--fontWeightSemibold);
+    }
   }
 
   &.callout-info {
@@ -36,6 +40,10 @@
 
     .icon {
       color: var(--calloutInfoInkSecondary);
+    }
+
+    a {
+      color: var(--calloutInfoInk);
     }
   }
 
@@ -46,6 +54,10 @@
     .icon {
       color: var(--calloutSuccessInkSecondary);
     }
+
+    a {
+      color: var(--calloutSuccessInk);
+    }
   }
 
   &.callout-warning {
@@ -54,6 +66,10 @@
 
     .icon {
       color: var(--calloutWarningInkSecondary);
+    }
+
+    a {
+      color: var(--calloutWarningInk);
     }
   }
 
@@ -64,6 +80,10 @@
     .icon {
       color: var(--calloutDangerInkSecondary);
     }
+
+    a {
+      color: var(--calloutDangerInk);
+    }
   }
 
   &.callout-primary {
@@ -72,6 +92,10 @@
 
     .icon {
       color: var(--calloutPrimaryInkSecondary);
+    }
+
+    a {
+      color: var(--calloutPrimaryInk);
     }
   }
 }
