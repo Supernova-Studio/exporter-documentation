@@ -3,7 +3,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames, getClassForInvertedText } from "./doc_functionality/color"
+import { contrastColor, getColorContrast, getColorContrastRatio, returnSwatchClassnames, getClassForInvertedText, contrastColorAPCA } from "./doc_functionality/color"
 import { convertHealthTagIfAny, getFigmaFileUrl, sortComponentsAlphabetically } from "./doc_functionality/health"
 import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray, firstTabGroupFromTop, isHomepageTab } from "./doc_functionality/lookup"
 import { markdownToHTML } from "./doc_functionality/markdown"
@@ -95,6 +95,7 @@ Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl)
 
 /* Colors */
 Pulsar.registerFunction("contrastColor", contrastColor)
+Pulsar.registerFunction("contrastColorAPCA", contrastColorAPCA)
 Pulsar.registerFunction("returnSwatchClassnames", returnSwatchClassnames)
 Pulsar.registerFunction("getColorContrast", getColorContrast)
 Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio)
