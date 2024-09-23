@@ -24,3 +24,10 @@ ul.content-block li,
         }
     }
 }
+
+ul.content-block, 
+ol.content-block{
+    ul, ol {
+        margin-bottom: 0 !important;
+    }
+}

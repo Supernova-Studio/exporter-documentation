@@ -47,6 +47,8 @@
         {[ inject "page_block_frames" context block /]}
     {[ case "Shortcuts" ]}
         {[ inject "page_block_shortcuts" context block /]}
+    {[ case "Guidelines" ]}
+        {[ inject "page_block_guidelines" context block /]}
     {[ case "Custom" ]}
         {* For custom blocks, use different *}
         {[ inject "page_body_structure_block_custom" context block /]}
@@ -67,7 +69,7 @@
 {[/]}
 
 {* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}
-{[ if (block.children.count() > 0 && block.type !== "Tabs" && block.type !== "Columns" && block.type !== "Table") ]}
+{[ if (block.children.count() > 0 && block.type !== "Tabs" && block.type !== "Columns" && block.type !== "Table" && block.type !== "Guidelines") ]}
     <div class="block-children">
     {[ for child in block.children ]}
         {[ inject "page_body_structure_block" context {"block": child, "pageId": pageId} /]}
