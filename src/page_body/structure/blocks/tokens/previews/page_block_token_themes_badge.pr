@@ -1,7 +1,6 @@
 {[ const themes = context /]}
 {[ const configuration = exportConfiguration() /]}
 
-{[ log themes /]}
 {[ if (themes.length > 1) ]}
     <div class="theme-badge" data-toggle="tooltip" data-html="true" title="Applied themes:<br /> {{ getThemesTooltip(themes) }} ">
         {[ inject "icon_theme" context configuration /]}
