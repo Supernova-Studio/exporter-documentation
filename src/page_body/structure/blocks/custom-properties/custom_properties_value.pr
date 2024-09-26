@@ -5,7 +5,6 @@
 {[ let configuration = exportConfiguration() /]}
 {[ let documentationDomain = ds.documentationDomain() /]}
 
-
 {[ if customProperty.propertyType.equals("Boolean") ]}
         {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
 {[ elseif customPropertyValue ]}
