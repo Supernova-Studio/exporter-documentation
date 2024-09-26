@@ -39,9 +39,6 @@
             {[/]}
 
             {[ if ( resolvedUrl ) ]}
-                {[ let version = ds.currentDesignSystemVersion() /]}
-                {[ let versionPath = (version.isSharedDraft ? "latest" : version.version ) /]}
-
                 <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{resolvedUrl}}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
                 -
