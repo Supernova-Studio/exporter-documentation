@@ -60,7 +60,8 @@
 @import './blocks/table';
 @import './blocks/tabs';
 @import './blocks/tokens';
-@import './blocks/release-notes.scss';
+@import './blocks/release-notes';
+@import './blocks/guidelines';
 
 /* =================================== */
 
@@ -68,7 +69,7 @@
 /*  Code hightlight
 /* =================================== */
 
-@import './code/highlight.scss';
+@import './code/highlight';
 
 /* =================================== */
 

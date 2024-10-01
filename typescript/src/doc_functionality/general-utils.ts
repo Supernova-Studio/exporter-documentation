@@ -97,3 +97,8 @@ export const sortVersionsBySemver = (versions: VersionObject[]): VersionObject[]
 export const safeArray = (array: any[] | null | undefined): any[] => {
   return array && array.length > 0 ? array : [];
 }
+
+// check if the variable is non empty or non null, otherwise return false
+export const isNonEmptyString = (value: string | null | undefined): boolean => {
+  return !!value;
+}

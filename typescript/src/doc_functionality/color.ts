@@ -5,6 +5,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Health
 const contrast = require("get-contrast");
+import Color from "colorjs.io"
 
 export function getColorContrast(color: string): number {
     
@@ -41,6 +42,33 @@ export function contrastColor(color: string): "dark" | "light" {
     // Return black for bright colors, white for dark colors
     return getColorContrast(color) > 0.4 ? "dark" : "light";
 }
+
+function isValidHexColor(str: string) {
+    const regex = /^#([0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?([0-9A-Fa-f]{2})?)$/
+    return regex.test(str)
+  }
+
+export function contrastColorAPCA(color?: string): "dark" | "light" {
+    if (!color || !isValidHexColor(color)) {
+      return "dark"
+    }
+  
+    // check opacity of the color if 8HEX
+    if (color.length === 9) {
+      const opacity = parseInt(color.slice(7, 9), 16) / 255
+      if (opacity < 0.45) {
+        return "dark"
+      }
+    }
+  
+    const newColor = new Color(color)
+  
+    const onWhite = Math.abs(newColor.contrast("white", "APCA"))
+    const onBlack = Math.abs(newColor.contrast("black", "APCA"))
+  
+    // Return black for bright colors, white for dark colors
+    return onWhite > onBlack ? "light" : "dark"
+  }
 
 export function returnSwatchClassnames(color: ColorTokenValue): string {
     if (!color) {

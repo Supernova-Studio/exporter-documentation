@@ -1,5 +1,4 @@
 {[ const shortcut = context /]}
-
 {[ if (shortcut.title && !shortcut.title.startsWith("_")) ]} 
     {[ if shortcut.externalUrl ]}
         <a href="{{ htmlSafeUrl(shortcut.externalUrl) }}" class="shortcut-item" {{ (shortcut.openInNewTab || shortcut.openInNewTab === undefined) ? "target=\"_blank\"" : ""}}>
