@@ -11,7 +11,7 @@
     {[ let headers = {} /]}
     {[ let token = exportConfiguration().contentMarkdownToken /]}
     {[ if (token) ]}
-        {[ if (token.contains("token") || token.contains("Bearer")) ]}
+        {[ if (token.contains("token") || token.contains("Bearer") || token.contains("Basic")) ]}
             {[ headers = { "Authorization" : token } /]}
         {[ else ]}
             {* Default to token *}

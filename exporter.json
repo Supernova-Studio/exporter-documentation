@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.15.5",
+  "version": "4.15.6",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -574,7 +574,7 @@
         "key": "contentMarkdownToken",
         "type": "string",
         "label": "Private Markdown token",
-        "description": "If provided, your markdown will be authenticated using this token. The token can contain its type , format: ['basic' | 'Bearer' | 'token'] [token]. If no type of format is provided, 'token' is assumed.",
+        "description": "If provided, your markdown will be authenticated using this token. The token can contain its type , format: ['Basic' | 'Bearer' | 'token'] [token]. If no type of format is provided, 'token' is assumed.",
         "category": "Other",
         "default": ""
       },
