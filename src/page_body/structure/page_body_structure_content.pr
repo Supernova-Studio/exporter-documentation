@@ -8,6 +8,11 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
+{* {[ const brands = ds.allBrands() /]}
+{[ const components = ds.allDesignComponents(brands[0].id) /]}
+
+{[ log components /]} *}
+
 {[ for block in page.blocks ]}
     {[ if block.type.equals("Heading") ]}
         {[ hasHeading = true /]}

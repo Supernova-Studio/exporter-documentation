@@ -1,0 +1,48 @@
+{[ const block = context /]}
+
+{[ const brands = ds.allBrands() /]}
+{[ const components = ds.allDesignComponents(brands[0].id) /]}
+
+<div>
+    {[ for component in components ]}
+        {[ if (component.id === block.selectedFigmaComponent.figmaComponentId) ]}
+            <div>{{ component.name }}</div>
+            {[ log component /]}
+            <table class="data-table header-row header-column" style="min-width: 100%;">
+                <thead>
+                    <tr>
+                    <th>
+                        Property
+                    </th>
+                    <th>
+                        Values
+                    </th>
+                    <th>
+                        Default
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {[ for property in objectValues(component.componentPropertyDefinitions) ]}
+                        {[ if (property.type === "Variant") ]}
+                            <tr>
+                            <td>
+                                <span>{{ property.name }}</span>
+                            </td>
+                            <td>
+                                {[ log property /]}
+                                <span>{{ property.options.join(" | ") }}</span>
+                            </td>
+                            <td>
+                                <span>{{ property.defaultValue }}</span>
+                            </td>
+                        </tr>
+                        {[/]}
+                    {[/]}
+                </tbody>
+            </table>
+
+        {[/]}
+    {[/]}
+</div>
+

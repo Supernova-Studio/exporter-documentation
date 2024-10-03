@@ -25,6 +25,10 @@
         {[ inject "page_block_divider" context block /]}
     {[ case "Image" ]}
         {[ inject "page_block_image" context block /]}
+    {[ case "FigmaComponents" ]}
+        {[ inject "page_block_figma_components" context block /]}
+    {[ case "FigmaComponentPropsTable" ]}
+        {[ inject "page_block_figma_component_props_table" context block /]}
     {[ case "Link" ]}
         {[ inject "page_block_link" context block /]}
     {[ case "Token" ]}
