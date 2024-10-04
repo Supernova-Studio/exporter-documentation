@@ -26,6 +26,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
+                        <tr>
+                            <td colspan="3" id="figma-component-props-table-empty-state">
+                                This Figma component has no properties.
+                            </td>
+                        </tr>
+                    {[/]}
                     {[ for property in objectValues(component.componentPropertyDefinitions) ]}
                             <tr>
                             <td>
