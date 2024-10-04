@@ -1,0 +1,110 @@
+:root {
+    --figma-component-props-table-background-color: rgba(244, 245, 247, 0.95);
+    --figma-component-props-table-badge-border-color: #ECEEF3;
+}
+
+table.props-table {
+    width: 100%;
+}
+
+table.props-table thead {
+    background-color: var(--figma-component-props-table-background-color);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #606981;
+}
+
+table.props-table th {
+    border-top: none;
+    border-bottom: 1px solid #ECEEF3;
+}
+
+table.props-table th:first-child{
+    border-radius:8px 0 0 0;
+}
+
+table.props-table th:last-child{
+    border-radius:0 8px 0 0;
+}
+
+table.props-table td {
+    border-top: none;
+    border-bottom: 1px solid #ECEEF3;
+    padding: 12px;
+}
+
+table.props-table .props-table-value {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #14171F;
+    background-color: var(--figma-component-props-table-background-color);
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+}
+
+table.props-table .props-table-name {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #14171F;
+    display: flex;
+    gap: 8px;
+}
+
+.props-table-variant-badge {
+    color: #0F62FE;
+    background-color: #EDF5FF;
+    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.props-table-boolean-badge {
+    color: #05751F;
+    background-color: #EBFEF6;
+    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.props-table-text-badge {
+    color: #CB101D;
+    background-color: #FEF1F2;
+    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.props-table-instance-swap-badge {
+    color: #A16207;
+    background-color: #FFFDE7;
+    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.props-table-component-name {
+    font-size: 16px;
+    font-weight: 640;
+    line-height: 24px;
+    color: #000000;
+    margin: 12px 0 12px 12px;
+}

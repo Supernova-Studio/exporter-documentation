@@ -1,14 +1,17 @@
 {[ const block = context /]}
 
+{[ let configuration = exportConfiguration() /]}
+
 {[ const brands = ds.allBrands() /]}
 {[ const components = ds.allDesignComponents(brands[0].id) /]}
 
 <div>
     {[ for component in components ]}
         {[ if (component.id === block.selectedFigmaComponent.figmaComponentId) ]}
-            <div>{{ component.name }}</div>
-            {[ log component /]}
-            <table class="data-table header-row header-column" style="min-width: 100%;">
+            {[ if block.figmaComponentsBlockConfig.showComponentName ]}
+                <div class="props-table-component-name">{{ component.name }}</div>
+            {[/]}
+            <table class="props-table">
                 <thead>
                     <tr>
                     <th>
@@ -24,20 +27,59 @@
                 </thead>
                 <tbody>
                     {[ for property in objectValues(component.componentPropertyDefinitions) ]}
-                        {[ if (property.type === "Variant") ]}
                             <tr>
                             <td>
-                                <span>{{ property.name }}</span>
+                                <span class="props-table-name">
+                                    {[ if (property.type === "Variant") ]}
+                                        {{ property.name }}
+
+                                        <span class="props-table-variant-badge">Variant</span>
+                                    {[/]}
+                                     {[ if (property.type === "Boolean") ]}
+                                        {{ property.name }}
+
+                                        <span class="props-table-boolean-badge">Boolean</span>
+                                    {[/]}
+                                    {[ if (property.type === "Text") ]}
+                                        {{ property.name }}
+
+                                        <span class="props-table-text-badge">Text</span>
+                                    {[/]}
+                                    {[ if (property.type === "InstanceSwap") ]}
+                                        {{ property.name }}
+
+                                        <span class="props-table-instance-swap-badge">InstanceSwap</span>
+                                    {[/]}
+                                </span>
                             </td>
                             <td>
-                                {[ log property /]}
-                                <span>{{ property.options.join(" | ") }}</span>
+                                <span class="props-table-value">
+                                    {[ if (property.type === "Variant") ]}
+                                        {{ property.options.join(" | ") }}
+                                    {[/]}
+                                     {[ if (property.type === "Boolean") ]}
+                                        true | false
+                                    {[/]}
+                                    {[ if (property.type === "Text") ]}
+                                        string
+                                    {[/]}
+                                    {[ if (property.type === "InstanceSwap") ]}
+                                        {[ inject "icon_component_instance" context configuration /]}
+
+                                        {{ property.name }}
+                                    {[/]}
+                                </span>
                             </td>
                             <td>
-                                <span>{{ property.defaultValue }}</span>
+                                <span class="props-table-value">
+                                    {[ if (property.type === "InstanceSwap") ]}
+                                        {[ inject "icon_component_instance" context configuration /]}
+                                    {[/]}
+
+                                    {{ property.defaultValue }}
+                                </span>
                             </td>
                         </tr>
-                        {[/]}
                     {[/]}
                 </tbody>
             </table>
