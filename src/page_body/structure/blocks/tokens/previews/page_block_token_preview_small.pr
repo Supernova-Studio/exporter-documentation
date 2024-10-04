@@ -2,10 +2,9 @@
 {[ const themes = context.themes /]}
 
 {[ if token.tokenType.equals("Color") ]}
-    {[ const colorLightnessCheck = (((0.2126 * token.value.r) + (0.7152 * token.value.g) + (0.0722 * token.value.b)) < 150) /]}
-
+    {[ let colorLightnessCheck = contrastColorAPCA(token.value.hex) /]}
     <div class="token-preview-container checkered-background-light{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}">
-        <div class="color-preview{{ colorLightnessCheck ? " is-dark" : "" }}" style="background-color: #{{ token.value.hex }};">
+        <div class="color-preview{{ ((colorLightnessCheck === "light") ? " inverted-text" : "") }}" style="background-color: #{{ token.value.hex }};">
             {[ inject "page_block_token_reference_badge" context token /]}
             {[ inject "page_block_token_themes_badge" context themes /]}
         </div>
