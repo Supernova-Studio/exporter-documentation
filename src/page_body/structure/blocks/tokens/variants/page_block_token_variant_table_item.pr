@@ -3,34 +3,27 @@
 
 <div class="item">
     <div class="basic-info">
-        {[ if (block.theme && (block.theme.themeIds.length > 0)) ]}
-            {* Intentionally selecting only one theme as it's supported by the Editor like this *}
-            {[ let themeId = block.theme.themeIds[0] /]}
-            {[ let themedToken = ds.tokensByApplyingThemes([token.id], [themeId]) /]}
-            {[ let theme = ds.themeById(themeId) /]}
-
-            {[ if (block.theme.type === "Comparison") ]}
+        {[ if (block.swatches) ]}
+            {[ if (block.swatches.length > 1) ]}
                 <div class="previews-side-by-side">
-                    <div class="preview">
-                        {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null})  /]}
-                        {[ inject "page_block_token_value" context token /]}       
-                    </div>
-                    <div class="preview">
-                        {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "theme": theme})  /]}
-                        {[ inject "page_block_token_value" context themedToken[0] /]}       
-                    </div>
+                    {[ for swatch in block.swatches ]}
+                        {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
+                        {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
+                        <div class="preview">
+                            {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes})  /]}
+                            {[ inject "page_block_token_value" context themedToken[0] /]}       
+                        </div>  
+                    {[/]}
                 </div>
-            {[ else ]}
+            {[ elseif (block.swatches.length === 1) ]}
+                {[ const swatch = block.swatches[0] /]}
+                {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
+                {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                 <div class="preview single-preview">
-                    {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "theme": theme})  /]}
-                    {[ inject "page_block_token_value" context themedToken[0] /]}       
+                    {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes }) /]}
+                    {[ inject "page_block_token_value" context themedToken[0] /]}
                 </div>
             {[/]}
-        {[ else ]}
-            <div class="preview single-preview">
-                {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
-                {[ inject "page_block_token_value" context token /]}       
-            </div>
         {[/]}
         <div class="info">
             <div class="name">

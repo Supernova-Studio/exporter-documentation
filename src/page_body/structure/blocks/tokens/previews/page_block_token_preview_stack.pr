@@ -1,11 +1,11 @@
 {[ const token = context.token /]}
-{[ const theme = context.theme /]}
+{[ const themes = context.themes /]}
 
 {[ if token.tokenType.equals("Color") ]}
 
     <div class="preview is-color {{ returnSwatchClassnames(token.value) }}" style="background-color: #{{ token.value.hex }};">
         {[ inject "page_block_token_reference_badge" context token /]}
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
 
         {[ if (theme === null) ]}
             <div class="name">
@@ -19,9 +19,9 @@
 
 {[ else ]}
     <div class="preview fallback">
-        {[ inject "page_block_token_theme_badge" context theme /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
         <div class="name">
-            {[ inject "page_block_token_preview_small" context ({"token": token, "theme": null}) /]}
+            {[ inject "page_block_token_preview_small" context ({"token": token, "themes": [] }) /]}
             {[ if (token.origin !== null) ]}
                 {{ token.origin.name.replacing("/", " / ") }}
             {[ else ]}
