@@ -13,6 +13,7 @@ import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntr
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues } from "./doc_functionality/general-utils"
+import { isComponentSelected } from "./doc_functionality/components"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -104,3 +105,6 @@ Pulsar.registerFunction("getClassForInvertedText", getClassForInvertedText)
 
 /* Release notes */
 Pulsar.registerFunction("changelogToEntries", changelogToEntries)
+
+/* Figma Components */
+Pulsar.registerFunction("isComponentSelected", isComponentSelected)
