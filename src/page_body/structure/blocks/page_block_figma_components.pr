@@ -51,7 +51,7 @@
 {[/]}
 
 {[ if (variant === "Canvas") ]}
-    <div class="figma-components figma-components-canvas" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
+    <div class="figma-components figma-components-canvas figma-component-image-background" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
         {[ for component in components ]}
             {[ if (isComponentSelected(block.selectedFigmaComponents, component.id)) ]}
                     <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
