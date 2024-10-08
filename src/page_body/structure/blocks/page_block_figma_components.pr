@@ -32,9 +32,10 @@
                                 {{ component.name }}
                             </div>
                         {[/]}
-                        {[ if (block.figmaComponentsBlockConfig.showPropertyList && objectEntries(component.variantPropertyValues).length > 0) ]}
+                        {[ const variantPropertyValues = objectEntries(component.variantPropertyValues) /]}
+                        {[ if (block.figmaComponentsBlockConfig.showPropertyList && variantPropertyValues.length > 0) ]}
                             <div class="figma-component-properties">
-                                {[ for variantPropertyValue in objectEntries(component.variantPropertyValues) ]}
+                                {[ for variantPropertyValue in variantPropertyValues ]}
                                     {* TODO: adjust this to use names *}
                                     <span class="figma-component-property-name">
                                         {{ variantPropertyValue[0] }}
@@ -70,9 +71,10 @@
                             {{ component.name }}
                         </div>
                     {[/]}
-                    {[ if (block.figmaComponentsBlockConfig.showPropertyList && component.variantPropertyValues) ]}
+                    {[ const variantPropertyValues = objectEntries(component.variantPropertyValues) /]}
+                    {[ if (block.figmaComponentsBlockConfig.showPropertyList && variantPropertyValues.length > 0) ]}
                         <div class="figma-component-properties">
-                            {[ for variantPropertyValue in objectEntries(component.variantPropertyValues) ]}
+                            {[ for variantPropertyValue in variantPropertyValues ]}
                                 <span class="figma-component-property-name">
                                     {{ variantPropertyValue[0] }}
                                 </span>
