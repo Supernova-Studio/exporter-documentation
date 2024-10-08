@@ -5,9 +5,9 @@
 {[ const brands = ds.allBrands() /]}
 {[ const components = ds.allDesignComponents(brands[0].id) /]}
 
-{* TODO: this is not propagated from BE? *}
-{[ let numberOfColumns = 2 /]}
-{[ let variant = "Canvas" /]}
+{* TODO: this is not propagated from BE *}
+{[ let numberOfColumns = 3 /]}
+{[ let variant = "Grid" /]}
 
 {* initialize popovers *}
 <script>
@@ -17,14 +17,13 @@
     });
 </script>
 
-
 {[ if (variant === "Grid") ]}
     <div class="figma-components" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
         {[ for component in components ]}
+            {* TODO: adjust the selection *}
             {[ if (isComponentSelected(block.selectedFigmaComponents, component.id)) ]}
                 <div class="figma-component">
                     <div class="figma-component-image figma-component-image-border figma-component-image-background" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
-                        {* TODO: on button for example, this has insane height *}
                         <img src="{{ component.thumbnailUrl }}" alt="{{ component.name }}" height="{{ component.origin?.height }}" width="{{ component.origin?.width }}" />
                     </div>
                     <div class="figma-component-details">
@@ -33,9 +32,17 @@
                                 {{ component.name }}
                             </div>
                         {[/]}
-                        {[ if (block.figmaComponentsBlockConfig.showPropertyList) ]}
+                        {[ if (block.figmaComponentsBlockConfig.showPropertyList && objectEntries(component.variantPropertyValues).length > 0) ]}
                             <div class="figma-component-properties">
-                                TODO: implement property list
+                                {[ for variantPropertyValue in objectEntries(component.variantPropertyValues) ]}
+                                    {* TODO: adjust this to use names *}
+                                    <span class="figma-component-property-name">
+                                        {{ variantPropertyValue[0] }}
+                                    </span>
+                                    <span class="figma-component-property-value">
+                                        {{ variantPropertyValue[1] }}
+                                    </span>
+                                {[/]}
                             </div>
                         {[/]}
                         {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
@@ -63,9 +70,16 @@
                             {{ component.name }}
                         </div>
                     {[/]}
-                    {[ if (block.figmaComponentsBlockConfig.showPropertyList) ]}
+                    {[ if (block.figmaComponentsBlockConfig.showPropertyList && component.variantPropertyValues) ]}
                         <div class="figma-component-properties">
-                            TODO: implement property list
+                            {[ for variantPropertyValue in objectEntries(component.variantPropertyValues) ]}
+                                <span class="figma-component-property-name">
+                                    {{ variantPropertyValue[0] }}
+                                </span>
+                                <span class="figma-component-property-value">
+                                    {{ variantPropertyValue[1] }}
+                                </span>
+                            {[/]}
                         </div>
                     {[/]}
                     {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
