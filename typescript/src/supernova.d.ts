@@ -497,6 +497,29 @@ declare global {
   // Subcategory: Components
   //
 
+  type DesignComponentProperty = {
+    id: string;
+    type: "Boolean";
+    name: string;
+    defaultValue: boolean;
+} | {
+    id: string;
+    type: "InstanceSwap";
+    name: string;
+    defaultValue: string;
+} | {
+    id: string;
+    type: "Text";
+    name: string;
+    defaultValue: string;
+} | {
+    id: string;
+    options: string[];
+    type: "Variant";
+    name: string;
+    defaultValue: string;
+}
+  
   type DesignComponent = {
     id: string | null
     brandId: string | null
@@ -504,7 +527,10 @@ declare global {
     description: string | null
     origin: DesignComponentOrigin
     createdAt: string | null
-    updateAt: string | null
+    updatedAt: string | null
+    variantPropertyValues: Record<string, string>
+    componentPropertyDefinitions: Record<string, DesignComponentProperty>
+    subcomponents: Array<DesignComponent>
   }
 
   type DesignComponentOrigin = {
