@@ -71,48 +71,38 @@ table.props-table .props-table-name {
     gap: 8px;
 }
 
-.props-table-variant-badge {
-    color: var(--figma-component-props-table-variant-badge-color);
-    background-color: var(--figma-component-props-table-variant-badge-background-color);
-    border: 1px solid var(--figma-component-props-table-border-color);
+.props-table-badge {
+    border-width: 1px;
+    border-style: solid;
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
+}
+
+.props-table-variant-badge {
+    color: var(--figma-component-props-table-variant-badge-color);
+    background-color: var(--figma-component-props-table-variant-badge-background-color);
+    border-color: var(--figma-component-props-table-border-color);
 }
 
 .props-table-boolean-badge {
     color: var(--figma-component-props-table-boolean-badge-color);
     background-color: var(--figma-component-props-table-boolean-badge-background-color);
-    border: 1px solid var(--figma-component-props-table-border-color);
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
+    border-color: var(--figma-component-props-table-border-color);
 }
 
 .props-table-text-badge {
     color: var(--figma-component-props-table-text-badge-color);
     background-color: var(--figma-component-props-table-text-badge-background-color);
-    border: 1px solid var(--figma-component-props-table-border-color);
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
+    border-color: var(--figma-component-props-table-border-color);
 }
 
 .props-table-instance-swap-badge {
     color: var(--figma-component-props-table-instance-swap-badge-color);
     background-color: var(--figma-component-props-table-instance-swap-badge-background-color);
-    border: 1px solid var(--figma-component-props-table-border-color);
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px;
+    border-color: var(--figma-component-props-table-border-color);
 }
 
 .props-table-component-name {
