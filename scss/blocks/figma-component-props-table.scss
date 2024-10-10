@@ -122,3 +122,10 @@ table.props-table .props-table-name {
     padding-bottom: 24px;
     text-align: center;
 }
+
+.props-table-icon-component-instance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--figma-component-props-table-light-grey-color);
+}
