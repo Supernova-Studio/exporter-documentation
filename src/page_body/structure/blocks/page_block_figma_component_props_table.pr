@@ -14,15 +14,15 @@
             <table class="props-table">
                 <thead>
                     <tr>
-                    <th>
-                        Property
-                    </th>
-                    <th>
-                        Values
-                    </th>
-                    <th>
-                        Default
-                    </th>
+                        <th>
+                            Property
+                        </th>
+                        <th>
+                            Values
+                        </th>
+                        <th>
+                            Default
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
