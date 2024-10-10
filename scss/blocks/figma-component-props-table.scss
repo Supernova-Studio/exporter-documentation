@@ -1,6 +1,20 @@
 :root {
     --figma-component-props-table-background-color: rgba(244, 245, 247, 0.95);
-    --figma-component-props-table-badge-border-color: #ECEEF3;
+    --figma-component-props-table-border-color: #ECEEF3;
+    --figma-component-props-table-light-grey-color: #606981;
+    --figma-component-props-table-text-color: #14171F;
+    --figma-component-props-table-component-name-color: #000000;
+
+    // badges
+    --figma-component-props-table-variant-badge-color: #0F62FE;
+    --figma-component-props-table-boolean-badge-color: #05751F;
+    --figma-component-props-table-text-badge-color: #CB101D;
+    --figma-component-props-table-instance-swap-badge-color: #A16207;
+
+    --figma-component-props-table-variant-badge-background-color: #EDF5FF;
+    --figma-component-props-table-boolean-badge-background-color: #EBFEF6;
+    --figma-component-props-table-text-badge-background-color: #FEF1F2;
+    --figma-component-props-table-instance-swap-badge-background-color: #FFFDE7;
 }
 
 table.props-table {
@@ -12,12 +26,12 @@ table.props-table thead {
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
-    color: #606981;
+    color: var(--figma-component-props-table-light-grey-color);
 }
 
 table.props-table th {
     border-top: none;
-    border-bottom: 1px solid #ECEEF3;
+    border-bottom: 1px solid var(--figma-component-props-table-border-color);
 }
 
 table.props-table th:first-child{
@@ -30,7 +44,7 @@ table.props-table th:last-child{
 
 table.props-table td {
     border-top: none;
-    border-bottom: 1px solid #ECEEF3;
+    border-bottom: 1px solid var(--figma-component-props-table-border-color);
     padding: 12px;
 }
 
@@ -38,7 +52,7 @@ table.props-table .props-table-value {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: #14171F;
+    color: var(--figma-component-props-table-text-color);
     background-color: var(--figma-component-props-table-background-color);
     padding: 2px 4px;
     border-radius: 4px;
@@ -52,15 +66,15 @@ table.props-table .props-table-name {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    color: #14171F;
+    color: var(--figma-component-props-table-text-color);
     display: flex;
     gap: 8px;
 }
 
 .props-table-variant-badge {
-    color: #0F62FE;
-    background-color: #EDF5FF;
-    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    color: var(--figma-component-props-table-variant-badge-color);
+    background-color: var(--figma-component-props-table-variant-badge-background-color);
+    border: 1px solid var(--figma-component-props-table-border-color);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
@@ -69,9 +83,9 @@ table.props-table .props-table-name {
 }
 
 .props-table-boolean-badge {
-    color: #05751F;
-    background-color: #EBFEF6;
-    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    color: var(--figma-component-props-table-boolean-badge-color);
+    background-color: var(--figma-component-props-table-boolean-badge-background-color);
+    border: 1px solid var(--figma-component-props-table-border-color);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
@@ -80,9 +94,9 @@ table.props-table .props-table-name {
 }
 
 .props-table-text-badge {
-    color: #CB101D;
-    background-color: #FEF1F2;
-    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    color: var(--figma-component-props-table-text-badge-color);
+    background-color: var(--figma-component-props-table-text-badge-background-color);
+    border: 1px solid var(--figma-component-props-table-border-color);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
@@ -91,9 +105,9 @@ table.props-table .props-table-name {
 }
 
 .props-table-instance-swap-badge {
-    color: #A16207;
-    background-color: #FFFDE7;
-    border: 1px solid var(--figma-component-props-table-badge-border-color);
+    color: var(--figma-component-props-table-instance-swap-badge-color);
+    background-color: var(--figma-component-props-table-instance-swap-badge-background-color);
+    border: 1px solid var(--figma-component-props-table-border-color);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
@@ -105,7 +119,7 @@ table.props-table .props-table-name {
     font-size: 16px;
     font-weight: 640;
     line-height: 24px;
-    color: #000000;
+    color: var(--figma-component-props-table-component-name-color);
     margin: 12px 0 12px 12px;
 }
 
@@ -113,7 +127,7 @@ table.props-table .props-table-name {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    color: #606981;
+    color: var(--figma-component-props-table-light-grey-color);
     padding-top: 24px;
     padding-bottom: 24px;
     text-align: center;
