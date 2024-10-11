@@ -48,7 +48,9 @@ table.props-table td {
     padding: 12px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 table.props-table .props-table-value {
+    font-family: "IBM Plex Mono", monospace;
     font-size: 14px;
     line-height: 20px;
     color: var(--figma-component-props-table-text-color);
