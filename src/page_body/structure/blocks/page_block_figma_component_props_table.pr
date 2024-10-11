@@ -14,13 +14,13 @@
             <table class="props-table">
                 <thead>
                     <tr>
-                        <th>
+                        <th class="props-table-name-header">
                             Property
                         </th>
-                        <th>
+                        <th class="props-table-value-header">
                             Values
                         </th>
-                        <th>
+                        <th class="props-table-default-header">
                             Default
                         </th>
                     </tr>

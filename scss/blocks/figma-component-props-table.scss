@@ -4,6 +4,7 @@
     --figma-component-props-table-light-grey-color: #606981;
     --figma-component-props-table-text-color: #14171F;
     --figma-component-props-table-component-name-color: #000000;
+    --figma-component-props-table-fixed-header-width: 224px;
 
     // badges
     --figma-component-props-table-variant-badge-color: #0F62FE;
@@ -18,6 +19,7 @@
 }
 
 table.props-table {
+    table-layout: fixed;
     width: 100%;
 }
 
@@ -40,6 +42,18 @@ table.props-table th:first-child{
 
 table.props-table th:last-child{
     border-radius: 0 8px 0 0;
+}
+
+.props-table-name-header {
+   width: var(--figma-component-props-table-fixed-header-width);
+}
+
+.props-table-value-header {
+   width: 100%;
+}
+
+.props-table-default-header {
+   width: var(--figma-component-props-table-fixed-header-width);
 }
 
 table.props-table td {
