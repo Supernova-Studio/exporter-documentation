@@ -86,7 +86,7 @@ table.props-table .props-table-name {
     gap: 8px;
 }
 
-.props-table-badge {
+.figma-component-badge {
     border-width: 1px;
     border-style: solid;
     border-radius: var(--borderRadiusDefault);
@@ -94,6 +94,8 @@ table.props-table .props-table-name {
     font-size: 12px;
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
+    height: fit-content;
+    width: fit-content;
 }
 
 .props-table-variant-badge {

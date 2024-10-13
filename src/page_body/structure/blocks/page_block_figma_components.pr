@@ -28,7 +28,7 @@
                                     <span class="figma-component-property-name">
                                         {{ property.name }}
                                     </span>
-                                    <span class="figma-component-property-value">
+                                    <span class="figma-component-badge figma-component-property-value-badge">
                                         {{ property.value }}
                                     </span>
                                 {[/]}
@@ -68,7 +68,7 @@
                                         <span class="figma-component-property-name">
                                             {{ property.name }}
                                         </span>
-                                        <span class="figma-component-property-value">
+                                        <span class="figma-component-badge figma-component-property-value-badge">
                                             {{ property.value }}
                                         </span>
                                     {[/]}
