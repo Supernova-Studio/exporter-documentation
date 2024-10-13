@@ -1,7 +1,9 @@
 :root {
-    --checkered-canvas-bg: #fff;
-    --checkered-square: #182d660a;
-    --checkered-square-size: 8px;
+    --figma-component-popover-background-color: #FFFFFF;
+
+    // badges
+    --figma-component-property-value-badge-background-color: #141A2B05;
+    --figma-component-property-value-badge-border-color: rgba(20, 23, 31, 0.06);
 }
 
 .content-block--figma-components {
@@ -42,7 +44,7 @@
 
 .figma-component-image-border {
     border-radius: 5px;
-    border: 1px solid #eceef3;
+    border: 1px solid var(--figma-component-border-color);
 }
 
 .figma-component-image img {
@@ -54,27 +56,26 @@
 
 .figma-component-name {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: var(--fontWeightSemibold);
     line-height: 20px;
-    color: #14171F;
+    color: var(--figma-component-text-color);
 }
 
 .figma-component-description {
     font-size: 12px;
-    font-weight: 400;
     line-height: 16px;
-    color: #606981;
+    color: var(--figma-component-light-grey-color);
 }
 
 .figma-components-canvas {
-    border: 1px solid #eceef3;
+    border: 1px solid var(--figma-component-border-color);
 }
 
 .figma-component-popover {
     box-shadow: 0px 5px 10px 0px rgba(20, 23, 31, 0.05), 0px 15px 25px 0px rgba(20, 23, 31, 0.07);
     border-radius: 8px;
-    border: 1px solid #ECEEF3;
-    background: #FFF;
+    border: 1px solid var(--figma-component-border-color);
+    background: var(--figma-component-popover-background-color);
     padding: 8px;
 }
 
@@ -87,14 +88,14 @@
 
 .figma-component-property-name {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: var(--fontWeightSemibold);
     line-height: 16px;
-    color: #14171F;
+    color: var(--figma-component-text-color);
 }
 
 .figma-component-property-value-badge {
-    color: #606981;
-    background-color: #141A2B05;
-    border-color: rgba(20, 23, 31, 0.06);
+    color: var(--figma-component-light-grey-color);
+    background-color: var(--figma-component-property-value-badge-background-color);
+    border-color: var(--figma-component-property-value-badge-border-color);
 }
 
