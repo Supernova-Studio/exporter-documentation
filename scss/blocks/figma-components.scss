@@ -40,12 +40,6 @@
     padding: 8px;
 }
 
-.figma-component-image-background {
-    background-image: linear-gradient(45deg,var(--checkered-square) 25%,transparent 25%,transparent 75%,var(--checkered-square) 75%,var(--checkered-square) 100%),linear-gradient(45deg,var(--checkered-square) 25%,var(--checkered-canvas-bg) 25%,var(--checkered-canvas-bg) 75%,var(--checkered-square) 75%,var(--checkered-square) 100%);
-    background-position: 0 0,calc(var(--checkered-square-size) / 2) calc(var(--checkered-square-size) / 2);
-    background-size: var(--checkered-square-size) var(--checkered-square-size);
-}
-
 .figma-component-image-border {
     border-radius: 5px;
     border: 1px solid #eceef3;
