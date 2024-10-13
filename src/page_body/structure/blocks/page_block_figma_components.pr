@@ -13,7 +13,7 @@
 
             {[ for componentPreview in componentPreviews ]}
                 <div class="figma-component">
-                    <div class="figma-component-image figma-component-image-border checkered-background" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
+                    <div class="figma-component-image figma-component-image-border checkered-background-light" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
                         <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
                     </div>
                     <div class="figma-component-details">
@@ -47,7 +47,7 @@
 {[/]}
 
 {[ if (variant === "canvas") ]}
-    <div class="content-block content-block--figma-components figma-components-canvas checkered-background {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
+    <div class="content-block content-block--figma-components figma-components-canvas checkered-background-light {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
         {[ for selectedComponent in block.selectedFigmaComponents ]}
             {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
             {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
