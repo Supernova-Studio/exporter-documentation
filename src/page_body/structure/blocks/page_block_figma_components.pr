@@ -2,24 +2,60 @@
 
 {[ let configuration = exportConfiguration() /]}
 
-{[ const brands = ds.allBrands() /]}
-{[ const components = ds.allDesignComponents(brands[0].id) /]}
+{[ let numberOfColumns = block.numberOfColumns /]}
+{[ let variant = block.variantKey /]}
 
-{* TODO: this is not propagated from BE *}
-{[ let numberOfColumns = 2 /]}
-{[ let variant = "Grid" /]}
-
-{[ if (variant === "Grid") ]}
+{[ if (variant === "grid") ]}
     <div class="figma-components" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
-        {[ for component in components ]}
-            {[ if (isComponentSelected(block.selectedFigmaComponents, component.id)) ]}
-                {[ const selectedPropertiesIds = block.selectedFigmaComponents[0].selectedComponentProperties /]}
-                {[ const componentPreviews = getComponentPreviews(component, selectedPropertiesIds, block.selectedFigmaComponents.length > 1) /]}
-                {[ for componentPreview in componentPreviews ]}
-                    <div class="figma-component">
-                        <div class="figma-component-image figma-component-image-border figma-component-image-background" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
-                            <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
-                        </div>
+        {[ for selectedComponent in block.selectedFigmaComponents ]}
+            {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
+            {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
+
+            {[ for componentPreview in componentPreviews ]}
+                <div class="figma-component">
+                    <div class="figma-component-image figma-component-image-border figma-component-image-background" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
+                        <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
+                    </div>
+                    <div class="figma-component-details">
+                        {[ if (block.figmaComponentsBlockConfig.showComponentName) ]}
+                            <div class="figma-component-name">
+                                {{ componentPreview.name }}
+                            </div>
+                        {[/]}
+                        {[ if (block.figmaComponentsBlockConfig.showPropertyList && componentPreview.properties.length > 0) ]}
+                            <div class="figma-component-properties">
+                                {[ for property in componentPreview.properties ]}
+                                    <span class="figma-component-property-name">
+                                        {{ property.name }}
+                                    </span>
+                                    <span class="figma-component-property-value">
+                                        {{ property.value }}
+                                    </span>
+                                {[/]}
+                            </div>
+                        {[/]}
+                        {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
+                            <div class="figma-component-description">
+                                {{ componentPreview.component.description }}
+                            </div>
+                        {[/]}
+                    </div>
+                </div>
+            {[/]}
+        {[/]}
+    </div>
+{[/]}
+
+{[ if (variant === "canvas") ]}
+    <div class="figma-components figma-components-canvas figma-component-image-background" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
+        {[ for selectedComponent in block.selectedFigmaComponents ]}
+            {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
+            {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
+
+            {[ for componentPreview in componentPreviews ]}
+                <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
+                    data-content=
+                    '
                         <div class="figma-component-details">
                             {[ if (block.figmaComponentsBlockConfig.showComponentName) ]}
                                 <div class="figma-component-name">
@@ -44,60 +80,18 @@
                                 </div>
                             {[/]}
                         </div>
-                    </div>
-                {[/]}
-            {[/]}
-        {[/]}
-    </div>
-{[/]}
-
-{[ if (variant === "Canvas") ]}
-    <div class="figma-components figma-components-canvas figma-component-image-background" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
-        {[ for component in components ]}
-            {[ if (isComponentSelected(block.selectedFigmaComponents, component.id)) ]}
-                {[ const selectedPropertiesIds = block.selectedFigmaComponents[0].selectedComponentProperties /]}
-                {[ const componentPreviews = getComponentPreviews(component, selectedPropertiesIds, block.selectedFigmaComponents.length > 1) /]}
-                {[ for componentPreview in componentPreviews ]}
-                    <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
-                        data-content=
-                        '
-                            <div class="figma-component-details">
-                                {[ if (block.figmaComponentsBlockConfig.showComponentName) ]}
-                                    <div class="figma-component-name">
-                                        {{ componentPreview.name }}
-                                    </div>
-                                {[/]}
-                                {[ if (block.figmaComponentsBlockConfig.showPropertyList && componentPreview.properties.length > 0) ]}
-                                    <div class="figma-component-properties">
-                                        {[ for property in componentPreview.properties ]}
-                                            <span class="figma-component-property-name">
-                                                {{ property.name }}
-                                            </span>
-                                            <span class="figma-component-property-value">
-                                                {{ property.value }}
-                                            </span>
-                                        {[/]}
-                                    </div>
-                                {[/]}
-                                {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
-                                    <div class="figma-component-description">
-                                        {{ componentPreview.component.description }}
-                                    </div>
-                                {[/]}
-                            </div>
-                        '
-                        data-template=
-                        '
-                            <div class="popover figma-component-popover" role="tooltip">
-                                <h3 class="popover-header"></h3>
-                                <div class="popover-body"></div>
-                            </div>
-                        '
-                        class="figma-component-image" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}"
-                    >
-                        <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
-                    </div>
-                {[/]}
+                    '
+                    data-template=
+                    '
+                        <div class="popover figma-component-popover" role="tooltip">
+                            <h3 class="popover-header"></h3>
+                            <div class="popover-body"></div>
+                        </div>
+                    '
+                    class="figma-component-image" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}"
+                >
+                    <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
+                </div>
             {[/]}
         {[/]}
     </div>
