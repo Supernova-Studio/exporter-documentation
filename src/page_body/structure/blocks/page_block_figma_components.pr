@@ -6,7 +6,7 @@
 {[ let variant = block.variantKey /]}
 
 {[ if (variant === "grid") ]}
-    <div class="figma-components" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
+    <div class="content-block content-block--figma-components {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
         {[ for selectedComponent in block.selectedFigmaComponents ]}
             {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
             {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
@@ -47,7 +47,7 @@
 {[/]}
 
 {[ if (variant === "canvas") ]}
-    <div class="figma-components figma-components-canvas figma-component-image-background" style="grid-template-columns: repeat({{ numberOfColumns }}, 1fr);">
+    <div class="content-block content-block--figma-components figma-components-canvas figma-component-image-background {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
         {[ for selectedComponent in block.selectedFigmaComponents ]}
             {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
             {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
