@@ -17,7 +17,7 @@
                         <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
                     </div>
                     <div class="figma-component-details">
-                        {[ if (block.figmaComponentsBlockConfig.showComponentName) ]}
+                        {[ if (block.figmaComponentsBlockConfig.showComponentName && componentPreview.name) ]}
                             <div class="figma-component-name">
                                 {{ componentPreview.name }}
                             </div>
@@ -34,7 +34,7 @@
                                 {[/]}
                             </div>
                         {[/]}
-                        {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
+                        {[ if (block.figmaComponentsBlockConfig.showComponentDescription && componentPreview.component.description) ]}
                             <div class="figma-component-description">
                                 {{ componentPreview.component.description }}
                             </div>
@@ -57,7 +57,7 @@
                     data-content=
                     '
                         <div class="figma-component-details">
-                            {[ if (block.figmaComponentsBlockConfig.showComponentName) ]}
+                            {[ if (block.figmaComponentsBlockConfig.showComponentName && componentPreview.name) ]}
                                 <div class="figma-component-name">
                                     {{ componentPreview.name }}
                                 </div>
@@ -74,7 +74,7 @@
                                     {[/]}
                                 </div>
                             {[/]}
-                            {[ if (block.figmaComponentsBlockConfig.showComponentDescription) ]}
+                            {[ if (block.figmaComponentsBlockConfig.showComponentDescription && componentPreview.component.description) ]}
                                 <div class="figma-component-description">
                                     {{ componentPreview.component.description }}
                                 </div>
