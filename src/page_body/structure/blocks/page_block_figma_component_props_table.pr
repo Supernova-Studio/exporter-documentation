@@ -3,40 +3,42 @@
 {[ let configuration = exportConfiguration() /]}
 
 
-<div class="content-block content-block--figma-component-props-table" id="{{ getSearchIDString(block.id) }}">
-    {[ const component = ds.designComponentById(block.selectedFigmaComponent.figmaComponentId) /]}
+{[ const component = ds.designComponentById(block.selectedFigmaComponent.figmaComponentId) /]}
 
-    {[ if block.figmaComponentsBlockConfig.showComponentName ]}
-        <div class="props-table-component-name">{{ component.name }}</div>
-    {[/]}
-    <table class="props-table">
-        <thead>
-            <tr>
-                <th class="props-table-name-header">
-                    Property
-                </th>
-                <th class="props-table-value-header">
-                    Values
-                </th>
-                <th class="props-table-default-header">
-                    Default
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
+{[ if component ]}
+    <div class="content-block content-block--figma-component-props-table" id="{{ getSearchIDString(block.id) }}">
+
+        {[ if block.figmaComponentsBlockConfig.showComponentName ]}
+            <div class="props-table-component-name">{{ component.name }}</div>
+        {[/]}
+        <table class="props-table">
+            <thead>
                 <tr>
-                    <td colspan="3" id="figma-component-props-table-empty-state">
-                        This Figma component has no properties.
-                    </td>
+                    <th class="props-table-name-header">
+                        Property
+                    </th>
+                    <th class="props-table-value-header">
+                        Values
+                    </th>
+                    <th class="props-table-default-header">
+                        Default
+                    </th>
                 </tr>
-            {[/]}
-            {[ for property in objectValues(component.componentPropertyDefinitions) ]}
+            </thead>
+            <tbody>
+                {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
                     <tr>
-                    <td>
-                        <span class="props-table-name">
-                            {[ if (property.type === "Variant") ]}
-                                {{ property.name }}
+                        <td colspan="3" id="figma-component-props-table-empty-state">
+                            This Figma component has no properties.
+                        </td>
+                    </tr>
+                {[/]}
+                {[ for property in objectValues(component.componentPropertyDefinitions) ]}
+                        <tr>
+                        <td>
+                            <span class="props-table-name">
+                                {[ if (property.type === "Variant") ]}
+                                    {{ property.name }}
 
                                 <span class="figma-component-badge props-table-variant-badge">Variant</span>
                             {[/]}
@@ -71,22 +73,22 @@
                             {[ if (property.type === "InstanceSwap") ]}
                                 <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
 
-                                {{ property.name }}
-                            {[/]}
-                        </span>
-                    </td>
-                    <td>
-                        <span class="props-table-value">
-                            {[ if (property.type === "InstanceSwap") ]}
-                                <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
-                            {[/]}
+                                    {{ property.name }}
+                                {[/]}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="props-table-value">
+                                {[ if (property.type === "InstanceSwap") ]}
+                                    <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
+                                {[/]}
 
-                            {{ property.defaultValue }}
-                        </span>
-                    </td>
-                </tr>
-            {[/]}
-        </tbody>
-    </table>
-</div>
-
+                                {{ property.defaultValue }}
+                            </span>
+                        </td>
+                    </tr>
+                {[/]}
+            </tbody>
+        </table>
+    </div>
+{[/]}
