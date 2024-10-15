@@ -1,0 +1,101 @@
+:root {
+    --figma-component-popover-background-color: #FFFFFF;
+
+    // badges
+    --figma-component-property-value-badge-background-color: #141A2B05;
+    --figma-component-property-value-badge-border-color: rgba(20, 23, 31, 0.06);
+}
+
+.content-block--figma-components {
+    display: grid;
+    gap: 24px;
+
+    &.layout-columns-1 {
+        grid-template-columns: repeat(1, 1fr);
+        grid-row-gap: calc(var(--guidelinesGridGap)*2);
+    }
+
+    &.layout-columns-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.layout-columns-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.figma-component {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.figma-component-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.figma-component-image {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.figma-component-image-border {
+    border-radius: 5px;
+    border: 1px solid var(--figma-component-border-color);
+}
+
+.figma-component-image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    height: auto;
+}
+
+.figma-component-name {
+    font-size: 14px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 20px;
+    color: var(--figma-component-text-color);
+}
+
+.figma-component-description {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--figma-component-light-grey-color);
+}
+
+.figma-components-canvas {
+    border: 1px solid var(--figma-component-border-color);
+}
+
+.figma-component-popover {
+    box-shadow: 0px 5px 10px 0px rgba(20, 23, 31, 0.05), 0px 15px 25px 0px rgba(20, 23, 31, 0.07);
+    border-radius: 8px;
+    border: 1px solid var(--figma-component-border-color);
+    background: var(--figma-component-popover-background-color);
+    padding: 8px;
+}
+
+.figma-component-properties {
+    display: grid;
+    align-items: center;
+    gap: 8px;
+    grid-template-columns: repeat(2, min-content);
+}
+
+.figma-component-property-name {
+    font-size: 12px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 16px;
+    color: var(--figma-component-text-color);
+}
+
+.figma-component-property-value-badge {
+    color: var(--figma-component-light-grey-color);
+    background-color: var(--figma-component-property-value-badge-background-color);
+    border-color: var(--figma-component-property-value-badge-border-color);
+}
+

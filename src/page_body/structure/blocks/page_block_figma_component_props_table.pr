@@ -40,38 +40,38 @@
                                 {[ if (property.type === "Variant") ]}
                                     {{ property.name }}
 
-                                    <span class="props-table-badge props-table-variant-badge">Variant</span>
-                                {[/]}
-                                    {[ if (property.type === "Boolean") ]}
-                                    {{ property.name }}
+                                <span class="figma-component-badge props-table-variant-badge">Variant</span>
+                            {[/]}
+                                {[ if (property.type === "Boolean") ]}
+                                {{ property.name }}
 
-                                    <span class="props-table-badge props-table-boolean-badge">Boolean</span>
-                                {[/]}
-                                {[ if (property.type === "Text") ]}
-                                    {{ property.name }}
+                                <span class="figma-component-badge props-table-boolean-badge">Boolean</span>
+                            {[/]}
+                            {[ if (property.type === "Text") ]}
+                                {{ property.name }}
 
-                                    <span class="props-table-badge props-table-text-badge">Text</span>
-                                {[/]}
-                                {[ if (property.type === "InstanceSwap") ]}
-                                    {{ property.name }}
+                                <span class="figma-component-badge props-table-text-badge">Text</span>
+                            {[/]}
+                            {[ if (property.type === "InstanceSwap") ]}
+                                {{ property.name }}
 
-                                    <span class="props-table-badge props-table-instance-swap-badge">InstanceSwap</span>
-                                {[/]}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="props-table-value">
-                                {[ if (property.type === "Variant") ]}
-                                    {{ property.options.join(" | ") }}
-                                {[/]}
-                                    {[ if (property.type === "Boolean") ]}
-                                    true | false
-                                {[/]}
-                                {[ if (property.type === "Text") ]}
-                                    string
-                                {[/]}
-                                {[ if (property.type === "InstanceSwap") ]}
-                                    <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
+                                <span class="figma-component-badge props-table-instance-swap-badge">InstanceSwap</span>
+                            {[/]}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="props-table-value">
+                            {[ if (property.type === "Variant") ]}
+                                {{ property.options.join(" | ") }}
+                            {[/]}
+                                {[ if (property.type === "Boolean") ]}
+                                true | false
+                            {[/]}
+                            {[ if (property.type === "Text") ]}
+                                string
+                            {[/]}
+                            {[ if (property.type === "InstanceSwap") ]}
+                                <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
 
                                     {{ property.name }}
                                 {[/]}
