@@ -13,6 +13,7 @@ import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntr
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString } from "./doc_functionality/general-utils"
+import { getThemesTooltip } from "./doc_functionality/themes"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -48,6 +49,9 @@ Pulsar.registerFunction("getUrlExtension", getUrlExtension)
 Pulsar.registerFunction("escapeHtml", escapeHtml)
 Pulsar.registerFunction("addSlashes", addSlashes)
 Pulsar.registerFunction("normalizeStringForSearch", normalizeStringForSearch)
+
+/* Themes utilities */
+Pulsar.registerFunction("getThemesTooltip", getThemesTooltip)
 
 /* Class/IDs */
 Pulsar.registerFunction("getSearchIDString", getSearchIDString)
