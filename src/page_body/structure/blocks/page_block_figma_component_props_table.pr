@@ -60,7 +60,7 @@
                         </span>
                     </td>
                     <td>
-                        <span class="props-table-value">
+                        <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
                             {[ if (property.type === "Variant") ]}
                                 {{ property.options.join(" | ") }}
                             {[/]}
@@ -78,7 +78,7 @@
                             </span>
                         </td>
                         <td>
-                            <span class="props-table-value">
+                            <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
                                 {[ if (property.type === "InstanceSwap") ]}
                                     <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
                                 {[/]}
