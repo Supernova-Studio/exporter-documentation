@@ -72,10 +72,13 @@ table.props-table .props-table-value {
     background-color: var(--figma-component-props-table-background-color);
     padding: 2px 4px;
     border-radius: var(--borderRadiusDefault);
-    display: flex;
-    align-items: center;
     gap: 4px;
     width: fit-content;
+}
+
+table.props-table .props-table-value-with-icon {
+    display: inline-flex;
+    align-items: center;
 }
 
 table.props-table .props-table-name {

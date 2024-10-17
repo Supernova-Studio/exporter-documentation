@@ -22,6 +22,10 @@
     &.layout-columns-3 {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    &.layout-columns-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .figma-component {
