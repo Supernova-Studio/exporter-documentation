@@ -1,0 +1,141 @@
+:root {
+    --figmaComponentBorderColor: var(--colorBorderSubtle);
+    --figmaComponentInk: var(--colorInkPrimary);
+    --figmaComponentInkSecondary: var(--colorInkSecondary);
+
+    --figmaComponentPropsTableHeaderBackround: var(--colorBackgroundSecondary);
+    --figmaComponentPropsTableFixedHeaderWidth: 224px;
+
+    // badges
+    --figmaComponentPropsTableVariantBadgeColor: #0F62FE;
+    --figmaComponentPropsTableBooleanBadgeColor: #05751F;
+    --figmaComponentPropsTableTextBadgeColor: #CB101D;
+    --figmaComponentPropsTableInstanceSwapBadgeColor: #A16207;
+
+    --figmaComponentPropsTableVariantBadgeBackgroundColor: #EDF5FF;
+    --figmaComponentPropsTableBooleanBadgeBackgroundColor: #EBFEF6;
+    --figmaComponentPropsTableTextBadgeBackgroundColor: #FEF1F2;
+    --figmaComponentPropsTableInstanceSwapBadgeBackgroundColor: #FFFDE7;
+
+    --figmaComponentPropsTableMinWidth: 640px;
+}
+
+table.props-table {
+    table-layout: fixed;
+    width: 100%;
+    min-width: var(--figmaComponentPropsTableMinWidth);
+}
+
+table.props-table thead {
+    background-color: var(--figmaComponentPropsTableHeaderBackround);
+    font-size: 12px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 16px;
+    color: var(--figmaComponentInkSecondary);
+}
+
+.props-table-name-header {
+   width: var(--figmaComponentPropsTableFixedHeaderWidth);
+}
+
+.props-table-value-header {
+   width: 100%;
+}
+
+.props-table-default-header {
+   width: var(--figmaComponentPropsTableFixedHeaderWidth);
+}
+
+table.props-table td {
+    border-top: none;
+    border-bottom: 1px solid var(--figmaComponentBorderColor);
+    padding: 12px;
+}
+
+table.props-table .props-table-value {
+    font-family: var(--fontFamilyCode);
+    font-size: var(--fontSizeCode);
+    font-weight: var(--fontWeightCode);
+    line-height: 20px;
+    color: var(--figmaComponentInkSecondary);
+    background-color: var(--figmaComponentPropsTableHeaderBackround);
+    padding: 2px 4px;
+    border-radius: var(--borderRadiusDefault);
+    gap: 4px;
+    width: fit-content;
+}
+
+table.props-table .props-table-value-with-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+table.props-table .props-table-name {
+    font-size: 14px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 20px;
+    color: var(--figmaComponentInk);
+    display: flex;
+    gap: 8px;
+}
+
+.figma-component-badge {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--borderRadiusDefault);
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 16px;
+    height: fit-content;
+    max-width: fit-content;
+}
+
+.props-table-variant-badge {
+    color: var(--figmaComponentPropsTableVariantBadgeColor);
+    background-color: var(--figmaComponentPropsTableVariantBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
+}
+
+.props-table-boolean-badge {
+    color: var(--figmaComponentPropsTableBooleanBadgeColor);
+    background-color: var(--figmaComponentPropsTableBooleanBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
+}
+
+.props-table-text-badge {
+    color: var(--figmaComponentPropsTableTextBadgeColor);
+    background-color: var(--figmaComponentPropsTableTextBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
+}
+
+.props-table-instance-swap-badge {
+    color: var(--figmaComponentPropsTableInstanceSwapBadgeColor);
+    background-color: var(--figmaComponentPropsTableInstanceSwapBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
+}
+
+.props-table-component-name {
+    font-size: 16px;
+    font-weight: 640;
+    line-height: 24px;
+    color: var(--figmaComponentInk);
+    margin: 12px 0 12px 12px;
+}
+
+#figma-component-props-table-empty-state {
+    font-size: 14px;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 20px;
+    color: var(--figmaComponentInkSecondary);
+    padding-top: 24px;
+    padding-bottom: 24px;
+    text-align: center;
+}
+
+.props-table-icon-component-instance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--figmaComponentInkSecondary);
+}

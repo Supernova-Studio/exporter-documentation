@@ -12,6 +12,16 @@ export function includes(arr: string[], value: string): boolean {
     return arr.includes(value);
 }
 
+/* Get object values */
+export function objectValues(obj: object): any[] {
+    return Object.values(obj);
+}
+
+/* Get object entries */
+export function objectEntries(obj: object): any[] {
+    return Object.entries(obj);
+}
+
 /* Get current formatted datetime */
 export function getFormattedDateTime(date = new Date()): string {
     return date.toLocaleString('en-us',{day:'numeric', month:'short', year:'numeric', hour12: false, hour: '2-digit', minute:'2-digit'});

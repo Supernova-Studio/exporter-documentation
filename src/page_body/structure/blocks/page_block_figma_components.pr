@@ -1,0 +1,119 @@
+{[ const block = context /]}
+
+{[ let configuration = exportConfiguration() /]}
+
+{[ let numberOfColumns = block.numberOfColumns /]}
+{[ let variant = block.variantKey /]}
+
+{[ let backgroundColor = "transparent" /]}
+{[ let showChecker = true /]}
+{[ if (block.itemBackgroundColor && block.itemBackgroundColor.value) ]}
+    {* Only raw values are currently supported *}
+    {[ backgroundColor = block.itemBackgroundColor.value /]}
+    {[ showChecker = false /]}
+{[/]}
+
+{[ if (variant === "grid" || !isNonEmptyString(variant)) ]}
+    <div class="content-block content-block--figma-components {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
+        {[ for selectedComponent in block.selectedFigmaComponents ]}
+            {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
+
+            {[ if component ]}
+                {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
+
+                {[ for componentPreview in componentPreviews ]}
+                    <div class="figma-component">
+                        <div class="figma-component-image figma-component-image-border {{ showChecker ? "checkered-background-light" : ""}}" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}background-color: {{ backgroundColor }};"">
+                            <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
+                        </div>
+                        {[ if (block.figmaComponentsBlockConfig.showComponentName || block.figmaComponentsBlockConfig.showPropertyList || block.figmaComponentsBlockConfig.showComponentDescription) ]}
+                            <div class="figma-component-details">
+                                {[ if (block.figmaComponentsBlockConfig.showComponentName && componentPreview.name) ]}
+                                    <div class="figma-component-name">
+                                        {{ componentPreview.name }}
+                                    </div>
+                                {[/]}
+                                {[ if (block.figmaComponentsBlockConfig.showPropertyList && componentPreview.properties.length > 0) ]}
+                                    <div class="figma-component-properties">
+                                        {[ for property in componentPreview.properties ]}
+                                            <span class="figma-component-property-name">
+                                                {{ property.name }}
+                                            </span>
+                                            <span class="figma-component-badge figma-component-property-value-badge">
+                                                {{ property.value }}
+                                            </span>
+                                        {[/]}
+                                    </div>
+                                {[/]}
+                                {[ if (block.figmaComponentsBlockConfig.showComponentDescription && componentPreview.component.description) ]}
+                                    <div class="figma-component-description">
+                                        {{ componentPreview.component.description }}
+                                    </div>
+                                {[/]}
+                            </div>
+                        {[/]}
+                    </div>
+                {[/]}
+            {[/]}
+        {[/]}
+    </div>
+{[/]}
+
+{[ if (variant === "canvas") ]}
+    <div class="content-block content-block--figma-components figma-components-canvas {{ showChecker ? "checkered-background-light" : ""}} {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}" style="background-color: {{ backgroundColor }}">
+        {[ for selectedComponent in block.selectedFigmaComponents ]}
+            {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
+
+            {[ if component ]}
+                {[ const componentPreviews = getComponentPreviews(component, selectedComponent.selectedComponentProperties) /]}
+
+                {[ for componentPreview in componentPreviews ]}
+                    <div class="figma-component-image" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
+                        {[ if (block.figmaComponentsBlockConfig.showComponentName || block.figmaComponentsBlockConfig.showPropertyList || block.figmaComponentsBlockConfig.showComponentDescription) ]}
+                            <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
+                                data-content=
+                                '
+                                    <div class="figma-component-details">
+                                        {[ if (block.figmaComponentsBlockConfig.showComponentName && componentPreview.name) ]}
+                                            <div class="figma-component-name">
+                                                {{ componentPreview.name }}
+                                            </div>
+                                        {[/]}
+                                        {[ if (block.figmaComponentsBlockConfig.showPropertyList && componentPreview.properties.length > 0) ]}
+                                            <div class="figma-component-properties">
+                                                {[ for property in componentPreview.properties ]}
+                                                    <span class="figma-component-property-name">
+                                                        {{ property.name }}
+                                                    </span>
+                                                    <span class="figma-component-badge figma-component-property-value-badge">
+                                                        {{ property.value }}
+                                                    </span>
+                                                {[/]}
+                                            </div>
+                                        {[/]}
+                                        {[ if (block.figmaComponentsBlockConfig.showComponentDescription && componentPreview.component.description) ]}
+                                            <div class="figma-component-description">
+                                                {{ componentPreview.component.description }}
+                                            </div>
+                                        {[/]}
+                                    </div>
+                                '
+                                data-template=
+                                '
+                                    <div class="popover figma-component-popover" role="tooltip">
+                                        <h3 class="popover-header"></h3>
+                                        <div class="popover-body"></div>
+                                    </div>
+                                '
+                            >
+                                <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
+                            </div>
+                        {[ else ]}
+                            <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
+                        {[/]}
+                    </div>
+                {[/]}
+            {[/]}
+        {[/]}
+    </div>
+{[/]}
