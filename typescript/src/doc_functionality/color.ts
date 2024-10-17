@@ -49,7 +49,13 @@ function isValidHexColor(str: string) {
   }
 
 export function contrastColorAPCA(color?: string): "dark" | "light" {
-    if (!color || !isValidHexColor(color)) {
+    if (!color) {
+      return "dark"
+    }
+    if (!color.startsWith('#')) {
+      color = '#' + color
+    }
+    if (!isValidHexColor(color)) {
       return "dark"
     }
   
@@ -66,7 +72,7 @@ export function contrastColorAPCA(color?: string): "dark" | "light" {
     const onWhite = Math.abs(newColor.contrast("white", "APCA"))
     const onBlack = Math.abs(newColor.contrast("black", "APCA"))
   
-    // Return black for bright colors, white for dark colors
+    // Return dark for bright colors, light for dark colors
     return onWhite > onBlack ? "light" : "dark"
   }
 
@@ -81,7 +87,7 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
         classNames.push("bordered")
     }
 
-    if ((getColorContrast(color.hex) < 0.5 && color.a > 180)) {
+    if ((contrastColorAPCA(color.hex) === "light" && color.a > 180)) {
         classNames.push("inverted-text")
     }
 

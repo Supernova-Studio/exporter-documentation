@@ -14,6 +14,7 @@ import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupN
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
 import { getComponentPreviews } from "./doc_functionality/components"
+import { getThemesTooltip } from "./doc_functionality/themes"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -51,6 +52,9 @@ Pulsar.registerFunction("getUrlExtension", getUrlExtension)
 Pulsar.registerFunction("escapeHtml", escapeHtml)
 Pulsar.registerFunction("addSlashes", addSlashes)
 Pulsar.registerFunction("normalizeStringForSearch", normalizeStringForSearch)
+
+/* Themes utilities */
+Pulsar.registerFunction("getThemesTooltip", getThemesTooltip)
 
 /* Class/IDs */
 Pulsar.registerFunction("getSearchIDString", getSearchIDString)
