@@ -88,7 +88,7 @@ table.props-table .props-table-name {
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
     height: fit-content;
-    width: fit-content;
+    max-width: fit-content;
 }
 
 .props-table-variant-badge {

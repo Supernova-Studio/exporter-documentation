@@ -89,7 +89,7 @@
     align-items: center;
     gap: 16px;
     row-gap: 4px;
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: fit-content(50%) 1fr;
 }
 
 .figma-component-property-name {
@@ -97,9 +97,13 @@
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
     color: var(--figmaComponentInk);
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .figma-component-property-value-badge {
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: var(--figmaComponentInkSecondary);
     background-color: var(--figmaComponentPropertyValueBadgeBackgroundColor);
     border-color: var(--figmaComponentPropertyValueBadgeBorderColor);
