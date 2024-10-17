@@ -152,7 +152,7 @@
 
 /* Token tables */
 .token-value {
-  font-family: "Fira Mono", monospace;
+  font-family: var(--fontFamilyCode);
   font-size: 11px;
   line-height: 16px;
   background: transparent;

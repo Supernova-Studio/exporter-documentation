@@ -19,6 +19,10 @@
     --lineHeightSmall: 1.5;
     --lineHeightTiny: 1.3;
 
+    /* Code */
+    --fontSizeCode: 0.825em;
+    --fontWeightCode: 500;
+
     /* Heading */
     --headingInk: var(--colorInkPrimary);
     --headingScaleFactor: 0.28;
@@ -170,9 +174,9 @@ h5 + div.anchor + h6 {
 
 mark,
 .mark {
-    font-family: 'Fira Mono', 'Fira Code', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    font-weight: 600;
-    font-size: 0.825em;
+    font-family: var(--fontFamilyCode);
+    font-weight: var(--fontWeightCode);
+    font-size: var(--fontSizeCode);
     line-height: var(--contentBodyLineHeight);
     padding: 4px;
     background: var(--colorBackgroundSecondary);

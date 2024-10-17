@@ -1,40 +1,40 @@
 :root {
-    --figma-component-border-color: #ECEEF3;
-    --figma-component-text-color: #14171F;
-    --figma-component-light-grey-color: #606981;
+    --figmaComponentBorderColor: var(--colorBorderSubtle);
+    --figmaComponentInk: var(--colorInkPrimary);
+    --figmaComponentInkSecondary: var(--colorInkSecondary);
 
-    --figma-component-props-table-background-color: rgba(244, 245, 247, 0.95);
-    --figma-component-props-table-component-name-color: #000000;
-    --figma-component-props-table-fixed-header-width: 224px;
+    --figmaComponentPropsTableHeaderBackround: var(--colorBackgroundSecondary);
+    --figmaComponentPropsTableFixedHeaderWidth: 224px;
 
     // badges
-    --figma-component-props-table-variant-badge-color: #0F62FE;
-    --figma-component-props-table-boolean-badge-color: #05751F;
-    --figma-component-props-table-text-badge-color: #CB101D;
-    --figma-component-props-table-instance-swap-badge-color: #A16207;
+    --figmaComponentPropsTableVariantBadgeColor: #0F62FE;
+    --figmaComponentPropsTableBooleanBadgeColor: #05751F;
+    --figmaComponentPropsTableTextBadgeColor: #CB101D;
+    --figmaComponentPropsTableInstanceSwapBadgeColor: #A16207;
 
-    --figma-component-props-table-variant-badge-background-color: #EDF5FF;
-    --figma-component-props-table-boolean-badge-background-color: #EBFEF6;
-    --figma-component-props-table-text-badge-background-color: #FEF1F2;
-    --figma-component-props-table-instance-swap-badge-background-color: #FFFDE7;
+    --figmaComponentPropsTableVariantBadgeBackgroundColor: #EDF5FF;
+    --figmaComponentPropsTableBooleanBadgeBackgroundColor: #EBFEF6;
+    --figmaComponentPropsTableTextBadgeBackgroundColor: #FEF1F2;
+    --figmaComponentPropsTableInstanceSwapBadgeBackgroundColor: #FFFDE7;
 }
 
 table.props-table {
     table-layout: fixed;
     width: 100%;
+    
 }
 
 table.props-table thead {
-    background-color: var(--figma-component-props-table-background-color);
+    background-color: var(--figmaComponentPropsTableHeaderBackround);
     font-size: 12px;
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
-    color: var(--figma-component-light-grey-color);
+    color: var(--figmaComponentInkSecondary);
 }
 
 table.props-table th {
     border-top: none;
-    border-bottom: 1px solid var(--figma-component-border-color);
+    border-bottom: 1px solid var(--figmaComponentBorderColor);
 }
 
 table.props-table th:first-child{
@@ -46,7 +46,7 @@ table.props-table th:last-child{
 }
 
 .props-table-name-header {
-   width: var(--figma-component-props-table-fixed-header-width);
+   width: var(--figmaComponentPropsTableFixedHeaderWidth);
 }
 
 .props-table-value-header {
@@ -54,22 +54,22 @@ table.props-table th:last-child{
 }
 
 .props-table-default-header {
-   width: var(--figma-component-props-table-fixed-header-width);
+   width: var(--figmaComponentPropsTableFixedHeaderWidth);
 }
 
 table.props-table td {
     border-top: none;
-    border-bottom: 1px solid var(--figma-component-border-color);
+    border-bottom: 1px solid var(--figmaComponentBorderColor);
     padding: 12px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 table.props-table .props-table-value {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 14px;
+    font-family: var(--fontFamilyCode);
+    font-size: var(--fontSizeCode);
+    font-weight: var(--fontWeightCode);
     line-height: 20px;
-    color: var(--figma-component-text-color);
-    background-color: var(--figma-component-props-table-background-color);
+    color: var(--figmaComponentInkSecondary);
+    background-color: var(--figmaComponentPropsTableHeaderBackround);
     padding: 2px 4px;
     border-radius: var(--borderRadiusDefault);
     gap: 4px;
@@ -85,7 +85,7 @@ table.props-table .props-table-name {
     font-size: 14px;
     font-weight: var(--fontWeightSemibold);
     line-height: 20px;
-    color: var(--figma-component-text-color);
+    color: var(--figmaComponentInk);
     display: flex;
     gap: 8px;
 }
@@ -103,34 +103,34 @@ table.props-table .props-table-name {
 }
 
 .props-table-variant-badge {
-    color: var(--figma-component-props-table-variant-badge-color);
-    background-color: var(--figma-component-props-table-variant-badge-background-color);
-    border-color: var(--figma-component-border-color);
+    color: var(--figmaComponentPropsTableVariantBadgeColor);
+    background-color: var(--figmaComponentPropsTableVariantBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
 }
 
 .props-table-boolean-badge {
-    color: var(--figma-component-props-table-boolean-badge-color);
-    background-color: var(--figma-component-props-table-boolean-badge-background-color);
-    border-color: var(--figma-component-border-color);
+    color: var(--figmaComponentPropsTableBooleanBadgeColor);
+    background-color: var(--figmaComponentPropsTableBooleanBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
 }
 
 .props-table-text-badge {
-    color: var(--figma-component-props-table-text-badge-color);
-    background-color: var(--figma-component-props-table-text-badge-background-color);
-    border-color: var(--figma-component-border-color);
+    color: var(--figmaComponentPropsTableTextBadgeColor);
+    background-color: var(--figmaComponentPropsTableTextBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
 }
 
 .props-table-instance-swap-badge {
-    color: var(--figma-component-props-table-instance-swap-badge-color);
-    background-color: var(--figma-component-props-table-instance-swap-badge-background-color);
-    border-color: var(--figma-component-border-color);
+    color: var(--figmaComponentPropsTableInstanceSwapBadgeColor);
+    background-color: var(--figmaComponentPropsTableInstanceSwapBadgeBackgroundColor);
+    border-color: var(--figmaComponentBorderColor);
 }
 
 .props-table-component-name {
     font-size: 16px;
     font-weight: 640;
     line-height: 24px;
-    color: var(--figma-component-props-table-component-name-color);
+    color: var(--figmaComponentInk);
     margin: 12px 0 12px 12px;
 }
 
@@ -138,7 +138,7 @@ table.props-table .props-table-name {
     font-size: 14px;
     font-weight: var(--fontWeightSemibold);
     line-height: 20px;
-    color: var(--figma-component-light-grey-color);
+    color: var(--figmaComponentInkSecondary);
     padding-top: 24px;
     padding-bottom: 24px;
     text-align: center;
@@ -148,5 +148,5 @@ table.props-table .props-table-name {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--figma-component-light-grey-color);
+    color: var(--figmaComponentInkSecondary);
 }

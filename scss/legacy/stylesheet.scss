@@ -668,7 +668,7 @@ ol>.block-children {
 textarea {
     background: #fff;
     color: hsl(230, 8%, 24%);
-    font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    font-family: var(--fontFamilyCode);
     direction: ltr;
     text-align: left;
     word-spacing: normal;

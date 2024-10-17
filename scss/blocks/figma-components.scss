@@ -1,9 +1,9 @@
 :root {
-    --figma-component-popover-background-color: #FFFFFF;
+    --figmaComponentPopoverBackgroundColor: #FFFFFF;
 
     // badges
-    --figma-component-property-value-badge-background-color: #141A2B05;
-    --figma-component-property-value-badge-border-color: rgba(20, 23, 31, 0.06);
+    --figmaComponentPropertyValueBadgeBackgroundColor: #141A2B05;
+    --figmaComponentPropertyValueBadgeBorderColor: rgba(20, 23, 31, 0.06);
 }
 
 .content-block--figma-components {
@@ -44,62 +44,62 @@
     display: flex;
     justify-content: center;
     padding: 8px;
+    align-items: center;
 }
 
 .figma-component-image-border {
     border-radius: 5px;
-    border: 1px solid var(--figma-component-border-color);
+    border: 1px solid var(--figmaComponentBorderColor);
 }
 
 .figma-component-image img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
-    height: auto;
+    width: auto;
 }
 
 .figma-component-name {
     font-size: 14px;
     font-weight: var(--fontWeightSemibold);
     line-height: 20px;
-    color: var(--figma-component-text-color);
+    color: var(--figmaComponentInk);
 }
 
 .figma-component-description {
     font-size: 12px;
     line-height: 16px;
-    color: var(--figma-component-light-grey-color);
+    color: var(--figmaComponentInkSecondary);
 }
 
 .figma-components-canvas {
-    border: 1px solid var(--figma-component-border-color);
+    border: 1px solid var(--figmaComponentBorderColor);
 }
 
 .figma-component-popover {
     box-shadow: 0px 5px 10px 0px rgba(20, 23, 31, 0.05), 0px 15px 25px 0px rgba(20, 23, 31, 0.07);
-    border-radius: 8px;
-    border: 1px solid var(--figma-component-border-color);
-    background: var(--figma-component-popover-background-color);
-    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--figmaComponentBorderColor);
+    background: var(--figmaComponentPopoverBackgroundColor);
 }
 
 .figma-component-properties {
     display: grid;
     align-items: center;
-    gap: 8px;
-    grid-template-columns: repeat(2, min-content);
+    gap: 16px;
+    row-gap: 4px;
+    grid-template-columns: repeat(2, max-content);
 }
 
 .figma-component-property-name {
     font-size: 12px;
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
-    color: var(--figma-component-text-color);
+    color: var(--figmaComponentInk);
 }
 
 .figma-component-property-value-badge {
-    color: var(--figma-component-light-grey-color);
-    background-color: var(--figma-component-property-value-badge-background-color);
-    border-color: var(--figma-component-property-value-badge-border-color);
+    color: var(--figmaComponentInkSecondary);
+    background-color: var(--figmaComponentPropertyValueBadgeBackgroundColor);
+    border-color: var(--figmaComponentPropertyValueBadgeBorderColor);
 }
-
