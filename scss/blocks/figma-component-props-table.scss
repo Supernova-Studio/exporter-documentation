@@ -16,12 +16,14 @@
     --figmaComponentPropsTableBooleanBadgeBackgroundColor: #EBFEF6;
     --figmaComponentPropsTableTextBadgeBackgroundColor: #FEF1F2;
     --figmaComponentPropsTableInstanceSwapBadgeBackgroundColor: #FFFDE7;
+
+    --figmaComponentPropsTableMinWidth: 640px;
 }
 
 table.props-table {
     table-layout: fixed;
     width: 100%;
-    
+    min-width: var(--figmaComponentPropsTableMinWidth);
 }
 
 table.props-table thead {
@@ -30,19 +32,6 @@ table.props-table thead {
     font-weight: var(--fontWeightSemibold);
     line-height: 16px;
     color: var(--figmaComponentInkSecondary);
-}
-
-table.props-table th {
-    border-top: none;
-    border-bottom: 1px solid var(--figmaComponentBorderColor);
-}
-
-table.props-table th:first-child{
-    border-radius: 8px 0 0 0;
-}
-
-table.props-table th:last-child{
-    border-radius: 0 8px 0 0;
 }
 
 .props-table-name-header {

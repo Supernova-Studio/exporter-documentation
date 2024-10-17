@@ -12,7 +12,8 @@
             {[ if block.figmaComponentsBlockConfig.showComponentName ]}
                 <div class="props-table-component-name">{{ component.name }}</div>
             {[/]}
-            <table class="props-table">
+            <div class="data-table-wrapper">
+            <table class="data-table props-table">
                 <thead>
                     <tr>
                         <th class="props-table-name-header">
@@ -30,7 +31,7 @@
                     {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
                         <tr>
                             <td colspan="3" id="figma-component-props-table-empty-state">
-                                This Figma component has no properties.
+                                {{ component.name }} component has no properties.
                             </td>
                         </tr>
                     {[/]}
@@ -90,7 +91,8 @@
                         </tr>
                     {[/]}
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     {[/]}
 {[/]}
