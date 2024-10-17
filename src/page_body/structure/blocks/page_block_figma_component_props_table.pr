@@ -72,7 +72,6 @@
                             {[/]}
                             {[ if (property.type === "InstanceSwap") ]}
                                 <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
-
                                     {{ property.name }}
                                 {[/]}
                             </span>
@@ -81,9 +80,20 @@
                             <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
                                 {[ if (property.type === "InstanceSwap") ]}
                                     <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
+                                    {[ if (property.defaultValuePreview) ]}
+                                        {[ if (property.defaultValuePreview.componentSetName)  ]}
+                                            {{ property.defaultValuePreview.componentSetName }}
+                                        {[ elseif (property.defaultValuePreview.componentName) ]}
+                                            {{ property.defaultValuePreview.componentName }}
+                                        {[ else ]}
+                                            {{ property.defaultValue }}
+                                        {[/]}
+                                    {[ else ]}
+                                        {{ property.defaultValue }}
+                                    {[/]}
+                                {[ else ]}
+                                    {{ property.defaultValue }}
                                 {[/]}
-
-                                {{ property.defaultValue }}
                             </span>
                         </td>
                     </tr>
