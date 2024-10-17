@@ -5,6 +5,10 @@
 {[ let numberOfColumns = block.numberOfColumns /]}
 {[ let variant = block.variantKey /]}
 
+<div>
+    {{ stringifyObject(block) }}
+</div>
+
 {[ if (variant === "grid" || !isNonEmptyString(variant)) ]}
     <div class="content-block content-block--figma-components {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}">
         {[ for selectedComponent in block.selectedFigmaComponents ]}

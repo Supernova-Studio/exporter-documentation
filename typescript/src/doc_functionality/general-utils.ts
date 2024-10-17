@@ -65,6 +65,10 @@ export function generateCustomCSSHash(configuration: any): string {
     return hash(JSON.stringify(filteredConfiguration));
 }
 
+export function stringifyObject(obj: any): string {
+    return JSON.stringify(obj, null, 2);
+}
+
 
 interface VersionObject {
   id: string;

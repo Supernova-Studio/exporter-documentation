@@ -12,7 +12,7 @@ import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
-import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
+import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries, stringifyObject } from "./doc_functionality/general-utils"
 import { getComponentPreviews } from "./doc_functionality/components"
 import { getThemesTooltip } from "./doc_functionality/themes"
 
@@ -44,6 +44,7 @@ Pulsar.registerFunction("objectEntries", objectEntries)
 Pulsar.registerFunction("sortVersionsBySemver", sortVersionsBySemver)
 Pulsar.registerFunction("safeArray", safeArray)
 Pulsar.registerFunction("isNonEmptyString", isNonEmptyString)
+Pulsar.registerFunction("stringifyObject", stringifyObject)
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
