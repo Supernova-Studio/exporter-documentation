@@ -23,7 +23,7 @@
 
                 {[ for componentPreview in componentPreviews ]}
                     <div class="figma-component">
-                        <div class="figma-component-image figma-component-image-border {{ showChecker ? "checkered-background-light" : ""}}" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}background-color: {{ backgroundColor }};"">
+                        <div class="figma-component-image figma-component-image-border {{ showChecker ? "checkered-background-light" : ""}}" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }} background-color: {{ backgroundColor }};"">
                             <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
                         </div>
                         {[ if (block.figmaComponentsBlockConfig.showComponentName || block.figmaComponentsBlockConfig.showPropertyList || block.figmaComponentsBlockConfig.showComponentDescription) ]}
@@ -105,6 +105,7 @@
                                         <div class="popover-body"></div>
                                     </div>
                                 '
+                                style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}"
                             >
                                 <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
                             </div>
