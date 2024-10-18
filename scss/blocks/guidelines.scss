@@ -180,6 +180,7 @@
       font-size: var(--guidelinesDescriptionFontSize);
       line-height: 1.4;
       font-weight: var(--fontWeightRegular);
+      color: var(--guidelinesDescriptionInk);
       overflow-wrap: anywhere;
     }
   }
@@ -264,6 +265,7 @@
         background: var(--guidelinesDontBackground);
         color: var(--guidelinesDontInk);
         --guidelinesDescriptionInk: var(--guidelinesDontInk);
+
         .content {
           border-top-color: var(--guidelinesDontBorder);
 
