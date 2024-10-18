@@ -12,6 +12,7 @@
   --guidelinesBadgeFontSize: var(--fontSizeSmall);
   --guidelinesDescriptionFontSize: var(--contentFontBase);
   --guidelinesDescriptionLineHeight: var(--contentBodyLineHeight);
+  --guidelinesDescriptionInk: var(--colorInkPrimary);
   --guidelinesImageBorderRadius: var(--borderRadiusDefault);
   --guidelinesImageBorderColor: transparent;
   --guidelinesImageBackgroundColor: var(--colorBackgroundPrimary);
@@ -67,6 +68,7 @@
       gap: var(--guidelinesContentGap, 4px);
       font-size: var(--guidelinesDescriptionFontSize);
       line-height:  var(--guidelinesDescriptionLineHeight);
+      color: var(--guidelinesDescriptionInk);
 
       p {
         font-size: var(--guidelinesDescriptionFontSize);
@@ -178,7 +180,6 @@
       font-size: var(--guidelinesDescriptionFontSize);
       line-height: 1.4;
       font-weight: var(--fontWeightRegular);
-      color: var(--colorInkSecondary);
       overflow-wrap: anywhere;
     }
   }
@@ -247,6 +248,7 @@
       &.guideline-item__type-caution {
         background: var(--guidelinesCautionBackground);
         color: var(--guidelinesCautionInk);
+        --guidelinesDescriptionInk: var(--guidelinesCautionInk);
 
         .content {
           border-top-color: var(--guidelinesCautionBorder);
@@ -261,7 +263,7 @@
       &.guideline-item__type-dont {
         background: var(--guidelinesDontBackground);
         color: var(--guidelinesDontInk);
-
+        --guidelinesDescriptionInk: var(--guidelinesDontInk);
         .content {
           border-top-color: var(--guidelinesDontBorder);
 
@@ -274,6 +276,7 @@
       &.guideline-item__type-do {
         background: var(--guidelinesDoBackground);
         color: var(--guidelinesDoInk);
+        --guidelinesDescriptionInk: var(--guidelinesDoInk);
 
          .content {
           border-top-color: var(--guidelinesDoBorder);
