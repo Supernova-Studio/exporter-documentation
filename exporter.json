@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "4.16.5",
+  "version": "4.16.6",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
