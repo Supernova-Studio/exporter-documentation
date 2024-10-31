@@ -36,64 +36,67 @@
                         </tr>
                     {[/]}
                     {[ for property in objectValues(component.componentPropertyDefinitions) ]}
+                        {[ const selectedProperties = block.selectedFigmaComponent.selectedComponentProperties /]}
+                        {[ if (!selectedProperties || selectedProperties.length === 0 || !selectedProperties.contains(property.id)) ]}
                             <tr>
-                            <td>
-                                <span class="props-table-name">
-                                    {[ if (property.type === "Variant") ]}
-                                        {{ property.name }}
+                                <td>
+                                    <span class="props-table-name">
+                                        {[ if (property.type === "Variant") ]}
+                                            {{ property.name }}
 
-                                    <span class="figma-component-badge props-table-variant-badge">Variant</span>
-                                {[/]}
-                                    {[ if (property.type === "Boolean") ]}
-                                    {{ property.name }}
+                                            <span class="figma-component-badge props-table-variant-badge">Variant</span>
+                                        {[/]}
+                                            {[ if (property.type === "Boolean") ]}
+                                            {{ property.name }}
 
-                                    <span class="figma-component-badge props-table-boolean-badge">Boolean</span>
-                                {[/]}
-                                {[ if (property.type === "Text") ]}
-                                    {{ property.name }}
+                                            <span class="figma-component-badge props-table-boolean-badge">Boolean</span>
+                                        {[/]}
+                                        {[ if (property.type === "Text") ]}
+                                            {{ property.name }}
 
-                                    <span class="figma-component-badge props-table-text-badge">Text</span>
-                                {[/]}
-                                {[ if (property.type === "InstanceSwap") ]}
-                                    {{ property.name }}
+                                            <span class="figma-component-badge props-table-text-badge">Text</span>
+                                        {[/]}
+                                        {[ if (property.type === "InstanceSwap") ]}
+                                            {{ property.name }}
 
-                                    <span class="figma-component-badge props-table-instance-swap-badge">InstanceSwap</span>
-                                {[/]}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
-                                {[ if (property.type === "Variant") ]}
-                                    {{ property.options.join(" | ") }}
-                                {[/]}
-                                    {[ if (property.type === "Boolean") ]}
-                                    true | false
-                                {[/]}
-                                {[ if (property.type === "Text") ]}
-                                    string
-                                {[/]}
-                                {[ if (property.type === "InstanceSwap") ]}
-                                    <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
+                                            <span class="figma-component-badge props-table-instance-swap-badge">InstanceSwap</span>
+                                        {[/]}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
+                                        {[ if (property.type === "Variant") ]}
+                                            {{ property.options.join(" | ") }}
+                                        {[/]}
+                                            {[ if (property.type === "Boolean") ]}
+                                            true | false
+                                        {[/]}
+                                        {[ if (property.type === "Text") ]}
+                                            string
+                                        {[/]}
+                                        {[ if (property.type === "InstanceSwap") ]}
+                                            <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
 
-                                        {{ property.name }}
-                                    {[/]}
-                                </span>
-                            </td>
-                            <td>
-                                <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
-                                    {[ if (property.type === "InstanceSwap") ]}
-                                        <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
-                                        {[ if (property.defaultValuePreview && (property.defaultValuePreview.componentSetName || property.defaultValuePreview.componentName)) ]}
-                                            {{ property.defaultValuePreview.componentSetName ? property.defaultValuePreview.componentSetName : property.defaultValuePreview.componentName }}
+                                            {{ property.name }}
+                                        {[/]}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
+                                        {[ if (property.type === "InstanceSwap") ]}
+                                            <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
+                                            {[ if (property.defaultValuePreview && (property.defaultValuePreview.componentSetName || property.defaultValuePreview.componentName)) ]}
+                                                {{ property.defaultValuePreview.componentSetName ? property.defaultValuePreview.componentSetName : property.defaultValuePreview.componentName }}
+                                            {[ else ]}
+                                                {{ property.defaultValue }}
+                                            {[/]}
                                         {[ else ]}
                                             {{ property.defaultValue }}
                                         {[/]}
-                                    {[ else ]}
-                                        {{ property.defaultValue }}
-                                    {[/]}
-                                </span>
-                            </td>
-                        </tr>
+                                    </span>
+                                </td>
+                            </tr>
+                        {[/]}
                     {[/]}
                 </tbody>
                 </table>
