@@ -32,7 +32,7 @@
 <script src="{{ assetUrl("js/cookie-consent.js", domain)}}"></script>
 
 {[ if exportConfiguration().contentIncludeLottiePlayer ]}
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js" integrity="sha512-PWfm8AFyrijfnvGc2pdu6avIrnC7UAjvvHqURNk0DS748/ilxRmYXGYkgdU1z/BIl3fbHCZJ89Zqjwg/9cx6NQ==" crossorigin="anonymous" async></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js" integrity="sha512-D3Ok1VpuyIDNHL5A0gjlV67UE6/d/OyEnsWISiMpIiGPxNTJqZxJQUZp35V8Ydu0LNytT2oK5yKs4w6X0ZDhrA==" crossorigin="anonymous" async></script>
     <script src="https://unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js" integrity="sha384-BzOQB8VGEix/QbZaYjo2knJxnqpkQ/hKf4rTOWlkfu9bGxOzOIkpChbGavAz2LTY" crossorigin="anonymous" async></script>
 {[/]}
 
