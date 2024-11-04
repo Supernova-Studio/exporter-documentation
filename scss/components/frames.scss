@@ -1,0 +1,15 @@
+.layout-tiles {
+    &.force-natural-figma-frame-height {
+        .grid {
+            .tile-item {
+              .preview {
+                height: fit-content;
+                width: fit-content;
+                padding: 8px;
+                background-image: none;
+              }
+            }
+        }
+    }
+}
+
