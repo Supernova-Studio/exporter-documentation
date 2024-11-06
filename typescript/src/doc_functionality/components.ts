@@ -172,3 +172,24 @@ export function getComponentPreviews(
 
   return variantsToRender;
 }
+
+export function sortComponentsPreviews(
+  componentPreviews: ComponentPreview[],
+  previewOrderIds: string[] | undefined
+): ComponentPreview[] {
+  if (!previewOrderIds || previewOrderIds.length === 0) {
+    return componentPreviews;
+  }
+
+  return [...componentPreviews].sort((a, b) => {
+    const aIndex = previewOrderIds.indexOf(a.component.id ?? '');
+    const bIndex = previewOrderIds.indexOf(b.component.id ?? '');
+
+    // If either ID is not found (index is -1), put it at the end
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+
+    // Otherwise, sort by index
+    return aIndex - bIndex;
+  });
+}
