@@ -3,16 +3,25 @@
 {[ if token.tokenType.equals("Color") ]}
     {{getFormattedColor(token.value)}}
 {[ elseif token.tokenType.equals("Blur") ]}
+    {* TODO: Migrate to v2 
     {[ switch token.value.type ]}
         {[ case "Background" ]}
             backdrop-filter: blur({{ token.value.radius.measure }}px)
         {[ case "Layer" ]}
             filter: blur({{ token.value.radius.measure }}px)
     {[/]}
+    *}
+    non-migrated
 {[ elseif token.tokenType.equals("Border") ]}
+    non-migrated
+    {* TODO: Migrate to v2 
     {{ token.value.width.measure }}px solid {{ getFormattedColor(token.value.color) }}
+    *}
 {[ elseif token.tokenType.equals("Font") ]}
+    non-migrated
+    {* TODO: Migrate to v2 
     {{ token.value.family }} {{ token.value.subfamily }}
+     *}
 {[ elseif token.tokenType.equals("Gradient") ]}
     {{ gradientDescription(token) }}
 {[ elseif token.tokenType.equals("Measure")]}
@@ -24,7 +33,10 @@
 {[ elseif token.tokenType.equals("Text")]}
     {{ token.value.text }}
 {[ elseif token.tokenType.equals("Typography") ]}
+    non-migrated
+    {* TODO: Migrate to v2 
     {{ typographyDescription(token)}}
+    *}
 {[ elseif token.tokenType.equals("GenericToken")]}
     {{ token.value.text }}
 {[/]}

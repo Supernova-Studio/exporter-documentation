@@ -15,7 +15,8 @@
               <span class="title">Colors</span>
             </div>
           </div>
-          <div class="grid--row grid--header-row syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.versionedId ? "-"+firstToken.parent.versionedId : "" }}">
+          {* TODO: Migrate to v2 
+          <div class="grid--row grid--header-row syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.idInVersion ? "-"+firstToken.parent.idInVersion : "" }}">
           {[ for tokenId in tokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
             {[ let classnames = returnSwatchClassnames(token.value) /]}
@@ -23,7 +24,8 @@
             <div class="cell header-row--cell"><div class="swatch checkered-background swatch-header" title="{[ if token.parent.name ]}{{token.parent.name}} / {[/]}{{token.name}}"><div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};">{{getFormattedColor(token.value)}}</div></div></div>
           {[/]} 
         </div>
-
+        *}
+        non-migrated
       </div>
       <div class="contrast-grid--content">
         <div class="grid-content--labels">

@@ -10,8 +10,10 @@
                         {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                         {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                         <div class="preview">
+                            {* TODO: Migrate to v2 
                             {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes})  /]}
                             {[ inject "page_block_token_value" context themedToken[0] /]}       
+                            *}
                         </div>  
                     {[/]}
                 </div>
@@ -20,8 +22,10 @@
                 {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                 {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                 <div class="preview single-preview">
+                    {* TODO: Migrate to v2 
                     {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes }) /]}
                     {[ inject "page_block_token_value" context themedToken[0] /]}
+                    *}
                 </div>
             {[/]}
         {[/]}

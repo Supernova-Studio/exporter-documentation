@@ -26,13 +26,15 @@ export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: b
 export function gradientDescription(gradientToken: GradientToken) {
   // Describe gradient as (type) (stop1, stop2 ...)
   let type = `${gradientToken.value.type} Gradient`
+  /* TODO: Migrate to v2 
   let stops = gradientToken.value.stops
     .map((stop) => {
       return `#${stop.color.hex.toUpperCase()}, ${(stop.position * 100).toFixed(2)}%`
     })
     .join(", ")
+  */
 
-  return `${type}, ${stops}`
+  return `${type}, non-migrated`
 }
 
 /** Describe complex gradient value as token */
@@ -62,18 +64,19 @@ export function gradientTokenValue(gradientToken) {
 
   // Describe gradient as (type) (stop1, stop2 ...)
   // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  /* TODO: Migrate to v2 
   let stops = gradientToken.value.stops
     .map((stop) => {
       return `#${stop.color.hex.toUpperCase()} ${(stop.position * 100).toFixed(2)}%`
     })
     .join(", ")
+  */
 
-  return `${gradientType}${stops})`
+  return `${gradientType} non-migrated`
 }
 
 /** Describe complex shadow token */
 export function shadowDescription(shadowToken: ShadowToken) {
-  
   let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
       return shadowTokenValue(shadow)
     })
@@ -85,6 +88,9 @@ export function shadowDescription(shadowToken: ShadowToken) {
 
 /** Convert complex shadow value to CSS representation */
 export function shadowTokenValue(shadowToken: ShadowToken): string {
+  /* TODO: Migrate to v2  */
+  return "non-migrated"
+
   var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
   var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
   var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
@@ -96,10 +102,13 @@ export function shadowTokenValue(shadowToken: ShadowToken): string {
 
 /** Scale token values so they are still okay in smaller previews */
 export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {  
-    var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
-    var offsetX = shadowToken.value.x.measure;
-    var offsetY = shadowToken.value.y.measure;
-    var spreadRadius = shadowToken.value.spread.measure;
+  /* TODO: Migrate to v2  */
+  return "non-migrated"
+
+  var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
+  var offsetX = shadowToken.value.x.measure;
+  var offsetY = shadowToken.value.y.measure;
+  var spreadRadius = shadowToken.value.spread.measure;
   
     if (scalingParamSum != null) {
       var biggestOffset = Math.max(Math.abs(offsetX), Math.abs(offsetY));

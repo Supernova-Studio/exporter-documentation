@@ -1,6 +1,8 @@
 {[ const token = context.token /]}
 {[ const themes = context.themes /]}
 
+{[ log token /]}
+{* TODO: Migrate to v2 
 {[ if token.tokenType.equals("Color") ]}
     {[ let colorLightnessCheck = contrastColorAPCA(token.value.hex) /]}
     <div class="token-preview-container checkered-background-light{{ (token.value.hex !== "ffffffff") ? " borderless" : "" }}">
@@ -63,8 +65,9 @@
 {[ elseif token.tokenType.equals("Text")]}
     <div class="token-preview-container">T{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Typography")]}
-    {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
+    {[ const typographyCSS = "" /]}
     <div class="token-preview-container token-type-typography" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[/]}
+*}

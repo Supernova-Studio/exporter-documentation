@@ -18,6 +18,7 @@
     "supernova": "1.0.0"
   },
   "routing": "2",
+  "tokensModel": "2",
   "type": "documentation",
   "tags": ["Documentation", "Template", "Docs", "Reference site", "Styleguide"],
   "contributes": {

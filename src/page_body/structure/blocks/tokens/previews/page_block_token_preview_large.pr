@@ -2,7 +2,6 @@
 {[ const themes = context.themes /]}
 
 {* todo: this needs some refactoring *}
-
 {[ if token.tokenType.equals("Color") ]}
     <div class="preview checkered-background-light">
         <div class="color-preview {{ returnSwatchClassnames(token.value) }}" style="background-color: #{{ token.value.hex }};">
@@ -13,6 +12,7 @@
     </div>
 {[ elseif token.tokenType.equals("Border")]}
     <div class="preview bordered">
+    {* TODO: Migrate to v2 
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="token-preview-container large checkered-background-light">
             <div class="token-preview-container-border large" style="border: {{ token.value.width.measure }}px solid #{{ token.value.color.hex }};"></div>
@@ -20,9 +20,12 @@
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
+        *}
+        non-migrated
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Blur")]}
+{* TODO: Migrate to v2 
     {[ let measure = token.value.radius.measure /]}
     <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
@@ -47,6 +50,8 @@
         </div>
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
+    *}
+    non-migrated
 {[ elseif token.tokenType.equals("Font")]}
     <div class="preview bordered">Ag</div>
 {[ elseif token.tokenType.equals("Gradient")]}
@@ -59,6 +64,7 @@
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Measure")]}
+    {* TODO: Migrate to v2 
      {[ if includes(token.parent.path, "Border Radius") ]}
         <div class="preview token-preview-container large checkered-background-light bordered">
             {[ inject "page_block_token_reference_badge" context token /]}
@@ -75,7 +81,10 @@
             {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}
         </div>    
     {[/]}
+    *}
+    non-migrated
 {[ elseif token.tokenType.equals("Radius")]}
+    {* TODO: Migrate to v2 
     <div class="preview token-preview-container large checkered-background-light bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="token-preview-container-radius large" style="border-radius: {{ token.value.radius.measure}}px"></div>
@@ -84,6 +93,8 @@
         </div>
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
+    *}
+    non-migrated
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
@@ -102,7 +113,7 @@
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Typography")]}
-    {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
+    {[ const typographyCSS = "" /]}
     <div class="preview bordered preview-typography">
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="value-preview" style="{{ typographyCSS }}">Ag</div>
