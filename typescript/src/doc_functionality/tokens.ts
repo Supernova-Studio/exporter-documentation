@@ -12,8 +12,6 @@ export function fullTokenGroupName(tokenGroup: TokenGroup) {
 
 /**  Convert group into properly formatted header */
 export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: boolean) {
-  return "non-migrated"
-
   // Retrieve token group either including or not including the path to the group
   if (tokenGroup.path.length > 0 && showSubpath) {
     let light = tokenGroup.path.join(" / ")
@@ -185,22 +183,20 @@ export function tokenValueToHex(tokenValue: ColorValueType) {
 
 /** Describe complex shadow token */
 export function typographyDescription(typographyToken: TypographyToken) {
-  return "non-migrated"
-
   let value = typographyToken.value
-  let fontName = `${value.font.family} ${value.font.subfamily}`
+  let fontName = `${value.fontFamily.text} ${value.fontWeight.text}`
   let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
- // let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
+  let lineHeightValue = value.lineHeight?.measure ? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
   let textDecoration: string = ""
   let textCase: string = ""
-  if (value.textDecoration !== null && value.textDecoration !== "None") {
-    textDecoration = `, ${value.textDecoration.toLowerCase()}`
+  if (value.textDecoration.value !== null && value.textDecoration.value !== "None") {
+    textDecoration = `, ${value.textDecoration.value.toLowerCase()}`
   }
-  if (value.textCase !== null && value.textCase !== "Original") {
-    textCase = `, ${value.textCase.toLowerCase()}`
+  if (value.textCase.value !== null && value.textCase.value !== "Original") {
+    textCase = `, ${convertTextCaseToTextTransform(value.textCase.value)}`
   }
 
- // return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
+  return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
 function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
@@ -224,7 +220,6 @@ function nonNegativeValue(num: number) {
 
 /** Convert type to CSS unit */
 export function measureTypeIntoReadableUnit(type: Unit): string {
-  return "non-migrated"
 
   switch (type) {
     case "Points":
@@ -288,23 +283,22 @@ export function convertSubfamilyToFontWeight(subfamily: string): string {
 
 /** Scale token values so they are still okay in smaller previews */
 export function convertTypographyTokenToCSS(typographyToken: TypographyToken, maxFontSize: boolean = false): string {
-  return "non-migrated"
 
-  let font = typographyToken.value.font;
+  let fontFamily = typographyToken.value.fontFamily.text;
   let fontSize = typographyToken.value.fontSize;
   let fontSizeMeasure = typographyToken.value.fontSize.measure;
-  let textDecoration = typographyToken.value.textDecoration;
-  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase);
-  let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.font.subfamily);
-  let fontFamily = font.family.includes(" ")
-    ? `'${font.family}', '${font.family.replace(" ", "")}', Inter, sans-serif`
-    : `'${font.family}', Inter, sans-serif`;
+  let textDecoration = typographyToken.value.textDecoration.value;
+  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value);
+  let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
+  let extendedFontFamily = fontFamily.includes(" ")
+    ? `'${fontFamily}', '${fontFamily.replace(" ", "")}', Inter, sans-serif`
+    : `'${fontFamily}', Inter, sans-serif`;
 
   if (maxFontSize === true && fontSize.measure > 24) {
     fontSizeMeasure = 24;
   }
 
-  return `font-family: ${fontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
+  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
 }
 
 /** Get color value from settings option */
@@ -323,4 +317,12 @@ Return themedToken if non-empty, otherwise return token value
 */
 export function safeToken(themedToken: Token[], token: Token) {
   return themedToken[0] ?? token
+}
+
+
+/*
+ Return CSS value for border style
+*/
+export function getBorderStyleValue(borderStyle: BorderStyle): string {
+  return borderStyle?.toLowerCase() ?? "solid"
 }

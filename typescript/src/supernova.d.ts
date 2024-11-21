@@ -32,6 +32,8 @@ declare global {
 
   type TextDecoration = "None" | "Underline" | "Strikethrough"
 
+  type BorderStyle = "Solid" | "Dashed" | "Dotted" | "Groove"
+
   type Unit = "Pixels" | "Points" | "Percent" | "Ems" | "Rem" | "Ms" | "Raw"
 
   type BorderPosition = "Inside" | "Center" | "Outside"
@@ -88,6 +90,10 @@ declare global {
 
   type ColorToken = Token & {
     value: ColorTokenValue
+  }
+
+  type TextDecorationToken = Token & {
+    value: TextDecorationValue
   }
 
   type TypographyToken = Token & {
@@ -154,14 +160,28 @@ declare global {
     referencedToken: ColorToken | null
   }
 
+  type TextDecorationValue = {
+    value: TextDecoration
+    referencedTokenId: string | null
+    referencedToken?: TextDecorationToken
+  }
+
+  type TextCaseValue = {
+    value: TextCase
+    referencedTokenId: string | null
+    referencedToken?: TextCaseToken
+  }
+
   type TypographyTokenValue = {
-    font: FontTokenValue
+    fontFamily: TextTokenValue
+    fontWeight: TextTokenValue
     fontSize: MeasureTokenValue
-    textDecoration: TextDecoration
-    textCase: TextCase
+    textDecoration: TextDecorationValue
+    textCase: TextCaseValue
     letterSpacing: MeasureTokenValue
     lineHeight: MeasureTokenValue | null
     paragraphIndent: MeasureTokenValue
+    paragraphSpacing: MeasureTokenValue
     referencedToken: TypographyToken | null
   }
 
@@ -188,14 +208,16 @@ declare global {
   type MeasureTokenValue = {
     unit: Unit
     measure: number
-    referencedToken: MeasureToken | null
+    referencedTokenId: string | null
+    referencedToken?: MeasureToken
   }
 
-  type FontTokenValue = {
-    family: string
-    subfamily: string
-    referencedToken: FontToken | null
+  type FontFamilyValue = {
+    text: string
+    referencedTokenId: string | null
+    referencedToken?: TextToken
   }
+
 
   type BorderTokenValue = {
     color: ColorTokenValue
@@ -226,7 +248,8 @@ declare global {
 
   type TextTokenValue = {
     text: string
-    referencedToken: TextToken
+    referencedTokenId: string | null
+    referencedToken?: TextToken
   }
 
   //
