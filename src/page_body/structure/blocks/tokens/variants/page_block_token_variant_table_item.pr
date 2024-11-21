@@ -4,7 +4,7 @@
     <div class="basic-info">
         {[ if (block.swatches) ]}
             {[ if (block.swatches.length > 1) ]}
-                <div class="previews-side-by-side" data-token-id="{{token.id}}">
+                <div class="previews-side-by-side">
                     {[ for swatch in block.swatches ]}
                         {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                         {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}

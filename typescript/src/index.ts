@@ -10,7 +10,7 @@ import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, scaledShadowTokenValue, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue } from "./doc_functionality/tokens"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
 import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
@@ -81,7 +81,6 @@ Pulsar.registerFunction("gradientDescription", gradientDescription)
 Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
 Pulsar.registerFunction("shadowDescription", shadowDescription)
 Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
-Pulsar.registerFunction("scaledShadowTokenValue", scaledShadowTokenValue)
 Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
 Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)

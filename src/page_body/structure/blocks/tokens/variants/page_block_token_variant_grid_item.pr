@@ -6,21 +6,18 @@
   {* Render large tile preview *}
     {[ if (block.swatches && (block.swatches.length > 0)) ]}
       {[ if (block.swatches.length === 1) ]}
-      {* TODO: Migrate to v2 
+      
         {[ const themeIds = block.swatches[0].selectedThemeIds /]}
         {[ const themes = ds.themesByIds(themeIds) /]}
         {[ const themedToken = ds.tokensByApplyingThemes([token.id], themeIds) /]}
         {[ inject "page_block_token_preview_large" context ({"token": themedToken[0], "themes": themes})  /]}
-        *}
       {[ else ]}
          <div class="token-previews">
           {[ for swatch in block.swatches ]}
-          {* TODO: Migrate to v2 
             {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
             {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
             
             {[ inject "page_block_token_preview_large" context ({"token": themedToken[0], "themes": themes})  /]} 
-            *}
           {[/]} 
         </div>
       {[/]}

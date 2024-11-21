@@ -80,7 +80,7 @@ declare global {
 
   type ShortcutType = "Internal" | "External"
 
-  type ShadowType = "Inner" | "Outer"
+  type ShadowType = "Drop" | "Inner"
 
   //
   // Data Types
@@ -105,8 +105,7 @@ declare global {
   }
 
   type ShadowToken = Token & {
-    value: ShadowTokenValue
-    shadowLayers: Array<ShadowToken> | null
+    value: Array<ShadowTokenValue>
     isVirtual: boolean
   }
 
@@ -119,7 +118,7 @@ declare global {
   }
 
   type GradientToken = Token & {
-    value: GradientTokenValue
+    value: Array<GradientTokenValue>
   }
 
   type TextToken = Token & {
@@ -152,12 +151,21 @@ declare global {
   }
 
   type ColorTokenValue = {
-    hex: string
-    r: number
-    g: number
-    b: number
-    a: number
-    referencedToken: ColorToken | null
+    color: {
+      r: number,
+      g: number,
+      b: number
+      referencedTokenId: string | null
+      referencedToken?: ColorToken
+    },
+    opacity: {
+      unit: string,
+      measure: number
+      referencedTokenId: string | null
+      referencedToken?: MeasureToken
+    }
+    referencedTokenId: string | null
+    referencedToken?: ColorToken
   }
 
   type TextDecorationValue = {
@@ -196,13 +204,14 @@ declare global {
 
   type ShadowTokenValue = {
     color: ColorTokenValue
-    x: MeasureTokenValue
-    y: MeasureTokenValue
-    radius: MeasureTokenValue
-    spread: MeasureTokenValue
-    opacity: number
+    x: number
+    y: number
+    radius: number
+    spread: number
+    opacity: MeasureTokenValue
     type: ShadowType
-    referencedToken: ShadowToken | null
+    referencedTokenId: string | null
+    referencedToken?: ShadowToken
   }
 
   type MeasureTokenValue = {
@@ -238,12 +247,15 @@ declare global {
     type: GradientType
     aspectRatio: number
     stops: Array<GradientStopValue>
-    referencedToken: GradientToken | null
+    referencedTokenId: string | null
+    referencedToken?: GradientToken
   }
 
   type GradientStopValue = {
     position: number
     color: ColorTokenValue
+    referencedTokenId: string | null
+    referencedToken?: GradientStopToken
   }
 
   type TextTokenValue = {

@@ -24,65 +24,63 @@ export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: b
 
 /** Describe complex gradient token */
 export function gradientDescription(gradientToken: GradientToken) {
-  // Describe gradient as (type) (stop1, stop2 ...)
-  let type = `${gradientToken.value.type} Gradient`
-  /* TODO: Migrate to v2 
-  let stops = gradientToken.value.stops
-    .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()}, ${(stop.position * 100).toFixed(2)}%`
-    })
-    .join(", ")
-  */
+  // Describe gradient as (type) (stop1, stop2 ...) for each gradient layer
+  return gradientToken.value.map(gradient => {
+    let type = `${gradient.type} Gradient`
+    let stops = gradient.stops
+      .map((stop) => {
+        return `${tokenValueToHex(stop.color)}, ${(stop.position * 100).toFixed(2)}%`
+      })
+      .join(", ")
 
-  return `${type}, non-migrated`
+    return `${type}, ${stops})`
+  }).join(" + ")
 }
 
 /** Describe complex gradient value as token */
-export function gradientTokenValue(gradientToken) {
+export function gradientTokenValue(gradientToken: GradientToken) {
 
-  return "non-migrated"
+  let gradientTypes = gradientToken.value.map(gradient => {
+    let gradientType = ""
 
-  let gradientType = ""
+    switch (gradient.type) {
+      case "Linear":
+        // calculate the gradient angle
+        const deltaX = Math.round((gradient.to.x - gradient.from.x)*100);
+        const deltaY = Math.round((gradient.to.y - gradient.from.y)*100);
 
-  switch (gradientToken.value.type) {
-    case "Linear":
+        // adding 90 to move the angle to the correct position
+        // todo: take into account the direction of the gradient and position of the each stop
+        const angle = Math.round(Math.atan2(deltaY, deltaX)*(180/Math.PI))+90;
 
-      // calculate the gradient angle
-      const deltaX = Math.round((gradientToken.value.to.x - gradientToken.value.from.x)*100);
-      const deltaY = Math.round((gradientToken.value.to.y - gradientToken.value.from.y)*100);
+        gradientType = `linear-gradient(${angle}deg, `
+        break
+      case "Radial":
+        gradientType = "radial-gradient(circle, "
+        break
+      case "Angular":
+        gradientType = "conic-gradient("
+        break
+    }
 
-      // adding 90 to move the angle to the correct position
-      // todo: take into account the direction of the gradient and position of the each stop
-      const angle = Math.round(Math.atan2(deltaY, deltaX)*(180/Math.PI))+90;
+    // Describe gradient as (type) (stop1, stop2 ...)
+    // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    let stops = gradient.stops
+      .map((stop) => {
+        return `${tokenValueToHex(stop.color)} ${(stop.position * 100).toFixed(2)}%`
+      })
+      .join(", ")
 
-      gradientType = `linear-gradient(${angle}deg, `
-      break
-    case "Radial":
-      gradientType = "radial-gradient(circle, "
-      break
-    case "Angular":
-      gradientType = "conic-gradient("
-      break
-  }
+    return `${gradientType}${stops})`
+  }).join(", ")
 
-  // Describe gradient as (type) (stop1, stop2 ...)
-  // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-  /* TODO: Migrate to v2 
-  let stops = gradientToken.value.stops
-    .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()} ${(stop.position * 100).toFixed(2)}%`
-    })
-    .join(", ")
-  */
-
-  return `${gradientType} non-migrated`
+  return gradientTypes
 }
 
 /** Describe complex shadow token */
 export function shadowDescription(shadowToken: ShadowToken) {
-  return "non-migrated"
 
-  let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
+  let connectedShadow = shadowToken.value?.reverse().map((shadow) => {
       return shadowTokenValue(shadow)
     })
     .join(", ")
@@ -92,56 +90,22 @@ export function shadowDescription(shadowToken: ShadowToken) {
 }
 
 /** Convert complex shadow value to CSS representation */
-export function shadowTokenValue(shadowToken: ShadowToken): string {
-  /* TODO: Migrate to v2  */
-  return "non-migrated"
+export function shadowTokenValue(shadowToken: ShadowTokenValue): string {
 
-  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
-  var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
-  var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
-  var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
+  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.radius));
+  var offsetX = getValueWithCorrectUnit(shadowToken.x);
+  var offsetY = getValueWithCorrectUnit(shadowToken.y);
+  var spreadRadius = getValueWithCorrectUnit(shadowToken.spread);
 
- // return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.value.color, true)}`
+  return `${shadowToken.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.color, true, shadowToken.opacity)}`
 }
 
 
-/** Scale token values so they are still okay in smaller previews */
-export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {  
-  /* TODO: Migrate to v2  */
-  return "non-migrated"
+export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: boolean = false, customOpacity: MeasureTokenValue | null = null): string {
+  // Use custom opacity if provided, otherwise use color value's opacity
+  const opacity = customOpacity?.measure ?? colorValue.opacity.measure;
 
-  var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
-  var offsetX = shadowToken.value.x.measure;
-  var offsetY = shadowToken.value.y.measure;
-  var spreadRadius = shadowToken.value.spread.measure;
-  
-    if (scalingParamSum != null) {
-      var biggestOffset = Math.max(Math.abs(offsetX), Math.abs(offsetY));
-      var allParamsSum = Math.max(nonNegativeValue(blurRadius) + Math.max(spreadRadius, 0) + biggestOffset, 1);
-  
-      blurRadius = blurRadius * scalingParamSum / allParamsSum;
-      offsetX = offsetX * scalingParamSum / allParamsSum;
-      offsetY = offsetY * scalingParamSum / allParamsSum;
-      spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
-    }
-  
-    //return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedColor(shadowToken.value.color, true)}`
-}
-
-type ColorValueType = {
-  color: {
-    r: number,
-    g: number,
-    b: number
-  },
-  opacity: {
-    unit: string,
-    measure: number
-  }
-}
-
-export function getFormattedColor(colorValue: ColorValueType, forceRgbFormat: boolean = false): string {
-  if (colorValue.opacity.measure === 0 || colorValue.opacity.measure === 1) {
+  if (opacity === 0 || opacity === 1) {
     if (forceRgbFormat) {
       return `rgb(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b})`
     } else {
@@ -149,7 +113,7 @@ export function getFormattedColor(colorValue: ColorValueType, forceRgbFormat: bo
       return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${Number(colorValue.opacity.measure.toFixed(2))})`
+    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${Number(opacity.toFixed(2))})`
   }
 }
 
@@ -158,7 +122,7 @@ function rgbToHex(r: number, g: number, b:number) {
 }
 
 /** Convert token value to 6-digit hex, or 8-hex when there is lower opacity */
-export function tokenValueToHex(tokenValue: ColorValueType) {
+export function tokenValueToHex(tokenValue: ColorTokenValue) {
   // Handle undefined/invalid token value
   if (!tokenValue || !tokenValue.color) {
     return '';
@@ -171,7 +135,7 @@ export function tokenValueToHex(tokenValue: ColorValueType) {
   const hex = rgbToHex(r, g, b).toLowerCase();
 
   // If opacity is 1 or undefined, return 6-digit hex
-  if (!opacity || opacity === 1) {
+  if (opacity === 1) {
     return hex;
   }
 
@@ -200,8 +164,6 @@ export function typographyDescription(typographyToken: TypographyToken) {
 }
 
 function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
-  return "non-migrated"
-
   if (value === 0 && forceUnit !== true) {
     return `${value}`
   } else {

@@ -49,10 +49,8 @@
 {[/]}
 
 {* Render nested groups, if enabled *}
-{* TODO: Migrate to v2 
 {[ if block.showNestedGroups ]}
     {[ for subgroup in group.subgroups ]}
         {[ inject "page_block_token_group_loop" context ({"block": block, "group": subgroup }) /]}
     {[/]}
 {[/]}
-*}

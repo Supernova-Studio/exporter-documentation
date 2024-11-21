@@ -1,7 +1,6 @@
 {[ const token = context /]}
 
-{* TODO: Migrate to v2 *}
-{[ if (isNonEmptyString(token.value.referencedTokenId) && false) ]}
+{[ if (isNonEmptyString(token.value.referencedTokenId)) ]}
     {[ let referencedToken = token.value.referencedToken.name /]}
 
     {* Check if the name is not super short (e.g. 50, 900, L1, etc.) and if yes, add also the name of the parent for better clarity *}

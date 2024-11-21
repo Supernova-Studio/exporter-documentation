@@ -15,7 +15,6 @@
               <span class="title">Colors</span>
             </div>
           </div>
-          {* TODO: Migrate to v2 
           <div class="grid--row grid--header-row syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.idInVersion ? "-"+firstToken.parent.idInVersion : "" }}">
           {[ for tokenId in tokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
@@ -24,8 +23,6 @@
             <div class="cell header-row--cell"><div class="swatch checkered-background swatch-header" title="{[ if token.parent.name ]}{{token.parent.name}} / {[/]}{{token.name}}"><div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};">{{getFormattedColor(token.value)}}</div></div></div>
           {[/]} 
         </div>
-        *}
-        non-migrated
       </div>
       <div class="contrast-grid--content">
         <div class="grid-content--labels">
@@ -61,10 +58,7 @@
                       <div class="swatch checkered-background">
                         <div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};color:{{getFormattedColor(tokenInner.value)}};">
                           <div class="label">Text</div>
-
-                          {* Migrate to v2
-                          <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(token.value.hex, tokenInner.value.hex) /]}</div>
-                          *}
+                          <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(tokenValueToHex(token.value), tokenValueToHex(tokenInner.value)) /]}</div>
                         </div>
                       </div>
                     </div>

@@ -47,21 +47,17 @@
     <div class="token-preview-container checkered-background-light">
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
     </div>
-{[ elseif token.tokenType.equals("Measure")]}
-    {[ if includes(token.parent.path, "Border Radius") ]}
-        <div class="token-preview-container small-text" style="border-radius: {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}; border-color: var(--colorBorderProminent)">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
-    {[ else ]}
-        <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
-    {[/]}
+{[ elseif token.tokenType.equals("Dimension")]}
+    <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("BorderRadius")]}
-        <div class="token-preview-container small-text" style="border-radius: {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}; border-color: var(--colorBorderProminent)">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text" style="border-radius: {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}; border-color: var(--colorBorderProminent)">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="token-preview-container overflowing borderless">
         {[ inject "page_block_token_reference_badge" context token /]}
         {[ inject "page_block_token_themes_badge" context themes /]}
         <div class="token-type-shadow" style="box-shadow: {{ shadowDescription(token) }}"></div>
     </div>
-{[ elseif token.tokenType.equals("Text")]}
+{[ elseif (token.tokenType.equals("Text") || token.tokenType.equals("ProductCopy") || token.tokenType.equals("String") || token.tokenType.equals("FontFamily") || token.tokenType.equals("FontWeight"))]}
     <div class="token-preview-container">T{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}

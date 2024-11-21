@@ -6,6 +6,7 @@
 // MARK: - Health
 const contrast = require("get-contrast");
 import Color from "colorjs.io"
+import { tokenValueToHex } from "./tokens";
 
 export function getColorContrast(color: string): number {
     
@@ -30,7 +31,7 @@ export function getColorContrast(color: string): number {
 
 export function getColorContrastRatio(colorBackground: string, colorForeground: string): number {
 
-    return Math.round(contrast.ratio("#"+colorBackground, "#"+colorForeground) * 10) / 10;
+    return Math.round(contrast.ratio(colorBackground, colorForeground) * 10) / 10;
 }
 
 export function contrastColor(color: string): "dark" | "light" {
@@ -83,15 +84,18 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
 
     let classNames = new Array();
 
-    if (color.hex === "ffffffff") {
+    const hexValue = tokenValueToHex(color)
+
+    if (hexValue === "#ffffff") {
         classNames.push("bordered")
     }
 
-    if ((contrastColorAPCA(color.hex) === "light" && color.a > 180)) {
+    if ((contrastColorAPCA(hexValue) === "light" && color.opacity.measure > 0.5)) {
         classNames.push("inverted-text")
     }
 
     return classNames.join(" ");
+    
 }
 
 export function getClassForInvertedText(color: string): string {
