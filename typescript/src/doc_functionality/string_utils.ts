@@ -115,7 +115,7 @@ export function getVariantClass(variant: string): string {
 }
 
 // Normalize the string for seach (lower case, remove stop words, remove emojis, etc.)
-export function normalizeStringForSearch(sentence: string): string  {
+export function normalizeStringForSearch(sentence: string): string  {  
   const common = getStopWords();
   let wordArr = sentence.match(/[\w-]+/g), // match all words and dash, nothing else
       commonObj = {},

@@ -12,6 +12,8 @@ export function fullTokenGroupName(tokenGroup: TokenGroup) {
 
 /**  Convert group into properly formatted header */
 export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: boolean) {
+  return "non-migrated"
+
   // Retrieve token group either including or not including the path to the group
   if (tokenGroup.path.length > 0 && showSubpath) {
     let light = tokenGroup.path.join(" / ")
@@ -39,6 +41,9 @@ export function gradientDescription(gradientToken: GradientToken) {
 
 /** Describe complex gradient value as token */
 export function gradientTokenValue(gradientToken) {
+
+  return "non-migrated"
+
   let gradientType = ""
 
   switch (gradientToken.value.type) {
@@ -77,6 +82,8 @@ export function gradientTokenValue(gradientToken) {
 
 /** Describe complex shadow token */
 export function shadowDescription(shadowToken: ShadowToken) {
+  return "non-migrated"
+
   let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
       return shadowTokenValue(shadow)
     })
@@ -96,7 +103,7 @@ export function shadowTokenValue(shadowToken: ShadowToken): string {
   var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
   var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
 
-  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.value.color, true)}`
+ // return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.value.color, true)}`
 }
 
 
@@ -120,35 +127,70 @@ export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum
       spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
     }
   
-    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedColor(shadowToken.value.color, true)}`
+    //return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedColor(shadowToken.value.color, true)}`
 }
 
-export function getFormattedColor(colorValue: {r: number, g: number, b: number, a: number}, forceRgbFormat: boolean = false): string {
+type ColorValueType = {
+  color: {
+    r: number,
+    g: number,
+    b: number
+  },
+  opacity: {
+    unit: string,
+    measure: number
+  }
+}
 
-  if (colorValue.a === 0 || colorValue.a === 255) {
+export function getFormattedColor(colorValue: ColorValueType, forceRgbFormat: boolean = false): string {
+  if (colorValue.opacity.measure === 0 || colorValue.opacity.measure === 1) {
     if (forceRgbFormat) {
-      return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
+      return `rgb(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b})`
     } else {
       // return as hex by default
-      return rgbToHex(colorValue.r, colorValue.g, colorValue.b)
+      return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    const opacity = Math.round((colorValue.a/255) * 100) / 100;
-    return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
-  } 
+    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${Number(colorValue.opacity.measure.toFixed(2))})`
+  }
 }
 
 function rgbToHex(r: number, g: number, b:number) {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
+/** Convert token value to 6-digit hex, or 8-hex when there is lower opacity */
+export function tokenValueToHex(tokenValue: ColorValueType) {
+  // Handle undefined/invalid token value
+  if (!tokenValue || !tokenValue.color) {
+    return '';
+  }
+
+  const { r, g, b } = tokenValue.color;
+  const opacity = tokenValue.opacity?.measure;
+
+  // Convert RGB to 6-digit hex
+  const hex = rgbToHex(r, g, b).toLowerCase();
+
+  // If opacity is 1 or undefined, return 6-digit hex
+  if (!opacity || opacity === 1) {
+    return hex;
+  }
+
+  // Convert opacity to 2-digit hex and append to create 8-digit hex
+  const alphaHex = Math.round(opacity * 255).toString(16).padStart(2, '0');
+  return `${hex}${alphaHex}`;
+}
+
 
 /** Describe complex shadow token */
 export function typographyDescription(typographyToken: TypographyToken) {
+  return "non-migrated"
+
   let value = typographyToken.value
   let fontName = `${value.font.family} ${value.font.subfamily}`
   let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
-  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
+ // let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
   let textDecoration: string = ""
   let textCase: string = ""
   if (value.textDecoration !== null && value.textDecoration !== "None") {
@@ -158,10 +200,12 @@ export function typographyDescription(typographyToken: TypographyToken) {
     textCase = `, ${value.textCase.toLowerCase()}`
   }
 
-  return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
+ // return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
 function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
+  return "non-migrated"
+
   if (value === 0 && forceUnit !== true) {
     return `${value}`
   } else {
@@ -180,6 +224,8 @@ function nonNegativeValue(num: number) {
 
 /** Convert type to CSS unit */
 export function measureTypeIntoReadableUnit(type: Unit): string {
+  return "non-migrated"
+
   switch (type) {
     case "Points":
       return "pt"
@@ -242,6 +288,8 @@ export function convertSubfamilyToFontWeight(subfamily: string): string {
 
 /** Scale token values so they are still okay in smaller previews */
 export function convertTypographyTokenToCSS(typographyToken: TypographyToken, maxFontSize: boolean = false): string {
+  return "non-migrated"
+
   let font = typographyToken.value.font;
   let fontSize = typographyToken.value.fontSize;
   let fontSizeMeasure = typographyToken.value.fontSize.measure;
@@ -268,4 +316,11 @@ export function getColorValueFromSettings(value: string | null, alias: any): str
   } else {
     return null;
   }
+}
+
+/*
+Return themedToken if non-empty, otherwise return token value 
+*/
+export function safeToken(themedToken: Token[], token: Token) {
+  return themedToken[0] ?? token
 }

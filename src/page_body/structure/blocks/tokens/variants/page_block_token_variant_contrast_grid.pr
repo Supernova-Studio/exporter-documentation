@@ -62,8 +62,9 @@
                         <div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};color:{{getFormattedColor(tokenInner.value)}};">
                           <div class="label">Text</div>
 
+                          {* Migrate to v2
                           <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(token.value.hex, tokenInner.value.hex) /]}</div>
-                          
+                          *}
                         </div>
                       </div>
                     </div>

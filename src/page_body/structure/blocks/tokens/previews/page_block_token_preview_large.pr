@@ -3,6 +3,7 @@
 
 {* todo: this needs some refactoring *}
 {[ if token.tokenType.equals("Color") ]}
+
     <div class="preview checkered-background-light">
         <div class="color-preview {{ returnSwatchClassnames(token.value) }}" style="background-color: #{{ token.value.hex }};">
         {[ inject "page_block_token_reference_badge" context token /]}
