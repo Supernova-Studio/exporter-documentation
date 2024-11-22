@@ -23,6 +23,8 @@
     {{ decimalOpacityToPercentage(token.value) }}
 {[ elseif isStringToken(token.tokenType)]}
     {{ token.value.text }}
+{[ elseif isOptionsToken(token.tokenType)]}
+    {{ token.value.value }}
 {[ elseif (isDimensionToken(token.tokenType))]}
     {{ measureValueToReadableUnit(token.value) }}
 {[ elseif token.tokenType.equals("GenericToken")]}

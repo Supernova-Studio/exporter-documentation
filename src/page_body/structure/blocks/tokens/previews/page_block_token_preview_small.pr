@@ -55,14 +55,14 @@
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
     </div>
 {[ elseif token.tokenType.equals("BorderRadius")]}
-    <div class="token-preview-container small-text" style="border-radius: {{ measureValueToReadableUnit(token.value) }}; border-color: var(--colorBorderProminent)">{{ token.value.measure}}{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text" style="border-radius: {{ measureValueToReadableUnit(token.value) }}; border-color: var(--colorBorderProminent)">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="token-preview-container overflowing borderless">
         {[ inject "page_block_token_reference_badge" context token /]}
         {[ inject "page_block_token_themes_badge" context themes /]}
         <div class="token-type-shadow" style="box-shadow: {{ shadowDescription(token) }}"></div>
     </div>
-{[ elseif (token.tokenType.equals("Text") || token.tokenType.equals("ProductCopy") || token.tokenType.equals("String") || token.tokenType.equals("FontFamily") || token.tokenType.equals("FontWeight"))]}
+{[ elseif isStringToken(token.tokenType)]}
     <div class="token-preview-container">T{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
@@ -72,6 +72,9 @@
     <div class="token-preview-container small-text">{{ decimalOpacityToPercentage(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isDimensionToken(token.tokenType)]}
     <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif isOptionsToken(token.tokenType)]}
+    {* todo: add nicer options preview for visibility, text decoration, text case *}
+    <div class="token-preview-container small-text">{{ token.value.value }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[/]}

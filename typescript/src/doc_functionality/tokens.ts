@@ -333,6 +333,14 @@ export function isStringToken(tokenType: TokenType): boolean {
     tokenType === "FontWeight"
   )
 }
+/** Check if the token is in part of string options group */
+export function isOptionsToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "TextDecoration" ||
+    tokenType === "TextCase" ||
+    tokenType === "Visibility"
+  )
+}
 
 /* Converts decimal opacity to percentage */
 export function decimalOpacityToPercentage(token: MeasureTokenValue): string {

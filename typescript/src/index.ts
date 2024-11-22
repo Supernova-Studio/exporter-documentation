@@ -10,7 +10,7 @@ import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
 import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
-import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue, measureValueToReadableUnit, isDimensionToken, isStringToken, decimalOpacityToPercentage } from "./doc_functionality/tokens"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue, measureValueToReadableUnit, isDimensionToken, isStringToken, decimalOpacityToPercentage, isOptionsToken } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
 import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
@@ -92,6 +92,7 @@ Pulsar.registerFunction("getBorderStyleValue", getBorderStyleValue)
 Pulsar.registerFunction("measureValueToReadableUnit", measureValueToReadableUnit)
 Pulsar.registerFunction("isDimensionToken", isDimensionToken)
 Pulsar.registerFunction("isStringToken", isStringToken)
+Pulsar.registerFunction("isOptionsToken", isOptionsToken)
 Pulsar.registerFunction("decimalOpacityToPercentage", decimalOpacityToPercentage)
 
 /* Markdown */
