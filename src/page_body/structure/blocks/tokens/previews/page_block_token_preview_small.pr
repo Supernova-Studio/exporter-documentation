@@ -18,6 +18,13 @@
             {[ inject "page_block_token_themes_badge" context themes /]}
         </div>
     </div>
+{[ elseif token.tokenType.equals("BorderWidth")]}
+    <div class="token-preview-container borderless">
+        <div class="token-preview-container-border" style="border: {{ measureValueToReadableUnit(token.value) }} solid var(--colorBorderProminent);">
+            {[ inject "page_block_token_reference_badge" context token /]}
+            {[ inject "page_block_token_themes_badge" context themes /]}
+        </div>
+    </div>
 {[ elseif token.tokenType.equals("Blur")]}
     {[ let measure = token.value.radius.measure /]}
     {[ switch token.value.type ]}
@@ -47,10 +54,8 @@
     <div class="token-preview-container checkered-background-light">
         <div class="color-preview" style="background: {{ gradientTokenValue(token) }}">{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
     </div>
-{[ elseif token.tokenType.equals("Dimension")]}
-    <div class="token-preview-container small-text">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("BorderRadius")]}
-    <div class="token-preview-container small-text" style="border-radius: {{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}; border-color: var(--colorBorderProminent)">{{ token.value.measure}}{{ measureTypeIntoReadableUnit(token.value.unit) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text" style="border-radius: {{ measureValueToReadableUnit(token.value) }}; border-color: var(--colorBorderProminent)">{{ token.value.measure}}{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Shadow")]}
     <div class="token-preview-container overflowing borderless">
         {[ inject "page_block_token_reference_badge" context token /]}
@@ -62,6 +67,8 @@
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
     <div class="token-preview-container token-type-typography" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif isDimensionToken(token.tokenType)]}
+    <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
     <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[/]}

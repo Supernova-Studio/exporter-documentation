@@ -172,6 +172,10 @@ function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boole
   }
 }
 
+export function measureValueToReadableUnit(value: MeasureTokenValue) {
+  return `${value.measure}${measureTypeIntoReadableUnit(value.unit)}`
+}
+
 function nonNegativeValue(num: number) {
   if (num <= 0) {
     return 0
@@ -262,7 +266,6 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
   let fontFamily = typographyToken.value.fontFamily.text;
   let fontSize = typographyToken.value.fontSize;
   let fontSizeMeasure = typographyToken.value.fontSize.measure;
-  let textDecoration = typographyToken.value.textDecoration.value;
   let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value);
   let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
   let textDecorationCSS = convertTextDecorationToCSS(typographyToken.value.textDecoration.value);
@@ -301,4 +304,32 @@ export function safeToken(themedToken: Token[], token: Token) {
 */
 export function getBorderStyleValue(borderStyle: BorderStyle): string {
   return borderStyle?.toLowerCase() ?? "solid"
+}
+
+/** Check if the token is in part of dimension token group */
+export function isDimensionToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "BorderRadius" ||
+    tokenType === "BorderWidth" ||
+    tokenType === "Dimension" || // Generic dimension in product
+    tokenType === "Duration" ||
+    tokenType === "FontSize" ||
+    tokenType === "LetterSpacing" ||
+    tokenType === "LineHeight" ||
+    tokenType === "Opacity" ||
+    tokenType === "ParagraphSpacing" ||
+    tokenType === "Size" ||
+    tokenType === "Space" ||
+    tokenType === "ZIndex"
+  )
+}
+
+/** Check if the token is in part of string token group */
+export function isStringToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "ProductCopy" || 
+    tokenType === "String" || 
+    tokenType === "FontFamily" || 
+    tokenType === "FontWeight"
+  )
 }

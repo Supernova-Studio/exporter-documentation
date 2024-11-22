@@ -5,24 +5,24 @@
 {[ elseif token.tokenType.equals("Blur") ]}
     {[ switch token.value.type ]}
         {[ case "Background" ]}
-            backdrop-filter: blur({{ token.value.radius.measure }}px)
+            backdrop-filter: blur({{ measureValueToReadableUnit(token.value.radius) }})
         {[ case "Layer" ]}
-            filter: blur({{ token.value.radius.measure }}px)
+            filter: blur({{ measureValueToReadableUnit(token.value.radius) }})
     {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
-    {{ token.value.width.measure }}px {{ getBorderStyleValue(token.value.style) }} {{ getFormattedColor(token.value.color) }}
+    {{ measureValueToReadableUnit(token.value.width) }} {{ getBorderStyleValue(token.value.style) }} {{ getFormattedColor(token.value.color) }}
 {[ elseif token.tokenType.equals("Font") ]}
     {{ token.value.fontFamily.text }} {{ token.value.fontWeight.text }}
 {[ elseif token.tokenType.equals("Gradient") ]}
     {{ gradientDescription(token) }}
-{[ elseif (token.tokenType.equals("Dimension") || token.tokenType.equals("BorderRadius"))]}
-    {{ token.value.measure }}{{ measureTypeIntoReadableUnit(token.value.unit) }}
 {[ elseif token.tokenType.equals("Shadow")]}
     {{ shadowDescription(token) }}
-{[ elseif (token.tokenType.equals("Text") || token.tokenType.equals("ProductCopy") || token.tokenType.equals("String") || token.tokenType.equals("FontFamily") || token.tokenType.equals("FontWeight"))]}
-    {{ token.value.text }}
 {[ elseif token.tokenType.equals("Typography") ]}
     {{ typographyDescription(token)}}
+{[ elseif isStringToken(token.tokenType)]}
+    {{ token.value.text }}
+{[ elseif (isDimensionToken(token.tokenType))]}
+    {{ measureValueToReadableUnit(token.value) }}
 {[ elseif token.tokenType.equals("GenericToken")]}
     {{ token.value.text }}
 {[/]}

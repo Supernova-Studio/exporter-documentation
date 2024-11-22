@@ -22,7 +22,34 @@ declare global {
   //
   // Enums
   //
-  type TokenType = "Color" | "Typography" | "Radius" | "Font" | "Measure" | "Shadow" | "Border" | "Gradient" | "Text"
+  type TokenType =
+    | "Color"
+    | "Typography" 
+    | "BorderRadius"
+    | "Font"
+    | "Space"
+    | "Shadow"
+    | "Border"
+    | "Gradient"
+    | "Dimension"
+    | "Duration"
+    | "Size"
+    | "Opacity"
+    | "FontSize"
+    | "LineHeight"
+    | "LetterSpacing"
+    | "ParagraphSpacing"
+    | "BorderWidth"
+    | "ZIndex"
+    | "Image"
+    | "String"
+    | "ProductCopy"
+    | "FontFamily"
+    | "FontWeight"
+    | "TextDecoration"
+    | "TextCase"
+    | "Visibility"
+    | "Blur"
 
   type TokenPropertyType = "Number" | "Boolean" | "String" | "Generic"
 
