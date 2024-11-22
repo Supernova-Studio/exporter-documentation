@@ -21,6 +21,8 @@
     {{ typographyDescription(token)}}
 {[ elseif token.tokenType.equals("Opacity") ]}
     {{ decimalOpacityToPercentage(token.value) }}
+{[ elseif token.tokenType.equals("TextCase")]}
+    {{ convertTextCaseToTextTransform(token.value.value) }}
 {[ elseif (token.tokenType.equals("String") || token.tokenType.equals("ProductCopy"))]}
     {* no value displayed, the value is part of the preview*}
 {[ elseif isStringToken(token.tokenType)]}

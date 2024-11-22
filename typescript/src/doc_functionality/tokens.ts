@@ -12,6 +12,11 @@ export function fullTokenGroupName(tokenGroup: TokenGroup) {
 
 /**  Convert group into properly formatted header */
 export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: boolean) {
+  // Return false if the group is root
+  if (tokenGroup.isRoot) {
+    return false
+  }
+
   // Retrieve token group either including or not including the path to the group
   if (tokenGroup.path.length > 0 && showSubpath) {
     let light = tokenGroup.path.join(" / ")
@@ -205,18 +210,38 @@ export function measureTypeIntoReadableUnit(type: Unit): string {
 }
 
 /** Convert textCase to CSS text transform */
-export function convertTextCaseToTextTransform(textCase: TextCase): string {
+export function convertTextCaseToTextTransform(textCase: TextCase, includeCSSPropertyName: boolean = false): string {
+  let value: string;
+  let property: string;
 
   switch (textCase) {
     case "Upper":
-      return "uppercase"
+      value = "uppercase"
+      property = "text-transform"
+      break
     case "Lower":
-      return "lowercase"
+      value = "lowercase" 
+      property = "text-transform"
+      break
     case "Camel":
-      return "capitalize"
-    default: 
-      return "none"
+      value = "capitalize"
+      property = "text-transform"
+      break
+    case "SmallCaps":
+      value = "small-caps"
+      property = "font-variant"
+      break
+    case "Original":
+      value = "none"
+      property = "text-transform"
+      break
+    default:
+      value = "none"
+      property = "text-transform"
+      break
   }
+
+  return includeCSSPropertyName ? `${property}: ${value}` : value
 }
 
 /** Convert textCase to CSS text transform */
@@ -270,12 +295,12 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
 
   let fontFamily = typographyToken.value.fontFamily.text;
   let fontSize = normalizeFontSizeCSS(typographyToken.value.fontSize, maxFontSize);
-  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value);
+  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value, true);
   let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
   let textDecorationCSS = convertTextDecorationToCSS(typographyToken.value.textDecoration.value);
   let extendedFontFamily = extendFontFamily(fontFamily);
 
-  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSize}; text-decoration: ${textDecorationCSS}; text-transform: ${textCase};`
+  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSize}; text-decoration: ${textDecorationCSS}; ${textCase};`
 }
 
 export function normalizeFontSizeCSS(fontSize: MeasureTokenValue, maxFontSize: boolean = false) {

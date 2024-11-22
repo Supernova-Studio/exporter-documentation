@@ -55,7 +55,7 @@ declare global {
 
   type SourceType = "Supernova" | "Figma"
 
-  type TextCase = "Original" | "Upper" | "Lower" | "Camel"
+  type TextCase = "Original" | "Upper" | "Lower" | "Camel" | "SmallCaps"
 
   type TextDecoration = "None" | "Underline" | "Strikethrough"
 

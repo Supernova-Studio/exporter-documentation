@@ -136,20 +136,43 @@
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif token.tokenType.equals("Opacity")]}
-    {* todo: add nicer opacity preview *}
-    <div class="preview bordered no-footer">
+    <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="value-preview">{{ decimalOpacityToPercentage(token.value) }}</div>
+        <div class="token-preview-container large checkered-background-light">
+            <div class="token-preview-container-opacity" style="opacity: {{ decimalOpacityToPercentage(token.value) }}"></div>
+        </div>
+        <div class="value-footer">
+            {[ inject "page_block_token_value" context token /]}
+        </div>
+        {[ inject "page_block_token_themes_badge" context themes /]}
+    </div>
+{[ elseif token.tokenType.equals("TextDecoration")]}
+    <div class="preview bordered">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        <div class="token-preview-container large" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}">Hello</div>
+        <div class="value-footer">
+            {[ inject "page_block_token_value" context token /]}
+        </div>
+        {[ inject "page_block_token_themes_badge" context themes /]}
+    </div>
+{[ elseif token.tokenType.equals("TextCase")]}
+    <div class="preview bordered">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        <div class="token-preview-container large" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}">Hello world</div>
+        <div class="value-footer">
+            {[ inject "page_block_token_value" context token /]}
+        </div>
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif isStringToken(token.tokenType)]}
     <div class="preview small-text bordered no-footer">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="value-preview">{{ token.value.text }}</div>
+        <div class="token-preview-container-string">
+            {{ token.value.text }}
+        </div>
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
 {[ elseif isOptionsToken(token.tokenType)]}
-    {* todo: add nicer options preview for visibility, text decoration, text case *}
     <div class="preview small-text bordered no-footer">
         {[ inject "page_block_token_reference_badge" context token /]}
         <div class="value-preview">{{ token.value.value }}</div>

@@ -112,7 +112,8 @@
 
 .token-preview-container-border.large,
 .token-preview-container-radius.large,
-.token-preview-container-blur.large {
+.token-preview-container-blur.large,
+.large .token-preview-container-opacity {
   width: 64px;
   height: 64px;
   max-height: 60%;
@@ -124,6 +125,23 @@
   margin: auto;
   border-radius: var(--borderRadiusDefault);
   background-color: var(--colorInkSecondary);
+}
+
+.token-preview-container-opacity {
+  width: 64px;
+  height: 24px;
+  margin: auto;
+  border-radius: var(--borderRadiusDefault);
+  background-color: var(--colorInkSecondary);
+}
+
+.token-preview-container-string {
+  overflow: auto; 
+  white-space: nowrap; 
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 .token-preview-container-blur-text-unblurred {
@@ -387,7 +405,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 16px;
   overflow: hidden;
   position: relative;
   border-radius: var(--borderRadiusDefault);

@@ -74,14 +74,26 @@
 {[ elseif token.tokenType.equals("LetterSpacing")]}
     <div class="token-preview-container" style="letter-spacing: {{ measureValueToReadableUnit(token.value) }}">Hello{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Opacity")]}
-    {* todo: add nicer opacity preview *}
-    <div class="token-preview-container small-text">{{ decimalOpacityToPercentage(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container checkered-background-light-small">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
+        <div class="token-preview-container-opacity" style="opacity: {{ decimalOpacityToPercentage(token.value) }}"></div>
+    </div>
+{[ elseif token.tokenType.equals("TextDecoration")]}
+    <div class="token-preview-container small-text" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}">Hello{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("TextCase")]}
+    <div class="token-preview-container small-text" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}">Hello world{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>    
 {[ elseif isDimensionToken(token.tokenType)]}
-    {* todo: add nicer dimension preview — space, size, font size *}
+    {* todo: add nicer dimension preview — space, size *}
     <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isOptionsToken(token.tokenType)]}
-    {* todo: add nicer options preview for visibility, text decoration, text case *}
     <div class="token-preview-container small-text">{{ token.value.value }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isStringToken(token.tokenType)]}
-    <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text">
+        <div class="token-preview-container-string">
+            {{ token.value.text }}
+        </div>
+        {[ inject "page_block_token_reference_badge" context token /]}
+        {[ inject "page_block_token_themes_badge" context themes /]}
+    </div>
 {[/]}

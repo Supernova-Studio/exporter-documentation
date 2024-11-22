@@ -9,7 +9,10 @@
 {[ if ((tokens.count() > 0 && !variant.contains("contrast-grid")) || (variant.contains("contrast-grid") && tokens.count() > 1 )) ]}
     <div class="content-block content-block--token-container">
         {* Show group header consisting of group segments and current group name *}
-        <div class="token-group-header">{{ formattedTokenGroupHeader(group, true) }}</div>
+        {[ let tokenGroupHeader = formattedTokenGroupHeader(group, true) /]}
+        {[ if tokenGroupHeader ]}
+            <div class="token-group-header">{{ tokenGroupHeader }}</div>
+        {[/]}
 
         {[ if (variant === "table" || variant === null) ]}
         {* Default variant – Displaying the list of tokens as a table *}
