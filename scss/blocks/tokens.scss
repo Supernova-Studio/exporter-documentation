@@ -34,6 +34,7 @@
     width: 100%;
     height: 100%;
     border: 0;
+    padding-bottom: 20px;
 
     .token-type-shadow {
       width: 64px;
@@ -136,6 +137,7 @@
   justify-content: center;
   font-size: 11px;
   color: white;
+  padding-bottom: 20px;
 }
 
 /* Token Headers */
@@ -377,7 +379,6 @@
 
 
 .content-block--token-container .grid > div div.preview {
-  width: 100%;
   height: 120px;
   display: flex;
   flex-direction: column;
@@ -397,12 +398,11 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    margin-bottom: 20px;
   }
 
   .value-footer {
-    flex-shrink: 0;
     height: 20px;
-    width: 100%;
     margin: 0;
     position: relative;
     border-top: 1px solid var(--colorBorderSubtle);
@@ -415,6 +415,10 @@
     justify-content: center;
     border-bottom-left-radius: var(--borderRadiusDefault);
     border-bottom-right-radius: var(--borderRadiusDefault);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     .token-value {
       text-transform: none;

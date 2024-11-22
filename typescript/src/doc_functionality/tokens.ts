@@ -216,6 +216,19 @@ export function convertTextCaseToTextTransform(textCase: TextCase): string {
   }
 }
 
+/** Convert textCase to CSS text transform */
+export function convertTextDecorationToCSS(textDecoration: TextDecoration): string {
+
+  switch (textDecoration) {
+    case "Underline":
+      return "underline"
+    case "Strikethrough":
+      return "line-through"
+    default: 
+      return "none"
+  }
+}
+
 /** Convert subfamily to CSS font weight */
 export function convertSubfamilyToFontWeight(subfamily: string): string {
 
@@ -252,6 +265,7 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
   let textDecoration = typographyToken.value.textDecoration.value;
   let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value);
   let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
+  let textDecorationCSS = convertTextDecorationToCSS(typographyToken.value.textDecoration.value);
   let extendedFontFamily = fontFamily.includes(" ")
     ? `'${fontFamily}', '${fontFamily.replace(" ", "")}', Inter, sans-serif`
     : `'${fontFamily}', Inter, sans-serif`;
@@ -260,7 +274,7 @@ export function convertTypographyTokenToCSS(typographyToken: TypographyToken, ma
     fontSizeMeasure = 24;
   }
 
-  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
+  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecorationCSS}; text-transform: ${textCase};`
 }
 
 /** Get color value from settings option */
