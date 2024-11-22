@@ -105,6 +105,13 @@
         </div>
         {[ inject "page_block_token_themes_badge" context themes /]}
     </div>
+{[ elseif token.tokenType.equals("Opacity")]}
+    {* todo: add nicer opacity preview *}
+    <div class="preview bordered">
+        {[ inject "page_block_token_reference_badge" context token /]}
+        <div class="value-preview">{{ decimalOpacityToPercentage(token.value) }}</div>
+        {[ inject "page_block_token_themes_badge" context themes /]}
+    </div>
 {[ elseif isStringToken(token.tokenType)]}
     <div class="preview small-text bordered">
         {[ inject "page_block_token_reference_badge" context token /]}

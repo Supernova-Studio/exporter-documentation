@@ -19,6 +19,8 @@
     {{ shadowDescription(token) }}
 {[ elseif token.tokenType.equals("Typography") ]}
     {{ typographyDescription(token)}}
+{[ elseif token.tokenType.equals("Opacity") ]}
+    {{ decimalOpacityToPercentage(token.value) }}
 {[ elseif isStringToken(token.tokenType)]}
     {{ token.value.text }}
 {[ elseif (isDimensionToken(token.tokenType))]}

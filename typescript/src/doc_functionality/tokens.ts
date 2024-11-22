@@ -333,3 +333,8 @@ export function isStringToken(tokenType: TokenType): boolean {
     tokenType === "FontWeight"
   )
 }
+
+/* Converts decimal opacity to percentage */
+export function decimalOpacityToPercentage(token: MeasureTokenValue): string {
+  return `${Math.round(token.measure * 100)}%`
+}

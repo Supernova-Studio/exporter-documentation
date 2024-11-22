@@ -13,7 +13,7 @@
 
 {[ elseif token.tokenType.equals("Border")]}
     <div class="token-preview-container borderless">
-        <div class="token-preview-container-border" style="border: {{ token.value.width.measure }}px {{getBorderStyleValue(token.value.style)}} {{ tokenValueToHex(token.value.color) }};">
+        <div class="token-preview-container-border" style="border: {{ measureValueToReadableUnit(token.value.width) }} {{getBorderStyleValue(token.value.style)}} {{ tokenValueToHex(token.value.color) }};">
             {[ inject "page_block_token_reference_badge" context token /]}
             {[ inject "page_block_token_themes_badge" context themes /]}
         </div>
@@ -26,13 +26,13 @@
         </div>
     </div>
 {[ elseif token.tokenType.equals("Blur")]}
-    {[ let measure = token.value.radius.measure /]}
+    {[ let measure = measureValueToReadableUnit(token.value.radius) /]}
     {[ switch token.value.type ]}
         {[ case "Background" ]}
             <div class="token-preview-container checkered-background-light-small">
                 {[ inject "page_block_token_reference_badge" context token /]}
                 {[ inject "page_block_token_themes_badge" context themes /]}
-                <div class="token-preview-container-blur" style="background-color: transparent; width: 100%; height: 100%; backdrop-filter: blur({{ measure }}px);"></div>
+                <div class="token-preview-container-blur" style="background-color: transparent; width: 100%; height: 100%; backdrop-filter: blur({{ measure }});"></div>
                 <div class="token-preview-container-blur-text-unblurred" style="color: #141618">
                 {{ measure }}
                 </div>
@@ -41,7 +41,7 @@
             <div class="token-preview-container checkered-background-light-small">
                 {[ inject "page_block_token_reference_badge" context token /]}
                 {[ inject "page_block_token_themes_badge" context themes /]}
-                <div class="token-preview-container-blur" style="background-color: #363a3e; filter: blur({{ measure }}px);">
+                <div class="token-preview-container-blur" style="background-color: #363a3e; filter: blur({{ measure }});">
                 </div>
                 <div class="token-preview-container-blur-text-unblurred">
                 {{ measure }}
@@ -67,6 +67,9 @@
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
     <div class="token-preview-container token-type-typography" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("Opacity")]}
+    {* todo: add nicer opacity preview *}
+    <div class="token-preview-container small-text">{{ decimalOpacityToPercentage(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isDimensionToken(token.tokenType)]}
     <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("GenericToken")]}
