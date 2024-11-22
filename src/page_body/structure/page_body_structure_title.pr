@@ -46,7 +46,7 @@
         {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
         {[ let backgroundColor = "" /]}
         {[ if colorToken ]}
-             {[ backgroundColor = ("background-color: #" + colorToken.value.hex + ";") /]}
+             {[ backgroundColor = ("background-color: " + tokenValueToHex(colorToken.value) + ";") /]}
         {[/]}
         <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}{{ backgroundColor }}">
     {[ else ]}
@@ -71,7 +71,7 @@
                 {* Foreground color provided as token *}
                 {[ let colorToken = ds.tokenById(headerConfiguration.foregroundColor.aliasTo) /]}
                 {[ if colorToken ]}
-                    {[ color = colorToken.value.hex.prefixed("#") /]}
+                    {[ color = tokenValueToHex(colorToken.value) /]}
                 {[/]}
             {[/]}
             {[ let style = (color.count() > 0 ? "color: " + color : "") /]}

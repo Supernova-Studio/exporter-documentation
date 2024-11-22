@@ -62,19 +62,26 @@
         {[ inject "page_block_token_themes_badge" context themes /]}
         <div class="token-type-shadow" style="box-shadow: {{ shadowDescription(token) }}"></div>
     </div>
-{[ elseif isStringToken(token.tokenType)]}
-    <div class="token-preview-container">T{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Typography")]}
     {[ const typographyCSS = convertTypographyTokenToCSS(token) /]}
     <div class="token-preview-container token-type-typography" style="{{ typographyCSS }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("FontFamily")]}
+    <div class="token-preview-container" style="font-family: {{ extendFontFamily(token.value.text) }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("FontWeight")]}
+    <div class="token-preview-container" style="font-weight: {{ token.value.text }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("FontSize")]}
+    <div class="token-preview-container token-type-typography" style="font-size: {{ normalizeFontSizeCSS(token.value) }}">Ag{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+{[ elseif token.tokenType.equals("LetterSpacing")]}
+    <div class="token-preview-container" style="letter-spacing: {{ measureValueToReadableUnit(token.value) }}">Hello{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("Opacity")]}
     {* todo: add nicer opacity preview *}
     <div class="token-preview-container small-text">{{ decimalOpacityToPercentage(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isDimensionToken(token.tokenType)]}
+    {* todo: add nicer dimension preview — space, size, font size *}
     <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isOptionsToken(token.tokenType)]}
     {* todo: add nicer options preview for visibility, text decoration, text case *}
     <div class="token-preview-container small-text">{{ token.value.value }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
-{[ elseif token.tokenType.equals("GenericToken")]}
+{[ elseif isStringToken(token.tokenType)]}
     <div class="token-preview-container small-text">{{ token.value.text }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[/]}

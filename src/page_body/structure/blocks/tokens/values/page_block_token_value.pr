@@ -21,13 +21,13 @@
     {{ typographyDescription(token)}}
 {[ elseif token.tokenType.equals("Opacity") ]}
     {{ decimalOpacityToPercentage(token.value) }}
+{[ elseif (token.tokenType.equals("String") || token.tokenType.equals("ProductCopy"))]}
+    {* no value displayed, the value is part of the preview*}
 {[ elseif isStringToken(token.tokenType)]}
     {{ token.value.text }}
 {[ elseif isOptionsToken(token.tokenType)]}
     {{ token.value.value }}
 {[ elseif (isDimensionToken(token.tokenType))]}
     {{ measureValueToReadableUnit(token.value) }}
-{[ elseif token.tokenType.equals("GenericToken")]}
-    {{ token.value.text }}
 {[/]}
 </span>

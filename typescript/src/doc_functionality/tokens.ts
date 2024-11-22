@@ -92,10 +92,10 @@ export function shadowDescription(shadowToken: ShadowToken) {
 /** Convert complex shadow value to CSS representation */
 export function shadowTokenValue(shadowToken: ShadowTokenValue): string {
 
-  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.radius));
-  var offsetX = getValueWithCorrectUnit(shadowToken.x);
-  var offsetY = getValueWithCorrectUnit(shadowToken.y);
-  var spreadRadius = getValueWithCorrectUnit(shadowToken.spread);
+  var blurRadius = getValueWithPixels(nonNegativeValue(shadowToken.radius));
+  var offsetX = getValueWithPixels(shadowToken.x);
+  var offsetY = getValueWithPixels(shadowToken.y);
+  var spreadRadius = getValueWithPixels(shadowToken.spread);
 
   return `${shadowToken.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.color, true, shadowToken.opacity)}`
 }
@@ -163,11 +163,10 @@ export function typographyDescription(typographyToken: TypographyToken) {
   return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
-function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
+function getValueWithPixels(value: number, forceUnit?: boolean): string {
   if (value === 0 && forceUnit !== true) {
     return `${value}`
   } else {
-    // todo: add support for other units (px, rem, em, etc.)
     return `${value}px`
   }
 }
@@ -260,32 +259,45 @@ export function convertSubfamilyToFontWeight(subfamily: string): string {
   }
 }
 
+export function extendFontFamily(fontFamily: string) {
+  return fontFamily.includes(" ")
+    ? `'${fontFamily}', '${fontFamily.replace(" ", "")}', Inter, sans-serif`
+    : `'${fontFamily}', Inter, sans-serif`;
+}
+
 /** Scale token values so they are still okay in smaller previews */
 export function convertTypographyTokenToCSS(typographyToken: TypographyToken, maxFontSize: boolean = false): string {
 
   let fontFamily = typographyToken.value.fontFamily.text;
-  let fontSize = typographyToken.value.fontSize;
-  let fontSizeMeasure = typographyToken.value.fontSize.measure;
+  let fontSize = normalizeFontSizeCSS(typographyToken.value.fontSize, maxFontSize);
   let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value);
   let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
   let textDecorationCSS = convertTextDecorationToCSS(typographyToken.value.textDecoration.value);
-  let extendedFontFamily = fontFamily.includes(" ")
-    ? `'${fontFamily}', '${fontFamily.replace(" ", "")}', Inter, sans-serif`
-    : `'${fontFamily}', Inter, sans-serif`;
+  let extendedFontFamily = extendFontFamily(fontFamily);
 
-  if (maxFontSize === true && fontSize.measure > 24) {
-    fontSizeMeasure = 24;
+  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSize}; text-decoration: ${textDecorationCSS}; text-transform: ${textCase};`
+}
+
+export function normalizeFontSizeCSS(fontSize: MeasureTokenValue, maxFontSize: boolean = false) {
+  let fontSizeMeasure = fontSize.measure;
+  const remBase = 16;
+
+  if (maxFontSize === true) {
+    const actualSize = fontSize.unit === "Rem" ? fontSize.measure * remBase : fontSize.measure;
+    if (actualSize > 24) {
+      fontSizeMeasure = fontSize.unit === "Rem" ? 24/remBase : 24;
+    }
   }
 
-  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecorationCSS}; text-transform: ${textCase};`
+  return `${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}`;
 }
 
 /** Get color value from settings option */
-export function getColorValueFromSettings(value: string | null, alias: any): string | null {
+export function getColorValueFromSettings(value: string | null, alias: ColorToken | null): string | null {
   if (value !== null) {
     return value;
   } else if (alias !== null) {
-      return `#${alias.value.hex}`;
+      return `${tokenValueToHex(alias.value)}`;
   } else {
     return null;
   }

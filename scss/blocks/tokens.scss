@@ -392,6 +392,12 @@
   position: relative;
   border-radius: var(--borderRadiusDefault);
 
+  &.no-footer {
+    .value-preview {
+      margin-bottom: 0;
+    }
+  }
+
   &.bordered {
     border: 1px solid var(--colorBorderSubtle);
   }

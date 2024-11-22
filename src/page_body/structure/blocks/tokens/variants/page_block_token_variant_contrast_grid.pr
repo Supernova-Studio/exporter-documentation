@@ -44,7 +44,7 @@
             </div>
           {[/]}
         </div>
-        <div class="grid-content--table syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.versionedId ? "-"+firstToken.parent.versionedId : "" }}">
+        <div class="grid-content--table syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.idInVersion ? "-"+firstToken.parent.idInVersion : "" }}">
 
           {[ for tokenId in tokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
