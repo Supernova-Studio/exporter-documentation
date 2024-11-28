@@ -5,9 +5,6 @@
 
 {[ let variant = block.variantKey /]}
 
-{[ if (group.name === "Shadow") ]}
-    {[ log group /]}
-{[/]}
 {* Ignore group content if it is empty (or at least 2 tokens if it's a contrast grid) *}
 {[ if ((tokens.count() > 0 && !variant.contains("contrast-grid")) || (variant.contains("contrast-grid") && tokens.count() > 1 )) ]}
     <div class="content-block content-block--token-container">

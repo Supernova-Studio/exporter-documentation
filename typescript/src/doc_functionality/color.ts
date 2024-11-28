@@ -8,42 +8,6 @@ const contrast = require("get-contrast");
 import Color from "colorjs.io"
 import { tokenValueToHex } from "./tokens";
 
-export function getColorContrast(color: string): number {
-    
-    if (!color) {
-        return 0
-    }
-
-    if (color.indexOf('#') === 0) {
-        color = color.slice(1);
-    } 
-
-    const r = parseInt(color.substr(0, 2), 16);
-    const g = parseInt(color.substr(2, 2), 16);
-    const b = parseInt(color.substr(4, 2), 16);
-
-    // Calculate the perceptive luminance
-    let luma = ((0.299 * r) + (0.587 * g) + (0.114 * b)) / 255;
-
-    // Return black for bright colors, white for dark colors
-    return luma;
-}
-
-export function getColorContrastRatio(colorBackground: string, colorForeground: string): number {
-
-    return Math.round(contrast.ratio(colorBackground, colorForeground) * 10) / 10;
-}
-
-export function contrastColor(color: string): "dark" | "light" {
-    
-    if (!color) {
-        return "dark"
-    }
-
-    // Return black for bright colors, white for dark colors
-    return getColorContrast(color) > 0.4 ? "dark" : "light";
-}
-
 function isValidHexColor(str: string) {
     const regex = /^#([0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?([0-9A-Fa-f]{2})?)$/
     return regex.test(str)
@@ -103,9 +67,61 @@ export function getClassForInvertedText(color: string): string {
         return ""
     }
 
-    if ((getColorContrast(color) < 0.4)) {
+    if ((contrastColorAPCA(color) === "light")) {
         return "inverted-text"
     } else {
         return ""
     }
+}
+
+function getLuminance(rgb: RGB): number {
+    let [r, g, b] = [rgb.r / 255, rgb.g / 255, rgb.b / 255].map(c => 
+        c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+    );
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function overlayColor(source: RGB & { a?: number }, background: RGB): RGB {
+    const alpha = source.a ?? 1;
+    return {
+        r: Math.round(source.r * alpha + background.r * (1 - alpha)),
+        g: Math.round(source.g * alpha + background.g * (1 - alpha)),
+        b: Math.round(source.b * alpha + background.b * (1 - alpha))
+    };
+}
+
+function getContrastRatio(l1: number, l2: number): number {
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+}
+
+export function getColorContrastRatio(background: ColorTokenValue, foreground: ColorTokenValue): number {
+    const bg: RGB = background.color;
+    const fg: RGB = foreground.color;
+    const fgAlpha = foreground.opacity.measure;
+
+    // Fully opaque foreground
+    if (fgAlpha === 1) {
+        return Math.round(getContrastRatio(getLuminance(fg), getLuminance(bg)) * 10) / 10;
+    }
+
+    // For semi-transparent colors, calculate contrast against both black and white backgrounds
+    const blackBg: RGB = { r: 0, g: 0, b: 0 };
+    const whiteBg: RGB = { r: 255, g: 255, b: 255 };
+
+    const fgOnBlack = overlayColor({ ...fg, a: fgAlpha }, blackBg);
+    const fgOnWhite = overlayColor({ ...fg, a: fgAlpha }, whiteBg);
+
+    const lumBg = getLuminance(bg);
+    const lumFgOnBlack = getLuminance(fgOnBlack);
+    const lumFgOnWhite = getLuminance(fgOnWhite);
+
+    // Return the minimum contrast ratio
+    const ratio = Math.min(
+        getContrastRatio(lumBg, lumFgOnBlack),
+        getContrastRatio(lumBg, lumFgOnWhite)
+    );
+
+    return Math.round(ratio * 10) / 10;
 }

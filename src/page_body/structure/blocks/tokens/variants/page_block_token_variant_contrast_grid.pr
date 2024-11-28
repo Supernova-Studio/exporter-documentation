@@ -58,7 +58,7 @@
                       <div class="swatch checkered-background">
                         <div class="color-fill {{ returnSwatchClassnames(token.value) }}" style="background:{{getFormattedColor(token.value)}};color:{{getFormattedColor(tokenInner.value)}};">
                           <div class="label">Text</div>
-                          <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(tokenValueToHex(token.value), tokenValueToHex(tokenInner.value)) /]}</div>
+                          <div class="contrast">{[ inject "component_contrast_badge" context getColorContrastRatio(token.value, tokenInner.value) /]}</div>
                         </div>
                       </div>
                     </div>

@@ -110,7 +110,7 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
   // Use custom opacity if provided, otherwise use color value's opacity
   const opacity = customOpacity?.measure ?? colorValue.opacity.measure;
 
-  if (opacity === 0 || opacity === 1) {
+  if (opacity === 1) {
     if (forceRgbFormat) {
       return `rgb(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b})`
     } else {

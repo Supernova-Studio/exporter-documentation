@@ -177,6 +177,12 @@ declare global {
     value: string | number | boolean
   }
 
+  interface RGB {
+    r: number;
+    g: number;
+    b: number;
+  }
+
   type ColorTokenValue = {
     color: {
       r: number,
