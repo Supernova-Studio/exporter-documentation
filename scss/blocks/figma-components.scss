@@ -45,6 +45,12 @@
     justify-content: center;
     padding: 8px;
     align-items: center;
+
+    .popover-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .figma-component-image-border {
@@ -75,6 +81,7 @@
 
 .figma-components-canvas {
     border: 1px solid var(--figmaComponentBorderColor);
+    padding: 8px;
 }
 
 .figma-component-popover {
