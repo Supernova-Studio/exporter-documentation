@@ -16,6 +16,7 @@
                     {[ for swatch in block.swatches ]}
                         {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                         {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
+                        
                         {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "themes": themes})  /]}
                     {[/]}
                 </div>

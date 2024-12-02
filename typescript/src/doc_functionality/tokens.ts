@@ -12,6 +12,11 @@ export function fullTokenGroupName(tokenGroup: TokenGroup) {
 
 /**  Convert group into properly formatted header */
 export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: boolean) {
+  // Return false if the group is root
+  if (tokenGroup.isRoot) {
+    return false
+  }
+
   // Retrieve token group either including or not including the path to the group
   if (tokenGroup.path.length > 0 && showSubpath) {
     let light = tokenGroup.path.join(" / ")
@@ -24,57 +29,63 @@ export function formattedTokenGroupHeader(tokenGroup: TokenGroup, showSubpath: b
 
 /** Describe complex gradient token */
 export function gradientDescription(gradientToken: GradientToken) {
-  // Describe gradient as (type) (stop1, stop2 ...)
-  let type = `${gradientToken.value.type} Gradient`
-  let stops = gradientToken.value.stops
-    .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()}, ${(stop.position * 100).toFixed(2)}%`
-    })
-    .join(", ")
+  // Describe gradient as (type) (stop1, stop2 ...) for each gradient layer
+  return gradientToken.value.map(gradient => {
+    let type = `${gradient.type} Gradient`
+    let stops = gradient.stops
+      .map((stop) => {
+        return `${tokenValueToHex(stop.color)}, ${(stop.position * 100).toFixed(2)}%`
+      })
+      .join(", ")
 
-  return `${type}, ${stops}`
+    return `${type}, ${stops})`
+  }).join(" + ")
 }
 
 /** Describe complex gradient value as token */
-export function gradientTokenValue(gradientToken) {
-  let gradientType = ""
+export function gradientTokenValue(gradientToken: GradientToken) {
 
-  switch (gradientToken.value.type) {
-    case "Linear":
+  let gradientTypes = gradientToken.value.map(gradient => {
+    let gradientType = ""
 
-      // calculate the gradient angle
-      const deltaX = Math.round((gradientToken.value.to.x - gradientToken.value.from.x)*100);
-      const deltaY = Math.round((gradientToken.value.to.y - gradientToken.value.from.y)*100);
+    switch (gradient.type) {
+      case "Linear":
+        // calculate the gradient angle
+        const deltaX = Math.round((gradient.to.x - gradient.from.x)*100);
+        const deltaY = Math.round((gradient.to.y - gradient.from.y)*100);
 
-      // adding 90 to move the angle to the correct position
-      // todo: take into account the direction of the gradient and position of the each stop
-      const angle = Math.round(Math.atan2(deltaY, deltaX)*(180/Math.PI))+90;
+        // adding 90 to move the angle to the correct position
+        // todo: take into account the direction of the gradient and position of the each stop
+        const angle = Math.round(Math.atan2(deltaY, deltaX)*(180/Math.PI))+90;
 
-      gradientType = `linear-gradient(${angle}deg, `
-      break
-    case "Radial":
-      gradientType = "radial-gradient(circle, "
-      break
-    case "Angular":
-      gradientType = "conic-gradient("
-      break
-  }
+        gradientType = `linear-gradient(${angle}deg, `
+        break
+      case "Radial":
+        gradientType = "radial-gradient(circle, "
+        break
+      case "Angular":
+        gradientType = "conic-gradient("
+        break
+    }
 
-  // Describe gradient as (type) (stop1, stop2 ...)
-  // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-  let stops = gradientToken.value.stops
-    .map((stop) => {
-      return `#${stop.color.hex.toUpperCase()} ${(stop.position * 100).toFixed(2)}%`
-    })
-    .join(", ")
+    // Describe gradient as (type) (stop1, stop2 ...)
+    // Example: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    let stops = gradient.stops
+      .map((stop) => {
+        return `${tokenValueToHex(stop.color)} ${(stop.position * 100).toFixed(2)}%`
+      })
+      .join(", ")
 
-  return `${gradientType}${stops})`
+    return `${gradientType}${stops})`
+  }).join(", ")
+
+  return gradientTypes
 }
 
 /** Describe complex shadow token */
 export function shadowDescription(shadowToken: ShadowToken) {
-  
-  let connectedShadow = shadowToken.shadowLayers?.reverse().map((shadow) => {
+
+  let connectedShadow = shadowToken.value?.reverse().map((shadow) => {
       return shadowTokenValue(shadow)
     })
     .join(", ")
@@ -84,81 +95,89 @@ export function shadowDescription(shadowToken: ShadowToken) {
 }
 
 /** Convert complex shadow value to CSS representation */
-export function shadowTokenValue(shadowToken: ShadowToken): string {
-  var blurRadius = getValueWithCorrectUnit(nonNegativeValue(shadowToken.value.radius.measure));
-  var offsetX = getValueWithCorrectUnit(shadowToken.value.x.measure);
-  var offsetY = getValueWithCorrectUnit(shadowToken.value.y.measure);
-  var spreadRadius = getValueWithCorrectUnit(shadowToken.value.spread.measure);
+export function shadowTokenValue(shadowToken: ShadowTokenValue): string {
 
-  return `${shadowToken.value.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.value.color, true)}`
+  var blurRadius = getValueWithPixels(nonNegativeValue(shadowToken.radius));
+  var offsetX = getValueWithPixels(shadowToken.x);
+  var offsetY = getValueWithPixels(shadowToken.y);
+  var spreadRadius = getValueWithPixels(shadowToken.spread);
+
+  return `${shadowToken.type === "Inner" ? "inset " : ""}${offsetX} ${offsetY} ${blurRadius} ${spreadRadius} ${getFormattedColor(shadowToken.color, true, shadowToken.opacity)}`
 }
 
 
-/** Scale token values so they are still okay in smaller previews */
-export function scaledShadowTokenValue(shadowToken: ShadowToken, scalingParamSum: number): string {  
-    var blurRadius = nonNegativeValue(shadowToken.value.radius.measure);
-    var offsetX = shadowToken.value.x.measure;
-    var offsetY = shadowToken.value.y.measure;
-    var spreadRadius = shadowToken.value.spread.measure;
-  
-    if (scalingParamSum != null) {
-      var biggestOffset = Math.max(Math.abs(offsetX), Math.abs(offsetY));
-      var allParamsSum = Math.max(nonNegativeValue(blurRadius) + Math.max(spreadRadius, 0) + biggestOffset, 1);
-  
-      blurRadius = blurRadius * scalingParamSum / allParamsSum;
-      offsetX = offsetX * scalingParamSum / allParamsSum;
-      offsetY = offsetY * scalingParamSum / allParamsSum;
-      spreadRadius = spreadRadius * scalingParamSum / allParamsSum;
-    }
-  
-    return `${shadowToken.value.type === "Inner" ? "inset " : ""}${getValueWithCorrectUnit(offsetX)} ${getValueWithCorrectUnit(offsetY)} ${getValueWithCorrectUnit(blurRadius)} ${getValueWithCorrectUnit(spreadRadius)} ${getFormattedColor(shadowToken.value.color, true)}`
-}
+export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: boolean = false, customOpacity: MeasureTokenValue | null = null): string {
+  // Use custom opacity if provided, otherwise use color value's opacity
+  const opacity = customOpacity?.measure ?? colorValue.opacity.measure;
 
-export function getFormattedColor(colorValue: {r: number, g: number, b: number, a: number}, forceRgbFormat: boolean = false): string {
-
-  if (colorValue.a === 0 || colorValue.a === 255) {
+  if (opacity === 1) {
     if (forceRgbFormat) {
-      return `rgb(${colorValue.r},${colorValue.g},${colorValue.b})`
+      return `rgb(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b})`
     } else {
       // return as hex by default
-      return rgbToHex(colorValue.r, colorValue.g, colorValue.b)
+      return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    const opacity = Math.round((colorValue.a/255) * 100) / 100;
-    return `rgba(${colorValue.r},${colorValue.g},${colorValue.b},${opacity})`
-  } 
+    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${Number(opacity.toFixed(2))})`
+  }
 }
 
 function rgbToHex(r: number, g: number, b:number) {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
+/** Convert token value to 6-digit hex, or 8-hex when there is lower opacity */
+export function tokenValueToHex(tokenValue: ColorTokenValue) {
+  // Handle undefined/invalid token value
+  if (!tokenValue || !tokenValue.color) {
+    return '';
+  }
+
+  const { r, g, b } = tokenValue.color;
+  const opacity = tokenValue.opacity?.measure;
+
+  // Convert RGB to 6-digit hex
+  const hex = rgbToHex(r, g, b).toLowerCase();
+
+  // If opacity is 1 or undefined, return 6-digit hex
+  if (opacity === 1) {
+    return hex;
+  }
+
+  // Convert opacity to 2-digit hex and append to create 8-digit hex
+  const alphaHex = Math.round(opacity * 255).toString(16).padStart(2, '0');
+  return `${hex}${alphaHex}`;
+}
+
 
 /** Describe complex shadow token */
 export function typographyDescription(typographyToken: TypographyToken) {
   let value = typographyToken.value
-  let fontName = `${value.font.family} ${value.font.subfamily}`
+  let fontName = `${value.fontFamily.text} ${value.fontWeight.text}`
   let fontValue = `${value.fontSize.measure}${measureTypeIntoReadableUnit(value.fontSize.unit)}`
-  let lineHeightValue = value. lineHeight? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
+  let lineHeightValue = value.lineHeight?.measure ? `/${value.lineHeight.measure}${measureTypeIntoReadableUnit(value.lineHeight.unit)}` : '';
   let textDecoration: string = ""
   let textCase: string = ""
-  if (value.textDecoration !== null && value.textDecoration !== "None") {
-    textDecoration = `, ${value.textDecoration.toLowerCase()}`
+  if (value.textDecoration.value !== null && value.textDecoration.value !== "None") {
+    textDecoration = `, ${value.textDecoration.value.toLowerCase()}`
   }
-  if (value.textCase !== null && value.textCase !== "Original") {
-    textCase = `, ${value.textCase.toLowerCase()}`
+  if (value.textCase.value !== null && value.textCase.value !== "Original") {
+    textCase = `, ${convertTextCaseToTextTransform(value.textCase.value)}`
   }
 
   return `${fontName} ${fontValue}${lineHeightValue}${textDecoration}${textCase}`
 }
 
-function getValueWithCorrectUnit(value: number, unit?: string, forceUnit?: boolean): string {
+function getValueWithPixels(value: number, forceUnit?: boolean): string {
   if (value === 0 && forceUnit !== true) {
     return `${value}`
   } else {
-    // todo: add support for other units (px, rem, em, etc.)
     return `${value}px`
   }
+}
+
+export function measureValueToReadableUnit(value: MeasureTokenValue) {
+  return `${value.measure}${measureTypeIntoReadableUnit(value.unit)}`
 }
 
 function nonNegativeValue(num: number) {
@@ -171,6 +190,7 @@ function nonNegativeValue(num: number) {
 
 /** Convert type to CSS unit */
 export function measureTypeIntoReadableUnit(type: Unit): string {
+
   switch (type) {
     case "Points":
       return "pt"
@@ -190,15 +210,48 @@ export function measureTypeIntoReadableUnit(type: Unit): string {
 }
 
 /** Convert textCase to CSS text transform */
-export function convertTextCaseToTextTransform(textCase: TextCase): string {
+export function convertTextCaseToTextTransform(textCase: TextCase, includeCSSPropertyName: boolean = false): string {
+  let value: string;
+  let property: string;
 
   switch (textCase) {
     case "Upper":
-      return "uppercase"
+      value = "uppercase"
+      property = "text-transform"
+      break
     case "Lower":
-      return "lowercase"
+      value = "lowercase" 
+      property = "text-transform"
+      break
     case "Camel":
-      return "capitalize"
+      value = "capitalize"
+      property = "text-transform"
+      break
+    case "SmallCaps":
+      value = "small-caps"
+      property = "font-variant"
+      break
+    case "Original":
+      value = "none"
+      property = "text-transform"
+      break
+    default:
+      value = "none"
+      property = "text-transform"
+      break
+  }
+
+  return includeCSSPropertyName ? `${property}: ${value}` : value
+}
+
+/** Convert textCase to CSS text transform */
+export function convertTextDecorationToCSS(textDecoration: TextDecoration): string {
+
+  switch (textDecoration) {
+    case "Underline":
+      return "underline"
+    case "Strikethrough":
+      return "line-through"
     default: 
       return "none"
   }
@@ -231,32 +284,102 @@ export function convertSubfamilyToFontWeight(subfamily: string): string {
   }
 }
 
+export function extendFontFamily(fontFamily: string) {
+  return fontFamily.includes(" ")
+    ? `'${fontFamily}', '${fontFamily.replace(" ", "")}', Inter, sans-serif`
+    : `'${fontFamily}', Inter, sans-serif`;
+}
+
 /** Scale token values so they are still okay in smaller previews */
 export function convertTypographyTokenToCSS(typographyToken: TypographyToken, maxFontSize: boolean = false): string {
-  let font = typographyToken.value.font;
-  let fontSize = typographyToken.value.fontSize;
-  let fontSizeMeasure = typographyToken.value.fontSize.measure;
-  let textDecoration = typographyToken.value.textDecoration;
-  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase);
-  let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.font.subfamily);
-  let fontFamily = font.family.includes(" ")
-    ? `'${font.family}', '${font.family.replace(" ", "")}', Inter, sans-serif`
-    : `'${font.family}', Inter, sans-serif`;
 
-  if (maxFontSize === true && fontSize.measure > 24) {
-    fontSizeMeasure = 24;
+  let fontFamily = typographyToken.value.fontFamily.text;
+  let fontSize = normalizeFontSizeCSS(typographyToken.value.fontSize, maxFontSize);
+  let textCase = convertTextCaseToTextTransform(typographyToken.value.textCase.value, true);
+  let fontWeight = convertSubfamilyToFontWeight(typographyToken.value.fontWeight.text);
+  let textDecorationCSS = convertTextDecorationToCSS(typographyToken.value.textDecoration.value);
+  let extendedFontFamily = extendFontFamily(fontFamily);
+
+  return `font-family: ${extendedFontFamily}; font-weight: ${fontWeight}; font-size: ${fontSize}; text-decoration: ${textDecorationCSS}; ${textCase};`
+}
+
+export function normalizeFontSizeCSS(fontSize: MeasureTokenValue, maxFontSize: boolean = false) {
+  let fontSizeMeasure = fontSize.measure;
+  const remBase = 16;
+
+  if (maxFontSize === true) {
+    const actualSize = fontSize.unit === "Rem" ? fontSize.measure * remBase : fontSize.measure;
+    if (actualSize > 24) {
+      fontSizeMeasure = fontSize.unit === "Rem" ? 24/remBase : 24;
+    }
   }
 
-  return `font-family: ${fontFamily}; font-weight: ${fontWeight}; font-size: ${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}; text-decoration: ${textDecoration.toLowerCase()}; text-transform: ${textCase};`
+  return `${fontSizeMeasure}${measureTypeIntoReadableUnit(fontSize.unit)}`;
 }
 
 /** Get color value from settings option */
-export function getColorValueFromSettings(value: string | null, alias: any): string | null {
+export function getColorValueFromSettings(value: string | null, alias: ColorToken | null): string | null {
   if (value !== null) {
     return value;
   } else if (alias !== null) {
-      return `#${alias.value.hex}`;
+      return `${tokenValueToHex(alias.value)}`;
   } else {
     return null;
   }
+}
+
+/*
+Return themedToken if non-empty, otherwise return token value 
+*/
+export function safeToken(themedToken: Token[], token: Token) {
+  return themedToken[0] ?? token
+}
+
+
+/*
+ Return CSS value for border style
+*/
+export function getBorderStyleValue(borderStyle: BorderStyle): string {
+  return borderStyle?.toLowerCase() ?? "solid"
+}
+
+/** Check if the token is in part of dimension token group */
+export function isDimensionToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "BorderRadius" ||
+    tokenType === "BorderWidth" ||
+    tokenType === "Dimension" || // Generic dimension in product
+    tokenType === "Duration" ||
+    tokenType === "FontSize" ||
+    tokenType === "LetterSpacing" ||
+    tokenType === "LineHeight" ||
+    tokenType === "Opacity" ||
+    tokenType === "ParagraphSpacing" ||
+    tokenType === "Size" ||
+    tokenType === "Space" ||
+    tokenType === "ZIndex"
+  )
+}
+
+/** Check if the token is in part of string token group */
+export function isStringToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "ProductCopy" || 
+    tokenType === "String" || 
+    tokenType === "FontFamily" || 
+    tokenType === "FontWeight"
+  )
+}
+/** Check if the token is in part of string options group */
+export function isOptionsToken(tokenType: TokenType): boolean {
+  return (
+    tokenType === "TextDecoration" ||
+    tokenType === "TextCase" ||
+    tokenType === "Visibility"
+  )
+}
+
+/* Converts decimal opacity to percentage */
+export function decimalOpacityToPercentage(token: MeasureTokenValue): string {
+  return `${Math.round(token.measure * 100)}%`
 }

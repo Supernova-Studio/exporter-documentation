@@ -5,27 +5,31 @@
 {[ elseif token.tokenType.equals("Blur") ]}
     {[ switch token.value.type ]}
         {[ case "Background" ]}
-            backdrop-filter: blur({{ token.value.radius.measure }}px)
+            backdrop-filter: blur({{ measureValueToReadableUnit(token.value.radius) }})
         {[ case "Layer" ]}
-            filter: blur({{ token.value.radius.measure }}px)
+            filter: blur({{ measureValueToReadableUnit(token.value.radius) }})
     {[/]}
 {[ elseif token.tokenType.equals("Border") ]}
-    {{ token.value.width.measure }}px solid {{ getFormattedColor(token.value.color) }}
+    {{ measureValueToReadableUnit(token.value.width) }} {{ getBorderStyleValue(token.value.style) }} {{ getFormattedColor(token.value.color) }}
 {[ elseif token.tokenType.equals("Font") ]}
-    {{ token.value.family }} {{ token.value.subfamily }}
+    {{ token.value.fontFamily.text }} {{ token.value.fontWeight.text }}
 {[ elseif token.tokenType.equals("Gradient") ]}
     {{ gradientDescription(token) }}
-{[ elseif token.tokenType.equals("Measure")]}
-    {{ token.value.measure }}{{ measureTypeIntoReadableUnit(token.value.unit) }}
-{[ elseif token.tokenType.equals("Radius")]}
-    {{ token.value.radius.measure }}{{ measureTypeIntoReadableUnit(token.value.radius.unit) }}
 {[ elseif token.tokenType.equals("Shadow")]}
     {{ shadowDescription(token) }}
-{[ elseif token.tokenType.equals("Text")]}
-    {{ token.value.text }}
 {[ elseif token.tokenType.equals("Typography") ]}
     {{ typographyDescription(token)}}
-{[ elseif token.tokenType.equals("GenericToken")]}
+{[ elseif token.tokenType.equals("Opacity") ]}
+    {{ decimalOpacityToPercentage(token.value) }}
+{[ elseif token.tokenType.equals("TextCase")]}
+    {{ convertTextCaseToTextTransform(token.value.value) }}
+{[ elseif (token.tokenType.equals("String") || token.tokenType.equals("ProductCopy"))]}
+    {* no value displayed, the value is part of the preview*}
+{[ elseif isStringToken(token.tokenType)]}
     {{ token.value.text }}
+{[ elseif isOptionsToken(token.tokenType)]}
+    {{ token.value.value }}
+{[ elseif (isDimensionToken(token.tokenType))]}
+    {{ measureValueToReadableUnit(token.value) }}
 {[/]}
 </span>

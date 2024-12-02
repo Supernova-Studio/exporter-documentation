@@ -22,15 +22,44 @@ declare global {
   //
   // Enums
   //
-  type TokenType = "Color" | "Typography" | "Radius" | "Font" | "Measure" | "Shadow" | "Border" | "Gradient" | "Text"
+  type TokenType =
+    | "Color"
+    | "Typography" 
+    | "BorderRadius"
+    | "Font"
+    | "Space"
+    | "Shadow"
+    | "Border"
+    | "Gradient"
+    | "Dimension"
+    | "Duration"
+    | "Size"
+    | "Opacity"
+    | "FontSize"
+    | "LineHeight"
+    | "LetterSpacing"
+    | "ParagraphSpacing"
+    | "BorderWidth"
+    | "ZIndex"
+    | "Image"
+    | "String"
+    | "ProductCopy"
+    | "FontFamily"
+    | "FontWeight"
+    | "TextDecoration"
+    | "TextCase"
+    | "Visibility"
+    | "Blur"
 
   type TokenPropertyType = "Number" | "Boolean" | "String" | "Generic"
 
   type SourceType = "Supernova" | "Figma"
 
-  type TextCase = "Original" | "Upper" | "Lower" | "Camel"
+  type TextCase = "Original" | "Upper" | "Lower" | "Camel" | "SmallCaps"
 
   type TextDecoration = "None" | "Underline" | "Strikethrough"
+
+  type BorderStyle = "Solid" | "Dashed" | "Dotted" | "Groove"
 
   type Unit = "Pixels" | "Points" | "Percent" | "Ems" | "Rem" | "Ms" | "Raw"
 
@@ -78,7 +107,7 @@ declare global {
 
   type ShortcutType = "Internal" | "External"
 
-  type ShadowType = "Inner" | "Outer"
+  type ShadowType = "Drop" | "Inner"
 
   //
   // Data Types
@@ -90,6 +119,10 @@ declare global {
     value: ColorTokenValue
   }
 
+  type TextDecorationToken = Token & {
+    value: TextDecorationValue
+  }
+
   type TypographyToken = Token & {
     value: TypographyTokenValue
   }
@@ -99,8 +132,7 @@ declare global {
   }
 
   type ShadowToken = Token & {
-    value: ShadowTokenValue
-    shadowLayers: Array<ShadowToken> | null
+    value: Array<ShadowTokenValue>
     isVirtual: boolean
   }
 
@@ -113,7 +145,7 @@ declare global {
   }
 
   type GradientToken = Token & {
-    value: GradientTokenValue
+    value: Array<GradientTokenValue>
   }
 
   type TextToken = Token & {
@@ -145,23 +177,52 @@ declare global {
     value: string | number | boolean
   }
 
+  interface RGB {
+    r: number;
+    g: number;
+    b: number;
+  }
+
   type ColorTokenValue = {
-    hex: string
-    r: number
-    g: number
-    b: number
-    a: number
-    referencedToken: ColorToken | null
+    color: {
+      r: number,
+      g: number,
+      b: number
+      referencedTokenId: string | null
+      referencedToken?: ColorToken
+    },
+    opacity: {
+      unit: string,
+      measure: number
+      referencedTokenId: string | null
+      referencedToken?: MeasureToken
+    }
+    referencedTokenId: string | null
+    referencedToken?: ColorToken
+  }
+
+  type TextDecorationValue = {
+    value: TextDecoration
+    referencedTokenId: string | null
+    referencedToken?: TextDecorationToken
+  }
+
+  type TextCaseValue = {
+    value: TextCase
+    referencedTokenId: string | null
+    referencedToken?: TextCaseToken
   }
 
   type TypographyTokenValue = {
-    font: FontTokenValue
+    fontFamily: TextTokenValue
+    fontWeight: TextTokenValue
     fontSize: MeasureTokenValue
-    textDecoration: TextDecoration
-    textCase: TextCase
+    textDecoration: TextDecorationValue
+    textCase: TextCaseValue
     letterSpacing: MeasureTokenValue
     lineHeight: MeasureTokenValue | null
     paragraphIndent: MeasureTokenValue
+    paragraphSpacing: MeasureTokenValue
     referencedToken: TypographyToken | null
   }
 
@@ -176,26 +237,29 @@ declare global {
 
   type ShadowTokenValue = {
     color: ColorTokenValue
-    x: MeasureTokenValue
-    y: MeasureTokenValue
-    radius: MeasureTokenValue
-    spread: MeasureTokenValue
-    opacity: number
+    x: number
+    y: number
+    radius: number
+    spread: number
+    opacity: MeasureTokenValue
     type: ShadowType
-    referencedToken: ShadowToken | null
+    referencedTokenId: string | null
+    referencedToken?: ShadowToken
   }
 
   type MeasureTokenValue = {
     unit: Unit
     measure: number
-    referencedToken: MeasureToken | null
+    referencedTokenId: string | null
+    referencedToken?: MeasureToken
   }
 
-  type FontTokenValue = {
-    family: string
-    subfamily: string
-    referencedToken: FontToken | null
+  type FontFamilyValue = {
+    text: string
+    referencedTokenId: string | null
+    referencedToken?: TextToken
   }
+
 
   type BorderTokenValue = {
     color: ColorTokenValue
@@ -216,17 +280,21 @@ declare global {
     type: GradientType
     aspectRatio: number
     stops: Array<GradientStopValue>
-    referencedToken: GradientToken | null
+    referencedTokenId: string | null
+    referencedToken?: GradientToken
   }
 
   type GradientStopValue = {
     position: number
     color: ColorTokenValue
+    referencedTokenId: string | null
+    referencedToken?: GradientStopToken
   }
 
   type TextTokenValue = {
     text: string
-    referencedToken: TextToken
+    referencedTokenId: string | null
+    referencedToken?: TextToken
   }
 
   //

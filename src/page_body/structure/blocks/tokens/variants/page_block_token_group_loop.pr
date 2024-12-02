@@ -9,17 +9,17 @@
 {[ if ((tokens.count() > 0 && !variant.contains("contrast-grid")) || (variant.contains("contrast-grid") && tokens.count() > 1 )) ]}
     <div class="content-block content-block--token-container">
         {* Show group header consisting of group segments and current group name *}
-        <div class="token-group-header">{{ formattedTokenGroupHeader(group, true) }}</div>
+        {[ let tokenGroupHeader = formattedTokenGroupHeader(group, true) /]}
+        {[ if tokenGroupHeader ]}
+            <div class="token-group-header">{{ tokenGroupHeader }}</div>
+        {[/]}
 
         {[ if (variant === "table" || variant === null) ]}
         {* Default variant – Displaying the list of tokens as a table *}
             <div class="token-table">
                 {* Render all tokens *}
                 {[ for token in tokens ]}
-                    {* Check for "virtual" shadow tokens to not display shadow layers layers as separate tokens *}
-                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
-                     {[/]}    
+                    {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
                 {[/]}
             </div>
         {[ elseif (variant.contains("stack")) ]}
@@ -27,9 +27,7 @@
             <div class="stack{{ getVariantClass(variant) }}">
                 {* Render all tokens *}
                 {[ for token in tokens ]}
-                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
-                    {[/]}    
+                    {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
                 {[/]}
             </div>
         {[ elseif variant.contains("contrast-grid") ]}
@@ -39,9 +37,7 @@
         {* Grid variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
             <div class="grid{{ getVariantClass(variant) }}">
                 {[ for token in tokens ]}
-                    {[ if ((token.tokenType !== "Shadow") || ((token.tokenType === "Shadow") && (token.isVirtual === false))) ]}
-                        {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
-                    {[/]}
+                    {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
                 {[/]}    
             </div>
         {[/]} 

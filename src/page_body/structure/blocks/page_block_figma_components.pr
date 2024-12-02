@@ -64,7 +64,7 @@
 
     {[ if (variant === "canvas") ]}
         <div class="content-block content-block--figma-components figma-components-canvas {{ showChecker ? "checkered-background-light" : ""}} {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}" style="background-color: {{ backgroundColor }}">
-            {[ for componentPreview in componentsPreviews ]}
+            {[ for componentPreview in sortedComponentPreviews ]}
                 <div class="figma-component-image" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
                     {[ if (block.figmaComponentsBlockConfig.showComponentName || block.figmaComponentsBlockConfig.showPropertyList || block.figmaComponentsBlockConfig.showComponentDescription) ]}
                         <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
@@ -103,6 +103,7 @@
                                 </div>
                             '
                             style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}"
+                            class="popover-image-container"
                         >
                             <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
                         </div>
