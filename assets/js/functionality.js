@@ -1,6 +1,29 @@
 /*------------------------
    Content menu tracking
 -------------------------- */
+function navigateToElement(elementOrHash) {
+    // Handle both element and hash string cases
+    const foundElement = typeof elementOrHash === 'string' 
+        ? document.querySelector(elementOrHash)
+        : elementOrHash;
+
+    if (foundElement) {
+        const tabPane = foundElement.closest('.tab-pane');
+        if (tabPane) {
+            const tabPaneId = tabPane.id;
+            const tabsContainer = tabPane.closest('.content-block--tabs');
+            if (tabsContainer) {
+                const tab = tabsContainer.querySelector(`.nav-link[href="#${tabPaneId}"]`);
+                if (tab) {
+                    tab.click();
+                    setTimeout(() => {
+                        foundElement.scrollIntoView({ block: 'start', inline: 'nearest' });
+                    }, 250);
+                }
+            }
+        }
+    }
+}
 
 $(document).ready(function () {
     // Setting the observer to set the scroll state of main navigation on the left
@@ -14,6 +37,17 @@ $(document).ready(function () {
             false
         );
     });
+
+    // add event listend for all clics to links, so we can scroll to the heading if it is part of a tab
+    document.querySelectorAll('a[href*="#section"]:not(.copy-anchor)').forEach(link => {
+        link.addEventListener('click', function() {
+            const href = this.getAttribute('href');
+            const hash = href.split('#')[1];
+            const foundElement = document.querySelector(`[id='${hash}']`);
+            navigateToElement(foundElement);
+        });
+    });
+
 
     $('.nav-tabs-container').each(function() {
         var $container = $(this);
@@ -58,22 +92,12 @@ $(document).ready(function () {
       });
 })
 
+// Handle initial page load with hash
 $(window).on('load', function() {
-    let sections = [];
-
-    // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
     if (window.location.hash) {
         setTimeout(() => {
-            const foundElement = document.querySelector(window.location.hash);
-            if (foundElement && !isElementInViewport(foundElement) && window.getComputedStyle) {
-                let style = window.getComputedStyle(foundElement);
-                let height = ["height", "margin-top", "margin-bottom"]
-                    .map((key) => parseInt(style.getPropertyValue(key), 10))
-                    .reduce((prev, cur) => prev + cur);
-
-                $(document).scrollTop(foundElement.offsetTop - height);
-            }
-        }, 250)
+            navigateToElement(window.location.hash);
+        }, 250);
     }
 
     // Add preview banner in case the page is loaded in preview mode

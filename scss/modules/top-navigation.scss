@@ -217,8 +217,8 @@ a.site-logo {
   flex-grow: 1;
   height: var(--topNavHeight);
   align-items: center;
-  scrollbar-color: var(--topNavInk) transparent;
-  scrollbar-width: thin;
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
 
   &::-webkit-scrollbar {
     width: 4px;
