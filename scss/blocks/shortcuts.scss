@@ -43,6 +43,7 @@
     transition: var(--transitionDefault);
     background: var(--shortcutBackground);
     padding: var(--shortcutPadding);
+    text-decoration: none !important;
 
     &:hover {
       box-shadow: var(--shortcutBoxShadowHover);

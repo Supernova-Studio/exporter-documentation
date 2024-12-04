@@ -384,6 +384,14 @@ ol>.block-children {
     max-width: var(--contentMaxWidth);
     width: calc(100% - 240px); /* removing the width of the table of contents */
     margin-bottom: 100px;
+
+    a {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 @media (max-width: 1169px) {
