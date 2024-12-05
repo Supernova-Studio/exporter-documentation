@@ -2,6 +2,7 @@
 {[ const token = context.token /]}
 {[ const block = context.block /]}
 
+{[ if token ]}
 {[ if token.tokenType.equals("Color") ]}
     <div class="stack-item is-color">
         {[ if (block.swatches && block.swatches.length > 0) ]}
@@ -27,4 +28,5 @@
     <div class="stack-item fallback">
         {[ inject "page_block_token_preview_stack" context ({"token": token, "themes": [] })  /]}
     </div>
+{[/]}
 {[/]}

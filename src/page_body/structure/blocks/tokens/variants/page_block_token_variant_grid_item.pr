@@ -2,6 +2,7 @@
 {[ const token = context.token /]}
 {[ const block = context.block /]}
 
+{[ if token ]}
 <div class="token-grid--item">
   {* Render large tile preview *}
     {[ if (block.swatches && (block.swatches.length > 0)) ]}
@@ -31,3 +32,4 @@
   {[ inject "page_block_token_properties" context ({"token": token, "block": block})  /]}
 
 </div>
+{[/]}

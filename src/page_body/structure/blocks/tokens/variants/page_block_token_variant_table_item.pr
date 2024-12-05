@@ -1,5 +1,7 @@
 {[ const token = context.token /]}
 {[ const block = context.block /]}
+
+{[ if token ]}
 <div class="item">
     <div class="basic-info">
         {[ if (block.swatches) ]}
@@ -8,7 +10,7 @@
                     {[ for swatch in block.swatches ]}
                         {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                         {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
-                       
+                    
                         <div class="preview">
                             {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes})  /]}
                             {[ inject "page_block_token_value" context themedToken[0] /]}       
@@ -41,3 +43,4 @@
     </div>
     {[ inject "page_block_token_properties" context ({"token": token, "block": block})  /]}
 </div>
+{[/]}
