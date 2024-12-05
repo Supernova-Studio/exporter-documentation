@@ -47,6 +47,7 @@
   color: var(--colorInkPrimary);
   min-height: 40px;
   height: auto;
+  text-decoration: none !important;
 
   span {
     display: flex;
@@ -173,6 +174,7 @@
   margin-bottom: 2px;
   border-radius: var(--borderRadiusDefault) 0px 0px var(--borderRadiusDefault);
   transition: var(--transitionDefault);
+  text-decoration: none !important;
 }
 
 .nav-pills .nav-link.active,
@@ -211,7 +213,7 @@
 }
 
 .accordion a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .accordion-header {

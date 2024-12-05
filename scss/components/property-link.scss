@@ -7,7 +7,7 @@ a.property-link {
     text-decoration: underline;
     font-weight: var(--fontWeightSemibold);
     font-size: var(--fontSizeSmall);
-    text-decoration: none;
+    text-decoration: none !important;
     display: inline-flex;
     gap: 4px;
     align-items: center;

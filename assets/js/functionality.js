@@ -1,6 +1,44 @@
 /*------------------------
    Content menu tracking
 -------------------------- */
+/**
+ * Navigates to a specific element on the page, handling elements within tabs
+ * @param {(string|HTMLElement)} elementOrHash - Either a hash string (e.g. "#section1") or DOM element to navigate to
+ */
+function navigateToElement(elementOrHash) {
+    // Handle both element and hash string cases by converting hash to element if needed
+    const foundElement = typeof elementOrHash === 'string' 
+        ? document.querySelector(elementOrHash)
+        : elementOrHash;
+
+    if (foundElement) {
+        // Check if element is inside a tab pane
+        const tabPane = foundElement.closest('.tab-pane');
+        if (tabPane) {
+            const tabPaneId = tabPane.id;
+            // Find the tabs container that contains this tab pane
+            const tabsContainer = tabPane.closest('.content-block--tabs');
+            if (tabsContainer) {
+                // Find the tab that controls this tab pane — for both classical tabs and accordions
+                const tab = tabsContainer.querySelector(`.nav-link[href="#${tabPaneId}"]`) || 
+                           tabsContainer.querySelector(`a[data-target="#${tabPaneId}"]`);
+                
+                if (tab) {
+                    // If tab pane is hidden, click the tab to show it
+                    if (!tabPane.classList.contains('show')) {
+                        tab.click();
+                    }
+                    
+                    // Wait for tab transition to complete before scrolling
+                    // tab transition takes 150ms, we wait a bit longer to be safe
+                    setTimeout(() => {
+                        foundElement.scrollIntoView({ block: 'start', inline: 'nearest' });
+                    }, 250);
+                }
+            }
+        }
+    }
+}
 
 $(document).ready(function () {
     // Setting the observer to set the scroll state of main navigation on the left
@@ -14,6 +52,17 @@ $(document).ready(function () {
             false
         );
     });
+
+    // add event listend for all clics to links, so we can scroll to the heading if it is part of a tab
+    document.querySelectorAll('a[href*="#section"]:not(.copy-anchor)').forEach(link => {
+        link.addEventListener('click', function() {
+            const href = this.getAttribute('href');
+            const hash = href.split('#')[1];
+            const foundElement = document.querySelector(`[id='${hash}']`);
+            navigateToElement(foundElement);
+        });
+    });
+
 
     $('.nav-tabs-container').each(function() {
         var $container = $(this);
@@ -58,22 +107,14 @@ $(document).ready(function () {
       });
 })
 
+// Handle initial page load with hash
 $(window).on('load', function() {
     let sections = [];
 
-    // ENG-1151: Browser should by default scroll to the anchor when the page is loaded, but in some cases it doesn't
     if (window.location.hash) {
         setTimeout(() => {
-            const foundElement = document.querySelector(window.location.hash);
-            if (foundElement && !isElementInViewport(foundElement) && window.getComputedStyle) {
-                let style = window.getComputedStyle(foundElement);
-                let height = ["height", "margin-top", "margin-bottom"]
-                    .map((key) => parseInt(style.getPropertyValue(key), 10))
-                    .reduce((prev, cur) => prev + cur);
-
-                $(document).scrollTop(foundElement.offsetTop - height);
-            }
-        }, 250)
+            navigateToElement(window.location.hash);
+        }, 250);
     }
 
     // Add preview banner in case the page is loaded in preview mode
