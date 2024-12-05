@@ -1,21 +1,36 @@
 /*------------------------
    Content menu tracking
 -------------------------- */
+/**
+ * Navigates to a specific element on the page, handling elements within tabs
+ * @param {(string|HTMLElement)} elementOrHash - Either a hash string (e.g. "#section1") or DOM element to navigate to
+ */
 function navigateToElement(elementOrHash) {
-    // Handle both element and hash string cases
+    // Handle both element and hash string cases by converting hash to element if needed
     const foundElement = typeof elementOrHash === 'string' 
         ? document.querySelector(elementOrHash)
         : elementOrHash;
 
     if (foundElement) {
+        // Check if element is inside a tab pane
         const tabPane = foundElement.closest('.tab-pane');
         if (tabPane) {
             const tabPaneId = tabPane.id;
+            // Find the tabs container that contains this tab pane
             const tabsContainer = tabPane.closest('.content-block--tabs');
             if (tabsContainer) {
-                const tab = tabsContainer.querySelector(`.nav-link[href="#${tabPaneId}"]`);
+                // Find the tab that controls this tab pane — for both classical tabs and accordions
+                const tab = tabsContainer.querySelector(`.nav-link[href="#${tabPaneId}"]`) || 
+                           tabsContainer.querySelector(`a[data-target="#${tabPaneId}"]`);
+                
                 if (tab) {
-                    tab.click();
+                    // If tab pane is hidden, click the tab to show it
+                    if (!tabPane.classList.contains('show')) {
+                        tab.click();
+                    }
+                    
+                    // Wait for tab transition to complete before scrolling
+                    // tab transition takes 150ms, we wait a bit longer to be safe
                     setTimeout(() => {
                         foundElement.scrollIntoView({ block: 'start', inline: 'nearest' });
                     }, 250);
@@ -94,6 +109,8 @@ $(document).ready(function () {
 
 // Handle initial page load with hash
 $(window).on('load', function() {
+    let sections = [];
+
     if (window.location.hash) {
         setTimeout(() => {
             navigateToElement(window.location.hash);

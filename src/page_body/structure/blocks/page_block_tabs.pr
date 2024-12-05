@@ -52,7 +52,7 @@
           </div>
         </a>
 
-        <div id="collapse-{{ id }}" class="collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
+        <div id="collapse-{{ id }}" class="tab-pane collapse {{ index === "0" ? "show" : "" }}" aria-labelledby="{{ id }}" data-parent="#{{ blockId }}">
           <div class="accordion-body">
           {[ for child in tab.children ]}
               {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
