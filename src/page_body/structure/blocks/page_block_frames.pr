@@ -1,5 +1,4 @@
 {[ let block = context /]}
-
 {[ let variant = block.variantKey /]}
 
 {* Configure tile to show natural height if needed *}
