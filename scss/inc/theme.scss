@@ -35,9 +35,9 @@
   --fontFamily: Inter, Arial, sans-serif;
   --fontFamilyCode: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   --headingFontFamily: var(--fontFamily);
-  --borderRadiusSmall: 2px;
-  --borderRadiusDefault: 4px;
-  --borderRadiusLarge: 6px;
+  --borderRadiusSmall: 4px;
+  --borderRadiusDefault: 6px;
+  --borderRadiusLarge: 8px;
   --navItemBorderRadius: var(--borderRadiusDefault);
   --transitionDefault: 200ms all ease-in-out;
   --boxShadowLevel0: 0px 0px 0px 1px var(--colorBorderSubtle);
@@ -69,7 +69,7 @@
   /* for page structure */
   --colorBorderStructure: var(--colorBorderSubtle);
   /* links, active states, ... */
-  --colorAccent: #0f62fe;
+  --colorAccent: #104fc6;
   /* hovers for primary */
   --colorAccentAlt: #0043ce;
   /* Background for active items, e.g. in left nav or tabs */

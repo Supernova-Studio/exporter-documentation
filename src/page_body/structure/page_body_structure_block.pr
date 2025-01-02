@@ -63,9 +63,7 @@
     {[ case "ComponentAssets" ]}
         {[ inject "page_block_assets" context block /]}
     {[ case "ComponentAssetGroup" ]}
-        {[ log block /]}
-        {[ log block.assetGroupId /]}
-    
+        {[ inject "page_block_assets" context block /]}
     {[ case "Tabs" ]}
         {[ inject "page_block_tabs" context {"block": block, "pageId": pageId} /]}
         {* 

@@ -1,9 +1,11 @@
-{[ const frame = context /]}
+{[ const frame = context.frame /]}
+{[ const assetId = context.assetId /]}
+{[ const blockSettings = context.blockSettings /]}
 {[ let configuration = exportConfiguration() /]}
 {[ let defaultBackgroundStyle = configuration.blockConfigAssetsDefaultBackground /]}
 
 {* Get the asset *}
-{[ let asset = ds.assetById(frame.assetId) /]}
+{[ let asset = ds.assetById(assetId) /]}
 
 {* Only render asset if it actually exists *}
 {[ if asset ]}
@@ -12,8 +14,9 @@
     {[ let backgroundColor = "transparent" /]}
     {[ let showChecker = true /]}
     {[ let showBorder = true /]}
+    {[ let showDescription = true /]}
     {[ let invertedTextClass = false /]}
-    {[ if (frame.backgroundColor && frame.backgroundColor.value) ]}
+    {[ if (frame && frame.backgroundColor && frame.backgroundColor.value) ]}
         {* Only raw values are currently supported, tokens soon *}
         {[ backgroundColor = frame.backgroundColor.value /]}
         {[ showChecker = false /]}
@@ -23,8 +26,8 @@
         {[ invertedTextClass = getClassForInvertedText(backgroundColor) /]}
     {[/]}
 
-    {[ let title = (frame.title ? frame.title : asset.name) /]}
-    {[ let description = (frame.description ? frame.description : asset.description) /]}
+    {[ let title = (frame &&frame.title ? frame.title : asset.name) /]}
+    {[ let description = (frame && frame.description ? frame.description : asset.description) /]}
 
     {[ let checkeredClass = "" /]}
     {[ if (defaultBackgroundStyle === "Subtle checkered background") ]}
@@ -32,6 +35,10 @@
     {[/]}
     {[ if (defaultBackgroundStyle === "Prominent checkered background") ]}
         {[ checkeredClass = " checkered-background" /]}
+    {[/]}
+
+    {[ if (blockSettings) ]}
+        {[ showDescription = blockSettings.showAssetDescription /]}
     {[/]}
 
     {[ let assetImagePath = asset.svgUrl /]}
@@ -73,7 +80,7 @@
             {[ if title ]}
                 <p class="title">{{ withHTMLNewlines(title) }}</p>
             {[/]}
-            {[ if description ]}
+            {[ if (showDescription && description) ]}
                 <p class="description">{{ withHTMLNewlines(description) }}</p>    
             {[/]}
             </div>

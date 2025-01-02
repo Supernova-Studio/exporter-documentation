@@ -1,6 +1,6 @@
 {[ let block = context /]}
 {[ let variant = block.variantKey /]}
-{[ let displaySearch = (block.assets.length > 15) /]}
+{[ let displaySearch = ((block.assetBlockConfig && block.assetBlockConfig.showSearch)) /]}
 {[ let configuration = exportConfiguration() /]}
 
 {* Configure tile to show natural height if needed *}
@@ -18,11 +18,15 @@
     </div>
   {[/]}
   <div id="list-{{ block.id }}">
-    <div class="grid {{ (block.properties && block.properties.layout) ? block.properties.layout.lowercased() : "c4" }}">
-      {[ for asset in block.assets ]}
-        {[ inject "page_block_asset" context asset /]}
+      {[ if (block.type === "ComponentAssets") ]}
+      <div class="grid {{ getAssetBlockColumnsClassname(block.numberOfColumns, block.properties.layout) }}">
+          {[ for asset in block.assets ]}
+            {[ inject "page_block_asset" context ({"frame": asset, "assetId": asset.assetId, "blockSettings": block.assetBlockConfig }) /]}
+          {[/]}
+      </div>
+      {[ elseif (block.type === "ComponentAssetGroup") ]}
+          {[ inject "page_block_asset_group" context ({"block": block, "assetGroupId": block.assetGroupId }) /]}
       {[/]}
-    </div>
     {[ if displaySearch ]}
     <div class="empty-state">No results found for your search.</div>
     {[/]}

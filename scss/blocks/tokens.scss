@@ -165,9 +165,10 @@
 /* Token Headers */
 
 .token-group-header {
-  color: var(--colorInkPrimary);
-  font-size: 1rem;
+  color: var(--colorInkSecondary);
+  font-size: var(--fontSizeSmall);
   font-weight: var(--fontWeightSemibold);
+  margin: 0 0 8px 0;
 }
 
 .token-group-header span.light {

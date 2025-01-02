@@ -350,8 +350,8 @@ b, strong {
   transition: var(--transitionDefault);
   padding: 0;
   border-radius: var(--sideNavItemBorderRadius);
+  margin-top: 1px;
   
-
   &.is-tab a {
     color: var(--sideNavInkTab);
   }
