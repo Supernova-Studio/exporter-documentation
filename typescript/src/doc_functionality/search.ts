@@ -64,7 +64,8 @@ export function buildSearchIndexJSON(pages: Array<DocumentationPage>, groups: Ar
     // Extract rich text from headers and any text piece there is
     let allBlocks = flattenedBlocksOfPage(page)
     for (let block of allBlocks) {
-      if (block.hasOwnProperty("text")) {
+      // We only hide content from the private pages
+      if (block.hasOwnProperty("text") && !page.configuration.isPrivate) {
         let textBlock = block as DocumentationPageBlockText
 
         data.push({
