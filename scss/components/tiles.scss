@@ -3,7 +3,6 @@
 /*  - used for: Assets, Frames, token grids
 /* =================================== */
 .layout-tiles {
-
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,6 +33,8 @@
         border: 1px solid var(--colorBorderSubtle);
         padding: 12px;
         position: relative;
+        height: var(--preview-container-height, 96px);
+        min-height: 48px;
 
         &.borderless {
           border: 0;
@@ -51,9 +52,9 @@
       }
     }
 
-    &.c6, 
-    &.c7,
-    &.c8 {
+    &.grid-6, 
+    &.grid-7,
+    &.grid-8 {
       .btn-with-icon {
         padding: 4px;
 
@@ -358,7 +359,6 @@
 
   div.preview {
     width: 100%;
-    height: 90px;
   }
 }
 
@@ -373,7 +373,6 @@
 
   div.preview {
     width: 100%;
-    height: 105px;
   }
 }
 
@@ -382,7 +381,6 @@
 
   div.preview {
     width: 100%;
-    height: 120px;
   }
 }
 
@@ -392,7 +390,6 @@
 
   div.preview {
     width: 100%;
-    height: 140px;
     padding: 16px;
   }
 }
@@ -402,7 +399,6 @@
 
   div.preview {
     width: 100%;
-    height: 178px;
   }
 
   &.shortcuts div.preview {
@@ -416,7 +412,6 @@
 
   div.preview {
     width: 100%;
-    height: 240px;
     padding: 20px;
   }
 }
@@ -426,7 +421,6 @@
 
   div.preview {
     width: 100%;
-    height: 350px;
     padding: 20px;
   }
 }
@@ -438,7 +432,6 @@
 
   div.preview {
     width: 100%;
-    height: 320px;
     padding: 20px;
   }
 }
@@ -451,7 +444,6 @@
 
   div.preview {
     width: 100%;
-    height: 320px;
     padding: 20px;
   }
 }

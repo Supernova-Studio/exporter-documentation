@@ -5,7 +5,7 @@
 {[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
 
 {* Render tile per rendered frame *}
-<div class="content-block content-block--frames layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : " with-subgrid" }}">
+<div class="content-block content-block--frames layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}" {[ if (block.properties.previewContainerHeight) ]}style="--preview-container-height: {{ block.properties.previewContainerHeight }}px;" {[/]}>
   <div class="grid {{ getAssetBlockColumnsClassname(block.numberOfColumns, block.properties.layout) }}">
     {[ for frame in block.frames ]}
      {[ inject "page_block_frame" context { "frame": frame, "showTitles": block.properties.showTitles } /]}
