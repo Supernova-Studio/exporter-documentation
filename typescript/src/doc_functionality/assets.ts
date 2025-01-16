@@ -12,6 +12,6 @@ export function getAssetBlockColumnsClassname(columns: number, legacyLayout: str
 }
 
 // Sort assets by name alphabetically
-export function sortAssetsByName(assets: any[]) {
+export function sortAssetsByName(assets: Array<{ name: string }>) {
     return assets.sort((a, b) => a.name.localeCompare(b.name));
 }

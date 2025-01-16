@@ -26,7 +26,7 @@
         {[ invertedTextClass = getClassForInvertedText(backgroundColor) /]}
     {[/]}
 
-    {[ let title = (frame &&frame.title ? frame.title : asset.name) /]}
+    {[ let title = (frame && frame.title ? frame.title : asset.name) /]}
     {[ let description = (frame && frame.description ? frame.description : asset.description) /]}
 
     {[ let checkeredClass = "" /]}
