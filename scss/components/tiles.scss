@@ -84,6 +84,12 @@
       position: relative;
 			background: var(--colorBackgroundPrimary);
 
+      &.asset-item {
+        div.preview {
+          background-color: var(--asset-background-color, "transparent");
+        }
+      }
+
 			div.preview.small-text {
 				font-size: 11px;
 			}
@@ -308,7 +314,7 @@
         }
 
         .preview {
-          height: auto;
+          height: var(--preview-container-height, auto);
           border: 0;
         }
 

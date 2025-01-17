@@ -11,11 +11,12 @@
 {[ if asset ]}
     {* Decide on properties *}
     {* todo: this needs proper refactoring and background resolution *}
-    {[ let backgroundColor = "transparent" /]}
+    {[ let backgroundColor = false /]}
     {[ let showChecker = true /]}
     {[ let showBorder = true /]}
     {[ let showDescription = true /]}
     {[ let invertedTextClass = false /]}
+
     {[ if (frame && frame.backgroundColor && frame.backgroundColor.value) ]}
         {* Only raw values are currently supported, tokens soon *}
         {[ backgroundColor = frame.backgroundColor.value /]}
@@ -53,7 +54,7 @@
 
     {* Render the asset *}
     <div class="tile-item asset-item{{ invertedTextClass ? (" " + invertedTextClass) : "" }}" data-keywords="{{ normalizeStringForSearch(title) }} {{ normalizeStringForSearch(description) }}">      
-        <div class="preview frame{{ showChecker ? checkeredClass : ""}}{{ !showBorder ? " borderless" : ""}}" style="background-color: {{ backgroundColor }}">
+        <div class="preview frame{{ showChecker ? checkeredClass : ""}}{{ !showBorder ? " borderless" : ""}}" {[ if backgroundColor ]}style="--asset-background-color: {{ backgroundColor }}"{[/]}>
         {[ if asset.thumbnailUrl ]}
             <img src="{{ assetImagePath }}" alt="{{ title }}" height="{{ asset.origin.height }}" class="asset-source" width="{{ asset.origin.width }}" loading="lazy" crossorigin="anonymous" />
         {[/]}            

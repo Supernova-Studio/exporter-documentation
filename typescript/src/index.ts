@@ -15,7 +15,7 @@ import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pag
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
 import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
 import { getThemesTooltip } from "./doc_functionality/themes"
-import { getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
+import { getDynamicVariableForStyle, getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -128,3 +128,4 @@ Pulsar.registerFunction("sortComponentsPreviews", sortComponentsPreviews)
 /* Assets */
 Pulsar.registerFunction("getAssetBlockColumnsClassname", getAssetBlockColumnsClassname)
 Pulsar.registerFunction("sortAssetsByName", sortAssetsByName)
+Pulsar.registerFunction("getDynamicVariableForStyle", getDynamicVariableForStyle)

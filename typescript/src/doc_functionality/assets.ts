@@ -15,3 +15,8 @@ export function getAssetBlockColumnsClassname(columns: number, legacyLayout: str
 export function sortAssetsByName(assets: Array<{ name: string }>) {
     return assets.sort((a, b) => a.name.localeCompare(b.name));
 }
+
+// Get the CSS variable override for the style
+export function getDynamicVariableForStyle(variableName: string, value: string, unit: string = "") {
+    return `${variableName}: ${value}${unit};`;
+}

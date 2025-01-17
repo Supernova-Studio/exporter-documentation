@@ -5,8 +5,19 @@
 
 {[ const sortedAssets = sortAssetsByName(assetsInGroup) /]}
 
+{[ let backgroundColorStyle = "" /]}
+{[ let previewContainerHeightStyle = "" /]}
+
+{[ if block.properties.backgroundColor ]}
+    {[ backgroundColorStyle = getDynamicVariableForStyle("--asset-background-color", block.properties.backgroundColor.value) /]}
+{[/]}
+
+{[ if block.properties.previewContainerHeight ]}
+    {[ previewContainerHeightStyle = getDynamicVariableForStyle("--preview-container-height", block.properties.previewContainerHeight, "px") /]}
+{[/]}   
+
 {[ if assetsInGroup.length > 0 ]}
-<div class="grid {{ getAssetBlockColumnsClassname(block.numberOfColumns, block.properties.layout) }}">
+<div class="grid {{ getAssetBlockColumnsClassname(block.numberOfColumns, block.properties.layout) }}" {[ if (backgroundColorStyle || previewContainerHeightStyle) ]}style="{{ backgroundColorStyle }}{{ previewContainerHeightStyle }}"{[/]}>
     {[ if block.showNestedGroups ]}
         <div class="group-title"> {{ formattedTokenGroupHeader(assetGroup, true) }}</div>
     {[/]}
