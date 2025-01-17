@@ -1,0 +1,35 @@
+{[ const block = context.block /]}
+{[ const assetGroupId = context.assetGroupId /]}
+{[ const assetsInGroup = ds.assetsByGroupId(assetGroupId) /]}
+{[ const assetGroup = ds.assetGroupById(assetGroupId) /]}
+
+{[ const sortedAssets = sortAssetsByName(assetsInGroup) /]}
+
+{[ let backgroundColorStyle = "" /]}
+{[ let previewContainerHeightStyle = "" /]}
+
+{[ if block.properties.backgroundColor ]}
+    {[ backgroundColorStyle = getDynamicVariableForStyle("--asset-background-color", block.properties.backgroundColor.value) /]}
+{[/]}
+
+{[ if block.properties.previewContainerHeight ]}
+    {[ previewContainerHeightStyle = getDynamicVariableForStyle("--preview-container-height", block.properties.previewContainerHeight, "px") /]}
+{[/]}   
+
+{[ if assetsInGroup.length > 0 ]}
+<div class="grid {{ getAssetBlockColumnsClassname(block.numberOfColumns, block.properties.layout) }}" {[ if (backgroundColorStyle || previewContainerHeightStyle) ]}style="{{ backgroundColorStyle }}{{ previewContainerHeightStyle }}"{[/]}>
+    {[ if block.showNestedGroups ]}
+        <div class="group-title"> {{ formattedTokenGroupHeader(assetGroup, true) }}</div>
+    {[/]}
+    {[ for asset in sortedAssets ]}
+        {[ inject "page_block_asset" context ({"assetId": asset.id, "blockSettings": block.assetBlockConfig }) /]}
+    {[/]}
+</div>
+{[/]}
+
+{* Render nested groups, if enabled *}
+{[ if block.showNestedGroups ]}
+    {[ for subgroup in assetGroup.subgroups ]}
+        {[ inject "page_block_asset_group" context ({"block": block, "assetGroupId": subgroup.id }) /]}
+    {[/]}
+{[/]}

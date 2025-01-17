@@ -3,12 +3,20 @@
 /*  - used for: Assets, Frames, token grids
 /* =================================== */
 .layout-tiles {
-
   .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 12px;
     grid-row-gap: 20px;
+
+    .group-title {
+      grid-column: 1 / -1;
+      font-size: var(--fontSizeSmall);
+      font-weight: var(--fontWeightSemibold);
+      color: var(--colorInkSecondary);
+      padding: 12px 0 0;
+      margin: 0 0 -12px 0; /* offset the grid gap */
+    }
 
     > div,
     > a > div {
@@ -25,6 +33,8 @@
         border: 1px solid var(--colorBorderSubtle);
         padding: 12px;
         position: relative;
+        height: var(--preview-container-height, 96px);
+        min-height: 48px;
 
         &.borderless {
           border: 0;
@@ -42,9 +52,9 @@
       }
     }
 
-    &.c6, 
-    &.c7,
-    &.c8 {
+    &.grid-6, 
+    &.grid-7,
+    &.grid-8 {
       .btn-with-icon {
         padding: 4px;
 
@@ -73,6 +83,12 @@
 			padding-bottom: 4px;
       position: relative;
 			background: var(--colorBackgroundPrimary);
+
+      &.asset-item {
+        div.preview {
+          background-color: var(--asset-background-color, "transparent");
+        }
+      }
 
 			div.preview.small-text {
 				font-size: 11px;
@@ -217,6 +233,10 @@
       gap: 1px;
       padding: 1px;
 
+      .group-title {
+        margin: 0 0 8px 0;
+      }
+
       .tile-item {
           outline: 1px solid var(--colorBorderSubtle);
           border-radius: 0;
@@ -248,7 +268,12 @@
               overflow: hidden;
             }
 
-            .description { display: none; }
+            .description { 
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1; 
+            }
           }
 
           &.inverted-text {
@@ -279,33 +304,38 @@
 */
 .layout-tiles.variant-borderless-grid {
   .grid {
-      .tile-item {
-        padding-bottom: 12px;
-        padding: 12px 4px 24px;
-        justify-items: center; 
+    .tile-item {
+      padding-bottom: 12px;
+      padding: 12px 4px 24px;
+      justify-items: center; 
 
-          &.asset-item:hover {
-            background: var(--colorBackgroundSecondary);
+        &.asset-item:hover {
+          background: var(--colorBackgroundSecondary);
+        }
+
+        .preview {
+          height: var(--preview-container-height, auto);
+          border: 0;
+        }
+
+        .meta {
+          align-items: center;
+          padding-top: 8px;
+
+          .title {
+            color: var(--colorInkSecondary);
+            font-size: var(--fontSizeTiny);
+            text-align: center;
           }
 
-          .preview {
-            height: auto;
-            border: 0;
+          .description { 
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1; 
           }
-
-          .meta {
-            align-items: center;
-            padding-top: 8px;
-
-            .title {
-              color: var(--colorInkSecondary);
-              font-size: var(--fontSizeTiny);
-              text-align: center;
-            }
-
-            .description { display: none; }
-          }
-      }
+        }
+    }
   }
 }
 
@@ -320,7 +350,7 @@
   height: auto;
 }
 
-.layout-tiles .grid.c8 {
+.layout-tiles .grid.grid-8 {
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 4px;
   grid-row-gap: 12px;
@@ -335,11 +365,10 @@
 
   div.preview {
     width: 100%;
-    height: 90px;
   }
 }
 
-.layout-tiles .grid.c7 {
+.layout-tiles .grid.grid-7 {
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: 4px;
   grid-row-gap: 12px;
@@ -350,36 +379,32 @@
 
   div.preview {
     width: 100%;
-    height: 105px;
   }
 }
 
-.layout-tiles .grid.c6 {
+.layout-tiles .grid.grid-6 {
   grid-template-columns: repeat(6, 1fr);
 
   div.preview {
     width: 100%;
-    height: 120px;
   }
 }
 
 
-.layout-tiles .grid.c5 {
+.layout-tiles .grid.grid-5 {
   grid-template-columns: repeat(5, 1fr);
 
   div.preview {
     width: 100%;
-    height: 140px;
     padding: 16px;
   }
 }
 
-.layout-tiles .grid.c4 {
+.layout-tiles .grid.grid-4 {
   grid-template-columns: repeat(4, 1fr);
 
   div.preview {
     width: 100%;
-    height: 178px;
   }
 
   &.shortcuts div.preview {
@@ -388,39 +413,36 @@
   }
 }
 
-.layout-tiles .grid.c3 {
+.layout-tiles .grid.grid-3 {
   grid-template-columns: repeat(3, 1fr);
 
   div.preview {
     width: 100%;
-    height: 240px;
     padding: 20px;
   }
 }
 
-.layout-tiles .grid.c2 {
+.layout-tiles .grid.grid-2 {
   grid-template-columns: repeat(2, 1fr);
 
   div.preview {
     width: 100%;
-    height: 350px;
     padding: 20px;
   }
 }
 
-.layout-tiles .grid.c1 {
+.layout-tiles .grid.grid-1 {
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
 
   div.preview {
     width: 100%;
-    height: 320px;
     padding: 20px;
   }
 }
 
-.layout-tiles .grid.c1_75 {
+.layout-tiles .grid.grid-1_75 {
   grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
@@ -428,7 +450,6 @@
 
   div.preview {
     width: 100%;
-    height: 320px;
     padding: 20px;
   }
 }
@@ -452,11 +473,11 @@
 @media (max-width: 768px) {
   .layout-tiles {
     .grid {
-      &.c4,
-      &.c5,
-      &.c6, 
-      &.c7,
-      &.c8 {
+      &.grid-4,
+      &.grid-5,
+      &.grid-6, 
+      &.grid-7,
+      &.grid-8 {
         grid-template-columns: repeat(3, 1fr);
       }
     }
@@ -466,14 +487,14 @@
 @media (max-width: 576px) {
   .layout-tiles {
     .grid {
-      &.c4,
-      &.c5,
-      &.c6, 
-      &.c7,
-      &.c8 {
+      &.grid-4,
+      &.grid-5,
+      &.grid-6, 
+      &.grid-7,
+      &.grid-8 {
         grid-template-columns: repeat(2, 1fr);
       }
-      &.c3 {
+      &.grid-3 {
         grid-template-columns: repeat(1, 1fr);
       }
     }

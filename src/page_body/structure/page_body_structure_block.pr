@@ -62,6 +62,8 @@
         {[ inject "page_block_code_live" context block /]}
     {[ case "ComponentAssets" ]}
         {[ inject "page_block_assets" context block /]}
+    {[ case "ComponentAssetGroup" ]}
+        {[ inject "page_block_assets" context block /]}
     {[ case "Tabs" ]}
         {[ inject "page_block_tabs" context {"block": block, "pageId": pageId} /]}
         {* 

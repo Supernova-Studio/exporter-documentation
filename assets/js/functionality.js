@@ -547,17 +547,27 @@ function searchInList(target, list) {
     
     var value = $(target).val().toLowerCase().split(" ");
     // search for for multi-words search
-    $("#"+ list + " .grid > .tile-item").each(function () {
+    $(`#${list} .grid > .tile-item`).each(function () {
         matchWords($(this).attr("data-keywords").toLowerCase(), value) ? $(this).removeClass("hidden") : $(this).addClass("hidden")
     });
 
-    if ( $("#"+ list + " .grid > .tile-item:not(.hidden)").length === 0 )  {
-        $("#"+ list + " .grid").hide();
-        $("#"+ list + " .empty-state").show();
+    
+    if ( $(`#${list} .grid > .tile-item:not(.hidden)`).length === 0 )  {
+        $(`#${list} .grid`).hide();
+        $(`#${list} .empty-state`).show();
     } else {
-        $("#"+ list + " .grid").show();
-        $("#"+ list + " .empty-state").hide();
+        $(`#${list} .grid`).show();
+        $(`#${list} .empty-state`).hide();
     }
+
+    // Hide parent .grid if no visible tile items
+    $(`#${list} .grid`).each(function() {
+        if ($(this).find(".tile-item:not(.hidden)").length === 0) {
+            $(this).hide();
+        } else {
+            $(this).show();
+        }
+    });
 }
 
 function matchWords(subject, words) {
