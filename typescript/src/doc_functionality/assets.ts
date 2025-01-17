@@ -5,7 +5,7 @@ export function getAssetBlockColumnsClassname(columns: number, legacyLayout: str
     }
 
     if (legacyLayout) {
-        return legacyLayout.replace('c', 'grid-');
+        return legacyLayout.toLowerCase().replace('c', 'grid-');
     }
 
     return "grid-4";
