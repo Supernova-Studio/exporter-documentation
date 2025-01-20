@@ -20,7 +20,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" integrity="sha512-pUNGXbOrc+Y3dm5z2ZN7JYQ/2Tq0jppMDOUsN4sQHVJ9AUQpaeERCUfYYBAnaRB9r8d4gtPKMWICNhm3tRr4Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Live sandbox -->
-<script src="https://cdn-assets.supernova.io/code/js/sandbox_v10.js"></script> 
+<script src="https://cdn-assets.supernova.io/code/js/sandbox_v11.js"></script> 
 
 <!-- Search Support-->
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3" integrity="sha512-W+QdO2uEYG8oKLFGKPGGwT43RQWOBzAcxSpPMRyR6zAC3DLjMPp6GxoPvasKfs1pbYYXd0ByDCOiBd7M554qbw==" crossorigin="anonymous"></script>
