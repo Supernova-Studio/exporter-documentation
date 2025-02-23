@@ -17,7 +17,7 @@
 {[ for selectedComponent in block.selectedFigmaComponents ]}
     {[ const component = ds.designComponentById(selectedComponent.figmaComponentId) /]}
     {[ if component ]}
-        {[ componentsPreviews = componentsPreviews.concat(getComponentPreviews(component, selectedComponent.selectedComponentProperties)) /]}
+        {[ componentsPreviews = componentsPreviews.concat(getComponentPreviews(component, selectedComponent.selectedComponentProperties, selectedComponent.selectedComponentVariants)) /]}
     {[/]}
 {[/]}
 
