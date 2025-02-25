@@ -120,41 +120,28 @@ function shouldShowVariant(
   selectedPropertiesSet: Set<string>,
   selectedVariants: Record<string, string[]>
 ): boolean {
-  return (
-    componentProperties.every(componentProperty => {
-      const componentPropertyVariantValue =
-        componentVariant.variantPropertyValues?.[componentProperty.id];
-      if (selectedPropertiesSet.has(componentProperty.id)) {
-        // if the property is selected, return true if it has any value
-        return componentPropertyVariantValue;
-      }
+  return componentProperties.every(componentProperty => {
+    const componentPropertyVariantValue =
+      componentVariant.variantPropertyValues?.[componentProperty.id];
 
-      // if the property is not selected, check if it has default value
-      return (
-        componentPropertyVariantValue === componentProperty.defaultValue &&
-        (selectedVariants[componentProperty.id] ?? []).length === 0
-      );
-    }) ||
-    componentProperties.every(componentProperty => {
-      const componentPropertyVariantValue =
-        componentVariant.variantPropertyValues?.[componentProperty.id];
+    const selectedComponentVariantValues =
+      selectedVariants[componentProperty.id] ?? [];
 
-      if (!componentPropertyVariantValue) {
-        return false;
-      }
+    if (
+      selectedPropertiesSet.has(componentProperty.id) ||
+      (selectedComponentVariantValues.length > 0 &&
+        componentPropertyVariantValue &&
+        selectedComponentVariantValues.includes(componentPropertyVariantValue))
+    ) {
+      return componentPropertyVariantValue;
+    }
 
-      const selectedComponentVariantValues =
-        selectedVariants[componentProperty.id] ?? [];
-
-      if (selectedComponentVariantValues.length === 0) {
-        return componentPropertyVariantValue === componentProperty.defaultValue;
-      }
-
-      return selectedComponentVariantValues.includes(
-        componentPropertyVariantValue
-      );
-    })
-  );
+    // if the property is not selected, check if it has default value
+    return (
+      componentPropertyVariantValue === componentProperty.defaultValue &&
+      selectedComponentVariantValues.length === 0
+    );
+  });
 }
 
 export function getComponentPreviews(
