@@ -37,7 +37,8 @@ function getDefaultVariantPreview(
 function getVariantPreviewsToRender(
   selectedComponent: DesignComponent,
   componentProperties: DesignComponentProperty[],
-  selectedPropertiesSet: Set<string>
+  selectedPropertiesSet: Set<string>,
+  selectedVariants: Record<string, string[]>
 ) {
   const componentPropertyMap = new Map(
     componentProperties.map(property => [property.id, property])
@@ -65,7 +66,12 @@ function getVariantPreviewsToRender(
           };
         });
 
-        if (selectedPropertiesSet.size === 0) {
+        const areNoVariantsSelected = properties.every(
+          ({ id }) =>
+            !selectedVariants[id] || selectedVariants[id]?.length === 0
+        );
+
+        if (selectedPropertiesSet.size === 0 && areNoVariantsSelected) {
           // return default variant when no property ids are selected
           const defaultVariantPreview = getDefaultVariantPreview(
             selectedComponent,
@@ -84,15 +90,18 @@ function getVariantPreviewsToRender(
           shouldShowVariant(
             componentProperties,
             componentVariant,
-            selectedPropertiesSet
+            selectedPropertiesSet,
+            selectedVariants
           )
         ) {
           acc.push({
             component: componentVariant,
             name: selectedComponent.name,
             // We only want to show properties that are selected
-            properties: properties.filter(property =>
-              selectedPropertiesSet.has(property.id)
+            properties: properties.filter(
+              property =>
+                selectedPropertiesSet.has(property.id) ||
+                selectedVariants[property.id]?.includes(property.value)
             )
           });
         }
@@ -108,26 +117,40 @@ function getVariantPreviewsToRender(
 function shouldShowVariant(
   componentProperties: DesignComponentProperty[],
   componentVariant: DesignComponent,
-  selectedPropertiesSet: Set<string>
+  selectedPropertiesSet: Set<string>,
+  selectedVariants: Record<string, string[]>
 ): boolean {
   return componentProperties.every(componentProperty => {
     const componentPropertyVariantValue =
       componentVariant.variantPropertyValues?.[componentProperty.id];
-    if (selectedPropertiesSet.has(componentProperty.id)) {
-      // if the property is selected, return true if it has any value
+
+    const selectedComponentVariantValues =
+      selectedVariants[componentProperty.id] ?? [];
+
+    if (
+      selectedPropertiesSet.has(componentProperty.id) ||
+      (selectedComponentVariantValues.length > 0 &&
+        componentPropertyVariantValue &&
+        selectedComponentVariantValues.includes(componentPropertyVariantValue))
+    ) {
       return componentPropertyVariantValue;
     }
 
     // if the property is not selected, check if it has default value
-    return componentPropertyVariantValue === componentProperty.defaultValue;
+    return (
+      componentPropertyVariantValue === componentProperty.defaultValue &&
+      selectedComponentVariantValues.length === 0
+    );
   });
 }
 
 export function getComponentPreviews(
   selectedComponent: DesignComponent,
-  selectedPropertyIds: string[]
+  selectedPropertyIds: string[],
+  selectedComponentVariants: Record<string, string[]>
 ): ComponentPreview[] {
   const selectedProperties = selectedPropertyIds ?? [];
+  const selectedVariants = selectedComponentVariants ?? {};
 
   if (!selectedComponent) {
     return [];
@@ -156,7 +179,8 @@ export function getComponentPreviews(
   const variantsToRender = getVariantPreviewsToRender(
     selectedComponent,
     componentProperties,
-    selectedPropertiesSet
+    selectedPropertiesSet,
+    selectedVariants
   );
 
   if (variantsToRender.length === 0) {
