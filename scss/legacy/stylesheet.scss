@@ -258,8 +258,9 @@ ol>.block-children {
     bottom: 0;
     left: 0;
     background: var(--colorNeutral900);
-    opacity: 0.4;
+    opacity: 0.3;
     z-index: 0;
+    border-radius: var(--pageHeaderRadius);
 }
 
 .container-title {
@@ -290,6 +291,8 @@ ol>.block-children {
     flex-direction: column;
     min-height: var(--pageHeaderHeight);
     justify-content: center;
+    position: relative;
+    z-index: 1;
 
     h1.page-title {
         padding: 0px;
