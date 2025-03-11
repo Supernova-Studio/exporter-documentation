@@ -56,7 +56,7 @@
 {[ else ]}
 <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}">
 {[/]}
-    {[ if headerConfiguration.showBackgroundOverlay ]}
+    {[ if (headerConfiguration.showBackgroundOverlay && headerConfiguration.backgroundImageAssetUrl) ]}
         <div class="container-title-overlay"></div>
     {[/]}
     <div class="slider">

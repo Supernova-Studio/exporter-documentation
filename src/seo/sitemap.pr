@@ -4,10 +4,9 @@
    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
    {[ let rootGroup = ds.rootDocumentationGroup() /]}
    {[ let pages = flattenedPageStructure(rootGroup) /]}
-   {[ let domain = ds.documentationDomain() /]}
    {[ for page in pages ]}
         <url>
-            <loc>{{ pageUrl(page, ds.documentationDomain()) }}</loc>
+            <loc>{{ page.deployedUrl }}</loc>
             <changefreq>weekly</changefreq>
         </url>
    {[/]}
