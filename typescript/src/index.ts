@@ -9,13 +9,14 @@ import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExport
 import { markdownToHTML } from "./doc_functionality/markdown"
 import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
 import { buildSearchIndexJSON } from "./doc_functionality/search"
-import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch, getFontFormat } from "./doc_functionality/string_utils"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
 import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue, measureValueToReadableUnit, isDimensionToken, isStringToken, decimalOpacityToPercentage, isOptionsToken, extendFontFamily, normalizeFontSizeCSS, convertTextDecorationToCSS, convertTextCaseToTextTransform } from "./doc_functionality/tokens"
 import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
 import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
 import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
 import { getThemesTooltip } from "./doc_functionality/themes"
 import { getDynamicVariableForStyle, getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
+import { extractFontFamiliesFromTokens, processFontsForLoading, getDefaultBrand, getFontFormat } from "./doc_functionality/fonts"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -130,3 +131,9 @@ Pulsar.registerFunction("sortComponentsPreviews", sortComponentsPreviews)
 Pulsar.registerFunction("getAssetBlockColumnsClassname", getAssetBlockColumnsClassname)
 Pulsar.registerFunction("sortAssetsByName", sortAssetsByName)
 Pulsar.registerFunction("getDynamicVariableForStyle", getDynamicVariableForStyle)
+
+/* Fonts */
+Pulsar.registerFunction("extractFontFamiliesFromTokens", extractFontFamiliesFromTokens)
+Pulsar.registerFunction("processFontsForLoading", processFontsForLoading)
+Pulsar.registerFunction("getDefaultBrand", getDefaultBrand)
+Pulsar.registerFunction("getFontFormat", getFontFormat)

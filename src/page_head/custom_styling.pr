@@ -65,17 +65,20 @@
 }
 
 {* Fonts *}
-{[ for fontResource in ds.allFontResources() ]}
-{[ if (fontResource.fontProperties.family !== "") ]}
+{[ let defaultBrand = getDefaultBrand(ds.allBrands()) /]}
+{[ let fonts = extractFontFamiliesFromTokens(ds.allTokens(defaultBrand.id)) /]}
+{[ let processedFonts = processFontsForLoading(ds.allFontResources(), fonts) /]}
+
+{[ for font in processedFonts ]}
+{[ for source in font.sources ]}
 @font-face {
-    font-family: "{{ fontResource.fontProperties.family }}";
-    src: url("{{ fontResource.url }}") format("{{ getFontFormat(fontResource.url) }}");
-    font-weight: {{ fontResource.fontProperties.weight }};
-    font-style: {{ fontResource.fontProperties.isItalic ? "italic" : "normal" }};
+    font-family: "{{ font.family }}";
+    src: url("{{ source.url }}") format("{{ source.format }}");
+    font-weight: {{ source.weight }};
+    font-style: {{ source.style }};
 }
 {[/]}
 {[/]}
-
 
  {* Side navigation *}
 .side-navigation-wrapper {
