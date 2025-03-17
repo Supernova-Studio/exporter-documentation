@@ -81,6 +81,24 @@ export function getUrlExtension(url: string): string | undefined {
   return undefined
 }
 
+export function getFontFormat(url: string): string {
+  const extension = getUrlExtension(url)?.toLowerCase()
+  switch (extension) {
+    case 'woff2':
+      return 'woff2'
+    case 'woff':
+      return 'woff'
+    case 'eot':
+      return 'embedded-opentype'
+    case 'otf':
+      return 'opentype'
+    case 'ttf':
+      return 'truetype'
+    default:
+      return 'truetype' // fallback to truetype
+  }
+}
+
 export function changelogToEntries(changeLog: string): Array<string> {
 
   if (!changeLog) {

@@ -64,6 +64,19 @@
     {[/]}
 }
 
+{* Fonts *}
+{[ for fontResource in ds.allFontResources() ]}
+{[ if (fontResource.fontProperties.family !== "") ]}
+@font-face {
+    font-family: "{{ fontResource.fontProperties.family }}";
+    src: url("{{ fontResource.url }}") format("{{ getFontFormat(fontResource.url) }}");
+    font-weight: {{ fontResource.fontProperties.weight }};
+    font-style: {{ fontResource.fontProperties.isItalic ? "italic" : "normal" }};
+}
+{[/]}
+{[/]}
+
+
  {* Side navigation *}
 .side-navigation-wrapper {
     {[ let sideNavBackgroundOption = configuration.sideNavigationBackground /]}
