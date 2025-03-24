@@ -42593,8 +42593,10 @@ function DV({
     /* @__PURE__ */ N.createElement(
       "iframe",
       {
-        height: l,
         className: "w-full",
+        style: {
+          height: `${l}px`
+        },
         ref: _,
         title: "Playground",
         src: e
