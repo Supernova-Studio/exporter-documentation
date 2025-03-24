@@ -32,3 +32,26 @@
   border: 1px solid var(--colorBorderSubtle);
   border-radius: var(--borderRadiusDefault);
 }
+
+.storybook-container {
+  button[role="radio"] {
+    padding: 0 !important;
+  }
+
+  div[role="radiogroup"] div {
+    align-items: center;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  div[role="tablist"] button {
+    padding: 8px !important;
+  }
+
+  div:has(div[role="tablist"]) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
