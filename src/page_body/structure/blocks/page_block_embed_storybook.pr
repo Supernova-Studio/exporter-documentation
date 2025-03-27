@@ -4,17 +4,17 @@
 
 {[ if block.url ]}
   <div class="content-block content-block--embed">
-    <div class="storybook-container" style="height: {{ (block.size && block.size.height) ? block.size.height : 500 }}px">
+    <div class="storybook-container">
         <div class="storybook-embed-container">
-            <iframe
-                class="embed-responsive-item storybook"
-                src="{{ block.url }}"
-                allowfullscreen
-                loading="lazy"
-                aria-label="Embedded Storybook"
-                referrerpolicy="origin"
-                style="height: {{ (block.size && block.size.height && block.size.height < 150) ? block.size.height + "px" : "100%" }}"
-            ></iframe>
+            <div data-storybook-embed-url="{{ block.url }}"
+                data-storybook-original-url="TODO: Add original url"
+                data-storybook-show-footer="TODO: Add show footer"
+                data-storybook-show-source-code="TODO: Add show source code"
+                data-storybook-show-properties="TODO: Add show properties"
+                data-storybook-show-description="TODO: Add show description"
+                data-storybook-show-defaults="TODO: Add show defaults"
+                data-storybook-height="{{ (block.size && block.size.height) ? block.size.height : 500 }}"
+             />
         </div>
         <div class="storybook-error">
             <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
