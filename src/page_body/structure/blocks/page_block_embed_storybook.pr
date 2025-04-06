@@ -2,20 +2,23 @@
 {[ const block = context /]}
 {[ const storybookError = ds.documentationConfiguration().settings.storybookError /]}
 
+{[ log block /]}
 {[ const blockConfig = block.storybookBlockConfig /]}
 {[ const firstValue = blockConfig.value[0] /]}
+{[ const hiddenProps = firstValue?.entityMeta?.hiddenProps ? firstValue?.entityMeta?.hiddenProps : [] /]}
 
 {[ if block.url ]}
   <div class="content-block content-block--embed">
     <div class="storybook-container">
         <div class="storybook-embed-container">
-            <div data-storybook-embed-url="{{ firstValue.embed.embedUrl }}"
-                data-storybook-original-url="{{ firstValue.embed.inputUrl }}"
+            <div data-storybook-embed-url="{{ firstValue?.embed?.embedUrl }}"
+                data-storybook-original-url="{{ firstValue?.embed?.inputUrl }}"
                 {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
                 {{ blockConfig.showSourceCode ? "data-storybook-show-source-code" : "" }}
                 {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
                 {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
-                {{ block.showDefaults ? "data-storybook-show-defaults" : "" }}
+                {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
+                data-storybook-hidden-props="{{ hiddenProps }}"
                 data-storybook-height="{{ (block.size && block.size.height) ? block.size.height : 500 }}"
              />
         </div>
