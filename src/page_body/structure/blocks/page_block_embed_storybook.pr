@@ -2,17 +2,20 @@
 {[ const block = context /]}
 {[ const storybookError = ds.documentationConfiguration().settings.storybookError /]}
 
+{[ const blockConfig = block.storybookBlockConfig /]}
+{[ const firstValue = blockConfig.value[0] /]}
+
 {[ if block.url ]}
   <div class="content-block content-block--embed">
     <div class="storybook-container">
         <div class="storybook-embed-container">
-            <div data-storybook-embed-url="{{ block.url }}"
-                data-storybook-original-url="TODO: Add original url"
-                data-storybook-show-footer="TODO: Add show footer"
-                data-storybook-show-source-code="TODO: Add show source code"
-                data-storybook-show-properties="TODO: Add show properties"
-                data-storybook-show-description="TODO: Add show description"
-                data-storybook-show-defaults="TODO: Add show defaults"
+            <div data-storybook-embed-url="{{ firstValue.embed.embedUrl }}"
+                data-storybook-original-url="{{ firstValue.embed.inputUrl }}"
+                {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
+                {{ blockConfig.showSourceCode ? "data-storybook-show-source-code" : "" }}
+                {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
+                {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
+                {{ block.showDefaults ? "data-storybook-show-defaults" : "" }}
                 data-storybook-height="{{ (block.size && block.size.height) ? block.size.height : 500 }}"
              />
         </div>
