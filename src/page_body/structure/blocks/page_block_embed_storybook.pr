@@ -7,20 +7,38 @@
 {[ const firstValue = blockConfig.value[0] /]}
 {[ const hiddenProps = firstValue?.entityMeta?.hiddenProps ? firstValue?.entityMeta?.hiddenProps : [] /]}
 
-{[ if block.url ]}
+{[ if (firstValue?.embed?.embedUrl) ]}
   <div class="content-block content-block--embed">
-    <div class="storybook-container">
+    {[ if (block.variantKey === "playground") ]}
+      <div class="storybook-container">
+    {[/]}
+    {[ if (block.variantKey === "default") ]}
+      <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 500 }}px">
+    {[/]}
         <div class="storybook-embed-container">
+          {[ if (block.variantKey === "playground") ]}
             <div data-storybook-embed-url="{{ firstValue?.embed?.embedUrl }}"
                 data-storybook-original-url="{{ firstValue?.embed?.inputUrl }}"
                 {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
-                {{ blockConfig.showSourceCode ? "data-storybook-show-source-code" : "" }}
+                {{ blockConfig.showCode ? "data-storybook-show-source-code" : "" }}
                 {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
                 {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
                 {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
                 data-storybook-hidden-props="{{ hiddenProps }}"
-                data-storybook-height="{{ (block.size && block.size.height) ? block.size.height : 500 }}"
+                data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 500 }}"
              />
+          {[/]}
+          {[ if (block.variantKey === "default") ]}
+            <iframe
+                class="embed-responsive-item storybook"
+                src="{{ block.url }}"
+                allowfullscreen
+                loading="lazy"
+                aria-label="Embedded Storybook"
+                referrerpolicy="origin"
+                style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
+            />
+          {[/]}
         </div>
         <div class="storybook-error">
             <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
