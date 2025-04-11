@@ -16,6 +16,8 @@ import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sor
 import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
 import { getThemesTooltip } from "./doc_functionality/themes"
 import { getDynamicVariableForStyle, getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
+import { convertStoryPropsToJson } from './doc_functionality/storybook';
+
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -129,3 +131,6 @@ Pulsar.registerFunction("sortComponentsPreviews", sortComponentsPreviews)
 Pulsar.registerFunction("getAssetBlockColumnsClassname", getAssetBlockColumnsClassname)
 Pulsar.registerFunction("sortAssetsByName", sortAssetsByName)
 Pulsar.registerFunction("getDynamicVariableForStyle", getDynamicVariableForStyle)
+
+/* Storybook */
+Pulsar.registerFunction("convertStoryPropsToJson", convertStoryPropsToJson)

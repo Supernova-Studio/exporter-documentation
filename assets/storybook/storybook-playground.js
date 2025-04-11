@@ -42879,7 +42879,13 @@ function qV({
 }
 const Fk = "data-storybook-embed-url", HV = "data-storybook-original-url", jV = "data-storybook-height", VV = "data-storybook-show-footer", WV = "data-storybook-show-source-code", KV = "data-storybook-show-properties", YV = "data-storybook-show-description", XV = "data-storybook-show-defaults", ZV = "data-storybook-hidden-props", QV = "data-storybook-prop-values", JV = document.querySelectorAll(`[${Fk}]`);
 JV.forEach((e) => {
-  const t = e.getAttribute(Fk), n = e.getAttribute(HV) ?? void 0, o = parseInt(e.getAttribute(jV) ?? "", 10), i = Number.isNaN(o) ? 400 : o, l = e.getAttribute(VV) !== null, u = e.getAttribute(WV) !== null, c = e.getAttribute(KV) !== null, p = e.getAttribute(YV) !== null, f = e.getAttribute(XV) !== null, h = e.getAttribute(QV), b = e.getAttribute(ZV), v = (b == null ? void 0 : b.split(",")) ?? [];
+  const t = e.getAttribute(Fk), n = e.getAttribute(HV) ?? void 0, o = parseInt(e.getAttribute(jV) ?? "", 10), i = Number.isNaN(o) ? 400 : o, l = e.getAttribute(VV) !== null, u = e.getAttribute(WV) !== null, c = e.getAttribute(KV) !== null, p = e.getAttribute(YV) !== null, f = e.getAttribute(XV) !== null, h = e.getAttribute(QV), b = e.getAttribute(ZV);
+  let v = [];
+  try {
+    v = JSON.parse(b ?? "[]");
+  } catch (_) {
+    console.error(_);
+  }
   let E = {};
   try {
     E = JSON.parse(h ?? "{}");
