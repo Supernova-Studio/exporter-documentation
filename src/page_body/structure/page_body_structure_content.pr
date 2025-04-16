@@ -9,7 +9,7 @@
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
 {[ for block in page.blocks ]}
-    {[ if block.type.equals("Heading") ]}
+    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || block.headingType === 3)) ]}
         {[ hasHeading = true /]}
     {[/]}
     {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
@@ -26,7 +26,7 @@
 {[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
     <div id="content-nav-container">
         <nav id="content-nav">
-        {[ if showTOC && ]}
+        {[ if showTOC ]}
             {[ if showTOCOnHomepage ]}
                 <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
                 <ul>
