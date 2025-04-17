@@ -14,7 +14,7 @@
       <div class="storybook-container">
     {[/]}
     {[ if (block.variantKey === "default") ]}
-      <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 500 }}px">
+      <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}px">
     {[/]}
         <div class="storybook-embed-container">
           {[ if (block.variantKey === "playground") ]}
@@ -27,7 +27,7 @@
                 {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
                 data-storybook-hidden-props='{{ convertStoryPropsToJson(hiddenProps, []) }}'
                 data-storybook-prop-values='{{ convertStoryPropsToJson(propValues, {}) }}'
-                data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 500 }}"
+                data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"
              />
           {[/]}
           {[ if (block.variantKey === "default") ]}
