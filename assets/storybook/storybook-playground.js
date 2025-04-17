@@ -42840,25 +42840,28 @@ function rO({
   const [n, a] = g.useState(!1), o = g.useRef(null);
   return g.useEffect(() => () => {
     o.current && clearTimeout(o.current);
-  }, []), e ? /* @__PURE__ */ x.createElement("div", { className: "relative" }, /* @__PURE__ */ x.createElement(
-    AY,
-    {
-      shouldStopCopyPropagation: t,
-      language: "jsx"
-    },
-    e
-  ), /* @__PURE__ */ x.createElement(Xy, { className: "absolute top-16 right-16", text: "Copy code" }, /* @__PURE__ */ x.createElement(
-    kO,
-    {
-      icon: n ? /* @__PURE__ */ x.createElement(ft, { svg: OO }) : /* @__PURE__ */ x.createElement(ft, { svg: YU }),
-      size: "small",
-      onClick: async () => {
-        await navigator.clipboard.writeText(e), a(!0), o.current = setTimeout(() => {
-          a(!1);
-        }, CY);
+  }, []), e ? (
+    // max-w prevent code from overflowing the screen
+    /* @__PURE__ */ x.createElement("div", { className: "relative max-w-[775px]" }, /* @__PURE__ */ x.createElement(
+      AY,
+      {
+        shouldStopCopyPropagation: t,
+        language: "jsx"
+      },
+      e
+    ), /* @__PURE__ */ x.createElement(Xy, { className: "absolute top-16 right-16", text: "Copy code" }, /* @__PURE__ */ x.createElement(
+      kO,
+      {
+        icon: n ? /* @__PURE__ */ x.createElement(ft, { svg: OO }) : /* @__PURE__ */ x.createElement(ft, { svg: YU }),
+        size: "small",
+        onClick: async () => {
+          await navigator.clipboard.writeText(e), a(!0), o.current = setTimeout(() => {
+            a(!1);
+          }, CY);
+        }
       }
-    }
-  ))) : /* @__PURE__ */ x.createElement("div", { className: "px-12 pb-12" }, /* @__PURE__ */ x.createElement(NH, { color: "neutral" }, /* @__PURE__ */ x.createElement("div", { className: "flex items-center gap-8" }, /* @__PURE__ */ x.createElement(ft, { svg: ZU }), "No source code available for this story")));
+    )))
+  ) : /* @__PURE__ */ x.createElement("div", { className: "px-12 pb-12" }, /* @__PURE__ */ x.createElement(NH, { color: "neutral" }, /* @__PURE__ */ x.createElement("div", { className: "flex items-center gap-8" }, /* @__PURE__ */ x.createElement(ft, { svg: ZU }), "No source code available for this story")));
 }
 function IY({ id: e, defaultValue: t, onChange: n }) {
   const [a, o] = g.useState(t);
