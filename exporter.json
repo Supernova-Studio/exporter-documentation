@@ -976,6 +976,12 @@
           "key": "icon-leading-1",
           "description": "One full-width item, with a large icon on the left.",
           "thumbnail": "thumbnails/Shortcuts_IconLeading-1.png"
+        },
+        {
+          "name": "Custom grid",
+          "key": "custom-grid",
+          "description": "Custom colorful grid",
+          "thumbnail": "thumbnails/Shortcuts_IconLeading-1.png"
         }
       ],
       "FigmaFrames": [
