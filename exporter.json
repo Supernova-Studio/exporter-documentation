@@ -1,7 +1,7 @@
 {
   "id": "io.supernova.documentation-main",
-  "name": "Default Documentation",
-  "description": "Default customizable exporter for design system documentation",
+  "name": "Custom Documentation Template",
+  "description": "Our custom template for documentation site",
   "author": "Supernova",
   "organization": "Supernova",
   "source_dir": "src",
