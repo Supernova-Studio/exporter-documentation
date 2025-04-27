@@ -40,10 +40,10 @@
                 referrerpolicy="origin"
                 style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
             />
+            <div class="storybook-error">
+                <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
+            </div>
           {[/]}
-        </div>
-        <div class="storybook-error">
-            <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
         </div>
     </div>
     {[ if block.caption ]}
