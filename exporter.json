@@ -981,7 +981,7 @@
           "name": "Custom grid",
           "key": "custom-grid",
           "description": "Custom colorful grid",
-          "thumbnail": "thumbnails/Shortcuts_IconLeading-1.png"
+          "thumbnail": "thumbnails/grid-preview.png"
         }
       ],
       "FigmaFrames": [
