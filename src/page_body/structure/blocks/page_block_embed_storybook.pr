@@ -42,10 +42,14 @@
                   aria-label="Embedded Storybook"
                   referrerpolicy="origin"
                   style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
-              />
-              <div class="storybook-error">
-                  <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
-              </div>
+              ></iframe>
+              {[ if (blockConfig.showFooter && firstValue?.embed?.inputUrl) ]}
+                <div class="storybook-footer">
+                  <a href="{{ firstValue?.embed?.inputUrl }}" target="_blank">
+                    Open in Storybook
+                  </a>
+                </div>
+              {[/]}
             {[/]}
           </div>
       </div>

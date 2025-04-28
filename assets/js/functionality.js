@@ -693,40 +693,6 @@ $('.switch-theme').on('click', function(e) {
 });
 
 /*-----------------------------
-    Storybook handling
-------------------------------- */
-
-$(document).ready(function() {
-  // Ping storybook for each frame embedding it and check if it is reachable, if so, show the content,
-  // otherwise show formatted error message
-  document.querySelectorAll('iframe.storybook').forEach(iframe => {
-    let src = iframe.getAttribute('src');
-
-    if (!src.startsWith('https://')) {
-      return;
-    }
-
-    fetch(src, {
-      method: 'GET',
-      cache: 'no-cache',
-      mode: 'no-cors'
-    })
-      .then(_ => {
-        // Do nothing for the correct response, as we can't detect whether
-        // the page was truly reachable and contains storybook due to CORS protection
-      })
-      .catch(_ => {
-        // Show error for the specific frame
-        // [iframe] > storybook-container > storybook-state-wrapper > storybook-error.visible
-        iframe.parentElement.parentElement.lastElementChild.style.visibility =
-          'visible';
-        iframe.parentElement.parentElement.firstElementChild.style.visibility =
-          'hidden';
-      });
-  });
-});
-
-/*-----------------------------
     Read cookie
 ------------------------------- */
 const getCookieValue = name =>
