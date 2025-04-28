@@ -8,3 +8,13 @@ export function convertStoryPropsToJson(
 
   return JSON.stringify(input);
 }
+
+export function getActualEmbedUrl(
+  embedUrl?: string,
+  entityId?: string,
+  storybookEntries?: { id: string; url: string }[]
+) {
+  return (
+    embedUrl ?? storybookEntries?.find(entry => entry.id === entityId)?.url
+  );
+}

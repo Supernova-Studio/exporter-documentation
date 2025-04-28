@@ -2,52 +2,56 @@
 {[ const block = context /]}
 {[ const storybookError = ds.documentationConfiguration().settings.storybookError /]}
 
-{[ log block /]}
 {[ const blockConfig = block.storybookBlockConfig /]}
-{[ const firstValue = blockConfig.value[0] /]}
-{[ const hiddenProps = firstValue?.entityMeta?.hiddenProps ? firstValue?.entityMeta?.hiddenProps : [] /]}
-{[ const propValues = firstValue?.entityMeta?.propValues ? firstValue?.entityMeta?.propValues : {} /]}
 
-{[ if (firstValue?.embed?.embedUrl) ]}
-  <div class="content-block content-block--embed">
-    {[ if (block.variantKey === "playground") ]}
-      <div class="storybook-container">
-    {[/]}
-    {[ if (block.variantKey === "default") ]}
-      <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}px">
-    {[/]}
-        <div class="storybook-embed-container">
-          {[ if (block.variantKey === "playground") ]}
-            <div data-storybook-embed-url="{{ firstValue?.embed?.embedUrl }}"
-                data-storybook-original-url="{{ firstValue?.embed?.inputUrl }}"
-                {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
-                {{ blockConfig.showCode ? "data-storybook-show-source-code" : "" }}
-                {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
-                {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
-                {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
-                data-storybook-hidden-props='{{ convertStoryPropsToJson(hiddenProps, []) }}'
-                data-storybook-prop-values='{{ convertStoryPropsToJson(propValues, {}) }}'
-                data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"
-             />
-          {[/]}
-          {[ if (block.variantKey === "default") ]}
-            <iframe
-                class="embed-responsive-item storybook"
-                src="{{ block.url }}"
-                allowfullscreen
-                loading="lazy"
-                aria-label="Embedded Storybook"
-                referrerpolicy="origin"
-                style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
-            />
-            <div class="storybook-error">
-                <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
-            </div>
-          {[/]}
-        </div>
+{[ if (blockConfig.value.length > 0) ]}
+  {[ const firstValue = blockConfig.value[0] /]}
+  {[ const hiddenProps = firstValue?.entityMeta?.hiddenProps ? firstValue?.entityMeta?.hiddenProps : [] /]}
+  {[ const propValues = firstValue?.entityMeta?.propValues ? firstValue?.entityMeta?.propValues : {} /]}
+
+  {[ const embedUrl = getActualEmbedUrl(firstValue?.embed?.embedUrl, firstValue?.entityId, ds.storybookEntries()) /]}
+
+  {[ if (embedUrl) ]}
+    <div class="content-block content-block--embed">
+      {[ if (block.variantKey === "playground") ]}
+        <div class="storybook-container">
+      {[/]}
+      {[ if (block.variantKey === "default") ]}
+        <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}px">
+      {[/]}
+          <div class="storybook-embed-container">
+            {[ if (block.variantKey === "playground") ]}
+              <div data-storybook-embed-url="{{ embedUrl }}"
+                  data-storybook-original-url="{{ firstValue?.embed?.inputUrl }}"
+                  {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
+                  {{ blockConfig.showCode ? "data-storybook-show-source-code" : "" }}
+                  {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
+                  {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
+                  {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
+                  data-storybook-hidden-props='{{ convertStoryPropsToJson(hiddenProps, []) }}'
+                  data-storybook-prop-values='{{ convertStoryPropsToJson(propValues, {}) }}'
+                  data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"
+              />
+            {[/]}
+            {[ if (block.variantKey === "default") ]}
+              <iframe
+                  class="embed-responsive-item storybook"
+                  src="{{ block.url }}"
+                  allowfullscreen
+                  loading="lazy"
+                  aria-label="Embedded Storybook"
+                  referrerpolicy="origin"
+                  style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
+              />
+              <div class="storybook-error">
+                  <span>{{ storybookError ? storybookError : "Storybook failed to load. Please connect to the VPN to access." }}</span>
+              </div>
+            {[/]}
+          </div>
+      </div>
+      {[ if block.caption ]}
+          <p class="caption">{{ block.caption }}</p>
+      {[/]}
     </div>
-    {[ if block.caption ]}
-        <p class="caption">{{ block.caption }}</p>
-    {[/]}
-  </div>
+  {[/]}
 {[/]}
