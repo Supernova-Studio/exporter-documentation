@@ -78,29 +78,73 @@ interface VersionObject {
 
 interface VersionWithKey {
   original: VersionObject;
-  key: string | null;
+  key: string | null;        // Normalized version string (e.g., "4.2.87" from "4.02.87")
+  originalKey?: string;      // Original matched version string before normalization
 }
 
+/**
+ * Checks if a version string follows semantic versioning format
+ * Valid formats:
+ * - major.minor (e.g., "4.2")
+ * - major.minor.patch (e.g., "4.2.0")
+ * - With optional suffix (e.g., "4.2.0-beta")
+ */
+const isValidSemver = (version: string): boolean => {
+  const parts = version.split('.');
+  return (parts.length === 2 || parts.length === 3) && 
+         parts.every(part => /^\d+(-[a-zA-Z0-9_]+)?$/.test(part));
+};
+
+/**
+ * Normalizes a version string by:
+ * 1. Extracting the version number pattern
+ * 2. Removing leading zeros from each number part
+ * Example: "4.02.87-beta" -> "4.2.87-beta"
+ */
+const normalizeVersion = (version: string): string | null => {
+  const match = version.match(/\d+\.\d+(\.\d+)?(-[a-zA-Z0-9_]+)?/)?.[0];
+  return match ? match.split('.').map(num => num.replace(/^0+/, '')).join('.') : null;
+};
+
+/**
+ * Sorts an array of version objects by their semantic version numbers in descending order.
+ * Non-semver versions are kept in their original order at the end of the array.
+ * 
+ * @param versions - Array of version objects to sort
+ * @returns Sorted array with semver versions first (descending), followed by non-semver versions
+ */
 export const sortVersionsBySemver = (versions: VersionObject[]): VersionObject[] => {
-  const versionsWithKeys: VersionWithKey[] = versions.map((version) => ({
+  // Step 1: Process all versions
+  // Convert each version into a normalized format for comparison
+  const versionsWithKeys: VersionWithKey[] = versions.map(version => ({
     original: version,
-    key: version.version.match(/\d+\.\d+\.\d+(-[a-zA-Z0-9_]+)?/)?.[0] || null,
+    key: normalizeVersion(version.version),
+    originalKey: version.version.match(/\d+\.\d+(\.\d+)?(-[a-zA-Z0-9_]+)?/)?.[0]
   }));
 
-  const validVersions = versionsWithKeys.filter((item) => item.key);
+  // Step 2: Split versions into two groups
+  // - semverVersions: Versions that follow semantic versioning
+  // - nonSemverVersions: Versions that don't follow semantic versioning
+  const { semverVersions, nonSemverVersions } = versionsWithKeys.reduce((acc, item) => {
+    if (item.key && isValidSemver(item.key)) {
+      acc.semverVersions.push(item);
+    } else {
+      acc.nonSemverVersions.push(item.original);
+    }
+    return acc;
+  }, { semverVersions: [] as VersionWithKey[], nonSemverVersions: [] as VersionObject[] });
 
-  const sortedValidVersions = semverSort
-    .desc(validVersions.map((item) => item.key!))
-    .map(
-      (sortedKey) =>
-        validVersions.find((item) => item.key === sortedKey)!.original
-    );
+  // Step 3: Sort semver versions
+  // Use semverSort library to sort versions in descending order
+  const sortedSemverVersions = semverVersions.length > 0
+    ? semverSort
+        .desc(semverVersions.map(item => item.key!))
+        .map(sortedKey => semverVersions.find(item => item.key === sortedKey)!.original)
+    : [];
 
-  const nonSemverEntries = versionsWithKeys
-    .filter((item) => !item.key)
-    .map((item) => item.original);
-
-  return sortedValidVersions.concat(nonSemverEntries);
+  // Step 4: Combine results
+  // Return sorted semver versions followed by non-semver versions in original order
+  return [...sortedSemverVersions, ...nonSemverVersions];
 };
 
 // check if the array is non empty or non null, otherwise return []
