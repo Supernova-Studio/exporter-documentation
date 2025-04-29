@@ -16,7 +16,8 @@
     "get-contrast": "^3.0.0",
     "semver": "^7.7.1",
     "short-hash": "^1.0.0",
-    "showdown": "^2.1.0"
+    "showdown": "^2.1.0",
+    "url": "^0.11.4"
   },
   "devDependencies": {
     "@types/showdown": "^2.0.0",

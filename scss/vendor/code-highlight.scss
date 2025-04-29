@@ -28,8 +28,8 @@
  * --syntax-cursor-line: hsla(230, 8%, 24%, 0.05);
  */
 
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*='language-'].code-block__code,
+pre[class*='language-'].code-block {
   background: var(--colorBackgroundSecondary);
   color: var(--colorInkPrimary);
   font-family: var(--fontFamilyCode);
@@ -50,23 +50,23 @@ pre[class*='language-'] {
 
 /* Selection */
 
-code[class*='language-']::-moz-selection,
-code[class*='language-'] *::-moz-selection,
-pre[class*='language-'] *::-moz-selection {
+code[class*='language-'].code-block__code::-moz-selection,
+code[class*='language-'].code-block__code *::-moz-selection,
+pre[class*='language-'].code-block *::-moz-selection {
   background: var(--colorBackgroundAlt);
   color: inherit;
 }
 
-code[class*='language-']::selection,
-code[class*='language-'] *::selection,
-pre[class*='language-'] *::selection {
+code[class*='language-'].code-block__code::selection,
+code[class*='language-'].code-block__code *::selection,
+pre[class*='language-'].code-block *::selection {
   background: var(--colorBackgroundAlt);
   color: inherit;
 }
 
 /* Code blocks */
 
-pre[class*='language-'] {
+pre[class*='language-'].code-block {
   padding: 1em;
   margin: 0;
   overflow: auto;
@@ -74,7 +74,7 @@ pre[class*='language-'] {
 
 /* Inline code */
 
-:not(pre) > code[class*='language-'] {
+:not(pre) > code[class*='language-'].code-block__code {
   padding: 0.2em 0.3em;
   border-radius: 0.3em;
   white-space: normal;
