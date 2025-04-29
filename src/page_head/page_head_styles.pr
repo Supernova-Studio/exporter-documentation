@@ -21,7 +21,6 @@
 <!-- Styles -->
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("dist/docs.min.css?v="+version, domain) }}" />
 <link rel="stylesheet" type="text/css" href="{{ assetUrl("dist/custom.css?v="+generateCustomCSSHash(exportConfiguration()), domain) }}" />
-<link rel="stylesheet" type="text/css" href="https://cdn-assets.supernova.io/storybook/css/storybook-playground.css" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.js" integrity="sha512-3S64QagKiTlNjSfuh3UYtYSkP494WHoWc96YvbmB2BReHpNtxlrMNY6MbJLDpavcgD8Pj5p44F/PY586uVO5iA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/mode/javascript/javascript.min.js" integrity="sha512-I6CdJdruzGtvDyvdO4YsiAq+pkWf2efgd1ZUSK2FnM/u2VuRASPC7GowWQrWyjxCZn6CT89s3ddGI+be0Ak9Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
