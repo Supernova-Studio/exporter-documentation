@@ -23,33 +23,33 @@ import { convertStoryPropsToJson } from "./doc_functionality/storybook"
 // MARK: - Blueprint functions
 
 /* Local lookup */
-Pulsar.registerFunction('firstSubgroupOfPage', firstSubgroupOfPage);
+Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage);
 Pulsar.registerFunction(
-  'pageOrGroupActiveInContext',
+  "pageOrGroupActiveInContext",
   pageOrGroupActiveInContext
 );
-Pulsar.registerFunction('flattenedPageStructure', flattenedPageStructure);
-Pulsar.registerFunction('firstPageFromTop', firstPageFromTop);
-Pulsar.registerFunction('previousPage', previousPage);
-Pulsar.registerFunction('nextPage', nextPage);
-Pulsar.registerFunction('isExportable', isExportable);
-Pulsar.registerFunction('isHomepage', isHomepage);
-Pulsar.registerFunction('isHomepageTab', isHomepageTab);
-Pulsar.registerFunction('resolveMenuLabel', resolveMenuLabel);
-Pulsar.registerFunction('getCurrentTimestamp', getCurrentTimestamp);
-Pulsar.registerFunction('checkKeyInArray', checkKeyInArray);
-Pulsar.registerFunction('firstTabGroupFromTop', firstTabGroupFromTop);
+Pulsar.registerFunction("flattenedPageStructure", flattenedPageStructure);
+Pulsar.registerFunction("firstPageFromTop", firstPageFromTop);
+Pulsar.registerFunction("previousPage", previousPage);
+Pulsar.registerFunction("nextPage", nextPage);
+Pulsar.registerFunction("isExportable", isExportable);
+Pulsar.registerFunction("isHomepage", isHomepage);
+Pulsar.registerFunction("isHomepageTab", isHomepageTab);
+Pulsar.registerFunction("resolveMenuLabel", resolveMenuLabel);
+Pulsar.registerFunction("getCurrentTimestamp", getCurrentTimestamp);
+Pulsar.registerFunction("checkKeyInArray", checkKeyInArray);
+Pulsar.registerFunction("firstTabGroupFromTop", firstTabGroupFromTop);
 
 /* General utils */
-Pulsar.registerFunction('getFullYear', getFullYear);
-Pulsar.registerFunction('getFormattedDateTime', getFormattedDateTime);
-Pulsar.registerFunction('generateCustomCSSHash', generateCustomCSSHash);
-Pulsar.registerFunction('includes', includes);
-Pulsar.registerFunction('objectValues', objectValues);
-Pulsar.registerFunction('objectEntries', objectEntries);
-Pulsar.registerFunction('sortVersionsBySemver', sortVersionsBySemver);
-Pulsar.registerFunction('safeArray', safeArray);
-Pulsar.registerFunction('isNonEmptyString', isNonEmptyString);
+Pulsar.registerFunction("getFullYear", getFullYear);
+Pulsar.registerFunction("getFormattedDateTime", getFormattedDateTime);
+Pulsar.registerFunction("generateCustomCSSHash", generateCustomCSSHash);
+Pulsar.registerFunction("includes", includes);
+Pulsar.registerFunction("objectValues", objectValues);
+Pulsar.registerFunction("objectEntries", objectEntries);
+Pulsar.registerFunction("sortVersionsBySemver", sortVersionsBySemver);
+Pulsar.registerFunction("safeArray", safeArray);
+Pulsar.registerFunction("isNonEmptyString", isNonEmptyString);
 
 /* String utilities */
 Pulsar.registerFunction("highlightSafeString", highlightSafeString)
@@ -61,99 +61,99 @@ Pulsar.registerFunction("normalizeStringForSearch", normalizeStringForSearch)
 Pulsar.registerFunction("getFontFormat", getFontFormat)
 
 /* Themes utilities */
-Pulsar.registerFunction('getThemesTooltip', getThemesTooltip);
+Pulsar.registerFunction("getThemesTooltip", getThemesTooltip);
 
 /* Class/IDs */
-Pulsar.registerFunction('getSearchIDString', getSearchIDString);
-Pulsar.registerFunction('getVariantClass', getVariantClass);
+Pulsar.registerFunction("getSearchIDString", getSearchIDString);
+Pulsar.registerFunction("getVariantClass", getVariantClass);
 
 /* Front-end search support */
-Pulsar.registerFunction('buildSearchIndexJSON', buildSearchIndexJSON);
+Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON);
 
 /* URL manipulation and support */
-Pulsar.registerFunction('pageUrl', pageUrl);
-Pulsar.registerFunction('pageUrlForFilepath', pageUrlForFilepath);
-Pulsar.registerFunction('pageAnchorUrl', pageAnchorUrl);
-Pulsar.registerFunction('pageIdentifier', pageIdentifier);
-Pulsar.registerFunction('rootUrl', rootUrl);
-Pulsar.registerFunction('assetUrl', assetUrl);
-Pulsar.registerFunction('slugifyHeading', slugifyHeading);
-Pulsar.registerFunction('textBlockPlainText', textBlockPlainText);
+Pulsar.registerFunction("pageUrl", pageUrl);
+Pulsar.registerFunction("pageUrlForFilepath", pageUrlForFilepath);
+Pulsar.registerFunction("pageAnchorUrl", pageAnchorUrl);
+Pulsar.registerFunction("pageIdentifier", pageIdentifier);
+Pulsar.registerFunction("rootUrl", rootUrl);
+Pulsar.registerFunction("assetUrl", assetUrl);
+Pulsar.registerFunction("slugifyHeading", slugifyHeading);
+Pulsar.registerFunction("textBlockPlainText", textBlockPlainText);
 Pulsar.registerFunction(
-  'removeVersionFromDomainUrl',
+  "removeVersionFromDomainUrl",
   removeVersionFromDomainUrl
 );
 
 /* Token manipulation and formatting */
-Pulsar.registerFunction('formattedTokenGroupHeader', formattedTokenGroupHeader);
-Pulsar.registerFunction('fullTokenGroupName', fullTokenGroupName);
-Pulsar.registerFunction('gradientDescription', gradientDescription);
-Pulsar.registerFunction('gradientTokenValue', gradientTokenValue);
-Pulsar.registerFunction('shadowDescription', shadowDescription);
-Pulsar.registerFunction('shadowTokenValue', shadowTokenValue);
+Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader);
+Pulsar.registerFunction("fullTokenGroupName", fullTokenGroupName);
+Pulsar.registerFunction("gradientDescription", gradientDescription);
+Pulsar.registerFunction("gradientTokenValue", gradientTokenValue);
+Pulsar.registerFunction("shadowDescription", shadowDescription);
+Pulsar.registerFunction("shadowTokenValue", shadowTokenValue);
 Pulsar.registerFunction(
-  'measureTypeIntoReadableUnit',
+  "measureTypeIntoReadableUnit",
   measureTypeIntoReadableUnit
 );
-Pulsar.registerFunction('typographyDescription', typographyDescription);
+Pulsar.registerFunction("typographyDescription", typographyDescription);
 Pulsar.registerFunction(
-  'convertTypographyTokenToCSS',
+  "convertTypographyTokenToCSS",
   convertTypographyTokenToCSS
 );
-Pulsar.registerFunction('getFormattedColor', getFormattedColor);
-Pulsar.registerFunction('getColorValueFromSettings', getColorValueFromSettings);
-Pulsar.registerFunction('safeToken', safeToken);
-Pulsar.registerFunction('tokenValueToHex', tokenValueToHex);
-Pulsar.registerFunction('getBorderStyleValue', getBorderStyleValue);
+Pulsar.registerFunction("getFormattedColor", getFormattedColor);
+Pulsar.registerFunction("getColorValueFromSettings", getColorValueFromSettings);
+Pulsar.registerFunction("safeToken", safeToken);
+Pulsar.registerFunction("tokenValueToHex", tokenValueToHex);
+Pulsar.registerFunction("getBorderStyleValue", getBorderStyleValue);
 Pulsar.registerFunction(
-  'measureValueToReadableUnit',
+  "measureValueToReadableUnit",
   measureValueToReadableUnit
 );
-Pulsar.registerFunction('isDimensionToken', isDimensionToken);
-Pulsar.registerFunction('isStringToken', isStringToken);
-Pulsar.registerFunction('isOptionsToken', isOptionsToken);
+Pulsar.registerFunction("isDimensionToken", isDimensionToken);
+Pulsar.registerFunction("isStringToken", isStringToken);
+Pulsar.registerFunction("isOptionsToken", isOptionsToken);
 Pulsar.registerFunction(
-  'decimalOpacityToPercentage',
+  "decimalOpacityToPercentage",
   decimalOpacityToPercentage
 );
-Pulsar.registerFunction('extendFontFamily', extendFontFamily);
-Pulsar.registerFunction('normalizeFontSizeCSS', normalizeFontSizeCSS);
+Pulsar.registerFunction("extendFontFamily", extendFontFamily);
+Pulsar.registerFunction("normalizeFontSizeCSS", normalizeFontSizeCSS);
 Pulsar.registerFunction(
-  'convertTextDecorationToCSS',
+  "convertTextDecorationToCSS",
   convertTextDecorationToCSS
 );
 Pulsar.registerFunction(
-  'convertTextCaseToTextTransform',
+  "convertTextCaseToTextTransform",
   convertTextCaseToTextTransform
 );
 
 /* Markdown */
-Pulsar.registerFunction('markdownToHTML', markdownToHTML);
+Pulsar.registerFunction("markdownToHTML", markdownToHTML);
 
 /* Component Health */
-Pulsar.registerFunction('convertHealthTagIfAny', convertHealthTagIfAny);
+Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny);
 Pulsar.registerFunction(
-  'sortComponentsAlphabetically',
+  "sortComponentsAlphabetically",
   sortComponentsAlphabetically
 );
-Pulsar.registerFunction('getFigmaFileUrl', getFigmaFileUrl);
+Pulsar.registerFunction("getFigmaFileUrl", getFigmaFileUrl);
 
 /* Sandbox */
-Pulsar.registerFunction('htmlSafeString', htmlSafeString);
-Pulsar.registerFunction('htmlSafeUrl', htmlSafeUrl);
+Pulsar.registerFunction("htmlSafeString", htmlSafeString);
+Pulsar.registerFunction("htmlSafeUrl", htmlSafeUrl);
 
 /* Colors */
-Pulsar.registerFunction('contrastColorAPCA', contrastColorAPCA);
-Pulsar.registerFunction('returnSwatchClassnames', returnSwatchClassnames);
-Pulsar.registerFunction('getColorContrastRatio', getColorContrastRatio);
-Pulsar.registerFunction('getClassForInvertedText', getClassForInvertedText);
+Pulsar.registerFunction("contrastColorAPCA", contrastColorAPCA);
+Pulsar.registerFunction("returnSwatchClassnames", returnSwatchClassnames);
+Pulsar.registerFunction("getColorContrastRatio", getColorContrastRatio);
+Pulsar.registerFunction("getClassForInvertedText", getClassForInvertedText);
 
 /* Release notes */
-Pulsar.registerFunction('changelogToEntries', changelogToEntries);
+Pulsar.registerFunction("changelogToEntries", changelogToEntries);
 
 /* Figma Components */
-Pulsar.registerFunction('getComponentPreviews', getComponentPreviews);
-Pulsar.registerFunction('sortComponentsPreviews', sortComponentsPreviews);
+Pulsar.registerFunction("getComponentPreviews", getComponentPreviews);
+Pulsar.registerFunction("sortComponentsPreviews", sortComponentsPreviews);
 
 /* Assets */
 Pulsar.registerFunction("getAssetBlockColumnsClassname", getAssetBlockColumnsClassname)
@@ -167,6 +167,6 @@ Pulsar.registerFunction("getDefaultBrand", getDefaultBrand)
 Pulsar.registerFunction("getFontFormat", getFontFormat)
 
 /* Storybook */
-Pulsar.registerFunction('convertStoryPropsToJson', convertStoryPropsToJson);
-Pulsar.registerFunction('getActualEmbedUrl', getActualEmbedUrl);
-Pulsar.registerFunction('isEmbedDocs', isEmbedDocs);
+Pulsar.registerFunction("convertStoryPropsToJson", convertStoryPropsToJson);
+Pulsar.registerFunction("getActualEmbedUrl", getActualEmbedUrl);
+Pulsar.registerFunction("isEmbedDocs", isEmbedDocs);
