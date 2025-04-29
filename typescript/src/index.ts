@@ -1,112 +1,23 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
-import {
-  getColorContrastRatio,
-  returnSwatchClassnames,
-  getClassForInvertedText,
-  contrastColorAPCA
-} from './doc_functionality/color';
-import {
-  convertHealthTagIfAny,
-  getFigmaFileUrl,
-  sortComponentsAlphabetically
-} from './doc_functionality/health';
-import {
-  firstPageFromTop,
-  firstSubgroupOfPage,
-  flattenedPageStructure,
-  isExportable,
-  nextPage,
-  pageOrGroupActiveInContext,
-  previousPage,
-  isHomepage,
-  resolveMenuLabel,
-  getCurrentTimestamp,
-  checkKeyInArray,
-  firstTabGroupFromTop,
-  isHomepageTab
-} from './doc_functionality/lookup';
-import { markdownToHTML } from './doc_functionality/markdown';
-import { htmlSafeString, htmlSafeUrl } from './doc_functionality/sandbox';
-import { buildSearchIndexJSON } from './doc_functionality/search';
-import {
-  highlightSafeString,
-  withHTMLNewlines,
-  getUrlExtension,
-  changelogToEntries,
-  getSearchIDString,
-  getVariantClass,
-  escapeHtml,
-  addSlashes,
-  normalizeStringForSearch
-} from './doc_functionality/string_utils';
-import {
-  convertTypographyTokenToCSS,
-  formattedTokenGroupHeader,
-  fullTokenGroupName,
-  gradientDescription,
-  gradientTokenValue,
-  measureTypeIntoReadableUnit,
-  shadowDescription,
-  shadowTokenValue,
-  typographyDescription,
-  getFormattedColor,
-  getColorValueFromSettings,
-  safeToken,
-  tokenValueToHex,
-  getBorderStyleValue,
-  measureValueToReadableUnit,
-  isDimensionToken,
-  isStringToken,
-  decimalOpacityToPercentage,
-  isOptionsToken,
-  extendFontFamily,
-  normalizeFontSizeCSS,
-  convertTextDecorationToCSS,
-  convertTextCaseToTextTransform
-} from './doc_functionality/tokens';
-import {
-  assetUrl,
-  textBlockPlainText,
-  pageUrl,
-  pageUrlForFilepath,
-  rootUrl,
-  pageAnchorUrl,
-  slugifyHeading,
-  pageIdentifier,
-  removeVersionFromDomainUrl
-} from './doc_functionality/urls';
-import {
-  generateCustomCSSHash,
-  getFormattedDateTime,
-  getFullYear,
-  includes,
-  sortVersionsBySemver,
-  safeArray,
-  isNonEmptyString,
-  objectValues,
-  objectEntries
-} from './doc_functionality/general-utils';
-import {
-  getComponentPreviews,
-  sortComponentsPreviews
-} from './doc_functionality/components';
-import { getThemesTooltip } from './doc_functionality/themes';
-import {
-  getDynamicVariableForStyle,
-  getAssetBlockColumnsClassname,
-  sortAssetsByName
-} from './doc_functionality/assets';
-import {
-  extractFontFamiliesFromTokens,
-  processFontsForLoading,
-  getDefaultBrand,
-  getFontFormat
-} from './doc_functionality/fonts';
-import { isEmbedDocs } from './doc_functionality/storybook';
-import { getActualEmbedUrl } from './doc_functionality/storybook';
-import { convertStoryPropsToJson } from './doc_functionality/storybook';
+import { getColorContrastRatio, returnSwatchClassnames, getClassForInvertedText, contrastColorAPCA } from "./doc_functionality/color"
+import { convertHealthTagIfAny, getFigmaFileUrl, sortComponentsAlphabetically } from "./doc_functionality/health"
+import { firstPageFromTop, firstSubgroupOfPage, flattenedPageStructure, isExportable, nextPage, pageOrGroupActiveInContext, previousPage, isHomepage, resolveMenuLabel, getCurrentTimestamp, checkKeyInArray, firstTabGroupFromTop, isHomepageTab } from "./doc_functionality/lookup"
+import { markdownToHTML } from "./doc_functionality/markdown"
+import { htmlSafeString, htmlSafeUrl } from "./doc_functionality/sandbox"
+import { buildSearchIndexJSON } from "./doc_functionality/search"
+import { highlightSafeString, withHTMLNewlines, getUrlExtension, changelogToEntries, getSearchIDString, getVariantClass, escapeHtml, addSlashes, normalizeStringForSearch } from "./doc_functionality/string_utils"
+import { convertTypographyTokenToCSS, formattedTokenGroupHeader, fullTokenGroupName, gradientDescription, gradientTokenValue, measureTypeIntoReadableUnit, shadowDescription, shadowTokenValue, typographyDescription, getFormattedColor, getColorValueFromSettings, safeToken, tokenValueToHex, getBorderStyleValue, measureValueToReadableUnit, isDimensionToken, isStringToken, decimalOpacityToPercentage, isOptionsToken, extendFontFamily, normalizeFontSizeCSS, convertTextDecorationToCSS, convertTextCaseToTextTransform } from "./doc_functionality/tokens"
+import { assetUrl, textBlockPlainText, pageUrl, pageUrlForFilepath, rootUrl, pageAnchorUrl, slugifyHeading, pageIdentifier, removeVersionFromDomainUrl } from "./doc_functionality/urls"
+import { generateCustomCSSHash, getFormattedDateTime, getFullYear, includes, sortVersionsBySemver, safeArray, isNonEmptyString, objectValues, objectEntries } from "./doc_functionality/general-utils"
+import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionality/components"
+import { getThemesTooltip } from "./doc_functionality/themes"
+import { getDynamicVariableForStyle, getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
+import { extractFontFamiliesFromTokens, processFontsForLoading, getDefaultBrand, getFontFormat } from "./doc_functionality/fonts"
+import { isEmbedDocs } from "./doc_functionality/storybook"
+import { getActualEmbedUrl } from "./doc_functionality/storybook"
+import { convertStoryPropsToJson } from "./doc_functionality/storybook"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -141,13 +52,13 @@ Pulsar.registerFunction('safeArray', safeArray);
 Pulsar.registerFunction('isNonEmptyString', isNonEmptyString);
 
 /* String utilities */
-Pulsar.registerFunction('highlightSafeString', highlightSafeString);
-Pulsar.registerFunction('withHTMLNewlines', withHTMLNewlines);
-Pulsar.registerFunction('getUrlExtension', getUrlExtension);
-Pulsar.registerFunction('escapeHtml', escapeHtml);
-Pulsar.registerFunction('addSlashes', addSlashes);
-Pulsar.registerFunction('normalizeStringForSearch', normalizeStringForSearch);
-Pulsar.registerFunction('getFontFormat', getFontFormat);
+Pulsar.registerFunction("highlightSafeString", highlightSafeString)
+Pulsar.registerFunction("withHTMLNewlines", withHTMLNewlines)
+Pulsar.registerFunction("getUrlExtension", getUrlExtension)
+Pulsar.registerFunction("escapeHtml", escapeHtml)
+Pulsar.registerFunction("addSlashes", addSlashes)
+Pulsar.registerFunction("normalizeStringForSearch", normalizeStringForSearch)
+Pulsar.registerFunction("getFontFormat", getFontFormat)
 
 /* Themes utilities */
 Pulsar.registerFunction('getThemesTooltip', getThemesTooltip);
@@ -245,24 +156,15 @@ Pulsar.registerFunction('getComponentPreviews', getComponentPreviews);
 Pulsar.registerFunction('sortComponentsPreviews', sortComponentsPreviews);
 
 /* Assets */
-Pulsar.registerFunction(
-  'getAssetBlockColumnsClassname',
-  getAssetBlockColumnsClassname
-);
-Pulsar.registerFunction('sortAssetsByName', sortAssetsByName);
-Pulsar.registerFunction(
-  'getDynamicVariableForStyle',
-  getDynamicVariableForStyle
-);
+Pulsar.registerFunction("getAssetBlockColumnsClassname", getAssetBlockColumnsClassname)
+Pulsar.registerFunction("sortAssetsByName", sortAssetsByName)
+Pulsar.registerFunction("getDynamicVariableForStyle", getDynamicVariableForStyle)
 
 /* Fonts */
-Pulsar.registerFunction(
-  'extractFontFamiliesFromTokens',
-  extractFontFamiliesFromTokens
-);
-Pulsar.registerFunction('processFontsForLoading', processFontsForLoading);
-Pulsar.registerFunction('getDefaultBrand', getDefaultBrand);
-Pulsar.registerFunction('getFontFormat', getFontFormat);
+Pulsar.registerFunction("extractFontFamiliesFromTokens", extractFontFamiliesFromTokens)
+Pulsar.registerFunction("processFontsForLoading", processFontsForLoading)
+Pulsar.registerFunction("getDefaultBrand", getDefaultBrand)
+Pulsar.registerFunction("getFontFormat", getFontFormat)
 
 /* Storybook */
 Pulsar.registerFunction('convertStoryPropsToJson', convertStoryPropsToJson);
