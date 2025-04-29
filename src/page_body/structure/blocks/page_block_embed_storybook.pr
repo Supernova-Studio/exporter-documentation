@@ -9,7 +9,9 @@
   {[ const hiddenProps = firstValue?.entityMeta?.hiddenProps ? firstValue?.entityMeta?.hiddenProps : [] /]}
   {[ const propValues = firstValue?.entityMeta?.propValues ? firstValue?.entityMeta?.propValues : {} /]}
 
-  {[ const embedUrl = getActualEmbedUrl(firstValue?.embed?.embedUrl, firstValue?.entityId, ds.storybookEntries()) /]}
+  {[ const storybookEntries = ds.storybookEntries() /]}
+  {[ const embedUrl = getActualEmbedUrl(firstValue?.embed?.embedUrl, firstValue?.entityId, storybookEntries) /]}
+  {[ const isDocs = isEmbedDocs(firstValue?.embed?.inputUrl, firstValue?.entityId, storybookEntries) /]}
 
   {[ if (embedUrl) ]}
     <div class="content-block content-block--embed">
@@ -28,6 +30,7 @@
                   {{ blockConfig.showProperties ? "data-storybook-show-properties" : "" }}
                   {{ blockConfig.showDescription ? "data-storybook-show-description" : "" }}
                   {{ blockConfig.showDefaults ? "data-storybook-show-defaults" : "" }}
+                  {{ isDocs ? "data-storybook-is-docs" : "" }}
                   data-storybook-hidden-props='{{ convertStoryPropsToJson(hiddenProps, []) }}'
                   data-storybook-prop-values='{{ convertStoryPropsToJson(propValues, {}) }}'
                   data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"

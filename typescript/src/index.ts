@@ -100,7 +100,8 @@ import {
 } from './doc_functionality/assets';
 import {
   convertStoryPropsToJson,
-  getActualEmbedUrl
+  getActualEmbedUrl,
+  isEmbedDocs
 } from './doc_functionality/storybook';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -252,3 +253,4 @@ Pulsar.registerFunction(
 /* Storybook */
 Pulsar.registerFunction('convertStoryPropsToJson', convertStoryPropsToJson);
 Pulsar.registerFunction('getActualEmbedUrl', getActualEmbedUrl);
+Pulsar.registerFunction('isEmbedDocs', isEmbedDocs);
