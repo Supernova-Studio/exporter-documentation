@@ -43630,7 +43630,7 @@ function FK({
         s(c), t(c);
       }
     },
-    Object.values(r).map((c) => /* @__PURE__ */ C.createElement(s3, { key: c, value: c }, c === qK ? "None" : c.toUpperCase()))
+    Object.values(r).map((c) => /* @__PURE__ */ C.createElement(s3, { key: c, value: c }, c === qK ? "None" : c))
   );
 }
 function $K({ defaultValue: e, onChange: r }) {
@@ -43918,7 +43918,7 @@ function KK({
     {
       className: ge(
         "flex flex-col",
-        O && "border border-neutral-faded"
+        O && "border border-neutral-faded rounded"
       )
     },
     /* @__PURE__ */ C.createElement(
