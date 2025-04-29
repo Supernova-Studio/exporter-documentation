@@ -34,7 +34,7 @@
                   data-storybook-hidden-props='{{ convertStoryPropsToJson(hiddenProps, []) }}'
                   data-storybook-prop-values='{{ convertStoryPropsToJson(propValues, {}) }}'
                   data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"
-              />
+              ></div>
             {[/]}
             {[ if (block.variantKey === "default") ]}
               <iframe
