@@ -99,10 +99,14 @@ import {
   sortAssetsByName
 } from './doc_functionality/assets';
 import {
-  convertStoryPropsToJson,
-  getActualEmbedUrl,
-  isEmbedDocs
-} from './doc_functionality/storybook';
+  extractFontFamiliesFromTokens,
+  processFontsForLoading,
+  getDefaultBrand,
+  getFontFormat
+} from './doc_functionality/fonts';
+import { isEmbedDocs } from './doc_functionality/storybook';
+import { getActualEmbedUrl } from './doc_functionality/storybook';
+import { convertStoryPropsToJson } from './doc_functionality/storybook';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -143,6 +147,7 @@ Pulsar.registerFunction('getUrlExtension', getUrlExtension);
 Pulsar.registerFunction('escapeHtml', escapeHtml);
 Pulsar.registerFunction('addSlashes', addSlashes);
 Pulsar.registerFunction('normalizeStringForSearch', normalizeStringForSearch);
+Pulsar.registerFunction('getFontFormat', getFontFormat);
 
 /* Themes utilities */
 Pulsar.registerFunction('getThemesTooltip', getThemesTooltip);
@@ -249,6 +254,15 @@ Pulsar.registerFunction(
   'getDynamicVariableForStyle',
   getDynamicVariableForStyle
 );
+
+/* Fonts */
+Pulsar.registerFunction(
+  'extractFontFamiliesFromTokens',
+  extractFontFamiliesFromTokens
+);
+Pulsar.registerFunction('processFontsForLoading', processFontsForLoading);
+Pulsar.registerFunction('getDefaultBrand', getDefaultBrand);
+Pulsar.registerFunction('getFontFormat', getFontFormat);
 
 /* Storybook */
 Pulsar.registerFunction('convertStoryPropsToJson', convertStoryPropsToJson);
