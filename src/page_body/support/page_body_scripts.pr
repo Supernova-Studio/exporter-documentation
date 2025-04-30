@@ -23,7 +23,7 @@
 <script src="https://cdn-assets.supernova.io/code/js/sandbox_v13.js"></script> 
 
 <!-- Storybook -->
-<script src="https://cdn-assets.supernova.io/storybook/js/storybook-playground.js"></script>
+<script src="https://cdn-assets.supernova.io/storybook/js/storybook-playground_v2.js"></script>
 
 <!-- Search Support-->
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3" integrity="sha512-W+QdO2uEYG8oKLFGKPGGwT43RQWOBzAcxSpPMRyR6zAC3DLjMPp6GxoPvasKfs1pbYYXd0ByDCOiBd7M554qbw==" crossorigin="anonymous"></script>
