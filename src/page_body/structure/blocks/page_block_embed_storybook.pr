@@ -10,7 +10,7 @@
   {[ const propValues = firstValue?.entityMeta?.propValues ? firstValue?.entityMeta?.propValues : {} /]}
 
   {[ const storybookEntries = ds.storybookEntries() /]}
-  {[ const embedUrl = getActualEmbedUrl(firstValue?.embed?.embedUrl, firstValue?.entityId, storybookEntries) /]}
+  {[ const embedUrl = getActualEmbedUrl(firstValue?.embed?.embedUrl, firstValue?.entityId, storybookEntries, block.variantKey) /]}
   {[ const isDocs = isEmbedDocs(firstValue?.embed?.inputUrl, firstValue?.entityId, storybookEntries) /]}
 
   {[ if (embedUrl) ]}
