@@ -99,7 +99,7 @@ export const stripStorybookAddons = (originalUrl: string): URL => {
       : null;
 
   // Embedding without addons can use `iframe.html` endpoint
-  const queryParametersToCopy = parsedUrl.query;
+  const queryParametersToCopy = { ...parsedUrl.query };
   // Remove component path since it's going to be passed inside id parameter
   delete queryParametersToCopy[componentPathQueryParameter];
 
@@ -138,7 +138,8 @@ export const stripStorybookAddons = (originalUrl: string): URL => {
   }
 
   const newUrl = url.format({
-    ...parsedUrl,
+    protocol: parsedUrl.protocol,
+    host: parsedUrl.host,
     pathname: newPathSegments
       .filter(pathSegment => pathSegment && pathSegment.length !== 0)
       .join('/'),
