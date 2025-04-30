@@ -18,7 +18,7 @@
       {[ if (block.variantKey === "playground") ]}
         <div class="storybook-container">
       {[/]}
-      {[ if (block.variantKey === "default") ]}
+      {[ if (block.variantKey === "default" || block.variantKey === null) ]}
         <div class="storybook-container" style="height: {{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}px">
       {[/]}
           <div class="storybook-embed-container">
@@ -36,7 +36,7 @@
                   data-storybook-height="{{ firstValue?.entityMeta?.height ? firstValue?.entityMeta?.height : 400 }}"
               ></div>
             {[/]}
-            {[ if (block.variantKey === "default") ]}
+            {[ if (block.variantKey === "default" || block.variantKey === null) ]}
               <iframe
                   class="embed-responsive-item storybook"
                   src="{{ block.url }}"
