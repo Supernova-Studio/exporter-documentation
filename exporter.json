@@ -1,12 +1,12 @@
 {
-  "id": "io.supernova.documentation-main",
+  "id": "io.testing.documentation-debug",
   "name": "Default Documentation",
   "description": "Default customizable exporter for design system documentation",
   "author": "Supernova",
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.4.5",
+  "version": "0.0.1",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -598,6 +598,14 @@
         "default": "body,\r\nhtml {\r\n\r\n}",
         "isMultiline": true,
         "inputType": "code"
+      },
+      {
+        "key": "debugMode",
+        "type": "boolean",
+        "label": "Enable debug mode",
+        "description": "Enables debug mode for documentation exporter, may slow down export as run everything sequentially",
+        "category": "Other",
+        "default": false
       }
     ],
     "blocks": [
