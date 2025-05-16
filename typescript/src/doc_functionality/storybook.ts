@@ -152,11 +152,13 @@ export const stripStorybookAddons = (originalUrl: string): URL => {
 export function getActualEmbedUrl(
   embedUrl?: string,
   entityId?: string,
-  storybookEntries?: { id: string; url: string }[],
+  storybookEntries?: { id: string; url: string; aliases: string[] }[],
   variantKey?: string
 ) {
   if (!embedUrl) {
-    return storybookEntries?.find(entry => entry.id === entityId)?.url;
+    return storybookEntries?.find(
+      entry => entry.id === entityId || entry.aliases.includes(entityId ?? '')
+    )?.url;
   }
 
   const actualEmbedUrl =
