@@ -46,18 +46,18 @@
                   referrerpolicy="origin"
                   style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
               ></iframe>
-              {[ if (blockConfig.showFooter && firstValue?.embed?.inputUrl) ]}
-                <div class="storybook-footer">
-                  <a href="{{ firstValue?.embed?.inputUrl }}" target="_blank">
-                    Open in Storybook
-                  </a>
-                </div>
-              {[/]}
             {[/]}
           </div>
       </div>
+      {[ if ((block.variantKey === "default" || block.variantKey === null) && blockConfig.showFooter && firstValue?.embed?.inputUrl) ]}
+        <div>
+          <a href="{{ firstValue?.embed?.inputUrl }}" target="_blank">
+            Open in Storybook
+          </a>
+        </div>
+      {[/]}
       {[ if block.caption ]}
-          <p class="caption">{{ block.caption }}</p>
+        <p class="caption">{{ block.caption }}</p>
       {[/]}
     </div>
   {[/]}
