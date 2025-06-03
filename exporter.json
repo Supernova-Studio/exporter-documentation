@@ -766,6 +766,12 @@
           "key": "accordion",
           "description": "Tabs displayed as an accordion.",
           "thumbnail": "thumbnails/Tabs_Accordion.png"
+        },
+        {
+          "name": "Full width section",
+          "key": "full-width-section",
+          "description": "Full background below the block. Only the first tab is displayed.",
+          "thumbnail": "thumbnails/Tabs_FullWidth.png"
         }
       ],
       "TokenList": [
