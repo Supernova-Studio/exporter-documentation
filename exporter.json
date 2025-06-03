@@ -762,7 +762,7 @@
           "thumbnail": "thumbnails/Tabs_Columns.png"
         },
         {
-          "name": "Accordion",
+          "name": "Accordion Test",
           "key": "accordion",
           "description": "Tabs displayed as an accordion.",
           "thumbnail": "thumbnails/Tabs_Accordion.png"
