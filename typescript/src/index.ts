@@ -1,5 +1,3 @@
-
-
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 
@@ -17,13 +15,19 @@ import { getComponentPreviews, sortComponentsPreviews } from "./doc_functionalit
 import { getThemesTooltip } from "./doc_functionality/themes"
 import { getDynamicVariableForStyle, getAssetBlockColumnsClassname, sortAssetsByName } from "./doc_functionality/assets"
 import { extractFontFamiliesFromTokens, processFontsForLoading, getDefaultBrand, getFontFormat } from "./doc_functionality/fonts"
+import { isEmbedDocs } from "./doc_functionality/storybook"
+import { getActualEmbedUrl } from "./doc_functionality/storybook"
+import { convertStoryPropsToJson } from "./doc_functionality/storybook"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
 
 /* Local lookup */
 Pulsar.registerFunction("firstSubgroupOfPage", firstSubgroupOfPage)
-Pulsar.registerFunction("pageOrGroupActiveInContext", pageOrGroupActiveInContext)
+Pulsar.registerFunction(
+  "pageOrGroupActiveInContext",
+  pageOrGroupActiveInContext
+)
 Pulsar.registerFunction("flattenedPageStructure", flattenedPageStructure)
 Pulsar.registerFunction("firstPageFromTop", firstPageFromTop)
 Pulsar.registerFunction("previousPage", previousPage)
@@ -68,14 +72,17 @@ Pulsar.registerFunction("buildSearchIndexJSON", buildSearchIndexJSON)
 
 /* URL manipulation and support */
 Pulsar.registerFunction("pageUrl", pageUrl)
-Pulsar.registerFunction("pageUrlForFilepath", pageUrlForFilepath);
+Pulsar.registerFunction("pageUrlForFilepath", pageUrlForFilepath)
 Pulsar.registerFunction("pageAnchorUrl", pageAnchorUrl)
 Pulsar.registerFunction("pageIdentifier", pageIdentifier)
 Pulsar.registerFunction("rootUrl", rootUrl)
 Pulsar.registerFunction("assetUrl", assetUrl)
 Pulsar.registerFunction("slugifyHeading", slugifyHeading)
 Pulsar.registerFunction("textBlockPlainText", textBlockPlainText)
-Pulsar.registerFunction("removeVersionFromDomainUrl", removeVersionFromDomainUrl)
+Pulsar.registerFunction(
+  "removeVersionFromDomainUrl",
+  removeVersionFromDomainUrl
+)
 
 /* Token manipulation and formatting */
 Pulsar.registerFunction("formattedTokenGroupHeader", formattedTokenGroupHeader)
@@ -84,30 +91,51 @@ Pulsar.registerFunction("gradientDescription", gradientDescription)
 Pulsar.registerFunction("gradientTokenValue", gradientTokenValue)
 Pulsar.registerFunction("shadowDescription", shadowDescription)
 Pulsar.registerFunction("shadowTokenValue", shadowTokenValue)
-Pulsar.registerFunction("measureTypeIntoReadableUnit", measureTypeIntoReadableUnit)
+Pulsar.registerFunction(
+  "measureTypeIntoReadableUnit",
+  measureTypeIntoReadableUnit
+)
 Pulsar.registerFunction("typographyDescription", typographyDescription)
-Pulsar.registerFunction("convertTypographyTokenToCSS", convertTypographyTokenToCSS)
+Pulsar.registerFunction(
+  "convertTypographyTokenToCSS",
+  convertTypographyTokenToCSS
+)
 Pulsar.registerFunction("getFormattedColor", getFormattedColor)
 Pulsar.registerFunction("getColorValueFromSettings", getColorValueFromSettings)
 Pulsar.registerFunction("safeToken", safeToken)
 Pulsar.registerFunction("tokenValueToHex", tokenValueToHex)
 Pulsar.registerFunction("getBorderStyleValue", getBorderStyleValue)
-Pulsar.registerFunction("measureValueToReadableUnit", measureValueToReadableUnit)
+Pulsar.registerFunction(
+  "measureValueToReadableUnit",
+  measureValueToReadableUnit
+)
 Pulsar.registerFunction("isDimensionToken", isDimensionToken)
 Pulsar.registerFunction("isStringToken", isStringToken)
 Pulsar.registerFunction("isOptionsToken", isOptionsToken)
-Pulsar.registerFunction("decimalOpacityToPercentage", decimalOpacityToPercentage)
+Pulsar.registerFunction(
+  "decimalOpacityToPercentage",
+  decimalOpacityToPercentage
+)
 Pulsar.registerFunction("extendFontFamily", extendFontFamily)
 Pulsar.registerFunction("normalizeFontSizeCSS", normalizeFontSizeCSS)
-Pulsar.registerFunction("convertTextDecorationToCSS", convertTextDecorationToCSS)
-Pulsar.registerFunction("convertTextCaseToTextTransform", convertTextCaseToTextTransform)
+Pulsar.registerFunction(
+  "convertTextDecorationToCSS",
+  convertTextDecorationToCSS
+)
+Pulsar.registerFunction(
+  "convertTextCaseToTextTransform",
+  convertTextCaseToTextTransform
+)
 
 /* Markdown */
 Pulsar.registerFunction("markdownToHTML", markdownToHTML)
 
 /* Component Health */
 Pulsar.registerFunction("convertHealthTagIfAny", convertHealthTagIfAny)
-Pulsar.registerFunction("sortComponentsAlphabetically", sortComponentsAlphabetically)
+Pulsar.registerFunction(
+  "sortComponentsAlphabetically",
+  sortComponentsAlphabetically
+)
 Pulsar.registerFunction("getFigmaFileUrl", getFigmaFileUrl)
 
 /* Sandbox */
@@ -137,3 +165,8 @@ Pulsar.registerFunction("extractFontFamiliesFromTokens", extractFontFamiliesFrom
 Pulsar.registerFunction("processFontsForLoading", processFontsForLoading)
 Pulsar.registerFunction("getDefaultBrand", getDefaultBrand)
 Pulsar.registerFunction("getFontFormat", getFontFormat)
+
+/* Storybook */
+Pulsar.registerFunction("convertStoryPropsToJson", convertStoryPropsToJson)
+Pulsar.registerFunction("getActualEmbedUrl", getActualEmbedUrl)
+Pulsar.registerFunction("isEmbedDocs", isEmbedDocs)
