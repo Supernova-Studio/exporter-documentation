@@ -1,0 +1,38 @@
+.section--full-width {
+  position: relative;
+  padding: 24px 0;
+
+  .section--full-width-background {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 300vw;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &>* {
+    position: relative;
+  }
+
+  /* Remove margin-top from the first block of the full-width section (3rd element after the background and the anchor) */
+  &> :nth-child(3) {
+    margin-top: 0;
+  }
+
+  /* Remove margin-bottom from the last block of the full-width section */
+  &> :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Adjusting the main container to hide full-width section tabs */
+/* Note: needs proper testing to make sure there are no side effects */
+.docs-content>.content-container{
+    overflow: hidden;
+}
+
