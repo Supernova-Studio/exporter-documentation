@@ -1,104 +1,85 @@
 {[ let block = context /]}
 
-{[ log "Debug - Full block data:" block /]}
-{[ log "Debug - Shortcuts array:" block.shortcuts /]}
-
-<div class="shortcuts-wrapper">
-  <div class="shortcuts-row">
-    <div class="shortcut-item" style="background-color: {{ block.shortcuts[0].description || '#e2e8f0' }}">
-      <h3 class="shortcut-title">{{ block.shortcuts[0].title }}</h3>
-      {[ if block.shortcuts[0].previewUrl ]}
-        <img src="{{ block.shortcuts[0].previewUrl }}" alt="" class="shortcut-icon" aria-hidden="true">
-      {[/]}
-    </div>
-  </div>
+{* 
+  Custom Shortcuts Grid - Proof of concept
   
-  <div class="shortcuts-row">
-    <div class="shortcut-item shortcut-small" style="background-color: {{ block.shortcuts[1].description || '#e2e8f0' }}">
-      <h3 class="shortcut-title">{{ block.shortcuts[1].title }}</h3>
-      {[ if block.shortcuts[1].previewUrl ]}
-        <img src="{{ block.shortcuts[1].previewUrl }}" alt="" class="shortcut-icon" aria-hidden="true">
+  This is a proof of concept demonstrating how to create a custom CSS grid layout 
+  that works with exactly 3 shortcut items. The grid displays one large item on the 
+  left spanning full height, and two smaller items stacked vertically on the right.
+  
+  Layout structure:
+  - Grid with 2 columns, 2 rows
+  - Item 1: Full height on the left (spans both rows)
+  - Item 2: Top half of right column  
+  - Item 3: Bottom half of right column
+  
+  Variant Configuration:
+  This custom block uses a new variant that is defined in exporter.json configuration.
+  The variant allows the shortcuts block to be rendered with this custom grid layout
+  instead of the standard shortcuts display.
+  
+  Implementation Notes:
+  - Requires exactly 3 shortcuts to display properly
+  - Uses each shortcut's description field as the background color — to show how some fields
+  that might not be needed could be used for passing additional data from the editor to the exported 
+  - Supports images via previewUrl field — they are just to show that images can be used as data too, 
+  and it's up to the designer to decide how to use them.
+  - CSS styling is handled in shortcuts-grid.scss
+*}
+
+{* 
+  Debug logging - this is a good way to see what data structure is coming 
+  to the block from the backend. Check browser console to see the output.
+*}
+{[ log block /]}
+
+<div class="shortcuts-custom-grid">
+  {[ if block.shortcuts && block.shortcuts.count >= 3 ]}
+    {* First item - spans full height on the left *}
+    <div class="grid-item grid-item--large" 
+         style="background-color: {{ block.shortcuts[0].description }}">
+      <div class="grid-item-content">
+        <h3 class="grid-item-title">{{ block.shortcuts[0].title }}</h3>
+        {[ if block.shortcuts[0].previewUrl ]}
+          <img src="{{ block.shortcuts[0].previewUrl }}" 
+               alt="{{ block.shortcuts[0].title }}" 
+               class="grid-item-image">
+        {[/]}
+      </div>
+    </div>
+    
+    {* Second item - top right *}
+    <div class="grid-item grid-item--small grid-item--top" 
+         style="background-color: {{ block.shortcuts[1].description }}">
+      <div class="grid-item-content">
+        <h3 class="grid-item-title">{{ block.shortcuts[1].title }}</h3>
+        {[ if block.shortcuts[1].previewUrl ]}
+          <img src="{{ block.shortcuts[1].previewUrl }}" 
+               alt="{{ block.shortcuts[1].title }}" 
+               class="grid-item-image">
+        {[/]}
+      </div>
+    </div>
+    
+    {* Third item - bottom right *}
+    <div class="grid-item grid-item--small grid-item--bottom" 
+         style="background-color: {{ block.shortcuts[2].description }}">
+      <div class="grid-item-content">
+        <h3 class="grid-item-title">{{ block.shortcuts[2].title }}</h3>
+        {[ if block.shortcuts[2].previewUrl ]}
+          <img src="{{ block.shortcuts[2].previewUrl }}" 
+               alt="{{ block.shortcuts[2].title }}" 
+               class="grid-item-image">
+        {[/]}
+      </div>
+    </div>
+  {[ else ]}
+    {* Fallback for insufficient data *}
+    <div class="grid-fallback">
+      <p>Not enough shortcut items to display custom grid (need at least 3 items)</p>
+      {[ if block.shortcuts ]}
+        <p>Available items: {{ block.shortcuts.count }}</p>
       {[/]}
     </div>
-    <div class="shortcut-item shortcut-large" style="background-color: {{ block.shortcuts[2].description || '#e2e8f0' }}">
-      <h3 class="shortcut-title">{{ block.shortcuts[2].title }}</h3>
-      {[ if block.shortcuts[2].previewUrl ]}
-        <img src="{{ block.shortcuts[2].previewUrl }}" alt="" class="shortcut-icon" aria-hidden="true">
-      {[/]}
-    </div>
-  </div>
+  {[/]}
 </div>
-
-<style>
-.debug-border {
-  border: 1px solid red;
-}
-
-.shortcuts-wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.shortcuts-row {
-  display: flex;
-  gap: 24px;
-  width: 100%;
-}
-
-.shortcut-item {
-  background: #fff;
-  border-radius: 12px;
-  padding: 32px;
-  min-height: 200px;
-  flex: 1;
-}
-
-.shortcut-small {
-  flex: 0 0 33.333%;
-}
-
-.shortcut-large {
-  flex: 0 0 66.667%;
-}
-
-.shortcut-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.2;
-  color: #000;
-}
-
-.shortcut-icon {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  .shortcuts-row {
-    flex-direction: column;
-  }
-
-  .shortcut-item {
-    min-height: 160px;
-    padding: 24px;
-  }
-
-  .shortcut-small,
-  .shortcut-large {
-    flex: 1;
-  }
-
-  .shortcut-title {
-    font-size: 1.5rem;
-  }
-}
-</style>
