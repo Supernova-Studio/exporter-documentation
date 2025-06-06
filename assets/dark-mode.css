@@ -1,0 +1,36 @@
+/* Overrides for dark mode with subset of variables — full list must be added before this would go to production */
+.dark {
+    --pageHeaderInk: #ffffff !important;
+    --headingInk: #ffffff !important;
+    --pageDescriptionInk: rgb(249 249 249) !important;
+    --sideNavBorderColor: rgba(43,46,57,1.00) !important;
+    --pageHeaderBorderColor: rgb(24, 28, 31) !important;
+    --colorBorderStructure: rgba(43,46,57,1.00) !important;
+    --colorInkPrimary: #e4e4e4 !important;
+    --colorInkSecondary: #c4c4c4 !important; 
+    --colorInkTertiary: #a4a4a4 !important;
+    --colorInkInverted: #1a1a1a !important;
+    --pageNavigationInk: var(--colorInkPrimary) !important;
+    --colorBorderSubtle: rgba(43,46,57,1.00) !important;
+    --colorAccent: #e7e7e7 !important;
+    --pageNavigationBackground: rgb(24, 28, 31) !important;
+    --pageBackground: rgb(24, 28, 31) !important;
+    --colorBackgroundPrimary: var(--pageBackground);
+    --shortcutBackground: var(--colorBackgroundPrimary);
+    --calloutInfoBackground: #3b3842;
+    --colorCodeMark: #39c1b9 !important;
+    --colorBackgroundSecondary: #191a1b !important;
+    --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px #2c333a;
+    --shortcutBoxShadow: var(--boxShadowLevel1);
+    --pageNavigationElevation: var(--boxShadowLevel1);
+    --pageHeaderBackground: var(--colorBackgroundSecondary);
+}
+
+/* Custom section backgrounds */
+.dark .bg-teal {
+    background-color: #032a27 !important;
+}
+
+.dark .bg-yellow {
+    background-color: #3e3809 !important;
+}

@@ -93,6 +93,9 @@
                         </div>
                     </div>
                     {[/]}
+                    <div class="theme-switcher-container">
+                        {[ inject "header_theme_switcher" context configuration /]}
+                    </div>
                     {[ if (configuration.searchButtonType === "Icon + label") ]}
                         <button class="btn-icon-button btn-search search expanded" aria-label="Search in documentation">
                             {[ inject "icon_search" context configuration /]} Search...

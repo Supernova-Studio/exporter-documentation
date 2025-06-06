@@ -1,0 +1,141 @@
+/* Modern Theme Switcher Design */
+.theme-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--colorBackgroundSecondary, #f1f3f4) 0%, var(--colorBackgroundPrimary, #ffffff) 100%);
+  border: 1px solid var(--colorBorderStructure, #e1e5e9);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--colorAccent, #007bff);
+  }
+
+  &:active {
+    transform: translateY(0);
+    transition: transform 0.1s;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 26px;
+    height: 26px;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  // Dark mode toggle position
+  &[data-theme="dark"] {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-color: var(--colorBorderStructure, #404040);
+
+    &::before {
+      transform: translateX(28px);
+      background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+    }
+  }
+}
+
+.theme-switcher-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .light-icon {
+    fill: #f9c161;
+    stroke: #f9c161;
+    color: #f9c161;
+    transform: scale(1);
+  }
+
+  .dark-icon {
+    fill: #000;
+    stroke: #000;
+    color: #000;
+    transform: scale(0.8);
+  }
+
+  // Position icons
+  &.sun-icon {
+    left: 8px;
+  }
+
+  &.moon-icon {
+    right: 8px;
+  }
+}
+
+// Icon visibility and animations
+.theme-switcher {
+  &[data-theme="light"] {
+    .theme-switcher-icon {
+      &.sun-icon {
+        transform: scale(1) rotate(0deg);
+      }
+
+      &.moon-icon {
+        transform: scale(0.7) rotate(-30deg);
+      }
+    }
+  }
+
+  &[data-theme="dark"] {
+    .theme-switcher-icon {
+      &.sun-icon {
+        transform: scale(0.7) rotate(30deg);
+      }
+
+      &.moon-icon {
+        transform: scale(1) rotate(0deg);
+      }
+    }
+  }
+}
+
+// Add a subtle glow effect on focus
+.theme-switcher:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--colorAccent, 0, 123, 255), 0.2);
+}
+
+// Smooth transitions for theme changes
+body {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Disable transitions temporarily to prevent flicker during theme changes
+.disable-transitions,
+.disable-transitions *,
+.disable-transitions *:before,
+.disable-transitions *:after {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}

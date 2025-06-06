@@ -14,4 +14,8 @@
 
     {* Injection point - inject head *}
     {{ configuration.advancedCustomizationCustomHeadInject }}
+
+    {* Custom functionality *}
+    <script src="{{ domain }}/assets/js/custom-functionality.js"></script>
+    <link rel="stylesheet" href="{{ domain }}/assets/dark-mode.css">
 </head>

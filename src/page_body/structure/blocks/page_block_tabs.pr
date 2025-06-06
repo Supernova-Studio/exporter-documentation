@@ -9,13 +9,39 @@
 
 <div class="content-block content-block--tabs">
   {[ if (variant === "pills") ]}
-    {* Tab variant where tabs render as sidebar with pills and content is side-by-side *}
-    {* Pills navigation sidebar *}
+    {* 
+      Pills Variant - Full-width background sections proof of concept
+      
+      This variant demonstrates one approach to creating sections with backgrounds 
+      that can span the full width of the page, breaking out of the normal content 
+      container constraints. 
+
+      Why is the Pills variant used? There is not an option to add more variants to Tabs block currently, 
+      so we picked one that is used less often in our case. Any of the 4 existing variants could be used.
+      
+      Purpose:
+      - Shows how to achieve full-width background sections using the tab block structure
+      - Each tab item becomes a section that can extend its background across the entire viewport
+      - Provides a foundation that can be adapted and customized for specific design needs
+      
+      Implementation approach:
+      - Transforms tab items into standalone full-width sections
+      - Uses the tab caption as a CSS class name for defining the color
+      - Applies "section--full-width" and "section--full-width-background" classes
+      - Content flows vertically without traditional tab switching behavior
+      
+      Note: This is one possible solution. The CSS styling for full-width sections 
+      is handled in sections.scss. The implementation serves as a starting point 
+      for teams to build upon and customize for their specific design needs.
+    *}
+    {* Transform each tab item into a full-width section *}
     {[ map (block.children.enumerated()) to index tab ]}
         {[ let id = tab.id.prefixed("T") /]}
         {[ if (tab.type === "TabItem") ]}
         <div class="section section--full-width">
-        <div class="section--full-width-background" style="background-color: {{ tab.caption }};"></div>
+        {* Use tab caption as CSS class for custom styling opportunities *}
+        <div class="section--full-width-background {{ tab.caption }}"></div>
+          {* Render all child blocks within this section *}
           {[ for child in tab.children ]}
               {[ inject "page_body_structure_block" context ({"block": child, "pageId": pageId}) /]}
           {[/]}
