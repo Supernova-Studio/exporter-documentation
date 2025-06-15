@@ -129,6 +129,7 @@
 
   // 1 column
   &.variant-icon-leading-1,
+  &.variant-icon-top-1,
   &.variant-image-leading-1,
   &.variant-image-top-1 {
     grid-template-columns: repeat(1, 1fr);
@@ -167,6 +168,14 @@
     margin: var(--shortcutContentPadding);
     margin-bottom: 0px !important;
     border-radius: var(--shortcutBorderRadius);
+  }
+
+  &.variant-icon-top-1 .shortcut-item,
+  &.variant-icon-top-2 .shortcut-item,
+  &.variant-icon-top-3 .shortcut-item,
+  &.variant-icon-top-4 .shortcut-item {
+    display: flex;
+    flex-direction: column;
   }
 
   // Leading icon

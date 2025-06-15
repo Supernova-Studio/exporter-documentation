@@ -18,6 +18,7 @@ import { extractFontFamiliesFromTokens, processFontsForLoading, getDefaultBrand,
 import { isEmbedDocs } from "./doc_functionality/storybook"
 import { getActualEmbedUrl } from "./doc_functionality/storybook"
 import { convertStoryPropsToJson } from "./doc_functionality/storybook"
+import { convertFileToShortcut, getFiles, getFileTypeFromFileName, getIconUrlFromFileType } from "./doc_functionality/files"
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -170,3 +171,9 @@ Pulsar.registerFunction("getFontFormat", getFontFormat)
 Pulsar.registerFunction("convertStoryPropsToJson", convertStoryPropsToJson)
 Pulsar.registerFunction("getActualEmbedUrl", getActualEmbedUrl)
 Pulsar.registerFunction("isEmbedDocs", isEmbedDocs)
+
+/* Files */
+Pulsar.registerFunction('getFiles', getFiles);
+Pulsar.registerFunction('convertFileToShortcut', convertFileToShortcut);
+Pulsar.registerFunction('getIconUrlFromFileType', getIconUrlFromFileType);
+Pulsar.registerFunction('getFileTypeFromFileName', getFileTypeFromFileName);

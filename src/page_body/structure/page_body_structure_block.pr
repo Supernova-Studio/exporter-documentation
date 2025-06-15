@@ -72,6 +72,7 @@
         *}
     {[ case "Table" ]}
         {[ inject "page_block_table" context {"block": block, "pageId": pageId} /]}
+    {* TODO FILE UPLOAD - add case after exporter BE is adjusted *}
 {[/]}
 
 {* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}
