@@ -15,11 +15,9 @@
     <div class="file-item">
       {[ inject "page_block_shortcut" context convertFileToShortcut(file, previewUrl) /]}
       {[ if file.entityMeta.url ]}
-        <a class="file-item-download" href="{{ file.entityMeta.url }}" download data-toggle="tooltip" title="Download file">
-          <button class="btn btn-white btn-floating btn-small btn-icon-only">
-            {[ inject "icon_download" context configuration /]}
-          </button>
-        </a>
+        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ file.entityMeta.url }}" data-file-name="{{ file.entityMeta.name }}">
+          {[ inject "icon_download" context configuration /]}
+        </button>
       {[/]}
     </div>
   {[/]}

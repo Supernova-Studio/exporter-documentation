@@ -17,9 +17,10 @@ export const getFiles = (): File[] => {
       entityMeta: {
         title: 'File 1',
         description: 'File 1 description',
-        name: 'File 1.pdf',
+        name: 'File 1.jpg',
         size: '100234',
-        url: 'https://www.google.com'
+        url:
+          'https://studio-assets.dev.supernova.io/design-systems/8984/35899df4ad59c9021913f94735930ce52d5016c05fbc37277a107a7f2a79f22c'
       }
     },
     {
@@ -27,9 +28,10 @@ export const getFiles = (): File[] => {
       entityMeta: {
         title: 'File 2',
         description: 'File 2 description',
-        name: 'File 2.png',
+        name: 'File 2.jpg',
         size: '200234',
-        url: 'https://www.google.com'
+        url:
+          'https://studio-assets.dev.supernova.io/design-systems/8984/35899df4ad59c9021913f94735930ce52d5016c05fbc37277a107a7f2a79f22c'
       }
     }
   ];
