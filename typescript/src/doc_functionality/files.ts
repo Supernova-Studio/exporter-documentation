@@ -3,43 +3,29 @@ type File = {
   entityMeta: {
     title: string;
     description: string;
-    name: string;
-    size: string;
-    url: string;
   };
 };
 
-export const getFiles = (): File[] => {
-  // TODO FILE UPLOAD - remove when exporter BE is adjusted
-  return [
-    {
-      entityId: '1',
-      entityMeta: {
-        title: 'File 1',
-        description: 'File 1 description',
-        name: 'File 1.jpg',
-        size: '100234',
-        url:
-          'https://studio-assets.dev.supernova.io/design-systems/8984/35899df4ad59c9021913f94735930ce52d5016c05fbc37277a107a7f2a79f22c'
-      }
-    },
-    {
-      entityId: '2',
-      entityMeta: {
-        title: 'File 2',
-        description: 'File 2 description',
-        name: 'File 2.jpg',
-        size: '200234',
-        url:
-          'https://studio-assets.dev.supernova.io/design-systems/8984/35899df4ad59c9021913f94735930ce52d5016c05fbc37277a107a7f2a79f22c'
-      }
-    }
-  ];
+type RemoteFile = {
+  fileId: string;
+  referencePersistentId: string;
+  name: string;
+  checksum: string;
+  url: string;
+  size: number;
 };
 
-export const convertFileToShortcut = (file: File, previewUrl: string) => {
+export const getFileFromFiles = (files: RemoteFile[], fileId: string) => {
+  return files.find(file => file.referencePersistentId === fileId);
+};
+
+export const convertFileToShortcut = (
+  file: File,
+  fileName: string,
+  previewUrl: string
+) => {
   return {
-    title: file.entityMeta.title || file.entityMeta.name,
+    title: file.entityMeta.title || fileName,
     description: file.entityMeta.description,
     previewUrl
   };
@@ -134,4 +120,18 @@ export const getIconUrlFromFileType = (type?: string) => {
 
 export const getFileTypeFromFileName = (fileName: string) => {
   return fileName.split('.').pop();
+};
+
+export const getFilesVariantClass = (
+  variant: string,
+  numberOfColumns: number
+) => {
+  switch (variant) {
+    case 'iconOnTop':
+      return `variant-icon-top-${numberOfColumns}`;
+    case 'iconOnLeft':
+      return `variant-icon-leading-${numberOfColumns}`;
+    default:
+      return '';
+  }
 };

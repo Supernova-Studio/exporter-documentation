@@ -162,7 +162,8 @@
   // Icon on top
   &.variant-icon-top-4 div.preview,
   &.variant-icon-top-3 div.preview,
-  &.variant-icon-top-2 div.preview {
+  &.variant-icon-top-2 div.preview,
+  &.variant-icon-top-1 div.preview {
     width: var(--shortcutIconWidth);
     height: var(--shortcutIconHeight);
     margin: var(--shortcutContentPadding);

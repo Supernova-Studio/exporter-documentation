@@ -2,20 +2,24 @@
 {[ let domain = ds.documentationDomain() /]}
 {[ let configuration = exportConfiguration() /]}
 
-
-{[ let files = getFiles() /]}
+{[ let allFiles = ds.files() /]}
+{[ let files = block.files /]}
 {[ let variant = block.variantKey /]}
+{[ let numberOfColumns = block.numberOfColumns /]}
 
-{* TODO FILE UPLOAD - adjust after exporter BE is adjusted *}
-<div class="content-block content-block--shortcuts{{ getVariantClass("icon-leading-2") }}">
+<div class="content-block content-block--shortcuts {{ getFilesVariantClass(variant, numberOfColumns) }}">
   {[ for file in files ]}
-    {[ let fileType = getFileTypeFromFileName(file.entityMeta.name) /]}
+    {[ let fileData = getFileFromFiles(allFiles, file.entityId) /]}
+
+    {[ let fileType = getFileTypeFromFileName(fileData.name) /]}
     {[ let iconUrl = getIconUrlFromFileType(fileType) /]}
     {[ let previewUrl = assetUrl(iconUrl, domain) /]}
     <div class="file-item">
-      {[ inject "page_block_shortcut" context convertFileToShortcut(file, previewUrl) /]}
-      {[ if file.entityMeta.url ]}
-        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ file.entityMeta.url }}" data-file-name="{{ file.entityMeta.name }}">
+      {[ inject "page_block_shortcut" context convertFileToShortcut(file, fileData.name, previewUrl) /]}
+
+      {[ let fileDataAfterContext = getFileFromFiles(allFiles, file.entityId) /]}
+      {[ if fileDataAfterContext.url ]}
+        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ fileDataAfterContext.url }}" data-file-name="{{ fileDataAfterContext.name }}">
           {[ inject "icon_download" context configuration /]}
         </button>
       {[/]}
