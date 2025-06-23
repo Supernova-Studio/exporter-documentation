@@ -102,7 +102,7 @@
                                     <div class="popover-body"></div>
                                 </div>
                             '
-                            style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "height: 500px;" }}"
+                            style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}"
                             class="popover-image-container"
                         >
                             <img src="{{ componentPreview.component.thumbnailUrl }}" alt="{{ componentPreview.name }}" height="{{ componentPreview.component.origin?.height }}" width="{{ componentPreview.component.origin?.width }}" />
