@@ -7,7 +7,7 @@
 {[ let variant = block.variantKey /]}
 {[ let numberOfColumns = block.numberOfColumns /]}
 
-<div class="content-block content-block--shortcuts {{ getFilesVariantClass(variant, numberOfColumns) }}">
+<div class="content-block content-block--files {{ getFilesVariantClass(variant, numberOfColumns) }}">
   {[ for file in files ]}
     {[ let fileData = getFileFromFiles(allFiles, file.entityId) /]}
 

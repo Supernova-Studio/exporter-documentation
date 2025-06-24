@@ -29,7 +29,8 @@
 }
 
 /* Styles */
-.content-block--shortcuts {
+.content-block--shortcuts,
+.content-block--files {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: var(--shortcutGridGap);
@@ -116,7 +117,8 @@
 }
 
 /* Shortcut variants */
-.content-block--shortcuts {
+.content-block--shortcuts,
+.content-block--files {
   
   // 3 columns
   &.variant-image-top-3,
@@ -235,7 +237,8 @@
 
 
 @media (max-width: $breakpoint-mobile) {
-  .content-block--shortcuts {
+  .content-block--shortcuts,
+  .content-block--files {
     // applied to all the variants because of !important
     grid-template-columns: repeat(1, 1fr) !important;
   }
@@ -245,7 +248,10 @@
   .content-block--shortcuts,
   .content-block--shortcuts.variant-icon-top-3,
   .content-block--shortcuts.variant-image-top-3,
-  .content-block--shortcuts.variant-icon-leading-3 {
+  .content-block--shortcuts.variant-icon-leading-3,
+  .content-block--files,
+  .content-block--files.variant-icon-top-3,
+  .content-block--files.variant-icon-leading-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
