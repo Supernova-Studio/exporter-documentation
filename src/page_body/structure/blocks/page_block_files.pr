@@ -15,7 +15,7 @@
     {[ let iconUrl = getIconUrlFromFileType(fileType) /]}
     {[ let previewUrl = assetUrl(iconUrl, domain) /]}
     <div class="file-item">
-      {[ inject "page_block_shortcut" context convertFileToShortcut(file, fileData.name, previewUrl) /]}
+      {[ inject "page_block_item" context convertFileToShortcut(file, fileData.name, previewUrl) /]}
 
       {[ let fileDataAfterContext = getFileFromFiles(allFiles, file.entityId) /]}
       {[ if fileDataAfterContext.url ]}
