@@ -43,6 +43,13 @@ export const getIconUrlFromFileType = (type?: string) => {
     case 'gif':
       return 'icons/file-type-gif.svg';
     case 'mp4':
+    case 'mov':
+    case 'avi':
+    case 'wmv':
+    case 'flv':
+    case 'webm':
+    case 'mkv':
+    case 'mpg':
       return 'icons/file-type-mp4.svg';
     case 'jam':
     case 'fig':
@@ -71,6 +78,8 @@ export const getIconUrlFromFileType = (type?: string) => {
       return 'icons/file-type-pptx.svg';
     case 'ttf':
     case 'otf':
+    case 'woff':
+    case 'woff2':
       return 'icons/file-type-font-pack.svg';
     case 'json':
       return 'icons/file-type-json.svg';
