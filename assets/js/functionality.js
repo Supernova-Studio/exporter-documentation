@@ -486,7 +486,7 @@ $('[data-action="download-assets"]').on('click', function() {
 });
 
 /**
- * Downlaod and rename a file
+ * Download and rename a file
  */
 async function downloadAndRenameFile(url, newName) {
   try {
@@ -515,6 +515,30 @@ async function downloadAndRenameFile(url, newName) {
   }
 }
 
+/**
+ * Download and overwrite a file name with a new one
+ */
+async function downloadAndOverwriteNameFile(url, newName) {
+  try {
+    // Fetch the content of the file
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    // Trigger the download with the new filename using saveAs function
+    saveAs(blob, newName);
+
+    $.toast({
+      title: 'Download was successful',
+      position: 'bottom'
+    });
+  } catch (error) {
+    $.toast({
+      title: 'Download failed',
+      position: 'bottom'
+    });
+  }
+}
+
 /*-----------------------------
    Initialize Download button for a single asset download
 ------------------------------- */
@@ -526,6 +550,16 @@ $('[data-action="download-asset"]').on('click', function() {
   const name = asset.attr('alt');
 
   downloadAndRenameFile(url, name);
+});
+
+/*-----------------------------
+   Initialize Download button for a single file download
+------------------------------- */
+$('[data-action="download-file"]').on('click', function() {
+  const url = $(this).attr('data-file-url');
+  const name = $(this).attr('data-file-name');
+
+  downloadAndOverwriteNameFile(url, name);
 });
 
 /*-----------------------------

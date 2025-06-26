@@ -72,6 +72,8 @@
         *}
     {[ case "Table" ]}
         {[ inject "page_block_table" context {"block": block, "pageId": pageId} /]}
+    {[ case "Files" ]}
+        {[ inject "page_block_files" context block /]}
 {[/]}
 
 {* Generate child blocks, if any. Ignore tabs, columns, tables as those are generated separately *}

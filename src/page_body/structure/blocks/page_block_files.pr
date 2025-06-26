@@ -1,0 +1,28 @@
+{[ const block = context /]}
+{[ let domain = ds.documentationDomain() /]}
+{[ let configuration = exportConfiguration() /]}
+
+{[ let allFiles = ds.files() /]}
+{[ let files = block.files /]}
+{[ let variant = block.variantKey /]}
+{[ let numberOfColumns = block.numberOfColumns /]}
+
+<div class="content-block content-block--files {{ getFilesVariantClass(variant, numberOfColumns) }}">
+  {[ for file in files ]}
+    {[ let fileData = getFileFromFiles(allFiles, file.entityId) /]}
+
+    {[ let fileType = getFileTypeFromFileName(fileData.name) /]}
+    {[ let iconUrl = getIconUrlFromFileType(fileType) /]}
+    {[ let previewUrl = assetUrl(iconUrl, domain) /]}
+    <div class="file-item">
+      {[ inject "page_block_item" context convertFileToShortcut(file, fileData.name, previewUrl) /]}
+
+      {[ let fileDataAfterContext = getFileFromFiles(allFiles, file.entityId) /]}
+      {[ if fileDataAfterContext.url ]}
+        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ fileDataAfterContext.url }}" data-file-name="{{ fileDataAfterContext.name }}">
+          {[ inject "icon_download" context configuration /]}
+        </button>
+      {[/]}
+    </div>
+  {[/]}
+</div>

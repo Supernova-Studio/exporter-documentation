@@ -29,7 +29,8 @@
 }
 
 /* Styles */
-.content-block--shortcuts {
+.content-block--shortcuts,
+.content-block--files {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: var(--shortcutGridGap);
@@ -116,7 +117,8 @@
 }
 
 /* Shortcut variants */
-.content-block--shortcuts {
+.content-block--shortcuts,
+.content-block--files {
   
   // 3 columns
   &.variant-image-top-3,
@@ -129,6 +131,7 @@
 
   // 1 column
   &.variant-icon-leading-1,
+  &.variant-icon-top-1,
   &.variant-image-leading-1,
   &.variant-image-top-1 {
     grid-template-columns: repeat(1, 1fr);
@@ -161,12 +164,21 @@
   // Icon on top
   &.variant-icon-top-4 div.preview,
   &.variant-icon-top-3 div.preview,
-  &.variant-icon-top-2 div.preview {
+  &.variant-icon-top-2 div.preview,
+  &.variant-icon-top-1 div.preview {
     width: var(--shortcutIconWidth);
     height: var(--shortcutIconHeight);
     margin: var(--shortcutContentPadding);
     margin-bottom: 0px !important;
     border-radius: var(--shortcutBorderRadius);
+  }
+
+  &.variant-icon-top-1 .shortcut-item,
+  &.variant-icon-top-2 .shortcut-item,
+  &.variant-icon-top-3 .shortcut-item,
+  &.variant-icon-top-4 .shortcut-item {
+    display: flex;
+    flex-direction: column;
   }
 
   // Leading icon
@@ -225,7 +237,8 @@
 
 
 @media (max-width: $breakpoint-mobile) {
-  .content-block--shortcuts {
+  .content-block--shortcuts,
+  .content-block--files {
     // applied to all the variants because of !important
     grid-template-columns: repeat(1, 1fr) !important;
   }
@@ -235,7 +248,10 @@
   .content-block--shortcuts,
   .content-block--shortcuts.variant-icon-top-3,
   .content-block--shortcuts.variant-image-top-3,
-  .content-block--shortcuts.variant-icon-leading-3 {
+  .content-block--shortcuts.variant-icon-leading-3,
+  .content-block--files,
+  .content-block--files.variant-icon-top-3,
+  .content-block--files.variant-icon-leading-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
