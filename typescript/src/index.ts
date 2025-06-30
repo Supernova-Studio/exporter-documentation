@@ -109,6 +109,7 @@ import { getActualEmbedUrl } from './doc_functionality/storybook';
 import { convertStoryPropsToJson } from './doc_functionality/storybook';
 import {
   convertFileToShortcut,
+  getActualFileName,
   getFileFromFiles,
   getFilesVariantClass,
   getFileTypeFromFileName,
@@ -282,3 +283,4 @@ Pulsar.registerFunction('getIconUrlFromFileType', getIconUrlFromFileType);
 Pulsar.registerFunction('getFileTypeFromFileName', getFileTypeFromFileName);
 Pulsar.registerFunction('getFileFromFiles', getFileFromFiles);
 Pulsar.registerFunction('getFilesVariantClass', getFilesVariantClass);
+Pulsar.registerFunction('getActualFileName', getActualFileName);

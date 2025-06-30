@@ -19,6 +19,10 @@ export const getFileFromFiles = (files: RemoteFile[], fileId: string) => {
   return files.find(file => file.referencePersistentId === fileId);
 };
 
+export const getActualFileName = (fileName: string, title?: string) => {
+  return title || fileName;
+};
+
 export const convertFileToShortcut = (
   file: File,
   fileName: string,

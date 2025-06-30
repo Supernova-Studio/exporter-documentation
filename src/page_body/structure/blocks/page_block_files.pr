@@ -19,7 +19,7 @@
 
       {[ let fileDataAfterContext = getFileFromFiles(allFiles, file.entityId) /]}
       {[ if fileDataAfterContext.url ]}
-        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ fileDataAfterContext.url }}" data-file-name="{{ fileDataAfterContext.name }}">
+        <button data-action="download-file" class="file-item-download btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download file" data-file-url="{{ fileDataAfterContext.url }}" data-file-name="{{ getActualFileName(fileDataAfterContext.name, file.entityMeta.title) }}">
           {[ inject "icon_download" context configuration /]}
         </button>
       {[/]}
