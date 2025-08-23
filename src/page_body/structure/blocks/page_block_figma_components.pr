@@ -63,9 +63,9 @@
     {[/]}
 
     {[ if (variant === "canvas") ]}
-        <div class="content-block content-block--figma-components figma-components-canvas {{ showChecker ? "checkered-background-light" : ""}} {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}" style="background-color: {{ backgroundColor }}">
+        <div class="content-block content-block--figma-components figma-components-canvas {{ showChecker ? "checkered-background-light" : ""}} {{ getVariantClass(variant) }} layout-columns-{{ numberOfColumns }}" id="{{ getSearchIDString(block.id) }}" style="background-color: {{ backgroundColor }}; {[ if (block.figmaComponentsBlockConfig.previewContainerHeight) ]} --preview-container-height: {{ block.figmaComponentsBlockConfig.previewContainerHeight }}px; {[/]}">
             {[ for componentPreview in sortedComponentPreviews ]}
-                <div class="figma-component-image" style="{{ block.figmaComponentsBlockConfig.previewContainerSize === "Centered" ? "height: 116px;" : "" }}">
+                <div class="figma-component-image">
                     {[ if (block.figmaComponentsBlockConfig.showComponentName || block.figmaComponentsBlockConfig.showPropertyList || block.figmaComponentsBlockConfig.showComponentDescription) ]}
                         <div data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true"
                             data-content=
