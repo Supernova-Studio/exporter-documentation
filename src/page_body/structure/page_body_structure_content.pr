@@ -2,6 +2,7 @@
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
 {[ let hasHeading = false /]}
 {[ let hasTopLevelHeading = false /]}
+{[ let displayableHeadingCount = 0 /]}
 {[ let configuration = exportConfiguration() /]}
 {[ let isHomepage = (isHomepage(page, rootGroup) || isHomepageTab(page, rootGroup)) /]}
 {[ let group = page.parent /]}
@@ -15,35 +16,37 @@
     {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
         {[ hasTopLevelHeading = true /]}
     {[/]}
+    {* Count headings that will actually be displayed in TOC *}
+    {[ if (block.type.equals("Heading") && ((!configuration.tocHideHeading3 && block.headingType <= 3) || (configuration.tocHideHeading3 && block.headingType <= 2))) ]}
+        {[ displayableHeadingCount = displayableHeadingCount + 1 /]}
+    {[/]}
 {[/]}
-{[ let showTOC = (hasHeading && configuration.tocShow) /]}
+{[ let showTOC = (displayableHeadingCount > 0 && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 
 {*
-     Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
-     With one exception — if there is a sidebar, we need to render TOC container to make sure the page layout doesn't jump when navigating across pages
- *}
-{[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
+     Render TOC container only when there's actual content to display OR when sidebar is present (to prevent layout jumps)
+     But only show the actual TOC content when there are displayable headings
+*}
+{[ if (showTOC && showTOCOnHomepage) || pageConfiguration.showSidebar ]}
     <div id="content-nav-container">
         <nav id="content-nav">
-        {[ if showTOC ]}
-            {[ if showTOCOnHomepage ]}
-                <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
-                <ul>
-                    {[ for block in page.blocks ]}
-                    {[ if (block.type.equals("Heading") && ((!configuration.tocHideHeading3 && block.headingType <= 3) || (configuration.tocHideHeading3 && block.headingType <= 2))) ]}
-                        {[ let menuClass = "" /]}
-                        {[ switch block.headingType ]}
-                            {[ case 2 ]}
-                                {[ set menuClass = (hasTopLevelHeading ? "sub" : "") /]}
-                            {[ case 3 ]}
-                                {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
-                        {[/]}
-                        <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
-                        {[/]}
+        {[ if showTOC && showTOCOnHomepage ]}
+            <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
+            <ul>
+                {[ for block in page.blocks ]}
+                {[ if (block.type.equals("Heading") && ((!configuration.tocHideHeading3 && block.headingType <= 3) || (configuration.tocHideHeading3 && block.headingType <= 2))) ]}
+                    {[ let menuClass = "" /]}
+                    {[ switch block.headingType ]}
+                        {[ case 2 ]}
+                            {[ set menuClass = (hasTopLevelHeading ? "sub" : "") /]}
+                        {[ case 3 ]}
+                            {[ set menuClass = (hasTopLevelHeading ? "sub-2" : "sub") /]}
                     {[/]}
-                </ul>
-            {[/]} 
+                    <li class="{{ menuClass }}"><a href="#{{ slugifyHeading(block) }}">{{ htmlSafeString(textBlockPlainText(block)) }}</a></li>
+                    {[/]}
+                {[/]}
+            </ul>
         {[/]}
         </nav>
     </div>
