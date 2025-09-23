@@ -20,10 +20,11 @@
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 
 {*
-     Only render TOC container when there's actual content to display.
-     This prevents empty "ON THIS PAGE" sections when only H4/H5 headings are present.
+     Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
+     With one exception — if there is a sidebar, we need to render TOC container to make sure the page layout doesn't jump when navigating across pages
+     However, only show TOC content (header + links) when there are actually displayable headings
  *}
-{[ if (showTOC && showTOCOnHomepage) ]}
+{[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
     <div id="content-nav-container">
         <nav id="content-nav">
         {[ if showTOC ]}
