@@ -16,13 +16,19 @@
         {[ hasTopLevelHeading = true /]}
     {[/]}
 {[/]}
-{[ let showTOC = (hasHeading && configuration.tocShow) /]}
+{* Count displayable headings to ensure we don't show empty TOC *}
+{[ let displayableHeadingCount = 0 /]}
+{[ for block in page.blocks ]}
+    {[ if (block.type.equals("Heading") && ((!configuration.tocHideHeading3 && block.headingType <= 3) || (configuration.tocHideHeading3 && block.headingType <= 2))) ]}
+        {[ displayableHeadingCount = (displayableHeadingCount + 1) /]}
+    {[/]}
+{[/]}
+{[ let showTOC = (hasHeading && configuration.tocShow && displayableHeadingCount > 0) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 
 {*
      Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
      With one exception — if there is a sidebar, we need to render TOC container to make sure the page layout doesn't jump when navigating across pages
-     However, only show TOC content (header + links) when there are actually displayable headings
  *}
 {[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
     <div id="content-nav-container">
