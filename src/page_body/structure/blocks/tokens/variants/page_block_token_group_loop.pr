@@ -1,6 +1,9 @@
 {* Get block payload. We are fetching both block and group from context as we want to reuse this blueprint for different groups, not just the one defined inside block itself *}
 {[ const block = context.block /]}
 {[ const group = context.group /]}
+
+{[ if group ]} {* Protection against non-existing/deleted groups *}
+
 {[ const tokens = ds.tokensByGroupId(group.id) /]}
 
 {[ let variant = block.variantKey /]}
@@ -49,4 +52,5 @@
     {[ for subgroup in group.subgroups ]}
         {[ inject "page_block_token_group_loop" context ({"block": block, "group": subgroup }) /]}
     {[/]}
+{[/]}
 {[/]}
