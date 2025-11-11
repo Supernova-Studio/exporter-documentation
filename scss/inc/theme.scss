@@ -46,6 +46,11 @@
   --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08),
     0px 0px 0px 1px var(--colorBorderSubtle);
 
+  /* DM fallback */
+  --dm-font-family-mono: var(--fontFamilyCode);
+  --dm-font-family-body: var(--fontFamily);
+  --dm-font-family-title: var(--headingFontFamily);
+
   /*  Semantic 
   /* =================================== */
   /* main text */
