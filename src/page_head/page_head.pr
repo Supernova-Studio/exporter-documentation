@@ -9,8 +9,12 @@
     {* Documentation styling *}
     {[ inject "page_head_styles" context page /]}
 
-    {* Storybook - it's here before advanced customization, because otherwise some of the storybook scripts will be overridden *}
+    {* Storybook - it's here before advanced customization, because otherwise some of the storybook scripts will be overridden 
     <script src="https://cdn-assets.supernova.io/storybook/js/storybook-playground_v6.js"></script>
+    *}
+
+    <script src="{{ assetUrl("temp/storybook-playground_v8.js?v="+version, domain) }}"></script>
+
 
     {* Injection point - inject head *}
     {{ configuration.advancedCustomizationCustomHeadInject }}
