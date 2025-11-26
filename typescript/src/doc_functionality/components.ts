@@ -286,9 +286,11 @@ function sortPreviewsByOrderIds(
     const aIndex = previewOrderIds.indexOf(a.component.id ?? '');
     const bIndex = previewOrderIds.indexOf(b.component.id ?? '');
 
+    // If either ID is not found (index is -1), put it at the end
     if (aIndex === -1) return 1;
     if (bIndex === -1) return -1;
 
+    // Otherwise, sort by index
     return aIndex - bIndex;
   });
 }
@@ -305,8 +307,8 @@ function sortPreviews(
 }
 
 export function sortComponentsPreviews(
-  componentPreviews: ComponentPreview[],
+  previews: ComponentPreview[],
   previewOrderIds: string[] | undefined
 ): ComponentPreview[] {
-  return sortPreviews(componentPreviews, previewOrderIds ?? []);
+  return sortPreviews(previews, previewOrderIds ?? []);
 }
