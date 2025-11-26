@@ -197,15 +197,92 @@ export function getComponentPreviews(
   return variantsToRender;
 }
 
-export function sortComponentsPreviews(
-  componentPreviews: ComponentPreview[],
-  previewOrderIds: string[] | undefined
+/**
+ * If all previews share a single variant property name (e.g., Size), sort the combined list by that property so multiple components interleave by size.
+ * Otherwise, fall back to name sorting.
+ */
+function sortPreviewsBySharedProperty(
+  previews: ComponentPreview[]
 ): ComponentPreview[] {
-  if (!previewOrderIds || previewOrderIds.length === 0) {
-    return componentPreviews;
+  if (previews.length < 2) {
+    return previews;
   }
 
-  return [...componentPreviews].sort((a, b) => {
+  const compareStrings = (a: string, b: string) =>
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+  const sortByName = (a: ComponentPreview, b: ComponentPreview) =>
+    compareStrings(a.name ?? '', b.name ?? '');
+
+  const sharedPropertyNames = previews.reduce<Set<string> | null>(
+    (acc, preview) => {
+      const names = new Set(preview.properties.map(property => property.name));
+      if (!acc) {
+        return names;
+      }
+
+      const intersection = new Set<string>();
+      names.forEach(name => {
+        if (acc.has(name)) {
+          intersection.add(name);
+        }
+      });
+
+      return intersection;
+    },
+    null
+  );
+
+  if (!sharedPropertyNames || sharedPropertyNames.size !== 1) {
+    return [...previews].sort(sortByName);
+  }
+
+  const [propertyName] = Array.from(sharedPropertyNames);
+
+  return [...previews].sort((aPreview, bPreview) => {
+    const aProperty = aPreview.properties.find(
+      property => property.name === propertyName
+    );
+    const bProperty = bPreview.properties.find(
+      property => property.name === propertyName
+    );
+
+    if (!aProperty || !bProperty) {
+      return sortByName(aPreview, bPreview);
+    }
+
+    const aValue = aProperty.value ?? aProperty.defaultValue ?? '';
+    const bValue = bProperty.value ?? bProperty.defaultValue ?? '';
+    const aNumber = Number(aValue);
+    const bNumber = Number(bValue);
+
+    if (Number.isFinite(aNumber) && Number.isFinite(bNumber)) {
+      const numberValueDifference = bNumber - aNumber;
+      if (numberValueDifference !== 0) {
+        return numberValueDifference;
+      }
+    }
+
+    const stringValueDifference = compareStrings(
+      String(aValue),
+      String(bValue)
+    );
+    if (stringValueDifference !== 0) {
+      return stringValueDifference;
+    }
+
+    return sortByName(aPreview, bPreview);
+  });
+}
+
+function sortPreviewsByOrderIds(
+  previews: ComponentPreview[],
+  previewOrderIds: string[]
+): ComponentPreview[] {
+  if (previewOrderIds.length === 0) {
+    return previews;
+  }
+
+  return [...previews].sort((a, b) => {
     const aIndex = previewOrderIds.indexOf(a.component.id ?? '');
     const bIndex = previewOrderIds.indexOf(b.component.id ?? '');
 
@@ -216,4 +293,22 @@ export function sortComponentsPreviews(
     // Otherwise, sort by index
     return aIndex - bIndex;
   });
+}
+
+function sortPreviews(
+  previews: ComponentPreview[],
+  previewOrderIds: string[]
+): ComponentPreview[] {
+  if (previewOrderIds.length > 0) {
+    return sortPreviewsByOrderIds(previews, previewOrderIds);
+  }
+
+  return sortPreviewsBySharedProperty(previews);
+}
+
+export function sortComponentsPreviews(
+  previews: ComponentPreview[],
+  previewOrderIds: string[] | undefined
+): ComponentPreview[] {
+  return sortPreviews(previews, previewOrderIds ?? []);
 }
