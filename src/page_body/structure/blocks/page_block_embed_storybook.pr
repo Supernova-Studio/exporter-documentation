@@ -39,7 +39,7 @@
             {[ if (block.variantKey === "default" || block.variantKey === null) ]}
               <iframe
                   class="embed-responsive-item storybook"
-                  src="{{ block.url }}"
+                  src="{{ block.url ?? embedUrl }}"
                   allowfullscreen
                   loading="lazy"
                   aria-label="Embedded Storybook"
