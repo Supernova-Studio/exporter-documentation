@@ -3,7 +3,7 @@
 
 <div class="content-block content-block--code code-block-container">
     {* Generate code which will be automatically highlighted *}
-    <pre class="code-block"><code class="code-block__code {{ block.codeLanguage ? block.codeLanguage.lowercased().prefixed("language-") : "" }}" data-prismjs-copy="Copy">
+    <pre class="code-block"><code class="code-block__code {{ block.codeLanguage ? mapCodeLanguageToPrismClass(block.codeLanguage.lowercased()) : "" }}" data-prismjs-copy="Copy">
 
 
     {{ highlightSafeString(block) }}

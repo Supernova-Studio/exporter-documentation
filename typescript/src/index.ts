@@ -115,6 +115,7 @@ import {
   getFileTypeFromFileName,
   getIconUrlFromFileType
 } from './doc_functionality/files';
+import { mapCodeLanguageToPrismClass } from './doc_functionality/code';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -284,3 +285,7 @@ Pulsar.registerFunction('getFileTypeFromFileName', getFileTypeFromFileName);
 Pulsar.registerFunction('getFileFromFiles', getFileFromFiles);
 Pulsar.registerFunction('getFilesVariantClass', getFilesVariantClass);
 Pulsar.registerFunction('getActualFileName', getActualFileName);
+
+
+/* Code blocks */
+Pulsar.registerFunction('mapCodeLanguageToPrismClass', mapCodeLanguageToPrismClass);
