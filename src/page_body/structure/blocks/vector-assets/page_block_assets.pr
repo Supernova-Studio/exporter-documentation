@@ -4,7 +4,7 @@
 {[ let configuration = exportConfiguration() /]}
 
 {* Configure tile to show natural height if needed *}
-{[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" || block.properties.layout == "C1" || block.properties.layout == "C1_75") /]}
+{[ let forceNaturalHeight = (block.properties.alignment === "FrameHeight" && (block.properties.layout == "C1" || block.properties.layout == "C1_75")) /]}
 
 {* Render tile per rendered frame *}
 <div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}" {[ if (block.properties.previewContainerHeight) ]}style="--preview-container-height: {{ block.properties.previewContainerHeight }}px;" {[/]}data-block-id="{{block.id}}">
