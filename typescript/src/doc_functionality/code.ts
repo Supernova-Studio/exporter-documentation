@@ -8,6 +8,9 @@ export function mapCodeLanguageToPrismClass(language: string): string {
         case "reactjsx":
             prismClass = "jsx";
             break
+        case "vue":
+            prismClass = "markup";
+            break
         default:
             prismClass = language;
     }
