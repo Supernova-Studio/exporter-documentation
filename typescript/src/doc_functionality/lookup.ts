@@ -97,8 +97,8 @@ export function isHomepage(page: DocumentationPage, documentationRoot: Documenta
   return false;
 }
 
-/** Resolve menu label */
-export function resolveMenuLabel(page: DocumentationPage, documentationRoot: DocumentationGroup, overridenLabel: string): string {
+/** Resolve page title */
+export function resolvePageTitle(page: DocumentationPage, documentationRoot: DocumentationGroup, overridenLabel: string): string {
   if (isHomepage(page, documentationRoot) && overridenLabel !== "") { 
     return overridenLabel;
   } else {

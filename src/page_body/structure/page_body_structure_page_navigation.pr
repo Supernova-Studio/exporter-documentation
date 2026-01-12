@@ -27,7 +27,7 @@
                     {[ else ]}
                         <div class="section">Next</div>
                     {[/]}
-                    <div class="pagename">{{ htmlSafeString(previousPage.title) }}</div>
+                    <div class="pagename">{{ resolvePageTitle(previousPage, docRoot, configuration.navigationOverrideHomepageLabel) }}</div>
                 </div>
             </a>
         </div>
