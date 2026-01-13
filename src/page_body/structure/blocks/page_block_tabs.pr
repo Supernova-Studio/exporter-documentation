@@ -17,7 +17,7 @@
           {[ map (block.children.enumerated()) to index tab ]}
               {[ let id = tab.id.prefixed("T") /]}
               {[ if (tab.type === "TabItem") ]}
-              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="pill" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ tab.caption }}</a>
+              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="pill" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}">{{ escapeHtml(tab.caption) }}</a>
               {[/]}
           {[/]}
           </div>
@@ -48,7 +48,7 @@
       <div class="accordion-section">
         <a class="{{ index === "0" ? "active" : "collapsed" }}" id="{{ id }}-tab" data-toggle="collapse" data-target="#collapse-{{ id }}">
           <div class="accordion-header" id="{{ id }}">
-          <div class="icon">{[ inject "icon_chevron_right" context configuration /]}</div>{{ tab.caption }}
+          <div class="icon">{[ inject "icon_chevron_right" context configuration /]}</div>{{ escapeHtml(tab.caption) }}
           </div>
         </a>
 
@@ -89,7 +89,7 @@
             {[ let id = tab.id.prefixed("T") /]}
             {[ if (tab.type === "TabItem") ]}
             <li class="nav-item" role="presentation">
-              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ tab.caption }}</span></a>
+              <a class="nav-link {{ index === "0" ? "active" : "" }}" id="{{ id }}-tab" data-toggle="tab" href="#{{ id }}" role="tab" aria-controls="{{ id }}" aria-selected="{{ index === "0" ? "true" : "false" }}"><span>{{ escapeHtml(tab.caption) }}</span></a>
             </li>
             {[/]}
         {[/]}
