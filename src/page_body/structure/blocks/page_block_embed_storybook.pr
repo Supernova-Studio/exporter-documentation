@@ -23,7 +23,7 @@
       {[/]}
           <div class="storybook-embed-container">
             {[ if (block.variantKey === "playground") ]}
-              <div data-storybook-embed-url="{{ embedUrl }}"
+              <div data-storybook-embed-url="{{ getDocsStorybookEmbedUrl(embedUrl) }}"
                   data-storybook-original-url="{{ firstValue?.embed?.inputUrl ?? embedUrl }}"
                   {{ blockConfig.showFooter ? "data-storybook-show-footer" : "" }}
                   {{ blockConfig.showCode ? "data-storybook-show-source-code" : "" }}
@@ -39,7 +39,7 @@
             {[ if (block.variantKey === "default" || block.variantKey === null) ]}
               <iframe
                   class="embed-responsive-item storybook"
-                  src="{{ block.url ?? embedUrl }}"
+                  src="{{ getDocsStorybookEmbedUrl(block.url ?? embedUrl) }}"
                   allowfullscreen
                   loading="lazy"
                   aria-label="Embedded Storybook"

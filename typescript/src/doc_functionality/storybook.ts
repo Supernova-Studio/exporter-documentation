@@ -169,6 +169,32 @@ export function getActualEmbedUrl(
   return actualEmbedUrl;
 }
 
+/**
+ * Returns Storybook URL to embed in a documentation HTML page.
+ *
+ * In order to avoid 3rd party cookie context, all Storybook sites hosted in Supernova
+ * can be accessed via documentation domain by using relative URLs like this. In order
+ * to leverage this feature, we need to take the original Storybook page path, prepend
+ * `/storybook` in the beginning and make it a relative URL so that it uses current
+ * documentation website domain, example:
+ *
+ *  - original URL: https://storybook.supernova.io/design-systems/12345/alias/darkmatter/index.html
+ *  - local URL: /storybook/design-systems/12345/alias/darkmatter/index.html
+ *
+ * Use this relative URL in iframe `src` property, however keep the original URL for cases like
+ * "Open in Storybook" link.
+ */
+export function getDocsStorybookEmbedUrl(embedUrl: string | undefined | null) {
+  const snStorybookUrlRegex = /^https:\/\/storybook(?:\.[a-z0-9-]+)*\.supernova\.io(\/.*)?$/;
+
+  const supernovaStorybookMatch = embedUrl?.match(snStorybookUrlRegex);
+  if (supernovaStorybookMatch) {
+    return `/storybook${supernovaStorybookMatch[1] ?? ''}`;
+  }
+
+  return embedUrl;
+}
+
 export const isEmbedDocs = (
   inputUrl?: string,
   entityId?: string,
