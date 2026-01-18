@@ -155,16 +155,25 @@ export function getActualEmbedUrl(
   storybookEntries?: { id: string; url: string; aliases: string[] }[],
   variantKey?: string
 ) {
-  if (!embedUrl) {
-    return storybookEntries?.find(
+  let actualEmbedUrl: string | undefined;
+
+  if (embedUrl) {
+    actualEmbedUrl =
+      variantKey === 'playground' && embedUrlIncludesAddons(embedUrl)
+        ? stripStorybookAddons(embedUrl).toString()
+        : embedUrl;
+  } else {
+    actualEmbedUrl = storybookEntries?.find(
       entry => entry.id === entityId || entry.aliases.includes(entityId ?? '')
     )?.url;
   }
 
-  const actualEmbedUrl =
-    variantKey === 'playground' && embedUrlIncludesAddons(embedUrl)
-      ? stripStorybookAddons(embedUrl)
-      : embedUrl;
+  const supernovaStorybookMatch = actualEmbedUrl?.match(
+    /^https:\/\/storybook(?:\.[a-z0-9-]+)*\.supernova\.io(\/.*)?$/
+  );
+  if (supernovaStorybookMatch) {
+    return `/storybook${supernovaStorybookMatch[1] ?? ''}`;
+  }
 
   return actualEmbedUrl;
 }
