@@ -104,7 +104,10 @@ import {
   getDefaultBrand,
   getFontFormat
 } from './doc_functionality/fonts';
-import { isEmbedDocs } from './doc_functionality/storybook';
+import {
+  getDocsStorybookEmbedUrl,
+  isEmbedDocs
+} from './doc_functionality/storybook';
 import { getActualEmbedUrl } from './doc_functionality/storybook';
 import { convertStoryPropsToJson } from './doc_functionality/storybook';
 import {
@@ -276,6 +279,7 @@ Pulsar.registerFunction('getFontFormat', getFontFormat);
 /* Storybook */
 Pulsar.registerFunction('convertStoryPropsToJson', convertStoryPropsToJson);
 Pulsar.registerFunction('getActualEmbedUrl', getActualEmbedUrl);
+Pulsar.registerFunction('getDocsStorybookEmbedUrl', getDocsStorybookEmbedUrl);
 Pulsar.registerFunction('isEmbedDocs', isEmbedDocs);
 
 /* Files */
@@ -286,6 +290,8 @@ Pulsar.registerFunction('getFileFromFiles', getFileFromFiles);
 Pulsar.registerFunction('getFilesVariantClass', getFilesVariantClass);
 Pulsar.registerFunction('getActualFileName', getActualFileName);
 
-
 /* Code blocks */
-Pulsar.registerFunction('mapCodeLanguageToPrismClass', mapCodeLanguageToPrismClass);
+Pulsar.registerFunction(
+  'mapCodeLanguageToPrismClass',
+  mapCodeLanguageToPrismClass
+);
