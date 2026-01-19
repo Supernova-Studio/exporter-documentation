@@ -53,7 +53,7 @@
                 {[ let isPrivate = (item.configuration && item.configuration.isPrivate ? true : false) /]}
                 {[ let itemId = item.id /]}
                 {[ let showTabsInNavigation = ((item.groupBehavior !== "Tabs") || (showTabs && item.groupBehavior === "Tabs")) /]}
-                {[ let itemTitle = resolveMenuLabel(item, documentationRoot, configuration.navigationOverrideHomepageLabel) /]}
+                {[ let itemTitle = resolvePageTitle(item, documentationRoot, configuration.navigationOverrideHomepageLabel) /]}
                 {[ let isGroupOpen = (isRootForTab && hasFirstLevelFlat && (item.groupBehavior !== "Tabs")) /]}
                 
                 {[ if item.type.equals("Page") ]}

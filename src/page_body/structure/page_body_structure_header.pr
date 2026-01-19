@@ -47,7 +47,7 @@
                             {* Only show if group or page is not hidden *}
                             {[ if isExportable(item) ]}
                                 {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "active" : "") /]}
-                                {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                                {[ let itemTitle = resolvePageTitle(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
                             
                                 <li><a class="typographyDocsViewNavigation {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a></li>
                             {[/]}
@@ -66,7 +66,7 @@
                                     {* {[ if item.type.equals("Group") ]} *}
                                         {[ let isActive = pageOrGroupActiveInContext(page, item) /]}
                                         {[ if isActive ]}
-                                            {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                                            {[ let itemTitle = resolvePageTitle(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
                                             {{ itemTitle }}
                                         {[/]}
                                     {* {[/]} *}
@@ -77,7 +77,7 @@
                                 {* Only show if group or page is not hidden *}
                                 {[ if isExportable(item) ]}
                                     {[ let activeClass = (pageOrGroupActiveInContext(page, item) === true ? "checked" : "") /]}
-                                    {[ let itemTitle = resolveMenuLabel(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
+                                    {[ let itemTitle = resolvePageTitle(item, rootGroup, configuration.navigationOverrideHomepageLabel) /]}
                                     <a class="dropdown-item {{ activeClass }}" href="{{ pageUrl(item, ds.documentationDomain()) }}">{{ itemTitle }}</a>
                                 {[/]}
                             {[/]}

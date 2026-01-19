@@ -21,7 +21,7 @@ import {
   pageOrGroupActiveInContext,
   previousPage,
   isHomepage,
-  resolveMenuLabel,
+  resolvePageTitle,
   getCurrentTimestamp,
   checkKeyInArray,
   firstTabGroupFromTop,
@@ -133,7 +133,7 @@ Pulsar.registerFunction('nextPage', nextPage);
 Pulsar.registerFunction('isExportable', isExportable);
 Pulsar.registerFunction('isHomepage', isHomepage);
 Pulsar.registerFunction('isHomepageTab', isHomepageTab);
-Pulsar.registerFunction('resolveMenuLabel', resolveMenuLabel);
+Pulsar.registerFunction('resolvePageTitle', resolvePageTitle);
 Pulsar.registerFunction('getCurrentTimestamp', getCurrentTimestamp);
 Pulsar.registerFunction('checkKeyInArray', checkKeyInArray);
 Pulsar.registerFunction('firstTabGroupFromTop', firstTabGroupFromTop);
