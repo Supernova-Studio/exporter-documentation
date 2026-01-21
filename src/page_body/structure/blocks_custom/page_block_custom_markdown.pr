@@ -1,11 +1,12 @@
 {[ const block = context /]}
+{[ let configuration = ds.documentationConfiguration() /]}
 
 {[ let variant = block.variantKey /]}
 
 {* Render markdown block from configuration *}
 {[ let url = block.properties.markdownUrl /]}
 
-{[ if url && url.trim().length > 0 ]}
+{[ if (isNonEmptyString(url)) ]}
     {* Fetch the markdown data from the remote URL *}
     {[ let settings = {} /]}
     {[ let headers = {} /]}
@@ -30,10 +31,18 @@
 
     {* Download markdown data *}
     {[ let markdownData = getNetworkData(url, settings) /]}
-    {[ if markdownData ]}
+    {[ if isNonEmptyString(markdownData) ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
         <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
+        {[ if (markdownData.message) ]}
+            {[ if configuration.version.engine.previewMode ]}
+                {[ inject "component_callout" context ({"type": "danger", "text": markdownData.message, "blockId": block.id }) /]}  
+            {[ else ]}
+                {[ inject "component_callout" context ({"type": "danger", "text": "Error when downloading external markdown. Please reach out to your documentation admin.", "blockId": block.id }) /]}  
+            {[/]}
+        {[ else ]}
             {{ markdownToHTML(markdownData) }}
+        {[/]}
         </div>
     {[ else ]}
         {* Markdown download failed *}
