@@ -51,8 +51,8 @@ export function contrastColorAPCA(color?: string): "dark" | "light" {
     const newColor = new Color(color)
   
     // Calculate absolute contrast values against white and black
-    const onWhite = Math.abs(newColor.contrast("white", "APCA"))
-    const onBlack = Math.abs(newColor.contrast("black", "APCA"))
+    const onWhite = Math.abs(newColor.contrast("white", "WCAG21"))
+    const onBlack = Math.abs(newColor.contrast("black", "WCAG21"))
   
     // Return light text if contrast with white is stronger,
     // dark text if contrast with black is stronger
