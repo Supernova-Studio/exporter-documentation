@@ -345,6 +345,23 @@ ol>.block-children {
         /* Internet Explorer 10+ */
         box-shadow: inset 0px -1px 0 0px var(--colorBorderSubtle);
     }
+
+    /*
+      When page tabs are upgraded to use scroll arrows, the scroll container
+      must be the `.nav-tabs-inline` element (the JS animates its `scrollLeft`).
+      The legacy `.tabbed-navigation` used to be the scroll container, so we
+      disable that behavior only for the upgraded variant.
+    */
+    > .tabbed-navigation.scrollable-tabs-container {
+        overflow: visible;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    // > .tabbed-navigation.scrollable-tabs-container .nav-tabs-inline {
+    //     margin-left: 12px;
+    //     padding-right: 12px;
+    // }
     
 }    
 
@@ -365,21 +382,20 @@ ol>.block-children {
     justify-content: center;
 }
 
+.container-title.centered>.slider {
+    align-items: center;
+    justify-content: center;
+}
+
 .container-title.centered>.slider,
 .container-tabs>.tabbed-navigation {
     left: initial;
     display: flex;
     flex-direction: column;
-    /* align-content: center; */
-    align-items: center;
-    justify-content: center;
 }
 
 .container-tabs>.tabbed-navigation {
     min-height: 48px;
-}
-
-.container-tabs>.tabbed-navigation {
     align-items: start;
 }
 

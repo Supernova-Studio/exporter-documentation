@@ -67,7 +67,7 @@ $(document).ready(function() {
       });
     });
 
-  $('.nav-tabs-container').each(function() {
+  $('.scrollable-tabs-container').each(function() {
     var $container = $(this);
     var $tabsWrapper = $container.find('.nav-tabs-inline');
     var $leftArrow = $container.find('.scroll-arrow-left');

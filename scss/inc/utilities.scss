@@ -480,6 +480,52 @@
   --checkeredSquareColorLightB: transparent;
 }
 
+
+.nav-tabs-inline {
+  flex-wrap: nowrap;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.nav-tabs-inline::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.scrollable-tabs-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 12px;
+    display: none;
+    cursor: pointer;
+    z-index: 2;
+    height: 24px;
+    width: 24px;
+    background-color: var(--colorBackgroundPrimary);
+    border: 1px solid var(--colorBorderSubtle);
+    border-radius: var(--borderRadiusDefault);  
+    justify-content: center;
+    align-items: center;
+    color: var(--colorInkSecondary);
+  }
+  .scroll-arrow:hover {
+    color: var(--colorInkPrimary);
+  }
+  .scroll-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+  .scroll-arrow-left {
+    left: 0;
+  }
+  .scroll-arrow-right {
+    right: 0;
+  }
+}
+
 /* Checkered background */
 .checkered-background {
   background-image: linear-gradient(45deg, var(--checkeredSquareColorDarkA) 25%, transparent 25%),
