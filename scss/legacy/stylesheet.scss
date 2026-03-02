@@ -337,31 +337,18 @@ ol>.block-children {
         width: 100%;
         margin: 0px auto;
         z-index: 1;
-        overflow-x: scroll;
-        overflow-y: hidden;
+    }
+
+    > .tabbed-navigation.scrollable-tabs-container {
+        overflow: visible;
+        flex-direction: row;
+        align-items: center;
         scrollbar-width: none;
         /* Firefox */
         -ms-overflow-style: none;
         /* Internet Explorer 10+ */
         box-shadow: inset 0px -1px 0 0px var(--colorBorderSubtle);
     }
-
-    /*
-      When page tabs are upgraded to use scroll arrows, the scroll container
-      must be the `.nav-tabs-inline` element (the JS animates its `scrollLeft`).
-      The legacy `.tabbed-navigation` used to be the scroll container, so we
-      disable that behavior only for the upgraded variant.
-    */
-    > .tabbed-navigation.scrollable-tabs-container {
-        overflow: visible;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    // > .tabbed-navigation.scrollable-tabs-container .nav-tabs-inline {
-    //     margin-left: 12px;
-    //     padding-right: 12px;
-    // }
     
 }    
 
