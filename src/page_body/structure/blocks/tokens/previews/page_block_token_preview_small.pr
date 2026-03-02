@@ -3,7 +3,7 @@
 
 {[ if token.tokenType.equals("Color") ]}
     {[ let hexValue = tokenValueToHex(token.value) /]}
-    {[ let colorLightnessCheck = contrastColorAPCA(hexValue) /]}
+    {[ let colorLightnessCheck = contrastColor(hexValue) /]}
     <div class="token-preview-container checkered-background-light{{ (hexValue !== "#ffffff") ? " borderless" : "" }}">
         <div class="color-preview{{ ((colorLightnessCheck === "light") ? " inverted-text" : "") }}" style="background-color: {{ hexValue }};">
             {[ inject "page_block_token_reference_badge" context token /]}

@@ -5,7 +5,7 @@ import {
   getColorContrastRatio,
   returnSwatchClassnames,
   getClassForInvertedText,
-  contrastColorAPCA
+  contrastColor
 } from './doc_functionality/color';
 import {
   convertHealthTagIfAny,
@@ -244,7 +244,7 @@ Pulsar.registerFunction('htmlSafeString', htmlSafeString);
 Pulsar.registerFunction('htmlSafeUrl', htmlSafeUrl);
 
 /* Colors */
-Pulsar.registerFunction('contrastColorAPCA', contrastColorAPCA);
+Pulsar.registerFunction('contrastColor', contrastColor);
 Pulsar.registerFunction('returnSwatchClassnames', returnSwatchClassnames);
 Pulsar.registerFunction('getColorContrastRatio', getColorContrastRatio);
 Pulsar.registerFunction('getClassForInvertedText', getClassForInvertedText);
