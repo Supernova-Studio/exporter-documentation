@@ -14,14 +14,14 @@ function isValidHexColor(str: string) {
   }
 
 /**
- * Determines whether a color should use dark or light text based on APCA contrast.
- * Uses the APCA (Advanced Perceptual Contrast Algorithm) to calculate contrast ratios
- * and determine optimal text color.
+ * Determines whether a color should use dark or light text based on WCAG21 contrast.
+ * Uses the WCAG21 to calculate contrast ratios
+ * and determine optimal text color. Using WCAG21 since it is standard for accessibility.
  * 
  * @param color - Optional hex color string (with or without leading #)
  * @returns "dark" for light background colors, "light" for dark background colors
  */
-export function contrastColorAPCA(color?: string): "dark" | "light" {
+export function contrastColor(color?: string): "dark" | "light" {
     // Default to dark text if no color provided
     if (!color) {
       return "dark"
@@ -72,7 +72,7 @@ export function returnSwatchClassnames(color: ColorTokenValue): string {
         classNames.push("bordered")
     }
 
-    if ((contrastColorAPCA(hexValue) === "light" && color.opacity.measure > 0.5)) {
+    if ((contrastColor(hexValue) === "light" && color.opacity.measure > 0.5)) {
         classNames.push("inverted-text")
     }
 
@@ -96,7 +96,7 @@ export function getClassForInvertedText(color: string): string {
 
     // Check if the color has "light" contrast (meaning it's a dark color)
     // and return the inverted text class if so
-    if ((contrastColorAPCA(color) === "light")) {
+    if ((contrastColor(color) === "light")) {
         return "inverted-text"
     } else {
         return ""
