@@ -1,5 +1,6 @@
 {[ const token = context.token /]}
 {[ const themes = context.themes /]}
+{[ const showName = context.showName /]}
 
 {[ if token.tokenType.equals("Color") ]}
     {[ let hexValue = tokenValueToHex(token.value) /]}
@@ -7,12 +8,12 @@
         {[ inject "page_block_token_reference_badge" context token /]}
         {[ inject "page_block_token_themes_badge" context themes /]}
 
-        {[ if (!themes || themes.length === 0) ]}
+        {[ if (showName) ]}
             <div class="name">
                 {{ token.name.replacing("/", " / ") }} 
             </div>
         {[/]}
-        <div class="value">
+        <div class="value {{ (themes && themes.length > 0) ? "theme-value" : "" }}">
             {[ inject "page_block_token_value" context token /]}
         </div>
     </div>
