@@ -80,7 +80,7 @@
   {[ else ]}
     {* Default variant - tabs with header row and content below it *}
     {* Tab navigation header *}
-    <div class="nav-tabs-container">
+    <div class="scrollable-tabs-container">
       <div class="scroll-arrow scroll-arrow-left">
         {[ inject "icon_arrow_left" context configuration /]}
       </div>
