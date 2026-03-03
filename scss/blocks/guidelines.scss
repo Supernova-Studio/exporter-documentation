@@ -247,11 +247,11 @@
       }
 
       &.guideline-item__type-caution {
-        background: var(--guidelinesCautionBackground);
         color: var(--guidelinesCautionInk);
         --guidelinesDescriptionInk: var(--guidelinesCautionInk);
 
         .content {
+          background: var(--guidelinesCautionBackground);
           border-top-color: var(--guidelinesCautionBorder);
 
           a {
@@ -262,11 +262,11 @@
       }
 
       &.guideline-item__type-dont {
-        background: var(--guidelinesDontBackground);
         color: var(--guidelinesDontInk);
         --guidelinesDescriptionInk: var(--guidelinesDontInk);
 
         .content {
+          background: var(--guidelinesDontBackground);
           border-top-color: var(--guidelinesDontBorder);
 
           a {
@@ -276,11 +276,11 @@
       }
 
       &.guideline-item__type-do {
-        background: var(--guidelinesDoBackground);
         color: var(--guidelinesDoInk);
         --guidelinesDescriptionInk: var(--guidelinesDoInk);
 
          .content {
+          background: var(--guidelinesDoBackground);
           border-top-color: var(--guidelinesDoBorder);
 
           a {
