@@ -337,8 +337,12 @@ ol>.block-children {
         width: 100%;
         margin: 0px auto;
         z-index: 1;
-        overflow-x: scroll;
-        overflow-y: hidden;
+    }
+
+    > .tabbed-navigation.scrollable-tabs-container {
+        overflow: visible;
+        flex-direction: row;
+        align-items: center;
         scrollbar-width: none;
         /* Firefox */
         -ms-overflow-style: none;
@@ -365,21 +369,20 @@ ol>.block-children {
     justify-content: center;
 }
 
+.container-title.centered>.slider {
+    align-items: center;
+    justify-content: center;
+}
+
 .container-title.centered>.slider,
 .container-tabs>.tabbed-navigation {
     left: initial;
     display: flex;
     flex-direction: column;
-    /* align-content: center; */
-    align-items: center;
-    justify-content: center;
 }
 
 .container-tabs>.tabbed-navigation {
     min-height: 48px;
-}
-
-.container-tabs>.tabbed-navigation {
     align-items: start;
 }
 
