@@ -714,6 +714,10 @@
   border-bottom: 0;
 }
 
+.content-block--token-container .stack .stack-item .value.theme-value {
+  padding-right: 16px
+}
+
 @media (max-width: 576px) {
   .content-block--token-container .grid > div,
   .content-block--token-container .grid > a {

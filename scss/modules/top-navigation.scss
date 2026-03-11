@@ -954,12 +954,20 @@ a.site-logo {
   }
 }
 
-@media (max-width: 650px) {
-  .site-logo {
-    display: none;
-  }
-}
 @media (max-width: 575.98px) {
+  .navbar .logo-wrapper {
+    padding-right: 0;
+  }
+
+  .primary-menu .container-fluid {
+    padding: 0;
+    flex: 1;
+  }
+
+  .utility-nav {
+    padding: 0;
+  }
+
   .navbar-expand-sm .navbar-collapse {
     position: absolute;
     top: 99%;
@@ -1207,12 +1215,14 @@ a.site-logo {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (min-width: 575.98px) and (max-width: 991.98px) {
   .primary-menu > .container-fluid {
     padding: 0px 0px 0 16px;
     flex: 1;
   }
+}
 
+@media (max-width: 991.98px) {
   #mobile-menu-container .dropdown-menu {
     right: auto;
     left: 0;
