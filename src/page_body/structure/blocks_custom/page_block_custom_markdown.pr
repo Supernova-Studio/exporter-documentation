@@ -5,7 +5,7 @@
 {* Render markdown block from configuration *}
 {[ let url = block.properties.markdownUrl /]}
 
-{[ if url && url.trim().length > 0 ]}
+{[ if isNonEmptyString(url) ]}
     {* Fetch the markdown data from the remote URL *}
     {[ let settings = {} /]}
     {[ let headers = {} /]}
@@ -30,7 +30,7 @@
 
     {* Download markdown data *}
     {[ let markdownData = getNetworkData(url, settings) /]}
-    {[ if markdownData ]}
+    {[ if isNonEmptyString(markdownData) ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
         <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
             {{ markdownToHTML(markdownData) }}
