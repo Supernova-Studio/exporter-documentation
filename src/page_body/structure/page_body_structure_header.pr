@@ -102,6 +102,10 @@
                             {[ inject "icon_search" context configuration /]}
                         </button>
                     {[/]}
+                    <button id="sn-theme-toggle" class="btn-icon-button btn-theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+                        <span class="theme-icon theme-icon-sun" aria-hidden="true">{[ inject "icon_theme_light" context configuration /]}</span>
+                        <span class="theme-icon theme-icon-moon" aria-hidden="true">{[ inject "icon_theme_dark" context configuration /]}</span>
+                    </button>
                     {[ if configuration.advancedCustomizationShowCTA ]}
                         {[ let ctaText = (configuration.advancedCustomizationCTAText ? configuration.advancedCustomizationCTAText : "Open site") /]}
                         {[ let ctaUrl = (configuration.advancedCustomizationCTAUrl ? configuration.advancedCustomizationCTAUrl : "") /]}

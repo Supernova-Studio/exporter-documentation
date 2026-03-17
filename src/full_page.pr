@@ -120,30 +120,6 @@
     </div> {* .site-wrapper end *}
   </div>
 
-  <button id="sn-theme-toggle" class="sn-theme-toggle" type="button" aria-label="Toggle theme">
-    Theme
-  </button>
-
-  <style>
-    /* Minimal styling; adjust to match your UI */
-    .sn-theme-toggle{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 9999;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,.15);
-      background: white;
-      cursor: pointer;
-    }
-    html[data-theme="dark"] .sn-theme-toggle{
-      background: #111;
-      color: white;
-      border-color: rgba(255,255,255,.2);
-    }
-  </style>
-  
 </div>
 <!-- .site end --> 
 
@@ -157,10 +133,20 @@
       return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
     }
 
+    function syncThemeToggleButton(theme) {
+      const btn = document.getElementById('sn-theme-toggle');
+      if (!btn) return;
+
+      const nextLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      btn.setAttribute('aria-label', nextLabel);
+      btn.setAttribute('title', nextLabel);
+    }
+
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
       document.body.classList.toggle('theme-dark', theme === 'dark');
       document.body.classList.toggle('theme-light', theme === 'light');
+      syncThemeToggleButton(theme);
       localStorage.setItem(KEY, theme);
       syncStorybookEmbeds(theme);
     }
@@ -250,6 +236,8 @@
         document.body.classList.toggle('theme-dark', stored === 'dark');
         document.body.classList.toggle('theme-light', stored === 'light');
       }
+
+      syncThemeToggleButton(getTheme());
 
       observeAndSync();
     });

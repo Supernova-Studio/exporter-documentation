@@ -158,6 +158,34 @@
   }
 }
 
+.btn-theme-toggle {
+  color: var(--buttonSearchInk);
+
+  &:hover {
+    color: var(--buttonSearchInkHover);
+    background-color: var(--buttonSearchBackgroundHover);
+  }
+
+  .theme-icon {
+    display: inline-flex;
+    line-height: 0;
+  }
+
+  .theme-icon-moon {
+    display: none;
+  }
+}
+
+html[data-theme="dark"] .btn-theme-toggle {
+  .theme-icon-sun {
+    display: none;
+  }
+
+  .theme-icon-moon {
+    display: inline-flex;
+  }
+}
+
 a.site-logo {
   color: var(--topNavInk);
 
