@@ -134,12 +134,16 @@
     }
 
     function syncThemeToggleButton(theme) {
-      const btn = document.getElementById('sn-theme-toggle');
-      if (!btn) return;
+      const control = document.getElementById('sn-theme-toggle');
+      if (!control) return;
 
-      const nextLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-      btn.setAttribute('aria-label', nextLabel);
-      btn.setAttribute('title', nextLabel);
+      control.setAttribute('data-selected-theme', theme);
+      const buttons = control.querySelectorAll('[data-theme-value]');
+      buttons.forEach((button) => {
+        const selected = button.getAttribute('data-theme-value') === theme;
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        button.classList.toggle('is-selected', selected);
+      });
     }
 
     function applyTheme(theme) {
@@ -207,10 +211,6 @@
       }
     }
 
-    function toggleTheme() {
-      applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
-    }
-
     // Keep sync’ing as embeds get inserted (incl. inside shadow roots)
     function observeAndSync() {
       const run = () => syncStorybookEmbeds(getTheme());
@@ -226,8 +226,17 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const btn = document.getElementById('sn-theme-toggle');
-      if (btn) btn.addEventListener('click', toggleTheme);
+      const control = document.getElementById('sn-theme-toggle');
+      if (control) {
+        control.querySelectorAll('[data-theme-value]').forEach((button) => {
+          button.addEventListener('click', function () {
+            const nextTheme = button.getAttribute('data-theme-value');
+            if (nextTheme === 'light' || nextTheme === 'dark') {
+              applyTheme(nextTheme);
+            }
+          });
+        });
+      }
 
       // initial apply (if you don't already do it earlier)
       const stored = localStorage.getItem(KEY);
