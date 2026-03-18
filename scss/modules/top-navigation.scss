@@ -30,7 +30,8 @@
   --buttonSearchBackgroundHover: rgba(255, 255, 255, 0.2);
   --buttonSearchInk: var(--colorInkSecondary);
   --buttonSearchInkHover: var(--colorInkInverted);
-  --themeToggleBorderRadius: 8px;
+  --themeToggleContainerBorderRadius: 8px;
+  --themeToggleItemBorderRadius: 6px;
 }
 
 .hidden-top-nav {
@@ -164,7 +165,7 @@
 
   align-items: center;
   background-color: var(--buttonSearchBackground);
-  border-radius: var(--themeToggleBorderRadius);
+  border-radius: var(--themeToggleContainerBorderRadius);
   display: inline-flex;
   gap: var(--ut-seg-gap);
   margin-left: 8px;
@@ -175,7 +176,7 @@
 
   .ut-segmented-controls__pill {
     background-color: var(--buttonSearchBackgroundHover);
-    border-radius: var(--themeToggleBorderRadius);
+    border-radius: var(--themeToggleItemBorderRadius);
     height: var(--ut-seg-size);
     left: var(--ut-seg-pad);
     position: absolute;
@@ -188,7 +189,7 @@
     align-items: center;
     background: transparent;
     border: 0;
-    border-radius: var(--themeToggleBorderRadius);
+    border-radius: var(--themeToggleItemBorderRadius);
     cursor: pointer;
     display: inline-flex;
     height: var(--ut-seg-size);
