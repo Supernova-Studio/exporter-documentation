@@ -30,6 +30,7 @@
   --buttonSearchBackgroundHover: rgba(255, 255, 255, 0.2);
   --buttonSearchInk: var(--colorInkSecondary);
   --buttonSearchInkHover: var(--colorInkInverted);
+  --themeToggleBorderRadius: 8px;
 }
 
 .hidden-top-nav {
@@ -51,7 +52,7 @@
   --topNavItemActiveBackground: var(--colorAccent);
   --topNavItemHoverBackground: var(--colorAccentSurface);
 
-  --buttonSlackBackground: #5A1D5E;
+  --buttonSlackBackground: #5a1d5e;
   --buttonSlackBackgroundHover: #4d1352;
   --buttonSlackInk: #fff;
   --buttonSlackInkHover: #fff;
@@ -62,9 +63,7 @@
   --buttonSearchBackgroundHover: var(--colorAccentSurface);
   --buttonSearchInk: var(--colorInkTertiary);
   --buttonSearchInkHover: var(--colorAccent);
-
 }
-
 
 #header {
   box-shadow: var(--topNavElevation);
@@ -165,9 +164,10 @@
 
   align-items: center;
   background-color: var(--buttonSearchBackground);
-  border-radius: var(--borderRadiusMd);
+  border-radius: var(--themeToggleBorderRadius);
   display: inline-flex;
   gap: var(--ut-seg-gap);
+  margin-left: 8px;
   padding: var(--ut-seg-pad);
   position: relative;
   outline: 1px solid var(--colorBorderSubtle);
@@ -175,7 +175,7 @@
 
   .ut-segmented-controls__pill {
     background-color: var(--buttonSearchBackgroundHover);
-    border-radius: var(--borderRadiusSm);
+    border-radius: var(--themeToggleBorderRadius);
     height: var(--ut-seg-size);
     left: var(--ut-seg-pad);
     position: absolute;
@@ -188,7 +188,7 @@
     align-items: center;
     background: transparent;
     border: 0;
-    border-radius: var(--borderRadiusSm);
+    border-radius: var(--themeToggleBorderRadius);
     cursor: pointer;
     display: inline-flex;
     height: var(--ut-seg-size);
@@ -202,6 +202,7 @@
       display: block;
       height: 20px;
       width: 20px;
+      filter: brightness(0) invert(1);
     }
 
     &:focus-visible {
@@ -215,7 +216,7 @@
   }
 }
 
-.ut-segmented-controls[data-selected-theme="dark"] {
+.ut-segmented-controls[data-selected-theme='dark'] {
   .ut-segmented-controls__pill {
     transform: translateX(calc(var(--ut-seg-size) + var(--ut-seg-gap)));
   }
@@ -241,8 +242,8 @@ a.site-logo {
   gap: 4px;
 
   img {
-      height: var(--logoHeight);
-      max-height: 44px;
+    height: var(--logoHeight);
+    max-height: 44px;
   }
 }
 
@@ -259,7 +260,7 @@ a.site-logo {
 #header-nav {
   justify-content: space-between;
   gap: 12px;
-  
+
   .typographyDocsViewNavigation {
     font-weight: var(--topNavFontWeight);
   }
@@ -993,7 +994,7 @@ a.site-logo {
     justify-content: space-between;
     display: flex;
 
-    &.is-active, 
+    &.is-active,
     &.checked {
       background-color: rgba(15, 98, 254, 0.04);
       color: var(--colorAccent);
@@ -1001,9 +1002,7 @@ a.site-logo {
   }
 }
 
-#version-container
-#mobile-menu-container {
-
+#version-container #mobile-menu-container {
   .dropdown-item {
     padding-right: 2.5rem;
 
@@ -1279,7 +1278,7 @@ a.site-logo {
   #mobile-menu-container .dropdown-menu {
     right: auto;
     left: 0;
-  } 
+  }
 
   .navbar-expand-lg .navbar-collapse {
     position: absolute;
