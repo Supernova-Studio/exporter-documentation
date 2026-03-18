@@ -13,6 +13,7 @@
   --colorNeutral700: #666e7a;
   --colorNeutral800: #515964;
   --colorNeutral900: #141618;
+  --colorBlue25: #f5f7fe;
   --colorRed100: #fff5f5;
   --colorRed300: #e46969;
   --colorRed400: #ef4444;
@@ -92,6 +93,7 @@
 
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
+  --colorSurfaceNeutralBlueCanvas: var(--colorBlue25);
 
   /* CTA button */
   --ctaButtonBackground: var(--colorAccent);
@@ -123,7 +125,6 @@ body.theme-dark {
   --colorInkPrimary: var(--colorNeutral100);
   --colorInkSecondary: var(--colorNeutral300);
   --colorInkTertiary: var(--colorNeutral500);
-  --colorInkInverted: var(--colorNeutral900);
 
   --colorBackgroundPrimary: #121417;
   --colorBackgroundSecondary: #1a1f24;
@@ -142,6 +143,8 @@ body.theme-dark {
 
   /* Site */
   --pageBackground: var(--colorBackgroundPrimary);
+  --colorNeutral800: #1c1c1c;
+  --colorSurfaceNeutralBlueCanvas: var(--colorNeutral800);
 
   /* CTA */
   --ctaButtonBackground: var(--colorAccent);
