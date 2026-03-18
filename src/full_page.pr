@@ -185,7 +185,28 @@
       try {
         return new URL(src, window.location.href).origin;
       } catch (_e) {
-        return '*';
+        return null;
+      }
+    }
+
+    function safePostMessage(targetWindow, message, preferredOrigin) {
+      if (!targetWindow) return;
+
+      // 1) Try exact origin first when available.
+      if (preferredOrigin) {
+        try {
+          targetWindow.postMessage(message, preferredOrigin);
+          return;
+        } catch (_err) {
+          // Fall through to wildcard retry.
+        }
+      }
+
+      // 2) Fallback for dynamic embed/proxy origins in Supernova.
+      try {
+        targetWindow.postMessage(message, '*');
+      } catch (_err) {
+        // Ignore; nothing else to do.
       }
     }
 
@@ -220,7 +241,7 @@
       ];
 
       for (const message of messages) {
-        iframe.contentWindow.postMessage(message, targetOrigin);
+        safePostMessage(iframe.contentWindow, message, targetOrigin);
       }
     }
 
