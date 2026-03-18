@@ -12,17 +12,17 @@
 
   /* Side Navigation */
   --sideNavWidth: 300px;
-  --sideNavBackground: var(--colorSurfaceNeutralBlueCanvas);
+  --sideNavBackground: var(--colorBackgroundPrimary);
   --sideNavBorderColor: var(--colorBorderStructure);
   --sideNavElevation: none;
   --sideNavInk: var(--colorInkPrimary);
   --sideNavInkTab: var(--colorInkSecondary);
   --sideNavInkSection: var(--colorInkSecondary);
-  --sideNavPadding: 16px; 
+  --sideNavPadding: 16px;
   --sideNavGap: 0px;
 
   /* Side Navigation Item */
-  --sideNavItemHoverBackground: rgba(0,0,0,0.04);
+  --sideNavItemHoverBackground: rgba(0, 0, 0, 0.08);
   --sideNavItemHoverInk: var(--sideNavInk);
   --sideNavItemActiveBackground: var(--colorAccentSurface);
   --sideNavItemActiveInk: var(--colorAccent);
@@ -46,7 +46,8 @@
   --sideNavGroupInk: var(--colorInkTertiary);
 }
 
-b, strong {
+b,
+strong {
   font-weight: var(--fontWeightBold);
 }
 
@@ -64,10 +65,12 @@ b, strong {
       margin-right: auto;
       margin-left: auto;
       max-width: var(--siteMaxWidth);
-      
+
       .site-content {
         display: flex;
-        min-height: calc(100vh - 204px); // todo: calculate header height and paddings
+        min-height: calc(
+          100vh - 204px
+        ); // todo: calculate header height and paddings
       }
     }
   }
@@ -81,12 +84,12 @@ b, strong {
   display: flex;
   flex-direction: column;
 
-    >.content-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      padding: 24px var(--contentContainerPadding) 0;
-      margin: var(--pageHeaderMargin);
+  > .content-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 24px var(--contentContainerPadding) 0;
+    margin: var(--pageHeaderMargin);
   }
 }
 
@@ -109,7 +112,7 @@ b, strong {
   --sideNavInkSection: var(--colorInkSecondary);
   --sideNavItemHoverBackground: rgba(255, 255, 255, 0.08);
   --sideNavItemHoverInk: var(--sideNavInk);
-  --sideNavItemActiveBackground: rgba(255,255,255,0.2);
+  --sideNavItemActiveBackground: rgba(255, 255, 255, 0.2);
   --sideNavItemActiveInk: white;
   --buttonSearchInk: rgba(255, 255, 255, 0.6);
 }
@@ -118,7 +121,7 @@ b, strong {
 
 .side-navigation-wrapper {
   background-color: var(--sideNavBackground);
-  width: var(--sideNavWidth); // should this be min-width? 
+  width: var(--sideNavWidth); // should this be min-width?
   position: relative;
   z-index: 1;
   border-right: 1px solid var(--sideNavBorderColor);
@@ -150,7 +153,6 @@ b, strong {
   }
 }
 
-
 .site-logo-wrapper {
   --topNavInk: var(--colorInkPrimary);
 
@@ -163,7 +165,7 @@ b, strong {
   background: var(--sideNavBackground);
   z-index: 1;
   gap: 24px;
-  
+
   .site-logo {
     align-self: flex-start;
     display: flex !important;
@@ -176,9 +178,16 @@ b, strong {
   }
 }
 
-
 .group-open + .nav-item {
   margin-top: var(--sideNavGroupMarginTop);
+}
+
+.sidebar-navigation.docs-navigation {
+  background-color: var(--colorSurfaceNeutralBlueCanvas);
+}
+
+.style-dark .sidebar-navigation.docs-navigation {
+  background-color: var(--sideNavBackground);
 }
 
 .docs-navigation > .nav {
@@ -194,7 +203,6 @@ b, strong {
   }
 
   .nav-item {
-
     .nav-link {
       display: flex;
       align-items: center;
@@ -206,7 +214,7 @@ b, strong {
       letter-spacing: 0em;
       text-indent: 0px;
       color: var(--sideNavInk);
-      padding: 8px var(--sideNavItemPadding);  
+      padding: 8px var(--sideNavItemPadding);
       border-radius: var(--sideNavItemBorderRadius);
       transition: var(--transitionDefault);
 
@@ -219,7 +227,7 @@ b, strong {
         .icon {
           opacity: 0.8;
           transition: var(--transitionDefault);
-          
+
           svg {
             display: block;
             height: 16px;
@@ -242,15 +250,19 @@ b, strong {
       }
 
       &.active {
-        padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth));
+        padding-left: calc(
+          var(--sideNavItemPadding) +
+            var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth)
+        );
         background-color: var(--sideNavItemActiveBackground);
         color: var(--sideNavItemActiveInk);
         border-radius: var(--sideNavItemBorderRadius);
-        border-left: var(--sideNavItemActiveBorderWidth) solid var(--sideNavItemActiveBorderColor);
+        border-left: var(--sideNavItemActiveBorderWidth) solid
+          var(--sideNavItemActiveBorderColor);
 
         &.group {
           background-color: transparent;
-          color:  var(--sideNavInk);
+          color: var(--sideNavInk);
           border: 0;
           padding-left: var(--sideNavItemPadding);
 
@@ -297,10 +309,13 @@ b, strong {
 
   .nav .nav-item {
     .nav-link {
-      padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent));  
+      padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent));
 
       &.active {
-        padding-left: calc(var(--sideNavItemPadding) + var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth));  
+        padding-left: calc(
+          var(--sideNavItemPadding) +
+            var(--calculatedIndent) - var(--sideNavItemActiveBorderWidth)
+        );
       }
     }
   }
@@ -312,7 +327,7 @@ b, strong {
     }
   }
 
-  &.first-level-flat {    
+  &.first-level-flat {
     .group-open {
       margin-top: var(--sideNavGroupMarginTop);
 
@@ -351,7 +366,7 @@ b, strong {
   padding: 0;
   border-radius: var(--sideNavItemBorderRadius);
   margin-top: 1px;
-  
+
   &.is-tab a {
     color: var(--sideNavInkTab);
   }
@@ -371,7 +386,6 @@ b, strong {
 .docs-navigation .nav .nav {
   margin: 0 0 0 var(--sideNavSubItemIndentMargin);
 }
-
 
 .docs-navigation .nav .nav-item .nav-link.active + .nav {
   display: block;
@@ -400,7 +414,6 @@ b, strong {
 .nav.nav-separator.nav-separator-light .nav-item + .nav-item .nav-link:after {
   background-color: rgba(250, 250, 250, 0.2);
 }
-
 
 .nav-sn {
   height: 44px;
@@ -438,7 +451,6 @@ b, strong {
     }
   }
 }
-
 
 /* For Firefox */
 .site {
