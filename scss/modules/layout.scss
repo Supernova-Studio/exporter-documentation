@@ -68,6 +68,7 @@ strong {
 
       .site-content {
         display: flex;
+        padding: 16px;
         min-height: calc(
           100vh - 204px
         ); // todo: calculate header height and paddings
@@ -184,6 +185,7 @@ strong {
 
 .sidebar-navigation.docs-navigation {
   background-color: var(--colorSurfaceNeutralBlueCanvas);
+  border-radius: 24px;
 }
 
 .style-dark .sidebar-navigation.docs-navigation {
