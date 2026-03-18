@@ -281,10 +281,8 @@
       if (control) {
         control.querySelectorAll('[data-theme-value]').forEach((button) => {
           button.addEventListener('click', function () {
-            const nextTheme = button.getAttribute('data-theme-value');
-            if (nextTheme === 'light' || nextTheme === 'dark') {
-              applyTheme(nextTheme);
-            }
+            const nextTheme = getTheme() === 'dark' ? 'light' : 'dark';
+            applyTheme(nextTheme);
           });
         });
       }
