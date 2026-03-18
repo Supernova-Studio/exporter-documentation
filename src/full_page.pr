@@ -173,31 +173,55 @@
       return out;
     }
 
-    function setThemeInGlobals(urlString, theme) {
-      const url = new URL(urlString, window.location.href);
-
-      // Storybook "globals" are commonly separated by ';'
-      const raw = url.searchParams.get('globals') || '';
-      const parts = raw ? raw.split(';').filter(Boolean) : [];
-
-      let replaced = false;
-      for (let i = 0; i < parts.length; i++) {
-        if (parts[i].startsWith('theme:')) {
-          parts[i] = 'theme:' + theme;
-          replaced = true;
-          break;
-        }
-      }
-      if (!replaced) parts.push('theme:' + theme);
-
-      url.searchParams.set('globals', parts.join(';'));
-      return url.toString();
-    }
-
     // Match by path, not hostname
     function isStorybookIframeSrc(src) {
-      // Your screenshot shows: .../storybook/iframe.html?... (with extra path segments before /storybook)
+      // Covers paths such as: .../storybook/iframe.html?... even with nested prefixes
       return typeof src === 'string' && src.includes('/storybook/iframe.html');
+    }
+
+    const subscribedStorybookIframes = new WeakSet();
+
+    function getTargetOriginFromSrc(src) {
+      try {
+        return new URL(src, window.location.href).origin;
+      } catch (_e) {
+        return '*';
+      }
+    }
+
+    function postThemeToStorybookIframe(iframe, theme) {
+      if (!iframe || !iframe.contentWindow) return;
+
+      const src = iframe.getAttribute('src') || '';
+      const targetOrigin = getTargetOriginFromSrc(src);
+
+      const messages = [
+        // App-level message for any custom listener.
+        {
+          source: 'sn-docs-theme-sync',
+          type: 'theme-change',
+          theme,
+        },
+        // Storybook channel-style messages.
+        {
+          key: 'storybook-channel',
+          event: {
+            type: 'updateGlobals',
+            args: { globals: { theme } },
+          },
+        },
+        {
+          key: 'storybook-channel',
+          event: {
+            type: 'UPDATE_GLOBALS',
+            args: { globals: { theme } },
+          },
+        },
+      ];
+
+      for (const message of messages) {
+        iframe.contentWindow.postMessage(message, targetOrigin);
+      }
     }
 
     function syncStorybookEmbeds(theme) {
@@ -206,8 +230,14 @@
         const src = iframe.getAttribute('src') || '';
         if (!isStorybookIframeSrc(src)) continue;
 
-        const next = setThemeInGlobals(src, theme);
-        if (src !== next) iframe.setAttribute('src', next); // reloads embed
+        if (!subscribedStorybookIframes.has(iframe)) {
+          iframe.addEventListener('load', function () {
+            postThemeToStorybookIframe(iframe, getTheme());
+          });
+          subscribedStorybookIframes.add(iframe);
+        }
+
+        postThemeToStorybookIframe(iframe, theme);
       }
     }
 
