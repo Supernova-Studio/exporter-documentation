@@ -7,7 +7,6 @@
 {[ let shouldShowTabbar = ds.documentationConfiguration().settings.tabbedNavigation /]}
 {[ let designSystem = ds.documentationConfiguration().version.designSystem /]}
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
-{[ let showThemeToggle = page.relativeUrl.contains("components") /]}
 
 <!-- Header --> 
 <header id="header" class="sticky-top {{ ((configuration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">     
@@ -103,17 +102,15 @@
                             {[ inject "icon_search" context configuration /]}
                         </button>
                     {[/]}
-                    {[ if showThemeToggle ]}
-                        <div id="sn-theme-toggle" class="ut-segmented-controls ut-segmented-controls--icon" role="group" aria-label="Theme mode">
-                            <span class="ut-segmented-controls__pill" aria-hidden="true"></span>
-                            <button type="button" class="ut-segmented-controls__button" data-theme-value="light" aria-label="Light mode" aria-pressed="true">
-                                <img src="/assets/icons/sun-pm.svg" alt="" aria-hidden="true" />
-                            </button>
-                            <button type="button" class="ut-segmented-controls__button" data-theme-value="dark" aria-label="Dark mode" aria-pressed="false">
-                                <img src="/assets/icons/evening-pm.svg" alt="" aria-hidden="true" />
-                            </button>
-                        </div>
-                    {[/]}
+                    <div id="sn-theme-toggle" class="ut-segmented-controls ut-segmented-controls--icon" role="group" aria-label="Theme mode">
+                        <span class="ut-segmented-controls__pill" aria-hidden="true"></span>
+                        <button type="button" class="ut-segmented-controls__button" data-theme-value="light" aria-label="Light mode" aria-pressed="true">
+                            <img src="/assets/icons/sun-pm.svg" alt="" aria-hidden="true" />
+                        </button>
+                        <button type="button" class="ut-segmented-controls__button" data-theme-value="dark" aria-label="Dark mode" aria-pressed="false">
+                            <img src="/assets/icons/evening-pm.svg" alt="" aria-hidden="true" />
+                        </button>
+                    </div>
                     {[ if configuration.advancedCustomizationShowCTA ]}
                         {[ let ctaText = (configuration.advancedCustomizationCTAText ? configuration.advancedCustomizationCTAText : "Open site") /]}
                         {[ let ctaUrl = (configuration.advancedCustomizationCTAUrl ? configuration.advancedCustomizationCTAUrl : "") /]}
