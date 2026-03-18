@@ -17,7 +17,7 @@
   --colorRed300: #e46969;
   --colorRed400: #ef4444;
   --colorRed500: #d23031;
-  --colorRed700: #C13F39;
+  --colorRed700: #c13f39;
   --colorRed900: #9e2122;
   --colorGreen100: #ebfff0;
   --colorGreen300: #4ade80;
@@ -33,7 +33,8 @@
   /*  Core tokens 
   /* =================================== */
   --fontFamily: Inter, Arial, sans-serif;
-  --fontFamilyCode: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  --fontFamilyCode:
+    'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   --headingFontFamily: var(--fontFamily);
   --borderRadiusSmall: 4px;
   --borderRadiusDefault: 6px;
@@ -41,10 +42,11 @@
   --navItemBorderRadius: var(--borderRadiusDefault);
   --transitionDefault: 200ms all ease-in-out;
   --boxShadowLevel0: 0px 0px 0px 1px var(--colorBorderSubtle);
-  --boxShadowLevel1: 0px 4px 8px rgba(0, 0, 0, 0.05),
+  --boxShadowLevel1:
+    0px 4px 8px rgba(0, 0, 0, 0.05),
     0px 0px 0px 1px var(--colorBackgroundSecondary);
-  --boxShadowLevel2: 0 4px 8px 0 rgb(0, 0, 0, 0.08),
-    0px 0px 0px 1px var(--colorBorderSubtle);
+  --boxShadowLevel2:
+    0 4px 8px 0 rgb(0, 0, 0, 0.08), 0px 0px 0px 1px var(--colorBorderSubtle);
 
   /* DM fallback */
   --dm-font-family-mono: var(--fontFamilyCode);
@@ -95,7 +97,6 @@
   --ctaButtonBackground: var(--colorAccent);
   --ctaButtonBackgroundHover: var(--colorAccentAlt);
   --ctaButtonInk: var(--colorWhite);
-  
 
   /* Block: Banner */
   --calloutSuccessInk: var(--colorGreen900);
@@ -110,6 +111,60 @@
   --calloutInfoInk: var(--colorInkPrimary);
   --calloutInfoInkSecondary: var(--colorInkSecondary);
   --calloutInfoBackground: var(--colorBackgroundAlt);
+  --calloutPrimaryInk: var(--colorAccent);
+  --calloutPrimaryInkSecondary: var(--colorAccent);
+  --calloutPrimaryBackground: var(--colorAccentSurface);
+}
+
+/* Dark theme token overrides, switched by existing toggle logic */
+html[data-theme='dark'],
+body.theme-dark {
+  /* Semantic */
+  --colorInkPrimary: var(--colorNeutral100);
+  --colorInkSecondary: var(--colorNeutral300);
+  --colorInkTertiary: var(--colorNeutral500);
+  --colorInkInverted: var(--colorNeutral900);
+
+  --colorBackgroundPrimary: #121417;
+  --colorBackgroundSecondary: #1a1f24;
+  --colorBackgroundAlt: #242b33;
+
+  --colorBorderProminent: #3a4654;
+  --colorBorderSubtle: #2e3946;
+  --colorBorderStructure: var(--colorBorderSubtle);
+
+  --colorAccent: #7faeff;
+  --colorAccentAlt: #5e95ff;
+  --colorAccentSurface: rgba(127, 174, 255, 0.2);
+  --colorAccentInk: #0f1520;
+
+  --colorCodeMark: #ff8d89;
+
+  /* Site */
+  --pageBackground: var(--colorBackgroundPrimary);
+
+  /* CTA */
+  --ctaButtonBackground: var(--colorAccent);
+  --ctaButtonBackgroundHover: var(--colorAccentAlt);
+  --ctaButtonInk: #0f1520;
+
+  /* Banner blocks */
+  --calloutSuccessInk: #82e6a5;
+  --calloutSuccessInkSecondary: #5dd287;
+  --calloutSuccessBackground: rgba(0, 164, 84, 0.16);
+
+  --calloutWarningInk: #ffb774;
+  --calloutWarningInkSecondary: #f39a46;
+  --calloutWarningBackground: rgba(227, 107, 0, 0.16);
+
+  --calloutDangerInk: #ff9994;
+  --calloutDangerInkSecondary: #ff7f78;
+  --calloutDangerBackground: rgba(210, 48, 49, 0.16);
+
+  --calloutInfoInk: var(--colorInkPrimary);
+  --calloutInfoInkSecondary: var(--colorInkSecondary);
+  --calloutInfoBackground: var(--colorBackgroundAlt);
+
   --calloutPrimaryInk: var(--colorAccent);
   --calloutPrimaryInkSecondary: var(--colorAccent);
   --calloutPrimaryBackground: var(--colorAccentSurface);
