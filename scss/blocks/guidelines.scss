@@ -19,16 +19,16 @@
 
   /* Guidelines: Colors */
   --guidelinesDoInk: var(--colorGreen900);
-  --guidelinesDoInkSecondary: var(--colorGreen500);
   --guidelinesDoBackground: var(--colorGreen100);
   --guidelinesDoBorder: var(--colorGreen300);
+  --guidelinesDoBackgroundAlternative: var(--colorPositive);
   --guidelinesCautionInk: var(--colorOrange900);
-  --guidelinesCautionInkSecondary: var(--colorOrange500);
   --guidelinesCautionBorder: var(--colorOrange300);
   --guidelinesCautionBackground: var(--colorOrange100);
+  --guidelinesCautionBackgroundAlternative: var(--colorWarning);
   --guidelinesDontInk: var(--colorRed900);
-  --guidelinesDontInkSecondary: var(--colorRed500);
   --guidelinesDontBackground: var(--colorRed100);
+  --guidelinesDontBackgroundAlternative: var(--colorCritical);
   --guidelinesDontBorder: var(--colorRed300);
 }
 
@@ -137,7 +137,7 @@
 
     &.guideline-item__type-caution {
       .type-badge {
-        color: var(--guidelinesCautionInkSecondary);
+        color: var(--guidelinesCautionInk);
       }
 
       .type-badge__full {
@@ -148,7 +148,7 @@
 
     &.guideline-item__type-dont {
       .type-badge {
-        color: var(--guidelinesDontInkSecondary);
+        color: var(--guidelinesDontInk);
       }
 
       .type-badge__full {
@@ -159,7 +159,7 @@
 
     &.guideline-item__type-do {
       .type-badge {
-        color: var(--guidelinesDoInkSecondary);
+        color: var(--guidelinesDoInk);
       }
 
       .type-badge__full {
