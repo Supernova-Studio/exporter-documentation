@@ -9,7 +9,7 @@
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
 {[ for block in page.blocks ]}
-    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || block.headingType === 3)) ]}
+    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
         {[ hasHeading = true /]}
     {[/]}
     {[ if (block.type.equals("Heading") && block.headingType === 1) ]}

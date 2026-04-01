@@ -11,14 +11,16 @@
                 {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                 {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                 
-                {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "themes": themes})  /]}
+                {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "themes": themes, "showName": true})  /]}
             {[ else ]}
                 <div class="previews-side-by-side">
+                    {[ let showName = true /]}
                     {[ for swatch in block.swatches ]}
                         {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                         {[ const themedToken = ds.tokensByApplyingThemes([token.id], swatch.selectedThemeIds) /]}
                         
-                        {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "themes": themes})  /]}
+                        {[ inject "page_block_token_preview_stack" context ({"token": themedToken[0], "themes": themes, "showName": showName})  /]}
+                        {[ showName = false /]}
                     {[/]}
                 </div>
             {[/]}
@@ -26,7 +28,7 @@
     </div>
 {[ else ]}
     <div class="stack-item fallback">
-        {[ inject "page_block_token_preview_stack" context ({"token": token, "themes": [] })  /]}
+        {[ inject "page_block_token_preview_stack" context ({"token": token, "themes": [], "showName": true})  /]}
     </div>
 {[/]}
 {[/]}

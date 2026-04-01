@@ -635,7 +635,8 @@
   font-size: var(--fontSizeSmall);
   font-weight: var(--fontWeightSemibold);
   padding: 12px;
-  color: var(--colorNeutral900);
+  // keeping color black so it has good contrast with gray background
+  color: var(--colorBlack);
   position: relative;
 
   &.bordered {
@@ -712,6 +713,10 @@
 
 .content-block--token-container .stack .stack-item.fallback:last-child {
   border-bottom: 0;
+}
+
+.content-block--token-container .stack .stack-item .value.theme-value {
+  padding-right: 16px
 }
 
 @media (max-width: 576px) {

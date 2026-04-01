@@ -67,29 +67,48 @@ $(document).ready(function() {
       });
     });
 
-  $('.nav-tabs-container').each(function() {
+  function checkForScroll(tabsWrapper, leftArrow, rightArrow) {
+    var scrollLeft = Math.floor(tabsWrapper.scrollLeft());
+    var scrollWidth = Math.floor(tabsWrapper[0].scrollWidth);
+    var clientWidth = Math.floor(tabsWrapper[0].clientWidth);
+
+    if (scrollLeft > 0) {
+      leftArrow.css('display', 'flex');
+    } else {
+      leftArrow.css('display', 'none');
+    }
+
+    if (scrollLeft < scrollWidth - clientWidth - 1) {
+      // -1 because there is some issue with the scrollWidth
+      rightArrow.css('display', 'flex');
+    } else {
+      rightArrow.css('display', 'none');
+    }
+  }
+
+  const scrollableTabsContainerResizeObserver = new ResizeObserver(function(entries) {
+    entries.forEach(function(entry) {
+      const $container = $(entry.target);
+      const $tabsWrapper = $container.find('.nav-tabs-inline');
+      const $leftArrow = $container.find('.scroll-arrow-left');
+      const $rightArrow = $container.find('.scroll-arrow-right');
+      checkForScroll($tabsWrapper, $leftArrow, $rightArrow);
+    });
+  });
+ 
+
+  $('.scrollable-tabs-container').each(function() {
     var $container = $(this);
     var $tabsWrapper = $container.find('.nav-tabs-inline');
     var $leftArrow = $container.find('.scroll-arrow-left');
     var $rightArrow = $container.find('.scroll-arrow-right');
 
-    function checkForScroll() {
-      var scrollLeft = Math.floor($tabsWrapper.scrollLeft());
-      var scrollWidth = Math.floor($tabsWrapper[0].scrollWidth);
-      var clientWidth = Math.floor($tabsWrapper[0].clientWidth);
+    if($container[0]){
+      scrollableTabsContainerResizeObserver.observe($container[0]);
+    }
 
-      if (scrollLeft > 0) {
-        $leftArrow.css('display', 'flex');
-      } else {
-        $leftArrow.css('display', 'none');
-      }
-
-      if (scrollLeft < scrollWidth - clientWidth - 1) {
-        // -1 because there is some issue with the scrollWidth
-        $rightArrow.css('display', 'flex');
-      } else {
-        $rightArrow.css('display', 'none');
-      }
+    function checkForScrollCallback() {
+      checkForScroll($tabsWrapper, $leftArrow, $rightArrow);
     }
 
     function scrollTabs(direction) {
@@ -101,7 +120,7 @@ $(document).ready(function() {
       );
     }
 
-    $tabsWrapper.on('scroll', checkForScroll);
+    $tabsWrapper.on('scroll', checkForScrollCallback);
 
     $leftArrow.on('click', function() {
       scrollTabs('left');
@@ -111,7 +130,7 @@ $(document).ready(function() {
       scrollTabs('right');
     });
 
-    checkForScroll(); // Initial check
+    checkForScrollCallback(); // Initial check
   });
 });
 

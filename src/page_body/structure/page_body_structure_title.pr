@@ -28,33 +28,28 @@
     {[ layoutTypeClass = " style-boxed" /]}
 {[/]}
 
+{* Background color (page-level). Should apply even with a background image. *}
+{[ let backgroundColorStyle = "" /]}
+{[ if headerConfiguration.backgroundColor ]}
+    {[ if headerConfiguration.backgroundColor.value ]}
+        {[ backgroundColorStyle = ("background-color: " + headerConfiguration.backgroundColor.value + "; ") /]}
+    {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
+        {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
+        {[ if colorToken ]}
+            {[ backgroundColorStyle = ("background-color: " + tokenValueToHex(colorToken.value) + "; ") /]}
+        {[/]}
+    {[/]}
+{[/]}
+
 {* Background image set on the page overrides all settings *}
 {[ if headerConfiguration.backgroundImageAssetUrl ]}
-<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background: url({{ headerConfiguration.backgroundImageAssetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
-
+    <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}{{ backgroundColorStyle }}background-image: url({{ headerConfiguration.backgroundImageAssetUrl }}); background-repeat: no-repeat; background-position: center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 {* Background image set on doc export settings level overrides all settings *}
 {[ elseif (globalConfiguration.lookAndFeelHeaderBackgroundImage && globalConfiguration.lookAndFeelHeaderBackgroundImage.assetUrl) ]}
-<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background: url({{ globalConfiguration.lookAndFeelHeaderBackgroundImage.assetUrl }}) no-repeat center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
-
-{* Background color provided per-page takes over transparent default if provided *}
-{[ elseif headerConfiguration.backgroundColor ]}
-    {[ if headerConfiguration.backgroundColor.value ]}
-        {* Background color provided as raw value *}
-        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}background-color: {{ headerConfiguration.backgroundColor.value }};">
-    {[ elseif headerConfiguration.backgroundColor.aliasTo ]}
-        {* Background color provided as token *}
-        {[ let colorToken = ds.tokenById(headerConfiguration.backgroundColor.aliasTo) /]}
-        {[ let backgroundColor = "" /]}
-        {[ if colorToken ]}
-             {[ backgroundColor = ("background-color: " + tokenValueToHex(colorToken.value) + ";") /]}
-        {[/]}
-        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}{{ backgroundColor }}">
-    {[ else ]}
-        <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}">
-    {[/]}
+    <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}{{ backgroundColorStyle }}background-image: url({{ globalConfiguration.lookAndFeelHeaderBackgroundImage.assetUrl }}); background-repeat: no-repeat; background-position: center center; background-size: {{ headerConfiguration.backgroundImageScaleType === "AspectFill" ? "cover" : "contain" }};">
 {* Default without any configuration *}
 {[ else ]}
-<div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}">
+    <div class="container-title{{ centeredClass }}{{ flexedClass }}{{layoutTypeClass}}" style="{{ heightStyle }}{{ backgroundColorStyle }}">
 {[/]}
     {[ if (headerConfiguration.showBackgroundOverlay && headerConfiguration.backgroundImageAssetUrl) ]}
         <div class="container-title-overlay"></div>
@@ -91,8 +86,11 @@
  :root { --tabOffset: 40px; }
 </style>
 <div class="container-tabs">    
-    <div class="tabbed-navigation">
-        <ul class="nav nav-tabs" id="page-tab" role="tablist">
+    <div class="tabbed-navigation scrollable-tabs-container">
+        <div class="scroll-arrow scroll-arrow-left">
+            {[ inject "icon_arrow_left" context globalConfiguration /]}
+        </div>
+        <ul class="nav nav-tabs nav-tabs-inline" id="page-tab" role="tablist">
             {[ for tab in group.pages ]}
                 {[ if isExportable(tab) ]}
                 <li class="nav-item" role="presentation">
@@ -102,6 +100,9 @@
                 {[/]}
             {[/]}
         </ul>
+        <div class="scroll-arrow scroll-arrow-right">
+            {[ inject "icon_arrow_right" context globalConfiguration /]}
+        </div>
     </div>
 </div>
 {[ else ]}
