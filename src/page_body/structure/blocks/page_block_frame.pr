@@ -19,10 +19,10 @@
     {[ if (context.showTitles && frame.title) ]}
         <div class="meta">
         {[ if frame.title ]}
-            <p class="title">{{ escapeHtml(frame.title) }}</p>
+            <p class="title">{{ escapeHtmlWithNewlines(frame.title) }}</p>
         {[/]}
         {[ if frame.description ]}
-            <p class="description">{{ escapeHtml(frame.description) }}</p>    
+            <p class="description">{{ escapeHtmlWithNewlines(frame.description) }}</p>    
         {[/]}
         </div>
     {[/]}

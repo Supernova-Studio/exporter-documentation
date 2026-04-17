@@ -59,7 +59,7 @@
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p class="caption">{{ escapeHtml(block.caption) }}</p>
+    <p class="caption">{{ escapeHtmlWithNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}
