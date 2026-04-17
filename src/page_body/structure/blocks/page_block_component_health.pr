@@ -88,7 +88,7 @@
                                     {* Generate content for each property *}
                                     <div class="row">
                                         {* Property name *}
-                                        <div class="col-6 lighter">{{ property.name }}</div>
+                                        <div class="col-6 lighter">{{ escapeHtml(property.name) }}</div>
                                         {* Property value *}
                                         <div class="col-6 text-right">
                                             {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
@@ -111,4 +111,3 @@
 {[ else ]}
     {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component health block</strong><br />Please select a component in the block.", "blockId": block.id }) /]}  
 {[/]}
-

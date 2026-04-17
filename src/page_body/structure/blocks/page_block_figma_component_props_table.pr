@@ -10,7 +10,7 @@
         <div class="content-block content-block--figma-component-props-table" id="{{ getSearchIDString(block.id) }}">
 
             {[ if block.figmaComponentsBlockConfig.showComponentName ]}
-                <div class="props-table-component-name">{{ component.name }}</div>
+                <div class="props-table-component-name">{{ escapeHtml(component.name) }}</div>
             {[/]}
             <div class="data-table-wrapper">
             <table class="data-table props-table">
@@ -31,7 +31,7 @@
                     {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
                         <tr>
                             <td colspan="3" id="figma-component-props-table-empty-state">
-                                {{ component.name }} component has no properties.
+                                {{ escapeHtml(component.name) }} component has no properties.
                             </td>
                         </tr>
                     {[/]}
@@ -42,22 +42,22 @@
                                 <td>
                                     <span class="props-table-name">
                                         {[ if (property.type === "Variant") ]}
-                                            {{ property.name }}
+                                            {{ escapeHtml(property.name) }}
 
                                             <span class="figma-component-badge props-table-variant-badge">Variant</span>
                                         {[/]}
                                             {[ if (property.type === "Boolean") ]}
-                                            {{ property.name }}
+                                            {{ escapeHtml(property.name) }}
 
                                             <span class="figma-component-badge props-table-boolean-badge">Boolean</span>
                                         {[/]}
                                         {[ if (property.type === "Text") ]}
-                                            {{ property.name }}
+                                            {{ escapeHtml(property.name) }}
 
                                             <span class="figma-component-badge props-table-text-badge">Text</span>
                                         {[/]}
                                         {[ if (property.type === "InstanceSwap") ]}
-                                            {{ property.name }}
+                                            {{ escapeHtml(property.name) }}
 
                                             <span class="figma-component-badge props-table-instance-swap-badge">InstanceSwap</span>
                                         {[/]}
@@ -66,7 +66,7 @@
                                 <td>
                                     <span class="props-table-value {{ property.type === "InstanceSwap" ? "props-table-value-with-icon" : "" }}">
                                         {[ if (property.type === "Variant") ]}
-                                            {{ property.options.join(" | ") }}
+                                            {{ escapeHtml(property.options.join(" | ")) }}
                                         {[/]}
                                             {[ if (property.type === "Boolean") ]}
                                             true | false
@@ -77,7 +77,7 @@
                                         {[ if (property.type === "InstanceSwap") ]}
                                             <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
 
-                                            {{ property.name }}
+                                            {{ escapeHtml(property.name) }}
                                         {[/]}
                                     </span>
                                 </td>
@@ -86,12 +86,12 @@
                                         {[ if (property.type === "InstanceSwap") ]}
                                             <span class="props-table-icon-component-instance">{[ inject "icon_component_instance" context configuration /]}</span>
                                             {[ if (property.defaultValuePreview && (property.defaultValuePreview.componentSetName || property.defaultValuePreview.componentName)) ]}
-                                                {{ property.defaultValuePreview.componentSetName ? property.defaultValuePreview.componentSetName : property.defaultValuePreview.componentName }}
+                                                {{ escapeHtml(property.defaultValuePreview.componentSetName ? property.defaultValuePreview.componentSetName : property.defaultValuePreview.componentName) }}
                                             {[ else ]}
-                                                {{ property.defaultValue }}
+                                                {{ escapeHtml(property.defaultValue) }}
                                             {[/]}
                                         {[ else ]}
-                                            {{ property.defaultValue }}
+                                            {{ escapeHtml(property.defaultValue) }}
                                         {[/]}
                                     </span>
                                 </td>
