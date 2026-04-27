@@ -25,7 +25,7 @@
  
     {* Render header if enabled *}
     {[ if header ]}
-        <h3 class="checklist-header">{{ header }}</h3>
+        <h3 class="checklist-header">{{ escapeHtml(header) }}</h3>
     {[/]}
 
     {* Scroll wrapper boundary *}
@@ -39,7 +39,7 @@
                     <th class="left">Component</th>
                     {[ for property in firstComponent.properties ]}
                         {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
-                            <th class="center">{{ property.name }}</th>
+                            <th class="center">{{ escapeHtml(property.name) }}</th>
                         {[/]}
                     {[/]}
                     {*
@@ -60,12 +60,12 @@
                             {[ if (component.propertyValues["documentationLink"] && ds.documentationPageById(component.propertyValues["documentationLink"])) ]}
                                 {[ let page = ds.documentationPageById(component.propertyValues["documentationLink"]) /]}
 
-                                <a href="{{pageUrl(page, documentationDomain)}}">{{ component.name }}</a>
+                                <a href="{{pageUrl(page, documentationDomain)}}">{{ escapeHtml(component.name) }}</a>
                             {[ elseif (component.propertyValues["documentationLink"] && ds.documentationGroupById(component.propertyValues["documentationLink"])) ]}
                                 {[ let group = ds.documentationGroupById(component.propertyValues["documentationLink"]) /]}
-                                <a href="{{pageUrl(group, documentationDomain)}}">{{ component.name }}</a>
+                                <a href="{{pageUrl(group, documentationDomain)}}">{{ escapeHtml(component.name) }}</a>
                             {[ else ]}
-                                {{ component.name }}
+                                {{ escapeHtml(component.name) }}
                             {[/]}
                         </td>
                         {[ for property in component.properties ]}

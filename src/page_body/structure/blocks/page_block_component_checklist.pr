@@ -30,7 +30,7 @@
         {[/]}
 
         {[ if header ]}
-            <h4 class="component-checklist--header">{{ header }}</h4>
+            <h4 class="component-checklist--header">{{ escapeHtml(header) }}</h4>
         {[/]}
 
         {[ if (hasBooleanPropertiesToShow || hasNonBooleanPropertiesToShow) ]}
@@ -46,8 +46,8 @@
                             </div>
 
                             <div class="text">
-                                <p class="title">{{ property.name }}</p>
-                                {[ if showPropertyDescription ]}<p class="description">{{ property.description }}</p>{[/]}
+                                <p class="title">{{ escapeHtml(property.name) }}</p>
+                                {[ if showPropertyDescription ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
                             </div>
                         </div>
                     {[/]}
@@ -61,8 +61,8 @@
                         {[ let value = component.propertyValues[property.codeName] /]}
                         <div class="list-item">
                             <div class="text">
-                                <p class="title">{{ property.name }}</p>
-                                {[ if showPropertyDescription ]}<p class="description">{{ property.description }}</p>{[/]}
+                                <p class="title">{{ escapeHtml(property.name) }}</p>
+                                {[ if showPropertyDescription ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
                             </div>
 
                             <div class="value">

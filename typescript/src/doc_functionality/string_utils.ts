@@ -74,6 +74,10 @@ export function withHTMLNewlines(string: string): string {
   return ""
 }
 
+export function escapeHtmlWithNewlines(string: string): string {
+  return withHTMLNewlines(escapeHtml(string) ?? "")
+}
+
 export function getUrlExtension(url: string): string | undefined {
   if (url) {
     return url.split('.').pop()

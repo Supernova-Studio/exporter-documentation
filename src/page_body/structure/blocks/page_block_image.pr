@@ -39,7 +39,7 @@
     {[ if (isNonEmptyString(altText)) ]}
        <img src="{{ block.url }}"
         class="{{ imgClass }}"
-        alt="{{ altText }}"
+        alt="{{ escapeHtml(altText) }}"
         height="{{ block.asset.frame.origin.height }}"
         width="{{ block.asset.frame.origin.width }}" />
     {[ else ]}
@@ -51,7 +51,7 @@
     
 {[ else ]}
     {[ if (isNonEmptyString(altText)) ]}
-        <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ altText }}" />
+        <img src="{{ block.url }}" class="{{ imgClass }}" alt="{{ escapeHtml(altText) }}" />
     {[ else ]}
         <img src="{{ block.url }}" class="{{ imgClass }}" />
     {[/]}
@@ -59,7 +59,7 @@
     
 {* Add caption if set *}
 {[ if block.caption ]}
-    <p class="caption">{{ withHTMLNewlines(block.caption) }}</p>
+    <p class="caption">{{ escapeHtmlWithNewlines(block.caption) }}</p>
 {[/]}
 </div>
 {[/]}

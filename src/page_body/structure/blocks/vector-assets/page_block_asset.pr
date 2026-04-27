@@ -79,10 +79,10 @@
         {[ if title ]}
             <div class="meta">
             {[ if title ]}
-                <p class="title">{{ withHTMLNewlines(title) }}</p>
+                <p class="title">{{ escapeHtmlWithNewlines(title) }}</p>
             {[/]}
             {[ if (showDescription && description) ]}
-                <p class="description">{{ withHTMLNewlines(description) }}</p>    
+                <p class="description">{{ escapeHtmlWithNewlines(description) }}</p>    
             {[/]}
             </div>
         {[/]}
