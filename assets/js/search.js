@@ -29,6 +29,10 @@ function showSearch(e) {
     e.preventDefault();
 }
 
+function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function hideOrClearSearch(e) {
     // Hide the search view by running fade-out of the view or clear input if not empty
     if ($('.SNSearch-input').val().length > 0) {
@@ -108,6 +112,7 @@ $('.SNSearch-input').on('input', function(e) {
 
     // Prepare data
     let contentResults = [];
+    let shortcutResults = [];
     let sectionResults = [];
     let pageResults = [];
 
@@ -120,6 +125,8 @@ $('.SNSearch-input').on('input', function(e) {
 
         if (item.type === 'contentBlock') {
             contentResults.push(item);
+        } else if (item.type === 'shortcut') {
+            shortcutResults.push(item);
         } else if (item.type === 'sectionHeader') {
             sectionResults.push(item);
         } else {
@@ -173,6 +180,31 @@ $('.SNSearch-input').on('input', function(e) {
 		  </a>`);
             // Allow up to 5 results to be shown
             if (++count > 5) {
+                break;
+            }
+        }
+    }
+
+    // Add shortcut results
+    if (shortcutResults.length > 0) {
+        resultObject.append(
+            `<p class="section-title">Shortcuts (${shortcutResults.length})</p>`
+        );
+        let count = 0;
+        for (let result of shortcutResults) {
+            resultObject.append(`
+		  <a href="${result.url}" class="sn-search-result-link">
+		  <div class="result">
+			<p class="section-result-header">${highlightRanges(
+        result.text,
+        result.startIndex,
+        result.endIndex
+      )}</p>
+			<p class="section-result-text">On page ${result.category}</p>
+		  </div>
+		  </a>`);
+            // Allow up to 20 results to be shown
+            if (++count > 20) {
                 break;
             }
         }
@@ -270,7 +302,7 @@ function highlightRanges(s, startIndex, endIndex) {
     let searchResult = s.substring(startIndex, endIndex);
     let end = s.substring(endIndex);
 
-    return `${beginning}<span>${searchResult}</span>${end}`;
+    return `${escapeHtml(beginning)}<span>${escapeHtml(searchResult)}</span>${escapeHtml(end)}`;
 }
 
 function replaceRange(s, start, end, substitute) {
