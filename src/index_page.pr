@@ -3,6 +3,10 @@
 {[ let page = firstPageFromTop(rootGroup) /]}
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
+{[ if (!page) ]}
+  {{ throwError("At least one visible page needs to be exported.") }}
+{[/]}
+
 <!DOCTYPE HTML>
  
 <meta charset="UTF-8">
