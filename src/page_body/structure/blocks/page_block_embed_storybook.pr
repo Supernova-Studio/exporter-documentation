@@ -43,6 +43,7 @@
                   allowfullscreen
                   loading="lazy"
                   aria-label="Embedded Storybook"
+                  lang="en"
                   referrerpolicy="origin"
                   style="height: {{ (firstValue?.entityMeta?.height && firstValue?.entityMeta?.height < 150) ? firstValue?.entityMeta?.height + "px" : "100%" }}"
               ></iframe>

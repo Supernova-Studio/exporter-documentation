@@ -15,7 +15,7 @@
             <div class="data-table-wrapper">
             <table class="data-table props-table">
                 <thead>
-                    <tr>
+                    <tr lang="en">
                         <th class="props-table-name-header">
                             Property
                         </th>
@@ -31,7 +31,7 @@
                     {[ if (objectValues(component.componentPropertyDefinitions).length === 0) ]}
                         <tr>
                             <td colspan="3" id="figma-component-props-table-empty-state">
-                                {{ escapeHtml(component.name) }} component has no properties.
+                                {{ escapeHtml(component.name) }} <span lang="en">component has no properties.</span>
                             </td>
                         </tr>
                     {[/]}
@@ -44,22 +44,22 @@
                                         {[ if (property.type === "Variant") ]}
                                             {{ escapeHtml(property.name) }}
 
-                                            <span class="figma-component-badge props-table-variant-badge">Variant</span>
+                                            <span class="figma-component-badge props-table-variant-badge" lang="en">Variant</span>
                                         {[/]}
                                             {[ if (property.type === "Boolean") ]}
                                             {{ escapeHtml(property.name) }}
 
-                                            <span class="figma-component-badge props-table-boolean-badge">Boolean</span>
+                                            <span class="figma-component-badge props-table-boolean-badge" lang="en">Boolean</span>
                                         {[/]}
                                         {[ if (property.type === "Text") ]}
                                             {{ escapeHtml(property.name) }}
 
-                                            <span class="figma-component-badge props-table-text-badge">Text</span>
+                                            <span class="figma-component-badge props-table-text-badge" lang="en">Text</span>
                                         {[/]}
                                         {[ if (property.type === "InstanceSwap") ]}
                                             {{ escapeHtml(property.name) }}
 
-                                            <span class="figma-component-badge props-table-instance-swap-badge">InstanceSwap</span>
+                                            <span class="figma-component-badge props-table-instance-swap-badge" lang="en">InstanceSwap</span>
                                         {[/]}
                                     </span>
                                 </td>

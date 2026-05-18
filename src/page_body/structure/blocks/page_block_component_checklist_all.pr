@@ -36,7 +36,7 @@
             {* Create header row *}
             <thead>
                 <tr>
-                    <th class="left">Component</th>
+                    <th class="left" lang="en">Component</th>
                     {[ for property in firstComponent.properties ]}
                         {[ if (propertiesToHighlight.contains(property.persistentId)) ]}
                             <th class="center">{{ escapeHtml(property.name) }}</th>
@@ -44,7 +44,7 @@
                     {[/]}
                     {*
                     {[ if block.properties.showLastUpdatedColumn ]}
-                        <th class="center">Last updated</th>
+                        <th class="center" lang="en">Last updated</th>
                     {[/]}  
                     *}   
                 </tr>   
@@ -96,5 +96,5 @@
     </div> 
 {[ else ]}
     {* No component available to be shown just yet *}
-    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>No components are yet tracked</strong><br />Please add some in Components section and republish the documentation.", "blockId": block.id }) /]}  
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>No components are yet tracked</strong><br />Please add some in Components section and republish the documentation.", "blockId": block.id, "language": "en" }) /]}
 {[/]}

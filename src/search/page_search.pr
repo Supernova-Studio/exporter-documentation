@@ -2,7 +2,7 @@
 
 <div class="SNSearch SNSearch-container backdrop-blur">
    <div class="SNSearch-box">
-      <header class="SNSearch-header">
+      <header class="SNSearch-header" lang="en">
          <label class="SNSearch-input-label">
             <span class="icon">{[ inject "icon_search" context configuration /]}</span>
          </label>
@@ -16,7 +16,7 @@
       <div class="SNSearch-results">
         
       </div>
-      <footer class="SNSearch-footer">
+      <footer class="SNSearch-footer" lang="en">
          <div class="info">
             <span>Cmd</span>/<span>Ctrl</span> + <span>K</span> to search
          </div>

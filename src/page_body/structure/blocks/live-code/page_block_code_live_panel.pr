@@ -4,7 +4,7 @@
     <div class="sandbox-container-meta">
         <div class="sandbox-container-buttons">
             {* Title *}
-            <div class="title">Example</div>
+            <div class="title" lang="en">Example</div>
             {* Edit code *}
             <div class="button-row">
                 {* Copy code button *}

@@ -23,7 +23,7 @@ function showSearch(e) {
         $('.SNSearch-input').val('');
         $('.SNSearch-input').focus();
         $('.SNSearch-results').html(
-            `<p class="section-title empty">Start your search by typing your phrase</p>`
+            `<p class="section-title empty" lang="en">Start your search by typing your phrase</p>`
         );
     }
     e.preventDefault();
@@ -71,7 +71,7 @@ $('.SNSearch-input').on('input', function(e) {
     // Don't search for small strings
     if (searchString.length < 2) {
         resultObject.html(
-            `<p class="section-title empty">Start your search by typing your phrase</p>`
+            `<p class="section-title empty" lang="en">Start your search by typing your phrase</p>`
         );
         // No results
         return;
@@ -98,7 +98,7 @@ $('.SNSearch-input').on('input', function(e) {
     if (searchResult.length === 0) {
         // No result found
         resultObject.html(
-            `<p class="section-title empty">No results found, change your search phrase</p>`
+            `<p class="section-title empty" lang="en">No results found, change your search phrase</p>`
         );
         return;
     }
@@ -131,7 +131,7 @@ $('.SNSearch-input').on('input', function(e) {
     if (pageResults.length > 0) {
         let results = pageResults;
         resultObject.append(
-            `<p class="section-title">Pages & Categories (${results.length})</p>`
+            `<p class="section-title" lang="en">Pages & Categories (${results.length})</p>`
         );
         let count = 0;
         for (let result of results) {
@@ -156,7 +156,7 @@ $('.SNSearch-input').on('input', function(e) {
     // Add results matching titles first, then text block results
     if (sectionResults.length > 0) {
         resultObject.append(
-            `<p class="section-title">Content sections (${sectionResults.length})</p>`
+            `<p class="section-title" lang="en">Content sections (${sectionResults.length})</p>`
         );
         let count = 0;
         for (let result of sectionResults) {
@@ -168,7 +168,7 @@ $('.SNSearch-input').on('input', function(e) {
         result.startIndex,
         result.endIndex
       )}</p>
-			<p class="section-result-text">On page ${result.category}</p>
+			<p class="section-result-text"><span lang="en">On page</span> ${result.category}</p>
 		  </div>
 		  </a>`);
             // Allow up to 5 results to be shown
@@ -181,7 +181,7 @@ $('.SNSearch-input').on('input', function(e) {
     // Add text block results
     if (contentResults.length > 0) {
         resultObject.append(
-            `<p class="section-title">Content (${contentResults.length})</p>`
+            `<p class="section-title" lang="en">Content (${contentResults.length})</p>`
         );
         let count = 0;
         for (let result of contentResults) {
@@ -193,7 +193,7 @@ $('.SNSearch-input').on('input', function(e) {
         result.startIndex,
         result.endIndex
       )}</p>
-			<p class="section-result-text">On page ${result.category}</p>
+			<p class="section-result-text"><span lang="en">On page</span> ${result.category}</p>
 		  </div>
 		  </a>`);
             // Allow up to 20 results to be shown
