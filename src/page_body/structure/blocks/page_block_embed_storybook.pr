@@ -52,7 +52,7 @@
       </div>
       {[ if ((block.variantKey === "default" || block.variantKey === null) && blockConfig.showFooter && firstValue?.embed?.inputUrl) ]}
         <div>
-          <a href="{{ firstValue?.embed?.inputUrl }}" target="_blank">
+          <a href="{{ firstValue?.embed?.inputUrl }}" target="_blank" lang="en">
             Open in Storybook
           </a>
         </div>

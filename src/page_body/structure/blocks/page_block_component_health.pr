@@ -43,7 +43,7 @@
                     <div class="status-icon">
                         {[ inject "icon_component_status" context configuration /]}
                     </div>
-                    <div class="name">
+                    <div class="name"{[ if healthTagSlug === "status-unknown" ]} lang="en"{[/]}>
                         {{ healthTagReadable }}
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <div class="status-icon">
                             {[ inject "icon_component_status" context configuration /]}
                             </div>
-                            <div class="name">
+                            <div class="name"{[ if healthTagSlug === "status-unknown" ]} lang="en"{[/]}>
                                 {{ healthTagReadable }}
                             </div>
                         </div>
