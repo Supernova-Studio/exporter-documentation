@@ -3,8 +3,13 @@
 {[ let blockId = context.blockId /]}
 {[ let margin = context.margin /]}
 {[ let configuration = exportConfiguration() /]}
+{[ let language = context.language ? escapeHtml(context.language) : "" /]}
 
-<div class="content-block content-block--callout callout-{{ type }}" role="alert">
+<div
+    class="content-block content-block--callout callout-{{ type }}"
+    role="alert"
+    {[ if language ]}lang="{{ language }}"{[/]}
+>
     <div class="icon">
     {[ if ((type === "info") || (type === "primary"))]}
         {[ inject "icon_circle_info" context configuration /]}

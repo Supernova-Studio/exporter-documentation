@@ -7,11 +7,9 @@
 {[/]}
 
 {[ if configuration.footerShow ]}
-   {[ let lastPublished = (configuration.footerShowLastPublished ? ("Page last updated on " + getFormattedDateTime(page.updatedAt)) : "") /]}
-
     <div class="container-footer small"">
         <div class="slider">
-            <p class="text-muted">&copy; {{ getFullYear() }} {{ ds.currentDesignSystem().name }}. {{ lastPublished }}</p>
+            <p class="text-muted">&copy; {{ getFullYear() }} {{ ds.currentDesignSystem().name }}. {[ if configuration.footerShowLastPublished ]}<span lang="en">Page last updated on {{ getFormattedDateTime(page.updatedAt) }}</span>{[/]}</p>
         </div>
     </div>
 {[/]}

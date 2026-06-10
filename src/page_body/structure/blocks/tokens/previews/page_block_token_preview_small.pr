@@ -80,9 +80,9 @@
         <div class="token-preview-container-opacity" style="opacity: {{ decimalOpacityToPercentage(token.value) }}"></div>
     </div>
 {[ elseif token.tokenType.equals("TextDecoration")]}
-    <div class="token-preview-container small-text" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}">Hello{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}"><span lang="en">Hello</span>{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif token.tokenType.equals("TextCase")]}
-    <div class="token-preview-container small-text" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}">Hello world{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>    
+    <div class="token-preview-container small-text" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}"><span lang="en">Hello world</span>{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isDimensionToken(token.tokenType)]}
     {* todo: add nicer dimension preview — space, size *}
     <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context token /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>

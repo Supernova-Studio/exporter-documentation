@@ -52,7 +52,7 @@ function CookieConsent(props) {
 
     function renderModal() {
         const _t = self.props.content
-        const linkPrivacyPolicy = '<a href="' + self.props.privacyPolicyUrl + '">' + _t.privacyPolicy + '</a>'
+        const linkPrivacyPolicy = '<a href="' + self.props.privacyPolicyUrl + '" lang="en">' + _t.privacyPolicy + '</a>'
         if (self.props.content[self.lang] === undefined) {
             self.lang = self.props.defaultLang
         }
@@ -75,8 +75,8 @@ function CookieConsent(props) {
         )
         self.modalContent = self.modalContent.replace(/--footer--/,
             "<div class='buttons'>" +
-            "<button class='btn-accept-necessary " + self.props.buttonSecondaryClass + "'>" + _t.buttonAcceptTechnical + "</button>" +
-            "<button class='btn-accept-all " + self.props.buttonPrimaryClass + "'>" + _t.buttonAcceptAll + "</button>" +
+            "<button class='btn-accept-necessary " + self.props.buttonSecondaryClass + "' lang='en'>" + _t.buttonAcceptTechnical + "</button>" +
+            "<button class='btn-accept-all " + self.props.buttonPrimaryClass + "' lang='en'>" + _t.buttonAcceptAll + "</button>" +
             "</section>"
         )
         if (getCookie(self.props.cookieName) === undefined && self.props.autoShowModal) {

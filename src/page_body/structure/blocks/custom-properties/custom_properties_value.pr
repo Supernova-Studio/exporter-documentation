@@ -20,14 +20,14 @@
                 {[ contrastColor = contrastColor(optionColor) /]}
             {[/]}
         {[/]}  
-        <span class="{{ ["property-select-tag", contrastColor, sizeClass].join(" ") }}" style="background-color: {{ optionColor }}">
+        <span class="{{ ["property-select-tag", contrastColor, sizeClass].join(" ") }}" style="background-color: {{ optionColor }}"{[ if (optionValue === '') ]} lang="en"{[/]}>
             {[ if (optionValue !== '') ]}{{ optionValue }}{[ else ]}Not set{[/]}
         </span>
 
     {[ elseif customProperty.propertyType.equals("Boolean") ]}
         {[ inject "component_icon_boolean" context { "value": customPropertyValue, "label": (customPropertyValue ? "True" : "False") } /]}
     {[ elseif customProperty.propertyType.equals("URL") ]}
-        <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ customPropertyValue }}" target="_blank">{[ inject "icon_new_window" context configuration /]} Open link</a>
+        <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ customPropertyValue }}" target="_blank" lang="en">{[ inject "icon_new_window" context configuration /]} Open link</a>
     {[ elseif customProperty.propertyType.equals("Link") ]}
         {[ if customProperty.linkElementType.equals("DocumentationPage") ]}
             {[ let page = ds.documentationPageById(customPropertyValue) /]}
@@ -39,14 +39,14 @@
             {[/]}
 
             {[ if ( resolvedUrl ) ]}
-                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{resolvedUrl}}">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
+                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{resolvedUrl}}" lang="en">{[ inject "icon_documentation_page" context configuration /]} Open page</a>
             {[ else ]}
                 -
             {[/]}
         {[ elseif customProperty.linkElementType.equals("FigmaComponent") ]}
             {[ let designComponent = ds.designComponentById(customPropertyValue) /]}
             {[ if designComponent ]}
-                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent.origin) }}" target="_blank">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
+                <a class="{{ ["property-link", sizeClass].join(" ") }}" href="{{ getFigmaFileUrl(designComponent.origin) }}" target="_blank" lang="en">{[ inject "icon_figma" context configuration /]} Open in Figma</a>
             {[/]}
         {[/]}
         
