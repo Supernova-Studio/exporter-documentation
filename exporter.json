@@ -378,6 +378,14 @@
         "default": "Plain background"
       },
       {
+        "key": "language",
+        "type": "string",
+        "label": "Language",
+        "description": "The language code used for the HTML lang attribute in published documentation. Use a valid BCP 47 language tag, such as en, de, fr, or en-US.",
+        "category": "Pages",
+        "default": "en"
+      },
+      {
         "key": "advancedCustomizationShowNextPreviousNavigation",
         "type": "boolean",
         "label": "Show navigation at bottom of page",

@@ -11,9 +11,10 @@
 {[ let globalConfiguration = exportConfiguration() /]}
 {[ let headerConfiguration = configuration.header /]}
 {[ let centeredClass = (headerConfiguration.alignment === "Center" ? " centered" : "") /]}
+{[ let documentLanguage = (globalConfiguration.language ? escapeHtml(globalConfiguration.language) : "en") /]}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ documentLanguage }}">
 {[ inject "page_head" context page /]}
 {[ const domain = ds.documentationDomain() /]}
 
@@ -46,7 +47,7 @@
       <header id="header" class="mobile-header sticky-top {{ ((globalConfiguration.topNavigationStyle === "Dark") ? "style-dark" : "style-light")}}">    
           <!-- Navbar -->
           <nav class="primary-menu navbar navbar-expand-lg">
-                  <button id="sidebarCollapse" class="toggle-navbar" type="button" aria-label="Open navigation">
+                  <button id="sidebarCollapse" class="toggle-navbar" type="button" aria-label="Open navigation" lang="en">
                       {[ inject "icon_menu" context globalConfiguration /]}
                   </button>
               {[/]}

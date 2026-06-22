@@ -2,7 +2,7 @@
 {[ const configuration = exportConfiguration() /]}
 
 {[ if (themes.length > 1) ]}
-    <div class="theme-badge" data-toggle="tooltip" data-html="true" title="Applied themes:<br /> {{ getThemesTooltip(themes) }} ">
+    <div class="theme-badge" data-toggle="tooltip" data-html="true" title="Applied themes:<br /> {{ getThemesTooltip(themes) }} " lang="en">
         {[ inject "icon_theme" context configuration /]}
     </div>
 {[ elseif (themes.length === 1) ]}

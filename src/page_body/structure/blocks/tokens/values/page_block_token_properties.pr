@@ -12,7 +12,7 @@
             {* We display only the ones that are selected in the Block Settings UI *}
             {[ if (!checkKeyInArray(block.blacklistedElementProperties, property.id))  ]}
                 <div class="property">
-                    <div class="label">{{ property.name }}</div>
+                    <div class="label">{{ escapeHtml(property.name) }}</div>
                     <div class="value">{[ inject "custom_properties_value" context { "value": propertyValue, "info": property, "mustReturnValue": true, "size": "small"} /]} </div>
                 </div>
             {[/]}

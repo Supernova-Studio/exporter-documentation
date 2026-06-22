@@ -33,6 +33,7 @@ import { buildSearchIndexJSON } from './doc_functionality/search';
 import {
   highlightSafeString,
   withHTMLNewlines,
+  escapeHtmlWithNewlines,
   getUrlExtension,
   changelogToEntries,
   getSearchIDString,
@@ -155,6 +156,7 @@ Pulsar.registerFunction('isNonEmptyString', isNonEmptyString);
 /* String utilities */
 Pulsar.registerFunction('highlightSafeString', highlightSafeString);
 Pulsar.registerFunction('withHTMLNewlines', withHTMLNewlines);
+Pulsar.registerFunction('escapeHtmlWithNewlines', escapeHtmlWithNewlines);
 Pulsar.registerFunction('getUrlExtension', getUrlExtension);
 Pulsar.registerFunction('escapeHtml', escapeHtml);
 Pulsar.registerFunction('addSlashes', addSlashes);

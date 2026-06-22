@@ -31,13 +31,13 @@
         <div class="info">
             <div class="name">
                 {[ if (token.origin !== null && token.tokenType.equals("Shadow")) ]}
-                    {{ token.origin.name.replacing("/", " / ") }}
+                    {{ escapeHtml(token.origin.name.replacing("/", " / ")) }}
                 {[ else ]}
-                    {{ token.name.replacing("/", " / ") }}
+                    {{ escapeHtml(token.name.replacing("/", " / ")) }}
                 {[/]}
             </div>
             {[ if token.description ]}
-                <div class="description">{{ token.description }}</div>
+                <div class="description">{{ escapeHtml(token.description) }}</div>
             {[/]}
         </div>
     </div>

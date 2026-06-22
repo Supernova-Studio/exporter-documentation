@@ -11,14 +11,14 @@
             {[/]}
             <div class="content">
                 {[ if block.title ]}
-                    <p class="title">{{ withHTMLNewlines(block.title) }}</p>
+                    <p class="title">{{ escapeHtmlWithNewlines(block.title) }}</p>
                 {[/]}
                 
                 {[ if (block.description) ]}
-                    <p class="description">{{ withHTMLNewlines(block.description) }}</p>    
+                    <p class="description">{{ escapeHtmlWithNewlines(block.description) }}</p>    
                 {[/]}
 
-                <p class="link">{{ block.url }}</p>    
+                <p class="link">{{ escapeHtml(block.url) }}</p>    
             </div>
         </a>
     </div>

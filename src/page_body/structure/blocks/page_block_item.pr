@@ -43,9 +43,9 @@
     <div class="preview empty"></div>
     {[/]}
     <div class="content">
-        <p class="title">{{ withHTMLNewlines(shortcut.title) }}</p>
+        <p class="title">{{ escapeHtmlWithNewlines(shortcut.title) }}</p>
         {[ if (shortcut.description && shortcut.description != "-") ]}
-            <p class="description">{{ withHTMLNewlines(shortcut.description) }}</p>
+            <p class="description">{{ escapeHtmlWithNewlines(shortcut.description) }}</p>
         {[/]}
     </div>
     </a>

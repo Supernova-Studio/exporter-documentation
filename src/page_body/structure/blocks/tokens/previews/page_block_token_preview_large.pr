@@ -120,7 +120,7 @@
 {[ elseif token.tokenType.equals("LetterSpacing")]}
     <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="value-preview" style="letter-spacing: {{ measureValueToReadableUnit(token.value) }}">Hello</div>
+        <div class="value-preview" style="letter-spacing: {{ measureValueToReadableUnit(token.value) }}" lang="en">Hello</div>
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
@@ -149,7 +149,7 @@
 {[ elseif token.tokenType.equals("TextDecoration")]}
     <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="token-preview-container large" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}">Hello</div>
+        <div class="token-preview-container large" style="text-decoration: {{ convertTextDecorationToCSS(token.value.value) }}" lang="en">Hello</div>
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
@@ -158,7 +158,7 @@
 {[ elseif token.tokenType.equals("TextCase")]}
     <div class="preview bordered">
         {[ inject "page_block_token_reference_badge" context token /]}
-        <div class="token-preview-container large" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}">Hello world</div>
+        <div class="token-preview-container large" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}" lang="en">Hello world</div>
         <div class="value-footer">
             {[ inject "page_block_token_value" context token /]}
         </div>
