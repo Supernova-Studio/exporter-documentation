@@ -91,6 +91,11 @@
                     {[ inject "page_body_structure_block" context ({"block": block, "pageId": page.id}) /]}
                 {[/]}
 
+                {* TODO: Remove this mocked block once Context MCP blocks are included in backend documentation content. *}
+                {[ let mockContextMcpProperty = { "value": [{ "id": "mock-context-mcp-context" }], "title": "", "description": "", "showDescription": true, "connections": ["cursor", "vsCode", "claudeCode", "codex", "codeSnippet", "url"], "showMcpUrl": true, "showCodeSnippet": true } /]}
+                {[ let mockContextMcpBlock = { "id": "mock-context-mcp-block", "type": "Custom", "key": "io.supernova.block.context-mcp", "children": [], "properties": { "context": mockContextMcpProperty } } /]}
+                {[ inject "page_body_structure_block" context ({"block": mockContextMcpBlock, "pageId": page.id}) /]}
+
                 {[ inject "page_body_structure_page_navigation" context page /]}
                 </div>
               </section>

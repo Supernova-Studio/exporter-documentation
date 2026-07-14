@@ -742,6 +742,42 @@ $('[data-copy-url="true"]').click(function(event) {
 });
 
 /*-----------------------------
+    Context MCP actions
+------------------------------- */
+
+$(document).on('click', '[data-context-mcp-action]', async function(event) {
+  event.preventDefault();
+
+  const button = $(this);
+  const action = button.attr('data-context-mcp-action');
+
+  if (action !== 'copy') {
+    return;
+  }
+
+  const targetId = button.attr('data-copy-target');
+  const target = targetId ? document.getElementById(targetId) : null;
+  const value = target ? target.value : '';
+
+  if (!value) {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(value);
+    $.toast({
+      title: '<span lang="en">Copied to clipboard</span>',
+      position: 'bottom'
+    });
+  } catch (error) {
+    $.toast({
+      title: '<span lang="en">Unable to copy to clipboard</span>',
+      position: 'bottom'
+    });
+  }
+});
+
+/*-----------------------------
     Theme switching & mode preservation
 ------------------------------- */
 
