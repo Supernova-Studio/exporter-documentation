@@ -6,29 +6,20 @@
     {[ contextId = property.value[0].id /]}
 {[/]}
 
-{[ let selectedContext = null /]}
-{[ let mockContextName = null /]}
-{[ let mockContextMcpTitle = null /]}
+{[ let selectedContext = (contextId ? ds.contextById(contextId) : null) /]}
+{[ let useSelectedContext = (selectedContext && !selectedContext.isArchived) /]}
+{[ let contextMcpId = (useSelectedContext ? contextId : null) /]}
+{[ let contextMcpName = (useSelectedContext ? selectedContext.name : null) /]}
 
-{* TODO: Remove this fallback together with the mocked block in full_page.pr. *}
-{[ if (!selectedContext && contextId === "mock-context-mcp-context") ]}
-    {[ selectedContext = true /]}
-    {[ mockContextName = "Example context" /]}
-    {[ mockContextMcpTitle = "example-context" /]}
-{[/]}
+{* Use a scoped context endpoint only for an existing, active selection. Otherwise use the general MCP endpoint. *}
+{[ let titleFallback = (useSelectedContext ? "Connect to " + contextMcpName + "’s MCP server" : "Connect to MCP server") /]}
+{[ let descriptionFallback = "Install this context in your AI tool to get accurate data and knowledge." /]}
+{[ let title = (isNonEmptyString(property.title) ? property.title : titleFallback) /]}
+{[ let description = (isNonEmptyString(property.description) ? property.description : descriptionFallback) /]}
+{[ let installOptions = getContextMcpInstallOptions(mcpUrl(), contextMcpId, contextMcpName) /]}
+{[ let actions = getContextMcpActions(property.connections, installOptions) /]}
 
-{* Context MCP is read-only in exported documentation. Unselected blocks are omitted. *}
-{[ if selectedContext ]}
-    {[ let contextName = (mockContextName ? mockContextName : selectedContext.name) /]}
-    {[ let mcpTitle = (mockContextMcpTitle ? mockContextMcpTitle : (isNonEmptyString(selectedContext.mcpUrlSlug) ? selectedContext.mcpUrlSlug : contextName)) /]}
-    {[ let titleFallback = "Connect to " + contextName + "’s MCP server" /]}
-    {[ let descriptionFallback = "Install this context in your AI tool to get accurate data and knowledge." /]}
-    {[ let title = (isNonEmptyString(property.title) ? property.title : titleFallback) /]}
-    {[ let description = (isNonEmptyString(property.description) ? property.description : descriptionFallback) /]}
-    {[ let installOptions = getContextMcpInstallOptions(contextId, mcpTitle) /]}
-    {[ let actions = getContextMcpActions(property.connections, installOptions) /]}
-
-    <div class="content-block content-block--context-mcp" id="{{ getSearchIDString(block.id) }}">
+<div class="content-block content-block--context-mcp" id="{{ getSearchIDString(block.id) }}">
         <div class="context-mcp-gradient" aria-hidden="true"></div>
         <div class="context-mcp-content">
             <div class="context-mcp-header{{ property.showDescription ? " has-description" : "" }}">
@@ -79,6 +70,5 @@
                     <pre class="context-mcp-code context-mcp-code--snippet"><code>{{ escapeHtmlWithNewlines(installOptions.mcpServerConfigJson) }}</code></pre>
                 </div>
             {[/]}
-        </div>
     </div>
-{[/]}
+</div>

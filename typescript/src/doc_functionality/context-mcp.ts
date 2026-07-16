@@ -1,7 +1,6 @@
 import slugify from '@sindresorhus/slugify';
 import { Base64 } from 'js-base64';
 
-const CONTEXT_MCP_BASE_URL = 'https://mcp.supernova.io';
 const CONTEXT_MCP_URL_SLUG_MAX_LENGTH = 50;
 
 export type ContextMcpConnection =
@@ -36,18 +35,22 @@ const connectionGroups: ContextMcpConnection[][] = [
   ['codeSnippet', 'url'],
 ];
 
-function slugifyMcpUrlTitle(title: string): string {
-  return slugify(title)
+function slugifyContextName(contextName: string): string {
+  return slugify(contextName)
     .slice(0, CONTEXT_MCP_URL_SLUG_MAX_LENGTH)
     .replace(/-+$/g, '');
 }
 
 export function getContextMcpInstallOptions(
-  contextId: string,
-  title: string,
+  baseMcpUrl: string,
+  contextId?: string | null,
+  contextName?: string | null,
 ): ContextMcpInstallOptions {
-  const titleSlug = slugifyMcpUrlTitle(title);
-  const mcpUrl = `${CONTEXT_MCP_BASE_URL}/mcp/c/${contextId}-${titleSlug}`;
+  const normalizedBaseMcpUrl = baseMcpUrl.replace(/\/+$/g, '');
+  const mcpUrl =
+    contextId && contextName
+      ? `${normalizedBaseMcpUrl}/mcp/c/${contextId}-${slugifyContextName(contextName)}`
+      : `${normalizedBaseMcpUrl}/mcp`;
   const cursorConfig = Base64.encode(JSON.stringify({ url: mcpUrl }));
   const vsCodeConfig = {
     name: 'Supernova',
