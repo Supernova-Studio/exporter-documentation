@@ -26,8 +26,11 @@ export type ContextMcpAction = {
   description?: string;
   icon: string;
   value: string;
+  /** Whether the flattened dropdown list needs a divider before this action. */
   startsGroup: boolean;
 };
+
+type ContextMcpActionDefinition = Omit<ContextMcpAction, 'startsGroup'>;
 
 const connectionGroups: ContextMcpConnection[][] = [
   ['cursor', 'vsCode'],
@@ -83,26 +86,22 @@ export function getContextMcpInstallOptions(
 }
 
 export function getContextMcpActions(
-  connections: unknown,
   options: ContextMcpInstallOptions,
+  connections?: string[],
 ): ContextMcpAction[] {
-  const enabledConnections = new Set(
-    Array.isArray(connections) ? connections : [],
-  );
-  const actions: Record<ContextMcpConnection, ContextMcpAction> = {
+  const enabledConnections = new Set(connections ?? []);
+  const actions: Record<ContextMcpConnection, ContextMcpActionDefinition> = {
     cursor: {
       id: 'cursor',
       label: 'Add to Cursor',
       icon: 'cursor',
       value: options.cursorInstallUrl,
-      startsGroup: false,
     },
     vsCode: {
       id: 'vsCode',
       label: 'Add to VS Code',
       icon: 'vs-code',
       value: options.vsCodeInstallUrl,
-      startsGroup: false,
     },
     claudeCode: {
       id: 'claudeCode',
@@ -110,7 +109,6 @@ export function getContextMcpActions(
       description: 'Run copied command in your terminal.',
       icon: 'claude',
       value: options.claudeCodeCommand,
-      startsGroup: false,
     },
     codex: {
       id: 'codex',
@@ -118,7 +116,6 @@ export function getContextMcpActions(
       description: 'Run copied command in your terminal.',
       icon: 'code',
       value: options.codexCommand,
-      startsGroup: false,
     },
     codeSnippet: {
       id: 'codeSnippet',
@@ -127,7 +124,6 @@ export function getContextMcpActions(
         'Paste into mcp_config.json in settings of your code editor.',
       icon: 'code',
       value: options.mcpServerConfigJson,
-      startsGroup: false,
     },
     url: {
       id: 'url',
@@ -135,10 +131,11 @@ export function getContextMcpActions(
       description: 'Paste into any tool that supports custom MCP connectors.',
       icon: 'url',
       value: options.mcpUrl,
-      startsGroup: false,
     },
   };
 
+  // Preserve the fixed visual groups while returning the flat list expected by
+  // the template. The first action in each later non-empty group gets a divider.
   return connectionGroups.reduce<ContextMcpAction[]>((result, group) => {
     const groupActions = group
       .filter((connection) => enabledConnections.has(connection))

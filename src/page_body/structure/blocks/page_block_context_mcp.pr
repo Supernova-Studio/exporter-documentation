@@ -17,7 +17,7 @@
 {[ let title = (isNonEmptyString(property.title) ? property.title : titleFallback) /]}
 {[ let description = (isNonEmptyString(property.description) ? property.description : descriptionFallback) /]}
 {[ let installOptions = getContextMcpInstallOptions(mcpUrl(), contextMcpId, contextMcpName) /]}
-{[ let actions = getContextMcpActions(property.connections, installOptions) /]}
+{[ let actions = getContextMcpActions(installOptions, property.connections) /]}
 
 <div class="content-block content-block--context-mcp" id="{{ getSearchIDString(block.id) }}">
         <div class="context-mcp-gradient" aria-hidden="true"></div>
