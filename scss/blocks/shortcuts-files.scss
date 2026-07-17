@@ -74,8 +74,8 @@
       justify-content: center;
       font-size: 60px;
       width: 100%;
-      height: var(--shortcutCol4TopImageSize);
       border-radius: var(--shortcutImageBorderRadius);
+      aspect-ratio: 3/2;
 
       &.empty {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' viewBox='0 0 20 20'%3E%3Cpath d='M16.971 3.029a4.367 4.367 0 0 0-6.175 0l-2.27 2.269 1.25 1.249 2.269-2.269a2.6 2.6 0 1 1 3.677 3.677l-2.269 2.269 1.25 1.25 2.268-2.27a4.367 4.367 0 0 0 0-6.175Z' fill='rgba(0,0,0,0.5)'/%3E%3Cpath d='m13.526 7.798-1.324-1.324-5.728 5.728 1.324 1.324 5.728-5.728Z' fill='rgba(0,0,0,0.5)'/%3E%3Cpath d='m6.547 9.776-1.25-1.25-2.268 2.27a4.367 4.367 0 1 0 6.175 6.175l2.27-2.269-1.25-1.249-2.269 2.269a2.6 2.6 0 1 1-3.677-3.677l2.269-2.269Z' fill='rgba(0,0,0,0.5)'/%3E%3C/svg%3E");
@@ -90,7 +90,7 @@
       margin: 0;
       font-size: var(--shortcutTitleFontSize);
       line-height: 1.3;
-      font-weight:  var(--shortcutTitleFontWeight);
+      font-weight: var(--shortcutTitleFontWeight);
       color: var(--colorInkPrimary);
       overflow-wrap: anywhere;
     }
@@ -119,14 +119,13 @@
 /* Shortcut variants */
 .content-block--shortcuts,
 .content-block--files {
-  
   // 3 columns
   &.variant-image-top-3,
   &.variant-icon-top-3,
   &.variant-icon-leading-3 {
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: calc(var(--shortcutGridGap) * 1.5); 
-    grid-row-gap: calc(var(--shortcutGridGap) * 1.5); 
+    grid-column-gap: calc(var(--shortcutGridGap) * 1.5);
+    grid-row-gap: calc(var(--shortcutGridGap) * 1.5);
   }
 
   // 1 column
@@ -144,21 +143,8 @@
   &.variant-icon-leading-2,
   &.variant-image-leading-2 {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: calc(var(--shortcutGridGap) * 2); 
-    grid-row-gap: calc(var(--shortcutGridGap) * 2); 
-  }
-
-  // Image on top – image sizes
-  &.variant-image-top-3 div.preview {
-    height: var(--shortcutCol3TopImageSize);
-  }
-
-  &.variant-image-top-2 div.preview {
-    height: var(--shortcutCol2TopImageSize);
-  }
-
-  &.variant-image-top-1 div.preview {
-    height: var(--shortcutCol1TopImageSize);
+    grid-column-gap: calc(var(--shortcutGridGap) * 2);
+    grid-row-gap: calc(var(--shortcutGridGap) * 2);
   }
 
   // Icon on top
@@ -196,14 +182,13 @@
       margin-top: 2px; /* compensating vertical alignment for multi-line text */
     }
 
-    div.preview,
-    div.preview,
     div.preview {
       width: var(--shortcutIconWidth);
       height: var(--shortcutIconHeight);
       margin: 8px 4px 8px 8px;
       border-radius: var(--borderRadiusDefault);
       flex-shrink: 0;
+      aspect-ratio: 3/2;
     }
   }
 
@@ -212,7 +197,7 @@
   &.variant-image-leading-2 .shortcut-item {
     display: flex;
     flex-direction: row;
-    
+
     .content {
       padding: var(--shortcutHorizontalContentPadding);
     }
@@ -230,11 +215,7 @@
   &.variant-image-leading-2 .shortcut-item div.preview {
     max-width: 32%;
   }
-
 }
-
-
-
 
 @media (max-width: $breakpoint-mobile) {
   .content-block--shortcuts,
