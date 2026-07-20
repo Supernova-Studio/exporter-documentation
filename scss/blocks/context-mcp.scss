@@ -10,10 +10,8 @@
 
 .context-mcp-gradient {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 380px;
-  height: 260px;
+  inset: 0;
+  border-radius: calc(var(--borderRadiusLarge) - 1px);
   pointer-events: none;
   /* stylelint-disable @stylistic/function-parentheses-space-inside */
   background: radial-gradient(
@@ -115,6 +113,11 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+}
+
+.context-mcp-action-icon > svg {
+  width: 16px;
+  height: 16px;
 }
 
 .context-mcp-chevron {
