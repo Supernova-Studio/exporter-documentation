@@ -114,7 +114,7 @@ export function getContextMcpActions(
       id: 'codex',
       label: 'Copy Codex command',
       description: 'Run copied command in your terminal.',
-      icon: 'code',
+      icon: 'codex',
       value: options.codexCommand,
     },
     codeSnippet: {
@@ -129,7 +129,7 @@ export function getContextMcpActions(
       id: 'url',
       label: 'Copy MCP URL',
       description: 'Paste into any tool that supports custom MCP connectors.',
-      icon: 'url',
+      icon: 'copy',
       value: options.mcpUrl,
     },
   };
