@@ -149,7 +149,7 @@ $(window).on('load', function() {
     window.location.host.indexOf('preview.supernova-docs.io') !== -1;
   if (isPreviewSite) {
     $('#header').prepend(
-      '<div class="banner-preview"><div class="content"><div class="message"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>'
+      '<div class="banner-preview"><div class="content"><div class="message" lang="en"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>'
     );
   }
 
@@ -386,7 +386,7 @@ async function downloadAssets(assets, blockId) {
     .find('.loading')
     .removeClass('hide')
     .find('.text')
-    .text('Downloading... 0%');
+        .html('<span lang="en">Downloading... 0%</span>');
 
   let processedFiles = 0;
   const totalFiles = Object.keys(assets).length;
@@ -404,12 +404,12 @@ async function downloadAssets(assets, blockId) {
       if (processedFiles === Object.keys(assets).length) {
         $(button)
           .find('.loading .text')
-          .text('Almost ready, zipping...');
+          .html('<span lang="en">Almost ready, zipping...</span>');
       } else {
         let percentage = Math.round((processedFiles / totalFiles) * 100);
         $(button)
           .find('.loading .text')
-          .text('Downloading... ' + percentage + '%');
+          .html('<span lang="en">Downloading... ' + percentage + '%</span>');
       }
     } catch (error) {
       console.error(`Error adding file ${fileName} to zip.`, error);
@@ -452,14 +452,15 @@ async function downloadAssets(assets, blockId) {
         .removeClass('hide');
       $(button).prop('disabled', false);
       $.toast({
-        title: 'Download was successful',
+        title: '<span lang="en">Download was successful</span>',
         position: 'bottom'
       });
     })
     .catch(error => {
       console.error('Error generating zip file.', error);
       $.toast({
-        title: 'There was an error creating the zip file. Please try again.',
+        title:
+          '<span lang="en">There was an error creating the zip file. Please try again.</span>',
         position: 'bottom'
       });
       $(button)
@@ -470,7 +471,7 @@ async function downloadAssets(assets, blockId) {
         .removeClass('hide');
       $(button).prop('disabled', false);
       $.toast({
-        title: 'Download failed',
+        title: '<span lang="en">Download failed</span>',
         position: 'bottom'
       });
     });
@@ -498,7 +499,7 @@ $('[data-action="download-assets"]').on('click', function() {
     downloadAssets(assets, blockId);
   } else {
     $.toast({
-      title: 'Download failed',
+      title: '<span lang="en">Download failed</span>',
       position: 'bottom'
     });
   }
@@ -523,12 +524,12 @@ async function downloadAndRenameFile(url, newName) {
     saveAs(blob, newFilename);
 
     $.toast({
-      title: 'Download was successful',
+      title: '<span lang="en">Download was successful</span>',
       position: 'bottom'
     });
   } catch (error) {
     $.toast({
-      title: 'Download failed',
+      title: '<span lang="en">Download failed</span>',
       position: 'bottom'
     });
   }
@@ -547,12 +548,12 @@ async function downloadAndOverwriteNameFile(url, newName) {
     saveAs(blob, newName);
 
     $.toast({
-      title: 'Download was successful',
+      title: '<span lang="en">Download was successful</span>',
       position: 'bottom'
     });
   } catch (error) {
     $.toast({
-      title: 'Download failed',
+      title: '<span lang="en">Download failed</span>',
       position: 'bottom'
     });
   }
@@ -590,7 +591,8 @@ async function copySVGTextToClipboard(svgURL) {
     let response = await fetch(svgURL);
     if (!response.ok) {
       $.toast({
-        title: 'An error occured while copying SVG (this one)',
+        title:
+          '<span lang="en">An error occured while copying SVG (this one)</span>',
         position: 'bottom'
       });
       throw new Error('Network response was not ok');
@@ -604,13 +606,13 @@ async function copySVGTextToClipboard(svgURL) {
 
     // Notify user
     $.toast({
-      title: 'SVG copied to clipboard',
+      title: '<span lang="en">SVG copied to clipboard</span>',
       position: 'bottom'
     });
   } catch (err) {
     console.error('Error:', err);
     $.toast({
-      title: 'An error occured while copying SVG',
+      title: '<span lang="en">An error occured while copying SVG</span>',
       position: 'bottom'
     });
   }
@@ -624,6 +626,17 @@ $(function() {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
   $('[data-tooltip="tooltip"]').tooltip();
+  const markPrismToolbarButtons = () => {
+    $('.code-toolbar > .toolbar button').attr('lang', 'en');
+  };
+  markPrismToolbarButtons();
+
+  if (window.MutationObserver) {
+    new MutationObserver(markPrismToolbarButtons).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
 });
 
 /*-----------------------------
@@ -684,7 +697,7 @@ $('[data-toggle="copy-from-sandbox"]').click(function(event) {
 
   // Notify user
   $.toast({
-    title: 'Component code copied to clipboard',
+    title: '<span lang="en">Component code copied to clipboard</span>',
     position: 'bottom'
   });
 });
@@ -723,7 +736,7 @@ $('[data-copy-url="true"]').click(function(event) {
 
   // Notify user
   $.toast({
-    title: 'URL to heading copied',
+    title: '<span lang="en">URL to heading copied</span>',
     position: 'bottom'
   });
 });

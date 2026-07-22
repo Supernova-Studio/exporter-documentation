@@ -75,11 +75,11 @@
                 {[/]}
             </div>
         {[ else ]}
-            {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Please select properties to show.", "blockId": block.id }) /]}
+            {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Please select properties to show.", "blockId": block.id, "language": "en" }) /]}
         {[/]}
     {[ else ]}
-        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Reason: Unknown component. Please contact the support.", "blockId": block.id }) /]}
+        {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Reason: Unknown component. Please contact the support.", "blockId": block.id, "language": "en" }) /]}
     {[/]}
 {[ else ]}
-    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Please select a component in the block.", "blockId": block.id }) /]}
+    {[ inject "component_callout" context ({"type": "warning", "text": "<strong>Unable to show component checklist block</strong><br />Please select a component in the block.", "blockId": block.id, "language": "en" }) /]}
 {[/]}

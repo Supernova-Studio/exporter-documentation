@@ -10,9 +10,9 @@
 <div class="content-block content-block--assets layout-tiles{{ getVariantClass(variant) }}{{ forceNaturalHeight ? " force-natural-height" : "" }}" {[ if (block.properties.previewContainerHeight) ]}style="--preview-container-height: {{ block.properties.previewContainerHeight }}px;" {[/]}data-block-id="{{block.id}}">
     {[ if displaySearch ]}
     <div class="input-search-container">
-        <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}"/>
+        <input type="text" placeholder="Search..." class="input-search" data-toggle="list-search" data-list-id="list-{{ block.id }}" lang="en"/>
         <button class="btn btn-light btn-with-icon" data-action="download-assets" data-from-block="{{block.id}}">
-          <span class="label">{[ inject "icon_download" context configuration /]} Download all</span>
+          <span class="label" lang="en">{[ inject "icon_download" context configuration /]} Download all</span>
           <span class="loading hide"><span class="spinner"></span><span class="text"></span></span>
         </button>
     </div>
@@ -28,7 +28,7 @@
           {[ inject "page_block_asset_group" context ({"block": block, "assetGroupId": block.assetGroupId }) /]}
       {[/]}
     {[ if displaySearch ]}
-    <div class="empty-state">No results found for your search.</div>
+    <div class="empty-state" lang="en">No results found for your search.</div>
     {[/]}
   </div>
 </div>

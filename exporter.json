@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.5.26",
+  "version": "5.6.2",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -376,6 +376,14 @@
           "Prominent checkered background"
         ],
         "default": "Plain background"
+      },
+      {
+        "key": "language",
+        "type": "string",
+        "label": "Language",
+        "description": "The language code used for the HTML lang attribute in published documentation. Use a valid BCP 47 language tag, such as en, de, fr, or en-US.",
+        "category": "Pages",
+        "default": "en"
       },
       {
         "key": "advancedCustomizationShowNextPreviousNavigation",

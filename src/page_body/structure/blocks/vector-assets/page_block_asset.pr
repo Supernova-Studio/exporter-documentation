@@ -61,16 +61,16 @@
         </div>
         <div class="actions">
         {[ if svgAvailable ]}
-            <button data-action="copy-asset-content" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Copy SVG">
+            <button data-action="copy-asset-content" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Copy SVG" lang="en">
                 {[ inject "icon_copy" context configuration /]}
             </button>
         {[/]}
-            <button data-action="download-asset" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download {{ formatDownload }}">
+            <button data-action="download-asset" class="btn btn-white btn-floating btn-small btn-icon-only" data-toggle="tooltip" title="Download {{ formatDownload }}" lang="en">
                 {[ inject "icon_download" context configuration /]}
             </button>
 
             {[ if (asset.origin && (configuration.blockConfigAssetsItemActions === "Open in Figma")) ]}
-            <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" data-toggle="tooltip" title="Open source in Figma" class="btn btn-white btn-floating btn-small btn-icon-only">
+            <a href="{{ getFigmaFileUrl(asset.origin) }}" target="_blank" data-toggle="tooltip" title="Open source in Figma" class="btn btn-white btn-floating btn-small btn-icon-only" lang="en">
                 {[ inject "icon_figma" context configuration /]}
             </a>
         {[/]}
