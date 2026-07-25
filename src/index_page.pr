@@ -3,6 +3,10 @@
 {[ let page = firstPageFromTop(rootGroup) /]}
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
+{[ if (!page) ]}
+  {{ throwError("At least one visible page must be present.") }}
+{[/]}
+
 <!DOCTYPE HTML>
  
 <meta charset="UTF-8">
