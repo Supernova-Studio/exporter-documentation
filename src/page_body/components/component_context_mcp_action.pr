@@ -1,5 +1,4 @@
 {[ const action = context.action /]}
-{[ const blockId = context.blockId /]}
 {[ const inMenu = context.inMenu /]}
 
 {[ const opensExternalApp = (action.id === "cursor" || action.id === "vsCode") /]}
@@ -17,7 +16,7 @@
     data-copy-value="{{ escapeHtml(action.value) }}"
 >
 {[/]}
-    <span class="context-mcp-action-icon">{[ inject "component_context_mcp_icon" context { "icon": action.icon, "blockId": blockId } /]}</span>
+    <span class="context-mcp-action-icon">{[ inject "component_context_mcp_icon" context action.icon /]}</span>
     <span class="context-mcp-action-text">
         <span class="context-mcp-action-label" lang="en">{{ action.label }}</span>
         {[ if (inMenu && action.description) ]}

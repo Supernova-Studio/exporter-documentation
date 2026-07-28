@@ -32,7 +32,7 @@
                 </div>
 
                 {[ if (actions.length === 1) ]}
-                    {[ inject "component_context_mcp_action" context { "action": actions[0], "blockId": block.id, "inMenu": false } /]}
+                    {[ inject "component_context_mcp_action" context { "action": actions[0], "inMenu": false } /]}
                 {[ elseif (actions.length > 1) ]}
                     <div class="dropdown context-mcp-actions">
                         <button
@@ -49,7 +49,7 @@
                         <div class="dropdown-menu context-mcp-menu" aria-labelledby="context-mcp-connect-{{ block.id }}">
                             {[ for action in actions ]}
                                 <div class="context-mcp-menu-entry{{ action.startsGroup ? " context-mcp-menu-entry--group-start" : "" }}">
-                                    {[ inject "component_context_mcp_action" context { "action": action, "blockId": block.id, "inMenu": true } /]}
+                                    {[ inject "component_context_mcp_action" context { "action": action, "inMenu": true } /]}
                                 </div>
                             {[/]}
                         </div>

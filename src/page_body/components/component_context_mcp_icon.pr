@@ -1,18 +1,17 @@
-{[ const icon = context.icon /]}
-{[ const blockId = context.blockId /]}
+{[ const icon = context /]}
+{[ const domain = ds.documentationDomain() /]}
 
 {[ switch icon ]}
 {[ case "cursor" ]}
-    {[ inject "icon_cursor" context icon /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-cursor.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[ case "vs-code" ]}
-    {[ inject "icon_vs_code" context icon /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-vs-code.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[ case "claude" ]}
-    {[ inject "icon_claude" context icon /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-claude.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[ case "codex" ]}
-    {* Namespace the inline SVG gradient per block to prevent duplicate IDs on the page. *}
-    {[ inject "icon_codex" context blockId /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-codex.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[ case "code" ]}
-    {[ inject "icon_code" context icon /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-code.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[ case "copy" ]}
-    {[ inject "icon_context_mcp_copy" context icon /]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-copy.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
 {[/]}
