@@ -60,14 +60,14 @@
             {[ if property.showMcpUrl ]}
                 <div class="context-mcp-section">
                     <div class="context-mcp-section-label" lang="en">In your AI tool of choice, add the following URL as a custom MCP connector:</div>
-                    <pre class="context-mcp-code"><code>{{ escapeHtml(installOptions.mcpUrl) }}</code></pre>
+                    <pre class="context-mcp-code"><code class="language-none" data-prismjs-copy="Copy" data-prismjs-copy-success="Copied!" data-prismjs-copy-error="Press Ctrl+C to copy">{{ escapeHtml(installOptions.mcpUrl) }}</code></pre>
                 </div>
             {[/]}
 
             {[ if property.showCodeSnippet ]}
                 <div class="context-mcp-section">
                     <div class="context-mcp-section-label" lang="en">Alternatively, you can configure it manually by pasting following snippet into mcp.json:</div>
-                    <pre class="context-mcp-code context-mcp-code--snippet"><code>{{ escapeHtmlWithNewlines(installOptions.mcpServerConfigJson) }}</code></pre>
+                    <pre class="context-mcp-code context-mcp-code--snippet"><code class="language-json" data-prismjs-copy="Copy" data-prismjs-copy-success="Copied!" data-prismjs-copy-error="Press Ctrl+C to copy">{{ escapeHtmlWithNewlines(installOptions.mcpServerConfigJson) }}</code></pre>
                 </div>
             {[/]}
     </div>

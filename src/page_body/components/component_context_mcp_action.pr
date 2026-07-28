@@ -1,7 +1,6 @@
 {[ const action = context.action /]}
 {[ const blockId = context.blockId /]}
 {[ const inMenu = context.inMenu /]}
-{[ const targetId = "context-mcp-value-" + blockId + "-" + action.id /]}
 
 {[ const opensExternalApp = (action.id === "cursor" || action.id === "vsCode") /]}
 
@@ -15,16 +14,14 @@
     type="button"
     class="{{ inMenu ? "context-mcp-menu-item" : "btn btn-white context-mcp-action-button" }}"
     data-context-mcp-action="copy"
-    data-copy-target="{{ targetId }}"
+    data-copy-value="{{ escapeHtml(action.value) }}"
 >
 {[/]}
-    <span class="context-mcp-action-icon">{[ inject "component_context_mcp_icon" context action.icon /]}</span>
+    <span class="context-mcp-action-icon">{[ inject "component_context_mcp_icon" context { "icon": action.icon, "blockId": blockId } /]}</span>
     <span class="context-mcp-action-text">
         <span class="context-mcp-action-label" lang="en">{{ action.label }}</span>
         {[ if (inMenu && action.description) ]}
             <span class="context-mcp-action-description" lang="en">{{ action.description }}</span>
         {[/]}
     </span>
-{[ if opensExternalApp ]}</a>{[ else ]}</button>
-    <textarea class="context-mcp-copy-value" id="{{ targetId }}" tabindex="-1" aria-hidden="true">{{ escapeHtml(action.value) }}</textarea>
-{[/]}
+{[ if opensExternalApp ]}</a>{[ else ]}</button>{[/]}

@@ -1,16 +1,18 @@
-{[ const icon = context /]}
+{[ const icon = context.icon /]}
+{[ const blockId = context.blockId /]}
 
 {[ switch icon ]}
 {[ case "cursor" ]}
-{[ inject "icon_cursor" context context /]}
+    {[ inject "icon_cursor" context icon /]}
 {[ case "vs-code" ]}
-{[ inject "icon_vs_code" context context /]}
+    {[ inject "icon_vs_code" context icon /]}
 {[ case "claude" ]}
-{[ inject "icon_claude" context context /]}
+    {[ inject "icon_claude" context icon /]}
 {[ case "codex" ]}
-{[ inject "icon_codex" context context /]}
+    {* Namespace the inline SVG gradient per block to prevent duplicate IDs on the page. *}
+    {[ inject "icon_codex" context blockId /]}
 {[ case "code" ]}
-{[ inject "icon_code" context context /]}
+    {[ inject "icon_code" context icon /]}
 {[ case "copy" ]}
-{[ inject "icon_copy" context context /]}
+    {[ inject "icon_context_mcp_copy" context icon /]}
 {[/]}

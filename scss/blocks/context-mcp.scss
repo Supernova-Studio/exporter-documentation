@@ -8,6 +8,10 @@
   background: var(--colorBackgroundPrimary);
 }
 
+.content-block--context-mcp.context-mcp-menu-open {
+  z-index: 12;
+}
+
 .context-mcp-gradient {
   position: absolute;
   inset: 0;
@@ -126,7 +130,6 @@
 
 .context-mcp-menu.dropdown-menu {
   width: 280px;
-  max-width: calc(100vw - 32px);
   max-height: none;
   padding: 4px;
   overflow: visible;
@@ -190,10 +193,6 @@
   font-size: var(--fontSizeTiny);
   font-weight: var(--fontWeightRegular);
   line-height: var(--lineHeightTiny);
-}
-
-.context-mcp-copy-value {
-  display: none;
 }
 
 .context-mcp-section {
