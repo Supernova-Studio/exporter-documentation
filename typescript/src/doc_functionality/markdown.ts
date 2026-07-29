@@ -10,6 +10,7 @@ export function markdownToHTML(markdown: string): string {
     })
 
     // Showdown does not support Markdown Extra attributes on fenced code blocks.
+    // Example: "```html {.example .preview}" becomes "```html".
     converter.addExtension([
         {
             type: "lang",
