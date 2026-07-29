@@ -4,7 +4,7 @@
   "description": "JS Exporter Compiler",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "watch:dev": "npx webpack --mode=development --watch",
     "watch": "npx webpack --mode=production --watch",
     "build": "npx webpack --config webpack.config.js --mode='production'",
@@ -37,6 +37,7 @@
     "terser-webpack-plugin": "^5.3.16",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
+    "vitest": "4.1.10",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1"
   }

@@ -4,20 +4,21 @@ export function markdownToHTML(markdown: string): string {
     Showdown.setFlavor("github")
     Showdown.setOption('simpleLineBreaks', false)
 
-    let converter = new Showdown.Converter()
+    let converter = new Showdown.Converter({
+        // Ignore frontmatter
+        metadata: true
+    })
 
-    // Mod 1: Change inline <code> to <mark>
+    // Showdown does not support Markdown Extra attributes on fenced code blocks.
     converter.addExtension([
         {
-            type: "output",
-            regex: '<code>(.*?)<\/code>',
-            replace: function (match: string, codeContent) {
-                return `<mark>${codeContent}</mark>`
-            },
+            type: "lang",
+            regex: /^(\s*`{3,})([^\s`{}]+)\s+\{[^}\r\n]+\}\s*$/gm,
+            replace: '$1$2',
         },
     ])
 
-    // Mod 2: Add default classes to specific tags
+    // Mod 1: Add default classes to specific tags
     const classMap = {
         table: 'data-table header-row table-bordered'
     }
@@ -31,18 +32,18 @@ export function markdownToHTML(markdown: string): string {
 
     converter.addExtension([...bindings])
 
-    // Mod 3: Add newlines to code blocks
+    // Mod 2: Add newlines to code blocks
     converter.addExtension([
         {
             type: "output",
             regex: '<pre><code class="(.+?)">((.|\n)*?)<\/code><\/pre>',
             replace: function (match: string, codeClass: string, content: string) {
-                return `<pre class="code-block"><code class="language-${codeClass}">\n\n${content}</code></pre>`
+                return `<pre class="code-block"><code class="${codeClass}">\n\n${content}</code></pre>`
             },
         },
     ])
 
-    // Mod 3.1: Handle code blocks without specified language
+    // Mod 2.1: Handle code blocks without specified language
     converter.addExtension([
         {
             type: "output",
@@ -53,7 +54,18 @@ export function markdownToHTML(markdown: string): string {
         },
     ])
 
-    // New Mod 4: Wrap tables in a div
+    // Mod 3: Change inline <code> to <mark> after code blocks have been assigned classes.
+    converter.addExtension([
+        {
+            type: "output",
+            regex: '<code>(.*?)<\/code>',
+            replace: function (match: string, codeContent) {
+                return `<mark>${codeContent}</mark>`
+            },
+        },
+    ])
+
+    // Mod 4: Wrap tables in a div
     converter.addExtension([
         {
             type: 'output',
