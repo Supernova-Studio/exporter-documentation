@@ -28,7 +28,17 @@ import {
   isHomepageTab
 } from './doc_functionality/lookup';
 import { markdownToHTML } from './doc_functionality/markdown';
-import { htmlSafeString, htmlSafeUrl } from './doc_functionality/sandbox';
+import {
+  htmlSafeString,
+  htmlSafeUrl,
+  renderRichTextToHtml,
+  richTextHasDynamicLinks,
+  renderTextBlockToHtml,
+  renderHeadingBlockToHtml,
+  renderTableToHtml,
+  pageHasTocHeadings,
+  pageHasTopLevelHeading
+} from './doc_functionality/sandbox';
 import { buildSearchIndexJSON } from './doc_functionality/search';
 import {
   highlightSafeString,
@@ -244,6 +254,15 @@ Pulsar.registerFunction('getFigmaFileUrl', getFigmaFileUrl);
 /* Sandbox */
 Pulsar.registerFunction('htmlSafeString', htmlSafeString);
 Pulsar.registerFunction('htmlSafeUrl', htmlSafeUrl);
+
+/* Fast-path renderers [RCT-9849] — collapse hot template loops into single JS calls */
+Pulsar.registerFunction('richTextHasDynamicLinks', richTextHasDynamicLinks);
+Pulsar.registerFunction('renderRichTextToHtml', renderRichTextToHtml);
+Pulsar.registerFunction('renderTextBlockToHtml', renderTextBlockToHtml);
+Pulsar.registerFunction('renderHeadingBlockToHtml', renderHeadingBlockToHtml);
+Pulsar.registerFunction('renderTableToHtml', renderTableToHtml);
+Pulsar.registerFunction('pageHasTocHeadings', pageHasTocHeadings);
+Pulsar.registerFunction('pageHasTopLevelHeading', pageHasTopLevelHeading);
 
 /* Colors */
 Pulsar.registerFunction('contrastColor', contrastColor);

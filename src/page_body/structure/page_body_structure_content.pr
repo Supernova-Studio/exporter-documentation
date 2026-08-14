@@ -1,21 +1,14 @@
 {[ let page = context /]}
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
-{[ let hasHeading = false /]}
-{[ let hasTopLevelHeading = false /]}
 {[ let configuration = exportConfiguration() /]}
 {[ let isHomepage = (isHomepage(page, rootGroup) || isHomepageTab(page, rootGroup)) /]}
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
-{[ for block in page.blocks ]}
-    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
-        {[ hasHeading = true /]}
-    {[/]}
-    {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
-        {[ hasTopLevelHeading = true /]}
-    {[/]}
-{[/]}
+{* Fast path: single-pass JS scans replace two Pulsar for-loops over page.blocks *}
+{[ let hasHeading = pageHasTocHeadings(page.blocks, configuration.tocHideHeading3) /]}
+{[ let hasTopLevelHeading = pageHasTopLevelHeading(page.blocks) /]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 

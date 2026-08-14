@@ -1,5 +1,11 @@
-{[ let block = context.block /]}  
-{[ let pageId = context.pageId /]}  
+{[ let block = context.block /]}
+{[ let pageId = context.pageId /]}
+
+{* Fast path when all cells contain only Text blocks *}
+{[ let fastTableHtml = renderTableToHtml(block) /]}
+{[ if fastTableHtml ]}
+    {{ fastTableHtml }}
+{[ else ]}
 
 {* Calculate table width for scrolling *}
 {[ let tableWidth = 0 /]}
@@ -71,3 +77,4 @@
   </table>
   </div>
 </div>
+{[/]}
