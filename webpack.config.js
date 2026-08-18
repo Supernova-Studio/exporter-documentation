@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -60,6 +61,11 @@ module.exports = (env, argv) => ({
     path: path.resolve(__dirname, './')
   },
   plugins: [
+    // The Pulsar SES runtime lacks the atob global that sanitize-html's entities
+    // dependency assumes, so resolve it to a bundled pure-JS shim instead
+    new webpack.ProvidePlugin({
+      atob: require.resolve('./webpack-shims/atob.js')
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     })

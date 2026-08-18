@@ -57,3 +57,25 @@ for (const { name, markdown } of cases) {
     expect(markdownToHTML(markdown)).toMatchSnapshot();
   });
 }
+
+const dangerousCases = [
+  '<img/onerror=alert(1) src=x>',
+  '<svg/onload=alert(1)>',
+  '<p/onmouseover=alert(1)>hi</p>',
+  '[click](javascript:alert(1))',
+  '![x](javascript:alert(1))',
+  '[click](vbscript:msgbox(1))',
+  '<a style="position:fixed;inset:0">x</a>',
+  '<iframe src="//evil.example"></iframe>',
+  '<script>alert(1)</script>',
+];
+
+for (const markdown of dangerousCases) {
+  test(`sanitizes dangerous html: ${markdown}`, () => {
+    const html = markdownToHTML(markdown);
+
+    expect(html).not.toMatch(
+      /<script|<iframe|<svg|\son\w+\s*=|javascript:|vbscript:|style=/i,
+    );
+  });
+}
