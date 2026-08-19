@@ -742,6 +742,51 @@ $('[data-copy-url="true"]').click(function(event) {
 });
 
 /*-----------------------------
+    Context MCP actions
+------------------------------- */
+
+$(document).on('click', '[data-context-mcp-action]', async function(event) {
+  const button = $(this);
+  const action = button.attr('data-context-mcp-action');
+  
+  if (action !== 'copy') {
+    return;
+  }
+  event.preventDefault();
+
+  const value = button.attr('data-copy-value');
+
+  if (!value) {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(value);
+    $.toast({
+      title: '<span lang="en">Copied to clipboard</span>',
+      position: 'bottom'
+    });
+  } catch (error) {
+    $.toast({
+      title: '<span lang="en">Unable to copy to clipboard</span>',
+      position: 'bottom'
+    });
+  }
+});
+
+$(document)
+  .on('show.bs.dropdown', '.context-mcp-actions', function() {
+    $(this)
+      .closest('.content-block--context-mcp')
+      .addClass('context-mcp-menu-open');
+  })
+  .on('hidden.bs.dropdown', '.context-mcp-actions', function() {
+    $(this)
+      .closest('.content-block--context-mcp')
+      .removeClass('context-mcp-menu-open');
+  });
+
+/*-----------------------------
     Theme switching & mode preservation
 ------------------------------- */
 
