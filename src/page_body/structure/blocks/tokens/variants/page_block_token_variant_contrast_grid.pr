@@ -4,8 +4,16 @@
 {[ const configuration = exportConfiguration() /]}
 {[ const firstToken = ds.tokenById(tokenIds[0]) /]}
 
-{* Let's check if the color type are colors (all tokens are the same type always, so checking it on the first token is enough) *}
-{[ if (firstToken.tokenType === "Color") ]}
+{* Let's check that all the tokens are colors, as the contrast grid supports nothing else *}
+{[ let areAllTokensColorType = true /]}
+{[ for tokenId in tokenIds ]}
+  {[ const token = ds.tokenById(tokenId) /]}
+  {[ if (!token || !token.tokenType.equals("Color")) ]}
+    {[ areAllTokensColorType = false /]}
+  {[/]}
+{[/]}
+
+{[ if (areAllTokensColorType) ]}
   <div class="token-block-variant--contrast-grid">
     <div class="contrast-grid">
       <div class="contrast-grid--header">
