@@ -2,18 +2,18 @@
 {[ const tokenIds = context.tokenIds /]}
 {[ const blockId = context.blockId /]}
 {[ const configuration = exportConfiguration() /]}
-{[ const firstToken = ds.tokenById(tokenIds[0]) /]}
 
-{* Let's check that all the tokens are colors, as the contrast grid supports nothing else *}
-{[ let areAllTokensColorType = true /]}
+{* Contrast grid supports color tokens only, so filter out tokens of any other type *}
+{[ let colorTokenIds = [] /]}
 {[ for tokenId in tokenIds ]}
   {[ const token = ds.tokenById(tokenId) /]}
-  {[ if (!token || !token.tokenType.equals("Color")) ]}
-    {[ areAllTokensColorType = false /]}
+  {[ if (token && token.tokenType.equals("Color")) ]}
+    {[ colorTokenIds = colorTokenIds.concat([tokenId]) /]}
   {[/]}
 {[/]}
 
-{[ if (areAllTokensColorType) ]}
+{[ if (colorTokenIds.count() > 0) ]}
+  {[ const firstToken = ds.tokenById(colorTokenIds.first()) /]}
   <div class="token-block-variant--contrast-grid">
     <div class="contrast-grid">
       <div class="contrast-grid--header">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="grid--row grid--header-row syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.idInVersion ? "-"+firstToken.parent.idInVersion : "" }}">
-          {[ for tokenId in tokenIds ]}
+          {[ for tokenId in colorTokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
             {[ let classnames = returnSwatchClassnames(token.value) /]}
 
@@ -35,7 +35,7 @@
       <div class="contrast-grid--content">
         <div class="grid-content--labels">
 
-          {[ for tokenId in tokenIds ]}
+          {[ for tokenId in colorTokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
             <div class="grid--row">
               <div class="header-column--cell cell">
@@ -54,10 +54,10 @@
         </div>
         <div class="grid-content--table syncscroll" name="contrast-grid-{{blockId}}{{ firstToken.parent.idInVersion ? "-"+firstToken.parent.idInVersion : "" }}">
 
-          {[ for tokenId in tokenIds ]}
+          {[ for tokenId in colorTokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
             <div class="grid--row">
-              {[ for tokenInnerId in tokenIds ]}
+              {[ for tokenInnerId in colorTokenIds ]}
                   {[ const tokenInner = ds.tokenById(tokenInnerId) /]}
                   {[ if (token.id === tokenInner.id) ]}
                     <div class="cell"><div class="swatch swatch-empty">{[ inject "icon_close" context configuration /]}</div></div>
