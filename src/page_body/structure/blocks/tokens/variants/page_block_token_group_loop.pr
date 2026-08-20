@@ -10,7 +10,7 @@
 
 {* Color stack supports color tokens only, so filter out tokens of any other type *}
 {[ let renderedTokens = tokens /]}
-{[ if variant.contains("stack") ]}
+{[ if (["stack", "stack-2"].contains(variant)) ]}
     {[ renderedTokens = [] /]}
     {[ for token in tokens ]}
         {[ if token.tokenType.equals("Color") ]}
