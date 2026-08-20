@@ -5,7 +5,7 @@
 
 {* Color stack supports color tokens only, so filter out tokens of any other type *}
 {[ let renderedTokenIds = block.tokenIds /]}
-{[ if (["stack", "stack-2"].contains(variant)) ]}
+{[ if variant.contains("stack") ]}
   {[ renderedTokenIds = [] /]}
   {[ for tokenId in block.tokenIds ]}
     {[ const token = ds.tokenById(tokenId) /]}
