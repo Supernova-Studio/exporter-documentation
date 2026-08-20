@@ -1,9 +1,9 @@
 {* Fetch rich from injection context, expected type 'DocumentationRichText' *}
 {[ const richText = context /]}
 
-{* Fast path when no dynamic links *}
-{[ if !richTextHasDynamicLinks(richText) ]}
-    {{ renderRichTextToHtml(richText) }}
+{[ let fastHtml = fastRenderRichTextToHtml(richText) /]}
+{[ if fastHtml ]}
+    {{ fastHtml }}
 {[ else ]}
 {* Take all the spans, and create formatted string out of them *}
 {[ let finalString = "" /]}

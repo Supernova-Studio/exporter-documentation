@@ -6,9 +6,21 @@
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
-{* Fast path: single-pass JS scans replace two Pulsar for-loops over page.blocks *}
-{[ let hasHeading = pageHasTocHeadings(page.blocks, configuration.tocHideHeading3) /]}
-{[ let hasTopLevelHeading = pageHasTopLevelHeading(page.blocks) /]}
+{[ let hasHeading = false /]}
+{[ let hasTopLevelHeading = false /]}
+{[ if isFastRenderersEnabled() ]}
+    {[ hasHeading = pageHasTocHeadings(page.blocks, configuration.tocHideHeading3) /]}
+    {[ hasTopLevelHeading = pageHasTopLevelHeading(page.blocks) /]}
+{[ else ]}
+    {[ for block in page.blocks ]}
+        {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
+            {[ hasHeading = true /]}
+        {[/]}
+        {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
+            {[ hasTopLevelHeading = true /]}
+        {[/]}
+    {[/]}
+{[/]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
 

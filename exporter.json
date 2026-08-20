@@ -580,6 +580,14 @@
         "default": false
       },
       {
+        "key": "useFastRenderers",
+        "type": "boolean",
+        "label": "Use accelerated block renderers",
+        "description": "When enabled, an accelerated renderer is used for pages with many tables and rich text blocks. Improves publish time on large pages.",
+        "category": "Other",
+        "default": false
+      },
+      {
         "key": "contentMarkdownToken",
         "type": "string",
         "label": "Private Markdown token",

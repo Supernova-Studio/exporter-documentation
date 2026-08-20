@@ -1,9 +1,9 @@
 {* Fetch block from injection context, expected type 'Heading' *}
 {[ const block = context /]}
 
-{* Fast path when no dynamic links *}
-{[ if !richTextHasDynamicLinks(block.text) ]}
-    {{ renderHeadingBlockToHtml(block) }}
+{[ let fastHtml = fastRenderHeadingBlockToHtml(block) /]}
+{[ if fastHtml ]}
+    {{ fastHtml }}
 {[ else ]}
     {[ inject "page_block_anchor" context block /]}
 

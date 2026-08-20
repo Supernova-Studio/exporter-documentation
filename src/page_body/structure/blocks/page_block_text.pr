@@ -1,9 +1,9 @@
 {* Fetch block from injection context, expected type 'Text' *}
 {[ const block = context /]}
 
-{* Fast path when no dynamic links *}
-{[ if !richTextHasDynamicLinks(block.text) ]}
-    {{ renderTextBlockToHtml(block) }}
+{[ let fastHtml = fastRenderTextBlockToHtml(block) /]}
+{[ if fastHtml ]}
+    {{ fastHtml }}
 {[ else ]}
     {* Generate rich text *}
     {[ if (textBlockPlainText(block).count() === 0) ]}

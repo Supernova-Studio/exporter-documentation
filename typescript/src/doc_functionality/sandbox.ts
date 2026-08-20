@@ -28,12 +28,22 @@ export function htmlSafeUrl(uri: string) {
 // MARK: - Fast-path block renderers [RCT-9849]
 //
 // Each helper collapses a hot Pulsar template loop into a single JS call.
-// Templates guard the fast path (e.g. richTextHasDynamicLinks) so cases that
-// need runtime `ds` lookup or exotic content still take the original path.
+// Gated by the `useFastRenderers` config in exporter.json — helpers return
+// `null` when the flag is off OR when the content shape isn't safe for the
+// fast path (dynamic cross-page links, mixed table cells). Templates always
+// call the helper first and fall back to the original loop when `null`.
 //
 // NOTE ON OUTPUT: fast paths emit compact HTML with no inter-tag whitespace
 // from template indentation (`<p>text</p>` vs the template's `<p>\n    text\n</p>`).
 // Browsers render both identically; text content and tag structure match.
+
+// Reads the `useFastRenderers` boolean from Pulsar.exportConfiguration
+// (populated by pulsar.setUserConfiguration from exporterPropertyValues).
+// Same accessor pattern as urls.ts:32 (Pulsar.systemData) and Pulsar core's
+// own tests (Pulsar.exportConfiguration.<key>).
+export function isFastRenderersEnabled(): boolean {
+  return (Pulsar as any)?.exportConfiguration?.useFastRenderers === true
+}
 
 export function richTextHasDynamicLinks(richText: any): boolean {
   const spans = richText?.spans
@@ -49,9 +59,11 @@ export function richTextHasDynamicLinks(richText: any): boolean {
 }
 
 // Source: src/page_body/structure/blocks/page_block_rich_text.pr
-// Dynamic (documentationItemId) links need `ds` lookup so this helper skips
-// them; templates must call richTextHasDynamicLinks first.
-export function renderRichTextToHtml(richText: any): string {
+// Returns null when the fast path is disabled or the rich text contains
+// dynamic (documentationItemId) links that need `ds` lookup.
+export function fastRenderRichTextToHtml(richText: any): string | null {
+  if (!isFastRenderersEnabled()) return null
+  if (richTextHasDynamicLinks(richText)) return null
   const spans = richText?.spans
   if (!spans || spans.length === 0) return ""
 
@@ -93,13 +105,17 @@ export function renderRichTextToHtml(richText: any): string {
 }
 
 // Source: src/page_body/structure/blocks/page_block_text.pr
-export function renderTextBlockToHtml(block: any): string {
+// Returns null when the fast path is disabled or the rich text contains
+// dynamic links.
+export function fastRenderTextBlockToHtml(block: any): string | null {
+  if (!isFastRenderersEnabled()) return null
   const text = block?.text
+  if (richTextHasDynamicLinks(text)) return null
   if (!text || textBlockPlainText(block).length === 0) {
     return "<p>&nbsp;</p>"
   }
   const id = getSearchIDString(block.id)
-  return '<p id="' + id + '">' + renderRichTextToHtml(text) + "</p>"
+  return '<p id="' + id + '">' + fastRenderRichTextToHtml(text) + "</p>"
 }
 
 // Keep in sync with src/page_body/structure/blocks/page_block_copy_anchor.pr
@@ -112,7 +128,11 @@ const SUPPORTED_HEADING_LEVELS = new Set<string>(["1", "2", "3", "4", "5"])
 //         src/page_body/structure/blocks/page_block_copy_anchor.pr
 // Original template emits the anchor unconditionally then runs a switch on
 // levels 1–5 with no default. Unknown / missing levels get the anchor only.
-export function renderHeadingBlockToHtml(block: any): string {
+// Returns null when the fast path is disabled or the heading's rich text
+// contains dynamic links.
+export function fastRenderHeadingBlockToHtml(block: any): string | null {
+  if (!isFastRenderersEnabled()) return null
+  if (richTextHasDynamicLinks(block?.text)) return null
   const anchorId = getSearchIDString(block.id)
   const anchor = '<div class="anchor" id="' + anchorId + '" aria-hidden="true"></div>'
   const level = block?.headingType != null ? String(block.headingType) : ""
@@ -120,7 +140,8 @@ export function renderHeadingBlockToHtml(block: any): string {
     return anchor
   }
   const slug = slugifyHeading(block)
-  const inner = renderRichTextToHtml(block.text)
+  const inner = fastRenderRichTextToHtml(block.text)
+  if (inner === null) return null // guards above should have prevented this; bail to template fallback if invariant ever breaks
   const copyAnchor = '<a data-copy-url="true" title="Copy link to heading" class="copy-anchor" href="#' + slug + '" lang="en">' + COPY_ANCHOR_SVG + '</a>'
   return anchor +
     '<h' + level + ' class="heading heading--level-' + level + '" id="' + slug + '">' +
@@ -163,9 +184,11 @@ function computeTableWidth(columns: any[]): { totalPx: number; widthByColumnId: 
 }
 
 // Source: src/page_body/structure/blocks/page_block_table.pr
-// Returns null when any cell has non-Text content or dynamic links, so the
-// template can fall back to its per-cell inject loop for those cases.
-export function renderTableToHtml(block: any): string | null {
+// Returns null when the fast path is disabled or any cell has non-Text
+// content or dynamic links, so the template can fall back to its per-cell
+// inject loop for those cases.
+export function fastRenderTableToHtml(block: any): string | null {
+  if (!isFastRenderersEnabled()) return null
   const props = block?.tableProperties
   if (!props) return null
   const rows: any[] = Array.isArray(block?.children) ? block.children : []
@@ -226,7 +249,9 @@ export function renderTableToHtml(block: any): string | null {
 
       const cellChildren: any[] = Array.isArray(cell?.children) ? cell.children : []
       for (const cellChild of cellChildren) {
-        parts.push(renderTextBlockToHtml(cellChild))
+        const rendered = fastRenderTextBlockToHtml(cellChild)
+        if (rendered === null) return null // guards above should have prevented this; bail to template fallback if invariant ever breaks
+        parts.push(rendered)
       }
       parts.push('</' + resolvedTag + '>')
     }

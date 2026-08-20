@@ -1,8 +1,7 @@
 {[ let block = context.block /]}
 {[ let pageId = context.pageId /]}
 
-{* Fast path when all cells contain only Text blocks *}
-{[ let fastTableHtml = renderTableToHtml(block) /]}
+{[ let fastTableHtml = fastRenderTableToHtml(block) /]}
 {[ if fastTableHtml ]}
     {{ fastTableHtml }}
 {[ else ]}

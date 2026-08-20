@@ -31,11 +31,12 @@ import { markdownToHTML } from './doc_functionality/markdown';
 import {
   htmlSafeString,
   htmlSafeUrl,
-  renderRichTextToHtml,
+  isFastRenderersEnabled,
+  fastRenderRichTextToHtml,
   richTextHasDynamicLinks,
-  renderTextBlockToHtml,
-  renderHeadingBlockToHtml,
-  renderTableToHtml,
+  fastRenderTextBlockToHtml,
+  fastRenderHeadingBlockToHtml,
+  fastRenderTableToHtml,
   pageHasTocHeadings,
   pageHasTopLevelHeading
 } from './doc_functionality/sandbox';
@@ -256,11 +257,12 @@ Pulsar.registerFunction('htmlSafeString', htmlSafeString);
 Pulsar.registerFunction('htmlSafeUrl', htmlSafeUrl);
 
 /* Fast-path renderers [RCT-9849] — collapse hot template loops into single JS calls */
+Pulsar.registerFunction('isFastRenderersEnabled', isFastRenderersEnabled);
 Pulsar.registerFunction('richTextHasDynamicLinks', richTextHasDynamicLinks);
-Pulsar.registerFunction('renderRichTextToHtml', renderRichTextToHtml);
-Pulsar.registerFunction('renderTextBlockToHtml', renderTextBlockToHtml);
-Pulsar.registerFunction('renderHeadingBlockToHtml', renderHeadingBlockToHtml);
-Pulsar.registerFunction('renderTableToHtml', renderTableToHtml);
+Pulsar.registerFunction('fastRenderRichTextToHtml', fastRenderRichTextToHtml);
+Pulsar.registerFunction('fastRenderTextBlockToHtml', fastRenderTextBlockToHtml);
+Pulsar.registerFunction('fastRenderHeadingBlockToHtml', fastRenderHeadingBlockToHtml);
+Pulsar.registerFunction('fastRenderTableToHtml', fastRenderTableToHtml);
 Pulsar.registerFunction('pageHasTocHeadings', pageHasTocHeadings);
 Pulsar.registerFunction('pageHasTopLevelHeading', pageHasTopLevelHeading);
 
