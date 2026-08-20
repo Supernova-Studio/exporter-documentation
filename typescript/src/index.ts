@@ -120,6 +120,10 @@ import {
   getIconUrlFromFileType
 } from './doc_functionality/files';
 import { mapCodeLanguageToPrismClass } from './doc_functionality/code';
+import {
+  getContextMcpActions,
+  getContextMcpInstallOptions
+} from './doc_functionality/context-mcp';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Blueprint functions
@@ -162,6 +166,13 @@ Pulsar.registerFunction('escapeHtml', escapeHtml);
 Pulsar.registerFunction('addSlashes', addSlashes);
 Pulsar.registerFunction('normalizeStringForSearch', normalizeStringForSearch);
 Pulsar.registerFunction('getFontFormat', getFontFormat);
+
+/* Context MCP */
+Pulsar.registerFunction(
+  'getContextMcpInstallOptions',
+  getContextMcpInstallOptions
+);
+Pulsar.registerFunction('getContextMcpActions', getContextMcpActions);
 
 /* Themes utilities */
 Pulsar.registerFunction('getThemesTooltip', getThemesTooltip);
