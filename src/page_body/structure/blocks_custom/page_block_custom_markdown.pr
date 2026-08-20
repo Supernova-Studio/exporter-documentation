@@ -6,17 +6,31 @@
 {[ let url = block.properties.markdownUrl /]}
 
 {[ if isNonEmptyString(url) ]}
-    {* Fetch the markdown content stored for this URL through the Supernova backend *}
-    {[ let markdownData = ds.markdownFromUrl(url) /]}
+    {* Live builds refresh and fall back to the persisted copy; every other build previews without persisting *}
+    {[ let isLive = (ds.documentationEnvironment() === "Live") /]}
+    {[ let markdownData = null /]}
+    {[ if isLive ]}
+        {[ markdownData = ds.markdownFromUrl(url, "refresh") /]}
+        {[ if !isNonEmptyString(markdownData.content) ]}
+            {* Remote unreachable - fall back to the last successfully stored content *}
+            {[ markdownData = ds.markdownFromUrl(url, "cached") /]}
+        {[/]}
+    {[ else ]}
+        {[ markdownData = ds.markdownFromUrl(url, "preview") /]}
+    {[/]}
+
     {[ if isNonEmptyString(markdownData.content) ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
         <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
             {{ markdownToHTML(markdownData.content) }}
         </div>
-    {[ else ]}
-        {* Markdown download failed *}
-        <p lang="en">Unable to render Markdown block with url {{ url }}, might not be Markdown definition or is unreachable. If Markdown is private, please configure a Git integration for your workspace first.</p>
+    {[ elseif !isLive ]}
+        {* Preview/local fetch failed - show a generic error so the author can fix the source *}
+        <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
+            <p lang="en">Unable to fetch Markdown content. Please check the URL and your Git integration, then try again.</p>
+        </div>
     {[/]}
+    {* Live build with no fresh or stored content: omit the block entirely *}
 {[ else ]}
 <p lang="en">Unable to render Markdown block, please provide valid <mark>.md</mark> URL.</p>
 {[/]}
