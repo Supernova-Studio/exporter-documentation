@@ -10,13 +10,13 @@
     {[ let isLive = (ds.documentationEnvironment() === "Live") /]}
     {[ let markdownData = null /]}
     {[ if isLive ]}
-        {[ markdownData = ds.markdownFromUrl(url, "refresh") /]}
+        {[ markdownData = ds.markdownFromUrl(url, "Refresh") /]}
         {[ if !isNonEmptyString(markdownData.content) ]}
             {* Remote unreachable - fall back to the last successfully stored content *}
-            {[ markdownData = ds.markdownFromUrl(url, "cached") /]}
+            {[ markdownData = ds.markdownFromUrl(url, "Cached") /]}
         {[/]}
     {[ else ]}
-        {[ markdownData = ds.markdownFromUrl(url, "preview") /]}
+        {[ markdownData = ds.markdownFromUrl(url, "Preview") /]}
     {[/]}
 
     {[ if isNonEmptyString(markdownData.content) ]}
