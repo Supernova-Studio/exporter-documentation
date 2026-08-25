@@ -19,8 +19,17 @@
       {* Displaying the list of tokens as a contrast grid (if it's a color) *}
       {[ inject "page_block_token_variant_contrast_grid" context ({"tokenIds": block.tokenIds, "blockId": block.id}) /]}
     {[ elseif (variant.contains("stack")) ]}
-      {* Stack – Displaying the list of tokens as a stack (great for colors) *}
-
+      {* Stack – Displaying the list of tokens as a stack (great for colors). Try fast path first, fall back to template. *}
+      {[ let stackSwatchData = [] /]}
+      {[ if (isFastRenderersTokensEnabled() && block.swatches && block.swatches.length > 0) ]}
+        {[ for swatch in block.swatches ]}
+          {[ stackSwatchData = stackSwatchData.concat([{"themedTokens": ds.tokensByApplyingThemes(block.tokenIds, swatch.selectedThemeIds), "themes": ds.themesByIds(swatch.selectedThemeIds)}]) /]}
+        {[/]}
+      {[/]}
+      {[ let stackFastHtml = fastRenderTokenStackToHtml(block, stackSwatchData) /]}
+      {[ if stackFastHtml ]}
+        {{ stackFastHtml }}
+      {[ else ]}
         <div class="stack{{ getVariantClass(variant) }}">
         {* Render all tokens *}
           {[ for tokenId in block.tokenIds ]}
@@ -28,6 +37,7 @@
             {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
           {[/]}
         </div>
+      {[/]}
     {[ else ]}
     {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
       <div class="grid{{ getVariantClass(variant) }}">

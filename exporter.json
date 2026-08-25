@@ -588,6 +588,14 @@
         "default": false
       },
       {
+        "key": "useFastRenderersTokens",
+        "type": "boolean",
+        "label": "Use accelerated token renderer",
+        "description": "When enabled, an accelerated renderer is used for pages with many color tokens (stack variant). Improves publish time on token-heavy pages.",
+        "category": "Other",
+        "default": false
+      },
+      {
         "key": "contentMarkdownToken",
         "type": "string",
         "label": "Private Markdown token",

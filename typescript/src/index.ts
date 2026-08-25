@@ -40,6 +40,10 @@ import {
   pageHasTocHeadings,
   pageHasTopLevelHeading
 } from './doc_functionality/sandbox';
+import {
+  isFastRenderersTokensEnabled,
+  fastRenderTokenStackToHtml
+} from './doc_functionality/renderers';
 import { buildSearchIndexJSON } from './doc_functionality/search';
 import {
   highlightSafeString,
@@ -274,6 +278,8 @@ Pulsar.registerFunction('fastRenderRichTextToHtml', fastRenderRichTextToHtml);
 Pulsar.registerFunction('fastRenderTextBlockToHtml', fastRenderTextBlockToHtml);
 Pulsar.registerFunction('fastRenderHeadingBlockToHtml', fastRenderHeadingBlockToHtml);
 Pulsar.registerFunction('fastRenderTableToHtml', fastRenderTableToHtml);
+Pulsar.registerFunction('isFastRenderersTokensEnabled', isFastRenderersTokensEnabled);
+Pulsar.registerFunction('fastRenderTokenStackToHtml', fastRenderTokenStackToHtml);
 Pulsar.registerFunction('pageHasTocHeadings', pageHasTocHeadings);
 Pulsar.registerFunction('pageHasTopLevelHeading', pageHasTopLevelHeading);
 
