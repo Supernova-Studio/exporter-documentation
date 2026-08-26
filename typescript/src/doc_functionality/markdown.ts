@@ -134,6 +134,24 @@ function transformChildren(parent: Root | Element, isInsidePre: boolean): void {
       continue;
     }
 
+    if (child.tagName === 'a') {
+      const properties = { ...child.properties };
+      const href = String(properties.href ?? '');
+      // Absolute and protocol-relative URLs leave the documentation site;
+      // relative paths, anchors, and mailto links keep the default target
+      if (/^(https?:)?\/\//i.test(href)) {
+        properties.target = '_blank';
+      }
+      if (properties.target === '_blank') {
+        // Covers authored target="_blank" too: block window.opener access
+        // and strip the referrer for any link that opens a new tab
+        properties.rel = ['noopener', 'noreferrer'];
+      }
+      child.properties = properties;
+      transformChildren(child, isInsidePre);
+      continue;
+    }
+
     if (child.tagName === 'pre') {
       child.properties = { ...child.properties, className: ['code-block'] };
       transformChildren(child, true);
