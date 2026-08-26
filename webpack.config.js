@@ -1,40 +1,7 @@
 const path = require('path');
-const vm = require('vm');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-/*
-The Pulsar SES compartment textually rejects sources containing HTML comment
-tokens, and the bundled markdown parser carries them in a regex literal.
-Rewrite the tokens as hex escapes with identical semantics, then parse the
-result to guarantee the blanket replacement never corrupts the bundle.
-*/
-class EscapeHtmlCommentTokensPlugin {
-  apply(compiler) {
-    compiler.hooks.thisCompilation.tap('EscapeHtmlCommentTokens', (compilation) => {
-      compilation.hooks.processAssets.tap(
-        { name: 'EscapeHtmlCommentTokens', stage: webpack.Compilation.PROCESS_ASSETS_STAGE_REPORT },
-        (assets) => {
-          for (const [name, asset] of Object.entries(assets)) {
-            if (!name.endsWith('.js')) {
-              continue;
-            }
-
-            const source = asset.source().toString();
-            if (!source.includes('<!--') && !source.includes('-->')) {
-              continue;
-            }
-
-            const escaped = source.replace(/<!--/g, '\\x3C!--').replace(/-->/g, '--\\x3E');
-            new vm.Script(escaped, { filename: name });
-            compilation.updateAsset(name, new webpack.sources.RawSource(escaped));
-          }
-        },
-      );
-    });
-  }
-}
 
 /* generate a webpack configuration that:
 - converts all scss files into assets/css/main.min.css file and minifies it
@@ -86,15 +53,7 @@ module.exports = (env, argv) => ({
   },
 
   // Webpack tries these extensions for you if you omit the extension like "import './file'"
-  resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    alias: {
-      // Webpack's web target picks this package's DOM build, which calls
-      // document.createElement at module scope and crashes the DOM-less
-      // Pulsar SES compartment; force the universal build instead
-      'decode-named-character-reference': require.resolve('decode-named-character-reference')
-    }
-  },
+  resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
 
   output: {
     publicPath: '',
@@ -109,7 +68,6 @@ module.exports = (env, argv) => ({
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    }),
-    new EscapeHtmlCommentTokensPlugin()
+    })
   ],
 });
