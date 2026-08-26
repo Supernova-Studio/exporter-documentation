@@ -1,5 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`keeps entities and raw inline html intact 1`] = `"<div class="markdown"><p>AT&#x26;T says a &#x3C; b and <strong>keeps raw bold</strong> ©</p></div>"`;
+
 exports[`opens external links in a new tab with noopener noreferrer 1`] = `
 "<div class="markdown"><p><a href="https://example.com/docs" target="_blank" rel="noopener noreferrer">absolute</a></p>
 <p><a href="//example.com/docs" target="_blank" rel="noopener noreferrer">protocol relative</a></p>
@@ -20,11 +22,56 @@ exports[`renders Markdown Extra attributes without swallowing following content 
 <h2 id="after">After</h2></div>"
 `;
 
+exports[`renders a gfm table with alignment and the exporter table wrapper 1`] = `
+"<div class="markdown"><div class="content-block content-block--table data-table-wrapper"><table class="data-table header-row table-bordered">
+<thead>
+<tr>
+<th align="left">Token</th>
+<th align="right">Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">color.bg</td>
+<td align="right">#fff</td>
+<td>base</td>
+</tr>
+<tr>
+<td align="left">color.fg</td>
+<td align="right">#000</td>
+<td>text</td>
+</tr>
+</tbody>
+</table></div></div>"
+`;
+
 exports[`renders a language fence as an escaped Prism code block 1`] = `
 "<div class="markdown"><pre class="code-block"><code class="language-html">
 
 &#x3C;example>Content&#x3C;/example>
 </code></pre></div>"
+`;
+
+exports[`renders a raw html island wrapping markdown content 1`] = `
+"<div class="markdown"><p>before</p>
+<details><summary>More</summary>
+<p>inner <strong>markdown</strong> text</p>
+</details>
+<p>after</p></div>"
+`;
+
+exports[`renders autolink literals and strikethrough variants 1`] = `"<div class="markdown"><p>Visit <a href="http://www.example.com" target="_blank" rel="noopener noreferrer">www.example.com</a> or <a href="https://example.org" target="_blank" rel="noopener noreferrer">https://example.org</a>, <del>double</del> and <del>single</del> tildes.</p></div>"`;
+
+exports[`renders footnotes with user-content ids 1`] = `
+"<div class="markdown"><p>Statement with a note<sup><a href="#user-content-fn-1" id="user-content-fnref-1">1</a></sup></p>
+<h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>The note content <a href="#user-content-fnref-1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</div>"
 `;
 
 exports[`renders inline code as mark without changing fenced code 1`] = `
@@ -33,6 +80,14 @@ exports[`renders inline code as mark without changing fenced code 1`] = `
 
 const fencedValue = true
 </code></pre></div>"
+`;
+
+exports[`renders task lists with the task-list classes 1`] = `
+"<div class="markdown"><ul class="contains-task-list">
+<li class="task-list-item"> open item</li>
+<li class="task-list-item"> done item</li>
+<li>plain item</li>
+</ul></div>"
 `;
 
 exports[`uses TypeScript highlighting for a multiline fence without a language 1`] = `
