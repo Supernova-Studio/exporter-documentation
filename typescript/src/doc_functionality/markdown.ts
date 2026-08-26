@@ -1,4 +1,5 @@
 import type { Element, Root } from 'hast';
+import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
@@ -186,7 +187,8 @@ function transformChildren(parent: Root | Element, isInsidePre: boolean): void {
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
-  .use(remarkRehype)
+  .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeRaw)
   .use(rehypeSlug)
   .use(rehypeSanitize, MARKDOWN_SANITIZE_SCHEMA)
   .use(rehypeExporterMods)

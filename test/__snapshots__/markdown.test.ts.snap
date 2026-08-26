@@ -6,7 +6,7 @@ exports[`opens external links in a new tab with noopener noreferrer 1`] = `
 <p><a href="../other-page">relative</a></p>
 <p><a href="#section">anchor</a></p>
 <p><a href="mailto:hi@example.com">mail</a></p>
-<p>authored new-tab internal link</p></div>"
+<p><a href="/internal" target="_blank" rel="noopener noreferrer">authored new-tab internal link</a></p></div>"
 `;
 
 exports[`removes front matter without turning its final item into a heading 1`] = `"<div class="markdown"><h1 id="visible-content">Visible content</h1></div>"`;
