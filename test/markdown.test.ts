@@ -49,6 +49,48 @@ const cases = [
     ].join('\n\n'),
   },
   {
+    name: 'renders a gfm table with alignment and the exporter table wrapper',
+    markdown: [
+      '| Token | Value | Notes |',
+      '| :--- | ---: | --- |',
+      '| color.bg | #fff | base |',
+      '| color.fg | #000 | text |',
+    ].join('\n'),
+  },
+  {
+    name: 'renders task lists with the task-list classes',
+    markdown: ['- [ ] open item', '- [x] done item', '- plain item'].join('\n'),
+  },
+  {
+    name: 'renders footnotes with user-content ids',
+    markdown: ['Statement with a note[^1]', '', '[^1]: The note content'].join(
+      '\n',
+    ),
+  },
+  {
+    name: 'renders autolink literals and strikethrough variants',
+    markdown:
+      'Visit www.example.com or https://example.org, ~~double~~ and ~single~ tildes.',
+  },
+  {
+    name: 'renders a raw html island wrapping markdown content',
+    markdown: [
+      'before',
+      '',
+      '<details><summary>More</summary>',
+      '',
+      'inner **markdown** text',
+      '',
+      '</details>',
+      '',
+      'after',
+    ].join('\n'),
+  },
+  {
+    name: 'keeps entities and raw inline html intact',
+    markdown: 'AT&T says a &lt; b and <strong>keeps raw bold</strong> &copy;',
+  },
+  {
     name: 'removes front matter without turning its final item into a heading',
     markdown: [
       '---',

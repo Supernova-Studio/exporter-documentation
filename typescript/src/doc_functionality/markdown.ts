@@ -1,11 +1,24 @@
 import type { Element, Root } from 'hast';
-import rehypeRaw from 'rehype-raw';
+import { micromark } from 'micromark';
+import {
+  gfmAutolinkLiteral,
+  gfmAutolinkLiteralHtml,
+} from 'micromark-extension-gfm-autolink-literal';
+import { gfmFootnote, gfmFootnoteHtml } from 'micromark-extension-gfm-footnote';
+import {
+  gfmStrikethrough,
+  gfmStrikethroughHtml,
+} from 'micromark-extension-gfm-strikethrough';
+import { gfmTable, gfmTableHtml } from 'micromark-extension-gfm-table';
+import {
+  gfmTaskListItem,
+  gfmTaskListItemHtml,
+} from 'micromark-extension-gfm-task-list-item';
+import { fromParse5 } from 'hast-util-from-parse5';
+import { parseFragment } from 'parse5';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
-import remarkGfm from 'remark-gfm';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
 /** Shape of the rehype-sanitize schema options this module uses */
@@ -184,21 +197,108 @@ function transformChildren(parent: Root | Element, isInsidePre: boolean): void {
   }
 }
 
+/**
+ * Restores the task-list classes remark-rehype used to add, keeping styling and
+ * editor parity across the switch to micromark's HTML compiler. Must run before
+ * sanitize, while the checkbox input marker (stripped by the schema) still exists
+ */
+function rehypeTaskListClasses() {
+  return (tree: Root) => {
+    markTaskLists(tree);
+  };
+}
+
+function isCheckboxInput(node: Element['children'][number] | undefined): boolean {
+  return (
+    node?.type === 'element' &&
+    node.tagName === 'input' &&
+    node.properties?.type === 'checkbox'
+  );
+}
+
+function markTaskLists(parent: Root | Element): void {
+  for (const child of parent.children) {
+    if (child.type !== 'element') {
+      continue;
+    }
+
+    if (child.tagName === 'ul' || child.tagName === 'ol') {
+      let containsTask = false;
+      for (const item of child.children) {
+        if (item.type !== 'element' || item.tagName !== 'li') {
+          continue;
+        }
+        const head = item.children.find(
+          (node) => !(node.type === 'text' && node.value.trim() === ''),
+        );
+        // The checkbox sits first in the li, or in its leading p for loose lists
+        const marker =
+          head?.type === 'element' && head.tagName === 'p'
+            ? head.children[0]
+            : head;
+        if (isCheckboxInput(marker)) {
+          containsTask = true;
+          item.properties = { ...item.properties, className: ['task-list-item'] };
+        }
+      }
+      if (containsTask) {
+        child.properties = {
+          ...child.properties,
+          className: ['contains-task-list'],
+        };
+      }
+    }
+
+    markTaskLists(child);
+  }
+}
+
+/**
+ * micromark compiles markdown straight to an HTML string using the same parser core
+ * remark-parse wrapped, skipping the mdast and hast tree builds entirely. GFM comes
+ * from the individual extensions; tagfilter is deliberately omitted because it would
+ * escape disallowed raw tags into visible text, whereas the sanitize pass below
+ * strips them entirely, matching the previous rehype-raw pipeline's output
+ */
+const MICROMARK_OPTIONS = {
+  extensions: [
+    gfmAutolinkLiteral(),
+    gfmFootnote(),
+    gfmStrikethrough(),
+    gfmTable(),
+    gfmTaskListItem(),
+  ],
+  htmlExtensions: [
+    gfmAutolinkLiteralHtml(),
+    gfmFootnoteHtml(),
+    gfmStrikethroughHtml(),
+    gfmTableHtml(),
+    gfmTaskListItemHtml(),
+  ],
+  allowDangerousHtml: true,
+};
+
 const processor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeRaw)
+  .use(rehypeTaskListClasses)
   .use(rehypeSlug)
   .use(rehypeSanitize, MARKDOWN_SANITIZE_SCHEMA)
   .use(rehypeExporterMods)
   .use(rehypeStringify);
 
 /**
- * Converts markdown to HTML with the same remark pipeline, sanitization, and element
+ * Converts markdown to HTML with the same parser core, sanitization, and element
  * conventions as the cloud editor preview, so published docs match what authors see
  */
 export function markdownToHTML(markdown: string): string {
-  const html = processor.processSync(stripFrontmatter(markdown)).toString();
+  const intermediateHtml = micromark(
+    stripFrontmatter(markdown),
+    MICROMARK_OPTIONS,
+  );
+  // One parse5 pass turns micromark's output (raw HTML islands included, so no
+  // rehype-raw stage is needed) into the single tree that sanitization and the
+  // exporter transforms require. parse5 is called directly instead of through
+  // rehype-parse, whose source-position tracking is ~10x slower
+  const tree = fromParse5(parseFragment(intermediateHtml));
+  const html = String(processor.stringify(processor.runSync(tree)));
   return `<div class="markdown">${html}</div>`;
 }
