@@ -1,5 +1,5 @@
-{[ let block = context.block /]}
-{[ let pageId = context.pageId /]}
+{[ let block = context.block /]}  
+{[ let pageId = context.pageId /]}  
 
 {[ let fastTableHtml = fastRenderTableToHtml(block) /]}
 {[ if fastTableHtml ]}

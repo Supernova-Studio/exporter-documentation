@@ -12,14 +12,14 @@
     {[ hasHeading = pageHasTocHeadings(page.blocks, configuration.tocHideHeading3) /]}
     {[ hasTopLevelHeading = pageHasTopLevelHeading(page.blocks) /]}
 {[ else ]}
-    {[ for block in page.blocks ]}
-        {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
-            {[ hasHeading = true /]}
-        {[/]}
-        {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
-            {[ hasTopLevelHeading = true /]}
-        {[/]}
+{[ for block in page.blocks ]}
+    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
+        {[ hasHeading = true /]}
     {[/]}
+    {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
+        {[ hasTopLevelHeading = true /]}
+    {[/]}
+{[/]}
 {[/]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
