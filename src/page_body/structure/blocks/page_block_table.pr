@@ -1,5 +1,10 @@
-{[ let block = context.block /]}  
-{[ let pageId = context.pageId /]}  
+{[ let block = context.block /]}
+{[ let pageId = context.pageId /]}
+
+{[ let fastTableHtml = fastRenderTableToHtml(block) /]}
+{[ if fastTableHtml ]}
+    {{ fastTableHtml }}
+{[ else ]}
 
 {* Calculate table width for scrolling *}
 {[ let tableWidth = 0 /]}
@@ -71,3 +76,4 @@
   </table>
   </div>
 </div>
+{[/]}

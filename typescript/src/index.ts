@@ -28,7 +28,22 @@ import {
   isHomepageTab
 } from './doc_functionality/lookup';
 import { markdownToHTML } from './doc_functionality/markdown';
-import { htmlSafeString, htmlSafeUrl } from './doc_functionality/sandbox';
+import {
+  htmlSafeString,
+  htmlSafeUrl,
+  isFastRenderersEnabled,
+  fastRenderRichTextToHtml,
+  richTextHasDynamicLinks,
+  fastRenderTextBlockToHtml,
+  fastRenderHeadingBlockToHtml,
+  fastRenderTableToHtml,
+  pageHasTocHeadings,
+  pageHasTopLevelHeading
+} from './doc_functionality/sandbox';
+import {
+  isFastRenderersTokensEnabled,
+  fastRenderTokenStackToHtml
+} from './doc_functionality/renderers';
 import { buildSearchIndexJSON } from './doc_functionality/search';
 import {
   highlightSafeString,
@@ -255,6 +270,18 @@ Pulsar.registerFunction('getFigmaFileUrl', getFigmaFileUrl);
 /* Sandbox */
 Pulsar.registerFunction('htmlSafeString', htmlSafeString);
 Pulsar.registerFunction('htmlSafeUrl', htmlSafeUrl);
+
+/* Fast-path renderers [RCT-9849] — collapse hot template loops into single JS calls */
+Pulsar.registerFunction('isFastRenderersEnabled', isFastRenderersEnabled);
+Pulsar.registerFunction('richTextHasDynamicLinks', richTextHasDynamicLinks);
+Pulsar.registerFunction('fastRenderRichTextToHtml', fastRenderRichTextToHtml);
+Pulsar.registerFunction('fastRenderTextBlockToHtml', fastRenderTextBlockToHtml);
+Pulsar.registerFunction('fastRenderHeadingBlockToHtml', fastRenderHeadingBlockToHtml);
+Pulsar.registerFunction('fastRenderTableToHtml', fastRenderTableToHtml);
+Pulsar.registerFunction('isFastRenderersTokensEnabled', isFastRenderersTokensEnabled);
+Pulsar.registerFunction('fastRenderTokenStackToHtml', fastRenderTokenStackToHtml);
+Pulsar.registerFunction('pageHasTocHeadings', pageHasTocHeadings);
+Pulsar.registerFunction('pageHasTopLevelHeading', pageHasTopLevelHeading);
 
 /* Colors */
 Pulsar.registerFunction('contrastColor', contrastColor);
