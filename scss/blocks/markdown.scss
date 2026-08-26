@@ -3,6 +3,7 @@
 /* =================================== */
 .content-block--markdown {
   contain: content;
+  overflow-wrap: anywhere;
 
   img {
     max-width: 100%;
