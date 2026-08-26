@@ -38,6 +38,17 @@ const cases = [
     ].join('\n'),
   },
   {
+    name: 'opens external links in a new tab with noopener noreferrer',
+    markdown: [
+      '[absolute](https://example.com/docs)',
+      '[protocol relative](//example.com/docs)',
+      '[relative](../other-page)',
+      '[anchor](#section)',
+      '[mail](mailto:hi@example.com)',
+      '<a href="/internal" target="_blank">authored new-tab internal link</a>',
+    ].join('\n\n'),
+  },
+  {
     name: 'removes front matter without turning its final item into a heading',
     markdown: [
       '---',
