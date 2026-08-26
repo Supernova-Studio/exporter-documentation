@@ -2,11 +2,7 @@
 /*  Markdown
 /* =================================== */
 .content-block--markdown {
-  contain: content;
-
   img {
-    max-width: 100%;
-    height: auto;
     border-radius: var(--borderRadiusDefault);
     margin-bottom: var(--contentBlockGap);
   }
