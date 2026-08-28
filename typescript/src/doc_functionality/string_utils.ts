@@ -13,9 +13,9 @@ export function highlightSafeString(block: DocumentationPageBlockCode) {
   return escapeHtml(string)
 }
 
-export function escapeHtml(string: string) {
+export function escapeHtml(string: string): string {
   if (!string) {
-    return
+    return ""
   }
   
   var matchHtmlRegExp = /["'&<>]/
