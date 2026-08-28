@@ -47,7 +47,7 @@
 
                             <div class="text">
                                 <p class="title">{{ escapeHtml(property.name) }}</p>
-                                {[ if showPropertyDescription ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
+                                {[ if (showPropertyDescription && property.description) ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
                             </div>
                         </div>
                     {[/]}
@@ -62,7 +62,7 @@
                         <div class="list-item">
                             <div class="text">
                                 <p class="title">{{ escapeHtml(property.name) }}</p>
-                                {[ if showPropertyDescription ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
+                                {[ if (showPropertyDescription && property.description) ]}<p class="description">{{ escapeHtml(property.description) }}</p>{[/]}
                             </div>
 
                             <div class="value">
