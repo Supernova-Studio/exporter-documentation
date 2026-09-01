@@ -2,14 +2,27 @@
 {[ const block = context /]}
 {[ const configuration = exportConfiguration() /]}
 {[ let variant = block.variantKey /]}
+
+{* Color stack supports color tokens only, so filter out tokens of any other type *}
+{[ let renderedTokenIds = block.tokenIds /]}
+{[ if variant.contains("stack") ]}
+  {[ renderedTokenIds = [] /]}
+  {[ for tokenId in block.tokenIds ]}
+    {[ const token = ds.tokenById(tokenId) /]}
+    {[ if (token && token.tokenType.equals("Color")) ]}
+      {[ renderedTokenIds = renderedTokenIds.concat([tokenId]) /]}
+    {[/]}
+  {[/]}
+{[/]}
+
 {* Ignore block if it is empty *}
-{[ if block.tokenIds.count() > 0) ]}
+{[ if (renderedTokenIds.count() > 0) ]}
   <div class="content-block content-block--token-container">
     {[ if (variant === "table") ]}
     {* Displaying the list of tokens as a table *}
       <div class="token-table">
         {* Render all tokens *}
-        {[ for tokenId in block.tokenIds ]}
+        {[ for tokenId in renderedTokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
           {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
         {[/]}
@@ -32,7 +45,7 @@
       {[ else ]}
         <div class="stack{{ getVariantClass(variant) }}">
         {* Render all tokens *}
-          {[ for tokenId in block.tokenIds ]}
+          {[ for tokenId in renderedTokenIds ]}
             {[ const token = ds.tokenById(tokenId) /]}
             {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
           {[/]}
@@ -41,7 +54,7 @@
     {[ else ]}
     {* Default variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
       <div class="grid{{ getVariantClass(variant) }}">
-        {[ for tokenId in block.tokenIds ]}
+        {[ for tokenId in renderedTokenIds ]}
           {[ const token = ds.tokenById(tokenId) /]}
           {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
         {[/]}
