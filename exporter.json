@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.6.4",
+  "version": "5.6.7",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -576,6 +576,22 @@
         "type": "boolean",
         "label": "Enable Lottie player",
         "description": "The Lottie Player will be enabled in your documentation, and allow Lottie videos to play. Please note: this will add around 250 Kb to the initial page load of your documentation.",
+        "category": "Other",
+        "default": false
+      },
+      {
+        "key": "useFastRenderers",
+        "type": "boolean",
+        "label": "Use accelerated block renderers",
+        "description": "When enabled, an accelerated renderer is used for pages with many tables and rich text blocks. Improves publish time on large pages.",
+        "category": "Other",
+        "default": false
+      },
+      {
+        "key": "useFastRenderersTokens",
+        "type": "boolean",
+        "label": "Use accelerated token renderer",
+        "description": "When enabled, an accelerated renderer is used for pages with many color tokens (stack variant). Improves publish time on token-heavy pages.",
         "category": "Other",
         "default": false
       },
