@@ -27,6 +27,7 @@ type SanitizeSchema = {
   attributes: Record<string, string[]>;
   protocols: Record<string, string[]>;
   clobber: string[];
+  strip: string[];
 };
 
 /**
@@ -91,6 +92,7 @@ const MARKDOWN_SANITIZE_SCHEMA: SanitizeSchema = {
   },
   // Keep ids as authored, the rendered page is not user-controlled enough to need clobbering
   clobber: [],
+  strip: ['script', 'style'],
 };
 
 /** Drops a leading YAML frontmatter block so it never renders as content */
