@@ -11,7 +11,7 @@
     {[ let markdownData = null /]}
     {[ if isLive ]}
         {[ markdownData = ds.markdownFromUrl(url, "Refresh") /]}
-        {[ if !isNonEmptyString(markdownData.content) ]}
+        {[ if !isNonEmptyString(markdownData?.content) ]}
             {* Remote unreachable - fall back to the last successfully stored content *}
             {[ markdownData = ds.markdownFromUrl(url, "Cached") /]}
         {[/]}
@@ -19,7 +19,7 @@
         {[ markdownData = ds.markdownFromUrl(url, "Preview") /]}
     {[/]}
 
-    {[ if isNonEmptyString(markdownData.content) ]}
+    {[ if isNonEmptyString(markdownData?.content) ]}
         {* Render converted markdown. We use showdown markdown engine with github extension to convert the data *}
         <div class="content-block content-block--markdown{{ getVariantClass(variant) }}">
             {{ markdownToHTML(markdownData.content) }}

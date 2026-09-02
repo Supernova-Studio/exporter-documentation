@@ -27,7 +27,12 @@ type SanitizeSchema = {
   attributes: Record<string, string[]>;
   protocols: Record<string, string[]>;
   clobber: string[];
+  clobberPrefix: string;
+  strip: string[];
 };
+
+/** Prefix the sanitizer puts on authored ids, mirrored by the hash fallback in assets/js/functionality.js */
+const CLOBBER_PREFIX = 'user-content-';
 
 /**
  * Allowlist for rendered markdown HTML, kept in sync with the cloud editor
@@ -89,8 +94,11 @@ const MARKDOWN_SANITIZE_SCHEMA: SanitizeSchema = {
     href: ['http', 'https', 'mailto'],
     src: ['http', 'https'],
   },
-  // Keep ids as authored, the rendered page is not user-controlled enough to need clobbering
-  clobber: [],
+  // Prefix ids and names so authored html cannot clobber window globals (e.g. <div id="dataLayer">).
+  // Same-document #anchors are re-pointed by rehypeClobberedAnchors, the rest by functionality.js
+  clobber: ['id', 'name'],
+  clobberPrefix: CLOBBER_PREFIX,
+  strip: ['script', 'style'],
 };
 
 /** Drops a leading YAML frontmatter block so it never renders as content */
@@ -198,6 +206,43 @@ function transformChildren(parent: Root | Element, isInsidePre: boolean): void {
 }
 
 /**
+ * Sanitize prefixes ids but leaves href="#..." untouched, so anchors pointing at a
+ * heading or footnote in the same document would miss. Re-point those; anchors whose
+ * target is not in this document (e.g. another block on the page) are left alone and
+ * resolved at runtime by the hash fallback in functionality.js. Must run after sanitize
+ */
+function rehypeClobberedAnchors() {
+  return (tree: Root) => {
+    const ids = new Set<string>();
+    walkElements(tree, (element) => {
+      const { id, name } = element.properties ?? {};
+      if (typeof id === 'string') ids.add(id);
+      if (element.tagName === 'a' && typeof name === 'string') ids.add(name);
+    });
+    walkElements(tree, (element) => {
+      const href = element.properties?.href;
+      if (element.tagName !== 'a' || typeof href !== 'string' || !href.startsWith('#')) {
+        return;
+      }
+      const prefixed = CLOBBER_PREFIX + href.slice(1);
+      if (ids.has(prefixed)) {
+        element.properties = { ...element.properties, href: `#${prefixed}` };
+      }
+    });
+  };
+}
+
+function walkElements(parent: Root | Element, visit: (element: Element) => void): void {
+  for (const child of parent.children) {
+    if (child.type !== 'element') {
+      continue;
+    }
+    visit(child);
+    walkElements(child, visit);
+  }
+}
+
+/**
  * Restores the task-list classes remark-rehype used to add, keeping styling and
  * editor parity across the switch to micromark's HTML compiler. Must run before
  * sanitize, while the checkbox input marker (stripped by the schema) still exists
@@ -270,7 +315,8 @@ const MICROMARK_OPTIONS = {
   ],
   htmlExtensions: [
     gfmAutolinkLiteralHtml(),
-    gfmFootnoteHtml(),
+    // Footnote ids get their user-content- prefix from the sanitizer like every other id
+    gfmFootnoteHtml({ clobberPrefix: '' }),
     gfmStrikethroughHtml(),
     gfmTableHtml(),
     gfmTaskListItemHtml(),
@@ -282,6 +328,7 @@ const processor = unified()
   .use(rehypeTaskListClasses)
   .use(rehypeSlug)
   .use(rehypeSanitize, MARKDOWN_SANITIZE_SCHEMA)
+  .use(rehypeClobberedAnchors)
   .use(rehypeExporterMods)
   .use(rehypeStringify);
 

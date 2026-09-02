@@ -62,6 +62,18 @@ const cases = [
     markdown: ['- [ ] open item', '- [x] done item', '- plain item'].join('\n'),
   },
   {
+    name: 'prefixes authored ids and re-points same-document anchors only',
+    markdown: [
+      '## Install',
+      '',
+      '[same document](#install) and [elsewhere on the page](#other-block)',
+      '',
+      '<a name="legacy"></a> [legacy name anchor](#legacy)',
+      '',
+      '<div id="dataLayer">clobber attempt</div>',
+    ].join('\n'),
+  },
+  {
     name: 'renders footnotes with user-content ids',
     markdown: ['Statement with a note[^1]', '', '[^1]: The note content'].join(
       '\n',
@@ -132,3 +144,14 @@ for (const markdown of dangerousCases) {
     );
   });
 }
+
+test('does not let authored ids or names clobber window globals', () => {
+  const html = markdownToHTML(
+    '<div id="dataLayer"></div><a name="sandboxEngine"></a>\n\n# supernova',
+  );
+
+  expect(html).not.toMatch(/\b(id|name)="(dataLayer|sandboxEngine|supernova)"/);
+  expect(html).toMatch(/id="user-content-dataLayer"/);
+  expect(html).toMatch(/name="user-content-sandboxEngine"/);
+  expect(html).toMatch(/id="user-content-supernova"/);
+});
