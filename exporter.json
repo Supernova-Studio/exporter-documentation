@@ -596,14 +596,6 @@
         "default": false
       },
       {
-        "key": "contentMarkdownToken",
-        "type": "string",
-        "label": "Private Markdown token",
-        "description": "If provided, your markdown will be authenticated using this token. The token can contain its type , format: ['Basic' | 'Bearer' | 'token'] [token]. If no type of format is provided, 'token' is assumed.",
-        "category": "Other",
-        "default": ""
-      },
-      {
         "key": "advancedCustomizationCustomHeadInject",
         "type": "string",
         "label": "Custom <head> code",
