@@ -11,7 +11,14 @@ exports[`opens external links in a new tab with noopener noreferrer 1`] = `
 <p><a href="/internal" target="_blank" rel="noopener noreferrer">authored new-tab internal link</a></p></div>"
 `;
 
-exports[`removes front matter without turning its final item into a heading 1`] = `"<div class="markdown"><h1 id="visible-content">Visible content</h1></div>"`;
+exports[`prefixes authored ids and re-points same-document anchors only 1`] = `
+"<div class="markdown"><h2 id="user-content-install">Install</h2>
+<p><a href="#user-content-install">same document</a> and <a href="#other-block">elsewhere on the page</a></p>
+<p><a name="user-content-legacy"></a> <a href="#user-content-legacy">legacy name anchor</a></p>
+<div id="user-content-dataLayer">clobber attempt</div></div>"
+`;
+
+exports[`removes front matter without turning its final item into a heading 1`] = `"<div class="markdown"><h1 id="user-content-visible-content">Visible content</h1></div>"`;
 
 exports[`renders Markdown Extra attributes without swallowing following content 1`] = `
 "<div class="markdown"><p>Before</p>
@@ -19,7 +26,7 @@ exports[`renders Markdown Extra attributes without swallowing following content 
 
 &#x3C;example>Content&#x3C;/example>
 </code></pre>
-<h2 id="after">After</h2></div>"
+<h2 id="user-content-after">After</h2></div>"
 `;
 
 exports[`renders a gfm table with alignment and the exporter table wrapper 1`] = `
@@ -65,7 +72,7 @@ exports[`renders autolink literals and strikethrough variants 1`] = `"<div class
 
 exports[`renders footnotes with user-content ids 1`] = `
 "<div class="markdown"><p>Statement with a note<sup><a href="#user-content-fn-1" id="user-content-fnref-1">1</a></sup></p>
-<h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<h2 id="user-content-footnote-label" class="sr-only">Footnotes</h2>
 <ol>
 <li id="user-content-fn-1">
 <p>The note content <a href="#user-content-fnref-1" class="data-footnote-backref">↩</a></p>

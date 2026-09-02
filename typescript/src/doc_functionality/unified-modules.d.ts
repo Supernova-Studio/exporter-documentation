@@ -29,7 +29,7 @@ declare module 'micromark-extension-gfm-autolink-literal' {
 
 declare module 'micromark-extension-gfm-footnote' {
   export function gfmFootnote(): unknown;
-  export function gfmFootnoteHtml(): unknown;
+  export function gfmFootnoteHtml(options?: { clobberPrefix?: string }): unknown;
 }
 
 declare module 'micromark-extension-gfm-strikethrough' {
