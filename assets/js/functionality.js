@@ -2,6 +2,34 @@
    Content menu tracking
 -------------------------- */
 /**
+ * Navigates to the element a location hash points to. Ids inside markdown blocks carry
+ * the sanitizer's user-content- prefix, so when the browser finds nothing for a plain
+ * hash we resolve the prefixed id and scroll to it ourselves
+ * @param {string} hash - Location hash including the leading "#"
+ */
+function navigateToHash(hash) {
+  let id = hash.replace(/^#/, '');
+  try {
+    id = decodeURIComponent(id);
+  } catch (error) {
+    // Malformed escape sequence, keep the raw value
+  }
+  if (!id) {
+    return;
+  }
+
+  const nativeTarget = document.getElementById(id);
+  const target = nativeTarget || document.getElementById(`user-content-${id}`);
+  if (!target) {
+    return;
+  }
+  if (!nativeTarget) {
+    target.scrollIntoView({ block: 'start', inline: 'nearest' });
+  }
+  navigateToElement(target);
+}
+
+/**
  * Navigates to a specific element on the page, handling elements within tabs
  * @param {(string|HTMLElement)} elementOrHash - Either a hash string (e.g. "#section1") or DOM element to navigate to
  */
@@ -140,9 +168,14 @@ $(window).on('load', function() {
 
   if (window.location.hash) {
     setTimeout(() => {
-      navigateToElement(window.location.hash);
+      navigateToHash(window.location.hash);
     }, 250);
   }
+
+  // In-page links to prefixed markdown ids do not scroll natively, see navigateToHash
+  $(window).on('hashchange', function() {
+    navigateToHash(window.location.hash);
+  });
 
   // Add preview banner in case the page is loaded in preview mode
   const isPreviewSite =

@@ -1,37 +1,113 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`removes front matter without turning its final item into a heading 1`] = `"<div class="markdown"><h1 id="visible-content">Visible content</h1></div>"`;
+exports[`keeps entities and raw inline html intact 1`] = `"<div class="markdown"><p>AT&#x26;T says a &#x3C; b and <strong>keeps raw bold</strong> ©</p></div>"`;
+
+exports[`opens external links in a new tab with noopener noreferrer 1`] = `
+"<div class="markdown"><p><a href="https://example.com/docs" target="_blank" rel="noopener noreferrer">absolute</a></p>
+<p><a href="//example.com/docs" target="_blank" rel="noopener noreferrer">protocol relative</a></p>
+<p><a href="../other-page">relative</a></p>
+<p><a href="#section">anchor</a></p>
+<p><a href="mailto:hi@example.com">mail</a></p>
+<p><a href="/internal" target="_blank" rel="noopener noreferrer">authored new-tab internal link</a></p></div>"
+`;
+
+exports[`prefixes authored ids and re-points same-document anchors only 1`] = `
+"<div class="markdown"><h2 id="user-content-install">Install</h2>
+<p><a href="#user-content-install">same document</a> and <a href="#other-block">elsewhere on the page</a></p>
+<p><a name="user-content-legacy"></a> <a href="#user-content-legacy">legacy name anchor</a></p>
+<div id="user-content-dataLayer">clobber attempt</div></div>"
+`;
+
+exports[`removes front matter without turning its final item into a heading 1`] = `"<div class="markdown"><h1 id="user-content-visible-content">Visible content</h1></div>"`;
 
 exports[`renders Markdown Extra attributes without swallowing following content 1`] = `
 "<div class="markdown"><p>Before</p>
-<pre class="code-block"><code class="html language-html">
+<pre class="code-block"><code class="language-html">
 
-&lt;example&gt;Content&lt;/example&gt;</code></pre>
-<h2 id="after">After</h2></div>"
+&#x3C;example>Content&#x3C;/example>
+</code></pre>
+<h2 id="user-content-after">After</h2></div>"
+`;
+
+exports[`renders a gfm table with alignment and the exporter table wrapper 1`] = `
+"<div class="markdown"><div class="content-block content-block--table data-table-wrapper"><table class="data-table header-row table-bordered">
+<thead>
+<tr>
+<th align="left">Token</th>
+<th align="right">Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">color.bg</td>
+<td align="right">#fff</td>
+<td>base</td>
+</tr>
+<tr>
+<td align="left">color.fg</td>
+<td align="right">#000</td>
+<td>text</td>
+</tr>
+</tbody>
+</table></div></div>"
 `;
 
 exports[`renders a language fence as an escaped Prism code block 1`] = `
-"<div class="markdown"><pre class="code-block"><code class="html language-html">
+"<div class="markdown"><pre class="code-block"><code class="language-html">
 
-&lt;example&gt;Content&lt;/example&gt;</code></pre></div>"
+&#x3C;example>Content&#x3C;/example>
+</code></pre></div>"
+`;
+
+exports[`renders a raw html island wrapping markdown content 1`] = `
+"<div class="markdown"><p>before</p>
+<details><summary>More</summary>
+<p>inner <strong>markdown</strong> text</p>
+</details>
+<p>after</p></div>"
+`;
+
+exports[`renders autolink literals and strikethrough variants 1`] = `"<div class="markdown"><p>Visit <a href="http://www.example.com" target="_blank" rel="noopener noreferrer">www.example.com</a> or <a href="https://example.org" target="_blank" rel="noopener noreferrer">https://example.org</a>, <del>double</del> and <del>single</del> tildes.</p></div>"`;
+
+exports[`renders footnotes with user-content ids 1`] = `
+"<div class="markdown"><p>Statement with a note<sup><a href="#user-content-fn-1" id="user-content-fnref-1">1</a></sup></p>
+<h2 id="user-content-footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>The note content <a href="#user-content-fnref-1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</div>"
 `;
 
 exports[`renders inline code as mark without changing fenced code 1`] = `
 "<div class="markdown"><p>Use <mark>inlineValue</mark> here.</p>
-<pre class="code-block"><code class="javascript language-javascript">
+<pre class="code-block"><code class="language-javascript">
 
-const fencedValue = true</code></pre></div>"
+const fencedValue = true
+</code></pre></div>"
+`;
+
+exports[`renders task lists with the task-list classes 1`] = `
+"<div class="markdown"><ul class="contains-task-list">
+<li class="task-list-item"> open item</li>
+<li class="task-list-item"> done item</li>
+<li>plain item</li>
+</ul></div>"
 `;
 
 exports[`uses TypeScript highlighting for a multiline fence without a language 1`] = `
 "<div class="markdown"><pre class="code-block"><code class="language-typescript">
 
 const first = 1
-const second = 2</code></pre></div>"
+const second = 2
+</code></pre></div>"
 `;
 
 exports[`uses TypeScript highlighting for a single-line fence without a language 1`] = `
 "<div class="markdown"><pre class="code-block"><code class="language-typescript">
 
-const value = 1</code></pre></div>"
+const value = 1
+</code></pre></div>"
 `;
