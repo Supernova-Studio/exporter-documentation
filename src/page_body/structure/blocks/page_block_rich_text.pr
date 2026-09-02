@@ -1,6 +1,10 @@
 {* Fetch rich from injection context, expected type 'DocumentationRichText' *}
 {[ const richText = context /]}
 
+{[ let fastHtml = fastRenderRichTextToHtml(richText) /]}
+{[ if fastHtml ]}
+    {{ fastHtml }}
+{[ else ]}
 {* Take all the spans, and create formatted string out of them *}
 {[ let finalString = "" /]}
 {[ for span in richText.spans ]}
@@ -56,3 +60,4 @@
 {[/]}
 {* Render final text string, replacing soft returns with linebreaks *}
 {{ withHTMLNewlines(finalString) }}
+{[/]}
