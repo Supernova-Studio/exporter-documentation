@@ -38,6 +38,71 @@ const cases = [
     ].join('\n'),
   },
   {
+    name: 'opens external links in a new tab with noopener noreferrer',
+    markdown: [
+      '[absolute](https://example.com/docs)',
+      '[protocol relative](//example.com/docs)',
+      '[relative](../other-page)',
+      '[anchor](#section)',
+      '[mail](mailto:hi@example.com)',
+      '<a href="/internal" target="_blank">authored new-tab internal link</a>',
+    ].join('\n\n'),
+  },
+  {
+    name: 'renders a gfm table with alignment and the exporter table wrapper',
+    markdown: [
+      '| Token | Value | Notes |',
+      '| :--- | ---: | --- |',
+      '| color.bg | #fff | base |',
+      '| color.fg | #000 | text |',
+    ].join('\n'),
+  },
+  {
+    name: 'renders task lists with the task-list classes',
+    markdown: ['- [ ] open item', '- [x] done item', '- plain item'].join('\n'),
+  },
+  {
+    name: 'prefixes authored ids and re-points same-document anchors only',
+    markdown: [
+      '## Install',
+      '',
+      '[same document](#install) and [elsewhere on the page](#other-block)',
+      '',
+      '<a name="legacy"></a> [legacy name anchor](#legacy)',
+      '',
+      '<div id="dataLayer">clobber attempt</div>',
+    ].join('\n'),
+  },
+  {
+    name: 'renders footnotes with user-content ids',
+    markdown: ['Statement with a note[^1]', '', '[^1]: The note content'].join(
+      '\n',
+    ),
+  },
+  {
+    name: 'renders autolink literals and strikethrough variants',
+    markdown:
+      'Visit www.example.com or https://example.org, ~~double~~ and ~single~ tildes.',
+  },
+  {
+    name: 'renders a raw html island wrapping markdown content',
+    markdown: [
+      'before',
+      '',
+      '<details><summary>More</summary>',
+      '',
+      'inner **markdown** text',
+      '',
+      '</details>',
+      '',
+      'after',
+    ].join('\n'),
+  },
+  {
+    name: 'keeps entities and raw inline html intact',
+    markdown: 'AT&T says a &lt; b and <strong>keeps raw bold</strong> &copy;',
+  },
+  {
     name: 'removes front matter without turning its final item into a heading',
     markdown: [
       '---',
@@ -57,3 +122,36 @@ for (const { name, markdown } of cases) {
     expect(markdownToHTML(markdown)).toMatchSnapshot();
   });
 }
+
+const dangerousCases = [
+  '<img/onerror=alert(1) src=x>',
+  '<svg/onload=alert(1)>',
+  '<p/onmouseover=alert(1)>hi</p>',
+  '[click](javascript:alert(1))',
+  '![x](javascript:alert(1))',
+  '[click](vbscript:msgbox(1))',
+  '<a style="position:fixed;inset:0">x</a>',
+  '<iframe src="//evil.example"></iframe>',
+  '<script>alert(1)</script>',
+];
+
+for (const markdown of dangerousCases) {
+  test(`sanitizes dangerous html: ${markdown}`, () => {
+    const html = markdownToHTML(markdown);
+
+    expect(html).not.toMatch(
+      /<script|<iframe|<svg|\son\w+\s*=|javascript:|vbscript:|style=/i,
+    );
+  });
+}
+
+test('does not let authored ids or names clobber window globals', () => {
+  const html = markdownToHTML(
+    '<div id="dataLayer"></div><a name="sandboxEngine"></a>\n\n# supernova',
+  );
+
+  expect(html).not.toMatch(/\b(id|name)="(dataLayer|sandboxEngine|supernova)"/);
+  expect(html).toMatch(/id="user-content-dataLayer"/);
+  expect(html).toMatch(/name="user-content-sandboxEngine"/);
+  expect(html).toMatch(/id="user-content-supernova"/);
+});
