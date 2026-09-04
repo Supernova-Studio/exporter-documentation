@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -594,14 +594,6 @@
         "description": "When enabled, an accelerated renderer is used for pages with many color tokens (stack variant). Improves publish time on token-heavy pages.",
         "category": "Other",
         "default": false
-      },
-      {
-        "key": "contentMarkdownToken",
-        "type": "string",
-        "label": "Private Markdown token",
-        "description": "If provided, your markdown will be authenticated using this token. The token can contain its type , format: ['Basic' | 'Bearer' | 'token'] [token]. If no type of format is provided, 'token' is assumed.",
-        "category": "Other",
-        "default": ""
       },
       {
         "key": "advancedCustomizationCustomHeadInject",
