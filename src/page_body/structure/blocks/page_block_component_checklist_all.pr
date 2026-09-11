@@ -42,11 +42,9 @@
                             <th class="center">{{ escapeHtml(property.name) }}</th>
                         {[/]}
                     {[/]}
-                    {*
                     {[ if block.properties.showLastUpdatedColumn ]}
                         <th class="center" lang="en">Last updated</th>
                     {[/]}  
-                    *}   
                 </tr>   
             </thead>
             {* Create data rows *}
@@ -82,11 +80,9 @@
                                 {[/]}
                             {[/]}
                         {[/]}
-                        {*
                         {[ if block.properties.showLastUpdatedColumn ]}
                             <td class="center">{{ component.updatedAt.formatDate("MMMM DD, YYYY") }}</td>
                         {[/]}  
-                        *}
                     </tr>
                 {[/]} 
             {[/]}
