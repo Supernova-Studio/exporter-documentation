@@ -86,17 +86,17 @@ function renderReferenceBadgeColor(token: any): string {
   if (refName.length < 4 && v.referencedToken.parent) {
     refName = String(v.referencedToken.parent.name || '') + ' ' + refName
   }
-  return '<div class="reference-badge" data-toggle="tooltip" title="Referenced token: ' + htmlSafeString(refName) + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
+  return '<div class="reference-badge" data-bs-toggle="tooltip" title="Referenced token: ' + htmlSafeString(refName) + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
 }
 
 // Source: page_block_token_themes_badge.pr + page_block_token_theme_badge.pr
 function renderThemesBadge(themes: any[], iconStrokeWidth: number): string {
   if (!themes || themes.length === 0) return ''
   if (themes.length > 1) {
-    return '<div class="theme-badge" data-toggle="tooltip" data-html="true" title="Applied themes:<br /> ' + getThemesTooltip(themes) + ' " lang="en">' + themeIconSvg('', iconStrokeWidth) + '</div>'
+    return '<div class="theme-badge" data-bs-toggle="tooltip" data-bs-html="true" title="Applied themes:<br /> ' + getThemesTooltip(themes) + ' " lang="en">' + themeIconSvg('', iconStrokeWidth) + '</div>'
   }
   const name = String(themes[0]?.name || '')
-  return '<div class="theme-badge" data-toggle="tooltip" title="Applied theme: ' + htmlSafeString(name) + '" lang="en">' + themeIconSvg(name, iconStrokeWidth) + '</div>'
+  return '<div class="theme-badge" data-bs-toggle="tooltip" title="Applied theme: ' + htmlSafeString(name) + '" lang="en">' + themeIconSvg(name, iconStrokeWidth) + '</div>'
 }
 
 // Dispatch matches page_block_token_theme_badge.pr's substring cascade on theme name.

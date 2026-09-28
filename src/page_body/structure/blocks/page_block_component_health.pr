@@ -90,7 +90,7 @@
                                         {* Property name *}
                                         <div class="col-6 lighter">{{ escapeHtml(property.name) }}</div>
                                         {* Property value *}
-                                        <div class="col-6 text-right">
+                                        <div class="col-6 text-end">
                                             {[ inject "custom_properties_value" context { "value": propertyValues[property.codeName], "info": property, "mustReturnValue": true } /]}
                                         </div>
                                     </div>

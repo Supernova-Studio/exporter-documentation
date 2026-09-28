@@ -186,6 +186,16 @@ mark,
 }
 
 /* Basic styles for links and interactive elements */
+
+/* Bootstrap 5 underlines links by default */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 a,
 a:focus {
     transition: var(--transitionDefault);
