@@ -135,6 +135,7 @@ import {
   getIconUrlFromFileType
 } from './doc_functionality/files';
 import { mapCodeLanguageToPrismClass } from './doc_functionality/code';
+import { throwError } from './utils';
 import {
   getContextMcpActions,
   getContextMcpInstallOptions
@@ -335,3 +336,6 @@ Pulsar.registerFunction(
   'mapCodeLanguageToPrismClass',
   mapCodeLanguageToPrismClass
 );
+
+/* Utils */
+Pulsar.registerFunction('throwError', throwError);

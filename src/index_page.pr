@@ -3,6 +3,15 @@
 {[ let page = firstPageFromTop(rootGroup) /]}
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
+{[ if (!page) ]}
+  {[ let isLive = (ds.documentationEnvironment() === "Live") /]}
+  {[ if isLive ]}
+    {{ throwError("The current page selection contains no visible pages. Make sure at least one page is included and visible before publishing.") }}
+  {[ else ]}
+    {{ throwError("The current page selection contains no visible pages. Make sure at least one page is included and visible before building the preview.") }}
+  {[/]}
+{[/]}
+
 <!DOCTYPE HTML>
  
 <meta charset="UTF-8">
