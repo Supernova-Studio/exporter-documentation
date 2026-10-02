@@ -2,6 +2,34 @@
    Content menu tracking
 -------------------------- */
 /**
+ * Navigates to the element a location hash points to. Ids inside markdown blocks carry
+ * the sanitizer's user-content- prefix, so when the browser finds nothing for a plain
+ * hash we resolve the prefixed id and scroll to it ourselves
+ * @param {string} hash - Location hash including the leading "#"
+ */
+function navigateToHash(hash) {
+  let id = hash.replace(/^#/, '');
+  try {
+    id = decodeURIComponent(id);
+  } catch (error) {
+    // Malformed escape sequence, keep the raw value
+  }
+  if (!id) {
+    return;
+  }
+
+  const nativeTarget = document.getElementById(id);
+  const target = nativeTarget || document.getElementById(`user-content-${id}`);
+  if (!target) {
+    return;
+  }
+  if (!nativeTarget) {
+    target.scrollIntoView({ block: 'start', inline: 'nearest' });
+  }
+  navigateToElement(target);
+}
+
+/**
  * Navigates to a specific element on the page, handling elements within tabs
  * @param {(string|HTMLElement)} elementOrHash - Either a hash string (e.g. "#section1") or DOM element to navigate to
  */
@@ -140,9 +168,14 @@ $(window).on('load', function() {
 
   if (window.location.hash) {
     setTimeout(() => {
-      navigateToElement(window.location.hash);
+      navigateToHash(window.location.hash);
     }, 250);
   }
+
+  // In-page links to prefixed markdown ids do not scroll natively, see navigateToHash
+  $(window).on('hashchange', function() {
+    navigateToHash(window.location.hash);
+  });
 
   // Add preview banner in case the page is loaded in preview mode
   const isPreviewSite =
@@ -740,6 +773,51 @@ $('[data-copy-url="true"]').click(function(event) {
     position: 'bottom'
   });
 });
+
+/*-----------------------------
+    Context MCP actions
+------------------------------- */
+
+$(document).on('click', '[data-context-mcp-action]', async function(event) {
+  const button = $(this);
+  const action = button.attr('data-context-mcp-action');
+  
+  if (action !== 'copy') {
+    return;
+  }
+  event.preventDefault();
+
+  const value = button.attr('data-copy-value');
+
+  if (!value) {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(value);
+    $.toast({
+      title: '<span lang="en">Copied to clipboard</span>',
+      position: 'bottom'
+    });
+  } catch (error) {
+    $.toast({
+      title: '<span lang="en">Unable to copy to clipboard</span>',
+      position: 'bottom'
+    });
+  }
+});
+
+$(document)
+  .on('show.bs.dropdown', '.context-mcp-actions', function() {
+    $(this)
+      .closest('.content-block--context-mcp')
+      .addClass('context-mcp-menu-open');
+  })
+  .on('hidden.bs.dropdown', '.context-mcp-actions', function() {
+    $(this)
+      .closest('.content-block--context-mcp')
+      .removeClass('context-mcp-menu-open');
+  });
 
 /*-----------------------------
     Theme switching & mode preservation

@@ -1,19 +1,24 @@
 {[ let page = context /]}
 {[ let rootGroup = ds.rootDocumentationGroup() /]}
-{[ let hasHeading = false /]}
-{[ let hasTopLevelHeading = false /]}
 {[ let configuration = exportConfiguration() /]}
 {[ let isHomepage = (isHomepage(page, rootGroup) || isHomepageTab(page, rootGroup)) /]}
 {[ let group = page.parent /]}
 {[ let groupIsTabContainer = (group.groupBehavior === "Tabs") /]}
 {[ let pageConfiguration = (groupIsTabContainer ? group.configuration : page.configuration) /]}
 
-{[ for block in page.blocks ]}
-    {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
-        {[ hasHeading = true /]}
-    {[/]}
-    {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
-        {[ hasTopLevelHeading = true /]}
+{[ let hasHeading = false /]}
+{[ let hasTopLevelHeading = false /]}
+{[ if isFastRenderersEnabled() ]}
+    {[ hasHeading = pageHasTocHeadings(page.blocks, configuration.tocHideHeading3) /]}
+    {[ hasTopLevelHeading = pageHasTopLevelHeading(page.blocks) /]}
+{[ else ]}
+    {[ for block in page.blocks ]}
+        {[ if (block.type.equals("Heading") && (block.headingType === 1 || block.headingType === 2 || (block.headingType === 3 && !configuration.tocHideHeading3))) ]}
+            {[ hasHeading = true /]}
+        {[/]}
+        {[ if (block.type.equals("Heading") && block.headingType === 1) ]}
+            {[ hasTopLevelHeading = true /]}
+        {[/]}
     {[/]}
 {[/]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}

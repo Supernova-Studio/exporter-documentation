@@ -1,0 +1,17 @@
+{[ const icon = context /]}
+{[ const domain = ds.documentationDomain() /]}
+
+{[ switch icon ]}
+{[ case "cursor" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-cursor.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[ case "vs-code" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-vs-code.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[ case "claude" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-claude.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[ case "codex" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-codex.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[ case "code" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-code.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[ case "copy" ]}
+    <img class="context-mcp-icon" src="{{ assetUrl("icons/icon-copy.svg", domain) }}" alt="" aria-hidden="true" width="16" height="16" />
+{[/]}

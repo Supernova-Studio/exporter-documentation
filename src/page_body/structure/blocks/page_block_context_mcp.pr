@@ -1,0 +1,74 @@
+{[ const block = context /]}
+{[ const property = block.properties.context /]}
+{[ let contextId = null /]}
+
+{[ if (property && property.value && property.value.count() > 0) ]}
+    {[ contextId = property.value[0].id /]}
+{[/]}
+
+{[ let selectedContext = (contextId ? ds.contextById(contextId) : null) /]}
+{[ let useSelectedContext = (selectedContext && !selectedContext.isArchived) /]}
+{[ let contextMcpId = (useSelectedContext ? contextId : null) /]}
+{[ let contextMcpName = (useSelectedContext ? selectedContext.name : null) /]}
+
+{* Use a scoped context endpoint only for an existing, active selection. Otherwise use the general MCP endpoint. *}
+{[ let titleFallback = (useSelectedContext ? "Connect to " + contextMcpName + "’s MCP server" : "Connect to MCP server") /]}
+{[ let descriptionFallback = "Install this context in your AI tool to get accurate data and knowledge." /]}
+{[ let title = (isNonEmptyString(property.title) ? property.title : titleFallback) /]}
+{[ let description = (isNonEmptyString(property.description) ? property.description : descriptionFallback) /]}
+{[ let installOptions = getContextMcpInstallOptions(mcpUrl(), contextMcpId, contextMcpName) /]}
+{[ let actions = getContextMcpActions(installOptions, property.connections) /]}
+
+<div class="content-block content-block--context-mcp" id="{{ getSearchIDString(block.id) }}">
+        <div class="context-mcp-gradient" aria-hidden="true"></div>
+        <div class="context-mcp-content">
+            <div class="context-mcp-header{{ property.showDescription ? " has-description" : "" }}">
+                <span class="context-mcp-main-icon">{[ inject "icon_mcp" context context /]}</span>
+                <div class="context-mcp-heading">
+                    <div class="context-mcp-title">{{ escapeHtml(title) }}</div>
+                    {[ if property.showDescription ]}
+                        <div class="context-mcp-description">{{ escapeHtml(description) }}</div>
+                    {[/]}
+                </div>
+
+                {[ if (actions.length === 1) ]}
+                    {[ inject "component_context_mcp_action" context { "action": actions[0], "inMenu": false } /]}
+                {[ elseif (actions.length > 1) ]}
+                    <div class="dropdown context-mcp-actions">
+                        <button
+                            class="btn btn-white context-mcp-action-button context-mcp-connect-button"
+                            type="button"
+                            id="context-mcp-connect-{{ block.id }}"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <span lang="en">Connect</span>
+                            <span class="context-mcp-chevron">{[ inject "icon_chevron_down" context context /]}</span>
+                        </button>
+                        <div class="dropdown-menu context-mcp-menu" aria-labelledby="context-mcp-connect-{{ block.id }}">
+                            {[ for action in actions ]}
+                                <div class="context-mcp-menu-entry{{ action.startsGroup ? " context-mcp-menu-entry--group-start" : "" }}">
+                                    {[ inject "component_context_mcp_action" context { "action": action, "inMenu": true } /]}
+                                </div>
+                            {[/]}
+                        </div>
+                    </div>
+                {[/]}
+            </div>
+
+            {[ if property.showMcpUrl ]}
+                <div class="context-mcp-section">
+                    <div class="context-mcp-section-label" lang="en">In your AI tool of choice, add the following URL as a custom MCP connector:</div>
+                    <pre class="context-mcp-code"><code class="language-none" data-prismjs-copy="Copy" data-prismjs-copy-success="Copied!" data-prismjs-copy-error="Press Ctrl+C to copy">{{ escapeHtml(installOptions.mcpUrl) }}</code></pre>
+                </div>
+            {[/]}
+
+            {[ if property.showCodeSnippet ]}
+                <div class="context-mcp-section">
+                    <div class="context-mcp-section-label" lang="en">Alternatively, you can configure it manually by pasting following snippet into mcp.json:</div>
+                    <pre class="context-mcp-code context-mcp-code--snippet"><code class="language-json" data-prismjs-copy="Copy" data-prismjs-copy-success="Copied!" data-prismjs-copy-error="Press Ctrl+C to copy">{{ escapeHtmlWithNewlines(installOptions.mcpServerConfigJson) }}</code></pre>
+                </div>
+            {[/]}
+    </div>
+</div>

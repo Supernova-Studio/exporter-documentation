@@ -1,0 +1,26 @@
+{[ const action = context.action /]}
+{[ const inMenu = context.inMenu /]}
+
+{[ const opensExternalApp = (action.id === "cursor" || action.id === "vsCode") /]}
+
+{[ if opensExternalApp ]}
+<a
+    class="{{ inMenu ? "context-mcp-menu-item" : "btn btn-white context-mcp-action-button" }}"
+    href="{{ escapeHtml(action.value) }}"
+>
+{[ else ]}
+<button
+    type="button"
+    class="{{ inMenu ? "context-mcp-menu-item" : "btn btn-white context-mcp-action-button" }}"
+    data-context-mcp-action="copy"
+    data-copy-value="{{ escapeHtml(action.value) }}"
+>
+{[/]}
+    <span class="context-mcp-action-icon">{[ inject "component_context_mcp_icon" context action.icon /]}</span>
+    <span class="context-mcp-action-text">
+        <span class="context-mcp-action-label" lang="en">{{ action.label }}</span>
+        {[ if (inMenu && action.description) ]}
+            <span class="context-mcp-action-description" lang="en">{{ action.description }}</span>
+        {[/]}
+    </span>
+{[ if opensExternalApp ]}</a>{[ else ]}</button>{[/]}

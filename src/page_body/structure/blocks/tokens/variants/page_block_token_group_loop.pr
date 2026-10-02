@@ -8,8 +8,19 @@
 
 {[ let variant = block.variantKey /]}
 
+{* Color stack supports color tokens only, so filter out tokens of any other type *}
+{[ let renderedTokens = tokens /]}
+{[ if variant.contains("stack") ]}
+    {[ renderedTokens = [] /]}
+    {[ for token in tokens ]}
+        {[ if token.tokenType.equals("Color") ]}
+            {[ renderedTokens = renderedTokens.concat([token]) /]}
+        {[/]}
+    {[/]}
+{[/]}
+
 {* Ignore group content if it is empty (or at least 2 tokens if it's a contrast grid) *}
-{[ if ((tokens.count() > 0 && !variant.contains("contrast-grid")) || (variant.contains("contrast-grid") && tokens.count() > 1 )) ]}
+{[ if ((renderedTokens.count() > 0 && !variant.contains("contrast-grid")) || (variant.contains("contrast-grid") && renderedTokens.count() > 1 )) ]}
     <div class="content-block content-block--token-container">
         {* Show group header consisting of group segments and current group name *}
         {[ let tokenGroupHeader = formattedTokenGroupHeader(group, true) /]}
@@ -21,7 +32,7 @@
         {* Default variant – Displaying the list of tokens as a table *}
             <div class="token-table">
                 {* Render all tokens *}
-                {[ for token in tokens ]}
+                {[ for token in renderedTokens ]}
                     {[ inject "page_block_token_variant_table_item" context ({"token": token, "block": block}) /]}
                 {[/]}
             </div>
@@ -29,7 +40,7 @@
         {* Stack – Displaying the list of tokens as a stack (great for colors) *}
             <div class="stack{{ getVariantClass(variant) }}">
                 {* Render all tokens *}
-                {[ for token in tokens ]}
+                {[ for token in renderedTokens ]}
                     {[ inject "page_block_token_variant_stack_item" context ({"token": token, "block": block}) /]}
                 {[/]}
             </div>
@@ -39,7 +50,7 @@
         {[ else ]}
         {* Grid variant - displayed as a grid, support 2/3/4 items in a row (4 is default) *}
             <div class="grid{{ getVariantClass(variant) }}">
-                {[ for token in tokens ]}
+                {[ for token in renderedTokens ]}
                     {[ inject "page_block_token_variant_grid_item" context ({"token": token, "block": block}) /]}
                 {[/]}    
             </div>
