@@ -4,7 +4,12 @@
 {[ let url = pageUrl(page, ds.documentationDomain()) /]}
 
 {[ if (!page) ]}
-  {{ throwError("At least one visible page must be present.") }}
+  {[ let isLive = (ds.documentationEnvironment() === "Live") /]}
+  {[ if isLive ]}
+    {{ throwError("The current page selection contains no visible pages. Make sure at least one page is included and visible before publishing.") }}
+  {[ else ]}
+    {{ throwError("The current page selection contains no visible pages. Make sure at least one page is included and visible before building the preview.") }}
+  {[/]}
 {[/]}
 
 <!DOCTYPE HTML>
