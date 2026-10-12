@@ -39,7 +39,7 @@
                             class="btn btn-white context-mcp-action-button context-mcp-connect-button"
                             type="button"
                             id="context-mcp-connect-{{ block.id }}"
-                            data-toggle="dropdown"
+                            data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                         >

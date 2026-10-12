@@ -51,7 +51,7 @@ function navigateToElement(elementOrHash) {
         // Find the tab that controls this tab pane — for both classical tabs and accordions
         const tab =
           tabsContainer.querySelector(`.nav-link[href="#${tabPaneId}"]`) ||
-          tabsContainer.querySelector(`a[data-target="#${tabPaneId}"]`);
+          tabsContainer.querySelector(`a[data-bs-target="#${tabPaneId}"]`);
 
         if (tab) {
           // If tab pane is hidden, click the tab to show it
@@ -656,8 +656,8 @@ async function copySVGTextToClipboard(svgURL) {
 ------------------------------- */
 
 $(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('[data-toggle="popover"]').popover();
+  $('[data-bs-toggle="tooltip"]').tooltip();
+  $('[data-bs-toggle="popover"]').popover();
   $('[data-tooltip="tooltip"]').tooltip();
   const markPrismToolbarButtons = () => {
     $('.code-toolbar > .toolbar button').attr('lang', 'en');

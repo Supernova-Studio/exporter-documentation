@@ -19,7 +19,7 @@
                 {[ let dsSwitcher = ds.currentDesignSystemSwitcher() /]}
 
                 <div class="dropdown">
-                    <button class="btn-icon-button" id="design-systems-switcher" aria-label="Switch design system" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" lang="en">
+                    <button class="btn-icon-button" id="design-systems-switcher" aria-label="Switch design system" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" lang="en">
                         {[ inject "icon_selector" context configuration /]}
                     </button>
                     <div class="dropdown-menu pull-left" aria-labelledby="design-systems-switcher">
@@ -59,7 +59,7 @@
 
                     {[ if shouldShowTabbar ]}
                     <div id="mobile-menu-container" class="dropdown">
-                        <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                        <button class="btn btn-secondary btn-outlined" type="button" id="mobile-menu-selector" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
                             
                                 {[ for item in rootGroup.children ]}
                                     {* Re-enable if we only want to show groups *}
@@ -86,7 +86,7 @@
                     {[/]}
                     {[ if configuration.advancedCustomizationShowVersionDropdown ]}
                     <div id="version-container" class="dropdown">
-                        <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" lang="en">
+                        <button class="btn btn-secondary btn-outlined" type="button" id="version-selector" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" lang="en">
                             Loading
                         </button>
                         <div class="dropdown-menu pull-right" aria-labelledby="version-selector">

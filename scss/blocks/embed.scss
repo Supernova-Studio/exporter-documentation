@@ -68,17 +68,6 @@ iframe {
       height: 100%;
       border-radius: var(--borderRadiusDefault);
     }
-    
-    .embed-responsive-16by9 {
-      &::before {
-        padding-top: 56.25%;
-      }
-    
-      &::before {
-        display: block;
-        content: "";
-      }
-    }
   }
 }
 
