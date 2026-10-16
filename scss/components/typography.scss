@@ -50,6 +50,11 @@
     }
 }
 
+// Fallback when --fontFamily is invalid (e.g. unquoted "Source Sans 3") – Bootstrap 4 reboot used to provide this
+html {
+    font-family: sans-serif;
+}
+
 body {
     font-family: var(--fontFamily);
     font-size: var(--contentFontBase);
