@@ -243,6 +243,42 @@ $(window).on('load', function() {
   // Without this, clicking a heading too close to the end of the page — one that can
   // never reach the header line — would highlight an earlier item instead.
   let clickedOverviewItem = null;
+  // Where the page came to rest after the jump. Null while the jump is still running,
+  // which also covers the smooth scrolling Bootstrap enables on :root.
+  let navigationAnchorY = null;
+  let navigationSettleTimer = null;
+
+  const releaseClickedOverviewItem = () => {
+    clearTimeout(navigationSettleTimer);
+    clickedOverviewItem = null;
+    navigationAnchorY = null;
+  };
+
+  const anchorAfterJumpSettles = () => {
+    clearTimeout(navigationSettleTimer);
+    navigationSettleTimer = setTimeout(() => {
+      navigationAnchorY = window.scrollY;
+    }, 120);
+  };
+
+  const holdClickedOverviewItem = overviewItem => {
+    clickedOverviewItem = overviewItem;
+    navigationAnchorY = null;
+    anchorAfterJumpSettles();
+  };
+
+  // Any scroll the reader causes hands the highlight back, whichever way they scroll.
+  // Watching for wheel/touch/key events alone would miss dragging the scrollbar.
+  const releaseOnReaderScroll = () => {
+    if (!clickedOverviewItem) {
+      return;
+    }
+    if (navigationAnchorY === null) {
+      anchorAfterJumpSettles();
+    } else if (Math.abs(window.scrollY - navigationAnchorY) > 2) {
+      releaseClickedOverviewItem();
+    }
+  };
 
   const updateActiveItems = () => {
     if (!contentNavContainer || sections.length === 0) {
@@ -381,6 +417,7 @@ $(window).on('load', function() {
     // is neither where the header line is nor often enough to track the current section.
     let isUpdateScheduled = false;
     const scheduleUpdate = () => {
+      releaseOnReaderScroll();
       if (isUpdateScheduled) {
         return;
       }
@@ -396,20 +433,14 @@ $(window).on('load', function() {
     contentNavContainer.addEventListener('click', function(event) {
       const link = event.target.closest('li > a[href^="#"]');
       if (link && contentNavContainer.contains(link)) {
-        clickedOverviewItem = link.parentElement;
+        holdClickedOverviewItem(link.parentElement);
         updateActiveItems();
       }
     });
 
-    // Scrolling under the reader's own control hands the highlight back to the position
+    // Explicit input gestures release immediately, even mid-jump
     ['wheel', 'touchstart', 'keydown'].forEach(function(type) {
-      window.addEventListener(
-        type,
-        function() {
-          clickedOverviewItem = null;
-        },
-        { passive: true }
-      );
+      window.addEventListener(type, releaseClickedOverviewItem, { passive: true });
     });
 
     // Opening a shared #heading link behaves like clicking that ToC item
@@ -418,7 +449,7 @@ $(window).on('load', function() {
         `li > a[href="${window.location.hash}"]`
       );
       if (hashLink) {
-        clickedOverviewItem = hashLink.parentElement;
+        holdClickedOverviewItem(hashLink.parentElement);
       }
     }
 
