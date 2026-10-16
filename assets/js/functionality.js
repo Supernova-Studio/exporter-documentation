@@ -162,6 +162,32 @@ $(document).ready(function() {
   });
 });
 
+// Add preview banner in case the page is loaded in preview mode.
+// Runs on ready rather than load: the banner is prepended inside the sticky #header, so
+// it has to exist (and be measured) before the browser jumps to an initial #hash.
+$(document).ready(function() {
+  const isPreviewSite =
+    window.location.host.indexOf('preview.supernova-docs.io') !== -1;
+  if (!isPreviewSite) {
+    return;
+  }
+
+  $('#header').prepend(
+    '<div class="banner-preview"><div class="content"><div class="message" lang="en"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>'
+  );
+
+  // The banner grows the sticky header, but --topNavHeight is a configured value that
+  // knows nothing about it. Publish the measured height so the offsets derived from the
+  // header — scroll-padding-top above all — stay correct on preview sites.
+  const banner = document.querySelector('#header .banner-preview');
+  if (banner) {
+    document.documentElement.style.setProperty(
+      '--bannerHeight',
+      `${banner.getBoundingClientRect().height}px`
+    );
+  }
+});
+
 // Handle initial page load with hash
 $(window).on('load', function() {
   let sections = [];
@@ -177,26 +203,97 @@ $(window).on('load', function() {
     navigateToHash(window.location.hash);
   });
 
-  // Add preview banner in case the page is loaded in preview mode
-  const isPreviewSite =
-    window.location.host.indexOf('preview.supernova-docs.io') !== -1;
-  if (isPreviewSite) {
-    $('#header').prepend(
-      '<div class="banner-preview"><div class="content"><div class="message" lang="en"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="11 12 12 12 12 16 13 16"></polyline></svg> <span>This website is a <b>private preview</b> of the changes made to your documentation.</span></div></div></div>'
-    );
-  }
-
   const contentNavContainer = document.querySelector('#content-nav');
 
-  // Create intersection observer for all sections
-  const observer = new IntersectionObserver(_entries => {
+  // When off, only the section currently being read is highlighted. A missing attribute
+  // keeps the long-standing behaviour of highlighting every visible heading, so sites
+  // published by older exporter versions are unaffected.
+  const highlightAllVisibleSections =
+    !contentNavContainer ||
+    contentNavContainer.dataset.highlightAllVisible !== 'false';
+
+  // Track all headers that have an `id` applied (only from the main content area, so we don't track headers from e.g. Tabs block. It breaks the ToC active items otherwise)
+  sections = Array.from(
+    document.querySelectorAll(
+      '#page-tab-content > h1[id], #page-tab-content > h2[id], #page-tab-content > h3[id]'
+    )
+  );
+
+  // The line below the sticky chrome at which a heading counts as reached. The browser
+  // already uses scroll-padding-top to place anchor targets, so reusing it keeps the
+  // highlight in step with where a ToC click actually lands.
+  const headerOffset = () =>
+    parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+
+  // #136 added ToC scrolling so the active item stays visible on pages with many
+  // headings. Keep that, but only nudge the ToC's own scroll — never the window's — and
+  // only when the item is really out of view, so it can't fight a reader scrolling the
+  // menu by hand.
+  const keepOverviewItemVisible = overviewItem => {
+    const navBox = contentNavContainer.getBoundingClientRect();
+    const itemBox = overviewItem.getBoundingClientRect();
+    if (itemBox.top < navBox.top) {
+      contentNavContainer.scrollTop -= navBox.top - itemBox.top;
+    } else if (itemBox.bottom > navBox.bottom) {
+      contentNavContainer.scrollTop += itemBox.bottom - navBox.bottom;
+    }
+  };
+
+  // A ToC click wins over the scroll position until the reader scrolls themselves.
+  // Without this, clicking a heading too close to the end of the page — one that can
+  // never reach the header line — would highlight an earlier item instead.
+  let clickedOverviewItem = null;
+  // Where the page came to rest after the jump. Null while the jump is still running,
+  // which also covers the smooth scrolling Bootstrap enables on :root.
+  let navigationAnchorY = null;
+  let navigationSettleTimer = null;
+
+  const releaseClickedOverviewItem = () => {
+    clearTimeout(navigationSettleTimer);
+    clickedOverviewItem = null;
+    navigationAnchorY = null;
+  };
+
+  const anchorAfterJumpSettles = () => {
+    clearTimeout(navigationSettleTimer);
+    navigationSettleTimer = setTimeout(() => {
+      navigationAnchorY = window.scrollY;
+    }, 120);
+  };
+
+  const holdClickedOverviewItem = overviewItem => {
+    clickedOverviewItem = overviewItem;
+    navigationAnchorY = null;
+    anchorAfterJumpSettles();
+  };
+
+  // Any scroll the reader causes hands the highlight back, whichever way they scroll.
+  // Watching for wheel/touch/key events alone would miss dragging the scrollbar.
+  const releaseOnReaderScroll = () => {
+    if (!clickedOverviewItem) {
+      return;
+    }
+    if (navigationAnchorY === null) {
+      anchorAfterJumpSettles();
+    } else if (Math.abs(window.scrollY - navigationAnchorY) > 2) {
+      releaseClickedOverviewItem();
+    }
+  };
+
+  const updateActiveItems = () => {
+    if (!contentNavContainer || sections.length === 0) {
+      return;
+    }
+    const offset = headerOffset();
     // Highlight headers in viewport
     let isAnythingSelected = false;
 
     const findExistingSectionInOverview = section => {
       let id = section.getAttribute('id');
-      let sectionElementInOverview = document.querySelector(
-        `nav li a[href="#${id}"]`
+      // Scoped to the ToC: an unscoped `nav` lookup matches the first nav in the
+      // document, which is not necessarily this one.
+      let sectionElementInOverview = contentNavContainer.querySelector(
+        `li a[href="#${id}"]`
       );
 
       if (sectionElementInOverview && sectionElementInOverview.parentElement) {
@@ -230,20 +327,52 @@ $(window).on('load', function() {
       return prevSection && findExistingSectionInOverview(prevSection);
     };
 
+    // Single-highlight mode: the active item is the last heading that has scrolled up to
+    // the header line, which is exactly where a ToC click puts the heading you asked for.
+    if (!highlightAllVisibleSections) {
+      let currentSection = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top > offset + 1) {
+          break;
+        }
+        currentSection = section;
+      }
+
+      const overviewItem =
+        clickedOverviewItem || findExistingSectionInOverview(currentSection);
+      contentNavContainer.querySelectorAll('li.active').forEach(item => {
+        if (item !== overviewItem) {
+          item.classList.remove('active');
+        }
+      });
+      if (overviewItem) {
+        overviewItem.classList.add('active');
+        keepOverviewItemVisible(overviewItem);
+      }
+      return;
+    }
+
     const overviewItemsToKeepActiveEvenIfNotInView = new Set();
+    let itemToKeepVisible = null;
+
+    if (clickedOverviewItem) {
+      overviewItemsToKeepActiveEvenIfNotInView.add(clickedOverviewItem);
+      clickedOverviewItem.classList.add('active');
+      itemToKeepVisible = clickedOverviewItem;
+    }
+
     for (let section of sections) {
-      if (isElementInViewport(section)) {
+      // `offset` stops headings hidden behind the sticky header counting as visible
+      if (isElementInViewport(section, offset)) {
         isAnythingSelected = true;
 
         const overviewItem = findExistingSectionInOverview(section);
         overviewItemsToKeepActiveEvenIfNotInView.add(overviewItem);
         overviewItem && overviewItem.classList.add('active');
 
-        // scrolling toc, not the whole page
-        overviewItem &&
-          contentNavContainer.scrollTo({
-            top: overviewItem.offsetTop - 100
-          });
+        if (overviewItem && !itemToKeepVisible) {
+          itemToKeepVisible = overviewItem;
+        }
       }
     }
 
@@ -268,23 +397,64 @@ $(window).on('load', function() {
       if (currentSection) {
         const overviewItem = findExistingSectionInOverview(currentSection);
         overviewItem && overviewItem.classList.add('active');
+
+        if (overviewItem && !itemToKeepVisible) {
+          itemToKeepVisible = overviewItem;
+        }
       }
     }
-  });
 
-  // Track all headers that have an `id` applied (only from the main content area, so we don't track headers from e.g. Tabs block. It breaks the ToC active items otherwise)
-  document.querySelectorAll('#page-tab-content > h1[id]').forEach(section => {
-    observer.observe(section);
-    sections.push(section);
-  });
-  document.querySelectorAll('#page-tab-content > h2[id]').forEach(section => {
-    observer.observe(section);
-    sections.push(section);
-  });
-  document.querySelectorAll('#page-tab-content > h3[id]').forEach(section => {
-    observer.observe(section);
-    sections.push(section);
-  });
+    // Once per update, for the section being read — not once per visible heading
+    itemToKeepVisible && keepOverviewItemVisible(itemToKeepVisible);
+  };
+
+  // Create intersection observer for all sections
+  const observer = new IntersectionObserver(updateActiveItems);
+  sections.forEach(section => observer.observe(section));
+
+  if (contentNavContainer && sections.length > 0) {
+    // The observer on its own only fires when a heading crosses the viewport edge, which
+    // is neither where the header line is nor often enough to track the current section.
+    let isUpdateScheduled = false;
+    const scheduleUpdate = () => {
+      releaseOnReaderScroll();
+      if (isUpdateScheduled) {
+        return;
+      }
+      isUpdateScheduled = true;
+      requestAnimationFrame(() => {
+        isUpdateScheduled = false;
+        updateActiveItems();
+      });
+    };
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate, { passive: true });
+
+    contentNavContainer.addEventListener('click', function(event) {
+      const link = event.target.closest('li > a[href^="#"]');
+      if (link && contentNavContainer.contains(link)) {
+        holdClickedOverviewItem(link.parentElement);
+        updateActiveItems();
+      }
+    });
+
+    // Explicit input gestures release immediately, even mid-jump
+    ['wheel', 'touchstart', 'keydown'].forEach(function(type) {
+      window.addEventListener(type, releaseClickedOverviewItem, { passive: true });
+    });
+
+    // Opening a shared #heading link behaves like clicking that ToC item
+    if (window.location.hash) {
+      const hashLink = contentNavContainer.querySelector(
+        `li > a[href="${window.location.hash}"]`
+      );
+      if (hashLink) {
+        holdClickedOverviewItem(hashLink.parentElement);
+      }
+    }
+
+    updateActiveItems();
+  }
 
   $('[data-action="copy-asset-content"]').on('click', function() {
     // Extract the SVG URL from the src attribute of the sibling <img> element
@@ -296,10 +466,12 @@ $(window).on('load', function() {
   });
 });
 
-function isElementInViewport(el) {
+// `top` is the first y coordinate not covered by sticky chrome; the 1px slack absorbs
+// subpixel rounding, since a heading just scrolled to sits exactly on that line.
+function isElementInViewport(el, top = 0) {
   var rect = el.getBoundingClientRect();
   return (
-    rect.top >= 0 &&
+    rect.top >= top - 1 &&
     rect.left >= 0 &&
     rect.bottom <=
       (window.innerHeight || document.documentElement.clientHeight) &&

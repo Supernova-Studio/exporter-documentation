@@ -23,7 +23,12 @@ html {
 }
 
 html {
-  scroll-padding-top: calc(var(--topNavHeight) + 20px + var(--tabOffset, 0px));
+  /* --bannerHeight is measured in functionality.js. It is 0 everywhere except preview
+     sites, where the preview banner is prepended inside the sticky #header and so
+     makes the header taller than the configured --topNavHeight. */
+  --stickyTop: calc(var(--bannerHeight, 0px) + var(--topNavHeight));
+
+  scroll-padding-top: calc(var(--stickyTop) + 20px + var(--tabOffset, 0px));
 }
 
 body {
