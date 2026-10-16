@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.8.1",
+  "version": "5.9.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -354,6 +354,14 @@
         "description": "When enabled, all Heading 3 levels will be hidden in table of contents.",
         "category": "Pages",
         "default": false
+      },
+      {
+        "key": "tocHighlightAllVisibleSections",
+        "type": "boolean",
+        "label": "Highlight all visible sections in table of contents",
+        "description": "When enabled, every section heading currently visible on screen is highlighted in the table of contents. When disabled, only the section you are currently reading is highlighted.",
+        "category": "Pages",
+        "default": true
       },
       {
         "key": "blockConfigAssetsItemActions",

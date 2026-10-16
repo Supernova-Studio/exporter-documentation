@@ -2,6 +2,8 @@
 {[ let page = context /]}
 {[ let domain = ds.documentationDomain() /]}
 {[ const configuration = exportConfiguration() /]}
+{[ const exporterInfo = exportPackageConfiguration() /]}
+{[ const version = exporterInfo.version /]}
 {[ const GoogleAnalyticsKey = configuration.googleAnalyticsAPIKey /]}
 {[ const HotjarSiteId = configuration.hotjarSiteId /]}
 
@@ -28,8 +30,8 @@
 
 <!-- General scripts -->
 <script src="{{ assetUrl("dist/docs.min.js", domain)}}"></script>
-<script src="{{ assetUrl("js/functionality.js", domain)}}"></script>
-<script src="{{ assetUrl("js/cookie-consent.js", domain)}}"></script>
+<script src="{{ assetUrl("js/functionality.js?v="+version, domain)}}"></script>
+<script src="{{ assetUrl("js/cookie-consent.js?v="+version, domain)}}"></script>
 
 {[ if exportConfiguration().contentIncludeLottiePlayer ]}
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js" integrity="sha512-D3Ok1VpuyIDNHL5A0gjlV67UE6/d/OyEnsWISiMpIiGPxNTJqZxJQUZp35V8Ydu0LNytT2oK5yKs4w6X0ZDhrA==" crossorigin="anonymous" async></script>

@@ -23,6 +23,7 @@
 {[/]}
 {[ let showTOC = (hasHeading && configuration.tocShow) /]}
 {[ let showTOCOnHomepage = (!isHomepage || (isHomepage && configuration.tocShowOnHomepage)) /]}
+{[ let highlightAllVisibleSections = (configuration.tocHighlightAllVisibleSections ? "true" : "false") /]}
 
 {*
      Check if we're on homepage and we want to show TOC in there — if yes, let's not even render TOC container 
@@ -30,7 +31,7 @@
  *}
 {[ if (showTOCOnHomepage || pageConfiguration.showSidebar) ]}
     <div id="content-nav-container">
-        <nav id="content-nav">
+        <nav id="content-nav" data-highlight-all-visible="{{ highlightAllVisibleSections }}">
         {[ if showTOC ]}
             {[ if showTOCOnHomepage ]}
                 <span class="content-nav-header">{{ configuration.tocCustomLabel }}</span>
