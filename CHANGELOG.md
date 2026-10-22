@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.8.2] - 2026-10-22
+### Link thumbnail alignment
+
+- Link block thumbnails now use the same `img-fluid` and `sn-text-*` alignment classes as image blocks: Left (the default), Center, and Stretch (full thumbnail width). The card layout is unchanged.
+
 ## [2.1.2] - 2022-23-08
 ### Add _hide pages
 
@@ -195,4 +200,3 @@ All notable changes to this exporter are mentioned here in this file.
 
 ## [1.0-1.15] - 2021 - 2022
 ### Initial implementation
-
