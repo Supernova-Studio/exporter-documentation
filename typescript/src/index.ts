@@ -5,12 +5,12 @@ import {
   getColorContrastRatio,
   returnSwatchClassnames,
   getClassForInvertedText,
-  contrastColor
+  contrastColor,
 } from './doc_functionality/color';
 import {
   convertHealthTagIfAny,
   getFigmaFileUrl,
-  sortComponentsAlphabetically
+  sortComponentsAlphabetically,
 } from './doc_functionality/health';
 import {
   firstPageFromTop,
@@ -25,7 +25,7 @@ import {
   getCurrentTimestamp,
   checkKeyInArray,
   firstTabGroupFromTop,
-  isHomepageTab
+  isHomepageTab,
 } from './doc_functionality/lookup';
 import { markdownToHTML } from './doc_functionality/markdown';
 import {
@@ -38,11 +38,11 @@ import {
   fastRenderHeadingBlockToHtml,
   fastRenderTableToHtml,
   pageHasTocHeadings,
-  pageHasTopLevelHeading
+  pageHasTopLevelHeading,
 } from './doc_functionality/sandbox';
 import {
   isFastRenderersTokensEnabled,
-  fastRenderTokenStackToHtml
+  fastRenderTokenStackToHtml,
 } from './doc_functionality/renderers';
 import { buildSearchIndexJSON } from './doc_functionality/search';
 import {
@@ -55,7 +55,7 @@ import {
   getVariantClass,
   escapeHtml,
   addSlashes,
-  normalizeStringForSearch
+  normalizeStringForSearch,
 } from './doc_functionality/string_utils';
 import {
   convertTypographyTokenToCSS,
@@ -80,7 +80,7 @@ import {
   extendFontFamily,
   normalizeFontSizeCSS,
   convertTextDecorationToCSS,
-  convertTextCaseToTextTransform
+  convertTextCaseToTextTransform,
 } from './doc_functionality/tokens';
 import {
   assetUrl,
@@ -91,7 +91,7 @@ import {
   pageAnchorUrl,
   slugifyHeading,
   pageIdentifier,
-  removeVersionFromDomainUrl
+  removeVersionFromDomainUrl,
 } from './doc_functionality/urls';
 import {
   generateCustomCSSHash,
@@ -102,27 +102,27 @@ import {
   safeArray,
   isNonEmptyString,
   objectValues,
-  objectEntries
+  objectEntries,
 } from './doc_functionality/general-utils';
 import {
   getComponentPreviews,
-  sortComponentsPreviews
+  sortComponentsPreviews,
 } from './doc_functionality/components';
 import { getThemesTooltip } from './doc_functionality/themes';
 import {
   getDynamicVariableForStyle,
   getAssetBlockColumnsClassname,
-  sortAssetsByName
+  sortAssetsByName,
 } from './doc_functionality/assets';
 import {
   extractFontFamiliesFromTokens,
   processFontsForLoading,
   getDefaultBrand,
-  getFontFormat
+  getFontFormat,
 } from './doc_functionality/fonts';
 import {
   getDocsStorybookEmbedUrl,
-  isEmbedDocs
+  isEmbedDocs,
 } from './doc_functionality/storybook';
 import { getActualEmbedUrl } from './doc_functionality/storybook';
 import { convertStoryPropsToJson } from './doc_functionality/storybook';
@@ -132,13 +132,13 @@ import {
   getFileFromFiles,
   getFilesVariantClass,
   getFileTypeFromFileName,
-  getIconUrlFromFileType
+  getIconUrlFromFileType,
 } from './doc_functionality/files';
 import { mapCodeLanguageToPrismClass } from './doc_functionality/code';
 import { throwError } from './utils';
 import {
   getContextMcpActions,
-  getContextMcpInstallOptions
+  getContextMcpInstallOptions,
 } from './doc_functionality/context-mcp';
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -148,7 +148,7 @@ import {
 Pulsar.registerFunction('firstSubgroupOfPage', firstSubgroupOfPage);
 Pulsar.registerFunction(
   'pageOrGroupActiveInContext',
-  pageOrGroupActiveInContext
+  pageOrGroupActiveInContext,
 );
 Pulsar.registerFunction('flattenedPageStructure', flattenedPageStructure);
 Pulsar.registerFunction('firstPageFromTop', firstPageFromTop);
@@ -186,7 +186,7 @@ Pulsar.registerFunction('getFontFormat', getFontFormat);
 /* Context MCP */
 Pulsar.registerFunction(
   'getContextMcpInstallOptions',
-  getContextMcpInstallOptions
+  getContextMcpInstallOptions,
 );
 Pulsar.registerFunction('getContextMcpActions', getContextMcpActions);
 
@@ -211,7 +211,7 @@ Pulsar.registerFunction('slugifyHeading', slugifyHeading);
 Pulsar.registerFunction('textBlockPlainText', textBlockPlainText);
 Pulsar.registerFunction(
   'removeVersionFromDomainUrl',
-  removeVersionFromDomainUrl
+  removeVersionFromDomainUrl,
 );
 
 /* Token manipulation and formatting */
@@ -223,12 +223,12 @@ Pulsar.registerFunction('shadowDescription', shadowDescription);
 Pulsar.registerFunction('shadowTokenValue', shadowTokenValue);
 Pulsar.registerFunction(
   'measureTypeIntoReadableUnit',
-  measureTypeIntoReadableUnit
+  measureTypeIntoReadableUnit,
 );
 Pulsar.registerFunction('typographyDescription', typographyDescription);
 Pulsar.registerFunction(
   'convertTypographyTokenToCSS',
-  convertTypographyTokenToCSS
+  convertTypographyTokenToCSS,
 );
 Pulsar.registerFunction('getFormattedColor', getFormattedColor);
 Pulsar.registerFunction('getColorValueFromSettings', getColorValueFromSettings);
@@ -237,24 +237,24 @@ Pulsar.registerFunction('tokenValueToHex', tokenValueToHex);
 Pulsar.registerFunction('getBorderStyleValue', getBorderStyleValue);
 Pulsar.registerFunction(
   'measureValueToReadableUnit',
-  measureValueToReadableUnit
+  measureValueToReadableUnit,
 );
 Pulsar.registerFunction('isDimensionToken', isDimensionToken);
 Pulsar.registerFunction('isStringToken', isStringToken);
 Pulsar.registerFunction('isOptionsToken', isOptionsToken);
 Pulsar.registerFunction(
   'decimalOpacityToPercentage',
-  decimalOpacityToPercentage
+  decimalOpacityToPercentage,
 );
 Pulsar.registerFunction('extendFontFamily', extendFontFamily);
 Pulsar.registerFunction('normalizeFontSizeCSS', normalizeFontSizeCSS);
 Pulsar.registerFunction(
   'convertTextDecorationToCSS',
-  convertTextDecorationToCSS
+  convertTextDecorationToCSS,
 );
 Pulsar.registerFunction(
   'convertTextCaseToTextTransform',
-  convertTextCaseToTextTransform
+  convertTextCaseToTextTransform,
 );
 
 /* Markdown */
@@ -264,7 +264,7 @@ Pulsar.registerFunction('markdownToHTML', markdownToHTML);
 Pulsar.registerFunction('convertHealthTagIfAny', convertHealthTagIfAny);
 Pulsar.registerFunction(
   'sortComponentsAlphabetically',
-  sortComponentsAlphabetically
+  sortComponentsAlphabetically,
 );
 Pulsar.registerFunction('getFigmaFileUrl', getFigmaFileUrl);
 
@@ -277,10 +277,19 @@ Pulsar.registerFunction('isFastRenderersEnabled', isFastRenderersEnabled);
 Pulsar.registerFunction('richTextHasDynamicLinks', richTextHasDynamicLinks);
 Pulsar.registerFunction('fastRenderRichTextToHtml', fastRenderRichTextToHtml);
 Pulsar.registerFunction('fastRenderTextBlockToHtml', fastRenderTextBlockToHtml);
-Pulsar.registerFunction('fastRenderHeadingBlockToHtml', fastRenderHeadingBlockToHtml);
+Pulsar.registerFunction(
+  'fastRenderHeadingBlockToHtml',
+  fastRenderHeadingBlockToHtml,
+);
 Pulsar.registerFunction('fastRenderTableToHtml', fastRenderTableToHtml);
-Pulsar.registerFunction('isFastRenderersTokensEnabled', isFastRenderersTokensEnabled);
-Pulsar.registerFunction('fastRenderTokenStackToHtml', fastRenderTokenStackToHtml);
+Pulsar.registerFunction(
+  'isFastRenderersTokensEnabled',
+  isFastRenderersTokensEnabled,
+);
+Pulsar.registerFunction(
+  'fastRenderTokenStackToHtml',
+  fastRenderTokenStackToHtml,
+);
 Pulsar.registerFunction('pageHasTocHeadings', pageHasTocHeadings);
 Pulsar.registerFunction('pageHasTopLevelHeading', pageHasTopLevelHeading);
 
@@ -300,18 +309,18 @@ Pulsar.registerFunction('sortComponentsPreviews', sortComponentsPreviews);
 /* Assets */
 Pulsar.registerFunction(
   'getAssetBlockColumnsClassname',
-  getAssetBlockColumnsClassname
+  getAssetBlockColumnsClassname,
 );
 Pulsar.registerFunction('sortAssetsByName', sortAssetsByName);
 Pulsar.registerFunction(
   'getDynamicVariableForStyle',
-  getDynamicVariableForStyle
+  getDynamicVariableForStyle,
 );
 
 /* Fonts */
 Pulsar.registerFunction(
   'extractFontFamiliesFromTokens',
-  extractFontFamiliesFromTokens
+  extractFontFamiliesFromTokens,
 );
 Pulsar.registerFunction('processFontsForLoading', processFontsForLoading);
 Pulsar.registerFunction('getDefaultBrand', getDefaultBrand);
@@ -334,7 +343,7 @@ Pulsar.registerFunction('getActualFileName', getActualFileName);
 /* Code blocks */
 Pulsar.registerFunction(
   'mapCodeLanguageToPrismClass',
-  mapCodeLanguageToPrismClass
+  mapCodeLanguageToPrismClass,
 );
 
 /* Utils */
