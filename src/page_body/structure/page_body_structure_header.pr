@@ -102,6 +102,10 @@
                             {[ inject "icon_search" context configuration /]}
                         </button>
                     {[/]}
+                    {* Docs agent POC: opens the chat panel from page_body_docs_agent *}
+                    <button class="btn-icon-button docs-agent-toggle" id="docs-agent-toggle" type="button" aria-controls="docs-agent-panel" aria-expanded="false" lang="en">
+                        Ask AI
+                    </button>
                     {[ if configuration.advancedCustomizationShowCTA ]}
                         {[ let ctaText = (configuration.advancedCustomizationCTAText ? configuration.advancedCustomizationCTAText : "Open site") /]}
                         {[ let ctaUrl = (configuration.advancedCustomizationCTAUrl ? configuration.advancedCustomizationCTAUrl : "") /]}

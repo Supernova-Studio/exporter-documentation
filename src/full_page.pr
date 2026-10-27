@@ -110,6 +110,7 @@
 
 <!-- JavaScript -->
 {[ inject "page_body_scripts" context page /]}
+{[ inject "page_body_docs_agent" context page /]}
 
 </body>
 </html>
