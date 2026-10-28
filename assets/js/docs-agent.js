@@ -4,9 +4,6 @@
 
 // POC: the chat comes from a locally running docs agent
 const DOCS_AGENT_URL = 'http://localhost:2001';
-// A local export has no published address, so the chat answers from this site instead
-const DOCS_AGENT_FALLBACK_DOCS_URL =
-  'https://special-prawn-green.docs.matejbobek.sst.supernova.io/latest';
 const DOCS_AGENT_OPEN_KEY = 'supernova.docsAgent.isOpen';
 
 $(function () {
@@ -18,11 +15,10 @@ $(function () {
 
   let $frame = null;
 
+  // The page's published address, the same one its SEO tags carry
   function docsAgentChatUrl() {
-    const docsUrl = /^https?:$/.test(window.location.protocol)
-      ? window.location.href
-      : DOCS_AGENT_FALLBACK_DOCS_URL;
-    return `${DOCS_AGENT_URL}/embed?docsUrl=${encodeURIComponent(docsUrl)}`;
+    const docsUrl = $('meta[property="og:url"]').attr('content') || '';
+    return `${DOCS_AGENT_URL}/embed?${new URLSearchParams({ docsUrl })}`;
   }
 
   function setOpen(isOpen) {
