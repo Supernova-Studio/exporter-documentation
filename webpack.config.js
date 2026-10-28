@@ -52,6 +52,7 @@ module.exports = (env, argv) => ({
       './assets/js/toast.js',
       './assets/js/syncscroll.js',
       './assets/js/search.js',
+      './assets/js/docs-agent.js',
       './scss/main.scss'
     ]
   },
