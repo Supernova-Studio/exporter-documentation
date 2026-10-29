@@ -17,7 +17,8 @@
   bottom: 0;
   z-index: 1050;
   width: min(420px, 100vw);
-  background: #fff;
+  /* The chat's own background, so the panel does not flash white while the chat loads */
+  background: #f8f9fb;
   border-left: 1px solid rgb(9 18 42 / 0.1);
   box-shadow: 0 15px 25px rgb(9 18 42 / 0.07);
 

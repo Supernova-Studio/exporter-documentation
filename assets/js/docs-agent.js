@@ -24,11 +24,18 @@ $(function () {
   function setOpen(isOpen) {
     // The chat loads on first open, so pages that never use it do not pay for it
     if (isOpen && !$frame) {
+      // The same dots as the page preloader, until the chat's page has loaded
+      const $loader = $('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
       $frame = $('<iframe>', {
         title: 'Documentation assistant',
         allow: 'clipboard-write',
         src: docsAgentChatUrl(),
-      }).appendTo($panel);
+      })
+        .one('load', function () {
+          $loader.remove();
+        })
+        .appendTo($panel);
+      $loader.appendTo($panel);
     }
 
     $panel.prop('hidden', !isOpen);
