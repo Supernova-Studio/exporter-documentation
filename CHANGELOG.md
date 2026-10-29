@@ -2,6 +2,13 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.9.0] - 2026-10-29
+### Image backgrounds and padding
+
+- Image blocks and link thumbnails now apply the block's `backgroundColor.value` CSS string to the image container.
+- Image container padding uses stylesheet classes for None (0), S (8px), M (16px), and L (24px), without affecting captions or card text.
+- Link thumbnails with explicit padding use the image layout (Left by default); older thumbnails without padding or alignment retain their background-image layout.
+
 ## [5.8.2] - 2026-10-22
 ### Link thumbnail alignment
 
