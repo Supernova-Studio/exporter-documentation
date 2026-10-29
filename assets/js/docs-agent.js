@@ -6,7 +6,7 @@
 const DOCS_AGENT_URL = 'http://localhost:2001';
 // A local export has no published address, so the chat answers from this site instead
 const DOCS_AGENT_FALLBACK_DOCS_URL =
-  'https://acute-brown-dormouse.docs.dev.supernova.io/latest';
+  'https://acute-brown-dormouse.docs.matejbobek.sst.supernova.io/latest';
 const DOCS_AGENT_OPEN_KEY = 'supernova.docsAgent.isOpen';
 
 $(function () {
