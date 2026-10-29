@@ -12,46 +12,45 @@
     left: 0;
     right: 0;
     bottom: 0;
-}
 
-/* The page preloader's dots, also reused while the docs agent's chat loads */
-.lds-ellipsis {
-    display: inline-block;
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    margin-top: -40px;
-    margin-left: -40px;
-    top: 50%;
-    left: 50%;
-
-    div {
+    .lds-ellipsis {
+        display: inline-block;
         position: absolute;
-        top: 33px;
-        width: 13px;
-        height: 13px;
-        border-radius: 50%;
-        background: var(--colorBorderSubtle);
-        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+        margin-left: -40px;
+        top: 50%;
+        left: 50%;
 
-        &:nth-child(1) {
-            left: 8px;
-            animation: lds-ellipsis1 0.6s infinite;
-        }
+        div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--colorBorderSubtle);
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
-        &:nth-child(2) {
-            left: 8px;
-            animation: lds-ellipsis2 0.6s infinite;
-        }
+            &:nth-child(1) {
+                left: 8px;
+                animation: lds-ellipsis1 0.6s infinite;
+            }
 
-        &:nth-child(3) {
-            left: 32px;
-            animation: lds-ellipsis2 0.6s infinite;
-        }
+            &:nth-child(2) {
+                left: 8px;
+                animation: lds-ellipsis2 0.6s infinite;
+            }
 
-        &:nth-child(4) {
-            left: 56px;
-            animation: lds-ellipsis3 0.6s infinite;
+            &:nth-child(3) {
+                left: 32px;
+                animation: lds-ellipsis2 0.6s infinite;
+            }
+
+            &:nth-child(4) {
+                left: 56px;
+                animation: lds-ellipsis3 0.6s infinite;
+            }
         }
     }
 }
