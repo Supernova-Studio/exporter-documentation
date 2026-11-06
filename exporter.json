@@ -1189,6 +1189,7 @@
         {
           "name": "Highlighted",
           "key": "default",
+          "isDefault": true,
           "description": "Callout with a stronger background, for messages readers must not miss.",
           "thumbnail": "thumbnails/TestCallout_Highlighted.png"
         }
@@ -1224,6 +1225,7 @@
         {
           "name": "Inline",
           "key": "inline",
+          "isDefault": true,
           "description": "A slim note with an accent line, sitting in the text flow.",
           "thumbnail": "thumbnails/TestNotice_Inline.png"
         },
@@ -1238,6 +1240,7 @@
         {
           "key": "default",
           "name": "Card",
+          "isDefault": true,
           "description": "Single card",
           "thumbnail": "thumbnails/AllFields_Card.png"
         },
