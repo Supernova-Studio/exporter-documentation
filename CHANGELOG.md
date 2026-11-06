@@ -2,6 +2,11 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.8.2] - 2026-11-06
+### Preview heading navigation
+
+- Include the preview banner's height when scrolling to headings, including when the banner wraps on smaller screens.
+
 ## [2.1.2] - 2022-23-08
 ### Add _hide pages
 
@@ -195,4 +200,3 @@ All notable changes to this exporter are mentioned here in this file.
 
 ## [1.0-1.15] - 2021 - 2022
 ### Initial implementation
-
