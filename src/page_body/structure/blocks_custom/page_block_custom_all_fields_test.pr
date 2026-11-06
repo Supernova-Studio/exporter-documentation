@@ -1,0 +1,33 @@
+{[ const block = context /]}
+
+{* Test block: prints the value of every supported field type, laid out by the selected variant *}
+{[ let props = block.properties /]}
+{[ let imageUrl = props.illustration?.asset?.url /]}
+{[ let columns = props.columns ?? 3 /]}
+
+{[ let layout = "max-width: 360px;" /]}
+{[ if block.variantKey === "grid" ]}
+    {[ layout = ("display: grid; grid-template-columns: repeat(" + columns.toString() + ", minmax(0, 1fr)); gap: 16px;") /]}
+{[ elseif block.variantKey === "full-width" ]}
+    {[ layout = "padding: 24px; border-radius: 8px; background: rgba(0, 0, 0, 0.04);" /]}
+{[/]}
+
+<div class="content-block content-block--all-fields-test" style="{{ layout }}">
+    <div style="padding: 16px; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 8px;">
+        {[ if isNonEmptyString(imageUrl) ]}
+        <img src="{{ imageUrl }}" alt="" style="display: block; width: 100%; margin-bottom: 12px; border-radius: 4px;">
+        {[/]}
+        <p style="margin: 0 0 4px; font-weight: 600;">
+            {[ if props.showIcon ?? true ]}<span aria-hidden="true">&#9670; </span>{[/]}{{ props.title ?? "" }}
+        </p>
+        {[ if isNonEmptyString(props.body) ]}
+        <p style="margin: 0 0 8px; white-space: pre-line;">{{ props.body }}</p>
+        {[/]}
+        {[ if isNonEmptyString(props.snippet) ]}
+        <pre style="margin: 0 0 8px;"><code>{{ props.snippet }}</code></pre>
+        {[/]}
+        <p style="margin: 0; font-size: 12px; opacity: 0.7;">
+            Tone: {{ props.tone ?? "Info" }} · Columns: {{ columns }}{[ if isNonEmptyString(props.component) ]} · Component: {{ props.component }}{[/]}
+        </p>
+    </div>
+</div>

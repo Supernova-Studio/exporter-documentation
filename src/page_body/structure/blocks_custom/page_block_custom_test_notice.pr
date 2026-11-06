@@ -1,0 +1,29 @@
+{[ const block = context /]}
+
+{* Test block: a short message, as a slim inline note or a full-width banner *}
+{[ let title = block.properties.title /]}
+{[ let message = block.properties.message /]}
+{[ let tone = block.properties.tone ?? "Info" /]}
+
+{[ let color = "#0f62fe" /]}
+{[ switch tone ]}
+{[ case "Success" ]}
+    {[ color = "#198038" /]}
+{[ case "Warning" ]}
+    {[ color = "#b28600" /]}
+{[ case "Critical" ]}
+    {[ color = "#da1e28" /]}
+{[/]}
+
+{[ if block.variantKey === "banner" ]}
+<div class="content-block content-block--test-notice" role="note" style="padding: 16px 20px; border: 1px solid {{ color }}; border-radius: 8px; background: color-mix(in srgb, {{ color }} 8%, transparent);">
+{[ else ]}
+<div class="content-block content-block--test-notice" role="note" style="padding: 4px 0 4px 16px; border-left: 3px solid {{ color }};">
+{[/]}
+    {[ if isNonEmptyString(title) ]}
+    <p style="margin: 0 0 4px; font-weight: 600; color: {{ color }};">{{ title }}</p>
+    {[/]}
+    {[ if isNonEmptyString(message) ]}
+    <p style="margin: 0; white-space: pre-line;">{{ message }}</p>
+    {[/]}
+</div>

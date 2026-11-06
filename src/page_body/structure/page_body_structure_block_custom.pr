@@ -14,4 +14,10 @@
     {[ inject "page_block_custom_lottie_preview" context block /]}
 {[ case "io.supernova.documentation-main.release-notes" ]}
     {[ inject "page_block_custom_release_notes" context block /]}
+{[ case "io.supernova.documentation-main.test-spacing" ]}
+    {[ inject "page_block_custom_test_spacing" context block /]}
+{[ case "io.supernova.documentation-main.test-notice" ]}
+    {[ inject "page_block_custom_test_notice" context block /]}
+{[ case "io.supernova.documentation-main.all-fields-test" ]}
+    {[ inject "page_block_custom_all_fields_test" context block /]}
 {[/]}

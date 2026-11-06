@@ -1,0 +1,14 @@
+{[ const block = context /]}
+
+{* Test block: empty space whose height comes from the selected variant *}
+{[ let height = 32 /]}
+{[ switch block.variantKey ]}
+{[ case "small" ]}
+    {[ height = 16 /]}
+{[ case "large" ]}
+    {[ height = 64 /]}
+{[ case "extra-large" ]}
+    {[ height = 96 /]}
+{[/]}
+
+<div class="content-block content-block--test-spacing" style="height: {{ height }}px;" aria-hidden="true"></div>

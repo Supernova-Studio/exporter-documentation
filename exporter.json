@@ -6,7 +6,7 @@
   "organization": "Supernova",
   "source_dir": "src",
   "assets_dir": "assets",
-  "version": "5.8.3",
+  "version": "5.9.0",
   "usesBrands": false,
   "config": {
     "sources": "sources.json",
@@ -754,6 +754,113 @@
             "label": "Date of update"
           }
         ]
+      },
+      {
+        "key": "io.supernova.documentation-main.test-spacing",
+        "category": "Layout",
+        "title": "Section spacing",
+        "description": "Adds a fixed amount of space between two blocks. Pick a size from the variants.",
+        "icon": "icons/custom-block-test-spacing.png",
+        "mode": "block",
+        "properties": []
+      },
+      {
+        "key": "io.supernova.documentation-main.test-notice",
+        "category": "Other",
+        "title": "Notice",
+        "description": "Highlights a short message for readers",
+        "icon": "icons/custom-block-test-notice.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "title",
+            "label": "Title",
+            "type": "string",
+            "default": "Heads up"
+          },
+          {
+            "key": "message",
+            "label": "Message",
+            "type": "string",
+            "isMultiline": true,
+            "inputType": "plain",
+            "default": ""
+          },
+          {
+            "key": "tone",
+            "label": "Tone",
+            "type": "enum",
+            "values": ["Info", "Success", "Warning", "Critical"],
+            "default": "Info"
+          }
+        ]
+      },
+      {
+        "key": "io.supernova.documentation-main.all-fields-test",
+        "category": "Other",
+        "title": "All fields test",
+        "description": "Test block using every supported field type",
+        "icon": "icons/custom-block-all-fields.png",
+        "mode": "block",
+        "properties": [
+          {
+            "key": "title",
+            "label": "Title",
+            "type": "string",
+            "description": "Short heading shown on the card",
+            "default": "Card title"
+          },
+          {
+            "key": "body",
+            "label": "Body",
+            "type": "string",
+            "isMultiline": true,
+            "inputType": "plain",
+            "default": ""
+          },
+          {
+            "key": "snippet",
+            "label": "Code snippet",
+            "type": "string",
+            "isMultiline": true,
+            "inputType": "code",
+            "default": ""
+          },
+          {
+            "key": "columns",
+            "label": "Columns",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "showIcon",
+            "label": "Show icon",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "key": "tone",
+            "label": "Tone",
+            "type": "enum",
+            "values": ["Info", "Success", "Warning", "Critical"],
+            "default": "Info"
+          },
+          {
+            "key": "illustration",
+            "label": "Illustration",
+            "type": "image"
+          },
+          {
+            "key": "component",
+            "label": "Component",
+            "type": "component"
+          },
+          {
+            "key": "componentProps",
+            "label": "Properties",
+            "type": "componentProperties"
+          }
+        ]
       }
     ],
     "blockVariants": {
@@ -1076,6 +1183,74 @@
           "key": "boxed",
           "description": "Markdown content wrapped in the container with secondary background.",
           "thumbnail": "thumbnails/CustomMarkdown_Boxed.png"
+        }
+      ],
+      "Callout": [
+        {
+          "name": "Highlighted",
+          "key": "default",
+          "description": "Callout with a stronger background, for messages readers must not miss.",
+          "thumbnail": "thumbnails/TestCallout_Highlighted.png"
+        }
+      ],
+      "io.supernova.documentation-main.test-spacing": [
+        {
+          "name": "Small",
+          "key": "small",
+          "description": "16px of space. Use between closely related blocks.",
+          "thumbnail": "thumbnails/TestSpacing_Small.png"
+        },
+        {
+          "name": "Medium",
+          "key": "default",
+          "isDefault": true,
+          "description": "32px of space. The usual gap between blocks.",
+          "thumbnail": "thumbnails/TestSpacing_Medium.png"
+        },
+        {
+          "name": "Large",
+          "key": "large",
+          "description": "64px of space. Use before a new topic on the same page.",
+          "thumbnail": "thumbnails/TestSpacing_Large.png"
+        },
+        {
+          "name": "Extra large",
+          "key": "extra-large",
+          "description": "96px of space. Use to separate major sections.",
+          "thumbnail": "thumbnails/TestSpacing_ExtraLarge.png"
+        }
+      ],
+      "io.supernova.documentation-main.test-notice": [
+        {
+          "name": "Inline",
+          "key": "inline",
+          "description": "A slim note with an accent line, sitting in the text flow.",
+          "thumbnail": "thumbnails/TestNotice_Inline.png"
+        },
+        {
+          "name": "Banner",
+          "key": "banner",
+          "description": "A full-width box with a background, for messages readers must not miss.",
+          "thumbnail": "thumbnails/TestNotice_Banner.png"
+        }
+      ],
+      "io.supernova.documentation-main.all-fields-test": [
+        {
+          "key": "default",
+          "name": "Card",
+          "description": "Single card",
+          "thumbnail": "thumbnails/AllFields_Card.png"
+        },
+        {
+          "key": "grid",
+          "name": "Card grid",
+          "description": "Cards in a grid",
+          "thumbnail": "thumbnails/AllFields_Grid.png"
+        },
+        {
+          "key": "full-width",
+          "name": "Full width",
+          "description": "Full-width section with boxed content"
         }
       ]
     }
