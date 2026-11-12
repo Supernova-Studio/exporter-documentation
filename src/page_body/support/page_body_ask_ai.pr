@@ -3,27 +3,26 @@
   (`<agent url>/embed`) in a floating panel. The chat runs in an iframe, which `assets/js/ask-ai.js`
   creates on first open and hands the reader's access token to over postMessage.
 
-  The widget renders only on the Live documentation environment, and only once both values below are set.
+  The widget renders only on the Live documentation environment. The script keeps it hidden until an access
+  token is in session storage; `assets/js/ask-ai.js` explains how to set one.
 *}
 
 {* Ask AI configuration: origin of the docs agent app that serves `/embed` *}
 {[ const askAiAgentUrl = "http://localhost:2001" /]}
-{* Ask AI configuration: the reader's Supernova access token, hardcoded until published docs sign readers in *}
-{[ const askAiAccessToken = "" /]}
 
 {[ const isLive = (ds.documentationEnvironment() === "Live") /]}
 
-{[ if (isLive && askAiAgentUrl && askAiAccessToken) ]}
+{[ if (isLive && askAiAgentUrl) ]}
   {[ const designSystem = ds.currentDesignSystem() /]}
   {[ const version = ds.currentDesignSystemVersion() /]}
   <div class="ask-ai"
     id="ask-ai"
     data-agent-url="{{ askAiAgentUrl }}"
-    data-access-token="{{ askAiAccessToken }}"
     data-workspace-id="{{ designSystem.workspaceId }}"
     data-design-system-id="{{ designSystem.id }}"
     data-version-id="{{ version.id }}"
-    lang="en">
+    lang="en"
+    hidden>
     <section class="ask-ai-panel" id="ask-ai-panel" aria-label="Supernova Ask AI" hidden></section>
     <button class="ask-ai-launcher" id="ask-ai-launcher" type="button" aria-controls="ask-ai-panel" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">

@@ -9,11 +9,21 @@
   - iframe to page `ready`: the chat can take a token, so the page sends `token`
   - iframe to page `close`: the reader closed the chat, so the page hides the panel
   - page to iframe `token`: the reader's access token, posted only to the agent's origin
+
+  Until published docs sign readers in, the access token is read from session storage, and the widget
+  stays hidden while there is none. To try it on a published site:
+  1. Sign in to Supernova on the environment the docs agent runs against, open `<cloud url>/api/auth/session`
+     and copy `user.accessToken`.
+  2. On the published docs site, run this in the browser console, then reload the page:
+       sessionStorage.setItem("sn.askAi.token", "<access token>")
+  Session storage is per tab and per site, so set it again in a new tab. The token expires after about
+  an hour; set a fresh one and reload, or remove it with `sessionStorage.removeItem("sn.askAi.token")`.
 */
 (function () {
   var MESSAGE_SOURCE = 'supernova-docs-agent';
   var PROTOCOL_VERSION = 1;
   var OPEN_STATE_KEY = 'sn.askAi.open';
+  var ACCESS_TOKEN_KEY = 'sn.askAi.token';
 
   var root = document.getElementById('ask-ai');
   if (!root) {
@@ -26,9 +36,11 @@
   var frame = null;
 
   var agentOrigin = readAgentOrigin(root.dataset.agentUrl);
-  if (!agentOrigin || !panel || !launcher || !collapse) {
+  if (!agentOrigin || !panel || !launcher || !collapse || !getAccessToken()) {
     return;
   }
+
+  root.hidden = false;
 
   function readAgentOrigin(agentUrl) {
     try {
@@ -38,9 +50,13 @@
     }
   }
 
-  // The token is hardcoded in the page template until published docs sign readers in
+  // Read on every `ready`, so a token set later reaches a chat that reloads
   function getAccessToken() {
-    return root.dataset.accessToken || null;
+    try {
+      return sessionStorage.getItem(ACCESS_TOKEN_KEY) || null;
+    } catch (error) {
+      return null;
+    }
   }
 
   function embedUrl() {
