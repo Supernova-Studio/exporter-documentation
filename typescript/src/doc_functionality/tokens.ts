@@ -120,16 +120,11 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
     }
   } else {
     // A color part that comes from another token (own opacity, or a plain reference to one) shows a one-decimal percent, as Cloud does
-    const alpha = customOpacity === null && isNonEmptyString(colorValue.color?.referencedTokenId)
+    const alpha = customOpacity === null && isNonEmptyString(colorValue.color.referencedTokenId)
       ? `${Math.round(opacity * 1000) / 10}%`
       : Number(opacity.toFixed(2))
     return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${alpha})`
   }
-}
-
-/** A color that references another color for its color part but has its own opacity (SDK `ColorToken.referencedColorId`) */
-function isColorPartReference(value: any): boolean {
-  return !isNonEmptyString(value?.referencedTokenId) && isNonEmptyString(value?.color?.referencedTokenId)
 }
 
 /** Name for the reference badge: the referenced token, or the source color of a color with its own opacity; null when there is none */
@@ -138,7 +133,8 @@ export function referenceBadgeName(token: any): string | null {
   let source: any = null
   if (isNonEmptyString(value?.referencedTokenId)) {
     source = value.referencedToken
-  } else if (token?.tokenType === 'Color' && isColorPartReference(value)) {
+  } else if (token?.tokenType === 'Color' && isNonEmptyString(value?.color?.referencedTokenId)) {
+    // A color with its own opacity references its source color in the color part (SDK `ColorToken.referencedColorId`)
     source = value.color.referencedToken
   }
   if (!source) return null

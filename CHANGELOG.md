@@ -5,7 +5,7 @@ All notable changes to this exporter are mentioned here in this file.
 ## [5.9.0] - 2026-11-16
 ### Colors with their own opacity
 
-- Token blocks show a reference badge naming the source color of a color with its own opacity, and its opacity as a one-decimal percent, e.g. `rgba(51,102,255,25.6%)`. Plain colors and plain references render as before.
+- Token blocks show a reference badge naming the source color of a color with its own opacity, and its opacity as a one-decimal percent, e.g. `rgba(51,102,255,25.6%)`. A plain reference to such a color shows the percent too. Plain colors and plain references to plain colors render as before.
 
 ## [2.1.2] - 2022-23-08
 ### Add _hide pages
