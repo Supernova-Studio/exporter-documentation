@@ -91,7 +91,7 @@ describe('getFormattedColor', () => {
     ).toBe('rgba(51,102,255,0.26)');
   });
 
-  test('hex color whose opacity references an Opacity token keeps the decimal', () => {
+  test('hex color whose opacity references an Opacity token keeps a 0–1 alpha, not a percent', () => {
     const value = {
       color: { ...rgb },
       opacity: { ...opacity(0.256), referencedTokenId: 'opacity-26' },
@@ -99,7 +99,7 @@ describe('getFormattedColor', () => {
     expect(getFormattedColor(value as any)).toBe('rgba(51,102,255,0.26)');
   });
 
-  test("a shadow's own opacity keeps the decimal", () => {
+  test("a shadow's own opacity keeps a 0–1 alpha, not a percent", () => {
     const value = plainReferenceTo(faded, ownOpacity(0.256));
     expect(getFormattedColor(value as any, true, opacity(0.2) as any)).toBe(
       'rgba(51,102,255,0.2)',

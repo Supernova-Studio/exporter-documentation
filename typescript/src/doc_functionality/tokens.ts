@@ -134,7 +134,7 @@ export function referenceBadgeName(token: any): string | null {
   if (isNonEmptyString(value?.referencedTokenId)) {
     source = value.referencedToken
   } else if (token?.tokenType === 'Color' && isNonEmptyString(value?.color?.referencedTokenId)) {
-    // A color with its own opacity references its source color in the color part (SDK `ColorToken.referencedColorId`)
+    // A color with its own opacity points to its source color from its color part; `referencedToken` is the resolved SDK `referencedColorId`
     source = value.color.referencedToken
   }
   if (!source) return null
