@@ -1,7 +1,6 @@
 import { getVariantClass, escapeHtml } from './string_utils'
-import { tokenValueToHex, getFormattedColor } from './tokens'
+import { tokenValueToHex, getFormattedColor, referenceBadgeName } from './tokens'
 import { returnSwatchClassnames } from './color'
-import { isNonEmptyString } from './general-utils'
 import { getThemesTooltip } from './themes'
 import { htmlSafeString } from './sandbox'
 
@@ -79,13 +78,8 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
 }
 
 function renderReferenceBadgeColor(token: any): string {
-  const v = token?.value
-  if (!isNonEmptyString(v?.referencedTokenId) || !v?.referencedToken) return ''
-  let refName = String(v.referencedToken.name || '')
-  // Short names (e.g. "50", "L1") are ambiguous alone; template prepends parent group name.
-  if (refName.length < 4 && v.referencedToken.parent) {
-    refName = String(v.referencedToken.parent.name || '') + ' ' + refName
-  }
+  const refName = referenceBadgeName(token)
+  if (refName === null) return ''
   return '<div class="reference-badge" data-bs-toggle="tooltip" title="Referenced token: ' + htmlSafeString(refName) + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
 }
 
