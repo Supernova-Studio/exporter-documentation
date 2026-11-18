@@ -1,5 +1,6 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
+import { isNonEmptyString } from './general-utils'
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Tokens
@@ -118,8 +119,31 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
       return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${Number(opacity.toFixed(2))})`
+    // A color part that comes from another token (own opacity, or a plain reference to one) shows a one-decimal percent, as Cloud does
+    const alpha = customOpacity === null && isNonEmptyString(colorValue.color.referencedTokenId)
+      ? `${Math.round(opacity * 1000) / 10}%`
+      : Number(opacity.toFixed(2))
+    return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${alpha})`
   }
+}
+
+/** Name for the reference badge: the referenced token, or the source color of a color with its own opacity; null when there is none */
+export function referenceBadgeName(token: any): string | null {
+  const value = token?.value
+  let source: any = null
+  if (isNonEmptyString(value?.referencedTokenId)) {
+    source = value.referencedToken
+  } else if (token?.tokenType === 'Color' && isNonEmptyString(value?.color?.referencedTokenId)) {
+    // A color with its own opacity points to its source color from its color part; `referencedToken` is the resolved SDK `referencedColorId`
+    source = value.color.referencedToken
+  }
+  if (!source) return null
+  let name = String(source.name || '')
+  // Short names (e.g. "50", "L1") are ambiguous alone, so prepend the parent group name
+  if (name.length < 4 && source.parent) {
+    name = String(source.parent.name || '') + ' ' + name
+  }
+  return name
 }
 
 function rgbToHex(r: number, g: number, b:number) {
