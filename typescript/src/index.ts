@@ -68,6 +68,7 @@ import {
   shadowTokenValue,
   typographyDescription,
   getFormattedColor,
+  referenceBadgeName,
   getColorValueFromSettings,
   safeToken,
   tokenValueToHex,
@@ -233,6 +234,7 @@ Pulsar.registerFunction(
   convertTypographyTokenToCSS,
 );
 Pulsar.registerFunction('getFormattedColor', getFormattedColor);
+Pulsar.registerFunction('referenceBadgeName', referenceBadgeName);
 Pulsar.registerFunction('getColorValueFromSettings', getColorValueFromSettings);
 Pulsar.registerFunction('safeToken', safeToken);
 Pulsar.registerFunction('tokenValueToHex', tokenValueToHex);
