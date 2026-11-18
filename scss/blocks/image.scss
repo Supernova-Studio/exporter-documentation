@@ -5,6 +5,29 @@
   width: 100%;
 }
 
+.image-padding-none,
+.image-padding-s,
+.image-padding-m,
+.image-padding-l {
+  box-sizing: border-box;
+}
+
+.image-padding-none {
+  padding: 0;
+}
+
+.image-padding-s {
+  padding: 8px;
+}
+
+.image-padding-m {
+  padding: 16px;
+}
+
+.image-padding-l {
+  padding: 24px;
+}
+
 .content-block--image {
   width: 100%;
 

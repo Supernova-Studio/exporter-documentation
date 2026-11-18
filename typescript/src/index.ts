@@ -112,6 +112,8 @@ import {
 import { getThemesTooltip } from './doc_functionality/themes';
 import {
   getDynamicVariableForStyle,
+  getImageContainerStyle,
+  getImagePaddingClass,
   getAssetBlockColumnsClassname,
   sortAssetsByName,
 } from './doc_functionality/assets';
@@ -314,6 +316,8 @@ Pulsar.registerFunction(
   getAssetBlockColumnsClassname,
 );
 Pulsar.registerFunction('sortAssetsByName', sortAssetsByName);
+Pulsar.registerFunction('getImageContainerStyle', getImageContainerStyle);
+Pulsar.registerFunction('getImagePaddingClass', getImagePaddingClass);
 Pulsar.registerFunction(
   'getDynamicVariableForStyle',
   getDynamicVariableForStyle,

@@ -20,3 +20,26 @@ export function sortAssetsByName(assets: Array<{ name: string }>) {
 export function getDynamicVariableForStyle(variableName: string, value: string, unit: string = "") {
     return `${variableName}: ${value}${unit};`;
 }
+
+export function getImageContainerStyle(block: {
+    backgroundColor?: { value: string | null } | null;
+}): string {
+    return block.backgroundColor?.value
+        ? `background-color: ${block.backgroundColor.value};`
+        : "";
+}
+
+export function getImagePaddingClass(padding?: "None" | "S" | "M" | "L" | null): string {
+    switch (padding) {
+        case "None":
+            return "image-padding-none";
+        case "S":
+            return "image-padding-s";
+        case "M":
+            return "image-padding-m";
+        case "L":
+            return "image-padding-l";
+        default:
+            return "";
+    }
+}
