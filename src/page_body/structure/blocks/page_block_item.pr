@@ -38,7 +38,29 @@
     {[/]}
 
     {[ if shortcut.previewUrl ]}
+    {[ if shortcut.alignment ]}
+    {[ let imgClass = "img-fluid" /]}
+    {[ let alignClass = "sn-text-left" /]}
+
+    {[ switch shortcut.alignment ]}
+        {[ case "Left" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-left" /]}
+        {[ case "Center" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-center" /]}
+        {[ case "Stretch" ]}
+            {[ imgClass = "img-fluid max" /]}
+            {[ alignClass = "sn-text-center" /]}
+    {[/]}
+
+    <div class="preview {{ alignClass }}">
+        <img src="{{ shortcut.previewUrl }}" class="{{ imgClass }}" alt="" />
+    </div>
+    {[ else ]}
+    {* backward compatibility to avoid breaking existing published docs *}
     <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+    {[/]}
     {[ else ]}
     <div class="preview empty"></div>
     {[/]}
