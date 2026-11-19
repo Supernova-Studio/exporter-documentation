@@ -1,13 +1,15 @@
 {*
   Ask AI widget: a floating "Ask assistant" button that opens the Supernova docs agent chat
   (`<agent url>/embed`) in a floating panel. The chat runs in an iframe, which `assets/js/ask-ai.js`
-  creates on first open and hands the reader's access token to over postMessage.
+  creates on first open and sends tokens to when it asks over postMessage; `assets/js/ask-ai.js` describes
+  the protocol.
 
-  The widget renders only on the Live documentation environment. The script keeps it hidden until an access
-  token is in session storage; `assets/js/ask-ai.js` explains how to set one.
+  The widget renders only on the Live documentation environment. It is not gated on the design system's
+  `isPublic` flag, which the API hardcodes to true: on public docs the token endpoint answers `unavailable`.
 *}
 
 {* Ask AI configuration: origin of the docs agent app that serves `/embed` *}
+{* TODO: the agent URL, the private-docs gate and the `aiFeaturesEnabled` gate will come from Pulsar *}
 {[ const askAiAgentUrl = "http://localhost:2001" /]}
 
 {[ const isLive = (ds.documentationEnvironment() === "Live") /]}
@@ -21,8 +23,7 @@
     data-workspace-id="{{ designSystem.workspaceId }}"
     data-design-system-id="{{ designSystem.id }}"
     data-version-id="{{ version.id }}"
-    lang="en"
-    hidden>
+    lang="en">
     <section class="ask-ai-panel" id="ask-ai-panel" aria-label="Supernova Ask AI" hidden></section>
     <button class="ask-ai-launcher" id="ask-ai-launcher" type="button" aria-controls="ask-ai-panel" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">

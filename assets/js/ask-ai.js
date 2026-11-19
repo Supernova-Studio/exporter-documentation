@@ -6,24 +6,18 @@
 
   The two windows talk with postMessage. Every message is an envelope
   `{ source: "supernova-docs-agent", version: 1, type, ... }`:
-  - iframe to page `ready`: the chat can take a token, so the page sends `token`
+  - iframe to page `ready`: the chat has loaded; the page does nothing
   - iframe to page `close`: the reader closed the chat, so the page hides the panel
-  - page to iframe `token`: the reader's access token, posted only to the agent's origin
-
-  Until published docs sign readers in, the access token is read from session storage, and the widget
-  stays hidden while there is none. To try it on a published site:
-  1. Sign in to Supernova on the environment the docs agent runs against, open `<cloud url>/api/auth/session`
-     and copy `user.accessToken`.
-  2. On the published docs site, run this in the browser console, then reload the page:
-       sessionStorage.setItem("sn.askAi.token", "<access token>")
-  Session storage is per tab and per site, so set it again in a new tab. The token expires after about
-  an hour; set a fresh one and reload, or remove it with `sessionStorage.removeItem("sn.askAi.token")`.
+  - iframe to page `token-request`: the chat needs a token, so the page asks the docs server
+    (`POST /auth/agent-token`, with the docs session cookie) and answers with `token` or `token-error`
+  - page to iframe `token`: `token` and `expiresAt` (epoch milliseconds)
+  - page to iframe `token-error`: `reason` is `signed-out` (no docs session) or `unavailable`
+  Messages to the iframe go to the agent's origin only, and the page keeps no copy of the token.
 */
 (function () {
   var MESSAGE_SOURCE = 'supernova-docs-agent';
   var PROTOCOL_VERSION = 1;
   var OPEN_STATE_KEY = 'sn.askAi.open';
-  var ACCESS_TOKEN_KEY = 'sn.askAi.token';
 
   var root = document.getElementById('ask-ai');
   if (!root) {
@@ -36,24 +30,15 @@
   var frame = null;
 
   var agentOrigin = readAgentOrigin(root.dataset.agentUrl);
-  if (!agentOrigin || !panel || !launcher || !collapse || !getAccessToken()) {
+  if (!agentOrigin || !panel || !launcher || !collapse) {
     return;
   }
 
-  root.hidden = false;
+  var requestToken = window.createAskAiTokenRequest(window.fetch.bind(window));
 
   function readAgentOrigin(agentUrl) {
     try {
       return new URL(agentUrl).origin;
-    } catch (error) {
-      return null;
-    }
-  }
-
-  // Read on every `ready`, so a token set later reaches a chat that reloads
-  function getAccessToken() {
-    try {
-      return sessionStorage.getItem(ACCESS_TOKEN_KEY) || null;
     } catch (error) {
       return null;
     }
@@ -90,11 +75,8 @@
     frame.contentWindow.postMessage(envelope, agentOrigin);
   }
 
-  function sendToken() {
-    var token = getAccessToken();
-    if (token) {
-      postToFrame({ type: 'token', token: token });
-    }
+  function answerTokenRequest() {
+    requestToken().then(postToFrame);
   }
 
   function readChatMessage(event) {
@@ -177,8 +159,8 @@
     if (!message) {
       return;
     }
-    if (message.type === 'ready') {
-      sendToken();
+    if (message.type === 'token-request') {
+      answerTokenRequest();
     } else if (message.type === 'close') {
       close();
     }
