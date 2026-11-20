@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 import {
   getFormattedColor,
-  referenceBadgeName,
+  referenceBadgeTooltip,
 } from '../typescript/src/doc_functionality/tokens';
 import { fastRenderTokenStackToHtml } from '../typescript/src/doc_functionality/renderers';
 
@@ -53,6 +53,33 @@ const plainReferenceTo = (target: any, targetValue: any) => ({
 });
 
 const faded = { id: 'accent-faded', name: 'accent-faded', parent: null };
+const opacityDisabled = {
+  id: 'opacity-disabled',
+  name: 'opacity-disabled',
+  parent: null,
+};
+const opacity50 = { id: 'opacity-50', name: '50', parent: { name: 'opacity' } };
+
+// An opacity part that references an Opacity (or Dimension) token
+const referencedOpacity = (source: any, measure = 0.4) => ({
+  ...opacity(measure),
+  referencedTokenId: source.id,
+  referencedToken: source,
+});
+
+// A color that references a color for its color part and a token for its opacity
+const bothParts = (
+  colorSource: any = blue500,
+  opacitySource: any = opacityDisabled,
+) => ({
+  color: {
+    ...rgb,
+    referencedTokenId: colorSource.id,
+    referencedToken: colorSource,
+  },
+  opacity: referencedOpacity(opacitySource),
+  referencedTokenId: null,
+});
 
 describe('getFormattedColor', () => {
   test('own opacity shows a one-decimal percent', () => {
@@ -107,49 +134,84 @@ describe('getFormattedColor', () => {
   });
 });
 
-describe('referenceBadgeName', () => {
-  test('own opacity names its source color, with the group for short names', () => {
+describe('referenceBadgeTooltip', () => {
+  test('color and opacity references show on separate lines', () => {
     expect(
-      referenceBadgeName(colorToken('accent-faded', ownOpacity(0.256))),
-    ).toBe('blue 500');
-    expect(
-      referenceBadgeName(colorToken('brand-faded', ownOpacity(0.3, accent))),
-    ).toBe('accent');
+      referenceBadgeTooltip(colorToken('accent-disabled', bothParts())),
+    ).toBe('Color: blue 500\nOpacity: opacity-disabled');
   });
 
-  test('plain reference names its direct target', () => {
+  test('own opacity names its source color, with the group for short names', () => {
     expect(
-      referenceBadgeName(
+      referenceBadgeTooltip(colorToken('accent-faded', ownOpacity(0.256))),
+    ).toBe('Color: blue 500');
+    expect(
+      referenceBadgeTooltip(colorToken('brand-faded', ownOpacity(0.3, accent))),
+    ).toBe('Color: accent');
+  });
+
+  test('a raw color with an opacity reference names only its opacity', () => {
+    const value = { color: { ...rgb }, opacity: referencedOpacity(opacity50) };
+    expect(referenceBadgeTooltip(colorToken('raw', value))).toBe(
+      'Opacity: opacity 50',
+    );
+  });
+
+  test('plain reference names its direct target, not its copied parts', () => {
+    expect(
+      referenceBadgeTooltip(
         colorToken('ref', plainReferenceTo(faded, ownOpacity(0.256))),
       ),
-    ).toBe('accent-faded');
+    ).toBe('Referenced token: accent-faded');
     expect(
-      referenceBadgeName(
-        colorToken('ref', plainReferenceTo(accent, plainColor())),
+      referenceBadgeTooltip(
+        colorToken('ref', plainReferenceTo(accent, bothParts())),
       ),
-    ).toBe('accent');
+    ).toBe('Referenced token: accent');
+  });
+
+  test('a lost part target drops only its own line', () => {
+    const lostColor = bothParts();
+    lostColor.color.referencedToken = undefined as any;
+    expect(referenceBadgeTooltip(colorToken('a', lostColor))).toBe(
+      'Opacity: opacity-disabled',
+    );
+    const lostOpacity = bothParts();
+    lostOpacity.opacity.referencedToken = undefined as any;
+    expect(referenceBadgeTooltip(colorToken('b', lostOpacity))).toBe(
+      'Color: blue 500',
+    );
+  });
+
+  test('names are HTML-escaped for the title attribute', () => {
+    const odd = { id: 'odd', name: 'a<b & "c"', parent: null };
+    expect(
+      referenceBadgeTooltip(
+        colorToken('ref', plainReferenceTo(odd, plainColor())),
+      ),
+    ).toBe('Referenced token: a&lt;b &amp; &quot;c&quot;');
   });
 
   test('no badge without a resolved source', () => {
     expect(
-      referenceBadgeName(colorToken('plain', plainColor(0.256))),
+      referenceBadgeTooltip(colorToken('plain', plainColor(0.256))),
     ).toBeNull();
     const lostTarget = {
-      ...plainReferenceTo(faded, ownOpacity(0.256)),
+      ...plainReferenceTo(faded, bothParts()),
       referencedToken: null,
     };
-    expect(referenceBadgeName(colorToken('ref', lostTarget))).toBeNull();
+    expect(referenceBadgeTooltip(colorToken('ref', lostTarget))).toBeNull();
     const lostSource = ownOpacity(0.256);
     lostSource.color.referencedToken = undefined as any;
-    expect(referenceBadgeName(colorToken('faded', lostSource))).toBeNull();
+    expect(referenceBadgeTooltip(colorToken('faded', lostSource))).toBeNull();
   });
 
-  test('only Color tokens get a color part badge', () => {
+  test('only Color tokens get part lines', () => {
     expect(
-      referenceBadgeName({
+      referenceBadgeTooltip({
         name: 'border',
         tokenType: 'Border',
-        value: ownOpacity(0.256),
+        value: bothParts(),
       }),
     ).toBeNull();
   });
@@ -163,8 +225,22 @@ describe('fastRenderTokenStackToHtml', () => {
         themes: [],
       },
     ]);
-    expect(html).toContain('title="Referenced token: blue 500"');
+    expect(html).toContain(
+      'data-bs-custom-class="tooltip-multiline" title="Color: blue 500"',
+    );
     expect(html).toContain('rgba(51,102,255,25.6%)');
+  });
+
+  test('color and opacity references render on two lines', () => {
+    const html = fastRenderTokenStackToHtml({ variantKey: 'stack' }, [
+      {
+        themedTokens: [colorToken('accent-disabled', bothParts())],
+        themes: [],
+      },
+    ]);
+    expect(html).toContain(
+      'title="Color: blue 500\nOpacity: opacity-disabled"',
+    );
   });
 
   test('plain color renders no badge', () => {
