@@ -68,7 +68,7 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
   const displayName = String(token?.name || '').replace(/\//g, ' / ')
   const themeClass = themes && themes.length > 0 ? 'theme-value' : ''
   let out = '<div class="preview is-color ' + returnSwatchClassnames(value) + '" style="background-color: ' + tokenValueToHex(value) + ';">'
-  out += renderReferenceBadgeColor(token)
+  out += renderReferenceBadgeColor(token, themes)
   out += renderThemesBadge(themes, iconStrokeWidth)
   // Template emits `{{ escapeHtml(...) }} ` with a trailing space before </div>; match byte-for-byte.
   if (showName) out += '<div class="name">' + (escapeHtml(displayName) ?? '') + ' </div>'
@@ -77,8 +77,8 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
   return out + '</div>'
 }
 
-function renderReferenceBadgeColor(token: any): string {
-  const tooltip = referenceBadgeTooltip(token)
+function renderReferenceBadgeColor(token: any, themes: any[]): string {
+  const tooltip = referenceBadgeTooltip(token, themes)
   if (tooltip === null) return ''
   return '<div class="reference-badge" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-multiline" title="' + tooltip + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
 }

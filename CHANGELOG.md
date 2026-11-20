@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.10.1] - 2026-11-20
+
+### References to libraries that were not imported
+
+- A token that references a variable from a Figma library that was not imported shows the reference badge, with Cloud's tooltip: `Referenced token was not imported` and `Reference: <name>`. A color whose color or opacity part comes from such a library shows `<Part>: <name> (not imported)`. In each theme column the badge follows that theme's value.
+
 ## [5.10.0] - 2026-11-20
 
 ### Color and opacity references
