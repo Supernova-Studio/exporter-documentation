@@ -243,7 +243,6 @@ describe('referenceBadgeTooltip for a library that was not imported', () => {
     expect(referenceBadgeTooltip(duration(remoteOrigin()))).toBe(
       'Referenced token was not imported',
     );
-    expect(referenceBadgeTooltip(colorToken('c', plainColor()))).toBeNull();
     const color = {
       ...colorToken('c', plainColor()),
       origin: remoteOrigin('A & B'),

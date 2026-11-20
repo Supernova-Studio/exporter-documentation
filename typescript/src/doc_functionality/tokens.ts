@@ -148,20 +148,15 @@ export function referenceBadgeTooltip(token: any, themes?: any[]): string | null
     return name ? `Referenced token was not imported\nReference: ${name}` : 'Referenced token was not imported'
   }
   if (token?.tokenType !== 'Color') return null
-  const lines: string[] = []
-  for (const [part, label] of [['color', 'Color'], ['opacity', 'Opacity']]) {
+  const lines = [['color', 'Color'], ['opacity', 'Opacity']].flatMap(([part, label]) => {
     // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
-    if (value?.[part]?.referencedToken) {
-      lines.push(`${label}: ${referenceName(value[part].referencedToken)}`)
-      continue
-    }
+    if (value?.[part]?.referencedToken) return [`${label}: ${referenceName(value[part].referencedToken)}`]
     // Same rule as the SDK's `TokenUtils.failedColorPartReference`, limited to parts from a library that was not imported
     const failed = origin?.nestedReferences?.[part]
-    if (failed?.referenceResolutionFailed && failed.referenceOriginRemote && !isNonEmptyString(value?.[part]?.referencedTokenId)) {
-      const name = escapeHtml(failed.referenceOriginName)
-      lines.push(name ? `${label}: ${name} (not imported)` : `${label}: not imported`)
-    }
-  }
+    if (!failed?.referenceResolutionFailed || !failed.referenceOriginRemote || isNonEmptyString(value?.[part]?.referencedTokenId)) return []
+    const name = escapeHtml(failed.referenceOriginName)
+    return [name ? `${label}: ${name} (not imported)` : `${label}: not imported`]
+  })
   return lines.length > 0 ? lines.join('\n') : null
 }
 
