@@ -61,24 +61,16 @@ const opacityDisabled = {
 const opacity50 = { id: 'opacity-50', name: '50', parent: { name: 'opacity' } };
 
 // An opacity part that references an Opacity (or Dimension) token
-const referencedOpacity = (source: any, measure = 0.4) => ({
-  ...opacity(measure),
+const referencedOpacity = (source: any) => ({
+  ...opacity(0.4),
   referencedTokenId: source.id,
   referencedToken: source,
 });
 
 // A color that references a color for its color part and a token for its opacity
-const bothParts = (
-  colorSource: any = blue500,
-  opacitySource: any = opacityDisabled,
-) => ({
-  color: {
-    ...rgb,
-    referencedTokenId: colorSource.id,
-    referencedToken: colorSource,
-  },
-  opacity: referencedOpacity(opacitySource),
-  referencedTokenId: null,
+const bothParts = () => ({
+  ...ownOpacity(0.4),
+  opacity: referencedOpacity(opacityDisabled),
 });
 
 describe('getFormattedColor', () => {
