@@ -1,5 +1,5 @@
 import { getVariantClass, escapeHtml } from './string_utils'
-import { tokenValueToHex, getFormattedColor, referenceBadgeName } from './tokens'
+import { tokenValueToHex, getFormattedColor, referenceBadgeTooltip } from './tokens'
 import { returnSwatchClassnames } from './color'
 import { getThemesTooltip } from './themes'
 import { htmlSafeString } from './sandbox'
@@ -78,9 +78,9 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
 }
 
 function renderReferenceBadgeColor(token: any): string {
-  const refName = referenceBadgeName(token)
-  if (refName === null) return ''
-  return '<div class="reference-badge" data-bs-toggle="tooltip" title="Referenced token: ' + htmlSafeString(refName) + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
+  const tooltip = referenceBadgeTooltip(token)
+  if (tooltip === null) return ''
+  return '<div class="reference-badge" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-multiline" title="' + tooltip + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
 }
 
 // Source: page_block_token_themes_badge.pr + page_block_token_theme_badge.pr

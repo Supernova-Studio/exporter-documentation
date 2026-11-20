@@ -9,4 +9,9 @@
     .tooltip-arrow {
         display: none !important;
     }
+
+    // One line per `\n` in the title, e.g. the color and opacity references of a reference badge
+    &.tooltip-multiline .tooltip-inner {
+        white-space: pre-line;
+    }
 }

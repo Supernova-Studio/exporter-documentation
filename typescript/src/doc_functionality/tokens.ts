@@ -1,6 +1,7 @@
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Imports
 import { isNonEmptyString } from './general-utils'
+import { escapeHtml } from './string_utils'
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 // MARK: - Tokens
@@ -127,23 +128,31 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
   }
 }
 
-/** Name for the reference badge: the referenced token, or the source color of a color with its own opacity; null when there is none */
-export function referenceBadgeName(token: any): string | null {
+/**
+ * Tooltip for the reference badge: `Referenced token: <name>` for a plain reference, else one line per
+ * referenced part of a color (`Color: <name>`, `Opacity: <name>`), joined by a newline; null when there is none.
+ * Names are HTML-escaped, since callers print the text straight into a `title` attribute.
+ */
+export function referenceBadgeTooltip(token: any): string | null {
   const value = token?.value
-  let source: any = null
   if (isNonEmptyString(value?.referencedTokenId)) {
-    source = value.referencedToken
-  } else if (token?.tokenType === 'Color' && isNonEmptyString(value?.color?.referencedTokenId)) {
-    // A color with its own opacity points to its source color from its color part; `referencedToken` is the resolved SDK `referencedColorId`
-    source = value.color.referencedToken
+    return value.referencedToken ? `Referenced token: ${referenceName(value.referencedToken)}` : null
   }
-  if (!source) return null
+  if (token?.tokenType !== 'Color') return null
+  // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
+  const lines: string[] = []
+  if (value?.color?.referencedToken) lines.push(`Color: ${referenceName(value.color.referencedToken)}`)
+  if (value?.opacity?.referencedToken) lines.push(`Opacity: ${referenceName(value.opacity.referencedToken)}`)
+  return lines.length > 0 ? lines.join('\n') : null
+}
+
+function referenceName(source: any): string {
   let name = String(source.name || '')
   // Short names (e.g. "50", "L1") are ambiguous alone, so prepend the parent group name
   if (name.length < 4 && source.parent) {
     name = String(source.parent.name || '') + ' ' + name
   }
-  return name
+  return escapeHtml(name) ?? ''
 }
 
 function rgbToHex(r: number, g: number, b:number) {

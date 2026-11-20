@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.10.0] - 2026-11-20
+
+### Color and opacity references
+
+- A color's reference badge names each of its references on its own line, as Cloud does: `Color: <token>` and `Opacity: <token>`. A color whose only reference is its opacity now gets the badge too. A plain reference still names its direct target.
+
 ## [5.9.3] - 2026-11-20
 
 ### Colors with their own opacity
