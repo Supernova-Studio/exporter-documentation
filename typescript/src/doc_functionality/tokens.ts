@@ -131,7 +131,7 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
 /**
  * Tooltip for the reference badge: `Referenced token: <name>` for a plain reference; Cloud's
  * `Referenced token was not imported` + `Reference: <name>` for a reference to a Figma library that was not imported;
- * else one line per referenced part of a color (`Color: <name>`, `Opacity: <name>`, or `<Part>: <name> (not imported)`),
+ * else one line per referenced part of a color (`Color: <name>`, `Opacity: <name>`, `<Part>: <name> (not imported)`, or `<Part>: not imported` with no name),
  * joined by a newline; null when there is none.
  * `themes` are the swatch's selected themes: a themed token keeps the base token's `origin`, so the origin comes from the override.
  * Names are HTML-escaped, since callers print the text straight into a `title` attribute.
@@ -141,7 +141,7 @@ export function referenceBadgeTooltip(token: any, themes?: any[]): string | null
   if (isNonEmptyString(value?.referencedTokenId)) {
     return value.referencedToken ? `Referenced token: ${referenceName(value.referencedToken)}` : null
   }
-  // A reference to a Figma library that was not imported leaves the value plain; only the token's origin records the reference
+  // A reference to a Figma library that was not imported leaves the value plain; only the origin records the reference
   const origin = swatchOrigin(token, themes)
   if (origin?.referenceOriginRemote && isNonEmptyString(origin.referenceOriginId)) {
     const name = escapeHtml(origin.referenceOriginName)
@@ -151,7 +151,8 @@ export function referenceBadgeTooltip(token: any, themes?: any[]): string | null
   const lines = [['color', 'Color'], ['opacity', 'Opacity']].flatMap(([part, label]) => {
     // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
     if (value?.[part]?.referencedToken) return [`${label}: ${referenceName(value[part].referencedToken)}`]
-    // A part whose reference failed to resolve and points to a library that was not imported, as in the SDK's `TokenUtils.failedColorPartReference`
+    // A part whose reference failed to resolve and has no `referencedTokenId`, as in the SDK's `TokenUtils.failedColorPartReference`;
+    // unlike the SDK, only a part from a library that was not imported counts
     const failed = origin?.nestedReferences?.[part]
     if (!failed?.referenceResolutionFailed || !failed.referenceOriginRemote || isNonEmptyString(value?.[part]?.referencedTokenId)) return []
     const name = escapeHtml(failed.referenceOriginName)
