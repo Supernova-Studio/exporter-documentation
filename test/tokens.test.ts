@@ -81,7 +81,7 @@ describe('getFormattedColor', () => {
     ).toBe('rgba(51,102,255,25.6%)');
   });
 
-  test('plain see-through colors show the percent, opaque ones stay hex', () => {
+  test('see-through colors with no own opacity or Opacity token show the percent, opaque ones stay hex', () => {
     expect(getFormattedColor(plainColor() as any)).toBe('#3366ff');
     expect(getFormattedColor(plainColor(0.256) as any)).toBe(
       'rgba(51,102,255,25.6%)',

@@ -119,7 +119,7 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
       return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    // A see-through color shows a one-decimal percent, as Cloud does; a shadow's own opacity keeps a 0–1 alpha
+    // Colors show a one-decimal percent, as Cloud does. Shadows pass customOpacity and keep a 0–1 alpha
     const alpha = customOpacity === null
       ? `${Math.round(opacity * 1000) / 10}%`
       : Number(opacity.toFixed(2))
