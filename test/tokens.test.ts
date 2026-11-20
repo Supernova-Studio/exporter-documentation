@@ -149,7 +149,7 @@ describe('referenceBadgeTooltip', () => {
     );
   });
 
-  test('plain reference names its direct target, not its copied parts', () => {
+  test('plain reference names its direct target, not the parts copied from that target', () => {
     expect(
       referenceBadgeTooltip(
         colorToken('ref', plainReferenceTo(faded, ownOpacity(0.256))),
@@ -162,7 +162,7 @@ describe('referenceBadgeTooltip', () => {
     ).toBe('Referenced token: accent');
   });
 
-  test('a lost part target drops only its own line', () => {
+  test('a part whose referenced token no longer exists drops only its own line', () => {
     const lostColor = bothParts();
     lostColor.color.referencedToken = undefined as any;
     expect(referenceBadgeTooltip(colorToken('a', lostColor))).toBe(

@@ -139,7 +139,7 @@ export function referenceBadgeTooltip(token: any): string | null {
     return value.referencedToken ? `Referenced token: ${referenceName(value.referencedToken)}` : null
   }
   if (token?.tokenType !== 'Color') return null
-  // `referencedToken` is set by Pulsar only when its target resolved
+  // Pulsar leaves `referencedToken` unset when the referenced token no longer exists
   const lines: string[] = []
   if (value?.color?.referencedToken) lines.push(`Color: ${referenceName(value.color.referencedToken)}`)
   if (value?.opacity?.referencedToken) lines.push(`Opacity: ${referenceName(value.opacity.referencedToken)}`)
