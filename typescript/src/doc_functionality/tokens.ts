@@ -141,7 +141,7 @@ export function referenceBadgeTooltip(token: any, themes?: any[]): string | null
   if (isNonEmptyString(value?.referencedTokenId)) {
     return value.referencedToken ? `Referenced token: ${referenceName(value.referencedToken)}` : null
   }
-  // A reference to a Figma library that was not imported has a plain value; only the origin keeps it
+  // A reference to a Figma library that was not imported leaves the value plain; only the token's origin records the reference
   const origin = swatchOrigin(token, themes)
   if (origin?.referenceOriginRemote && isNonEmptyString(origin.referenceOriginId)) {
     const name = escapeHtml(origin.referenceOriginName)
@@ -151,7 +151,7 @@ export function referenceBadgeTooltip(token: any, themes?: any[]): string | null
   const lines = [['color', 'Color'], ['opacity', 'Opacity']].flatMap(([part, label]) => {
     // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
     if (value?.[part]?.referencedToken) return [`${label}: ${referenceName(value[part].referencedToken)}`]
-    // Same rule as the SDK's `TokenUtils.failedColorPartReference`, limited to parts from a library that was not imported
+    // A part whose reference failed to resolve and points to a library that was not imported, as in the SDK's `TokenUtils.failedColorPartReference`
     const failed = origin?.nestedReferences?.[part]
     if (!failed?.referenceResolutionFailed || !failed.referenceOriginRemote || isNonEmptyString(value?.[part]?.referencedTokenId)) return []
     const name = escapeHtml(failed.referenceOriginName)

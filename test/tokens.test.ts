@@ -233,13 +233,13 @@ describe('referenceBadgeTooltip for a library that was not imported', () => {
     overriddenTokens: [{ id: token.id, origin }],
   });
 
-  test("a reference to a library that was not imported shows Cloud's two lines", () => {
+  test('a reference to a library that was not imported shows "was not imported" and the reference name', () => {
     expect(referenceBadgeTooltip(duration(remoteOrigin('Remote fast')))).toBe(
       'Referenced token was not imported\nReference: Remote fast',
     );
   });
 
-  test('without a name only the first line shows, and names are escaped', () => {
+  test('a remote reference with no name shows only "was not imported", and a name is HTML-escaped', () => {
     expect(referenceBadgeTooltip(duration(remoteOrigin()))).toBe(
       'Referenced token was not imported',
     );
@@ -252,7 +252,7 @@ describe('referenceBadgeTooltip for a library that was not imported', () => {
     );
   });
 
-  test('a library imported later names the referenced token', () => {
+  test('once the library is imported, the badge shows the referenced token by name', () => {
     const imported = {
       ...colorToken('ref', plainReferenceTo(accent, plainColor())),
       origin: {
