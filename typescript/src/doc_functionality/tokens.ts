@@ -119,8 +119,8 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
       return rgbToHex(colorValue.color.r, colorValue.color.g, colorValue.color.b)
     }
   } else {
-    // A color part that comes from another token (own opacity, or a plain reference to one) shows a one-decimal percent, as Cloud does
-    const alpha = customOpacity === null && isNonEmptyString(colorValue.color.referencedTokenId)
+    // Colors show a one-decimal percent, as Cloud does. Shadows pass customOpacity and keep a 0–1 alpha
+    const alpha = customOpacity === null
       ? `${Math.round(opacity * 1000) / 10}%`
       : Number(opacity.toFixed(2))
     return `rgba(${colorValue.color.r},${colorValue.color.g},${colorValue.color.b},${alpha})`

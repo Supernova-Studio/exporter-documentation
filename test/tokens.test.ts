@@ -81,22 +81,22 @@ describe('getFormattedColor', () => {
     ).toBe('rgba(51,102,255,25.6%)');
   });
 
-  test('plain colors are unchanged', () => {
+  test('see-through colors with no own opacity or Opacity token show the percent, opaque ones stay hex', () => {
     expect(getFormattedColor(plainColor() as any)).toBe('#3366ff');
     expect(getFormattedColor(plainColor(0.256) as any)).toBe(
-      'rgba(51,102,255,0.26)',
+      'rgba(51,102,255,25.6%)',
     );
     expect(
       getFormattedColor(plainReferenceTo(accent, plainColor(0.256)) as any),
-    ).toBe('rgba(51,102,255,0.26)');
+    ).toBe('rgba(51,102,255,25.6%)');
   });
 
-  test('hex color whose opacity references an Opacity token keeps a 0–1 alpha, not a percent', () => {
+  test('hex color whose opacity references an Opacity token shows the percent', () => {
     const value = {
       color: { ...rgb },
       opacity: { ...opacity(0.256), referencedTokenId: 'opacity-26' },
     };
-    expect(getFormattedColor(value as any)).toBe('rgba(51,102,255,0.26)');
+    expect(getFormattedColor(value as any)).toBe('rgba(51,102,255,25.6%)');
   });
 
   test("a shadow's own opacity keeps a 0–1 alpha, not a percent", () => {
@@ -172,6 +172,6 @@ describe('fastRenderTokenStackToHtml', () => {
       { themedTokens: [colorToken('plain', plainColor(0.256))], themes: [] },
     ]);
     expect(html).not.toContain('reference-badge');
-    expect(html).toContain('rgba(51,102,255,0.26)');
+    expect(html).toContain('rgba(51,102,255,25.6%)');
   });
 });

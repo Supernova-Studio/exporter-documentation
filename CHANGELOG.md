@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.9.3] - 2026-11-20
+
+### Colors with their own opacity
+
+- Every see-through color and border color shows its opacity as a one-decimal percent, as Cloud does, e.g. `rgba(51,102,255,25.6%)`, plain colors and plain references included. Shadows keep a 0–1 alpha.
+
 ## [5.9.0] - 2026-10-29
 
 ### Image backgrounds and padding
