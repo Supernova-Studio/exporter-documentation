@@ -209,6 +209,122 @@ describe('referenceBadgeTooltip', () => {
   });
 });
 
+describe('referenceBadgeTooltip for a library that was not imported', () => {
+  // A token whose value is plain because its reference points to a Figma library that was not imported
+  const remoteOrigin = (referenceOriginName?: string) => ({
+    referenceOriginId: 'VariableID:54f5d5/2035:3',
+    referenceOriginRemote: true,
+    referenceOriginName,
+  });
+  const duration = (origin: any) => ({
+    id: 'fast-remote-ref',
+    name: 'Fast remote ref',
+    tokenType: 'Duration',
+    value: { unit: 'Ms', measure: 101, referencedTokenId: null },
+    origin,
+  });
+  const remotePart = (referenceOriginName?: string) => ({
+    referenceOriginId: 'VariableID:7bb08c/5911:26',
+    referenceOriginRemote: true,
+    referenceResolutionFailed: true,
+    referenceOriginName,
+  });
+  const themeOverriding = (token: any, origin: any) => ({
+    overriddenTokens: [{ id: token.id, origin }],
+  });
+
+  test('a reference to a library that was not imported shows "was not imported" and the reference name', () => {
+    expect(referenceBadgeTooltip(duration(remoteOrigin('Remote fast')))).toBe(
+      'Referenced token was not imported\nReference: Remote fast',
+    );
+  });
+
+  test('a remote reference with no name shows only "was not imported", and a name is HTML-escaped', () => {
+    expect(referenceBadgeTooltip(duration(remoteOrigin()))).toBe(
+      'Referenced token was not imported',
+    );
+    const color = {
+      ...colorToken('c', plainColor()),
+      origin: remoteOrigin('A & B'),
+    };
+    expect(referenceBadgeTooltip(color)).toBe(
+      'Referenced token was not imported\nReference: A &amp; B',
+    );
+  });
+
+  test('once the library is imported, the badge shows the referenced token by name', () => {
+    const imported = {
+      ...colorToken('ref', plainReferenceTo(accent, plainColor())),
+      origin: {
+        referenceOriginRemote: true,
+        referenceOriginName: 'Remote accent',
+      },
+    };
+    expect(referenceBadgeTooltip(imported)).toBe('Referenced token: accent');
+  });
+
+  test('a failed reference that is not remote shows no badge', () => {
+    expect(
+      referenceBadgeTooltip(duration({ referenceOriginId: 'VariableID:1:2' })),
+    ).toBeNull();
+  });
+
+  test("a themed swatch takes the origin from the selected theme's override", () => {
+    const remote = duration(remoteOrigin('Remote fast'));
+    // Mode 2 overrides the remote reference with a plain 0ms
+    const mode2 = themeOverriding(remote, { name: 'Fast-mode1-remote-ref' });
+    expect(referenceBadgeTooltip(remote, [mode2])).toBeNull();
+    // A plain token whose Mode 1 override is the remote reference
+    const plain = duration(null);
+    const mode1 = themeOverriding(plain, remoteOrigin('Remote fast'));
+    expect(referenceBadgeTooltip(plain, [mode1])).toBe(
+      'Referenced token was not imported\nReference: Remote fast',
+    );
+    // The last selected theme that overrides the token wins, and a theme without an override is skipped
+    expect(referenceBadgeTooltip(plain, [mode1, mode2])).toBeNull();
+    expect(
+      referenceBadgeTooltip(remote, [mode2, { overriddenTokens: [] }]),
+    ).toBeNull();
+  });
+
+  test('a color part from a library that was not imported gets its own line', () => {
+    const localColorRemoteOpacity = {
+      ...colorToken('28', ownOpacity(0.5, accent)),
+      origin: { nestedReferences: { opacity: remotePart('Opacity/Disabled') } },
+    };
+    expect(referenceBadgeTooltip(localColorRemoteOpacity)).toBe(
+      'Color: accent\nOpacity: Opacity/Disabled (not imported)',
+    );
+    const bothRemote = {
+      ...colorToken('29', plainColor(0.5)),
+      origin: {
+        nestedReferences: {
+          color: remotePart('Persistent/Black'),
+          opacity: remotePart(),
+        },
+      },
+    };
+    expect(referenceBadgeTooltip(bothRemote)).toBe(
+      'Color: Persistent/Black (not imported)\nOpacity: not imported',
+    );
+  });
+
+  test('a failed color part that is not remote gets no line', () => {
+    const deleted = {
+      ...colorToken('27', plainColor(0.4)),
+      origin: {
+        nestedReferences: {
+          color: {
+            referenceOriginId: 'VariableID:1:2',
+            referenceResolutionFailed: true,
+          },
+        },
+      },
+    };
+    expect(referenceBadgeTooltip(deleted)).toBeNull();
+  });
+});
+
 describe('fastRenderTokenStackToHtml', () => {
   test('own opacity renders the badge and the percent', () => {
     const html = fastRenderTokenStackToHtml({ variantKey: 'stack' }, [
@@ -232,6 +348,23 @@ describe('fastRenderTokenStackToHtml', () => {
     ]);
     expect(html).toContain(
       'title="Color: blue 500\nOpacity: opacity-disabled"',
+    );
+  });
+
+  test('a color from a library that was not imported renders the two-line badge', () => {
+    const remote = {
+      ...colorToken('26', plainColor()),
+      origin: {
+        referenceOriginId: 'VariableID:7bb08c/5911:26',
+        referenceOriginRemote: true,
+        referenceOriginName: 'Persistent/Black',
+      },
+    };
+    const html = fastRenderTokenStackToHtml({ variantKey: 'stack' }, [
+      { themedTokens: [remote], themes: [] },
+    ]);
+    expect(html).toContain(
+      'data-bs-custom-class="tooltip-multiline" title="Referenced token was not imported\nReference: Persistent/Black"',
     );
   });
 

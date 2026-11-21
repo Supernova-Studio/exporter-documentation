@@ -129,21 +129,45 @@ export function getFormattedColor(colorValue: ColorTokenValue, forceRgbFormat: b
 }
 
 /**
- * Tooltip for the reference badge: `Referenced token: <name>` for a plain reference, else one line per
- * referenced part of a color (`Color: <name>`, `Opacity: <name>`), joined by a newline; null when there is none.
+ * Tooltip for the reference badge: `Referenced token: <name>` for a plain reference; Cloud's
+ * `Referenced token was not imported` + `Reference: <name>` for a reference to a Figma library that was not imported;
+ * else one line per referenced part of a color (`Color: <name>`, `Opacity: <name>`, `<Part>: <name> (not imported)`, or `<Part>: not imported` with no name),
+ * joined by a newline; null when there is none.
+ * `themes` are the swatch's selected themes: a themed token keeps the base token's `origin`, so the origin comes from the override.
  * Names are HTML-escaped, since callers print the text straight into a `title` attribute.
  */
-export function referenceBadgeTooltip(token: any): string | null {
+export function referenceBadgeTooltip(token: any, themes?: any[]): string | null {
   const value = token?.value
   if (isNonEmptyString(value?.referencedTokenId)) {
     return value.referencedToken ? `Referenced token: ${referenceName(value.referencedToken)}` : null
   }
+  // A reference to a Figma library that was not imported leaves the value plain; only the origin records the reference
+  const origin = swatchOrigin(token, themes)
+  if (origin?.referenceOriginRemote && isNonEmptyString(origin.referenceOriginId)) {
+    const name = escapeHtml(origin.referenceOriginName)
+    return name ? `Referenced token was not imported\nReference: ${name}` : 'Referenced token was not imported'
+  }
   if (token?.tokenType !== 'Color') return null
-  // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
-  const lines: string[] = []
-  if (value?.color?.referencedToken) lines.push(`Color: ${referenceName(value.color.referencedToken)}`)
-  if (value?.opacity?.referencedToken) lines.push(`Opacity: ${referenceName(value.opacity.referencedToken)}`)
+  const lines = [['color', 'Color'], ['opacity', 'Opacity']].flatMap(([part, label]) => {
+    // Pulsar leaves `referencedToken` unset when it cannot find the referenced token
+    if (value?.[part]?.referencedToken) return [`${label}: ${referenceName(value[part].referencedToken)}`]
+    // A part whose reference failed to resolve and has no `referencedTokenId`, as in the SDK's `TokenUtils.failedColorPartReference`;
+    // unlike the SDK, only a part from a library that was not imported counts
+    const failed = origin?.nestedReferences?.[part]
+    if (!failed?.referenceResolutionFailed || !failed.referenceOriginRemote || isNonEmptyString(value?.[part]?.referencedTokenId)) return []
+    const name = escapeHtml(failed.referenceOriginName)
+    return [name ? `${label}: ${name} (not imported)` : `${label}: not imported`]
+  })
   return lines.length > 0 ? lines.join('\n') : null
+}
+
+/** The origin behind a swatch's value: the override's in the last selected theme that overrides the token, else the token's own */
+function swatchOrigin(token: any, themes?: any[]): any {
+  for (const theme of [...(themes ?? [])].reverse()) {
+    const override = theme?.overriddenTokens?.find((t: any) => t.id === token?.id)
+    if (override) return override.origin ?? null
+  }
+  return token?.origin ?? null
 }
 
 function referenceName(source: any): string {
