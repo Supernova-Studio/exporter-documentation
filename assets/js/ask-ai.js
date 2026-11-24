@@ -14,6 +14,8 @@
   - page to iframe `token-error`: `reason` is `signed-out` (no docs session) or `unavailable`
   Messages to the iframe go to the agent's origin only, and the page keeps no copy of the token.
 */
+import { createAskAiTokenRequest } from './ask-ai-token';
+
 (function () {
   var MESSAGE_SOURCE = 'supernova-docs-agent';
   var PROTOCOL_VERSION = 1;
@@ -34,7 +36,7 @@
     return;
   }
 
-  var requestToken = window.createAskAiTokenRequest(window.fetch.bind(window));
+  var requestToken = createAskAiTokenRequest(window.fetch.bind(window));
 
   function readAgentOrigin(agentUrl) {
     try {

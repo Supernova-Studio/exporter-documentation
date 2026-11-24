@@ -2,7 +2,7 @@
   Asks the docs server for an Ask AI token. Calls made while a request is in flight share it, and the
   token is never kept, so every request after that goes back to the server.
 */
-window.createAskAiTokenRequest = function (fetchImpl) {
+export function createAskAiTokenRequest(fetchImpl) {
   var inFlight = null;
 
   function readReply(response) {
@@ -38,4 +38,4 @@ window.createAskAiTokenRequest = function (fetchImpl) {
     }
     return inFlight;
   };
-};
+}

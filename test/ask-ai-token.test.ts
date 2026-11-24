@@ -1,11 +1,5 @@
-import { readFileSync } from 'node:fs'
 import { describe, expect, test, vi } from 'vitest'
-
-function loadCreateTokenRequest(): (fetchImpl: typeof fetch) => () => Promise<unknown> {
-  const fakeWindow: Record<string, any> = {}
-  new Function('window', readFileSync('assets/js/ask-ai-token.js', 'utf8'))(fakeWindow)
-  return fakeWindow.createAskAiTokenRequest
-}
+import { createAskAiTokenRequest } from '../assets/js/ask-ai-token.js'
 
 describe('Ask AI token request', () => {
   test('concurrent requests share one fetch and one reply', async () => {
@@ -13,7 +7,7 @@ describe('Ask AI token request', () => {
     const fetchImpl = vi.fn(
       () => new Promise((resolve) => { resolveFetch = resolve }),
     )
-    const requestToken = loadCreateTokenRequest()(fetchImpl as unknown as typeof fetch)
+    const requestToken = createAskAiTokenRequest(fetchImpl)
 
     const first = requestToken()
     const second = requestToken()
