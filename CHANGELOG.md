@@ -2,6 +2,12 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.10.2] - 2026-11-25
+
+### Shortcuts with padding but no alignment
+
+- A shortcut whose image has padding but no alignment no longer fails the export with `Switch only supports string and numeric values`. Its image uses the Left layout.
+
 ## [5.10.1] - 2026-11-20
 
 ### References to libraries that were not imported
