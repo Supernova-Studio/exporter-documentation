@@ -5,7 +5,7 @@
   iframe that is created on first open only, so pages that never use it don't load it.
 
   The widget starts hidden. Every page load asks the docs server whether the reader can use Ask AI
-  (`POST /auth/agent-token?dryRun=true`, which creates no token). The last answer is kept in session storage,
+  (`GET /ask-ai/config`, which creates no token). The last answer is kept in session storage,
   so on the next page the widget shows straight away and the new answer only corrects it.
 
   The two windows talk with postMessage. Every message is an envelope
@@ -13,7 +13,7 @@
   - iframe to page `ready`: the chat has loaded; the page does nothing
   - iframe to page `close`: the reader closed the chat, so the page hides the panel
   - iframe to page `token-request`: the chat needs a token, so the page asks the docs server
-    (`POST /auth/agent-token`, with the docs session cookie) and answers with `token` or `token-error`
+    (`POST /ask-ai/token`, with the docs session cookie) and answers with `token` or `token-error`
   - page to iframe `token`: `token` and `expiresAt` (epoch milliseconds)
   - page to iframe `token-error`: `reason` is `signed-out` (no docs session) or `unavailable`
   Messages to the iframe go to the agent's origin only, and the page keeps no copy of the token.

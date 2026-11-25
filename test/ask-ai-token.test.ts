@@ -21,26 +21,39 @@ describe('Ask AI token request', () => {
 })
 
 describe('Ask AI availability check', () => {
-  test('asks for a dry run, so no token is created', async () => {
-    const fetchImpl = vi.fn(async () => ({ status: 200, ok: true }))
+  test('reads the Ask AI config, so no token is created', async () => {
+    const fetchImpl = vi.fn(async () => ({ status: 200, ok: true, json: async () => ({ isAvailable: true }) }))
 
     await checkAskAiAvailability(fetchImpl)
 
-    expect(fetchImpl).toHaveBeenCalledWith(
-      '/auth/agent-token?dryRun=true',
-      expect.objectContaining({ method: 'POST', credentials: 'same-origin' }),
-    )
+    expect(fetchImpl).toHaveBeenCalledWith('/ask-ai/config', expect.objectContaining({ credentials: 'same-origin' }))
   })
 
   test.each([
-    [200, 'available'],
-    [401, 'signed-out'],
-    [403, 'unavailable'],
-    [500, 'unavailable'],
-  ])('maps status %i to %s', async (status, availability) => {
-    const fetchImpl = vi.fn(async () => ({ status, ok: status === 200 }))
+    [true, 'available'],
+    [false, 'unavailable'],
+  ])('maps isAvailable %s to %s', async (isAvailable, availability) => {
+    const fetchImpl = vi.fn(async () => ({ status: 200, ok: true, json: async () => ({ isAvailable }) }))
 
     expect(await checkAskAiAvailability(fetchImpl)).toBe(availability)
+  })
+
+  test.each([401, 404, 500])('is unknown when the server answers %i', async (status) => {
+    const fetchImpl = vi.fn(async () => ({ status, ok: false }))
+
+    expect(await checkAskAiAvailability(fetchImpl)).toBe('unknown')
+  })
+
+  test('is unknown when the answer is not JSON', async () => {
+    const fetchImpl = vi.fn(async () => ({
+      status: 200,
+      ok: true,
+      json: async () => {
+        throw new SyntaxError('Unexpected token <')
+      },
+    }))
+
+    expect(await checkAskAiAvailability(fetchImpl)).toBe('unknown')
   })
 
   test('is unknown when the server cannot be reached', async () => {

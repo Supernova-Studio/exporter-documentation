@@ -18,7 +18,7 @@ export function createAskAiTokenRequest(fetchImpl) {
   }
 
   function requestReply() {
-    return fetchImpl('/auth/agent-token', {
+    return fetchImpl('/ask-ai/token', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { Accept: 'application/json' },
@@ -41,20 +41,21 @@ export function createAskAiTokenRequest(fetchImpl) {
 }
 
 /*
-  Asks the docs server whether the reader can use Ask AI, with a dry run that creates no token.
-  Resolves to `available`, `signed-out`, `unavailable`, or `unknown` when the server could not be reached.
+  Asks the docs server whether the reader can use Ask AI. This creates no token.
+  Resolves to `available`, `unavailable`, or `unknown` when the server gave no usable answer.
 */
 export function checkAskAiAvailability(fetchImpl) {
-  return fetchImpl('/auth/agent-token?dryRun=true', {
-    method: 'POST',
+  return fetchImpl('/ask-ai/config', {
     credentials: 'same-origin',
     headers: { Accept: 'application/json' },
   })
     .then(function (response) {
-      if (response.ok) {
-        return 'available';
+      if (!response.ok) {
+        return 'unknown';
       }
-      return response.status === 401 ? 'signed-out' : 'unavailable';
+      return response.json().then(function (body) {
+        return body.isAvailable === true ? 'available' : 'unavailable';
+      });
     })
     .catch(function () {
       return 'unknown';
