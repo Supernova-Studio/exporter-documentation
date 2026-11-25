@@ -4,8 +4,9 @@
   creates on first open and sends tokens to when it asks over postMessage; `assets/js/ask-ai.js` describes
   the protocol.
 
-  The widget renders only on the Live documentation environment. It is not gated on the design system's
-  `isPublic` flag, which the API hardcodes to true: on public docs the token endpoint answers `unavailable`.
+  The widget renders only on the Live documentation environment, hidden until `assets/js/ask-ai.js` learns
+  from the docs server that the reader can use Ask AI. It is not gated on the design system's `isPublic` flag,
+  which the API hardcodes to true: on public docs the docs server answers `unavailable`.
 *}
 
 {* Ask AI configuration: origin of the docs agent app that serves `/embed` *}
@@ -19,6 +20,7 @@
   {[ const version = ds.currentDesignSystemVersion() /]}
   <div class="ask-ai"
     id="ask-ai"
+    hidden
     data-agent-url="{{ askAiAgentUrl }}"
     data-workspace-id="{{ designSystem.workspaceId }}"
     data-design-system-id="{{ designSystem.id }}"

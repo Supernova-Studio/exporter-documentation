@@ -4,6 +4,10 @@
   Opens the Supernova docs agent chat in a floating panel. The chat page (`<agent url>/embed`) runs in an
   iframe that is created on first open only, so pages that never use it don't load it.
 
+  The widget starts hidden. Every page load asks the docs server whether the reader can use Ask AI
+  (`POST /auth/agent-token?dryRun=true`, which creates no token). The last answer is kept in session storage,
+  so on the next page the widget shows straight away and the new answer only corrects it.
+
   The two windows talk with postMessage. Every message is an envelope
   `{ source: "supernova-docs-agent", version: 1, type, ... }`:
   - iframe to page `ready`: the chat has loaded; the page does nothing
@@ -14,12 +18,16 @@
   - page to iframe `token-error`: `reason` is `signed-out` (no docs session) or `unavailable`
   Messages to the iframe go to the agent's origin only, and the page keeps no copy of the token.
 */
-import { createAskAiTokenRequest } from './ask-ai-token';
+import {
+  checkAskAiAvailability,
+  createAskAiTokenRequest,
+} from './ask-ai-token';
 
 (function () {
   var MESSAGE_SOURCE = 'supernova-docs-agent';
   var PROTOCOL_VERSION = 1;
   var OPEN_STATE_KEY = 'sn.askAi.open';
+  var AVAILABLE_KEY = 'sn.askAi.available';
 
   var root = document.getElementById('ask-ai');
   if (!root) {
@@ -168,8 +176,58 @@ import { createAskAiTokenRequest } from './ask-ai-token';
     }
   });
 
-  // Keep the panel open while the reader moves between pages
-  if (wasOpen()) {
-    setOpen(true);
+  function rememberAvailability(isAvailable) {
+    try {
+      if (isAvailable) {
+        sessionStorage.setItem(AVAILABLE_KEY, '1');
+      } else {
+        sessionStorage.removeItem(AVAILABLE_KEY);
+      }
+    } catch (error) {
+      // Without storage the widget waits for the server's answer on every page
+    }
   }
+
+  function wasAvailable() {
+    try {
+      return sessionStorage.getItem(AVAILABLE_KEY) === '1';
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function show() {
+    root.hidden = false;
+    // Keep the panel open while the reader moves between pages
+    if (wasOpen()) {
+      setOpen(true);
+    }
+  }
+
+  var isShown = wasAvailable();
+  if (isShown) {
+    show();
+  }
+
+  checkAskAiAvailability(window.fetch.bind(window)).then(
+    function (availability) {
+      if (availability === 'unknown') {
+        return;
+      }
+      var isAvailable = availability === 'available';
+      rememberAvailability(isAvailable);
+      if (isAvailable && !isShown) {
+        isShown = true;
+        show();
+      } else if (
+        !isAvailable &&
+        isShown &&
+        !root.classList.contains('is-open')
+      ) {
+        // An open chat stays, so the reader is not cut off mid-conversation
+        isShown = false;
+        root.hidden = true;
+      }
+    },
+  );
 })();

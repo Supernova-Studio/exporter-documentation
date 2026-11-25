@@ -39,3 +39,24 @@ export function createAskAiTokenRequest(fetchImpl) {
     return inFlight;
   };
 }
+
+/*
+  Asks the docs server whether the reader can use Ask AI, with a dry run that creates no token.
+  Resolves to `available`, `signed-out`, `unavailable`, or `unknown` when the server could not be reached.
+*/
+export function checkAskAiAvailability(fetchImpl) {
+  return fetchImpl('/auth/agent-token?dryRun=true', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { Accept: 'application/json' },
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return 'available';
+      }
+      return response.status === 401 ? 'signed-out' : 'unavailable';
+    })
+    .catch(function () {
+      return 'unknown';
+    });
+}
