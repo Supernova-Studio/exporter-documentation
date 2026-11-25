@@ -44,6 +44,7 @@
     {[ let imgClass = "img-fluid" /]}
     {[ let alignClass = "sn-text-left" /]}
 
+    {[ if shortcut.alignment ]}
     {[ switch shortcut.alignment ]}
         {[ case "Left" ]}
             {[ imgClass = "img-fluid" /]}
@@ -54,6 +55,7 @@
         {[ case "Stretch" ]}
             {[ imgClass = "img-fluid max" /]}
             {[ alignClass = "sn-text-center" /]}
+    {[/]}
     {[/]}
 
     <div class="preview {{ alignClass }} {{ imagePaddingClass }}" {[ if imageContainerStyle ]}style="{{ escapeHtml(imageContainerStyle) }}"{[/]}>
