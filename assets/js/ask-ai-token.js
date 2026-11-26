@@ -1,63 +1,46 @@
 /*
-  Asks the docs server for an Ask AI token. Calls made while a request is in flight share it, and the
-  token is never kept, so every request after that goes back to the server.
+  Calls to the docs server for Ask AI. The docs session cookie goes along, as fetch sends it to the same origin
+  by default.
 */
-export function createAskAiTokenRequest(fetchImpl) {
-  var inFlight = null;
 
-  function readReply(response) {
+const jsonHeaders = { Accept: 'application/json' };
+
+/*
+  Asks for an Ask AI token and resolves to the message the chat expects: `token` with `token` and `expiresAt`,
+  or `token-error` with `reason` `signed-out` (no docs session) or `unavailable`. The token is never kept.
+*/
+export async function requestAskAiToken() {
+  try {
+    const response = await fetch('/ask-ai/token', {
+      method: 'POST',
+      headers: jsonHeaders,
+    });
     if (response.status === 401) {
-      return Promise.resolve({ type: 'token-error', reason: 'signed-out' });
+      return { type: 'token-error', reason: 'signed-out' };
     }
     if (!response.ok) {
-      return Promise.resolve({ type: 'token-error', reason: 'unavailable' });
+      return { type: 'token-error', reason: 'unavailable' };
     }
-    return response.json().then(function (body) {
-      return { type: 'token', token: body.token, expiresAt: body.expiresAt };
-    });
+    const { token, expiresAt } = await response.json();
+    return { type: 'token', token, expiresAt };
+  } catch {
+    return { type: 'token-error', reason: 'unavailable' };
   }
-
-  function requestReply() {
-    return fetchImpl('/ask-ai/token', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { Accept: 'application/json' },
-    })
-      .then(readReply)
-      .catch(function () {
-        return { type: 'token-error', reason: 'unavailable' };
-      });
-  }
-
-  return function requestToken() {
-    if (!inFlight) {
-      inFlight = requestReply().then(function (reply) {
-        inFlight = null;
-        return reply;
-      });
-    }
-    return inFlight;
-  };
 }
 
 /*
-  Asks the docs server whether the reader can use Ask AI. This creates no token.
-  Resolves to `available`, `unavailable`, or `unknown` when the server gave no usable answer.
+  Asks whether the reader can use Ask AI. This creates no token.
+  Resolves to true or false, or null when the server gave no usable answer.
 */
-export function checkAskAiAvailability(fetchImpl) {
-  return fetchImpl('/ask-ai/config', {
-    credentials: 'same-origin',
-    headers: { Accept: 'application/json' },
-  })
-    .then(function (response) {
-      if (!response.ok) {
-        return 'unknown';
-      }
-      return response.json().then(function (body) {
-        return body.isAvailable === true ? 'available' : 'unavailable';
-      });
-    })
-    .catch(function () {
-      return 'unknown';
-    });
+export async function checkAskAiAvailability() {
+  try {
+    const response = await fetch('/ask-ai/config', { headers: jsonHeaders });
+    if (!response.ok) {
+      return null;
+    }
+    const body = await response.json();
+    return body.isAvailable === true;
+  } catch {
+    return null;
+  }
 }

@@ -4,16 +4,14 @@
 
 .ask-ai {
   --askAiGutter: 24px;
-  --askAiGap: 8px;
   --askAiToggleSize: 38px;
   --askAiRadius: 12px;
   --askAiShadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
   // The chat always renders in light mode on this color, so the panel matches it while the chat loads
   --askAiChatBackground: #f8f9fb;
-  // The panel sits above the collapse button and leaves room for the top navigation
-  --askAiToggleSpace: calc(var(--askAiToggleSize) + var(--askAiGap));
-  --askAiPanelBottom: calc(var(--askAiGutter) + var(--askAiToggleSpace));
-  --askAiPanelSpace: calc(100vh - var(--askAiPanelBottom) - var(--askAiGutter));
+  // The panel sits 8px above the collapse button and can fill the height left above it
+  --askAiPanelBottom: calc(var(--askAiGutter) + var(--askAiToggleSize) + 8px);
+  --askAiPanelMax: calc(100dvh - var(--askAiPanelBottom) - var(--askAiGutter));
 
   font-family: var(--fontFamily);
 
@@ -75,7 +73,8 @@
   bottom: var(--askAiPanelBottom);
   box-shadow: var(--askAiShadow);
   display: flex;
-  height: min(640px, calc(var(--askAiPanelSpace) - 56px));
+  // Leaves the top navigation uncovered
+  height: min(640px, calc(var(--askAiPanelMax) - var(--topNavHeight, 0px)));
   overflow: hidden;
   position: fixed;
   max-width: calc(100vw - 2 * var(--askAiGutter));
@@ -98,7 +97,7 @@
   }
 
   .ask-ai-panel {
-    height: var(--askAiPanelSpace);
+    height: var(--askAiPanelMax);
     left: var(--askAiGutter);
     width: auto;
   }

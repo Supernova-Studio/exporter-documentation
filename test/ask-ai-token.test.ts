@@ -1,66 +1,76 @@
-import { describe, expect, test, vi } from 'vitest'
-import { checkAskAiAvailability, createAskAiTokenRequest } from '../assets/js/ask-ai-token.js'
+import { afterEach, describe, expect, test, vi } from 'vitest'
+import { checkAskAiAvailability, requestAskAiToken } from '../assets/js/ask-ai-token.js'
+
+function stubFetch(reply: () => unknown) {
+  const fetchMock = vi.fn(async () => reply())
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
+
+const jsonReply = (body: unknown) => ({ status: 200, ok: true, json: async () => body })
+const notJson = () => ({
+  status: 200,
+  ok: true,
+  json: async () => {
+    throw new SyntaxError('Unexpected token <')
+  },
+})
+const unreachable = () => {
+  throw new TypeError('Failed to fetch')
+}
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
 describe('Ask AI token request', () => {
-  test('concurrent requests share one fetch and one reply', async () => {
-    let resolveFetch: (response: unknown) => void = () => {}
-    const fetchImpl = vi.fn(
-      () => new Promise((resolve) => { resolveFetch = resolve }),
-    )
-    const requestToken = createAskAiTokenRequest(fetchImpl)
+  test('posts to the token endpoint and passes the token on', async () => {
+    const fetchMock = stubFetch(() => jsonReply({ token: 't', expiresAt: 1 }))
 
-    const first = requestToken()
-    const second = requestToken()
-    resolveFetch({ status: 200, ok: true, json: async () => ({ token: 't', expiresAt: 1 }) })
+    expect(await requestAskAiToken()).toEqual({ type: 'token', token: 't', expiresAt: 1 })
+    expect(fetchMock).toHaveBeenCalledWith('/ask-ai/token', expect.objectContaining({ method: 'POST' }))
+  })
 
-    const replies = await Promise.all([first, second])
-    expect(fetchImpl).toHaveBeenCalledTimes(1)
-    expect(replies[0]).toEqual({ type: 'token', token: 't', expiresAt: 1 })
-    expect(replies[1]).toBe(replies[0])
+  test('is signed-out when the server answers 401', async () => {
+    stubFetch(() => ({ status: 401, ok: false }))
+
+    expect(await requestAskAiToken()).toEqual({ type: 'token-error', reason: 'signed-out' })
+  })
+
+  test.each([
+    ['the server answers 500', () => ({ status: 500, ok: false })],
+    ['the answer is not JSON', notJson],
+    ['the server cannot be reached', unreachable],
+  ])('is unavailable when %s', async (_, reply) => {
+    stubFetch(reply)
+
+    expect(await requestAskAiToken()).toEqual({ type: 'token-error', reason: 'unavailable' })
   })
 })
 
 describe('Ask AI availability check', () => {
   test('reads the Ask AI config, so no token is created', async () => {
-    const fetchImpl = vi.fn(async () => ({ status: 200, ok: true, json: async () => ({ isAvailable: true }) }))
+    const fetchMock = stubFetch(() => jsonReply({ isAvailable: true }))
 
-    await checkAskAiAvailability(fetchImpl)
+    await checkAskAiAvailability()
 
-    expect(fetchImpl).toHaveBeenCalledWith('/ask-ai/config', expect.objectContaining({ credentials: 'same-origin' }))
+    expect(fetchMock).toHaveBeenCalledWith('/ask-ai/config', expect.anything())
+  })
+
+  test.each([true, false])('is %s when isAvailable is %s', async (isAvailable) => {
+    stubFetch(() => jsonReply({ isAvailable }))
+
+    expect(await checkAskAiAvailability()).toBe(isAvailable)
   })
 
   test.each([
-    [true, 'available'],
-    [false, 'unavailable'],
-  ])('maps isAvailable %s to %s', async (isAvailable, availability) => {
-    const fetchImpl = vi.fn(async () => ({ status: 200, ok: true, json: async () => ({ isAvailable }) }))
+    ['the server answers 401', () => ({ status: 401, ok: false })],
+    ['the server answers 404', () => ({ status: 404, ok: false })],
+    ['the answer is not JSON', notJson],
+    ['the server cannot be reached', unreachable],
+  ])('is null when %s', async (_, reply) => {
+    stubFetch(reply)
 
-    expect(await checkAskAiAvailability(fetchImpl)).toBe(availability)
-  })
-
-  test.each([401, 404, 500])('is unknown when the server answers %i', async (status) => {
-    const fetchImpl = vi.fn(async () => ({ status, ok: false }))
-
-    expect(await checkAskAiAvailability(fetchImpl)).toBe('unknown')
-  })
-
-  test('is unknown when the answer is not JSON', async () => {
-    const fetchImpl = vi.fn(async () => ({
-      status: 200,
-      ok: true,
-      json: async () => {
-        throw new SyntaxError('Unexpected token <')
-      },
-    }))
-
-    expect(await checkAskAiAvailability(fetchImpl)).toBe('unknown')
-  })
-
-  test('is unknown when the server cannot be reached', async () => {
-    const fetchImpl = vi.fn(async () => {
-      throw new TypeError('Failed to fetch')
-    })
-
-    expect(await checkAskAiAvailability(fetchImpl)).toBe('unknown')
+    expect(await checkAskAiAvailability()).toBeNull()
   })
 })
