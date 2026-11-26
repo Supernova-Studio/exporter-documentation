@@ -9,9 +9,9 @@
   which the API hardcodes to true: on public docs the docs server answers `unavailable`.
 *}
 
-{* Ask AI configuration: origin of the docs agent app that serves `/embed` *}
-{* TODO: the agent URL, the private-docs gate and the `aiFeaturesEnabled` gate will come from Pulsar *}
-{[ const askAiAgentUrl = "http://localhost:2001" /]}
+{* Origin of the docs agent app that serves `/embed`; null when the exporter runs without one *}
+{* TODO: the private-docs gate and the `aiFeaturesEnabled` gate will come from Pulsar *}
+{[ const askAiAgentUrl = docsAgentUrl() /]}
 
 {[ const isLive = (ds.documentationEnvironment() === "Live") /]}
 
@@ -20,7 +20,7 @@
   <div class="ask-ai"
     id="ask-ai"
     hidden
-    data-agent-url="{{ askAiAgentUrl }}"
+    data-agent-url="{{ escapeHtml(askAiAgentUrl) }}"
     data-workspace-id="{{ designSystem.workspaceId }}"
     data-design-system-id="{{ designSystem.id }}"
     lang="en">
