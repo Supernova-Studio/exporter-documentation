@@ -17,14 +17,12 @@
 
 {[ if (isLive && askAiAgentUrl) ]}
   {[ const designSystem = ds.currentDesignSystem() /]}
-  {[ const version = ds.currentDesignSystemVersion() /]}
   <div class="ask-ai"
     id="ask-ai"
     hidden
     data-agent-url="{{ askAiAgentUrl }}"
     data-workspace-id="{{ designSystem.workspaceId }}"
     data-design-system-id="{{ designSystem.id }}"
-    data-version-id="{{ version.id }}"
     lang="en">
     <section class="ask-ai-panel" id="ask-ai-panel" aria-label="Supernova Ask AI" hidden></section>
     <button class="ask-ai-launcher" id="ask-ai-launcher" type="button" aria-controls="ask-ai-panel" aria-expanded="false">

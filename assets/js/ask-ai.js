@@ -69,7 +69,7 @@ function initAskAi() {
     return;
   }
 
-  const { agentUrl, workspaceId, designSystemId, versionId } = root.dataset;
+  const { agentUrl, workspaceId, designSystemId } = root.dataset;
   let embedUrl;
   try {
     embedUrl = new URL('/embed', agentUrl);
@@ -79,9 +79,6 @@ function initAskAi() {
   const agentOrigin = embedUrl.origin;
   embedUrl.searchParams.set('wsId', workspaceId);
   embedUrl.searchParams.set('dsId', designSystemId);
-  if (versionId) {
-    embedUrl.searchParams.set('versionId', versionId);
-  }
 
   let frame = null;
 
