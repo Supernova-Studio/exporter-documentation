@@ -12,6 +12,8 @@
   `{ source: "supernova-docs-agent", version: 1, type, ... }`:
   - iframe to page `ready`: the chat has loaded; the page does nothing
   - iframe to page `close`: the reader closed the chat, so the page hides the panel
+  - iframe to page `openPage`: the reader clicked a docs page in the chat, so the page goes to its `url`
+    (http or https only) and the panel stays open there
   - iframe to page `token-request`: the chat needs a token, so the page asks the docs server
     (`POST /ask-ai/token`, with the docs session cookie) and answers with `token` or `token-error`
   - page to iframe `token`: `token` and `expiresAt` (epoch milliseconds)
@@ -43,6 +45,19 @@ function writeFlag(key, isOn) {
       sessionStorage.removeItem(key);
     }
   } catch {}
+}
+
+// Only web links, so a message can never run a `javascript:` URL on the docs page
+function openPage(url) {
+  let target;
+  try {
+    target = new URL(url, window.location.href);
+  } catch {
+    return;
+  }
+  if (target.protocol === 'https:' || target.protocol === 'http:') {
+    window.location.assign(target.href);
+  }
 }
 
 function initAskAi() {
@@ -119,6 +134,8 @@ function initAskAi() {
       });
     } else if (message.type === 'close') {
       close();
+    } else if (message.type === 'openPage') {
+      openPage(message.url);
     }
   });
 
