@@ -10,7 +10,6 @@
 *}
 
 {* Origin of the docs agent app that serves `/embed`; null when the exporter runs without one *}
-{* TODO: the private-docs gate and the `aiFeaturesEnabled` gate will come from Pulsar *}
 {[ const askAiAgentUrl = docsAgentUrl() /]}
 
 {[ const isLive = (ds.documentationEnvironment() === "Live") /]}
