@@ -2,6 +2,14 @@
 
 All notable changes to this exporter are mentioned here in this file.
 
+## [5.11.0] - 2026-11-27
+
+### Ask AI panel
+
+- Live documentation shows an `Ask assistant` button to readers the docs server allows to use Ask AI. It opens the Supernova docs agent chat in a floating panel, which stays open while the reader moves between pages. The chat loads only when the panel is first opened.
+- The chat gets its tokens through the docs page, from the docs server's `/ask-ai/token` endpoint. Clicking a docs page in the chat opens that page.
+- The agent URL comes from Pulsar's `docsAgentUrl()`, so the exporter needs Pulsar 2.12.0 or later.
+
 ## [5.10.2] - 2026-11-25
 
 ### Shortcuts with padding but no alignment

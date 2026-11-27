@@ -1,0 +1,39 @@
+{*
+  Ask AI widget: a floating "Ask assistant" button that opens the Supernova docs agent chat
+  (`<agent url>/embed`) in a floating panel. The chat runs in an iframe, which `assets/js/ask-ai.js`
+  creates on first open and sends tokens to when it asks over postMessage; `assets/js/ask-ai.js` describes
+  the protocol.
+
+  The widget renders only on the Live documentation environment, hidden until `assets/js/ask-ai.js` learns
+  from the docs server that the reader can use Ask AI. It is not gated on the design system's `isPublic` flag,
+  which the API hardcodes to true: on public docs the docs server answers `unavailable`.
+*}
+
+{* Origin of the docs agent app that serves `/embed`; null when the exporter runs without one *}
+{[ const askAiAgentUrl = docsAgentUrl() /]}
+
+{[ const isLive = (ds.documentationEnvironment() === "Live") /]}
+
+{[ if (isLive && askAiAgentUrl) ]}
+  {[ const designSystem = ds.currentDesignSystem() /]}
+  <div class="ask-ai"
+    id="ask-ai"
+    hidden
+    data-agent-url="{{ escapeHtml(askAiAgentUrl) }}"
+    data-workspace-id="{{ designSystem.workspaceId }}"
+    data-design-system-id="{{ designSystem.id }}"
+    lang="en">
+    <section class="ask-ai-panel" id="ask-ai-panel" aria-label="Supernova Ask AI" hidden></section>
+    <button class="ask-ai-launcher" id="ask-ai-launcher" type="button" aria-controls="ask-ai-panel" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 10H10.3333C12.3587 10 14 9.10467 14 8C14 6.89533 12.3587 6 10.3333 6C9.10933 6 8.02533 6.32667 7.36 6.83M6 6H5.66667C3.64133 6 2 6.89533 2 8C2 9.10467 3.64133 10 5.66667 10C6.896 10 7.984 9.67 8.64933 9.16333M10 6V5.66667C10 3.64133 9.10467 2 8 2C6.89533 2 6 3.64133 6 5.66667C6 6.88867 6.32667 7.97133 6.82733 8.63733M6 10V10.3333C6 12.3587 6.89533 14 8 14C9.10467 14 10 12.3587 10 10.3333C10 9.10533 9.67067 8.01867 9.16533 7.35333M6.66667 8C6.66667 8.35362 6.80714 8.69276 7.05719 8.94281C7.30724 9.19286 7.64638 9.33333 8 9.33333C8.35362 9.33333 8.69276 9.19286 8.94281 8.94281C9.19286 8.69276 9.33333 8.35362 9.33333 8C9.33333 7.64638 9.19286 7.30724 8.94281 7.05719C8.69276 6.80714 8.35362 6.66667 8 6.66667C7.64638 6.66667 7.30724 6.80714 7.05719 7.05719C6.80714 7.30724 6.66667 7.64638 6.66667 8Z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Ask assistant</span>
+    </button>
+    <button class="ask-ai-collapse" id="ask-ai-collapse" type="button" aria-controls="ask-ai-panel" aria-label="Minimize Ask AI" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M6 7L8 9L10 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+{[/]}
