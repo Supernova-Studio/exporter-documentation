@@ -233,8 +233,13 @@ function getValueWithPixels(value: number, forceUnit?: boolean): string {
   }
 }
 
-export function measureValueToReadableUnit(value: MeasureTokenValue) {
-  return `${value.measure}${measureTypeIntoReadableUnit(value.unit)}`
+export function measureValueToReadableUnit(value: MeasureTokenValue, token?: Token, themes?: any[]) {
+  const origin = token ? swatchOrigin(token, themes) : null
+  const measure = value.unit === "Ms" && origin?.source === "Figma"
+    ? Math.round(value.measure)
+    : value.measure
+
+  return `${measure}${measureTypeIntoReadableUnit(value.unit)}`
 }
 
 function nonNegativeValue(num: number) {

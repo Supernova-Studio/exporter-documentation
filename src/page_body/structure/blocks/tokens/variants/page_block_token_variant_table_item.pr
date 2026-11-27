@@ -13,7 +13,7 @@
                     
                         <div class="preview">
                             {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes})  /]}
-                            {[ inject "page_block_token_value" context themedToken[0] /]}       
+                            {[ inject "page_block_token_value" context ({"token": themedToken[0], "themes": themes}) /]}
                         </div>  
                     {[/]}
                 </div>
@@ -23,7 +23,7 @@
                 {[ const themes = ds.themesByIds(swatch.selectedThemeIds) /]}
                 <div class="preview single-preview">
                     {[ inject "page_block_token_preview_small" context ({"token": themedToken[0], "themes": themes }) /]}
-                    {[ inject "page_block_token_value" context themedToken[0] /]}         
+                    {[ inject "page_block_token_value" context ({"token": themedToken[0], "themes": themes}) /]}
                 </div>
                 
             {[/]}
