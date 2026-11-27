@@ -38,7 +38,33 @@
     {[/]}
 
     {[ if shortcut.previewUrl ]}
-    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;"></div>
+    {[ let imageContainerStyle = getImageContainerStyle(shortcut) /]}
+    {[ let imagePaddingClass = getImagePaddingClass(shortcut.padding) /]}
+    {[ if (shortcut.alignment || shortcut.padding) ]}
+    {[ let imgClass = "img-fluid" /]}
+    {[ let alignClass = "sn-text-left" /]}
+
+    {[ if shortcut.alignment ]}
+    {[ switch shortcut.alignment ]}
+        {[ case "Left" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-left" /]}
+        {[ case "Center" ]}
+            {[ imgClass = "img-fluid" /]}
+            {[ alignClass = "sn-text-center" /]}
+        {[ case "Stretch" ]}
+            {[ imgClass = "img-fluid max" /]}
+            {[ alignClass = "sn-text-center" /]}
+    {[/]}
+    {[/]}
+
+    <div class="preview {{ alignClass }} {{ imagePaddingClass }}" {[ if imageContainerStyle ]}style="{{ escapeHtml(imageContainerStyle) }}"{[/]}>
+        <img src="{{ shortcut.previewUrl }}" class="{{ imgClass }}" alt="" />
+    </div>
+    {[ else ]}
+    {* backward compatibility to avoid breaking existing published docs *}
+    <div class="preview" style="background: url({{ shortcut.previewUrl }});background-size: cover;background-position: center;{{ escapeHtml(imageContainerStyle) }}"></div>
+    {[/]}
     {[ else ]}
     <div class="preview empty"></div>
     {[/]}

@@ -1,7 +1,6 @@
 import { getVariantClass, escapeHtml } from './string_utils'
-import { tokenValueToHex, getFormattedColor } from './tokens'
+import { tokenValueToHex, getFormattedColor, referenceBadgeTooltip } from './tokens'
 import { returnSwatchClassnames } from './color'
-import { isNonEmptyString } from './general-utils'
 import { getThemesTooltip } from './themes'
 import { htmlSafeString } from './sandbox'
 
@@ -69,7 +68,7 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
   const displayName = String(token?.name || '').replace(/\//g, ' / ')
   const themeClass = themes && themes.length > 0 ? 'theme-value' : ''
   let out = '<div class="preview is-color ' + returnSwatchClassnames(value) + '" style="background-color: ' + tokenValueToHex(value) + ';">'
-  out += renderReferenceBadgeColor(token)
+  out += renderReferenceBadgeColor(token, themes)
   out += renderThemesBadge(themes, iconStrokeWidth)
   // Template emits `{{ escapeHtml(...) }} ` with a trailing space before </div>; match byte-for-byte.
   if (showName) out += '<div class="name">' + (escapeHtml(displayName) ?? '') + ' </div>'
@@ -78,15 +77,10 @@ function renderColorPreviewStack(token: any, themes: any[], showName: boolean, i
   return out + '</div>'
 }
 
-function renderReferenceBadgeColor(token: any): string {
-  const v = token?.value
-  if (!isNonEmptyString(v?.referencedTokenId) || !v?.referencedToken) return ''
-  let refName = String(v.referencedToken.name || '')
-  // Short names (e.g. "50", "L1") are ambiguous alone; template prepends parent group name.
-  if (refName.length < 4 && v.referencedToken.parent) {
-    refName = String(v.referencedToken.parent.name || '') + ' ' + refName
-  }
-  return '<div class="reference-badge" data-bs-toggle="tooltip" title="Referenced token: ' + htmlSafeString(refName) + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
+function renderReferenceBadgeColor(token: any, themes: any[]): string {
+  const tooltip = referenceBadgeTooltip(token, themes)
+  if (tooltip === null) return ''
+  return '<div class="reference-badge" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-multiline" title="' + tooltip + '" lang="en">' + REFERENCE_BADGE_SVG_COLOR + '</div>'
 }
 
 // Source: page_block_token_themes_badge.pr + page_block_token_theme_badge.pr

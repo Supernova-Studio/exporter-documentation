@@ -5,7 +5,7 @@
 {[ if token.tokenType.equals("Color") ]}
     {[ let hexValue = tokenValueToHex(token.value) /]}
     <div class="preview is-color {{ returnSwatchClassnames(token.value) }}" style="background-color: {{ hexValue }};">
-        {[ inject "page_block_token_reference_badge" context token /]}
+        {[ inject "page_block_token_reference_badge" context ({"token": token, "themes": themes}) /]}
         {[ inject "page_block_token_themes_badge" context themes /]}
 
         {[ if (showName) ]}
