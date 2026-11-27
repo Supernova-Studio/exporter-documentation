@@ -1,4 +1,5 @@
-{[ let token = context /]}
+{[ let token = context.token /]}
+{[ let themes = context.themes /]}
 <span class="token-value">
 {[ if token.tokenType.equals("Color") ]}
     {{getFormattedColor(token.value)}}
@@ -30,6 +31,6 @@
 {[ elseif isOptionsToken(token.tokenType)]}
     {{ token.value.value }}
 {[ elseif (isDimensionToken(token.tokenType))]}
-    {{ measureValueToReadableUnit(token.value) }}
+    {{ measureValueToReadableUnit(token.value, token, themes) }}
 {[/]}
 </span>

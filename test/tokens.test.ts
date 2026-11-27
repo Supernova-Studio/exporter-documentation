@@ -2,6 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 import {
   getFormattedColor,
+  measureValueToReadableUnit,
   referenceBadgeTooltip,
 } from '../typescript/src/doc_functionality/tokens';
 import { fastRenderTokenStackToHtml } from '../typescript/src/doc_functionality/renderers';
@@ -71,6 +72,69 @@ const referencedOpacity = (source: any) => ({
 const bothParts = () => ({
   ...ownOpacity(0.4),
   opacity: referencedOpacity(opacityDisabled),
+});
+
+describe('measureValueToReadableUnit', () => {
+  test('rounds Figma millisecond timing values', () => {
+    const figmaDuration = {
+      origin: { source: 'Figma', id: 'VariableID:1:2', name: 'Fast' },
+    };
+
+    expect(
+      measureValueToReadableUnit(
+        { unit: 'Ms', measure: 201.5, referencedTokenId: null } as any,
+        figmaDuration as any,
+      ),
+    ).toBe('202ms');
+  });
+
+  test('preserves decimal timing values created in Supernova', () => {
+    const supernovaDuration = {
+      origin: { source: 'Supernova', id: null, name: null },
+    };
+
+    expect(
+      measureValueToReadableUnit(
+        { unit: 'Ms', measure: 201.5, referencedTokenId: null } as any,
+        supernovaDuration as any,
+      ),
+    ).toBe('201.5ms');
+  });
+
+  test('preserves timing decimals when no token origin is available', () => {
+    expect(
+      measureValueToReadableUnit({
+        unit: 'Ms',
+        measure: 201.5,
+        referencedTokenId: null,
+      } as any),
+    ).toBe('201.5ms');
+  });
+
+  test('uses the selected theme override origin instead of the base Figma origin', () => {
+    const token = {
+      id: 'fast',
+      origin: { source: 'Figma', id: 'VariableID:1:2', name: 'Fast' },
+    };
+    const themes = [
+      {
+        overriddenTokens: [
+          {
+            id: 'fast',
+            origin: { source: 'Supernova', id: null, name: null },
+          },
+        ],
+      },
+    ];
+
+    expect(
+      measureValueToReadableUnit(
+        { unit: 'Ms', measure: 201.5, referencedTokenId: null } as any,
+        token as any,
+        themes,
+      ),
+    ).toBe('201.5ms');
+  });
 });
 
 describe('getFormattedColor', () => {

@@ -14,7 +14,7 @@
             </div>
         {[/]}
         <div class="value {{ (themes && themes.length > 0) ? "theme-value" : "" }}">
-            {[ inject "page_block_token_value" context token /]}
+            {[ inject "page_block_token_value" context ({"token": token, "themes": themes}) /]}
         </div>
     </div>
 
@@ -29,6 +29,6 @@
                 {{ escapeHtml(token.name.replacing("/", " / ")) }}
             {[/]}
         </div>
-        <div class="value">{[ inject "page_block_token_value" context token /]}</div>
+        <div class="value">{[ inject "page_block_token_value" context ({"token": token, "themes": themes}) /]}</div>
     </div>
 {[/]}

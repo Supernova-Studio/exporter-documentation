@@ -85,7 +85,7 @@
     <div class="token-preview-container small-text" style="{{ convertTextCaseToTextTransform(token.value.value, true) }}"><span lang="en">Hello world</span>{[ inject "page_block_token_reference_badge" context ({"token": token, "themes": themes}) /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isDimensionToken(token.tokenType)]}
     {* todo: add nicer dimension preview — space, size *}
-    <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value) }}{[ inject "page_block_token_reference_badge" context ({"token": token, "themes": themes}) /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
+    <div class="token-preview-container small-text">{{ measureValueToReadableUnit(token.value, token, themes) }}{[ inject "page_block_token_reference_badge" context ({"token": token, "themes": themes}) /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isOptionsToken(token.tokenType)]}
     <div class="token-preview-container small-text">{{ token.value.value }}{[ inject "page_block_token_reference_badge" context ({"token": token, "themes": themes}) /]}{[ inject "page_block_token_themes_badge" context themes /]}</div>
 {[ elseif isStringToken(token.tokenType)]}
